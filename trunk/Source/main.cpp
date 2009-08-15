@@ -1,0 +1,70 @@
+#include "AmjuFirst.h"
+#include <iostream>
+
+#ifdef GEKKO
+
+#include <fat.h> // TODO TEMP TEST
+
+#include "AmjuGL-GCube.h"
+#include "EventPollerImplWii.h"
+#include "SoundWii.h"
+#endif // GEKKO
+
+#ifdef WIN32
+// Assume we always use OpenGL for now
+#include "AmjuGL-OpenGL.h"
+#include "EventPollerImplWin32.h"
+#include "SoundSDLMixer.h"
+#endif // WIN32
+
+#include "Game.h"
+#include "GSLogo.h"
+#include "GSMain.h" // TEMP; so we start immediately in game
+#include "TestState.h" // TODO TEMP TEST
+#include "CursorManager.h"
+#include "File.h"
+#include "AlphaBmpLoader.h"
+#include "ObjMesh.h"
+#include "Font.h"
+#include "SoundManager.h"
+#include "AmjuFinal.h"
+#include "AmjuMain.h" // #defines something, include it last
+
+using namespace Amju;
+
+int main(int argc, char **argv)
+{
+#ifdef GEKKO
+	AmjuGL::SetImpl(new AmjuGLGCube(false /* console */));
+  TheEventPoller::Instance()->SetImpl(new EventPollerImplWii);
+  TheSoundManager::Instance()->SetImpl(new SoundWii);
+  File::SetRoot("/apps/balance/data/", "/");
+#endif // GEKKO
+
+#ifdef WIN32
+  // Assume we always use OpenGL for now
+	AmjuGL::SetImpl(new AmjuGLOpenGL);
+  TheEventPoller::Instance()->SetImpl(new EventPollerImplWin32);
+  TheSoundManager::Instance()->SetImpl(new SoundSDLMixer);
+#endif // WIN32
+
+
+  // Initialise window etc
+  Amju::AmjuGL::Init();
+	
+  // Add resource loaders
+	TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
+	TheResourceManager::Instance()->AddLoader("obj", ObjLoader);
+  TheResourceManager::Instance()->AddLoader("font", FontLoader);
+	
+  TheCursorManager::Instance()->Load();
+
+  TheGame::Instance()->SetCurrentState(GSLogo::NAME); // TODO GSLogo
+//  TheGame::Instance()->SetCurrentState(TestState::NAME);
+
+  TheGame::Instance()->Run();
+
+	return 0;
+}
+ 
+ 

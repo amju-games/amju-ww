@@ -1,0 +1,83 @@
+#include "Cursor.h"
+#include "ResourceManager.h"
+#include "Pause.h"
+#include "EventPoller.h"
+#include "Screen.h"
+
+namespace Amju
+{
+Cursor::Cursor() : m_id(-1)
+{
+  TheEventPoller::Instance()->AddListener(this);
+
+  m_rot= 0;
+
+	static const float W = 0.05f;
+	static const float H = 0.1f;
+
+  AmjuGL::Vert verts[4] = 
+  {
+    AmjuGL::Vert( W, -H, 0,   1, 0,   0, 1, 0), // x, y, z, u, v, nx, ny, nz  
+    AmjuGL::Vert( W,  H, 0,   1, 1,   0, 1, 0),
+    AmjuGL::Vert(-W,  H, 0,   0, 1,   0, 1, 0),
+    AmjuGL::Vert(-W, -H, 0,   0, 0,   0, 1, 0)
+  };
+
+	m_tris.reserve(2);
+	AmjuGL::Tri tri;
+	tri.m_verts[0] = verts[0];
+	tri.m_verts[1] = verts[1];
+	tri.m_verts[2] = verts[2];
+	m_tris.push_back(tri);
+
+	tri.m_verts[0] = verts[0];
+	tri.m_verts[1] = verts[2];
+	tri.m_verts[2] = verts[3];
+	m_tris.push_back(tri);
+}
+
+bool Cursor::Load(int id)
+{
+  m_id = id;
+  m_pTex = (Texture*)TheResourceManager::Instance()->GetRes("hand.bmpa");
+  Assert(m_pTex);
+  return true;
+}
+
+void Cursor::OnCursorEvent(const CursorEvent& ce)
+{
+  Assert(m_id > -1);
+  
+  if (ce.controller == m_id) 
+  {
+    m_pos.x = (float)ce.x / (float)Screen::X();
+    m_pos.y = 1.0f - (float)ce.y / (float)Screen::Y();
+  }
+}
+
+void Cursor::OnRotationEvent(const RotationEvent& re)
+{
+  Assert(m_id > -1);
+  
+  if (re.controller == m_id) 
+  {
+    if (re.axis == AMJU_AXIS_Z)
+    {
+      m_rot = re.degs;
+    }
+  }
+}
+
+void Cursor::Draw()
+{
+  m_pTex->UseThisTexture();
+
+  AmjuGL::PushMatrix();
+  // Convert coords from 0..1 to -1..1
+  AmjuGL::Translate(m_pos.x * 2.0f - 1.0f, m_pos.y * 2.0f - 1.0f, 0);
+  // Rotate cursor
+  AmjuGL::RotateZ(m_rot);
+  AmjuGL::DrawTriList(m_tris);
+  AmjuGL::PopMatrix();
+}
+}
