@@ -1,0 +1,21 @@
+// scene graph test
+// ver
+1
+
+comp
+// Local Tr
+I
+// num children
+1
+// children
+mesh
+// Local Tr
+I
+// mesh name
+skybox2.obj
+// num children
+0
+
+
+
+
