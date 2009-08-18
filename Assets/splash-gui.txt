@@ -1,0 +1,13 @@
+// splash screen gui
+// version
+1
+
+// Element name
+splash-image
+// pos (coords are -1..1)
+-0.5, 0.5
+// size
+1.0, 1.0
+
+// Image - ext is resource name
+logo.bmpa
