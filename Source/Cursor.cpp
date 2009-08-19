@@ -12,7 +12,7 @@ Cursor::Cursor() : m_id(-1)
 
   m_rot= 0;
 
-	static const float W = 0.05f;
+	static const float W = 0.1f;
 	static const float H = 0.1f;
 
   AmjuGL::Vert verts[4] = 

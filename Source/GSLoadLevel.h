@@ -28,7 +28,6 @@ private:
 
 private:
   std::string m_level;
-  float m_timer;
   float m_maxBarX;
 
   int m_numObjects;
