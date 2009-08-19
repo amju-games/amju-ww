@@ -2,14 +2,17 @@
 #define SKYBOX_H
 
 #include "GameObject.h"
+#include "EventListener.h"
 #include "ObjMesh.h"
 
 namespace Amju
 {
-class Skybox : public GameObject
+class Skybox : public GameObject, public EventListener
 {
 public:
   static const char* NAME;
+
+  Skybox();
 
   // GameObject overrides
   virtual const char* GetTypeName() const;
@@ -17,9 +20,13 @@ public:
   virtual void Draw();
   virtual void Update();
 
+  virtual void OnCursorEvent(const CursorEvent&);
+
 private:
   // TODO Visible meshes - bg and clouds, rotating at different rates..?
   PObjMesh m_mesh;
+  float m_xRot;
+  float m_yRot;
 };
 }
 

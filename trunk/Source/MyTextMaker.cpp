@@ -53,8 +53,22 @@ float rnd()
 
 PSceneNode MyTextMaker::Decorate(PSceneNode p)
 {
+  static const int MAX_COLOUR = 4;
+  Colour COLOURS[MAX_COLOUR] = 
+  {
+    Colour(1.0f, 0.3f, 0.3f, 1.0f),
+    Colour(1.0f, 0.1f, 0.5f, 1.0f),
+    Colour(1.0f, 0.0f, 0.7f, 1.0f),
+    Colour(1.0f, 0.0f, 0.9f, 1.0f)
+  };
   // Choose colour
-  m_colour.Set(1, 0, 0, 1); // shades of blue..!?
+  static int c = 0;
+  m_colour = COLOURS[c];
+  c++;
+  if (c == MAX_COLOUR)
+  {
+    c = 0;
+  }
   SceneNode* decorator = new MyCharacterDecorator(m_colour, m_theta);
   // Get next value for theta
   m_theta += 0.2f; 

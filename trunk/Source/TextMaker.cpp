@@ -40,7 +40,7 @@ PSceneNode TextMaker::MakeText(const std::string& text)
   SceneNode* comp = new SceneNode;
   float xmax = 0;
   float x = 0;
-  float y = 0;
+  float y = 1.0f;
   for (unsigned int i = 0; i < text.size(); i++)
   {
     char c = text[i];
@@ -70,7 +70,7 @@ PSceneNode TextMaker::MakeText(const std::string& text)
   }
   // Centre TODO make optional; centre each line!
   Matrix m;
-  m.Translate(Vec3f(xmax * -0.5f, 0, 0));
+  m.Translate(Vec3f(xmax * -0.5f, 0, y * -0.5f));
   comp->SetLocalTransform(m);
 
   comp->CombineTransform();

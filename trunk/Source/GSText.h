@@ -13,6 +13,8 @@ namespace Amju
 class GSText : public GameState
 {
 public:
+  GSText();
+  
   // GameState overrides
   virtual void Update();
   virtual void Draw();
@@ -30,6 +32,9 @@ protected:
 
   // 3D text
   PSceneNode m_scene;
+  
+  // Time in current state
+  float m_timer;
 };
 }
 
