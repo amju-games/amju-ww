@@ -20,7 +20,9 @@ include $(DEVKITPPC)/wii_rules
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-BUILD		:=	Build
+
+# j.c. we want the Build dir to not be in here - this needed a change further down.
+BUILD		:=	../../Build/Wii
 TARGET		:=	$(BUILD)/boot
 AMJU      := ../../../amjulib/Source
 AMJU_LIB_DIRS := \
@@ -78,7 +80,14 @@ LIBDIRS	:=
 # no real need to edit anything past this point unless you need to add additional
 # rules for different file extensions
 #---------------------------------------------------------------------------------
-ifneq ($(BUILD),$(notdir $(CURDIR)))
+
+# j.c.
+# This checks to see if we are in the Build directory or not.
+# It only checks the final directory names, not the whole path, so
+#  watch out!
+# TODO Could try prepending $(CURDIR) to $(BUILD) and not using $notdir
+ifneq ($(notdir $(BUILD)),$(notdir $(CURDIR)))
+# j.c. was ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
 
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
@@ -134,8 +143,11 @@ export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 #---------------------------------------------------------------------------------
 $(BUILD):
+	@echo Hello, curdir is $(CURDIR)
 	@[ -d $@ ] || mkdir -p $@
-	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@$(MAKE) -f $(CURDIR)/Makefile -C $(BUILD) 
+
+# j.c. was @$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 #---------------------------------------------------------------------------------
 clean:
