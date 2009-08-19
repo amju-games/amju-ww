@@ -76,7 +76,7 @@ void Player::Jump()
   // Jump if we are on ground
   if (!IsFalling())
   {
-    m_vel.y = 100.0f; // TODO CONFIG -- power up ?
+    m_vel.y = 500.0f; // TODO CONFIG -- power up ?
     SetIsFalling(true);
   }
 }
@@ -146,16 +146,11 @@ void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
     return;
   }
 
-  float xdiff = bbe.x - 320.0f;
-  float ydiff = bbe.y - 240.0f;
-
-  m_vel.x = xdiff * 0.1f;
-  m_vel.z = ydiff * 0.1f;
+  m_vel.x = bbe.x * 100.0f; 
+  m_vel.z = bbe.y * 100.0f; 
 
   // Work out direction to face
-  xdiff *= (float)(1.0 / 320.0); 
-  ydiff *= (float)(1.0 / 240.0);
-  SetDir(RadToDeg(atan2((double)xdiff, (double)ydiff)));
+  SetDir(RadToDeg(atan2((double)bbe.x, (double)bbe.y)));
 
   SetIsControlled(true); 
 }
