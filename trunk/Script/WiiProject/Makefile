@@ -1,3 +1,8 @@
+# j.c.
+# Slightly modified from the devkipro samples, so the Build directory can be
+# separate from the Script dir.
+# Check out http://www.gnu.org/software/make/manual/make.html
+
 #---------------------------------------------------------------------------------
 # Clear the implicit built in rules
 #---------------------------------------------------------------------------------
