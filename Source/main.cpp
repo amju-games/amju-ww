@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 	AmjuGL::SetImpl(new AmjuGLGCube(false /* console */));
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWii);
   TheSoundManager::Instance()->SetImpl(new SoundWii);
-  File::SetRoot("/apps/balance/data/", "/");
+  File::SetRoot("/apps/amju_ww/data/", "/");
 #endif // GEKKO
 
 #ifdef WIN32
