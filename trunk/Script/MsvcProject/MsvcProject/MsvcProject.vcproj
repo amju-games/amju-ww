@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\CollideDinoDino.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\CollidePlayerBlock.cpp"
 				>
 			</File>
@@ -269,6 +273,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\LoadTextureResource.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\main.cpp"
 				>
 			</File>
@@ -282,6 +290,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\OnFloor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\ParticleEffect2d.cpp"
 				>
 			</File>
 			<File
@@ -391,6 +403,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\LoadTextureResource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\MyTextMaker.h"
 				>
 			</File>
@@ -400,6 +416,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\OnFloor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\ParticleEffect2d.h"
 				>
 			</File>
 			<File
