@@ -25,6 +25,7 @@ Floor::Floor()
   // Just needs to be non-zero until a real axis of rotation is found
 
   m_rotAxes = AMJU_X;
+  m_maxYSize = 0;
 }
 
 const char* Floor::GetTypeName() const
@@ -66,6 +67,12 @@ bool Floor::Load(File* f)
   if (!f->GetInteger((int*)&m_rotAxes))
   {
     f->ReportError("Expected floor rot axes flags");
+    return false;
+  }
+
+  if (!f->GetFloat(&m_maxYSize))
+  {
+    f->ReportError("Expected floor AABB max height");
     return false;
   }
 
@@ -244,8 +251,7 @@ void Floor::Update()
 
   // If the collision mesh AABB is too tall, we have reached the max rotation.
   // In this case, restore the old values for m_quat, m_matrix, m_collMesh, m_aabb
-  static const float MAX_Y_SIZE = 100.0f; // TODO CONFIG/per floor ???
-  if (m_aabb.GetYSize() > MAX_Y_SIZE)
+  if (m_aabb.GetYSize() > m_maxYSize)
   {
     m_quat = oldQuat;
     m_matrix = oldMatrix;
