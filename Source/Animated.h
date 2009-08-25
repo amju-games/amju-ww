@@ -36,12 +36,12 @@ protected:
   // All animated chars cast a shadow
   Shadow m_shadow;
 
-private:
   float m_dir; // Direction of movement
   float m_dirCurrent; // Direction we currently face -- we will reduce the difference
    // between m_dirCurrent and m_dir until we face the direction of movement.
   float m_oldAngleDiff;
 
+private:
   int m_anim;
   // TODO Need next anim ?
   int m_frame;
