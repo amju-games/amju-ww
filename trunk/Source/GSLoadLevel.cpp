@@ -7,6 +7,7 @@
 #include "GameObjectFactory.h"
 #include "SceneGameObject.h"
 #include "Camera.h"
+#include "ResourceManager.h"
 
 namespace Amju
 {
@@ -52,6 +53,11 @@ void GSLoadLevel::StartLoad()
 {
   TheGame::Instance()->ClearGameObjects();
   OnFloor::ClearFloors();
+
+  // TODO trash resource group for previous level
+
+  std::string groupname = "level-" + m_level + "-group";
+  TheResourceManager::Instance()->LoadResourceGroup(groupname);
 
   std::string levelfilename = "level-" + m_level + ".txt";
 
@@ -101,6 +107,7 @@ void GSLoadLevel::LoadOneObject()
     node->SetIsCamera(true);
     TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_CAMERA, node);
   }
+  // TODO Skybox node type - draw it first for now
   else
   {
     PSceneNode shadow = new SceneGameObjectBlended(pgo);
