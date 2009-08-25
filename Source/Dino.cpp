@@ -16,14 +16,62 @@ const char* Dino::NAME = "dino";
 
 Dino::Dino()
 {
+  UpdateAabb();
+  m_decideTime = 0;
+}
+
+void Dino::UpdateAabb()
+{
   static const float XSIZE = 15.0f;
   static const float YSIZE = 60.0f;
-  m_aabb.Set(
-    -XSIZE, XSIZE, 
-    0, YSIZE, 
-    -XSIZE, XSIZE);
+  static const float ZSIZE = 45.0f;
 
-  m_decideTime = 0;
+  float minx = 0;
+  float minz = 0;
+  float maxx = 0;
+  float maxz = 0;
+
+  while (m_dir > 180.0f)
+  {
+    m_dir -= 360.0f;
+  }
+  while (m_dir < -180.0f)
+  {
+    m_dir += 360.0f;
+  }
+  Assert(m_dir >= -180.0f);
+  Assert(m_dir <=  180.0f);
+
+  minx = m_pos.x - XSIZE;
+  maxx = m_pos.x + XSIZE;
+  minz = m_pos.z - XSIZE;
+  maxz = m_pos.z + XSIZE;
+
+  if (m_dir < -135.0f || m_dir >= 135.0f)
+  { 
+    minz = m_pos.z - ZSIZE;
+  }
+  else if (m_dir <= -45.0f)
+  {
+    minx = m_pos.x - ZSIZE;
+  }
+  else if (m_dir <= 45.0f)
+  {
+    maxz = m_pos.z + ZSIZE;
+  }
+  else if (m_dir <= 135.0f)
+  {
+    maxx = m_pos.x + ZSIZE;
+  }
+  else 
+  {
+    Assert(0);
+  }
+
+  float miny = m_pos.y;
+  float maxy = m_pos.y + YSIZE;
+
+  m_aabb.Set(minx, maxx, miny, maxy, minz, maxz);
 }
 
 const char* Dino::GetTypeName() const
@@ -39,6 +87,8 @@ void Dino::Draw()
 
 void Dino::Update()
 {
+  UpdateAabb(); // updates shape of AABB, doesn't change its position
+
   OnFloor::Update();
 
   // TODO TEMP TEST 
