@@ -19,6 +19,7 @@ public:
   virtual void Draw();
   virtual void Draw2d();
   virtual void OnActive();
+  virtual void OnDeactive();
 
   // EventListener overrides - allow player to click through?
   virtual void OnKeyEvent(const KeyEvent&);
