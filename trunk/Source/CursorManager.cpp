@@ -1,9 +1,12 @@
 #include "CursorManager.h"
+#include "ResourceManager.h"
 
 namespace Amju
 {
 bool CursorManager::Load()
 {
+  TheResourceManager::Instance()->LoadResourceGroup("cursor-group");
+
   for (int i = 0; i < NUM_CURSORS; i++)
   {
     if (!m_cursors[i].Load(i))
