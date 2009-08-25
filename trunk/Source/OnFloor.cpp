@@ -189,6 +189,9 @@ void OnFloor::UpdateXZ()
 
 void OnFloor::UpdateY()
 {
+  // Make sure setting acceleration doesn't stop gravity working
+  m_acc.y = GRAVITY;
+
   // Fallen off ?
   float y = 0;
   bool isOn = false;
