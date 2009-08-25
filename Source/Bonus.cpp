@@ -4,6 +4,8 @@
 #include "File.h"
 #include "LoadMeshResource.h"
 #include "Colour.h"
+#include "Timer.h"
+#include "SoundManager.h"
 
 namespace Amju
 {
@@ -22,6 +24,8 @@ Bonus::Bonus()
     -XSIZE, XSIZE, 
     0, YSIZE, 
     -XSIZE, XSIZE);
+
+  m_yRot = (float)(rand() % 180);
 }
 
 const char* Bonus::GetTypeName() const
@@ -50,12 +54,25 @@ bool Bonus::Load(File* f)
     return false;
   }
   // Load bonus points ?
+  File effectFile;
+  if (!effectFile.OpenRead("bonus-effect.txt"))
+  {
+    effectFile.ReportError("Couldn't open bonus effect file");
+    return false;
+  }
+  if (!m_effect.Load(&effectFile))
+  {
+    effectFile.ReportError("Failed to load bonus effect");
+    return false;
+  }
 
   return true;
 }
 
 void Bonus::Draw()
 {
+  m_effect.Draw();
+
   if (m_isCollected)
   {
     return;
@@ -64,8 +81,9 @@ void Bonus::Draw()
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::PushMatrix();
   AmjuGL::Translate(m_pos.x, m_pos.y, m_pos.z);
+  AmjuGL::RotateY(m_yRot);
   PushColour();
-  MultColour(Colour(1, 0, 0, 1));
+  MultColour(Colour(1, 0, 0.5f, 1));
   m_mesh->Draw();
   PopColour();
   AmjuGL::PopMatrix();
@@ -76,17 +94,51 @@ void Bonus::Draw()
 
 void Bonus::Update()
 {
-  // Don't move with floor
+  m_effect.Update();
 
+  // Don't move with floor
   if (m_isCollected)
   {
     return;
   }
-  // TODO Spin around
+  // Spin around
+  float dt = TheTimer::Instance()->GetDt();
+  static const float ROT_SPEED = 360.0f;
+  m_yRot += ROT_SPEED * dt;
+}
+
+static float rnd(float f)
+{
+  return ((float)rand() / (float)RAND_MAX * 2.0f * f - f);
+}
+
+static const float PARTICLE_SPEED = 200.0f;
+
+Vec3f BonusParticleEffect::NewVel()
+{
+  return Vec3f(rnd(PARTICLE_SPEED), rnd(PARTICLE_SPEED), rnd(PARTICLE_SPEED));
+}
+
+Vec3f BonusParticleEffect::NewAcc()
+{
+  return Vec3f(0, -PARTICLE_SPEED, 0); // gravity
 }
 
 void Bonus::OnPlayerCollision()
 {
+  if (m_isCollected)
+  {
+    return;
+  }
+
   m_isCollected = true;
+
+  Matrix mat;
+  mat.Translate(m_pos);
+  m_effect.SetLocalTransform(mat);
+  m_effect.Start(); 
+
+  TheSoundManager::Instance()->PlayWav("cashreg"); // NB No file ext
+  TheSoundManager::Instance()->PlayWav("bonus_points"); // NB No file ext
 }
 }
