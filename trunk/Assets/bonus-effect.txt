@@ -8,5 +8,5 @@ sparkle1.bmpa
 // number
 20
 // particle max time
-3.0
+6.0
 
