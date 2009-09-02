@@ -1,0 +1,6 @@
+// Resource group
+// version
+1
+// resources
+gui-button-4.bmpa
+progress.bmpa

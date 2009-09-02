@@ -1,0 +1,20 @@
+// Resource group
+// version
+1
+// resources
+skybox2.bmp
+skybox2.obj
+shadow.bmpa
+floor.bmp
+box2.obj
+red.bmp
+heart.obj
+star.obj
+flare.bmpa
+sparkle1.bmpa
+amju.md2
+amju2.bmp
+amju2a.bmp
+dino.md2
+dino1.bmp
+dino1a.bmp
