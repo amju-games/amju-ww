@@ -870,11 +870,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\amjulib\Source\Resource\ResourceFile.cpp"
+				RelativePath="..\..\..\amjulib\Source\Resource\BinaryResource.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\amjulib\Source\Resource\ResourceFile.h"
+				RelativePath="..\..\..\amjulib\Source\Resource\BinaryResource.h"
 				>
 			</File>
 			<File
