@@ -2,9 +2,6 @@
 #include <iostream>
 
 #ifdef GEKKO
-
-#include <fat.h> // TODO TEMP TEST
-
 #include "AmjuGL-GCube.h"
 #include "EventPollerImplWii.h"
 #include "SoundWii.h"
@@ -27,8 +24,12 @@
 #include "ObjMesh.h"
 #include "Font.h"
 #include "SoundManager.h"
+#include "SceneGraph.h"
+#include "SceneNode.h"
+#include "SceneMesh.h"
+#include "BinaryResource.h"
 #include "AmjuFinal.h"
-#include "AmjuMain.h" // #defines something, include it last
+#include "AmjuMain.h" // #defines main, so best to include it last
 
 using namespace Amju;
 
@@ -38,6 +39,7 @@ int main(int argc, char **argv)
 	AmjuGL::SetImpl(new AmjuGLGCube(false /* console */));
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWii);
   TheSoundManager::Instance()->SetImpl(new SoundWii);
+  // TODO Any way we can get the directory where the executable lives ?
   File::SetRoot("/apps/amju_ww/data/", "/");
 #endif // GEKKO
 
@@ -56,10 +58,17 @@ int main(int argc, char **argv)
 	TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
 	TheResourceManager::Instance()->AddLoader("obj", ObjLoader);
   TheResourceManager::Instance()->AddLoader("font", FontLoader);
-	
+  TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
+  TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
+  TheResourceManager::Instance()->AddLoader("wav", BinaryResourceLoader);
+
+  // Add SceneNode types to factory
+  TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
+  TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
+
   TheCursorManager::Instance()->Load();
 
-  TheGame::Instance()->SetCurrentState(GSLogo::NAME); // TODO GSLogo
+  TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
 //  TheGame::Instance()->SetCurrentState(TestState::NAME);
 
   TheGame::Instance()->Run();
