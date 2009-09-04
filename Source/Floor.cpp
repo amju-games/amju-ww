@@ -7,6 +7,8 @@
 #include "File.h"
 #include "LoadMeshResource.h"
 #include "LoadVec3.h"
+#include "MySceneGraph.h"
+#include "SceneMesh.h"
 
 namespace Amju
 {
@@ -26,11 +28,19 @@ Floor::Floor()
 
   m_rotAxes = AMJU_X;
   m_maxYSize = 0;
+
+  m_inertia = 1.0f;
 }
 
 const char* Floor::GetTypeName() const
 {
   return NAME;
+}
+
+AABB* Floor::GetAABB()
+{
+  Assert(m_pSceneNode);
+  return m_pSceneNode->GetAABB();
 }
 
 void Floor::Reset()
@@ -57,9 +67,9 @@ bool Floor::Load(File* f)
     return false;
   }
 
-  m_mesh = LoadMeshResource(f);
+  ObjMesh* mesh = LoadMeshResource(f);
 
-  m_mesh->CalcCollisionMesh(&m_collMesh);
+  mesh->CalcCollisionMesh(&m_collMesh);
   Matrix m;
   m.Translate(m_pos);
   m_collMesh.Transform(m);
@@ -76,38 +86,24 @@ bool Floor::Load(File* f)
     return false;
   }
 
+  if (!f->GetFloat(&m_inertia))
+  {
+    f->ReportError("Expected floor moment of inertia");
+    return false;
+  }
+
+  m_pSceneNode = new SceneMesh;
+  m_pSceneNode->SetMesh(mesh);
+
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
+
   return true;
 }
 
 const CollisionMesh& Floor::GetCollisionMesh() const
 {
   return m_collMesh;
-}
-
-void Floor::Draw()
-{
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-
-  AmjuGL::DrawLighting(
-    AmjuGL::LightColour(0, 0, 0),
-    AmjuGL::LightColour(0.2f, 0.2f, 0.2f), // Ambient light colour
-    AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
-    AmjuGL::LightColour(1, 1, 1),
-    AmjuGL::Vec3(0, 1, 0)); // Light direction
-
-  AmjuGL::PushMatrix();
-
-  AmjuGL::MultMatrix(m_matrix);
-  m_mesh->Draw();
-
-  AmjuGL::PopMatrix();
-
-  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
-
-  // TODO TEMP TEST
-  // Should match obj mesh!
-//  m_collMesh.Draw();
-  GetAABB().Draw(); // box enclosing collision mesh
 }
 
 Matrix* Floor::GetMatrix()
@@ -122,20 +118,11 @@ bool Floor::GetY(const Vec3f& v, float* pY)
 
 void Floor::SetObjMassPos(float mass, const Vec3f& pos)
 {
-  // TODO Clear tilt at start of frame ?
-  // Otherwise how do we know when an object moves or leaves floor ?
-
-  // Calc distance from fixed pivot.
-  // Mass * distance = moment ?
-  // Work out force
-  // -> rotational acceleration about x and z axes
-
-  // Assuming origin is pivot
-//  float dist = sqrt(pos.SqLen());
-//  float moment = mass * dist;
-
   // Remove components where there is no rotational freedom
   Vec3f v = pos;
+  // Get v rel to pivot of the Floor!
+  v -= m_pos;
+  v.y = 0;
 
   if (m_rotAxes & AMJU_X  && m_rotAxes & AMJU_Z)
   {
@@ -160,13 +147,13 @@ void Floor::ResetMoments()
 
 void Floor::Update()
 {
-  m_highPoint = -m_moments;
+  m_highPoint = m_pos - m_moments;
 
   // Remember old values, in case we need to restore them
   Quaternion oldQuat = m_quat;
   Matrix oldMatrix = m_matrix;
   CollisionMesh oldCollMesh = m_collMesh;
-  AABB oldAabb = m_aabb;
+  AABB oldAabb = *(GetAABB());
 
   float dt = TheTimer::Instance()->GetDt();
   // We have net moment acting on floor.
@@ -188,18 +175,20 @@ void Floor::Update()
     // Get axis about which the torque tends to rotate us
     static const Vec3f DOWN(0, -1.0f, 0);
     Vec3f axis = CrossProduct(m_moments, DOWN);
+    axis.y = 0;
     if (m_rotAxes & AMJU_X  && m_rotAxes & AMJU_Z)
     {
+      // Do nothing
     }
     else if (m_rotAxes & AMJU_X)
     {
-      axis.y = 0;
+      // Adxis should be (1, 0, 0)
       axis.z = 0;
     }
     else if (m_rotAxes & AMJU_Z)
     {
+      // Axis should be (0, 0, 1)
       axis.x = 0;
-      axis.y = 0;
     }
 
     // Check we will get an axis - i.e. there has to be some non-zero moment 
@@ -211,9 +200,9 @@ void Floor::Update()
       // Magnitude of torque
       float torque = sqrt(m_moments.SqLen()); // TODO sin theta
 
-      // Angular acceleration = torque / I  (I = Moment Of Inertia, like mass for rotations)
-      static const float I = 40.0f; // TODO TEMP TEST
-      m_angularAccel = torque / I;
+      // Angular acceleration = torque / I  
+      // (I = Moment Of Inertia, like mass for rotations)
+      m_angularAccel = torque / m_inertia;
     }
   }
 
@@ -247,17 +236,19 @@ void Floor::Update()
   m_collMesh.Translate(m_pos);
 
   // Calculate AABB for the collision mesh
-  m_collMesh.CalcAABB(&m_aabb);
+  m_collMesh.CalcAABB(m_pSceneNode->GetAABB());
 
   // If the collision mesh AABB is too tall, we have reached the max rotation.
   // In this case, restore the old values for m_quat, m_matrix, m_collMesh, m_aabb
-  if (m_aabb.GetYSize() > m_maxYSize)
+  if (m_pSceneNode->GetAABB()->GetYSize() > m_maxYSize)
   {
     m_quat = oldQuat;
     m_matrix = oldMatrix;
     m_collMesh = oldCollMesh;
-    m_aabb = oldAabb;
+    *(m_pSceneNode->GetAABB()) = oldAabb;
   }
+
+  m_pSceneNode->SetLocalTransform(m_matrix);
 }
 
 const Vec3f& Floor::GetHighPoint() const

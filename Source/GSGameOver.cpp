@@ -2,7 +2,7 @@
 #include "GSTitle.h"
 #include "GSLoadLevel.h"
 #include "Game.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "SoundManager.h"
 
 namespace Amju
@@ -49,7 +49,7 @@ void GSGameOver::OnActive()
 
   // Load background skybox
   // TODO We could have movement decorator etc 
-  TheSceneGraph::Instance()->SetRootNode(
+  GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("gameover-scene.txt"));
 }
 }

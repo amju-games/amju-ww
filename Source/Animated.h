@@ -1,14 +1,14 @@
 #ifndef ANIMATED_H_INCLUDED
 #define ANIMATED_H_INCLUDED
 
-#include "GameObject.h"
+#include "SceneNode.h"
 #include "Md2Model.h"
 #include "Vec3.h"
 #include "Shadow.h"
 
 namespace Amju
 {
-class Animated : public GameObject
+class Animated : public SceneNode
 {
 public:
   Animated();
@@ -19,14 +19,10 @@ public:
   // Set direction which character should face - we rotate to face this
   //  direction over time
   void SetDir(float degs);
+  // Get direction which character is facing, or may be rotating to face
+  float GetDir() const;
 
-  // Returns true if character has non-zero vel due to user or AI control
-  bool IsControlled() const;
-  void SetIsControlled(bool);
-
-  // Returns true if character is falling or jumping, i.e. in the air
-  bool IsFalling() const;
-  void SetIsFalling(bool);
+  bool LoadMd2(const std::string& md2name);
 
 protected:
   // No texture data here - we don't know how many textures 
@@ -34,6 +30,7 @@ protected:
   PMd2Model m_pModel;
 
   // All animated chars cast a shadow
+  // TODO Separate SceneNode
   Shadow m_shadow;
 
   float m_dir; // Direction of movement
@@ -47,12 +44,6 @@ private:
   int m_frame;
   int m_nextFrame;
   float m_t; // varies from 0..1
-
-  // True if velocity is non-zero, due to character walking or running.
-  // False if due to falling, sliding or being pushed.
-  bool m_isControlled;
-
-  bool m_isFalling; // falling or jumping
 };
 }
 

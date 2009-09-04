@@ -4,7 +4,9 @@
 #include "AmjuGL.h"
 #include "Game.h"
 #include "Timer.h"
-#include "Animated.h"
+#include "SceneNodeCamera.h"
+#include "MySceneGraph.h"
+#include "OnFloor.h"
 
 namespace Amju
 {
@@ -38,7 +40,7 @@ void Camera::Reset()
   const Vec3f& v = m_target->GetPos();
   m_pos = Vec3f(v.x, v.y + Y_OFFSET, v.z + Z_OFFSET);
 }
-
+/*
 void Camera::Draw()
 {
   if (!m_target)
@@ -53,11 +55,18 @@ void Camera::Draw()
     m_pos.x, v.y, v.z,  // target -- NB always look straight ahead, so x is the same
     0, 1.0f, 0); // up
 }
+*/
 
 void Camera::Update()
 {
   GameObject::Update();
 
+  if (!m_target)
+  {
+    Reset();
+  }
+
+  Assert(m_target);
   const Vec3f& v = m_target->GetPos();
 
   static const float CAM_SPEED = 400.0f; // TODO CONFIG
@@ -84,13 +93,25 @@ void Camera::Update()
   }
 
   // Move in Y - but don't move in y if player is falling
-  if (!((Animated*)m_target.GetPtr())->IsFalling())
+  if (!((OnFloor*)m_target.GetPtr())->IsFalling())
   {
     m_pos.y = v.y + Y_OFFSET;
   }
 
   // Z is fixed distance from player
   m_pos.z = v.z + Z_OFFSET;
+
+  /*
+  const Vec3f& v = m_target->GetPos();
+  // Don't set Identity - camera can be attached to something; multiple cameras..?
+  AmjuGL::LookAt(
+    m_pos.x, m_pos.y, m_pos.z,  // eye
+    m_pos.x, v.y, v.z,  // target -- NB always look straight ahead, so x is the same
+    0, 1.0f, 0); // up
+  */
+  m_pSceneNode->SetEyePos(m_pos);
+  m_pSceneNode->SetLookAtPos(Vec3f(m_pos.x, v.y, v.z));
+  m_pSceneNode->SetUpVec(Vec3f(0, 1, 0)); 
 }
 
 bool Camera::Load(File* f)
@@ -105,6 +126,10 @@ bool Camera::Load(File* f)
     f->ReportError("Expected target ID");
     return false;
   }
+
+  m_pSceneNode = new SceneNodeCamera;
+  GetGameSceneGraph()->SetCamera(m_pSceneNode);
+
   return true;
 }
 }

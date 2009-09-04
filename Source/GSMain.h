@@ -22,6 +22,8 @@ public:
 
   // EventListener overrides
   virtual void OnKeyEvent(const KeyEvent&);
+  // TODO TEMP TEST to test Wii rotation events
+  virtual void OnRotationEvent(const RotationEvent&);
 
   void ClearLevel();
 

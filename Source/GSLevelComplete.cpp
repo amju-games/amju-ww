@@ -1,5 +1,5 @@
 #include "GSLevelComplete.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "Game.h"
 #include "GSLoadLevel.h"
 #include "Timer.h"
@@ -42,7 +42,7 @@ void GSLevelComplete::OnActive()
 
   // Load background skybox
   // TODO We could have movement decorator etc 
-  TheSceneGraph::Instance()->SetRootNode(
+  GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("levelcomplete-scene.txt"));
 }
 }

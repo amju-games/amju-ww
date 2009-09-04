@@ -14,6 +14,8 @@
 #include "GSGameOver.h"
 #include "GameObjectFactory.h"
 #include "Game.h"
+#include "BlinkCharacter.h"
+#include "MySceneGraph.h"
 #include "AmjuFinal.h"
 
 namespace Amju
@@ -28,14 +30,6 @@ const char* Player::NAME = "player";
 Player::Player()
 {
   TheEventPoller::Instance()->AddListener(this);
-
-  // Set AABB size
-  static const float XSIZE = 15.0f;
-  static const float YSIZE = 60.0f;
-  m_aabb.Set(
-    -XSIZE, XSIZE, 
-    0, YSIZE, 
-    -XSIZE, XSIZE);
 }
 
 const char* Player::GetTypeName() const
@@ -45,11 +39,36 @@ const char* Player::GetTypeName() const
 
 bool Player::Load(File* f)
 {
-  if (!OnFloor::Load(f))
+  if (!OnFloorCharacter::Load(f))
   {
     return false;
   }
 
+  m_pSceneNode = new BlinkCharacter;
+
+  // TODO Load mesh and textures from file
+  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2("amju.md2"))
+  {
+    return false;
+  }
+
+  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures("amju2.bmp", "amju2a.bmp"))
+  {
+    return false;
+  }
+
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
+
+  // Create Shadow Scene Node
+  if (!LoadShadow(f))
+  {
+    return false;
+  }
+
+  return true;
+
+  /*
 // TODO Maybe use this one: "C:/JAY/BANANA/AMJU-EXTRA/AMJU-guitar2.MD2"
 //  + "C:/JAY/BANANA/AMJU-EXTRA/AMJU2-GUITAR.BMP"
 
@@ -67,8 +86,7 @@ bool Player::Load(File* f)
   Assert(m_pTex[1]);
 
   m_shadow.Load();
-
-  return true;
+*/
 }
 
 void Player::Jump()
@@ -155,6 +173,38 @@ void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   SetIsControlled(true); 
 }
 
+void Player::OnRotationEvent(const RotationEvent& re)
+{
+  if (re.controller != 0) // TODO m_id
+  {
+    return;
+  }
+
+  float degs = re.degs;
+  // Dead zone
+  if (fabs(degs) < 5.0f) // TODO CONFIG
+  {
+    degs = 0;
+  }
+
+  static const float MULT = 1.0f;
+  // hold controller with + on left, like SNES..?
+  // TODO Make this configurable
+  if (re.axis == AMJU_AXIS_X)
+  {
+    m_vel.x = MULT * -degs; // or put the -ve in EventsWii ??
+  }
+  else if (re.axis == AMJU_AXIS_Z)
+  {
+    m_vel.z = MULT * degs; 
+  }
+
+  // Work out direction to face
+  SetDir(RadToDeg(atan2((double)m_vel.x, (double)m_vel.z)));
+
+  SetIsControlled(true); 
+}
+
 void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
 {
   if (!m_floor)
@@ -192,7 +242,15 @@ void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
 
 void Player::Update()
 {
-  OnFloor::Update();
+  OnFloorCharacter::Update();
+
+  // Set AABB 
+  static const float XSIZE = 15.0f;
+  static const float YSIZE = 60.0f;
+  GetAABB()->Set(
+    m_pos.x - XSIZE, m_pos.x + XSIZE, 
+    m_pos.y, m_pos.y + YSIZE, 
+    m_pos.z - XSIZE, m_pos.z + XSIZE);
 
   // If we have fallen, go to life lost state
   if (IsDead())
@@ -201,9 +259,11 @@ void Player::Update()
   }
 }
 
+/*
 void Player::Draw()
 {
   OnFloor::Draw();
   DrawShadow(); // TODO temp hack
-}  
+} 
+*/
 }

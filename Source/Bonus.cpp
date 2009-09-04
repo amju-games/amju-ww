@@ -6,6 +6,9 @@
 #include "Colour.h"
 #include "Timer.h"
 #include "SoundManager.h"
+#include "SceneMesh.h"
+#include "MySceneGraph.h"
+#include "ObjMesh.h"
 
 namespace Amju
 {
@@ -17,13 +20,6 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Bonus::NAME, &CreateBonu
 Bonus::Bonus()
 {
   m_isCollected = false;
-
-  static const float XSIZE = 15.0f;
-  static const float YSIZE = 30.0f;
-  m_aabb.Set(
-    -XSIZE, XSIZE, 
-    0, YSIZE, 
-    -XSIZE, XSIZE);
 
   m_yRot = (float)(rand() % 180);
 }
@@ -45,14 +41,29 @@ bool Bonus::Load(File* f)
     f->ReportError("Expected bonus position");
     return false;
   }
-  m_aabb.Translate(m_pos);  
-
-  m_mesh = LoadMeshResource(f);
-  if (!m_mesh)
+ 
+  ObjMesh* mesh = LoadMeshResource(f);
+  if (!mesh)
   {
     f->ReportError("Failed to load bonus mesh");
     return false;
   }
+
+  m_pSceneNode = new SceneMesh;
+  ((SceneMesh*)m_pSceneNode)->SetMesh(mesh);
+
+  // Set bounding box 
+  static const float XSIZE = 15.0f;
+  static const float YSIZE = 50.0f;
+  m_pSceneNode->GetAABB()->Set(
+    -XSIZE, XSIZE, 
+    -YSIZE, YSIZE, 
+    -XSIZE, XSIZE);
+  m_pSceneNode->GetAABB()->Translate(m_pos);  
+
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
+
   // Load bonus points ?
   File effectFile;
   if (!effectFile.OpenRead("bonus-effect.txt"))
@@ -60,15 +71,24 @@ bool Bonus::Load(File* f)
     effectFile.ReportError("Couldn't open bonus effect file");
     return false;
   }
-  if (!m_effect.Load(&effectFile))
+  m_effect = new BonusParticleEffect;
+  if (!m_effect->Load(&effectFile))
   {
     effectFile.ReportError("Failed to load bonus effect");
+    return false;
+  }
+
+  m_pSceneNode->AddChild(m_effect);
+
+  if (!LoadShadow(f))
+  {
     return false;
   }
 
   return true;
 }
 
+/*
 void Bonus::Draw()
 {
   m_effect.Draw();
@@ -91,37 +111,36 @@ void Bonus::Draw()
 
   m_aabb.Draw();
 }
+*/
 
 void Bonus::Update()
 {
-  m_effect.Update();
+  // We don't want Bonuses to move
+  if (!m_floor)
+  {
+    FindFloor();
+  }
 
-  // Don't move with floor
   if (m_isCollected)
   {
-    return;
+    m_effect->Update();
   }
+  else
+  {
+    UpdateShadow();
+  }
+
   // Spin around
+  // Do this even when collected so particles spin round too
   float dt = TheTimer::Instance()->GetDt();
-  static const float ROT_SPEED = 360.0f;
+  static const float ROT_SPEED = 2.0f;
   m_yRot += ROT_SPEED * dt;
-}
 
-static float rnd(float f)
-{
-  return ((float)rand() / (float)RAND_MAX * 2.0f * f - f);
-}
+  Matrix mat;
+  mat.RotateY(m_yRot);
+  mat.TranslateKeepRotation(m_pos);
 
-static const float PARTICLE_SPEED = 200.0f;
-
-Vec3f BonusParticleEffect::NewVel()
-{
-  return Vec3f(rnd(PARTICLE_SPEED), rnd(PARTICLE_SPEED), rnd(PARTICLE_SPEED));
-}
-
-Vec3f BonusParticleEffect::NewAcc()
-{
-  return Vec3f(0, -PARTICLE_SPEED, 0); // gravity
+  m_pSceneNode->SetLocalTransform(mat);
 }
 
 void Bonus::OnPlayerCollision()
@@ -133,10 +152,11 @@ void Bonus::OnPlayerCollision()
 
   m_isCollected = true;
 
-  Matrix mat;
-  mat.Translate(m_pos);
-  m_effect.SetLocalTransform(mat);
-  m_effect.Start(); 
+  m_effect->Start(); 
+
+  m_pSceneNode->SetVisible(false);
+  m_effect->SetVisible(true);
+  m_shadow->SetVisible(false);
 
   TheSoundManager::Instance()->PlayWav("cashreg"); // NB No file ext
   TheSoundManager::Instance()->PlayWav("bonus_points"); // NB No file ext

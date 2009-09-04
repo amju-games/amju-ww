@@ -33,7 +33,7 @@ private:
   int m_numObjects;
   int m_currentObj;
   RCPtr<File> m_file;
-  PSceneNode m_pRoot;
+  ////PSceneNode m_pRoot;
 };
 }
 

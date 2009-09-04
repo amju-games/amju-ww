@@ -23,16 +23,13 @@ public:
   virtual void OnDeactive();
 
 protected:
-  // Create scene from text
+  // Create m_scene from text
   void CreateText(const std::string& text);
 
 protected:
   // Start button etc
   PGuiElement m_gui;
 
-  // 3D text
-  PSceneNode m_scene;
-  
   // Time in current state
   float m_timer;
 };

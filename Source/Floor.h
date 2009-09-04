@@ -12,6 +12,8 @@
 
 namespace Amju
 {
+class SceneMesh;
+
 // Floor for a balance game: tilts when it receives balance board events etc
 class Floor : public GameObject
 {
@@ -23,9 +25,9 @@ public:
   // GameObject overrides
   virtual const char* GetTypeName() const;
   virtual bool Load(File*);
-  virtual void Draw();
   virtual void Update();
   virtual void Reset();
+  virtual AABB* GetAABB(); 
 
   // Get matrix - this is the rotation of the Floor
   Matrix* GetMatrix();
@@ -45,9 +47,6 @@ private:
   void ResetMoments();
 
 private:
-  // Visible mesh
-  PObjMesh m_mesh;
-
   // Summed moments for this frame
   Vec3f m_moments;
 
@@ -84,6 +83,11 @@ private:
 
   // Max height of AABB - so determines the maximum rotation
   float m_maxYSize;
+
+  SceneMesh* m_pSceneNode;
+
+  // Moment Of Inertia, like mass for rotations 
+  float m_inertia;
 };
 }
 

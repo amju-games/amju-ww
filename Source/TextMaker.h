@@ -12,7 +12,7 @@ class TextMaker
 public:
   virtual ~TextMaker() {}
 
-  PSceneNode MakeText(const std::string& text);
+  SceneNode* MakeText(const std::string& text);
 
 protected:
   // Override to do something fancy to letters. 

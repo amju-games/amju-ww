@@ -9,6 +9,8 @@
 #include "Colour.h"
 #include "GSLoadLevel.h"
 #include "TextMaker.h"
+#include "SceneMesh.h"
+#include "MySceneGraph.h"
 
 namespace Amju
 {
@@ -22,14 +24,6 @@ Exit::Exit()
   m_isActive = false;
   m_activeTime = 0;
   m_rotate = 0;
-
-  // Set AABB size
-  static const float XSIZE = 20.0f;
-  static const float YSIZE = 60.0f;
-  m_aabb.Set(
-    -XSIZE, XSIZE, 
-    0, YSIZE, 
-    -XSIZE, XSIZE);
 }
 
 const char* Exit::GetTypeName() const
@@ -42,6 +36,7 @@ void Exit::Reset()
   m_isActive = false;
 }
 
+/*
 void Exit::Draw()
 {
   if (!m_isActive)
@@ -56,9 +51,6 @@ void Exit::Draw()
   AmjuGL::Translate(m_pos.x, m_pos.y, m_pos.z);
 
   AmjuGL::PushMatrix();
-  float dt = TheTimer::Instance()->GetDt();
-  static const float ROT_SPEED = 3.0f;
-  m_rotate += ROT_SPEED * dt;
   AmjuGL::RotateY(RadToDeg(m_rotate));
 
   m_mesh->Draw();
@@ -68,7 +60,7 @@ void Exit::Draw()
   AmjuGL::Translate(0, 30.0f, 0);
   AmjuGL::RotateX(90.0f);
   AmjuGL::Scale(20, 20, 20);
-  m_text->DrawChildren();
+//  m_text->DrawChildren();
   AmjuGL::PopMatrix();
 
   if (!m_isActive)
@@ -84,15 +76,29 @@ void Exit::Draw()
 
   m_aabb.Draw();
 }
+*/
 
 void Exit::Update()
 {
-  GameObject::Update();
+  if (!m_floor)
+  {
+    FindFloor();
+  }
+
+  UpdateShadow();
+
+  float dt = TheTimer::Instance()->GetDt();
+  static const float ROT_SPEED = 3.0f;
+  m_rotate += ROT_SPEED * dt;
+
+  Matrix mat;
+  mat.RotateY(m_rotate);
+  mat.TranslateKeepRotation(m_pos);
+  m_pSceneNode->SetLocalTransform(mat);
+
   if (m_isActive)
   {
-    m_activeTime += TheTimer::Instance()->GetDt();
-    m_billboard.Update(); 
-    m_effect.Update();
+    m_activeTime += dt;
   }
 }
 
@@ -108,14 +114,32 @@ bool Exit::Load(File* f)
     f->ReportError("Expected exit position");
     return false;
   }
-  m_aabb.Translate(m_pos);  
 
-  m_mesh = LoadMeshResource(f);
-  if (!m_mesh)
+  ObjMesh* mesh = LoadMeshResource(f);
+  if (!mesh)
   {
     f->ReportError("Failed to load exit mesh");
     return false;
   }
+
+  m_pSceneNode = new SceneMesh;
+  ((SceneMesh*)m_pSceneNode)->SetMesh(mesh);
+
+  // Set AABB 
+  static const float XSIZE = 20.0f;
+  static const float YSIZE = 60.0f;
+  m_pSceneNode->GetAABB()->Set(
+    -XSIZE, XSIZE, 
+    0, YSIZE, 
+    -XSIZE, XSIZE);
+  GetAABB()->Translate(m_pos);  
+
+  // Exit is translucent until activated
+  // TODO So should be a Blended node !??
+  m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
+
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
 
   // Load next level
   if (!f->GetDataLine(&m_toLevel))
@@ -126,18 +150,40 @@ bool Exit::Load(File* f)
   TextMaker tm;
   m_text = tm.MakeText(m_toLevel);
 
-  if (!m_billboard.Load(f))
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_text);
+  //m_pSceneNode->AddChild(m_text);
+  // Transformation for text
+  Matrix mat;
+  // TODO Something strange here. We want to rotate the text 90 degs about x.
+  mat.RotateX(90.0f);
+  mat.TranslateKeepRotation(m_pos * 0.05f + Vec3f(0, 2.0f, 0));
+  Matrix mat2;
+  mat2.Scale(20, 20, 20);
+  mat *= mat2;
+  m_text->SetLocalTransform(mat);
+  // Text is black
+  m_text->SetColour(Colour(0, 0, 0, 1));
+
+  m_billboard = new Billboard;
+  m_billboard->SetVisible(false);
+  if (!m_billboard->Load(f))
   {
     f->ReportError("Failed to load exit billboard");
     return false;
   }
-  Matrix mat;
-  mat.Translate(m_pos);
-  m_billboard.SetLocalTransform(mat);
+  m_pSceneNode->AddChild(m_billboard);
 
-  if (!m_effect.Load(f))
+  m_effect = new ExitParticleEffect;
+  if (!m_effect->Load(f))
   {
     f->ReportError("Failed to load exit effect");
+    return false;
+  }
+  m_pSceneNode->AddChild(m_effect);
+
+  if (!LoadShadow(f))
+  {
     return false;
   }
 
@@ -169,11 +215,14 @@ static const float PARTICLE_SPEED = 300.0f;
 
 Vec3f ExitParticleEffect::NewVel()
 {
-  // z always towards us, or will be hidden by billboard
   return Vec3f(
     rnd(PARTICLE_SPEED), 
     rnd(PARTICLE_SPEED),
-    (float)rand() / (float)RAND_MAX * PARTICLE_SPEED);
+    rnd(PARTICLE_SPEED));
+
+  // Particles spin so we want to emit them in all directions
+  // z always towards us, or will be hidden by billboard
+  //(float)rand() / (float)RAND_MAX * PARTICLE_SPEED);
 }
 
 float ExitParticleEffect::NewTime()
@@ -196,10 +245,8 @@ void Exit::SetActive()
 
   m_isActive = true;
   m_activeTime = 0;
-  // Visual effect
-  Matrix mat;
-  mat.Translate(m_pos);
-  m_effect.SetLocalTransform(mat);
-  m_effect.Start();
+  m_effect->Start();
+  m_billboard->SetVisible(true);
+  m_pSceneNode->SetColour(Colour(1, 1, 1, 1));
 }
 }
