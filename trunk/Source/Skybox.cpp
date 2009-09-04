@@ -3,6 +3,8 @@
 #include "Timer.h"
 #include "LoadMeshResource.h"
 #include "EventPoller.h"
+#include "SceneMesh.h"
+#include "MySceneGraph.h"
 
 //#define MOUSE_MOVE_SKYBOX
 
@@ -30,7 +32,6 @@ const char* Skybox::GetTypeName() const
 
 bool Skybox::Load(File* f)
 {
-  // Basic box for now
   if (!GameObject::Load(f))
   {
     return false;
@@ -38,6 +39,10 @@ bool Skybox::Load(File* f)
 
   m_mesh = LoadMeshResource(f);
   Assert(m_mesh);
+
+  m_pSceneNode = new SceneMesh;
+  m_pSceneNode->SetMesh(m_mesh);
+  GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_SKYBOX, m_pSceneNode);
 
   return true;
 }
@@ -55,11 +60,9 @@ void Skybox::OnCursorEvent(const CursorEvent& ce)
   m_xRot += ydiff;
 }
 
+/*
 void Skybox::Draw()
 {
-  static const float ROT_VEL = 2.0f; // degs/dec
-  m_yRot += ROT_VEL * TheTimer::Instance()->GetDt();
-
   AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::PushMatrix();
 
@@ -69,9 +72,18 @@ void Skybox::Draw()
 
   AmjuGL::PopMatrix();
 }
+*/
 
 void Skybox::Update()
 {
-  // TODO
+  static const float ROT_VEL = 2.0f; // degs/dec
+//  m_yRot += ROT_VEL * TheTimer::Instance()->GetDt();
+
+  Matrix mat;
+  mat.RotateX(m_xRot);
+  Matrix mat2;
+  mat.RotateY(m_yRot);
+  m_pSceneNode->SetLocalTransform(mat);
+  m_pSceneNode->MultLocalTransform(mat2);
 }
 }

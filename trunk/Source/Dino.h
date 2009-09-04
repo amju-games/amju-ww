@@ -1,18 +1,17 @@
 #ifndef DINO_H
 #define DINO_H
 
-#include "OnFloor.h"
+#include "OnFloorCharacter.h"
 
 namespace Amju
 {
-class Dino : public OnFloor
+class Dino : public OnFloorCharacter
 {
 public:
   static const char* NAME;
 
   Dino();
   virtual const char* GetTypeName() const;
-  virtual void Draw();
   virtual void Update();
   virtual bool Load(File*);
 

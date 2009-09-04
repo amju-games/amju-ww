@@ -2,10 +2,12 @@
 #define BLOCK_H
 
 #include "OnFloor.h"
-#include "ObjMesh.h"
+#include "Matrix.h"
 
 namespace Amju
 {
+class SceneMesh;
+
 class Block : public OnFloor
 {
 public:
@@ -13,13 +15,13 @@ public:
 
   Block();
   virtual const char* GetTypeName() const;
-  virtual void Draw();
   virtual void Update();
   virtual bool Load(File*);
+//  virtual AABB* GetAABB(); 
 
 protected:
-  PObjMesh m_mesh;
   Matrix m_matrix;
+  //SceneMesh* m_pSceneNode;
 };
 }
 

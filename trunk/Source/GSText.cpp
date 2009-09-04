@@ -1,8 +1,7 @@
 #include "GSText.h"
 #include "CursorManager.h"
-#include "SceneComposite.h"
 #include "SceneMesh.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "CollisionMesh.h"
 #include "AABB.h"
 #include "MyTextMaker.h"
@@ -18,7 +17,8 @@ GSText::GSText()
 
 void GSText::Update()
 {
-  TheSceneGraph::Instance()->Update();
+  GetTextSceneGraph()->Update();
+
   m_timer += TheTimer::Instance()->GetDt(); 
 }
 
@@ -40,7 +40,7 @@ void GSText::Draw()
     AmjuGL::LightColour(1, 1, 1),
     AmjuGL::Vec3(1, 1, 1)); // Light direction
 
-  TheSceneGraph::Instance()->Draw();
+  GetTextSceneGraph()->Draw();
 }
 
 void GSText::Draw2d()
@@ -63,8 +63,8 @@ void GSText::OnDeactive()
 {
   GameState::OnDeactive();
 
-  // unload scene
-  TheSceneGraph::Instance()->Clear();
+  // DON'T unload scene
+  //TheSceneGraph::Instance()->Clear();
   m_gui = 0; // should remove itself as a listener
 }
 
@@ -80,6 +80,6 @@ void GSText::CreateText(const std::string& text)
   // TODO Should combine ?
   node->CombineTransform();
 
-  TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_OPAQUE, node);
+  GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, node);
 }
 }

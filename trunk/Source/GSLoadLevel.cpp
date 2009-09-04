@@ -1,7 +1,7 @@
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "Game.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "Timer.h"
 #include "OnFloor.h"
 #include "GameObjectFactory.h"
@@ -36,7 +36,7 @@ void GSLoadLevel::OnActive()
 
   // Load background skybox
   // TODO We could have movement decorator etc 
-  TheSceneGraph::Instance()->SetRootNode(
+  GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("loadlevel-scene.txt"));
 
   StartLoad();
@@ -46,7 +46,7 @@ void GSLoadLevel::OnDeactive()
 {
   GameState::OnDeactive();
   m_gui = 0; // should remove itself as a listener
-  TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_OPAQUE, m_pRoot);
+  //TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_OPAQUE, m_pRoot);
 }
 
 void GSLoadLevel::StartLoad()
@@ -71,7 +71,11 @@ void GSLoadLevel::StartLoad()
   m_currentObj = 0;
   m_file->GetInteger(&m_numObjects);
 
-  m_pRoot = new SceneNode;
+  GetTextSceneGraph()->SetRootNode(
+    SceneGraph::AMJU_SKYBOX, LoadScene("levelcomplete-scene.txt"));
+
+  // Create a root for the game scene graph
+  GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, new SceneNode);
 }
 
 void GSLoadLevel::LoadOneObject()
@@ -94,9 +98,13 @@ void GSLoadLevel::LoadOneObject()
     Assert(0);
   }
 
-  ////    pgo->AddToSceneGraph(); // ?????
+  // GameObject adds node(s) to SceneGraph
+  // Done in Load()
+  //pgo->AddToSceneGraph(); 
+
   TheGame::Instance()->AddGameObject(pgo);
 
+  /*
   SceneGameObjectOpaque* node = new SceneGameObjectOpaque(pgo);
   m_pRoot->AddChild(node);
 
@@ -113,6 +121,7 @@ void GSLoadLevel::LoadOneObject()
     PSceneNode shadow = new SceneGameObjectBlended(pgo);
     node->AddChild(shadow);
   }
+  */
 }
 
 void GSLoadLevel::SetLevel(const std::string& level)

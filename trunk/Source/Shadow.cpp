@@ -10,6 +10,7 @@ Amju Games source code (c) Copyright Jason Colman 2009
 #include "CollisionMesh.h"
 #include "Tri.h"
 #include "Plane.h"
+#include "File.h"
 
 extern "C"
 {
@@ -86,20 +87,64 @@ Shadow::Shadow()
   m_oldz = 0;
   m_oldsize = -1;
   m_forceRefresh = true;
+
+  m_size = 0;
+  m_mesh = 0;
+
+  SetBlended(true);
 }
 
-bool Shadow::Load()
+bool Shadow::Load(File* f)
 {
   AMJU_CALL_STACK;
 
-  // TODO Allow other textures, e.g. for blocks
-  m_texture = (Texture*)TheResourceManager::Instance()->GetRes("shadow.bmpa");
+  std::string res;
+  if (!f->GetDataLine(&res))
+  {
+    f->ReportError("Expected shadow texture resource name");
+    return false;
+  }
+
+  // Allows other textures, e.g. for blocks
+  m_texture = (Texture*)TheResourceManager::Instance()->GetRes(res); //"shadow.bmpa");
   Assert(m_texture);
+
+  if (!f->GetFloat(&m_size))
+  {
+    f->ReportError("Expected shadow size");
+    return false;
+  }
 
   return true;
 }
 
-void Shadow::Draw(
+void Shadow::SetSize(float size)
+{
+  m_size = size;
+}
+
+void Shadow::SetCollisionMesh(CollisionMesh* mesh)
+{
+  m_mesh = mesh;
+}
+
+void Shadow::Draw()
+{
+  if (!m_mesh)
+  {
+    return;
+  }
+
+  Assert(m_size > 0);
+  Vec3f pos(m_combined[12], m_combined[13], m_combined[14]);
+  MyDraw(pos, m_size, *m_mesh);
+}
+
+void Shadow::Update()
+{
+}
+
+void Shadow::MyDraw(
   const Vec3f& v,
   float size,
   const CollisionMesh& collMesh)

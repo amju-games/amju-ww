@@ -3,6 +3,8 @@
 #include "Timer.h"
 #include "AmjuGL.h"
 #include "Sign.h"
+#include "ResourceManager.h"
+#include "ReportError.h"
 #include "AmjuFinal.h"
 
 namespace Amju
@@ -17,33 +19,16 @@ Animated::Animated()
   m_nextFrame = 1;
   m_t = 0;
   m_anim = 0;
-
-  m_isControlled = false;
-}
-
-bool Animated::IsControlled() const
-{
-  return m_isControlled;
-}
-
-void Animated::SetIsControlled(bool b)
-{
-  m_isControlled = b;
-}
-
-bool Animated::IsFalling() const
-{
-  return m_isFalling;
-}
-
-void Animated::SetIsFalling(bool b)
-{
-  m_isFalling = b;
 }
 
 void Animated::SetDir(float degs)
 {
   m_dir = degs;
+}
+
+float Animated::GetDir() const
+{
+  return m_dir;
 }
 
 void Animated::SetAnim(int anim)
@@ -58,6 +43,17 @@ void Animated::SetAnim(int anim)
   m_nextFrame = m_pModel->GetStartFrame(m_anim);
 }
 
+bool Animated::LoadMd2(const std::string& md2name)
+{
+  m_pModel = (Md2Model*)TheResourceManager::Instance()->GetRes(md2name);
+  if (!m_pModel)
+  {
+    ReportError("Failed to load MD2: " + md2name);
+    return false;
+  }
+  return true;
+}
+
 void Animated::Draw()
 {
   Assert(m_pModel);
@@ -68,22 +64,27 @@ void Animated::Draw()
     t = 1.0f;
   }
   AmjuGL::PushMatrix();
-  // Offset Y so feet are at zero
-  AmjuGL::Translate(m_pos.x, m_pos.y + 30.0f, m_pos.z);
-  AmjuGL::RotateY(m_dirCurrent);
+  AmjuGL::MultMatrix(m_local);
+  // TODO Offset Y so feet are at zero
+  AmjuGL::Translate(0, 30.0f, 0);
+//  AmjuGL::Translate(m_pos.x, m_pos.y + 30.0f, m_pos.z);
+  AmjuGL::RotateY(m_dirCurrent); // incorporate rotation into matrix ?
   m_pModel->DrawFrames(m_frame, m_nextFrame, t);
   AmjuGL::PopMatrix();
+
+  GetAABB()->Draw();
 }
 
 void Animated::Update()
 {
-  GameObject::Update();
+  SceneNode::Update();
 
   static const float ROT_SPEED = 10.0f; // TODO CONFIG
   float dt = TheTimer::Instance()->GetDt();
   float angleDiff = m_dir - m_dirCurrent;
   
-  
+  // TODO Rotate to face m_dir, taking the shortest route (CW or CCW)
+  //  This is a mess ATM
   if (fabs(angleDiff) < 10.0f)
   {
     m_dirCurrent = m_dir;

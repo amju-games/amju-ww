@@ -9,7 +9,7 @@ namespace Amju
 bool operator<(const Particle2d& p1, const Particle2d& p2)
 {
   // This is only ok because we know the camera is looking parallel to z axis
-  return p1.m_pos.z < p2.m_pos.z;
+  return p1.m_pos.z > p2.m_pos.z;
 }
 
 ParticleEffect2d::ParticleEffect2d()
@@ -24,8 +24,11 @@ ParticleEffect2d::ParticleEffect2d()
 
 bool ParticleEffect2d::Load(File* f)
 {
-  // Texture
   m_texture = LoadTextureResource(f);
+
+  // TODO Random sizes
+  // TODO Also rotate, with random rot vel
+
   if (!f->GetFloat(&m_size))
   {
     f->ReportError("Expected particle size");
@@ -56,9 +59,13 @@ void ParticleEffect2d::Draw()
     return;
   }
 
+  AmjuGL::Enable(AmjuGL::AMJU_BLEND);
+  AmjuGL::PushMatrix();
+  AmjuGL::MultMatrix(m_combined); // NB combined
   AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
   m_texture->UseThisTexture();
   AmjuGL::DrawTriList(m_tris);
+  AmjuGL::PopMatrix();
 }
 
 Vec3f ParticleEffect2d::NewVel()
@@ -93,19 +100,12 @@ void ParticleEffect2d::Update()
     return;
   }
 
-  // TODO Not needed if we can disable Z-writing..?
-  std::sort(m_particles.begin(), m_particles.end());
-
-  Matrix mat;
-  mat.ModelView(); // Get Modelview matrix
-  Vec3f up(mat[1], mat[5], mat[9]);
-  Vec3f right(mat[0], mat[4], mat[8]);
   float dt = TheTimer::Instance()->GetDt();
+  bool isDead = true;
 
   int s = m_particles.size();
   Assert(m_tris.size() == (unsigned int)(2 * s));
 
-  bool isDead = true;
   for (int i = 0; i < s; i++)
   {
     Particle2d& p = m_particles[i];
@@ -119,8 +119,23 @@ void ParticleEffect2d::Update()
     isDead &= p.m_isDead;
 
     p.m_vel += p.m_acc * dt;
-    p.m_pos += p.m_vel * dt; // TODO not accurate
-    
+    p.m_pos += p.m_vel * dt; // TODO not accurate    
+  }
+  m_isDead = isDead;
+
+  // TODO Not needed if we can disable Z-writing..?
+  std::sort(m_particles.begin(), m_particles.end());
+
+  Matrix mat;
+  mat.ModelView(); // Get Modelview matrix
+  mat *= m_combined; // also take all rotation into account
+  Vec3f up(mat[1], mat[5], mat[9]);
+  Vec3f right(mat[0], mat[4], mat[8]);
+
+  for (int i = 0; i < s; i++)
+  {
+    Particle2d& p = m_particles[i];
+
     Vec3f v0 = p.m_pos + ( up + right) * m_size;
     Vec3f v1 = p.m_pos + ( up - right) * m_size;
     Vec3f v2 = p.m_pos + (-up - right) * m_size;
@@ -144,8 +159,6 @@ void ParticleEffect2d::Update()
     tri->m_verts[1] = verts[2];
     tri->m_verts[2] = verts[3];
   }
-
-  m_isDead = isDead;
 }
 
 void ParticleEffect2d::Start()
@@ -157,7 +170,7 @@ void ParticleEffect2d::Start()
   for (int i = 0; i < m_numParticles; i++)
   {
     Particle2d& p = m_particles[i];
-    p.m_pos = Vec3f(m_local[12], m_local[13], m_local[14]);
+    p.m_pos = Vec3f(0, 0, 0); //m_local[12], m_local[13], m_local[14]);
     p.m_vel = NewVel();
     p.m_acc = NewAcc();
     p.m_time = NewTime();
