@@ -40,7 +40,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; /I &quot;../../../../amjulib/Source/EventsWin32&quot; /I &quot;../../../../amjulib/Source/Utils&quot; /I &quot;../../../../amjulib/Source/FileUtils&quot; /I &quot;../../../../amjulib/Source/AmjuGL&quot; /I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; /I &quot;../../../../amjulib/Source/Mem&quot; /I &quot;../../../../amjulib/Source/Md2&quot; /I &quot;../../../../amjulib/Source/Image&quot; /I &quot;../../../../amjulib/Source/Geom&quot; /I &quot;../../../../amjulib/Source/Strings&quot; /I &quot;../../../../amjulib/Source/TimeUtils&quot; /I &quot;../../../../amjulib/Source/Game&quot; /I &quot;../../../../amjulib/Source/Resource&quot; /I &quot;../../../../amjulib/Source/Scene&quot; /I &quot;../../../../amjulib/Source/Obj&quot;  /I &quot;../../../../amjulib/Source/Collision&quot; /I &quot;../../../../amjulib/Source/Gui&quot; /I &quot;../../../../amjulib/Source/Font&quot; /I &quot;../../../../amjulib/Source/Sound&quot; /I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; /I &quot;../../../../amjulib/Source/GeomLoad&quot; /I &quot;../../../../amjulib/Source/GeomDraw&quot;"
+				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
 				Optimization="0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
@@ -113,7 +113,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; /I &quot;../../../../amjulib/Source/EventsWin32&quot; /I &quot;../../../../amjulib/Source/Utils&quot; /I &quot;../../../../amjulib/Source/FileUtils&quot; /I &quot;../../../../amjulib/Source/AmjuGL&quot; /I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; /I &quot;../../../../amjulib/Source/Mem&quot; /I &quot;../../../../amjulib/Source/Md2&quot; /I &quot;../../../../amjulib/Source/Image&quot; /I &quot;../../../../amjulib/Source/Geom&quot; /I &quot;../../../../amjulib/Source/Strings&quot; /I &quot;../../../../amjulib/Source/TimeUtils&quot; /I &quot;../../../../amjulib/Source/Game&quot; /I &quot;../../../../amjulib/Source/Resource&quot; /I &quot;../../../../amjulib/Source/Scene&quot; /I &quot;../../../../amjulib/Source/Obj&quot;  /I &quot;../../../../amjulib/Source/Collision&quot; /I &quot;../../../../amjulib/Source/Gui&quot; /I &quot;../../../../amjulib/Source/Font&quot; /I &quot;../../../../amjulib/Source/Sound&quot; /I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; /I &quot;../../../../amjulib/Source/GeomLoad&quot; /I &quot;../../../../amjulib/Source/GeomDraw&quot;"
+				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
@@ -173,10 +173,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\Source\AmjuMain.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\Source\Animated.cpp"
 				>
 			</File>
@@ -221,6 +217,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\ContextMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Cursor.cpp"
 				>
 			</File>
@@ -233,11 +233,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\EditModeCamera.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\EditViewport.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Exit.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Source\Floor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\GSEditMenu.cpp"
 				>
 			</File>
 			<File
@@ -261,11 +273,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\GSMainEdit.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\GSMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\GSText.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Source\GSTitle.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Hud.cpp"
 				>
 			</File>
 			<File
@@ -325,11 +349,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\StartGame.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\TestState.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Source\TextMaker.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Viewport.cpp"
 				>
 			</File>
 		</Filter>
@@ -338,10 +370,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="..\..\..\Source\AmjuMain.h"
-				>
-			</File>
 			<File
 				RelativePath="..\..\..\Source\Animated.h"
 				>
@@ -367,6 +395,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\ContextMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Cursor.h"
 				>
 			</File>
@@ -379,11 +411,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\EditModeCamera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\EditViewport.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Exit.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Source\Floor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\GSEditMenu.h"
 				>
 			</File>
 			<File
@@ -407,11 +451,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\GSMainEdit.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\GSMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\GSText.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Source\GSTitle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Hud.h"
 				>
 			</File>
 			<File
@@ -459,6 +515,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\PlayerInfoKey.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Rotateable.h"
 				>
 			</File>
@@ -471,6 +531,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\StartGame.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\TestState.h"
 				>
 			</File>
@@ -478,19 +542,21 @@
 				RelativePath="..\..\..\Source\TextMaker.h"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
+			<File
+				RelativePath="..\..\..\Source\Viewport.h"
+				>
+			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\..\..\..\..\SDL\lib\SDL.lib"
+			RelativePath="..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (August 2009)\Lib\x86\d3d9.lib"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\..\..\..\SDL\lib\SDLmain.lib"
+			RelativePath="..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (August 2009)\Lib\x86\d3dx9.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\..\SDL\lib\SDL.lib"
 			>
 		</File>
 	</Files>
