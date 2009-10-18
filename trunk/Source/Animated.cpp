@@ -5,6 +5,7 @@
 #include "Sign.h"
 #include "ResourceManager.h"
 #include "ReportError.h"
+#include "DrawAABB.h"
 #include "AmjuFinal.h"
 
 namespace Amju
@@ -72,7 +73,7 @@ void Animated::Draw()
   m_pModel->DrawFrames(m_frame, m_nextFrame, t);
   AmjuGL::PopMatrix();
 
-  GetAABB()->Draw();
+  DrawAABB(*GetAABB());
 }
 
 void Animated::Update()
