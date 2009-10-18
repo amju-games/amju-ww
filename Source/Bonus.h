@@ -6,7 +6,7 @@
 
 namespace Amju
 {
-class SceneMesh;
+class Player;
 
 // Float in the air - don't move with any floor, but do cast a shadow
 class Bonus : public OnFloor
@@ -18,14 +18,12 @@ public:
   virtual const char* GetTypeName() const;
   virtual bool Load(File*);
   virtual void Update(); // NB Don't move with floor!
-  //virtual AABB* GetAABB(); 
 
-  void OnPlayerCollision();
+  void OnPlayerCollision(Player*);
 
 protected:
   bool m_isCollected;
   float m_yRot;
-  //SceneMesh* m_pSceneNode;
   BonusParticleEffect* m_effect; // Child of scene node
 };
 }
