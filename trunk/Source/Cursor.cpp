@@ -8,6 +8,7 @@ namespace Amju
 {
 Cursor::Cursor() : m_id(-1)
 {
+  m_isActive = false;
   TheEventPoller::Instance()->AddListener(this);
 
   m_rot= 0;
@@ -36,6 +37,11 @@ Cursor::Cursor() : m_id(-1)
 	m_tris.push_back(tri);
 }
 
+const Vec2f& Cursor::GetPos() const
+{
+  return m_pos;
+}
+
 bool Cursor::Load(int id)
 {
   m_id = id;
@@ -50,8 +56,9 @@ void Cursor::OnCursorEvent(const CursorEvent& ce)
   
   if (ce.controller == m_id) 
   {
-    m_pos.x = (float)ce.x / (float)Screen::X();
-    m_pos.y = 1.0f - (float)ce.y / (float)Screen::Y();
+    m_isActive = true;
+    m_pos.x = ce.x;
+    m_pos.y = ce.y;
   }
 }
 
@@ -70,14 +77,17 @@ void Cursor::OnRotationEvent(const RotationEvent& re)
 
 void Cursor::Draw()
 {
-  m_pTex->UseThisTexture();
+  if (m_isActive)
+  {
+    m_pTex->UseThisTexture();
 
-  AmjuGL::PushMatrix();
-  // Convert coords from 0..1 to -1..1
-  AmjuGL::Translate(m_pos.x * 2.0f - 1.0f, m_pos.y * 2.0f - 1.0f, 0);
-  // Rotate cursor
-  AmjuGL::RotateZ(m_rot);
-  AmjuGL::DrawTriList(m_tris);
-  AmjuGL::PopMatrix();
+    AmjuGL::PushMatrix();
+    // Convert coords from 0..1 to -1..1
+    AmjuGL::Translate(m_pos.x, m_pos.y, 0);
+    // Rotate cursor
+    AmjuGL::RotateZ(m_rot);
+    AmjuGL::DrawTriList(m_tris);
+    AmjuGL::PopMatrix();
+  }
 }
 }
