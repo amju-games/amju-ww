@@ -41,6 +41,7 @@ AMJU_LIB_DIRS := \
   $(AMJU)/Font \
   $(AMJU)/Game \
   $(AMJU)/Geom \
+  $(AMJU)/GeomDraw \
   $(AMJU)/GeomLoad \
   $(AMJU)/Gui \
   $(AMJU)/Image \
