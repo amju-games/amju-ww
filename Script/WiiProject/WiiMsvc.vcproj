@@ -550,6 +550,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\amjulib\Source\AmjuGL\AmjuGLWindowInfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\amjulib\Source\AmjuGL\AmjuGLWindowInfo.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\amjulib\Source\AmjuGL\Colour.cpp"
 				>
 			</File>
