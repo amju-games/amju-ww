@@ -89,7 +89,10 @@ Shadow::Shadow()
   m_forceRefresh = true;
 
   m_size = 0;
-  m_mesh = 0;
+  for (int i = 0; i < MAX_MESHES; i++)
+  {
+    m_mesh[i] = 0;
+  }
 
   SetBlended(true);
 }
@@ -125,19 +128,26 @@ void Shadow::SetSize(float size)
 
 void Shadow::SetCollisionMesh(CollisionMesh* mesh)
 {
-  m_mesh = mesh;
+  // Lose oldest mesh
+  for (int i = MAX_MESHES - 1; i > 0; i--)
+  {
+    m_mesh[i] = m_mesh[i - 1];
+  }
+  m_mesh[0] = mesh;
 }
 
 void Shadow::Draw()
 {
-  if (!m_mesh)
-  {
-    return;
-  }
-
   Assert(m_size > 0);
   Vec3f pos(m_combined[12], m_combined[13], m_combined[14]);
-  MyDraw(pos, m_size, *m_mesh);
+
+  for (int i = 0; i < MAX_MESHES; i++)
+  {
+    if (m_mesh[i])
+    {
+      MyDraw(pos, m_size, *(m_mesh[i]));
+    }
+  }
 }
 
 void Shadow::Update()
@@ -253,7 +263,6 @@ std::cout << "Shadow list is empty\n";
 
 //  AmjuGL::PushAttrib(AmjuGL::AMJU_BLEND);
   AmjuGL::Enable(AmjuGL::AMJU_BLEND);
-  AmjuGL::BlendFunc(); //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
   // Allow read-, but not write-access to the depth buffer. This overlaps
   // shadows properly.
@@ -296,7 +305,7 @@ void Shadow::RecalculateList(
   // Get the height poly which is the heighest below y.
 
   float h = 0;
-  if (!collMesh.GetY(Vec3f(x, 0, z), &h)) // TODO Must be highest
+  if (!collMesh.GetY(Vec2f(x, z), &h)) // TODO Must be highest
   {
     return;
   }

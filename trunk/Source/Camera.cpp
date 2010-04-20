@@ -7,6 +7,7 @@
 #include "SceneNodeCamera.h"
 #include "MySceneGraph.h"
 #include "OnFloor.h"
+#include "Viewport.h"
 
 namespace Amju
 {
@@ -17,6 +18,11 @@ const char* Camera::NAME = "camera";
 
 static const float Y_OFFSET = 200.0f;
 static const float Z_OFFSET = 200.0f;
+
+Viewport* GetViewport(int i)
+{
+  return TheViewportManager::Instance()->GetViewport(i);
+}
 
 Camera::Camera()
 {
@@ -59,6 +65,11 @@ void Camera::Draw()
 
 void Camera::Update()
 {
+  if (!m_pSceneNode)
+  {
+    return;
+  }
+
   GameObject::Update();
 
   if (!m_target)
@@ -121,15 +132,34 @@ bool Camera::Load(File* f)
     return false;
   }
 
+  // TODO Do we need to store it ? Or just use ID to get ptr to Viewport ?
+  if (!f->GetInteger(&m_viewportId))
+  {
+    f->ReportError("Expected viewport ID");
+    return false;
+  }
+
   if (!f->GetInteger(&m_targetId))
   {
     f->ReportError("Expected target ID");
     return false;
   }
 
+  Viewport* vp = GetViewport(m_viewportId);
+  if (!vp)
+  {
+    // No viewport for this ID. No need to create this camera.
+    return true;
+  }
+  vp->SetCamera(this);
+
   m_pSceneNode = new SceneNodeCamera;
-  GetGameSceneGraph()->SetCamera(m_pSceneNode);
 
   return true;
+}
+
+void Camera::SetAsSceneGraphCamera()
+{
+  GetGameSceneGraph()->SetCamera(m_pSceneNode.GetPtr());
 }
 }

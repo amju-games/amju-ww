@@ -7,6 +7,8 @@
 
 namespace Amju
 {
+enum GameMode { AMJU_MAIN_GAME_MODE, AMJU_ATTRACT_MODE, AMJU_EDIT_MODE };
+
 class GSLoadLevel : public GSText
 {
 public:
@@ -22,6 +24,8 @@ public:
   void SetLevel(const std::string& level);
   const std::string& GetLevel() const;
 
+  void SetGameMode(GameMode);
+
 private:
   void LoadOneObject();
   void StartLoad();
@@ -33,8 +37,13 @@ private:
   int m_numObjects;
   int m_currentObj;
   RCPtr<File> m_file;
-  ////PSceneNode m_pRoot;
+  GameMode m_mode;
 };
+
+// Convenience functions
+void SetLevel(const std::string& levelName);
+void SetGameMode(GameMode);
+
 }
 
 #endif

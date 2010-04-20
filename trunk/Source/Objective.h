@@ -1,6 +1,7 @@
 #ifndef OBJECTIVE_H
 #define OBJECTIVE_H
 
+#include <string>
 #include "GameObject.h"
 
 namespace Amju
@@ -18,7 +19,6 @@ public:
   // GameObject overrides
   virtual const char* GetTypeName() const;
   virtual bool Load(File*);
-  virtual void Draw();
   virtual void Update();
   virtual void Reset();
 
@@ -28,6 +28,7 @@ protected:
 
 protected:
   bool m_isComplete;
+  std::string m_text;
 };
 }
 

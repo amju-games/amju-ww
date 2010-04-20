@@ -59,13 +59,17 @@ void ParticleEffect2d::Draw()
     return;
   }
 
+  // TODO Also push lighting and blend state ?
+  AmjuGL::PushAttrib(AmjuGL::AMJU_DEPTH_WRITE);
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_WRITE);
+  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::Enable(AmjuGL::AMJU_BLEND);
   AmjuGL::PushMatrix();
   AmjuGL::MultMatrix(m_combined); // NB combined
-  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
   m_texture->UseThisTexture();
   AmjuGL::DrawTriList(m_tris);
   AmjuGL::PopMatrix();
+  AmjuGL::PopAttrib();
 }
 
 Vec3f ParticleEffect2d::NewVel()

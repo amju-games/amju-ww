@@ -1,11 +1,11 @@
 #include "GSLoadLevel.h"
 #include "GSMain.h"
+#include "GSMainEdit.h"
 #include "Game.h"
 #include "MySceneGraph.h"
 #include "Timer.h"
 #include "OnFloor.h"
 #include "GameObjectFactory.h"
-#include "SceneGameObject.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 
@@ -15,11 +15,29 @@ const char* GSLoadLevel::NAME = "load-level";
 
 static bool b = TheGame::Instance()->AddState(GSLoadLevel::NAME, new GSLoadLevel);
 
+void SetLevel(const std::string& levelName)
+{
+  ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
+    SetLevel(levelName);
+}
+
+void SetGameMode(GameMode mode)
+{
+  ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
+    SetGameMode(mode);
+}
+
 GSLoadLevel::GSLoadLevel()
 {
   m_maxBarX = 0;
   m_numObjects = 0;
   m_currentObj = 0;
+  m_mode = AMJU_MAIN_GAME_MODE;
+}
+
+void GSLoadLevel::SetGameMode(GameMode mode)
+{
+  m_mode = mode;
 }
 
 void GSLoadLevel::OnActive()
@@ -27,6 +45,8 @@ void GSLoadLevel::OnActive()
   GSText::OnActive();
 
   CreateText("level  " + m_level);
+  //CreateText("abcdefgh\nijklmnop\nqrstuvwxyz\n!1234567890");
+
   m_timer = 0;
 
   m_gui = LoadGui("loadlevel-gui.txt");
@@ -46,7 +66,6 @@ void GSLoadLevel::OnDeactive()
 {
   GameState::OnDeactive();
   m_gui = 0; // should remove itself as a listener
-  //TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_OPAQUE, m_pRoot);
 }
 
 void GSLoadLevel::StartLoad()
@@ -100,28 +119,8 @@ void GSLoadLevel::LoadOneObject()
 
   // GameObject adds node(s) to SceneGraph
   // Done in Load()
-  //pgo->AddToSceneGraph(); 
 
   TheGame::Instance()->AddGameObject(pgo);
-
-  /*
-  SceneGameObjectOpaque* node = new SceneGameObjectOpaque(pgo);
-  m_pRoot->AddChild(node);
-
-  // If camera, tell SceneGraph that this node is the camera
-  Camera* camera = dynamic_cast<Camera*>(pgo.GetPtr());
-  if (camera)
-  {
-    node->SetIsCamera(true);
-    TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_CAMERA, node);
-  }
-  // TODO Skybox node type - draw it first for now
-  else
-  {
-    PSceneNode shadow = new SceneGameObjectBlended(pgo);
-    node->AddChild(shadow);
-  }
-  */
 }
 
 void GSLoadLevel::SetLevel(const std::string& level)
@@ -157,10 +156,23 @@ void GSLoadLevel::Update()
   s.x = barSize * m_maxBarX;
   bar->SetSize(s);
 
-  if (m_currentObj == m_numObjects && m_timer > 3.0f)
+  if (m_currentObj == m_numObjects) //&& m_timer > 3.0f)
   {
     m_file = 0; // delete, we no longer need it
-    TheGame::Instance()->SetCurrentState(GSMain::NAME);
+    switch (m_mode)
+    {
+    case AMJU_MAIN_GAME_MODE:
+      TheGame::Instance()->SetCurrentState(GSMain::NAME);
+      break;
+    /*
+    case AMJU_ATTRACT_MODE:
+      TheGame::Instance()->SetCurrentState(GSMainAttract::NAME);
+      break;
+    */
+    case AMJU_EDIT_MODE:
+      TheGame::Instance()->SetCurrentState(GSMainEdit::NAME);
+      break;
+    }
   }
 }
 }

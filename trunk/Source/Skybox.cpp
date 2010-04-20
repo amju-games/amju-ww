@@ -76,7 +76,7 @@ void Skybox::Draw()
 
 void Skybox::Update()
 {
-  static const float ROT_VEL = 2.0f; // degs/dec
+//  static const float ROT_VEL = 2.0f; // degs/dec
 //  m_yRot += ROT_VEL * TheTimer::Instance()->GetDt();
 
   Matrix mat;

@@ -9,6 +9,7 @@
 #include "LoadVec3.h"
 #include "MySceneGraph.h"
 #include "SceneMesh.h"
+#include "LoadTextureResource.h"
 
 namespace Amju
 {
@@ -16,6 +17,17 @@ GameObject* CreateFloor() { return new Floor; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Floor::NAME, &CreateFloor);
 
 const char* Floor::NAME = "floor";
+
+void FloorMesh::Draw()
+{
+  m_pTex->UseThisTexture();
+  SceneMesh::Draw();
+}
+
+void FloorMesh::SetTexture(PTexture tex)
+{
+  m_pTex = tex;
+}
 
 Floor::Floor()
 {
@@ -67,12 +79,16 @@ bool Floor::Load(File* f)
     return false;
   }
 
+  // Load mesh 
   ObjMesh* mesh = LoadMeshResource(f);
 
   mesh->CalcCollisionMesh(&m_collMesh);
   Matrix m;
   m.Translate(m_pos);
   m_collMesh.Transform(m);
+
+  // Load texture
+  Texture* pTex = LoadTextureResource(f); 
 
   if (!f->GetInteger((int*)&m_rotAxes))
   {
@@ -92,8 +108,9 @@ bool Floor::Load(File* f)
     return false;
   }
 
-  m_pSceneNode = new SceneMesh;
+  m_pSceneNode = new FloorMesh;
   m_pSceneNode->SetMesh(mesh);
+  m_pSceneNode->SetTexture(pTex);
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_pSceneNode);
@@ -111,7 +128,7 @@ Matrix* Floor::GetMatrix()
   return &m_matrix;
 }
 
-bool Floor::GetY(const Vec3f& v, float* pY)
+bool Floor::GetY(const Vec2f& v, float* pY)
 {
   return m_collMesh.GetY(v, pY);
 }
@@ -124,7 +141,7 @@ void Floor::SetObjMassPos(float mass, const Vec3f& pos)
   v -= m_pos;
   v.y = 0;
 
-  if (m_rotAxes & AMJU_X  && m_rotAxes & AMJU_Z)
+  if ((m_rotAxes & AMJU_X) && (m_rotAxes & AMJU_Z))
   {
     // Do nothing
   }
@@ -134,6 +151,12 @@ void Floor::SetObjMassPos(float mass, const Vec3f& pos)
   }
   else if (m_rotAxes & AMJU_Z)
   {
+    v.z = 0;
+  }
+  else
+  {
+    // This floor does not tilt - e.g. spawn point
+    v.x = 0;
     v.z = 0;
   }
 

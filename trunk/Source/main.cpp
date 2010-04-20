@@ -1,4 +1,4 @@
-#include "AmjuFirst.h"
+#include <AmjuFirst.h>
 #include <iostream>
 
 #ifdef GEKKO
@@ -9,29 +9,35 @@
 
 #ifdef WIN32
 // Assume we always use OpenGL for now
-#include "AmjuGL-OpenGL.h"
-#include "EventPollerImplWin32.h"
-#include "SoundSDLMixer.h"
+#include <AmjuGL-OpenGL.h>
+#include <EventPollerImplSDL.h>
+//#include <AmjuGL-OpenGLES.h> // TODO TEMP TEST
+#include <AmjuGL-DX9.h>
+#include <EventPollerImplWin32.h>
+#include <SoundSDLMixer.h>
 #endif // WIN32
 
-#include "Game.h"
+#include <Game.h>
 #include "GSLogo.h"
 #include "GSMain.h" // TEMP; so we start immediately in game
 #include "TestState.h" // TODO TEMP TEST
 #include "CursorManager.h"
-#include "File.h"
-#include "AlphaBmpLoader.h"
-#include "ObjMesh.h"
-#include "Font.h"
-#include "SoundManager.h"
-#include "SceneGraph.h"
-#include "SceneNode.h"
-#include "SceneMesh.h"
-#include "BinaryResource.h"
-#include "AmjuFinal.h"
-#include "AmjuMain.h" // #defines main, so best to include it last
+#include "Hud.h"
+#include <File.h>
+#include <AlphaBmpLoader.h>
+#include <ObjMesh.h>
+#include <Font.h>
+#include <SoundManager.h>
+#include <SceneGraph.h>
+#include <SceneNode.h>
+#include <SceneMesh.h>
+#include <BinaryResource.h>
+#include <AmjuFinal.h>
 
 using namespace Amju;
+
+// Windows: use OpenGL or Direct 3D 
+#define USE_OPENGL_NOT_D3D
 
 int main(int argc, char **argv)
 {
@@ -44,14 +50,23 @@ int main(int argc, char **argv)
 #endif // GEKKO
 
 #ifdef WIN32
-  // Assume we always use OpenGL for now
+//	AmjuGL::SetImpl(new AmjuGLOpenGLES);
+  #ifdef USE_OPENGL_NOT_D3D
 	AmjuGL::SetImpl(new AmjuGLOpenGL);
+  TheEventPoller::Instance()->SetImpl(new EventPollerImplSDL);
+#else
+  // Must use Win32 event poller with D3D
+  AmjuGL::SetImpl(new AmjuGLDX9((WNDPROC)&EventPollerImplWin32::WndProc));
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWin32);
+#endif
+
   TheSoundManager::Instance()->SetImpl(new SoundSDLMixer);
 #endif // WIN32
 
 
   // Initialise window etc
+  Amju::AmjuGLWindowInfo w(640, 480, false);
+  Amju::AmjuGL::CreateWindow(&w);
   Amju::AmjuGL::Init();
 	
   // Add resource loaders
@@ -67,6 +82,9 @@ int main(int argc, char **argv)
   TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
 
   TheCursorManager::Instance()->Load();
+
+  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
+  TheHud::Instance()->Load();
 
   TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
 //  TheGame::Instance()->SetCurrentState(TestState::NAME);

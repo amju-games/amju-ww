@@ -23,6 +23,7 @@ public:
   virtual AABB* GetAABB();
 
   void SetFloor(Floor*); 
+  const Floor* GetFloor() const;
 
   bool IsDead() const;
 

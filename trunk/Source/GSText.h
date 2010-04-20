@@ -5,9 +5,6 @@
 #include "GuiElement.h"
 #include "SceneNode.h"
 
-// TODO TEMP
-#include "GuiImage.h"
-
 namespace Amju
 {
 class GSText : public GameState

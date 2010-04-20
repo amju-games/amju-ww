@@ -12,6 +12,10 @@ public:
   static const char* NAME;
 
   Player();
+  // ID of player - 0 for single player, 0 or 1 for two-player, etc.
+  void SetPlayerId(int);
+  int GetPlayerId() const;
+
   virtual const char* GetTypeName() const;
   virtual void Update();
   virtual bool Load(File* f);
@@ -25,6 +29,10 @@ public:
   void Jump();
 
 private:
+  // PlayerInfo ID
+  int m_playerId;
+  // Start position for current level
+  Vec3f m_startPos;
 };
 }
 
