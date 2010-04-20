@@ -206,11 +206,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\BonusParticleEffect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\BonusParticleEffect.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Camera.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\Source\Camera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\CollideDinoDino.cpp"
 				>
 			</File>
 			<File
@@ -227,6 +239,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\CollidePlayerExit.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\ContextMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\ContextMenu.h"
 				>
 			</File>
 			<File
@@ -254,6 +274,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\EditModeCamera.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\EditModeCamera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\EditViewport.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\EditViewport.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Exit.cpp"
 				>
 			</File>
@@ -267,6 +303,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\Floor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\GSEditMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\GSEditMenu.h"
 				>
 			</File>
 			<File
@@ -310,6 +354,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\GSMainEdit.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\GSMainEdit.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\GSMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\GSMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\GSText.cpp"
 				>
 			</File>
@@ -323,6 +383,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\GSTitle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Hud.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Hud.h"
 				>
 			</File>
 			<File
@@ -342,7 +410,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\LoadTextureResource.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\LoadTextureResource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\MySceneGraph.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\MySceneGraph.h"
 				>
 			</File>
 			<File
@@ -370,11 +454,39 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\OnFloorCharacter.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\OnFloorCharacter.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\ParticleEffect2d.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\ParticleEffect2d.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Player.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\Source\Player.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\PlayerInfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\PlayerInfo.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\PlayerInfoKey.h"
 				>
 			</File>
 			<File
@@ -398,6 +510,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\StartGame.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\StartGame.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\TestState.cpp"
 				>
 			</File>
@@ -411,6 +531,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\TextMaker.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Viewport.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Viewport.h"
 				>
 			</File>
 		</Filter>
