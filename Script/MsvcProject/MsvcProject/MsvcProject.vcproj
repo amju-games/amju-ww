@@ -217,6 +217,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\CollidePlayerFloor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\CollidePlayerPlayer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\ContextMenu.cpp"
 				>
 			</File>
