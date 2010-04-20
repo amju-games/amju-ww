@@ -72,7 +72,19 @@ bool OnFloor::IsDead() const
 
 void OnFloor::SetFloor(Floor* floor)
 {
-  m_floor = floor;
+  if (floor != m_floor)
+  {
+    m_floor = floor;
+    if (m_shadow)
+    {
+      UpdateShadow();
+    }
+  }
+}
+
+const Floor* OnFloor::GetFloor() const
+{
+  return m_floor;
 }
 
 bool OnFloor::Load(File* f)
@@ -108,7 +120,7 @@ bool OnFloor::LoadShadow(File* f)
 void OnFloor::Reset()
 {
   m_isDead = false;
-  m_floor = 0;
+  SetFloor(0);
   m_onFloor = false;
 }
 
@@ -124,13 +136,13 @@ void OnFloor::FindFloor()
     }
     // Touching surface ?
     float y = 0;
-    if (f->GetY(m_pos, &y))
+    if (f->GetY(Vec2f(m_pos.x, m_pos.z), &y))
     {
       // Are we above surface, but not too high, 
       //  or below surface, but not too low..?
       if (m_pos.y < (y + 100.0f) && m_pos.y > (y - 10.0f))
       {
-        m_floor = f;
+        SetFloor(f);
         break;
       }
     }
@@ -187,7 +199,7 @@ void OnFloor::UpdateY()
   bool isOn = false;
   if (m_floor)
   {
-    isOn = m_floor->GetY(m_pos, &y);
+    isOn = m_floor->GetY(Vec2f(m_pos.x, m_pos.z), &y);
   }
 
   if (isOn)
@@ -222,7 +234,7 @@ void OnFloor::UpdateY()
     SetIsControlled(false);
 
     // We are not on the platform - just fall.
-    m_floor = 0;
+    SetFloor(0);
     m_onFloor = false;
 
     if (!IsFalling())
@@ -250,7 +262,7 @@ void OnFloor::Update()
 {
   GameObject::Update();
 
-  UpdateShadow();
+  //UpdateShadow(); // done in SetFloor() so we only set when floor changes
 
   UpdatePhysics();
 }

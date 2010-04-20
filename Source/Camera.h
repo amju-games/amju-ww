@@ -7,7 +7,7 @@ namespace Amju
 {
 class SceneNodeCamera;
 
-// Keep looking at Player
+// Keep looking at a Player
 class Camera : public GameObject
 {
 public:
@@ -19,10 +19,13 @@ public:
   virtual void Update();
   virtual bool Load(File*);
 
+  void SetAsSceneGraphCamera();
+
 protected:
   int m_targetId;
+  int m_viewportId;
   PGameObject m_target;
-  SceneNodeCamera* m_pSceneNode;
+  RCPtr<SceneNodeCamera> m_pSceneNode;
 };
 }
 

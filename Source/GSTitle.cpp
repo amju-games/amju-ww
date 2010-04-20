@@ -6,6 +6,8 @@
 #include "MySceneGraph.h"
 #include "ResourceManager.h"
 #include "SoundManager.h"
+#include "GSMenu.h"
+#include "StartGame.h"
 
 namespace Amju
 {
@@ -22,11 +24,15 @@ class CommandStart : public GuiCommand
 {
   virtual bool Do()
   {
-    // New game: start at level 1
-    // TODO Load last level ?
-    ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME).GetPtr())->
-      SetLevel("1");
-    TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME);
+#ifdef NO_MAIN_MENU
+    // No main menu - just straight into the game..?
+    SetLevel("1");
+    StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
+#else
+    // If menu state, do this INSTEAD of the above
+    TheGame::Instance()->SetCurrentState(GSMenu::NAME);
+#endif
+
     return false; //no undo
   }
 };
@@ -37,6 +43,7 @@ class CommandQuit : public GuiCommand
   {
     // TODO Confirm ??
     exit(0); // This should exit cleanly - TODO verify this
+    //TODO TheGame::Instance()->Quit();
     return false; //no undo
   }
 };
@@ -58,7 +65,6 @@ void GSTitle::OnActive()
 
   // Gui and 3D Text resources - keep in mem, so don't trash in OnDeactive
   // TODO Load while logos are displayed ?
-  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
   TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
   TheResourceManager::Instance()->LoadResourceGroup("gui-group");
   TheResourceManager::Instance()->LoadResourceGroup("skybox-group");

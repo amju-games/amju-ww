@@ -18,7 +18,7 @@ GSMainEdit::GSMainEdit()
 void GSMainEdit::OnActive()
 {
   GSMain::OnActive();
-  GetGameSceneGraph()->SetCamera(new EditModeCamera);
+  //GetGameSceneGraph()->SetCamera(new EditModeCamera);
 
   m_menu = new ContextMenu;
   m_menu->AddItem(new GuiMenuItem("Hello"));
@@ -28,10 +28,10 @@ void GSMainEdit::OnActive()
 
 void GSMainEdit::Update()
 {
-  //GSMain::Update();
+  GSMain::Update();
 
   // Don't update game objects; don't check collisions
-  GetGameSceneGraph()->Update();
+  //GetGameSceneGraph()->Update();
 }
 
 void GSMainEdit::Draw()

@@ -12,10 +12,13 @@
 #include "EventPoller.h"
 #include "Floor.h"
 #include "GSGameOver.h"
+#include "GSLoadLevel.h"
 #include "GameObjectFactory.h"
 #include "Game.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
+#include "PlayerInfo.h"
+#include "PlayerInfoKey.h"
 #include "AmjuFinal.h"
 
 namespace Amju
@@ -30,11 +33,22 @@ const char* Player::NAME = "player";
 Player::Player()
 {
   TheEventPoller::Instance()->AddListener(this);
+  m_playerId = 0;
 }
 
 const char* Player::GetTypeName() const
 {
   return NAME;
+}
+
+void Player::SetPlayerId(int playerId)
+{
+  m_playerId = playerId;
+}
+
+int Player::GetPlayerId() const
+{
+  return m_playerId;
 }
 
 bool Player::Load(File* f)
@@ -43,16 +57,37 @@ bool Player::Load(File* f)
   {
     return false;
   }
+  m_startPos = m_pos;
+
+  if (!f->GetInteger(&m_playerId))
+  {
+    f->ReportError("No player ID!?");
+    return false;
+  }
 
   m_pSceneNode = new BlinkCharacter;
 
-  // TODO Load mesh and textures from file
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2("amju.md2"))
+  std::string meshName;
+  if (!f->GetDataLine(&meshName))
+  {
+    f->ReportError("No mesh name for player");
+    return false;
+  }
+
+  // Load mesh and textures from file
+  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2(meshName))
   {
     return false;
   }
 
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures("amju2.bmp", "amju2a.bmp"))
+  std::string tex1Name, tex2Name;
+  if (!f->GetDataLine(&tex1Name) || !f->GetDataLine(&tex2Name))
+  {
+    f->ReportError("Failed to get 2 textures for player");
+    return false;
+  }
+
+  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures(tex1Name, tex2Name))
   {
     return false;
   }
@@ -69,24 +104,9 @@ bool Player::Load(File* f)
   return true;
 
   /*
-// TODO Maybe use this one: "C:/JAY/BANANA/AMJU-EXTRA/AMJU-guitar2.MD2"
-//  + "C:/JAY/BANANA/AMJU-EXTRA/AMJU2-GUITAR.BMP"
-
-  m_pModel = (Md2Model*)TheResourceManager::Instance()->GetRes("amju.md2");
-  if (!m_pModel)
-  {
-    ReportError("Failed to load amju MD2");
-    return false;
-  }
-
-  m_pTex[0] = (Texture*)TheResourceManager::Instance()->GetRes("amju2.bmp");
-  Assert(m_pTex[0]);
-
-  m_pTex[1] = (Texture*)TheResourceManager::Instance()->GetRes("amju2a.bmp");
-  Assert(m_pTex[1]);
-
-  m_shadow.Load();
-*/
+    TODO Maybe use this one: "C:/JAY/BANANA/AMJU-EXTRA/AMJU-guitar2.MD2"
+    C:/JAY/BANANA/AMJU-EXTRA/AMJU2-GUITAR.BMP"
+  */
 }
 
 void Player::Jump()
@@ -94,17 +114,34 @@ void Player::Jump()
   // Jump if we are on ground
   if (!IsFalling())
   {
-    m_vel.y = 500.0f; // TODO CONFIG -- power up ?
+    m_vel.y = 100.0f; // TODO CONFIG -- power up ?
     SetIsFalling(true);
   }
 }
 
 void Player::OnButtonEvent(const ButtonEvent& be)
 {
+  if (be.controller != m_playerId)
+  {
+    return;
+  }
+
+  if (!m_floor)
+  {
+    return;
+  }
+
+  if (IsFalling())
+  {
+    return;
+  }
+
   if (be.button == AMJU_BUTTON_A)
   {
     Jump();
   }
+
+  // TODO Home > Pause
 }
 
 void Player::OnKeyEvent(const KeyEvent& ke)
@@ -119,41 +156,47 @@ void Player::OnKeyEvent(const KeyEvent& ke)
     return;
   }
 
-  switch (ke.keyType)
+  if (m_playerId == 0)
   {
-  case AMJU_KEY_UP:
-    m_vel.z = ke.keyDown ? -MAX_SPEED : 0;
-    SetDir(180.0f);
-    SetIsControlled(true); 
-    break;
-  case AMJU_KEY_DOWN:
-    m_vel.z = ke.keyDown ? MAX_SPEED : 0;
-    SetDir(0.0f);
-    SetIsControlled(true); 
-    break;
-  case AMJU_KEY_LEFT:
-    m_vel.x = ke.keyDown ? -MAX_SPEED : 0;
-    SetDir(-90.0f);
-    SetIsControlled(true); 
-    break;
-  case AMJU_KEY_RIGHT:
-    m_vel.x = ke.keyDown ? MAX_SPEED : 0;
-    SetDir(90.0f);
-    SetIsControlled(true); 
-    break;
-  case AMJU_KEY_CHAR:
-    if (ke.key == ' ')
+    switch (ke.keyType)
     {
+    case AMJU_KEY_UP:
+      m_vel.z = ke.keyDown ? -MAX_SPEED : 0;
+      SetDir(180.0f);
+      SetIsControlled(true); 
+      break;
+    case AMJU_KEY_DOWN:
+      m_vel.z = ke.keyDown ? MAX_SPEED : 0;
+      SetDir(0.0f);
+      SetIsControlled(true); 
+      break;
+    case AMJU_KEY_LEFT:
+      m_vel.x = ke.keyDown ? -MAX_SPEED : 0;
+      SetDir(-90.0f);
+      SetIsControlled(true); 
+      break;
+    case AMJU_KEY_RIGHT:
+      m_vel.x = ke.keyDown ? MAX_SPEED : 0;
+      SetDir(90.0f);
+      SetIsControlled(true); 
+      break;
+    case AMJU_KEY_SPACE:
       Jump();
+      break;
+    default:
+      break;
     }
-    break;
-  default:
-    break;
   }
 }
 
 void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 {
+  // Only player 0 can use BB
+  if (0 != GetPlayerId()) 
+  {
+    return;
+  }
+
   if (!m_floor)
   {
     return;
@@ -175,7 +218,17 @@ void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 
 void Player::OnRotationEvent(const RotationEvent& re)
 {
-  if (re.controller != 0) // TODO m_id
+  if (re.controller != GetPlayerId()) 
+  {
+    return;
+  }
+
+  if (!m_floor)
+  {
+    return;
+  }
+
+  if (IsFalling())
   {
     return;
   }
@@ -207,6 +260,11 @@ void Player::OnRotationEvent(const RotationEvent& re)
 
 void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
 {
+  if (je.controller != GetPlayerId()) 
+  {
+    return;
+  }
+
   if (!m_floor)
   {
     return;
@@ -255,15 +313,28 @@ void Player::Update()
   // If we have fallen, go to life lost state
   if (IsDead())
   {
-    TheGame::Instance()->SetCurrentState(GSGameOver::NAME);
+    // Reduce number of lives
+    PlayerInfo* pInfo = ThePlayerInfoManager::Instance()->GetPlayerInfo(GetPlayerId());
+    int lives = pInfo->GetInt(PlayerInfoKey::LIVES);
+    lives--;
+    pInfo->Set(PlayerInfoKey::LIVES, lives);
+
+    if (lives == 0)
+    {
+      TheGame::Instance()->SetCurrentState(GSGameOver::NAME);
+    }
+    else
+    {
+      TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME);
+/*
+      // TODO Need to reload level ??
+      // Restore to start position. Flashing or something ?
+      Reset();  // ?
+      m_pos = m_startPos;
+      m_vel = Vec3f(0, 0, 0);
+      // TODO Set visual effect etc
+*/
+    }
   }
 }
-
-/*
-void Player::Draw()
-{
-  OnFloor::Draw();
-  DrawShadow(); // TODO temp hack
-} 
-*/
 }

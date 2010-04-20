@@ -1,7 +1,9 @@
 #ifndef BALANCE_GAME_STATE_H
 #define BALANCE_GAME_STATE_H
 
+#include <vector>
 #include "GameState.h"
+#include "Viewport.h"
 
 namespace Amju
 {
@@ -22,8 +24,6 @@ public:
 
   // EventListener overrides
   virtual void OnKeyEvent(const KeyEvent&);
-  // TODO TEMP TEST to test Wii rotation events
-  virtual void OnRotationEvent(const RotationEvent&);
 
   void ClearLevel();
 

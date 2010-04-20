@@ -1,9 +1,11 @@
 #include "Objective.h"
-#include "Game.h"
+#include <Game.h>
 #include "Dino.h"
 #include "Exit.h"
 #include "GSLevelComplete.h"
-#include "GameObjectFactory.h"
+#include <GameObjectFactory.h>
+#include "Hud.h"
+#include <Localise.h>
 
 namespace Amju
 {
@@ -43,12 +45,14 @@ bool Objective::Load(File* f)
   {
     return false;
   }
-  return true;
-}
+  if (!f->GetLocalisedString(&m_text))
+  {
+    f->ReportError("Objective: expected text");
+    return false;
+  }
+  TheHud::Instance()->SetObjectiveText(m_text);
 
-void Objective::Draw()
-{
-  // TODO Debug draw ?
+  return true;
 }
 
 void Objective::Update()
@@ -72,10 +76,12 @@ void Objective::Update()
   // All dinos are dead
   ObjectiveComplete();
   m_isComplete = true;
+  TheHud::Instance()->SetObjectiveText(Lookup("You did it! Now find an exit!"));
 }
 
 void Objective::Reset()
 {
   m_isComplete = false;
+  TheHud::Instance()->SetObjectiveText(m_text);
 }
 }

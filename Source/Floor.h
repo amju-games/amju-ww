@@ -9,12 +9,23 @@
 #include "ObjMesh.h"
 #include "Matrix.h"
 #include "CollisionMesh.h"
+#include "SceneMesh.h"
 
 namespace Amju
 {
-class SceneMesh;
+// Scene Node for floors 
+class FloorMesh : public SceneMesh
+{
+public:
+  virtual void Draw();
+  void SetTexture(PTexture);
 
-// Floor for a balance game: tilts when it receives balance board events etc
+private:
+  PTexture m_pTex;
+};
+
+// Floor for a balance game: tilts depending on axes of freedom, and the
+//  moments acting on it
 class Floor : public GameObject
 {
 public:
@@ -33,7 +44,7 @@ public:
   Matrix* GetMatrix();
 
   // If (x, z) is on floor, get height and return true.
-  bool GetY(const Vec3f& v, float* pY);
+  bool GetY(const Vec2f& v, float* pY);
 
   // Set moment of each object - combined effect of all objects causes tilt
   void SetObjMassPos(float mass, const Vec3f& pos);
@@ -84,7 +95,8 @@ private:
   // Max height of AABB - so determines the maximum rotation
   float m_maxYSize;
 
-  SceneMesh* m_pSceneNode;
+  // Point to scene node - Scene Graph owns it, this is not a leak!
+  FloorMesh* m_pSceneNode;
 
   // Moment Of Inertia, like mass for rotations 
   float m_inertia;

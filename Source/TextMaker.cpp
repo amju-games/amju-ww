@@ -25,11 +25,22 @@ SceneNode* MakeChar(char k, float* width)
   meshNode->SetMesh(mesh);
 
   // Calc width - TODO Use const array, this is stupidly time consuming
-  CollisionMesh cm;
-  mesh->CalcCollisionMesh(&cm);
-  AABB aabb;
-  cm.CalcAABB(&aabb);
-  *width = aabb.GetXSize();
+  typedef std::map<char, float> WidthMap;
+  static WidthMap wm;
+  WidthMap::iterator it = wm.find(k);
+  if (it == wm.end())
+  {
+    CollisionMesh cm;
+    mesh->CalcCollisionMesh(&cm);
+    AABB aabb;
+    cm.CalcAABB(&aabb);
+    *width = aabb.GetXSize();
+    wm[k] = *width;
+  }
+  else
+  {
+    *width = it->second;
+  }
 
   return meshNode;
 }

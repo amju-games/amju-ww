@@ -1,30 +1,30 @@
 #include "GSMain.h"
-#include "AmjuGL.h"
+#include <AmjuGL.h>
 #include "CursorManager.h"
-#include "Game.h"
+#include <Game.h>
 #include "Floor.h"
 #include "Player.h"
 #include "Dino.h"
-#include "File.h"
-#include "ReportError.h"
-#include "GameObjectFactory.h"
-#include "EventPoller.h"
+#include <File.h>
+#include <ReportError.h>
+#include <GameObjectFactory.h>
+#include <EventPoller.h>
 #include "MySceneGraph.h"
-#include "SceneGameObject.h"
 #include "CollisionManager.h"
-#include "Font.h"
-#include "SceneNodeCamera.h"
+#include <Font.h>
+#include <SceneNodeCamera.h>
 #include "Camera.h"
-#include "Timer.h"
-#include "StringUtils.h"
-#include "Pause.h"
+#include <Timer.h>
+#include <StringUtils.h>
+#include <Pause.h>
+#include <Screen.h>
+#include "Hud.h"
 
 namespace Amju
 {
-const char* GSMain::NAME = "balance";
+const char* GSMain::NAME = "main";
 
-static bool b = TheGame::Instance()->AddState(
-  GSMain::NAME, new GSMain);
+static bool b = TheGame::Instance()->AddState(GSMain::NAME, new GSMain);
 
 GSMain::GSMain()
 {
@@ -36,10 +36,6 @@ void GSMain::OnActive()
 
   // Clear Text scene graph
   GetTextSceneGraph()->Clear();
-
-  // was:
-  // Remove sybox added for previous states
-  //TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_SKYBOX, 0);
 }
 
 void GSMain::OnKeyEvent(const KeyEvent& ke)
@@ -96,52 +92,37 @@ void GSMain::Update()
   Collisions();
 }
 
-static Vec3f rot;
-void GSMain::OnRotationEvent(const RotationEvent& re)
-{
-  if (re.controller != 0)
-  {
-    return;
-  }
-
-  switch (re.axis)
-  {
-  case AMJU_AXIS_X:
-    rot.x = re.degs;
-    break;
-  case AMJU_AXIS_Y:
-    rot.y = re.degs;
-    break;
-  case AMJU_AXIS_Z:
-    rot.z = re.degs;
-    break;  
-  }
-}
-
 void GSMain::Draw2d()
 {
-  // TODO Split screen -- draw all screens
+  AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
+  TheHud::Instance()->Draw();
 
+  // Split screen -- draw all screens
+  int numVps = TheViewportManager::Instance()->GetNumViewports();
+  for (int i = 0; i < numVps; i++)
+  {
+    AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+    AmjuGL::SetIdentity();
+
+    TheViewportManager::Instance()->GetViewport(i)->Draw2d();
+  }
+
+  // TODO Draw borders ??
+  /*
   static Font* font = 
     (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
-
-  /*
-  std::string s = "Rotation x: " + ToString(rot.x, 2) + 
-    " y: " + ToString(rot.y, 2) + 
-    " z: " + ToString(rot.z, 2);
-
-  font->Print(-1, 1, s.c_str());
+  font->Print(-1, 1, "HELLO! I am a test");
   */
-  TheCursorManager::Instance()->Draw();
+//  TheCursorManager::Instance()->Draw();
 }
 
 void GSMain::Draw()
 {
-  // TODO Split screen -- draw all screens
-
-  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
-  AmjuGL::SetIdentity();
-
-  GetGameSceneGraph()->Draw();
+  // Split screen -- draw all screens
+  int numVps = TheViewportManager::Instance()->GetNumViewports();
+  for (int i = 0; i < numVps; i++)
+  {
+    TheViewportManager::Instance()->GetViewport(i)->Draw();
+  }
 }
 }
