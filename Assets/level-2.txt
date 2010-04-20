@@ -6,8 +6,6 @@
 // Num Objects
 13
 
-// TODO TEMP HACK - first in file, so drawn first
-// This is just until we handle transparency correctly
 skybox
 9999
 skybox2.obj
@@ -158,5 +156,7 @@ end
 
 objective
 10000
+// Text
+Get rid of all the dinosaurs!
 end
 

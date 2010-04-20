@@ -1,7 +1,3 @@
-# This file uses centimeters as units for non-parametric coordinates.
-
-mtllib plat_cyl_12x1.mtl
-g default
 v 43.301266 -0.250000 -24.999994
 v 25.000000 -0.250000 -43.301263
 v 43.301266 12.250000 -24.999994
@@ -224,9 +220,6 @@ vn 0.000000 1.000000 0.000000
 vn 0.000000 1.000000 0.000000
 vn 0.000000 1.000000 0.000000
 vn 0.000000 1.000000 0.000000
-s off
-g pCylinder1
-usemtl disc1_initialShadingGroup
 f 1/1/1 2/2/2 3/3/3
 f 3/3/4 2/2/5 4/4/6
 f 2/2/7 5/5/8 4/4/9
