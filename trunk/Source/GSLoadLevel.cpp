@@ -27,6 +27,16 @@ void SetGameMode(GameMode mode)
     SetGameMode(mode);
 }
 
+class CommandGo : public GuiCommand
+{
+  virtual bool Do()
+  {
+    TheGame::Instance()->SetCurrentState(GSMain::NAME);
+    return false; //no undo
+  }
+};
+
+
 GSLoadLevel::GSLoadLevel()
 {
   m_maxBarX = 0;
@@ -54,6 +64,10 @@ void GSLoadLevel::OnActive()
   GuiElement* bar = m_gui->GetElementByName("bar");
   m_maxBarX = bar->GetSize().x;
 
+  // Hide GO button until loaded
+  m_gui->GetElementByName("go-button")->SetVisible(false);
+  m_gui->GetElementByName("go-button")->SetCommand(new CommandGo);
+
   // Load background skybox
   // TODO We could have movement decorator etc 
   GetTextSceneGraph()->SetRootNode(
@@ -75,10 +89,10 @@ void GSLoadLevel::StartLoad()
 
   // TODO trash resource group for previous level
 
-  std::string groupname = "level-" + m_level + "-group";
+  std::string groupname = "levels/level-" + m_level + "-group";
   TheResourceManager::Instance()->LoadResourceGroup(groupname);
 
-  std::string levelfilename = "level-" + m_level + ".txt";
+  std::string levelfilename = "levels/level-" + m_level + ".txt";
 
   m_file = new File;
   if (!m_file->OpenRead(levelfilename))
@@ -141,6 +155,15 @@ void GSLoadLevel::Update()
   {
     LoadOneObject();
     ++m_currentObj;
+
+    // If done, turn of prog bar and turn on GO button
+    // TODO Don't do this for attract mode - go directly to level
+    if (m_currentObj == m_numObjects)
+    {
+      m_file = 0; // delete, we no longer need it
+      m_gui->GetElementByName("go-button")->SetVisible(true);
+      m_gui->GetElementByName("progressbar")->SetVisible(false);
+    }
   }
 
   // Go to next state when we have paused long enough ?
@@ -156,23 +179,26 @@ void GSLoadLevel::Update()
   s.x = barSize * m_maxBarX;
   bar->SetSize(s);
 
+  /*
   if (m_currentObj == m_numObjects) //&& m_timer > 3.0f)
   {
     m_file = 0; // delete, we no longer need it
+
     switch (m_mode)
     {
     case AMJU_MAIN_GAME_MODE:
       TheGame::Instance()->SetCurrentState(GSMain::NAME);
       break;
-    /*
+    
     case AMJU_ATTRACT_MODE:
       TheGame::Instance()->SetCurrentState(GSMainAttract::NAME);
       break;
-    */
+    
     case AMJU_EDIT_MODE:
       TheGame::Instance()->SetCurrentState(GSMainEdit::NAME);
       break;
     }
   }
+  */
 }
 }
