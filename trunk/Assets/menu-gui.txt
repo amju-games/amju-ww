@@ -4,6 +4,8 @@
 
 // element type
 gui-comp
+// Name
+menu-comp
 // Num children
 3
 
