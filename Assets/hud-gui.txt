@@ -4,6 +4,8 @@
 
 // Element type
 gui-comp
+// Name
+hud-comp
 // Num children
 1
 

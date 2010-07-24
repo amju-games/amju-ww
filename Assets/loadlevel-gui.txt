@@ -4,8 +4,41 @@
 
 // Element type
 gui-comp
+// Name
+loadlevel-comp
 // Num children
 2
+
+
+// element type
+gui-button
+
+// Element name
+go-button
+
+// pos (coords are -1..1)
+-0.4, -0.5
+// size
+0.8, 0.2
+
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.bmpa
+
+// Text
+Go!
+// Font name, size
+cheri, 1.0
+
+
+
+
+// Element type
+gui-comp
+// Name
+progressbar
+// Num children
+2
+
 
 // Element type
 gui-image

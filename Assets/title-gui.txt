@@ -4,6 +4,8 @@
 
 // element type
 gui-comp
+// Name
+title-comp
 // Num children
 2
 
