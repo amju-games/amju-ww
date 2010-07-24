@@ -4,7 +4,7 @@
 #include "Timer.h"
 #include "GameObjectFactory.h"
 #include "OnFloor.h"
-#include "File.h"
+#include <File.h>
 #include "LoadMeshResource.h"
 #include "LoadVec3.h"
 #include "MySceneGraph.h"
@@ -18,10 +18,16 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Floor::NAME, &CreateFloo
 
 const char* Floor::NAME = "floor";
 
+FloorMesh::FloorMesh(Floor* floor) : m_floor(floor)
+{
+}
+
 void FloorMesh::Draw()
 {
   m_pTex->UseThisTexture();
   SceneMesh::Draw();
+
+  m_floor->DrawCollisionMesh();
 }
 
 void FloorMesh::SetTexture(PTexture tex)
@@ -38,10 +44,12 @@ Floor::Floor()
   m_rotAxis = Vec3f(1.0, 0, 0); 
   // Just needs to be non-zero until a real axis of rotation is found
 
-  m_rotAxes = AMJU_X;
+  m_rotAxes = 0;
   m_maxYSize = 0;
 
   m_inertia = 1.0f;
+
+  m_yRot = 0;
 }
 
 const char* Floor::GetTypeName() const
@@ -78,13 +86,20 @@ bool Floor::Load(File* f)
     f->ReportError("Expected floor position");
     return false;
   }
+  // Load rotation around y axis
+  if (!f->GetFloat(&m_yRot))
+  {
+    f->ReportError("Expected floor y rot");
+    return false;
+  }
 
   // Load mesh 
   ObjMesh* mesh = LoadMeshResource(f);
 
   mesh->CalcCollisionMesh(&m_collMesh);
   Matrix m;
-  m.Translate(m_pos);
+  m.RotateY(DegToRad(m_yRot));
+  m.TranslateKeepRotation(m_pos);
   m_collMesh.Transform(m);
 
   // Load texture
@@ -108,7 +123,7 @@ bool Floor::Load(File* f)
     return false;
   }
 
-  m_pSceneNode = new FloorMesh;
+  m_pSceneNode = new FloorMesh(this);
   m_pSceneNode->SetMesh(mesh);
   m_pSceneNode->SetTexture(pTex);
 
@@ -246,6 +261,12 @@ void Floor::Update()
   m_quat = q * m_quat;
   m_quat.Normalize();
   m_quat.CreateMatrix(&m_matrix);
+
+  Matrix yRot;
+  yRot.SetIdentity(); // TODO need this ?
+  yRot.RotateY(DegToRad(m_yRot));
+  m_matrix *= yRot;
+
   m_matrix.TranslateKeepRotation(m_pos);
 
   // Transform the collision mesh by the rotation for this frame
@@ -277,6 +298,11 @@ void Floor::Update()
 const Vec3f& Floor::GetHighPoint() const
 {
  return m_highPoint;
+}
+
+void Floor::DrawCollisionMesh()
+{
+  m_collMesh.Draw();
 }
 }
 

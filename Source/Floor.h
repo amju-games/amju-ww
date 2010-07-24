@@ -13,15 +13,19 @@
 
 namespace Amju
 {
+class Floor;
+
 // Scene Node for floors 
 class FloorMesh : public SceneMesh
 {
 public:
+  FloorMesh(Floor* floor);
   virtual void Draw();
   void SetTexture(PTexture);
 
 private:
   PTexture m_pTex;
+  Floor* m_floor;
 };
 
 // Floor for a balance game: tilts depending on axes of freedom, and the
@@ -53,11 +57,13 @@ public:
 
   const Vec3f& GetHighPoint() const;
 
+  void DrawCollisionMesh();
+
 private:
   // Called at start of update to reset all moments
   void ResetMoments();
 
-private:
+protected:
   // Summed moments for this frame
   Vec3f m_moments;
 
@@ -100,6 +106,9 @@ private:
 
   // Moment Of Inertia, like mass for rotations 
   float m_inertia;
+
+  // Rotation - more for static floors, ramps etc
+  float m_yRot;
 };
 }
 
