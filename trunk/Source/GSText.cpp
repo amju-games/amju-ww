@@ -7,6 +7,7 @@
 #include "MyTextMaker.h"
 #include "DegRad.h"
 #include "Timer.h"
+#include <Localise.h>
 
 namespace Amju
 {
@@ -29,7 +30,10 @@ void GSText::Draw()
   // TODO Camera node
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
-  AmjuGL::LookAt(0, 10, 10,   0, 0, 0.0f,  0, 1.0f, 0);
+  static float a = 0; 
+  // TODO CONFIG!!
+  a += TheTimer::Instance()->GetDt(); 
+  AmjuGL::LookAt(cos(a), 10.0f + sin(a), 6.0f,   0, 0, 0.0f,  0, 1.0f, 0);
 
   // TODO Lighting node
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
@@ -71,7 +75,7 @@ void GSText::OnDeactive()
 void GSText::CreateText(const std::string& text)
 {
   MyTextMaker tm;
-  PSceneNode node = tm.MakeText(text);
+  PSceneNode node = tm.MakeText(Lookup(text));
 
   // Rotate
   Matrix m;
