@@ -67,8 +67,14 @@ bool Bonus::Load(File* f)
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_pSceneNode);
 
+  if (!LoadShadow(f))
+  {
+    return false;
+  }
+
   // Load bonus points ?
-  File effectFile;
+  File effectFile; 
+  // For nested glue files to work, this should be last or destroyed before further reading
   if (!effectFile.OpenRead("bonus-effect.txt"))
   {
     effectFile.ReportError("Couldn't open bonus effect file");
@@ -82,11 +88,6 @@ bool Bonus::Load(File* f)
   }
 
   m_pSceneNode->AddChild(m_effect);
-
-  if (!LoadShadow(f))
-  {
-    return false;
-  }
 
   return true;
 }
