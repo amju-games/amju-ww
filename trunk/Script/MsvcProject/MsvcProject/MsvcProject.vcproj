@@ -361,6 +361,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\StartUp.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\StaticFloor.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\TestState.cpp"
 				>
 			</File>
@@ -540,6 +548,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\StartGame.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\StartUp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\StaticFloor.h"
 				>
 			</File>
 			<File
