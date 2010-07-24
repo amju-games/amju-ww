@@ -5,6 +5,7 @@
 #include "AmjuGL-GCube.h"
 #include "EventPollerImplWii.h"
 #include "SoundWii.h"
+#include <File.h>
 #endif // GEKKO
 
 #ifdef WIN32
@@ -18,20 +19,9 @@
 #endif // WIN32
 
 #include <Game.h>
-#include "GSLogo.h"
-#include "GSMain.h" // TEMP; so we start immediately in game
-#include "TestState.h" // TODO TEMP TEST
-#include "CursorManager.h"
-#include "Hud.h"
-#include <File.h>
-#include <AlphaBmpLoader.h>
-#include <ObjMesh.h>
-#include <Font.h>
+#include "StartUp.h"
 #include <SoundManager.h>
-#include <SceneGraph.h>
-#include <SceneNode.h>
-#include <SceneMesh.h>
-#include <BinaryResource.h>
+#include <AmjuGLWindowInfo.h>
 #include <AmjuFinal.h>
 
 using namespace Amju;
@@ -51,43 +41,27 @@ int main(int argc, char **argv)
 
 #ifdef WIN32
 //	AmjuGL::SetImpl(new AmjuGLOpenGLES);
-  #ifdef USE_OPENGL_NOT_D3D
+#ifdef USE_OPENGL_NOT_D3D
 	AmjuGL::SetImpl(new AmjuGLOpenGL);
   TheEventPoller::Instance()->SetImpl(new EventPollerImplSDL);
-#else
+#else // USE_OPENGL_NOT_D3D
   // Must use Win32 event poller with D3D
   AmjuGL::SetImpl(new AmjuGLDX9((WNDPROC)&EventPollerImplWin32::WndProc));
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWin32);
-#endif
+#endif // USE_OPENGL_NOT_D3D
 
   TheSoundManager::Instance()->SetImpl(new SoundSDLMixer);
 #endif // WIN32
 
 
   // Initialise window etc
+  //Amju::AmjuGLWindowInfo w(480, 320, false);
   Amju::AmjuGLWindowInfo w(640, 480, false);
   Amju::AmjuGL::CreateWindow(&w);
   Amju::AmjuGL::Init();
-	
-  // Add resource loaders
-	TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
-	TheResourceManager::Instance()->AddLoader("obj", ObjLoader);
-  TheResourceManager::Instance()->AddLoader("font", FontLoader);
-  TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
-  TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
-  TheResourceManager::Instance()->AddLoader("wav", BinaryResourceLoader);
+//  Amju::AmjuGL::SetScreenRotation(10.0f);
 
-  // Add SceneNode types to factory
-  TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
-  TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
-
-  TheCursorManager::Instance()->Load();
-
-  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
-  TheHud::Instance()->Load();
-
-  TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
-//  TheGame::Instance()->SetCurrentState(TestState::NAME);
+  StartUp();
 
   TheGame::Instance()->Run();
 
