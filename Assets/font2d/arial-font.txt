@@ -12,8 +12,4 @@ font2d/arial_512_16pt.bmpa
 // start char
 0
 // widths
-font2d/arial_512_16pt_widths.ini
-
-
-
-
+font2d/arial_512_16pt_widths.txt

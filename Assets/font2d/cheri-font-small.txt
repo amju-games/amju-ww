@@ -12,8 +12,4 @@ font2d/cheri_512_17pt.bmpa
 // start char
 0
 // widths
-font2d/cheri_17pt_widths.ini
-
-
-
-
+font2d/cheri_17pt_widths.txt
