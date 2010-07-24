@@ -34,14 +34,14 @@ void CollidePlayerFloor(GameObject* go1, GameObject* go2)
   bool reverseX = false;
   bool reverseZ = false;
 
-  if (floorPos.x > playerPos.x && playerVel.x > 0 ||
-      floorPos.x < playerPos.x && playerVel.x < 0)
+  if ((floorPos.x > playerPos.x && playerVel.x > 0) ||
+      (floorPos.x < playerPos.x && playerVel.x < 0))
   {
     reverseX = true;
   }
 
-  if (floorPos.z > playerPos.z && playerVel.z > 0 ||
-      floorPos.z < playerPos.z && playerVel.z < 0)
+  if ((floorPos.z > playerPos.z && playerVel.z > 0) ||
+      (floorPos.z < playerPos.z && playerVel.z < 0))
   {
     reverseZ = true;
   }
