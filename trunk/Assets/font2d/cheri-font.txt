@@ -12,8 +12,4 @@ font2d/cheri_1024.bmpa
 // start char
 32
 // widths
-font2d/cheri_1024_widths.ini
-
-
-
-
+font2d/cheri_1024_widths.txt
