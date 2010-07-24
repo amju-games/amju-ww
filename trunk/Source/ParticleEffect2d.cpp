@@ -3,6 +3,7 @@
 #include "ResourceManager.h"
 #include "Timer.h"
 #include "LoadTextureResource.h"
+#include <AmjuGL.h>
 
 namespace Amju
 {
