@@ -19,6 +19,7 @@
 #include <Pause.h>
 #include <Screen.h>
 #include "Hud.h"
+#include "GSPaused.h"
 
 namespace Amju
 {
@@ -40,6 +41,11 @@ void GSMain::OnActive()
 
 void GSMain::OnKeyEvent(const KeyEvent& ke)
 {
+  if (ke.keyType == AMJU_KEY_ESC && !ke.keyDown)
+  {
+    TheGame::Instance()->SetCurrentState(GSPaused::NAME);
+  }
+
   if (ke.keyType == AMJU_KEY_CHAR && 
       (ke.key == 'r' || ke.key == 'R'))
   {
