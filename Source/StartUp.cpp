@@ -27,7 +27,7 @@ void StartUp()
   //gf->OpenGlueFile("test.glue");
 
   // Use glue file -- or comment out to use individual files
-//  FileImplGlue::OpenGlueFile("test.glue");
+  FileImplGlue::OpenGlueFile("test.glue");
 
 	// Add resource loaders
 	TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
