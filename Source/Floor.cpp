@@ -257,7 +257,7 @@ void Floor::Update()
   // Angle through which we rotate this frame
   float ang = (oldAngularVel + m_angularVel) * (dt * 0.5f);
   Quaternion q;
-  q.CreateFromAxisAngle(m_rotAxis.x, m_rotAxis.y, m_rotAxis.z, ang);
+  q.SetAxisAngle(ang, m_rotAxis.x, m_rotAxis.y, m_rotAxis.z);
   m_quat = q * m_quat;
   m_quat.Normalize();
   m_quat.CreateMatrix(&m_matrix);
