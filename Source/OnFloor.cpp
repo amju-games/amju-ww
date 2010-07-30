@@ -98,6 +98,7 @@ bool OnFloor::Load(File* f)
     f->ReportError("Expected position");
     return false;
   }
+  m_pos = m_pos * m_mat;
 
   return true;
 }

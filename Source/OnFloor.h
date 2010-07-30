@@ -2,7 +2,7 @@
 #define ON_FLOOR_H
 
 #include <vector>
-#include "GameObject.h"
+#include "WWGameObject.h"
 #include "Vec2.h"
 #include "AABB.h"
 #include "Shadow.h"
@@ -11,7 +11,7 @@ namespace Amju
 {
 class Floor;
 
-class OnFloor : public GameObject
+class OnFloor : public WWGameObject
 {
 public:
   OnFloor();

@@ -1,14 +1,14 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "GameObject.h"
+#include "WWGameObject.h"
 
 namespace Amju
 {
 class SceneNodeCamera;
 
 // Keep looking at a Player
-class Camera : public GameObject
+class Camera : public WWGameObject
 {
 public:
   static const char* NAME;

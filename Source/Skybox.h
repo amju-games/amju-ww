@@ -1,7 +1,7 @@
 #ifndef SKYBOX_H
 #define SKYBOX_H
 
-#include "GameObject.h"
+#include "WWGameObject.h"
 #include "EventListener.h"
 #include "ObjMesh.h"
 
@@ -9,7 +9,7 @@ namespace Amju
 {
 class SceneMesh;
 
-class Skybox : public GameObject, public EventListener
+class Skybox : public WWGameObject, public EventListener
 {
 public:
   static const char* NAME;

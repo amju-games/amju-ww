@@ -86,6 +86,8 @@ bool Floor::Load(File* f)
     f->ReportError("Expected floor position");
     return false;
   }
+  m_pos = m_pos * m_mat;
+
   // Load rotation around y axis
   if (!f->GetFloat(&m_yRot))
   {

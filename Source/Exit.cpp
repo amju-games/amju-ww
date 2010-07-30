@@ -11,7 +11,9 @@
 #include "TextMaker.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
+#include <StringUtils.h>
 #include <DegRad.h>
+#include "LevelManager.h"
 
 namespace Amju
 {
@@ -25,6 +27,7 @@ Exit::Exit()
   m_isActive = false;
   m_activeTime = 0;
   m_rotate = 0;
+  m_toLevel = 0;
 }
 
 const char* Exit::GetTypeName() const
@@ -73,6 +76,7 @@ bool Exit::Load(File* f)
     f->ReportError("Expected exit position");
     return false;
   }
+  m_pos = m_pos * m_mat;
 
   ObjMesh* mesh = LoadMeshResource(f);
   if (!mesh)
@@ -101,13 +105,13 @@ bool Exit::Load(File* f)
     AddChild(m_pSceneNode);
 
   // Load next level
-  if (!f->GetDataLine(&m_toLevel))
+  if (!f->GetInteger(&m_toLevel))
   {
     f->ReportError("Expected next level");
     return false;
   }
   TextMaker tm;
-  m_text = tm.MakeText(m_toLevel);
+  m_text = tm.MakeText(ToString(m_toLevel));
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_text);
@@ -160,8 +164,9 @@ void Exit::OnPlayerCollision()
     // TODO Sound effect, explosion etc
 
     // Set next level
-    ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
-      SetLevel(m_toLevel);
+    TheLevelManager::Instance()->SetLevelId(m_toLevel);
+    //((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
+    //  SetLevel(m_toLevel);
 
     TheGame::Instance()->SetCurrentState(GSLevelComplete::NAME);
   }

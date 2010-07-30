@@ -2,7 +2,7 @@
 #define FLOOR_H
 
 #include "Texture.h"
-#include "GameObject.h"
+#include "WWGameObject.h"
 #include "Vec2.h"
 #include "Vec3.h"
 #include "Quaternion.h"
@@ -30,7 +30,7 @@ private:
 
 // Floor for a balance game: tilts depending on axes of freedom, and the
 //  moments acting on it
-class Floor : public GameObject
+class Floor : public WWGameObject
 {
 public:
   static const char* NAME;
