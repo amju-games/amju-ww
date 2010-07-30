@@ -14,6 +14,7 @@ public:
 
   // GameState overrides
   virtual void OnActive();
+  virtual void Update();
 };
 }
 
