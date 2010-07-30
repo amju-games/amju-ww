@@ -2,6 +2,7 @@
 #include "MySceneGraph.h"
 #include "Game.h"
 #include "GSLoadLevel.h"
+#include "LevelManager.h"
 #include "Timer.h"
 
 namespace Amju
@@ -36,6 +37,8 @@ void GSLevelComplete::Draw()
 void GSLevelComplete::OnActive()
 {
   GSText::OnActive();
+
+  TheLevelManager::Instance()->Clear();
 
   CreateText("you did it!"); // localisation is handled in CreateText
   m_timer = 0;
