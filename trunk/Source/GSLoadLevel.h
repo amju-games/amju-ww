@@ -21,9 +21,6 @@ public:
   virtual void OnDeactive();
   virtual void Update();
 
-  void SetLevel(const std::string& level);
-  const std::string& GetLevel() const;
-
   void SetGameMode(GameMode);
 
 private:
@@ -31,17 +28,14 @@ private:
   void StartLoad();
 
 private:
-  std::string m_level;
   float m_maxBarX;
 
   int m_numObjects;
   int m_currentObj;
-  RCPtr<File> m_file;
   GameMode m_mode;
 };
 
-// Convenience functions
-void SetLevel(const std::string& levelName);
+// Convenience function
 void SetGameMode(GameMode);
 
 }
