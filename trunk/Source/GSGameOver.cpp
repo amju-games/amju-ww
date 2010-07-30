@@ -15,35 +15,20 @@ GSGameOver::GSGameOver()
 {
 }
 
-class CommandContinue : public GuiCommand
+void GSGameOver::Update()
 {
-  virtual bool Do()
-  {
-    // Reload current level
-    TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME);
-    return false; //no undo
-  }
-};
-
-class CommandMainMenu : public GuiCommand
-{
-  virtual bool Do()
+  GSText::Update();
+  if (m_timer > 3.0f)
   {
     TheGame::Instance()->SetCurrentState(GSTitle::NAME);
-    return false; //no undo
   }
-};
+}
 
 void GSGameOver::OnActive()
 {
   GSText::OnActive();
 
   TheSoundManager::Instance()->PlayWav("churchbell"); // NB No file ext
-
-  m_gui = LoadGui("gameover-gui.txt");
-  Assert(m_gui);
-  m_gui->GetElementByName("continue-button")->SetCommand(new CommandContinue);
-  m_gui->GetElementByName("mainmenu-button")->SetCommand(new CommandMainMenu);
 
   CreateText("game over");
 
