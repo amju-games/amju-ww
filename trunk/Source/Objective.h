@@ -2,14 +2,14 @@
 #define OBJECTIVE_H
 
 #include <string>
-#include "GameObject.h"
+#include "WWGameObject.h"
 
 namespace Amju
 {
 // Base class for the Objective for a balance game level
 // This impl checks for all dead dinos 
 // Subclasses can search for level-specific objectives
-class Objective : public GameObject
+class Objective : public WWGameObject
 {
 public:
   static const char* NAME;

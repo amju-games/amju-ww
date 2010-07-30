@@ -42,7 +42,9 @@ public:
   void SetActive();
 
 protected:
-  std::string m_toLevel;
+  //std::string m_toLevel;
+  int m_toLevel;
+
   bool m_isActive;
   float m_activeTime; // time activated
   float m_rotate;
