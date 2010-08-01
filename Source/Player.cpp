@@ -326,14 +326,6 @@ void Player::Update()
     else
     {
       TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME);
-/*
-      // TODO Need to reload level ??
-      // Restore to start position. Flashing or something ?
-      Reset();  // ?
-      m_pos = m_startPos;
-      m_vel = Vec3f(0, 0, 0);
-      // TODO Set visual effect etc
-*/
     }
   }
 }
