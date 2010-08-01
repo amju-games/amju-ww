@@ -5,20 +5,16 @@
 
 namespace Amju
 {
-class BlinkCharacter;
-
 class OnFloorCharacter : public OnFloor
 {
 public:
   OnFloorCharacter();
   virtual void Update();
-//  virtual AABB* GetAABB(); 
 
 protected:
   void SetDir(float degs);
 
 protected:
-  //BlinkCharacter* m_pSceneNode;
 };
 }
 

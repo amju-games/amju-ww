@@ -109,7 +109,7 @@ bool Shadow::Load(File* f)
   }
 
   // Allows other textures, e.g. for blocks
-  m_texture = (Texture*)TheResourceManager::Instance()->GetRes(res); //"shadow.bmpa");
+  m_texture = (Texture*)TheResourceManager::Instance()->GetRes(res); 
   Assert(m_texture);
 
   if (!f->GetFloat(&m_size))
