@@ -1,13 +1,15 @@
 #include "GSTitle.h"
 #include "Game.h"
 #include "EventPoller.h"
-#include "GSLoadLevel.h"
+#include "LevelManager.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
 #include "ResourceManager.h"
 #include "SoundManager.h"
 #include "GSMenu.h"
 #include "StartGame.h"
+
+#define NO_MAIN_MENU
 
 namespace Amju
 {
@@ -26,7 +28,7 @@ class CommandStart : public GuiCommand
   {
 #ifdef NO_MAIN_MENU
     // No main menu - just straight into the game..?
-    SetLevel("1");
+    TheLevelManager::Instance()->SetLevelId(1);
     StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
 #else
     // If menu state, do this INSTEAD of the above
