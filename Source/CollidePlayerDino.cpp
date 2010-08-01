@@ -1,7 +1,7 @@
 #include "CollisionManager.h"
 #include "Player.h"
 #include "Dino.h"
-#include "SoundManager.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -10,7 +10,7 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   // Sound effect
   // TODO Make sure not played more than once in successive frames
   // -- have a timer
-  TheSoundManager::Instance()->PlayWav("gasp"); // NB No file ext
+  PlayWav("gasp"); // NB No file ext
 
   // Push both objects away from each other
 
