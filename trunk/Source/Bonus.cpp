@@ -5,7 +5,7 @@
 #include "LoadMeshResource.h"
 #include "Colour.h"
 #include "Timer.h"
-#include "SoundManager.h"
+#include "PlayWav.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
 #include "ObjMesh.h"
@@ -138,8 +138,8 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
   m_effect->SetVisible(true);
   m_shadow->SetVisible(false);
 
-  TheSoundManager::Instance()->PlayWav("cashreg"); // NB No file ext
-  TheSoundManager::Instance()->PlayWav("bonus_points"); // NB No file ext
+  Amju::PlayWav("cashreg"); // NB No file ext
+  Amju::PlayWav("bonus_points"); // NB No file ext
 
   // Inc num lives
   int id = pPlayer->GetPlayerId();
