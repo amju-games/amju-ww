@@ -1,0 +1,15 @@
+// Block table
+// version
+1
+
+// Num blocks
+2
+
+// block ID, then comma-sep list of blocks which may follow
+// -1 means terminate. If its the only option, then this is the final block
+1
+-1
+//2 
+
+2
+-1
