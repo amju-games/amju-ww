@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,21 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
-		6D5E092911EB79E000931FDB /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092111EB79E000931FDB /* EAGLView.mm */; };
+		3F6D8A44120AF14800DFECB9 /* CollideObjectFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A35120AF14800DFECB9 /* CollideObjectFloor.cpp */; };
+		3F6D8A45120AF14800DFECB9 /* GSPaused.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A36120AF14800DFECB9 /* GSPaused.cpp */; };
+		3F6D8A46120AF14800DFECB9 /* LevelManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A38120AF14800DFECB9 /* LevelManager.cpp */; };
+		3F6D8A47120AF14800DFECB9 /* Npc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A3A120AF14800DFECB9 /* Npc.cpp */; };
+		3F6D8A48120AF14800DFECB9 /* Pet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A3C120AF14800DFECB9 /* Pet.cpp */; };
+		3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A3E120AF14800DFECB9 /* PlayWav.cpp */; };
+		3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A40120AF14800DFECB9 /* StaticFloor.cpp */; };
+		3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */; };
+		3F6D8ABC120AF95400DFECB9 /* music.glue in Resources */ = {isa = PBXBuildFile; fileRef = 3F6D8ABA120AF95400DFECB9 /* music.glue */; };
+		3F6D8ABD120AF95400DFECB9 /* test.glue in Resources */ = {isa = PBXBuildFile; fileRef = 3F6D8ABB120AF95400DFECB9 /* test.glue */; };
+		3F6D8AEC120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */; };
+		3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */; };
+		3F906C44120B17C00080D0FC /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.m */; };
+		3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C40120B17C00080D0FC /* ES1Renderer.mm */; };
+		3F906C46120B17C00080D0FC /* ES2Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C42120B17C00080D0FC /* ES2Renderer.mm */; };
 		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */; };
 		6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092D11EB7A0800931FDB /* Shader.fsh */; };
 		6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092E11EB7A0800931FDB /* Shader.vsh */; };
@@ -28,7 +42,6 @@
 		6D5E099E11EB7B8400931FDB /* CollidePlayerBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094611EB7B8400931FDB /* CollidePlayerBonus.cpp */; };
 		6D5E099F11EB7B8400931FDB /* CollidePlayerDino.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094711EB7B8400931FDB /* CollidePlayerDino.cpp */; };
 		6D5E09A011EB7B8400931FDB /* CollidePlayerExit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094811EB7B8400931FDB /* CollidePlayerExit.cpp */; };
-		6D5E09A111EB7B8400931FDB /* CollidePlayerFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094911EB7B8400931FDB /* CollidePlayerFloor.cpp */; };
 		6D5E09A211EB7B8400931FDB /* CollidePlayerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094A11EB7B8400931FDB /* CollidePlayerPlayer.cpp */; };
 		6D5E09A311EB7B8400931FDB /* ContextMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094B11EB7B8400931FDB /* ContextMenu.cpp */; };
 		6D5E09A411EB7B8400931FDB /* Cursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E094D11EB7B8400931FDB /* Cursor.cpp */; };
@@ -49,7 +62,6 @@
 		6D5E09B311EB7B8400931FDB /* GSText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E096B11EB7B8400931FDB /* GSText.cpp */; };
 		6D5E09B411EB7B8400931FDB /* GSTitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E096D11EB7B8400931FDB /* GSTitle.cpp */; };
 		6D5E09B511EB7B8400931FDB /* Hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E096F11EB7B8400931FDB /* Hud.cpp */; };
-		6D5E09B611EB7B8400931FDB /* LeafLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E097111EB7B8400931FDB /* LeafLoader.cpp */; };
 		6D5E09B711EB7B8400931FDB /* LoadMeshResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E097311EB7B8400931FDB /* LoadMeshResource.cpp */; };
 		6D5E09B811EB7B8400931FDB /* LoadTextureResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E097511EB7B8400931FDB /* LoadTextureResource.cpp */; };
 		6D5E09BA11EB7B8400931FDB /* MySceneGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E097811EB7B8400931FDB /* MySceneGraph.cpp */; };
@@ -357,8 +369,34 @@
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* iPhone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhone_Prefix.pch; sourceTree = "<group>"; };
+		3F6D8A35120AF14800DFECB9 /* CollideObjectFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideObjectFloor.cpp; path = ../../Source/CollideObjectFloor.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A36120AF14800DFECB9 /* GSPaused.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSPaused.cpp; path = ../../Source/GSPaused.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A37120AF14800DFECB9 /* GSPaused.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSPaused.h; path = ../../Source/GSPaused.h; sourceTree = SOURCE_ROOT; };
+		3F6D8A38120AF14800DFECB9 /* LevelManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelManager.cpp; path = ../../Source/LevelManager.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A39120AF14800DFECB9 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelManager.h; path = ../../Source/LevelManager.h; sourceTree = SOURCE_ROOT; };
+		3F6D8A3A120AF14800DFECB9 /* Npc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Npc.cpp; path = ../../Source/Npc.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A3B120AF14800DFECB9 /* Npc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Npc.h; path = ../../Source/Npc.h; sourceTree = SOURCE_ROOT; };
+		3F6D8A3C120AF14800DFECB9 /* Pet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pet.cpp; path = ../../Source/Pet.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A3D120AF14800DFECB9 /* Pet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pet.h; path = ../../Source/Pet.h; sourceTree = SOURCE_ROOT; };
+		3F6D8A3E120AF14800DFECB9 /* PlayWav.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayWav.cpp; path = ../../Source/PlayWav.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A3F120AF14800DFECB9 /* PlayWav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayWav.h; path = ../../Source/PlayWav.h; sourceTree = SOURCE_ROOT; };
+		3F6D8A40120AF14800DFECB9 /* StaticFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StaticFloor.cpp; path = ../../Source/StaticFloor.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A41120AF14800DFECB9 /* StaticFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticFloor.h; path = ../../Source/StaticFloor.h; sourceTree = SOURCE_ROOT; };
+		3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWGameObject.cpp; path = ../../Source/WWGameObject.cpp; sourceTree = SOURCE_ROOT; };
+		3F6D8A43120AF14800DFECB9 /* WWGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWGameObject.h; path = ../../Source/WWGameObject.h; sourceTree = SOURCE_ROOT; };
+		3F6D8ABA120AF95400DFECB9 /* music.glue */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.glue; sourceTree = "<group>"; };
+		3F6D8ABB120AF95400DFECB9 /* test.glue */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.glue; sourceTree = "<group>"; };
+		3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventPollerImplIPhone.cpp; sourceTree = "<group>"; };
+		3F6D8AEB120AFD2A00DFECB9 /* EventPollerImplIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPollerImplIPhone.h; sourceTree = "<group>"; };
+		3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundIPhone.cpp; sourceTree = "<group>"; };
+		3F6D8AEF120AFD6500DFECB9 /* SoundIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundIPhone.h; sourceTree = "<group>"; };
+		3F906C3E120B17C00080D0FC /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = ../../Source/iPhone/Classes/EAGLView.m; sourceTree = SOURCE_ROOT; };
+		3F906C3F120B17C00080D0FC /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES1Renderer.h; path = ../../Source/iPhone/Classes/ES1Renderer.h; sourceTree = SOURCE_ROOT; };
+		3F906C40120B17C00080D0FC /* ES1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES1Renderer.mm; path = ../../Source/iPhone/Classes/ES1Renderer.mm; sourceTree = SOURCE_ROOT; };
+		3F906C41120B17C00080D0FC /* ES2Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES2Renderer.h; path = ../../Source/iPhone/Classes/ES2Renderer.h; sourceTree = SOURCE_ROOT; };
+		3F906C42120B17C00080D0FC /* ES2Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES2Renderer.mm; path = ../../Source/iPhone/Classes/ES2Renderer.mm; sourceTree = SOURCE_ROOT; };
+		3F906C43120B17C00080D0FC /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESRenderer.h; path = ../../Source/iPhone/Classes/ESRenderer.h; sourceTree = SOURCE_ROOT; };
 		6D5E092011EB79E000931FDB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../Source/iPhone/Classes/EAGLView.h; sourceTree = SOURCE_ROOT; };
-		6D5E092111EB79E000931FDB /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EAGLView.mm; path = ../../Source/iPhone/Classes/EAGLView.mm; sourceTree = SOURCE_ROOT; };
 		6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iPhoneAppDelegate.h; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iPhoneAppDelegate.m; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		6D5E092D11EB7A0800931FDB /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = ../../Source/iPhone/Shaders/Shader.fsh; sourceTree = SOURCE_ROOT; };
@@ -381,7 +419,6 @@
 		6D5E094611EB7B8400931FDB /* CollidePlayerBonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerBonus.cpp; path = ../../Source/CollidePlayerBonus.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E094711EB7B8400931FDB /* CollidePlayerDino.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerDino.cpp; path = ../../Source/CollidePlayerDino.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E094811EB7B8400931FDB /* CollidePlayerExit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerExit.cpp; path = ../../Source/CollidePlayerExit.cpp; sourceTree = SOURCE_ROOT; };
-		6D5E094911EB7B8400931FDB /* CollidePlayerFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerFloor.cpp; path = ../../Source/CollidePlayerFloor.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E094A11EB7B8400931FDB /* CollidePlayerPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerPlayer.cpp; path = ../../Source/CollidePlayerPlayer.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E094B11EB7B8400931FDB /* ContextMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ContextMenu.cpp; path = ../../Source/ContextMenu.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E094C11EB7B8400931FDB /* ContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContextMenu.h; path = ../../Source/ContextMenu.h; sourceTree = SOURCE_ROOT; };
@@ -421,8 +458,6 @@
 		6D5E096E11EB7B8400931FDB /* GSTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSTitle.h; path = ../../Source/GSTitle.h; sourceTree = SOURCE_ROOT; };
 		6D5E096F11EB7B8400931FDB /* Hud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hud.cpp; path = ../../Source/Hud.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E097011EB7B8400931FDB /* Hud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hud.h; path = ../../Source/Hud.h; sourceTree = SOURCE_ROOT; };
-		6D5E097111EB7B8400931FDB /* LeafLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LeafLoader.cpp; path = ../../Source/LeafLoader.cpp; sourceTree = SOURCE_ROOT; };
-		6D5E097211EB7B8400931FDB /* LeafLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeafLoader.h; path = ../../Source/LeafLoader.h; sourceTree = SOURCE_ROOT; };
 		6D5E097311EB7B8400931FDB /* LoadMeshResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadMeshResource.cpp; path = ../../Source/LoadMeshResource.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E097411EB7B8400931FDB /* LoadMeshResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadMeshResource.h; path = ../../Source/LoadMeshResource.h; sourceTree = SOURCE_ROOT; };
 		6D5E097511EB7B8400931FDB /* LoadTextureResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadTextureResource.cpp; path = ../../Source/LoadTextureResource.cpp; sourceTree = SOURCE_ROOT; };
@@ -782,6 +817,27 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3F906C3E120B17C00080D0FC /* EAGLView.m */,
+				3F906C3F120B17C00080D0FC /* ES1Renderer.h */,
+				3F906C40120B17C00080D0FC /* ES1Renderer.mm */,
+				3F906C41120B17C00080D0FC /* ES2Renderer.h */,
+				3F906C42120B17C00080D0FC /* ES2Renderer.mm */,
+				3F906C43120B17C00080D0FC /* ESRenderer.h */,
+				3F6D8A35120AF14800DFECB9 /* CollideObjectFloor.cpp */,
+				3F6D8A36120AF14800DFECB9 /* GSPaused.cpp */,
+				3F6D8A37120AF14800DFECB9 /* GSPaused.h */,
+				3F6D8A38120AF14800DFECB9 /* LevelManager.cpp */,
+				3F6D8A39120AF14800DFECB9 /* LevelManager.h */,
+				3F6D8A3A120AF14800DFECB9 /* Npc.cpp */,
+				3F6D8A3B120AF14800DFECB9 /* Npc.h */,
+				3F6D8A3C120AF14800DFECB9 /* Pet.cpp */,
+				3F6D8A3D120AF14800DFECB9 /* Pet.h */,
+				3F6D8A3E120AF14800DFECB9 /* PlayWav.cpp */,
+				3F6D8A3F120AF14800DFECB9 /* PlayWav.h */,
+				3F6D8A40120AF14800DFECB9 /* StaticFloor.cpp */,
+				3F6D8A41120AF14800DFECB9 /* StaticFloor.h */,
+				3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */,
+				3F6D8A43120AF14800DFECB9 /* WWGameObject.h */,
 				6D5E093811EB7B8400931FDB /* Animated.cpp */,
 				6D5E093911EB7B8400931FDB /* Animated.h */,
 				6D5E093A11EB7B8400931FDB /* BlinkCharacter.cpp */,
@@ -799,7 +855,6 @@
 				6D5E094611EB7B8400931FDB /* CollidePlayerBonus.cpp */,
 				6D5E094711EB7B8400931FDB /* CollidePlayerDino.cpp */,
 				6D5E094811EB7B8400931FDB /* CollidePlayerExit.cpp */,
-				6D5E094911EB7B8400931FDB /* CollidePlayerFloor.cpp */,
 				6D5E094A11EB7B8400931FDB /* CollidePlayerPlayer.cpp */,
 				6D5E094B11EB7B8400931FDB /* ContextMenu.cpp */,
 				6D5E094C11EB7B8400931FDB /* ContextMenu.h */,
@@ -839,8 +894,6 @@
 				6D5E096E11EB7B8400931FDB /* GSTitle.h */,
 				6D5E096F11EB7B8400931FDB /* Hud.cpp */,
 				6D5E097011EB7B8400931FDB /* Hud.h */,
-				6D5E097111EB7B8400931FDB /* LeafLoader.cpp */,
-				6D5E097211EB7B8400931FDB /* LeafLoader.h */,
 				6D5E097311EB7B8400931FDB /* LoadMeshResource.cpp */,
 				6D5E097411EB7B8400931FDB /* LoadMeshResource.h */,
 				6D5E097511EB7B8400931FDB /* LoadTextureResource.cpp */,
@@ -876,7 +929,6 @@
 				6D5E099411EB7B8400931FDB /* Viewport.cpp */,
 				6D5E099511EB7B8400931FDB /* Viewport.h */,
 				6D5E092011EB79E000931FDB /* EAGLView.h */,
-				6D5E092111EB79E000931FDB /* EAGLView.mm */,
 				6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */,
 				6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */,
 				6DCE67A611ECC4BD00074997 /* StartUp.h */,
@@ -906,6 +958,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3F6D8AED120AFD6500DFECB9 /* SoundIPhone */,
+				3F6D8AE9120AFD2A00DFECB9 /* EventsIPhone */,
 				6DCE67CC11ECC81800074997 /* AmjuGLOpenGL */,
 				6D5E0F7611EB9C2200931FDB /* AmjuGL */,
 				6D5E0FA011EB9C2200931FDB /* Clip */,
@@ -951,6 +1005,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3F6D8ABA120AF95400DFECB9 /* music.glue */,
+				3F6D8ABB120AF95400DFECB9 /* test.glue */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* iPhone-Info.plist */,
 			);
@@ -967,6 +1023,26 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		3F6D8AE9120AFD2A00DFECB9 /* EventsIPhone */ = {
+			isa = PBXGroup;
+			children = (
+				3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */,
+				3F6D8AEB120AFD2A00DFECB9 /* EventPollerImplIPhone.h */,
+			);
+			name = EventsIPhone;
+			path = ../../../amjulib/Source/EventsIPhone;
+			sourceTree = SOURCE_ROOT;
+		};
+		3F6D8AED120AFD6500DFECB9 /* SoundIPhone */ = {
+			isa = PBXGroup;
+			children = (
+				3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */,
+				3F6D8AEF120AFD6500DFECB9 /* SoundIPhone.h */,
+			);
+			name = SoundIPhone;
+			path = ../../../amjulib/Source/SoundIPhone;
+			sourceTree = SOURCE_ROOT;
 		};
 		6D5E0F7611EB9C2200931FDB /* AmjuGL */ = {
 			isa = PBXGroup;
@@ -1679,7 +1755,10 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectRoot = "";
+			projectRoots = (
+				../..,
+				../../../amjulib,
+			);
 			targets = (
 				1D6058900D05DD3D006BFB54 /* iPhone */,
 				6D5E0C8311EB9ACE00931FDB /* AmjuLib */,
@@ -1693,6 +1772,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				3F6D8ABC120AF95400DFECB9 /* music.glue in Resources */,
+				3F6D8ABD120AF95400DFECB9 /* test.glue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1703,7 +1784,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D5E092911EB79E000931FDB /* EAGLView.mm in Sources */,
 				6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */,
 				6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */,
 				6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */,
@@ -1719,7 +1799,6 @@
 				6D5E099E11EB7B8400931FDB /* CollidePlayerBonus.cpp in Sources */,
 				6D5E099F11EB7B8400931FDB /* CollidePlayerDino.cpp in Sources */,
 				6D5E09A011EB7B8400931FDB /* CollidePlayerExit.cpp in Sources */,
-				6D5E09A111EB7B8400931FDB /* CollidePlayerFloor.cpp in Sources */,
 				6D5E09A211EB7B8400931FDB /* CollidePlayerPlayer.cpp in Sources */,
 				6D5E09A311EB7B8400931FDB /* ContextMenu.cpp in Sources */,
 				6D5E09A411EB7B8400931FDB /* Cursor.cpp in Sources */,
@@ -1740,7 +1819,6 @@
 				6D5E09B311EB7B8400931FDB /* GSText.cpp in Sources */,
 				6D5E09B411EB7B8400931FDB /* GSTitle.cpp in Sources */,
 				6D5E09B511EB7B8400931FDB /* Hud.cpp in Sources */,
-				6D5E09B611EB7B8400931FDB /* LeafLoader.cpp in Sources */,
 				6D5E09B711EB7B8400931FDB /* LoadMeshResource.cpp in Sources */,
 				6D5E09B811EB7B8400931FDB /* LoadTextureResource.cpp in Sources */,
 				6D5E09BA11EB7B8400931FDB /* MySceneGraph.cpp in Sources */,
@@ -1760,6 +1838,19 @@
 				6DCE67A811ECC4BD00074997 /* StartUp.cpp in Sources */,
 				6DCE67E811ECC81800074997 /* AmjuGL-OpenGL-Base.cpp in Sources */,
 				6DCE67F611ECC81800074997 /* AmjuGL-OpenGLES.cpp in Sources */,
+				3F6D8A44120AF14800DFECB9 /* CollideObjectFloor.cpp in Sources */,
+				3F6D8A45120AF14800DFECB9 /* GSPaused.cpp in Sources */,
+				3F6D8A46120AF14800DFECB9 /* LevelManager.cpp in Sources */,
+				3F6D8A47120AF14800DFECB9 /* Npc.cpp in Sources */,
+				3F6D8A48120AF14800DFECB9 /* Pet.cpp in Sources */,
+				3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */,
+				3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */,
+				3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */,
+				3F6D8AEC120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp in Sources */,
+				3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */,
+				3F906C44120B17C00080D0FC /* EAGLView.m in Sources */,
+				3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */,
+				3F906C46120B17C00080D0FC /* ES2Renderer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1971,6 +2062,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					IPHONE,
+					_DEBUG,
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
