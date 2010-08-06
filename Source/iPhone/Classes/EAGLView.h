@@ -1,15 +1,15 @@
 //
 //  EAGLView.h
-//  iPhone
+//  Untitled
 //
-//  Created by Qantm on 12/07/2010.
-//  Copyright Qantm 2010. All rights reserved.
+//  Created by Student on 05/08/2010.
+//  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-//#import "ESRenderer.h"
+#import "ESRenderer.h"
 
 // This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
 // The view content is basically an EAGL surface you render your OpenGL scene into.
@@ -17,7 +17,7 @@
 @interface EAGLView : UIView
 {    
 @private
-    ////// j.c. id <ESRenderer> renderer;
+    id <ESRenderer> renderer;
 
     BOOL animating;
     BOOL displayLinkSupported;
