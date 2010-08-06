@@ -32,9 +32,11 @@ void GSGameOver::OnActive()
 
   CreateText("game over");
 
+  /*
   // Load background skybox
   // TODO We could have movement decorator etc 
   GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("gameover-scene.txt"));
+  */
 }
 }

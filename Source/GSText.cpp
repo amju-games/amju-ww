@@ -72,6 +72,28 @@ void GSText::OnDeactive()
   m_gui = 0; // should remove itself as a listener
 }
 
+class Reflect : public SceneNode
+{
+public:
+  virtual void BeforeDraw()
+  {
+    PushColour();
+    static const float s = 0.5f;
+    MultColour(Colour(s, s, s, 1));
+    AmjuGL::PushMatrix();
+    // TODO Doesn't look right
+    AmjuGL::Scale(1, -1, 1);
+    AmjuGL::Translate(0, -2.0f, 0);
+  }
+
+  virtual void AfterDraw()
+  {
+    AmjuGL::PopMatrix();
+    PopColour();
+  }
+
+};
+
 void GSText::CreateText(const std::string& text)
 {
   MyTextMaker tm;
@@ -84,6 +106,16 @@ void GSText::CreateText(const std::string& text)
   // TODO Should combine ?
   node->CombineTransform();
 
-  GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, node);
+  SceneNode* parent = new SceneNode;
+  parent->AddChild(node);
+
+  /*
+  // Reflection - TODO
+  Reflect* reflect = new Reflect;
+  parent->AddChild(reflect);
+  reflect->AddChild(node);
+  */
+
+  GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 }
 }
