@@ -21,9 +21,13 @@
 #include <Localise.h>
 #include <ReportError.h>
 #include <File.h>
+#include <Screen.h>
+
+#ifdef IPHONE
 #include <SoundIPhone.h>
 #include <EventPollerImplIPhone.h>
-#include <Screen.h>
+#endif
+
 #include <AmjuFinal.h>
 
 namespace Amju
