@@ -45,3 +45,6 @@ REM Verify contents
 
 
 cd %THIS_DIR%
+
+REM Now make music glue file
+call makemusicglue.bat
