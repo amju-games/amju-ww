@@ -7,4 +7,7 @@
  *
  */
 
+namespace Amju
+{
 void StartUp();
+}
