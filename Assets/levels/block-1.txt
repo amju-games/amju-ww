@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-8
+7
 
 // Translate for next block
 0, 0, -200
@@ -94,8 +94,8 @@ shadow.bmpa
 20
 end
 
-skybox
-999
-skybox2.obj
-end
+//skybox
+//999
+//skybox2.obj
+//end
 
