@@ -1,5 +1,5 @@
 REM makemusicglue.bat
-REM glue souund files into a Glue file.
+REM glue sound files into a Glue file.
 
 set THIS_DIR=%cd%
 set TOP_DIR=%THIS_DIR%\..\..
@@ -18,11 +18,14 @@ xcopy /S %SRC_DIR%\*.mod %DEST_DIR%
 cd %DEST_DIR%
 
 set GLUE_EXE=%THIS_DIR%\glue.exe
-set GLUE_FILE=%DEST_DIR%\music.glue
+set GLUE_FILE=%DEST_DIR%\music-win.glue
 REM make glue file
 %GLUE_EXE% -c %GLUE_FILE%
 
 REM Add files in sound dir
+
+for %%f in (sound\win\*.wav) do %GLUE_EXE% -a %GLUE_FILE% %%f
+
 for %%f in (sound\*.mod) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 
