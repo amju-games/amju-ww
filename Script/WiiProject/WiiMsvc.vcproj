@@ -226,6 +226,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\CollideObjectFloor.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\CollidePlayerBlock.cpp"
 				>
 			</File>
@@ -239,6 +243,10 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\CollidePlayerExit.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\CollidePlayerPlayer.cpp"
 				>
 			</File>
 			<File
@@ -370,6 +378,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\GSPaused.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\GSPaused.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\GSText.cpp"
 				>
 			</File>
@@ -399,6 +415,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\LeafLoader.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\LevelManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\LevelManager.h"
 				>
 			</File>
 			<File
@@ -438,6 +462,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\Npc.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Npc.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Objective.cpp"
 				>
 			</File>
@@ -470,6 +502,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\Pet.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Pet.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Player.cpp"
 				>
 			</File>
@@ -487,6 +527,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\PlayerInfoKey.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\PlayWav.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\PlayWav.h"
 				>
 			</File>
 			<File
@@ -518,6 +566,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\StartUp.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\StartUp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\StaticFloor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\StaticFloor.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\TestState.cpp"
 				>
 			</File>
@@ -539,6 +603,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Source\Viewport.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\WWGameObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\WWGameObject.h"
 				>
 			</File>
 		</Filter>
