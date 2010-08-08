@@ -16,9 +16,11 @@ copy ..\..\Assets\wii\meta.xml %SD_DIR%\%APP_NAME%
 
 mkdir %SD_DIR%\%APP_NAME%\data
 
-rem Copy Asset dir tree
 REM Compile assets and copy glue file
-REM TODO Don't copy maya dirs!!!!
-xcopy /Y /S ..\..\Assets\*.* %SD_DIR%\%APP_NAME%\data\
+xcopy /Y /S ..\..\Build\CompiledAssets\*.glue %SD_DIR%\%APP_NAME%\data\
+
+dir %SD_DIR%\%APP_NAME%
+dir %SD_DIR%\%APP_NAME%\data
+
 
 pause
