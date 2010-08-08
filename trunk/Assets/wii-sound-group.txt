@@ -2,9 +2,9 @@
 // version
 1
 // Sound FX for Wii
-sound/bonus_points.snd
-sound/cashreg.snd
-sound/churchbell.snd
-sound/click.snd
-sound/gasp.snd
+sound/wii/bonus_points.snd
+sound/wii/cashreg.snd
+sound/wii/churchbell.snd
+sound/wii/click.snd
+sound/wii/gasp.snd
 
