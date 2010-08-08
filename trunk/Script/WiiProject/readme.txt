@@ -22,7 +22,7 @@ set WIILOAD=tcp:192.168.1.4
 Command-line: 
 Run wiiload.exe, giving the .dol executable name as argument, e.g.
 \devkitPro\devkitPPC\bin\wiiload ..\..\Build\Wii\boot.dol
-from the Script directory.
+from the Script\WiiProject directory.
 
 Sending from MSVC: you should be able to F5, but if there is a problem you won't know what it is.
 
