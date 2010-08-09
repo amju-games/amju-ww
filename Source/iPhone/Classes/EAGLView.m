@@ -9,7 +9,6 @@
 #import "EAGLView.h"
 
 #import "ES1Renderer.h"
-#import "ES2Renderer.h"
 
 @implementation EAGLView
 
@@ -34,18 +33,13 @@
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 
-        renderer = [[ES2Renderer alloc] init];
+        renderer = [[ES1Renderer alloc] init];
 
         if (!renderer)
-        {
-            renderer = [[ES1Renderer alloc] init];
-
-            if (!renderer)
-            {
-                [self release];
-                return nil;
-            }
-        }
+		{
+			[self release];
+			return nil;
+		}
 
         animating = FALSE;
         displayLinkSupported = FALSE;
