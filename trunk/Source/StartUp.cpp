@@ -22,30 +22,17 @@
 #include <ReportError.h>
 #include <File.h>
 #include <Screen.h>
-
-#ifdef IPHONE
-#include <SoundIPhone.h>
-#include <EventPollerImplIPhone.h>
-#endif
-
 #include <AmjuFinal.h>
 
 namespace Amju
 {
 void StartUp()
 {
-#ifdef IPHONE
-  // TODO Simulator only
-  File::SetRoot("/Users/student/Desktop/jc/amju-ww/Script/iPhone", "/");
-  TheSoundManager::Instance()->SetImpl(new SoundIPhone);
-  TheEventPoller::Instance()->SetImpl(new EventPollerImplIPhone);
-  Screen::SetSize(320, 480);
-#endif
-  
 #ifndef NO_COMPILED_ASSETS
   // Use glue file -- or comment out to use individual files
   FileImplGlue::OpenGlueFile("test.glue");
 
+#ifndef IPHONE // TODO
   // Set up music glue file
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(
@@ -63,7 +50,8 @@ void StartUp()
   {
     ReportError("Failed to open music glue file");
   }
-#endif // NO_COMPILED_ASSETS
+#endif // ! IPHONE	
+#endif // ! NO_COMPILED_ASSETS
 
   // TODO Other languages - preferences
   if (!Localise::LoadStringTable("english.txt"))
