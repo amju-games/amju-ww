@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,13 +20,13 @@
 		3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A3E120AF14800DFECB9 /* PlayWav.cpp */; };
 		3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A40120AF14800DFECB9 /* StaticFloor.cpp */; };
 		3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */; };
-		3F6D8ABC120AF95400DFECB9 /* music.glue in Resources */ = {isa = PBXBuildFile; fileRef = 3F6D8ABA120AF95400DFECB9 /* music.glue */; };
-		3F6D8ABD120AF95400DFECB9 /* test.glue in Resources */ = {isa = PBXBuildFile; fileRef = 3F6D8ABB120AF95400DFECB9 /* test.glue */; };
 		3F6D8AEC120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */; };
 		3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */; };
-		3F906C44120B17C00080D0FC /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.m */; };
+		3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.mm */; };
 		3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C40120B17C00080D0FC /* ES1Renderer.mm */; };
-		3F906C46120B17C00080D0FC /* ES2Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C42120B17C00080D0FC /* ES2Renderer.mm */; };
+		6D5B7A5E121035B100CD925B /* music-win.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6D5B7A5C121035B100CD925B /* music-win.glue */; };
+		6D5B7A5F121035B100CD925B /* test.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6D5B7A5D121035B100CD925B /* test.glue */; };
+		6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B7B3B121049DD00CD925B /* EventTypes.cpp */; };
 		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */; };
 		6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092D11EB7A0800931FDB /* Shader.fsh */; };
 		6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092E11EB7A0800931FDB /* Shader.vsh */; };
@@ -384,18 +384,18 @@
 		3F6D8A41120AF14800DFECB9 /* StaticFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticFloor.h; path = ../../Source/StaticFloor.h; sourceTree = SOURCE_ROOT; };
 		3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWGameObject.cpp; path = ../../Source/WWGameObject.cpp; sourceTree = SOURCE_ROOT; };
 		3F6D8A43120AF14800DFECB9 /* WWGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWGameObject.h; path = ../../Source/WWGameObject.h; sourceTree = SOURCE_ROOT; };
-		3F6D8ABA120AF95400DFECB9 /* music.glue */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.glue; sourceTree = "<group>"; };
-		3F6D8ABB120AF95400DFECB9 /* test.glue */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.glue; sourceTree = "<group>"; };
 		3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventPollerImplIPhone.cpp; sourceTree = "<group>"; };
 		3F6D8AEB120AFD2A00DFECB9 /* EventPollerImplIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPollerImplIPhone.h; sourceTree = "<group>"; };
 		3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundIPhone.cpp; sourceTree = "<group>"; };
 		3F6D8AEF120AFD6500DFECB9 /* SoundIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundIPhone.h; sourceTree = "<group>"; };
-		3F906C3E120B17C00080D0FC /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = ../../Source/iPhone/Classes/EAGLView.m; sourceTree = SOURCE_ROOT; };
+		3F906C3E120B17C00080D0FC /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EAGLView.mm; path = ../../Source/iPhone/Classes/EAGLView.mm; sourceTree = SOURCE_ROOT; };
 		3F906C3F120B17C00080D0FC /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES1Renderer.h; path = ../../Source/iPhone/Classes/ES1Renderer.h; sourceTree = SOURCE_ROOT; };
 		3F906C40120B17C00080D0FC /* ES1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES1Renderer.mm; path = ../../Source/iPhone/Classes/ES1Renderer.mm; sourceTree = SOURCE_ROOT; };
-		3F906C41120B17C00080D0FC /* ES2Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES2Renderer.h; path = ../../Source/iPhone/Classes/ES2Renderer.h; sourceTree = SOURCE_ROOT; };
-		3F906C42120B17C00080D0FC /* ES2Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES2Renderer.mm; path = ../../Source/iPhone/Classes/ES2Renderer.mm; sourceTree = SOURCE_ROOT; };
 		3F906C43120B17C00080D0FC /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESRenderer.h; path = ../../Source/iPhone/Classes/ESRenderer.h; sourceTree = SOURCE_ROOT; };
+		6D5B7A5C121035B100CD925B /* music-win.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music-win.glue"; path = "../../Assets/music-win.glue"; sourceTree = SOURCE_ROOT; };
+		6D5B7A5D121035B100CD925B /* test.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.glue; path = ../../Assets/test.glue; sourceTree = SOURCE_ROOT; };
+		6D5B7B3B121049DD00CD925B /* EventTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventTypes.cpp; sourceTree = "<group>"; };
+		6D5B7B3C121049DD00CD925B /* EventTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTypes.h; sourceTree = "<group>"; };
 		6D5E092011EB79E000931FDB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../Source/iPhone/Classes/EAGLView.h; sourceTree = SOURCE_ROOT; };
 		6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iPhoneAppDelegate.h; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iPhoneAppDelegate.m; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.m; sourceTree = SOURCE_ROOT; };
@@ -817,11 +817,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3F906C3E120B17C00080D0FC /* EAGLView.m */,
+				3F906C3E120B17C00080D0FC /* EAGLView.mm */,
 				3F906C3F120B17C00080D0FC /* ES1Renderer.h */,
 				3F906C40120B17C00080D0FC /* ES1Renderer.mm */,
-				3F906C41120B17C00080D0FC /* ES2Renderer.h */,
-				3F906C42120B17C00080D0FC /* ES2Renderer.mm */,
 				3F906C43120B17C00080D0FC /* ESRenderer.h */,
 				3F6D8A35120AF14800DFECB9 /* CollideObjectFloor.cpp */,
 				3F6D8A36120AF14800DFECB9 /* GSPaused.cpp */,
@@ -1005,8 +1003,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3F6D8ABA120AF95400DFECB9 /* music.glue */,
-				3F6D8ABB120AF95400DFECB9 /* test.glue */,
+				6D5B7A5C121035B100CD925B /* music-win.glue */,
+				6D5B7A5D121035B100CD925B /* test.glue */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* iPhone-Info.plist */,
 			);
@@ -1090,6 +1088,8 @@
 		6D5E0FA811EB9C2200931FDB /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				6D5B7B3B121049DD00CD925B /* EventTypes.cpp */,
+				6D5B7B3C121049DD00CD925B /* EventTypes.h */,
 				6D5E0FA911EB9C2200931FDB /* EventListener.cpp */,
 				6D5E0FAA11EB9C2200931FDB /* EventListener.h */,
 				6D5E0FAB11EB9C2200931FDB /* EventPoller.cpp */,
@@ -1755,10 +1755,7 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectRoots = (
-				../..,
-				../../../amjulib,
-			);
+			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* iPhone */,
 				6D5E0C8311EB9ACE00931FDB /* AmjuLib */,
@@ -1772,8 +1769,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				3F6D8ABC120AF95400DFECB9 /* music.glue in Resources */,
-				3F6D8ABD120AF95400DFECB9 /* test.glue in Resources */,
+				6D5B7A5E121035B100CD925B /* music-win.glue in Resources */,
+				6D5B7A5F121035B100CD925B /* test.glue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1848,9 +1845,9 @@
 				3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */,
 				3F6D8AEC120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp in Sources */,
 				3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */,
-				3F906C44120B17C00080D0FC /* EAGLView.m in Sources */,
+				3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */,
 				3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */,
-				3F906C46120B17C00080D0FC /* ES2Renderer.mm in Sources */,
+				6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2063,6 +2060,7 @@
 					DEBUG,
 					IPHONE,
 					_DEBUG,
+					LANDSCAPE,
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -2079,7 +2077,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = IPHONE;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					LANDSCAPE,
+					IPHONE,
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "../../../amjulib/Source/**";
