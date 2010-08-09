@@ -7,8 +7,10 @@
 //
 
 #import "EAGLView.h"
-
 #import "ES1Renderer.h"
+
+#include <EventPollerImplIPhone.h>
+#include <EventTypes.h>
 
 @implementation EAGLView
 
@@ -53,6 +55,9 @@
         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
         if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
             displayLinkSupported = TRUE;
+		
+		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 30.0)]; // TODO frequenc makes difference to response ?
+		[[UIAccelerometer sharedAccelerometer] setDelegate:self];		
     }
 
     return self;
@@ -140,5 +145,121 @@
 
     [super dealloc];
 }
+
+void QueueEvent(Amju::Event* e)
+{
+	((Amju::EventPollerImplIPhone*)Amju::TheEventPoller::Instance()->GetImpl())->QueueEvent(e);
+}
+
+void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
+{
+	// TODO Rotate if game is rotated - currently assumes portrait 320*480 ?
+	ce->controller = 0;
+
+#ifdef LANDSCAPE
+	ce->x = 1.0f - (float)y / 240.0f;	
+	ce->y = 1.0f - (float)x / 160.0f;
+
+#else
+	ce->x = (float)x / 160.0f - 1.0f;
+	ce->y = 1.0f - (float)y / 240.0f;
+
+#endif
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	int i = 0;
+	for (UITouch* touch in touches)
+	{
+		if (i++ == 0)
+		{
+			Amju::MouseButtonEvent* mbe = new Amju::MouseButtonEvent;
+			mbe->button = Amju::AMJU_BUTTON_MOUSE_LEFT;
+			mbe->isDown = true;
+			QueueEvent(mbe);
+		}
+		
+		CGPoint touchPoint = [touch locationInView:self];
+		Amju::CursorEvent* ce = new Amju::CursorEvent;
+		PopulateCursorEvent(ce, touchPoint.x, touchPoint.y);
+		QueueEvent(ce);
+	}
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	int i = 0;
+	for (UITouch* touch in touches)
+	{
+		if (i++ == 0)
+		{
+			Amju::MouseButtonEvent* mbe = new Amju::MouseButtonEvent;
+			mbe->button = Amju::AMJU_BUTTON_MOUSE_LEFT;
+			mbe->isDown = false;
+			QueueEvent(mbe);
+			return; // ignore other data, it this ok ?
+		}
+	}
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	for (UITouch* touch in touches)
+	{
+		CGPoint touchPoint = [touch locationInView:self];
+		Amju::CursorEvent* ce = new Amju::CursorEvent;
+		PopulateCursorEvent(ce, touchPoint.x, touchPoint.y);
+		QueueEvent(ce);
+	}	
+}
+
+- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
+{
+	const float kFilteringFactor = 0.1;
+	static float accel[3] = { 0, 0, 0 };
+  const float OFFSET = 0.5f;
+  const float DEAD_ZONE = 0.1f;
+  const float X_MULT = 4.0f;
+  const float Y_MULT = 3.0f;
+	
+	accel[0] = acceleration.x * kFilteringFactor + accel[0] * (1.0 - kFilteringFactor);
+	accel[1] = acceleration.y * kFilteringFactor + accel[1] * (1.0 - kFilteringFactor);
+	accel[2] = acceleration.z * kFilteringFactor + accel[2] * (1.0 - kFilteringFactor);	
+	
+	// accel[0] corresponds to tilting forward/back, i.e. rotation about x-axis when in landscape mode
+	// accel[1] corresponds to z-rotation, like twisting a Wii remote
+	
+	Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent;
+  float x = accel[1];
+  if (x > -DEAD_ZONE && x < DEAD_ZONE)
+  {
+    x = 0;
+  }
+  else 
+  {
+    x *= X_MULT;
+  }
+
+	be->x = x;
+  
+  float y = (accel[0] - OFFSET);
+  if (y > -DEAD_ZONE && y < DEAD_ZONE)
+  {
+    y = 0;
+  }
+  else 
+  {
+    y *= Y_MULT;
+  }
+
+	be->y = y;
+  
+  
+	std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << " x: " << x << " y: " << y << "\n";
+  
+	QueueEvent(be);
+}
+
 
 @end
