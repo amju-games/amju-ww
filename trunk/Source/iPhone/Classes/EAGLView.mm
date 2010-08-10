@@ -153,9 +153,9 @@ void QueueEvent(Amju::Event* e)
 
 void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
 {
-	// TODO Rotate if game is rotated - currently assumes portrait 320*480 ?
 	ce->controller = 0;
 
+  // Rotate cursor data to screen orientation - TODO make this run time
 #ifdef LANDSCAPE
 	ce->x = 1.0f - (float)y / 240.0f;	
 	ce->y = 1.0f - (float)x / 160.0f;
@@ -218,10 +218,6 @@ void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
 {
 	const float kFilteringFactor = 0.1;
 	static float accel[3] = { 0, 0, 0 };
-  const float OFFSET = 0.5f;
-  const float DEAD_ZONE = 0.1f;
-  const float X_MULT = 4.0f;
-  const float Y_MULT = 3.0f;
 	
 	accel[0] = acceleration.x * kFilteringFactor + accel[0] * (1.0 - kFilteringFactor);
 	accel[1] = acceleration.y * kFilteringFactor + accel[1] * (1.0 - kFilteringFactor);
@@ -231,32 +227,14 @@ void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
 	// accel[1] corresponds to z-rotation, like twisting a Wii remote
 	
 	Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent;
-  float x = accel[1];
-  if (x > -DEAD_ZONE && x < DEAD_ZONE)
-  {
-    x = 0;
-  }
-  else 
-  {
-    x *= X_MULT;
-  }
-
-	be->x = x;
   
-  float y = (accel[0] - OFFSET);
-  if (y > -DEAD_ZONE && y < DEAD_ZONE)
-  {
-    y = 0;
-  }
-  else 
-  {
-    y *= Y_MULT;
-  }
-
-	be->y = y;
+  // TODO This depends on iphone orientation
+  be->x = accel[1];
+  be->y = accel[0];
   
-  
-	std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << " x: " << x << " y: " << y << "\n";
+#ifdef ACC_DEBUG
+	std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << "\n";
+#endif
   
 	QueueEvent(be);
 }
