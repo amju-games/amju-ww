@@ -24,25 +24,36 @@
 #include <Screen.h>
 #include <AmjuFinal.h>
 
+#ifdef WIN32
+#define GLUE_FILE "data-win.glue"
+#define MUSIC_GLUE_FILE "music-win.glue"
+#endif
+
+#ifdef GEKKO
+#define GLUE_FILE "data-wii.glue"
+#define MUSIC_GLUE_FILE "music-wii.glue"
+#endif
+
+#ifdef IPHONE
+#define GLUE_FILE "data-iphone.glue"
+#define MUSIC_GLUE_FILE "music-iphone.glue"
+#endif
+
 namespace Amju
 {
 void StartUp()
 {
 #ifndef NO_COMPILED_ASSETS
   // Use glue file -- or comment out to use individual files
-  FileImplGlue::OpenGlueFile("test.glue");
+  if (!FileImplGlue::OpenGlueFile(GLUE_FILE))
+  {
+    ReportError("Failed to open data glue file");
+  }
 
 #ifndef IPHONE // TODO
   // Set up music glue file
   GlueFile* pMusicGlueFile = new GlueFileMem;
-  if (pMusicGlueFile->OpenGlueFile(
-#ifdef WIN32
-    "music-win.glue"
-#endif
-#ifdef GEKKO
-    "music-wii.glue"
-#endif
-    , true /* read only */))
+  if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
   {
     TheSoundManager::Instance()->SetGlueFile(pMusicGlueFile);
   }
