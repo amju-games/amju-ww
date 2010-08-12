@@ -9,6 +9,7 @@ set SRC_DIR=%TOP_DIR%\Assets
 
 mkdir %COMPILED_ASSETS%
 mkdir %DEST_DIR%
+mkdir %DEST_DIR%\font2d
 del /S /Q %DEST_DIR%\*.*
 
 REM Convert obj files to binary format, copy to compiled dir
@@ -16,7 +17,9 @@ call MakeObjsBin-win.bat
 
 REM Copy other files to compiled dir
 xcopy /S %SRC_DIR%\*.txt %DEST_DIR%
-xcopy /S %SRC_DIR%\*.bmp %DEST_DIR%
+xcopy /S %SRC_DIR%\font2d\*.bmp %DEST_DIR%\font2d\
+xcopy /S %SRC_DIR%\tex\common\*.bmp %DEST_DIR%
+xcopy /S %SRC_DIR%\tex\win\*.bmp %DEST_DIR%
 xcopy /S %SRC_DIR%\*.md2 %DEST_DIR%
 
 cd %DEST_DIR%
@@ -27,7 +30,10 @@ REM make glue file
 %GLUE_EXE% -c %GLUE_FILE%
 
 REM for each file, add to glue file.
-for %%f in (*.txt, *.bmp, *.md2) do %GLUE_EXE% -a %GLUE_FILE% %%f
+for %%f in (*.txt, *.md2) do %GLUE_EXE% -a %GLUE_FILE% %%f
+
+REM bmp files
+for %%f in (*.bmp) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM obj files are in sub dir
 for %%f in (obj\*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
