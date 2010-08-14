@@ -29,7 +29,7 @@ void GSLogo::OnActive()
 {
   GameState::OnActive();
   TheResourceManager::Instance()->LoadResourceGroup(GROUP);
-  m_image.OpenAndLoad("splash-gui.txt");
+  m_image.OpenAndLoad("logo-gui.txt");
 }
 
 void GSLogo::OnDeactive()
