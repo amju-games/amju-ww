@@ -1,6 +1,0 @@
-// Resource group
-// version
-1
-// resources
-skybox2.bmp
-skybox2.obj
