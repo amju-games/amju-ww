@@ -18,11 +18,12 @@ call MakeObjsBin-win.bat
 REM Copy other files to compiled dir
 xcopy /S %SRC_DIR%\*.txt %DEST_DIR%
 xcopy /S %SRC_DIR%\gui\common\*.txt %DEST_DIR%
-xcopy /S %SRC_DIR%\gui\win\*.txt %DEST_DIR%
+REM /Y when we would get overwrite confirm prompt
+xcopy /Y /S %SRC_DIR%\gui\win\*.txt %DEST_DIR%
 xcopy /S %SRC_DIR%\font2d\*.bmp %DEST_DIR%\font2d\
 xcopy /S %SRC_DIR%\tex\common\*.bmp %DEST_DIR%
-xcopy /S %SRC_DIR%\tex\win\*.bmp %DEST_DIR%
-xcopy /S %SRC_DIR%\*.md2 %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\tex\win\*.bmp %DEST_DIR%
+xcopy /S %SRC_DIR%\md2\*.md2 %DEST_DIR%
 
 cd %DEST_DIR%
 
