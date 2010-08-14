@@ -5,6 +5,8 @@
 
 namespace Amju
 {
+class Pet;
+
 class Dino : public Npc
 {
 public:
@@ -15,13 +17,13 @@ public:
   virtual void Update();
   virtual bool Load(File*);
 
+  void Eat(Pet*);
+
 protected:
   // Dinos have big heads so AABB is not symmetrical
   void UpdateAabb();
 
 protected:
-  // Timer - must reach limit, then we can decide what direction to move in etc.
-  float m_decideTime;
   enum DinoType { AMJU_DINO_GREEN, AMJU_DINO_BLUE, AMJU_DINO_RED };
   DinoType m_dinoType;
 };
