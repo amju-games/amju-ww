@@ -15,7 +15,7 @@
 //#include <AmjuGL-OpenGLES.h> // TODO TEMP TEST
 #include <AmjuGL-DX9.h>
 #include <EventPollerImplWin32.h>
-#include <SoundSDLMixer.h>
+#include <BassSoundPlayer.h>
 #endif // WIN32
 
 #include <Game.h>
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWin32);
 #endif // USE_OPENGL_NOT_D3D
 
-  TheSoundManager::Instance()->SetImpl(new SoundSDLMixer);
+  TheSoundManager::Instance()->SetImpl(new BassSoundPlayer);
 #endif // WIN32
 
 
