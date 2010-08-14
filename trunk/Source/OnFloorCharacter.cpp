@@ -16,7 +16,14 @@ OnFloorCharacter::OnFloorCharacter()
 
 void OnFloorCharacter::SetDir(float degs)
 {
-  ((BlinkCharacter*)m_pSceneNode)->SetDir(degs);
+  Assert(dynamic_cast<Animated*>(m_pSceneNode));
+  ((Animated*)m_pSceneNode)->SetDir(degs);
+}
+
+void OnFloorCharacter::SetAnim(const std::string& animName)
+{
+  Assert(dynamic_cast<Animated*>(m_pSceneNode));
+  ((Animated*)m_pSceneNode)->SetAnim(animName);
 }
 
 void OnFloorCharacter::Update()

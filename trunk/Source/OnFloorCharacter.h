@@ -11,7 +11,7 @@ public:
   OnFloorCharacter();
   virtual void Update();
 
-protected:
+  void SetAnim(const std::string& animName);
   void SetDir(float degs);
 
 protected:
