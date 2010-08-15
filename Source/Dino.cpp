@@ -40,7 +40,6 @@ void Dino::UpdateAabb()
   float maxx = 0;
   float maxz = 0;
 
-  float m_dir = ((BlinkCharacter*)m_pSceneNode)->GetDir();
   while (m_dir > 180.0f)
   {
     m_dir -= 360.0f;
@@ -98,18 +97,6 @@ void Dino::Eat(Pet* pet)
   m_ai->SetTarget(pet);
 
   // This pet disappears - TODO Gory effect
-  //((Pet*)go2)->SetDead(true);
-  // TODO Delay
-  // TODO Sound
-
-  // Turn to face pet
-  /*
-  Vec3f v = go1->GetPos() - go2->GetPos();
-  float degs = RadToDeg(atan2(v.z, v.x));
-  ((Dino*)go1)->SetDir(degs);
-
-  ((Dino*)go1)->SetAnim("eat");
-  */
 }
 
 void Dino::Update()
@@ -117,17 +104,6 @@ void Dino::Update()
   Npc::Update();
 
   UpdateAabb(); // updates shape of AABB, DOES change its position
-
-  /*
-  // TODO Behaviours - chase animals, etc
-  m_decideTime += TheTimer::Instance()->GetDt();
-  if (m_floor && m_decideTime > 2.0f) // TODO TEMP TEST 
-  {
-    m_decideTime = 0;
-    // Choose behaviour
-    SetAI(AIGoHighGround::NAME);
-  }
-  */
 }
 
 bool Dino::Load(File* f)
