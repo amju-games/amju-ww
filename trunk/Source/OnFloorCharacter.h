@@ -12,9 +12,17 @@ public:
   virtual void Update();
 
   void SetAnim(const std::string& animName);
+
+  // Set direction which character should face - we rotate to face this
+  //  direction over time
   void SetDir(float degs);
+  // Get direction which character is facing, or may be rotating to face
+  float GetDir() const;
 
 protected:
+  float m_dir; // Direction of movement
+  float m_dirCurrent; // Direction we currently face -- we will reduce the difference
+   // between m_dirCurrent and m_dir until we face the direction of movement.
 };
 }
 
