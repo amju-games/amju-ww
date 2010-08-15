@@ -49,7 +49,10 @@ void AIGoHighGround::Update()
     vel.Normalise();
     static const float SPEED = 50.0f; // TODO CONFIG
     vel *= SPEED;
-    m_npc->SetVel(vel);
+    Vec3f v = m_npc->GetVel();
+    v.x = vel.x;
+    v.z = vel.z;
+    m_npc->SetVel(v);
     m_npc->SetDir(RadToDeg(atan2(vel.x, vel.z)));
     m_npc->SetIsControlled(true); 
   }
