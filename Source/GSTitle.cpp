@@ -56,7 +56,7 @@ void GSTitle::OnActive()
 
   TheResourceManager::Instance()->LoadResourceGroup("music-group");
   // Start theme music
-  TheSoundManager::Instance()->PlaySong("ww1.mod");
+  TheSoundManager::Instance()->PlaySong("sound/ww1.mod");
 
 #ifdef GEKKO
   TheResourceManager::Instance()->LoadResourceGroup("wii-sound-group");
@@ -69,14 +69,18 @@ void GSTitle::OnActive()
   // TODO Load while logos are displayed ?
   TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
   TheResourceManager::Instance()->LoadResourceGroup("gui-group");
-  TheResourceManager::Instance()->LoadResourceGroup("skybox-group");
+  //TheResourceManager::Instance()->LoadResourceGroup("skybox-group");
 
   m_gui = LoadGui("title-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("start-button")->SetCommand(new CommandStart);
-  m_gui->GetElementByName("quit-button")->SetCommand(new CommandQuit);
+  GuiElement* quit = m_gui->GetElementByName("quit-button");
+  if (quit)
+  {
+    quit->SetCommand(new CommandQuit);
+  }
 
-  CreateText("amju\nwibble\nwobble");
+  CreateText("amju\nwibble\nwobble"); // TODO Localise
 
   // Load background skybox
   // TODO We could have movement decorator etc 
