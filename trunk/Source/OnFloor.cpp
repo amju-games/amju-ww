@@ -65,11 +65,6 @@ void OnFloor::SetIsFalling(bool b)
   m_isFalling = b;
 }
 
-bool OnFloor::IsDead() const
-{
-  return m_isDead;
-}
-
 void OnFloor::SetFloor(Floor* floor)
 {
   if (floor != m_floor)
@@ -89,7 +84,7 @@ const Floor* OnFloor::GetFloor() const
 
 bool OnFloor::Load(File* f)
 {
-  if (!GameObject::Load(f))
+  if (!WWGameObject::Load(f))
   {
     return false;
   }
@@ -261,8 +256,11 @@ void OnFloor::UpdateShadow()
 
 void OnFloor::Update()
 {
-  GameObject::Update();
+  WWGameObject::Update();
 
+  m_pSceneNode->SetVisible(!m_isDead);
+
+  // Uncommenting doesn't fix shadow bugs
   //UpdateShadow(); // done in SetFloor() so we only set when floor changes
 
   UpdatePhysics();
@@ -293,7 +291,7 @@ void OnFloor::UpdatePhysics()
   // Lower than the lowest floor ?
   if (m_pos.y < -500.0f) // TODO TEMP TEST
   {
-    m_isDead = true;
+    SetDead(true);
   }
 }
 
