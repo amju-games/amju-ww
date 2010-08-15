@@ -38,6 +38,11 @@ void Npc::AddAI(AI* ai)
 
 void Npc::SetAI(AI* ai)
 {
+  if (m_ai == ai)
+  {
+    return;
+  }
+
   if (m_ai)
   {
     m_ai->OnDeactivated();
