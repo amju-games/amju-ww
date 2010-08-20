@@ -110,6 +110,29 @@ void GSMain::Update()
   Collisions();
 }
 
+void Fps()
+{
+  static Font* font = 
+    (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
+  static int fps = 0;
+  static float t = 0;
+  static std::string s;
+
+  fps++;
+  t += TheTimer::Instance()->GetDt();
+  if (t >= 1.0f)
+  {
+#ifdef _DEBUG
+    std::cout << "FPS: " << fps << "\n";
+#endif
+
+    s = ToString(fps);
+    fps = 0;
+    t = 0;
+  }
+  font->Print(-0.9f, 0.9f, s.c_str());
+}
+
 void GSMain::Draw2d()
 {
   AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
@@ -125,6 +148,7 @@ void GSMain::Draw2d()
     TheViewportManager::Instance()->GetViewport(i)->Draw2d();
   }
 
+  Fps();
   // TODO Draw borders ??
   /*
   static Font* font = 
