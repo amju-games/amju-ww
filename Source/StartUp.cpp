@@ -3,7 +3,7 @@
 #include <Game.h>
 #include <ResourceManager.h>
 #include "GSLogo.h"
-#include "GSMain.h" // TEMP; so we start immediately in game
+#include "GSLoadLevel.h" // TEMP; so we start immediately in game
 #include "TestState.h" // TODO TEMP TEST
 #include "CursorManager.h"
 #include "Hud.h"
@@ -22,6 +22,8 @@
 #include <ReportError.h>
 #include <File.h>
 #include <Screen.h>
+#include "LevelManager.h"
+#include "StartGame.h"
 #include <AmjuFinal.h>
 
 #ifdef WIN32
@@ -99,8 +101,16 @@ void StartUp()
     TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
   }
 */
-    TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
-	//  TheGame::Instance()->SetCurrentState(TestState::NAME);	
+#ifdef BYPASS_TITLE
+  // TODO Only needed if we bypass title
+  TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
+  TheResourceManager::Instance()->LoadResourceGroup("gui-group");
+  TheLevelManager::Instance()->SetLevelId(1);
+  StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
+  TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME); 
+#else
+	TheGame::Instance()->SetCurrentState(GSLogo::NAME);	
+#endif
 }
 }
 
