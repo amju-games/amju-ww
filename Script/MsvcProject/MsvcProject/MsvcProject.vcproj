@@ -329,6 +329,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\AIFalling.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\AIGoHighGround.cpp"
 				>
 			</File>
@@ -588,6 +592,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\AIEatPet.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIFalling.h"
 				>
 			</File>
 			<File
