@@ -31,7 +31,7 @@ void AIIdle::OnActivated()
 {
   AI::OnActivated();
 
-  //m_npc->SetAnim("stand");
+  m_npc->SetAnim("stand");
   m_npc->SetVel(Vec3f(0, 0, 0));
 }
 }
