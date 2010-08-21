@@ -19,6 +19,11 @@ public:
   // Get direction which character is facing, or may be rotating to face
   float GetDir() const;
 
+  // Callbacks - called from animated scene node
+  virtual void OnAnimFinished();
+  virtual void OnAnimFreeze();
+  virtual void OnAnimRepeat();
+
 protected:
   float m_dir; // Direction of movement
   float m_dirCurrent; // Direction we currently face -- we will reduce the difference
