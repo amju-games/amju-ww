@@ -5,6 +5,7 @@
 #include "MySceneGraph.h"
 #include "AIGoHighGround.h"
 #include "AIIdle.h"
+#include "AIFalling.h"
 
 namespace Amju
 {
@@ -17,6 +18,7 @@ Pet::Pet()
 {
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
+  AddAI(new AIFalling);
 }
 
 const char* Pet::GetTypeName() const
