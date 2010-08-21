@@ -35,9 +35,6 @@ void AIGoHighGround::Update()
   Assert(m_npc);
   if (!m_npc->GetFloor())
   {
-    // Falling ?
-    // ??? m_npc->DecideAI();
-    m_npc->SetAI(AIIdle::NAME); // ??
     return;
   }
 
@@ -55,6 +52,7 @@ void AIGoHighGround::Update()
     m_npc->SetVel(v);
     m_npc->SetDir(RadToDeg(atan2(vel.x, vel.z)));
     m_npc->SetIsControlled(true); 
+    m_npc->SetAnim("walk");
   }
   else
   {
