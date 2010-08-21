@@ -12,6 +12,7 @@
 #include "AIEatPet.h"
 #include "AIGoHighGround.h"
 #include "AIIdle.h"
+#include "AIChasePet.h"
 
 namespace Amju
 {
@@ -25,8 +26,7 @@ Dino::Dino()
   AddAI(new AIIdle);
   AddAI(new AIGoHighGround);
   AddAI(new AIEatPet);
-
-  SetAI(AIIdle::NAME);
+  AddAI(new AIChasePet);
 }
 
 void Dino::UpdateAabb()
@@ -101,6 +101,12 @@ void Dino::Eat(Pet* pet)
 
 void Dino::Update()
 {
+  if (IsDead())
+  {
+    m_pSceneNode->SetVisible(false);
+    return;
+  }
+
   Npc::Update();
 
   UpdateAabb(); // updates shape of AABB, DOES change its position
@@ -113,21 +119,33 @@ bool Dino::Load(File* f)
     return false;
   }
 
-  m_pSceneNode = new BlinkCharacter;
+  BlinkCharacter* bc = new BlinkCharacter;
+  m_pSceneNode = bc;
 
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2("dino.md2"))
+  std::string md2name = "dino.md2";
+  Md2Model* model = (Md2Model*)TheResourceManager::Instance()->GetRes(md2name);
+  if (!model)
   {
+    ReportError("Failed to load MD2: " + md2name);
     return false;
   }
+  //model->SetDoesFreeze(model->GetAnimationFromName("eat"), true);
+
+  bc->SetMd2(model);
+
+  // Can set AI now we have a model
+  SetAI(AIIdle::NAME);
 
   // TODO different colours
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures("dino1a.bmp", "dino1.bmp"))
+  if (!bc->LoadTextures("dino1a.bmp", "dino1.bmp"))
   {
     return false;
   }
 
+  bc->SetGameObj(this);
+
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+    AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
