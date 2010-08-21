@@ -40,7 +40,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
+				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundBass&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
 				Optimization="0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
@@ -113,7 +113,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
+				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundBass&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
@@ -317,6 +317,26 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\..\Source\AI.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIChasePet.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIEatPet.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIGoHighGround.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIIdle.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Animated.cpp"
 				>
 			</File>
@@ -345,6 +365,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\CollideDinoPet.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\CollideObjectFloor.cpp"
 				>
 			</File>
@@ -362,6 +386,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\CollidePlayerExit.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\CollidePlayerPet.cpp"
 				>
 			</File>
 			<File
@@ -550,6 +578,26 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\..\Source\AI.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIChasePet.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIEatPet.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIGoHighGround.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\AIIdle.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\..\Source\Animated.h"
 				>
@@ -755,6 +803,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bass.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bassmidi.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (August 2009)\Lib\x86\d3d9.lib"
 			>
