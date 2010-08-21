@@ -68,4 +68,20 @@ void Npc::Update()
     m_ai->Update();
   }
 }
+
+void Npc::OnAnimFinished()
+{
+  m_ai->OnAnimFinished();
+}
+
+void Npc::OnAnimFreeze()
+{
+  m_ai->OnAnimFreeze();
+}
+
+void Npc::OnAnimRepeat()
+{
+  m_ai->OnAnimRepeat();
+}
+
 }
