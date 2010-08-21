@@ -17,8 +17,6 @@ Pet::Pet()
 {
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
-
-  SetAI(AIIdle::NAME);
 }
 
 const char* Pet::GetTypeName() const
@@ -28,12 +26,13 @@ const char* Pet::GetTypeName() const
 
 void Pet::Update()
 {
-  Npc::Update();
-
   if (IsDead())
   {
+    m_pSceneNode->SetVisible(false);
     return;
   }
+
+  Npc::Update();
 
   static const float XSIZE = 15.0f;
   static const float YSIZE = 60.0f;
@@ -50,22 +49,27 @@ bool Pet::Load(File* f)
     return false;
   }
 
-  m_pSceneNode = new BlinkCharacter;
+  BlinkCharacter* bc = new BlinkCharacter;
+  m_pSceneNode = bc;
 
   // TODO
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2("pz-squirrel.md2"))
+  if (!bc->LoadMd2("pz-squirrel.md2"))
   {
     return false;
   }
+
+  // Can set AI now we have a model
+  SetAI(AIIdle::NAME);
 
   // TODO different colours
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures("pz-pet1a.bmp", "pz-pet1.bmp"))
+  if (!bc->LoadTextures("pz-pet1a.bmp", "pz-pet1.bmp"))
   {
     return false;
   }
 
+  bc->SetGameObj(this);
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+    AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
