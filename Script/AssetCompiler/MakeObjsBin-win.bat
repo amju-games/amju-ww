@@ -15,10 +15,10 @@ copy default.mtl font3d
 mkdir %DEST_DIR%\obj\font3d
 cd font3d
 for %%f in (*.obj) do %RESTORE_DIR%\obj2bin %%f %DEST_DIR%\obj\font3d\%%f
+del default.mtl
 
 mkdir %DEST_DIR%\obj
 cd ..
 for %%f in (*.obj) do %RESTORE_DIR%\obj2bin %%f %DEST_DIR%\obj\%%f
-
 
 cd %RESTORE_DIR%
