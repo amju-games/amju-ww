@@ -65,6 +65,11 @@ void Npc::Update()
 {
   OnFloorCharacter::Update();
 
+  if (IsDead())
+  {
+    return;
+  }
+
   if (!GetFloor())
   {
     // Falling
