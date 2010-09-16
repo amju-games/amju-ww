@@ -28,13 +28,12 @@ const char* Pet::GetTypeName() const
 
 void Pet::Update()
 {
+  Npc::Update();
+
   if (IsDead())
   {
-    m_pSceneNode->SetVisible(false);
     return;
   }
-
-  Npc::Update();
 
   static const float XSIZE = 15.0f;
   static const float YSIZE = 60.0f;

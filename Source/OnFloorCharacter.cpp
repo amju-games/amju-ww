@@ -45,7 +45,10 @@ void OnFloorCharacter::Update()
 {
   OnFloor::Update();
   
-  ///((BlinkCharacter*)m_pSceneNode)->UpdateAnim(this);
+  if (IsDead())
+  {
+    return;
+  }
 
   Matrix mat;
   mat.RotateY(DegToRad(m_dirCurrent));

@@ -72,6 +72,7 @@ void OnFloor::SetFloor(Floor* floor)
     m_floor = floor;
     if (m_shadow)
     {
+      m_shadow->SetVisible(!m_isDead && m_floor != 0);
       UpdateShadow();
     }
   }
@@ -258,7 +259,12 @@ void OnFloor::Update()
 {
   WWGameObject::Update();
 
-  m_pSceneNode->SetVisible(!m_isDead);
+  if (m_isDead)
+  {
+    m_pSceneNode->SetVisible(false);
+    m_shadow->SetVisible(false);
+    return;
+  }
 
   // Uncommenting doesn't fix shadow bugs
   //UpdateShadow(); // done in SetFloor() so we only set when floor changes
