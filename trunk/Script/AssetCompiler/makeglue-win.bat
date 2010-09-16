@@ -10,20 +10,18 @@ set SRC_DIR=%TOP_DIR%\Assets
 mkdir %COMPILED_ASSETS%
 mkdir %DEST_DIR%
 mkdir %DEST_DIR%\font2d
-del /S /Q %DEST_DIR%\*.*
-
-REM Convert obj files to binary format, copy to compiled dir
-call MakeObjsBin-win.bat
+rem del /S /Q %DEST_DIR%\*.*
 
 REM Copy other files to compiled dir
-xcopy /S %SRC_DIR%\*.txt %DEST_DIR%
-xcopy /S %SRC_DIR%\gui\common\*.txt %DEST_DIR%
 REM /Y when we would get overwrite confirm prompt
+
+xcopy /Y /S %SRC_DIR%\*.txt %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\gui\common\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\gui\win\*.txt %DEST_DIR%
-xcopy /S %SRC_DIR%\font2d\*.bmp %DEST_DIR%\font2d\
-xcopy /S %SRC_DIR%\tex\common\*.bmp %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\font2d\*.bmp %DEST_DIR%\font2d\
+xcopy /Y /S %SRC_DIR%\tex\common\*.bmp %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\tex\win\*.bmp %DEST_DIR%
-xcopy /S %SRC_DIR%\md2\*.md2 %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\md2\*.md2 %DEST_DIR%
 
 cd %DEST_DIR%
 
@@ -57,5 +55,3 @@ REM Verify contents
 
 cd %THIS_DIR%
 
-REM Now make music glue file
-call makemusicglue-win.bat
