@@ -5,6 +5,6 @@ REM Make data.glue
 call makeglue-win.bat
 
 REM Now make music glue file
-rem call makemusicglue-win.bat
+call makemusicglue-win.bat
 
 
