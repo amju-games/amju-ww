@@ -266,6 +266,9 @@ void OnFloor::Update()
     return;
   }
 
+  // Set shadow AABB to same as Scene Node so we don't cull it by mistake
+  *(m_shadow->GetAABB()) = *(m_pSceneNode->GetAABB());
+
   // Uncommenting doesn't fix shadow bugs
   //UpdateShadow(); // done in SetFloor() so we only set when floor changes
 
