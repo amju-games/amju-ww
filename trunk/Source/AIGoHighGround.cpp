@@ -56,7 +56,7 @@ void AIGoHighGround::Update()
   }
   else
   {
-#ifdef _DEBUG
+#ifdef AI_DEBUG
     std::cout << m_npc->GetTypeName() << " reached high ground\n";
 #endif
     m_npc->SetAI(AIIdle::NAME);
