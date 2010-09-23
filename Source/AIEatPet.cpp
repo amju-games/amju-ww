@@ -22,7 +22,7 @@ void AIEatPet::Update()
 {
   AI::Update();
 
-#ifdef _DEBUG
+#ifdef AI_DEBUG
   std::cout << "Dino eating pet!\n";
 #endif
 
