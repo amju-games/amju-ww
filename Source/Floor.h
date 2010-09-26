@@ -71,10 +71,10 @@ protected:
   Vec3f m_rotAxis;
 
   // Angular acceleration about axis m_rotAxis
-  float m_angularAccel;
+  Quaternion m_angularAccel;
 
   // Angular vel about axis m_rotAxis
-  float m_angularVel;
+  Quaternion m_angularVel;
 
   // Accumulated rotation over all frames
   Quaternion m_quat;
