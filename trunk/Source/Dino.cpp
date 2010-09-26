@@ -103,13 +103,12 @@ void Dino::Eat(Pet* pet)
 
 void Dino::Update()
 {
+  Npc::Update();
+
   if (IsDead())
   {
-    m_pSceneNode->SetVisible(false);
     return;
   }
-
-  Npc::Update();
 
   UpdateAabb(); // updates shape of AABB, DOES change its position
 }
