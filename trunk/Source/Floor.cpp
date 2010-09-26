@@ -39,8 +39,6 @@ Floor::Floor()
 {
   OnFloor::AddFloor(this);
 
-  m_angularAccel = 0;
-  m_angularVel = 0;
   m_rotAxis = Vec3f(1.0, 0, 0); 
   // Just needs to be non-zero until a real axis of rotation is found
 
@@ -65,8 +63,8 @@ AABB* Floor::GetAABB()
 
 void Floor::Reset()
 {
-  m_angularAccel = 0;
-  m_angularVel = 0;
+  m_angularAccel = Quaternion();
+  m_angularVel = Quaternion();
   m_rotAxis = Vec3f(1.0, 0, 0); 
   ResetMoments();
   m_quat.SetIdentity();
@@ -204,10 +202,12 @@ void Floor::Update()
   // Torque magnitude:  T = rF sin(theta) 
   // r = length of lever arm vector; r vec is vector from axis to point of force application
   // theta is angle between force vector and lever arm vector
-  if (fabs(m_moments.SqLen()) < 0.1f)
+  float sqLenMoments = m_moments.SqLen(); 
+  if (fabs(sqLenMoments) < 0.1f)
   {
     // No torque, so no angular acceleration
-    m_angularAccel = 0;
+    m_angularAccel = Quaternion();
+    // TODO ResetMoments and return ?
   }
   else
   {
@@ -234,33 +234,29 @@ void Floor::Update()
     // Check we will get an axis - i.e. there has to be some non-zero moment 
     if (axis.SqLen() > 0)
     {
+      // Magnitude of torque
+      float torque = sqrt(sqLenMoments); // TODO sin theta
+      // TODO Should be len of axis, surely ??
+
       m_rotAxis = axis;
       m_rotAxis.Normalise();
 
-      // Magnitude of torque
-      float torque = sqrt(m_moments.SqLen()); // TODO sin theta
-
       // Angular acceleration = torque / I  
       // (I = Moment Of Inertia, like mass for rotations)
-      m_angularAccel = torque / m_inertia;
+      float accelMag = torque / m_inertia;
+      m_angularAccel.SetAxisAngle(accelMag, m_rotAxis);
     }
   }
 
   ResetMoments();
 
-  // Remember old vel, get average, like for linear motion 
-  // (Doesn't seem to make much difference)
-  float oldAngularVel = m_angularVel;
-  m_angularVel += m_angularAccel * dt;
+  const Quaternion IDENT = Quaternion();
+  Quaternion accFrac = Quaternion::Slerp(IDENT, m_angularAccel, dt);
+  m_angularVel = accFrac * m_angularVel;
 
-  // TODO Stop rotating if angular vel is low..?
-  // Dampen angular vel ?
+  Quaternion velFrac = Quaternion::Slerp(IDENT, m_angularVel, dt);
+  m_quat = velFrac * m_quat;
 
-  // Angle through which we rotate this frame
-  float ang = (oldAngularVel + m_angularVel) * (dt * 0.5f);
-  Quaternion q;
-  q.SetAxisAngle(ang, m_rotAxis.x, m_rotAxis.y, m_rotAxis.z);
-  m_quat = q * m_quat;
   m_quat.Normalize();
   m_quat.CreateMatrix(&m_matrix);
 
@@ -273,7 +269,7 @@ void Floor::Update()
 
   // Transform the collision mesh by the rotation for this frame
   Matrix qMat;
-  q.CreateMatrix(&qMat);
+  velFrac.CreateMatrix(&qMat);
   // Reverse translation so we rotate about origin
   m_collMesh.Translate(-m_pos);
   // Perform rotation
@@ -288,6 +284,7 @@ void Floor::Update()
   // In this case, restore the old values for m_quat, m_matrix, m_collMesh, m_aabb
   if (m_pSceneNode->GetAABB()->GetYSize() > m_maxYSize)
   {
+    m_angularVel = Quaternion();
     m_quat = oldQuat;
     m_matrix = oldMatrix;
     m_collMesh = oldCollMesh;
