@@ -45,6 +45,8 @@ namespace Amju
 {
 void StartUp()
 {
+  TheGame::Instance()->SetClearColour(Colour(0, 0, 0, 1.0f));
+
 #ifndef NO_COMPILED_ASSETS
   // Use glue file -- or comment out to use individual files
   if (!FileImplGlue::OpenGlueFile(GLUE_FILE))
