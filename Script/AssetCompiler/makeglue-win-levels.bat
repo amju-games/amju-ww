@@ -29,7 +29,7 @@ for %%f in (levels\*.txt) do %GLUE_EXE% -p %GLUE_FILE% %%f
 
 
 REM Verify contents
-%GLUE_EXE% -d %GLUE_FILE%
+REM %GLUE_EXE% -d %GLUE_FILE%
 
 
 cd %THIS_DIR%
