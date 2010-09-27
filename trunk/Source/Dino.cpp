@@ -137,8 +137,21 @@ bool Dino::Load(File* f)
   // Can set AI now we have a model
   SetAI(AIIdle::NAME);
 
-  // TODO different colours
-  if (!bc->LoadTextures("dino1a.bmp", "dino1.bmp"))
+  static const char* TEXTURES[3][2] = 
+  {
+    { "dino1a.bmp", "dino1.bmp" },
+    { "dino2a.bmp", "dino2.bmp" },
+    { "dino3a.bmp", "dino3.bmp" },
+  };
+
+  if (!f->GetInteger((int*)&m_dinoType))
+  {
+    f->ReportError("Expected dino type");
+    return false;
+  }
+  Assert(m_dinoType >= 0 && m_dinoType <= 2);
+
+  if (!bc->LoadTextures(TEXTURES[m_dinoType][0], TEXTURES[m_dinoType][1]))
   {
     return false;
   }
