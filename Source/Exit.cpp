@@ -110,6 +110,10 @@ bool Exit::Load(File* f)
     f->ReportError("Expected next level");
     return false;
   }
+
+  // Next level ID is relative to this Level 
+  m_toLevel += TheLevelManager::Instance()->GetLevelId();
+
   TextMaker tm;
   m_text = tm.MakeText(ToString(m_toLevel));
 
@@ -151,6 +155,9 @@ bool Exit::Load(File* f)
   {
     return false;
   }
+
+  // Currently there are no objectives, so all exits are enabled
+  SetActive(); 
 
   return true;
 }
