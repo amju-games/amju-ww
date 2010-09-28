@@ -11,8 +11,8 @@ rem del /S /Q %DEST_DIR%\*.*
 
 
 REM Copy other files to compiled dir
-xcopy /S %SRC_DIR%\*.wav %DEST_DIR%
-xcopy /S %SRC_DIR%\*.mod %DEST_DIR%
+xcopy /S /Y %SRC_DIR%\*.wav %DEST_DIR%
+xcopy /S /Y %SRC_DIR%\*.mod %DEST_DIR%
 
 
 cd %DEST_DIR%
