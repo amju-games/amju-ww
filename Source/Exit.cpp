@@ -7,7 +7,7 @@
 #include "Timer.h"
 #include "DegRad.h"
 #include "Colour.h"
-#include "GSLoadLevel.h"
+#include "GSMain.h"
 #include "TextMaker.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
@@ -149,6 +149,7 @@ bool Exit::Load(File* f)
     f->ReportError("Failed to load exit effect");
     return false;
   }
+  m_effect->SetVisible(false);
   m_pSceneNode->AddChild(m_effect);
 
   if (!LoadShadow(f))
@@ -169,13 +170,11 @@ void Exit::OnPlayerCollision()
   {
     // Go to next level
     // TODO Sound effect, explosion etc
+    m_effect->SetVisible(true);
 
     // Set next level
     TheLevelManager::Instance()->SetLevelId(m_toLevel);
-    //((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
-    //  SetLevel(m_toLevel);
-
-    TheGame::Instance()->SetCurrentState(GSLevelComplete::NAME);
+    TheGSMain::Instance()->OnExitReached();
   }
 }
 
