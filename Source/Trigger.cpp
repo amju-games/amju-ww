@@ -4,13 +4,6 @@
 
 namespace Amju
 {
-const char* Trigger::NAME = "trigger";
-
-const char* Trigger::GetTypeName() const
-{
-  return NAME;
-}
-
 bool Trigger::Load(File* f)
 {
   if (!WWGameObject::Load(f))
