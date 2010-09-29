@@ -20,12 +20,13 @@
 #include <Screen.h>
 #include "Hud.h"
 #include "GSPaused.h"
+#include "Tutorial.h"
+#include "GSLoadLevel.h"
+#include "GSLevelComplete.h"
 
 namespace Amju
 {
 const char* GSMain::NAME = "main";
-
-static bool b = TheGame::Instance()->AddState(GSMain::NAME, new GSMain);
 
 GSMain::GSMain()
 {
@@ -37,13 +38,27 @@ void GSMain::OnActive()
 
   // Clear Text scene graph
   GetTextSceneGraph()->Clear();
+
+  // Set clear colour for game, TODO depends on skybox
+  TheGame::Instance()->SetClearColour(Colour(0.6f, 0.6f, 1.0f, 1.0f));
+
+  m_exitReached = false;
+  m_exitTimer = 0;
+
+  // TODO Do all one-time init somewhere
+  static bool first = true;
+  if (first)
+  {
+    first = false;
+    TheTutorial::Instance()->Load();
+  }
 }
 
 void GSMain::OnKeyEvent(const KeyEvent& ke)
 {
-  if (ke.keyType == AMJU_KEY_ESC && !ke.keyDown)
+  if (ke.keyType == AMJU_KEY_ESC && !ke.keyDown && !m_exitReached)
   {
-    TheGame::Instance()->SetCurrentState(GSPaused::NAME);
+    TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
   }
 
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
@@ -56,17 +71,21 @@ void GSMain::OnKeyEvent(const KeyEvent& ke)
       (ke.key == 'r' || ke.key == 'R'))
   {
     // Reset - may need to go back to load state
-    Game::GameObjects* g = TheGame::Instance()->GetGameObjects();
-    for (Game::GameObjects::iterator it = g->begin(); it != g->end(); ++it)
-    {
-      it->second->Reset();
-    }
+    TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
   }
+}
+
+void GSMain::OnExitReached()
+{
+  m_exitReached = true;
+  m_exitTimer = 0;
 }
 
 void GSMain::ClearLevel()
 {
   OnFloor::ClearFloors();
+  m_exitReached = false;
+  m_exitTimer = 0;
 }
 
 void Collisions()
@@ -102,12 +121,28 @@ void Collisions()
 
 void GSMain::Update()
 {
-  TheGame::Instance()->UpdateGameObjects();
+  // Freeze if displaying tutorial text
+  if (!TheTutorial::Instance()->IsActive())
+  {
+    if (m_exitReached)
+    {
+      m_exitTimer += TheTimer::Instance()->GetDt();
+      if (m_exitTimer > 1.0f) // TODO CONFIG
+      {
+        TheGame::Instance()->SetCurrentState(TheGSLevelComplete::Instance());
+      }
+    }
+    else
+    {
+      TheGame::Instance()->UpdateGameObjects();
+      // Perform game-specific collision det & response here
+      Collisions();
+    }
 
-  GetGameSceneGraph()->Update();
+    GetGameSceneGraph()->Update();
+  }
 
-  // Perform game-specific collision det & response here
-  Collisions();
+  TheTutorial::Instance()->Update();
 }
 
 void Fps()
@@ -122,7 +157,7 @@ void Fps()
   t += TheTimer::Instance()->GetDt();
   if (t >= 1.0f)
   {
-#ifdef _DEBUG
+#ifdef FPS_DEBUG
     std::cout << "FPS: " << fps << "\n";
 #endif
 
@@ -156,6 +191,8 @@ void GSMain::Draw2d()
   font->Print(-1, 1, "HELLO! I am a test");
   */
 //  TheCursorManager::Instance()->Draw();
+
+  TheTutorial::Instance()->Draw();
 }
 
 void GSMain::Draw()

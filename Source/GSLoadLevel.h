@@ -4,17 +4,20 @@
 #include "GSText.h"
 #include "File.h"
 #include "SceneNode.h"
+#include <Singleton.h>
 
 namespace Amju
 {
 enum GameMode { AMJU_MAIN_GAME_MODE, AMJU_ATTRACT_MODE, AMJU_EDIT_MODE };
 
-class GSLoadLevel : public GSText
+class GSLoadLevel : public GSText, public NonCopyable
 {
+private:
+  GSLoadLevel();
+  friend class Singleton<GSLoadLevel>;
+
 public:
   static const char* NAME;
-
-  GSLoadLevel();
 
   // GameState overrides
   virtual void OnActive();
@@ -38,6 +41,7 @@ private:
 // Convenience function
 void SetGameMode(GameMode);
 
+typedef Singleton<GSLoadLevel> TheGSLoadLevel;
 }
 
 #endif

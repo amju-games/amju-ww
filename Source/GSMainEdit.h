@@ -3,6 +3,7 @@
 
 #include "GSMain.h"
 #include "ContextMenu.h"
+#include <Singleton.h>
 
 namespace Amju
 {
@@ -27,10 +28,12 @@ namespace Amju
 // - Help ?
 class GSMainEdit : public GSMain
 {
+private:
+  GSMainEdit();
+  friend class Singleton<GSMainEdit>;
+
 public:
   static const char* NAME;
-
-  GSMainEdit();
 
   // GameState overrides
   virtual void Update();
@@ -47,6 +50,7 @@ protected:
 
   PContextMenu m_menu;
 };
+typedef Singleton<GSMainEdit> TheGSMainEdit;
 }
 
 #endif
