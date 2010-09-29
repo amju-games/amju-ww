@@ -2,11 +2,16 @@
 #define GS_PAUSED_H
 
 #include "GSText.h"
+#include <Singleton.h>
 
 namespace Amju
 {
-class GSPaused : public GSText
+class GSPaused : public GSText, public NonCopyable
 {
+private:
+  GSPaused() {}
+  friend class Singleton<GSPaused>;
+
 public:
   static const char* NAME;
 
@@ -15,6 +20,7 @@ public:
   //virtual void OnDeactive();
   //virtual void Update();
 };
+typedef Singleton<GSPaused> TheGSPaused;
 }
 
 #endif

@@ -7,11 +7,9 @@ namespace Amju
 {
 const char* GSPaused::NAME = "paused";
 
-static bool b = TheGame::Instance()->AddState(GSPaused::NAME, new GSPaused);
-
 void Resume()
 {
-  TheGame::Instance()->SetCurrentState(GSMain::NAME);
+  TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
 }
 
 void GSPaused::OnActive()

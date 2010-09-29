@@ -9,9 +9,6 @@ namespace Amju
 {
 const char* GSLevelComplete::NAME = "level-complete";
 
-static bool b = TheGame::Instance()->AddState(
-  GSLevelComplete::NAME, new GSLevelComplete);
-
 GSLevelComplete::GSLevelComplete()
 {
   m_timer = 0;
@@ -25,7 +22,7 @@ void GSLevelComplete::Update()
   if (m_timer > 3.0f) // TODO CONFIG
   {
     // Increment level number done by "Exit" object
-    TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME);
+    TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
   }
 }
 

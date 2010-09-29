@@ -4,17 +4,20 @@
 #include <vector>
 #include "GameState.h"
 #include "Viewport.h"
+#include <Singleton.h>
 
 namespace Amju
 {
 class Floor;
 
-class GSMain : public GameState
+class GSMain : public GameState, public NonCopyable
 {
+protected:
+  GSMain();
+  friend class Singleton<GSMain>;
+
 public:
   static const char* NAME;
-
-  GSMain();
 
   // GameState overrides
   virtual void Update();
@@ -27,8 +30,13 @@ public:
 
   void ClearLevel();
 
+  void OnExitReached();
+
 protected:
+  bool m_exitReached;
+  float m_exitTimer;
 };
+typedef Singleton<GSMain> TheGSMain;
 }
 
 #endif

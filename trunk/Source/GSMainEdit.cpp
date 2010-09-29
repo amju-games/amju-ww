@@ -9,8 +9,6 @@ namespace Amju
 {
 const char* GSMainEdit::NAME = "main-edit";
 
-static bool b = TheGame::Instance()->AddState(GSMainEdit::NAME, new GSMainEdit);
-
 GSMainEdit::GSMainEdit()
 {
 }

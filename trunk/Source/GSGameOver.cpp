@@ -9,8 +9,6 @@ namespace Amju
 {
 const char* GSGameOver::NAME = "gameover";
 
-static bool b = TheGame::Instance()->AddState(GSGameOver::NAME, new GSGameOver);
-
 GSGameOver::GSGameOver()
 {
 }
@@ -18,9 +16,9 @@ GSGameOver::GSGameOver()
 void GSGameOver::Update()
 {
   GSText::Update();
-  if (m_timer > 3.0f)
+  if (m_timer > 3.0f) // TODO Or tapped
   {
-    TheGame::Instance()->SetCurrentState(GSTitle::NAME);
+    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
   }
 }
 

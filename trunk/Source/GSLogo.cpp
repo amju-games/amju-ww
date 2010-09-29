@@ -13,11 +13,9 @@ static const char* GROUP = "logo-group";
 
 const char* GSLogo::NAME = "start";
 
-static bool b = TheGame::Instance()->AddState(GSLogo::NAME, new GSLogo);
-
 void Done()
 {
-  TheGame::Instance()->SetCurrentState(GSTitle::NAME);
+  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
 }
 
 GSLogo::GSLogo()
