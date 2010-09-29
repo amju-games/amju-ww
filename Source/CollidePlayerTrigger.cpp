@@ -1,14 +1,15 @@
 #include "CollisionManager.h"
 #include "Player.h"
-#include "Trigger.h"
+#include "TutorialTrigger.h"
 
 namespace Amju
 {
-void CollidePlayerTrigger(Player* p, Trigger* tr)
+void CollidePlayerTutorialTrigger(Player* p, TutorialTrigger* tr)
 {
   tr->OnPlayerCollision(p);
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Trigger::NAME, (CollisionManager::CollisionHandler)CollidePlayerTrigger);
+  Player::NAME, TutorialTrigger::NAME, 
+  (CollisionManager::CollisionHandler)CollidePlayerTutorialTrigger);
 } 
