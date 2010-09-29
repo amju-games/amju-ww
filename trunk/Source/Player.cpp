@@ -378,11 +378,11 @@ void Player::Update()
 
     if (lives == 0)
     {
-      TheGame::Instance()->SetCurrentState(GSGameOver::NAME);
+      TheGame::Instance()->SetCurrentState(TheGSGameOver::Instance());
     }
     else
     {
-      TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME);
+      TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
     }
   }
 }
