@@ -133,7 +133,7 @@ void ParticleEffect2d::Update()
 
   Matrix mat;
   mat.ModelView(); // Get Modelview matrix
-  mat *= m_combined; // also take all rotation into account
+  mat = m_combined * mat; // also take all rotation into account
   Vec3f up(mat[1], mat[5], mat[9]);
   Vec3f right(mat[0], mat[4], mat[8]);
 
