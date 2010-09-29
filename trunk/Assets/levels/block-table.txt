@@ -3,13 +3,17 @@
 1
 
 // Num blocks
-2
+3
 
 // block ID, then comma-sep list of blocks which may follow
-// -1 means terminate. If its the only option, then this is the final block
+// -1 means terminate. If its the only option, then this is the final block.
+// For each block, the next block is chosen procedurally based on the 
+// current level number. 
 1
--1
-//2 
+3
 
 2
+-1
+
+3
 -1
