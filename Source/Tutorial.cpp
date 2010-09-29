@@ -14,7 +14,18 @@ Amju Games source code (c) Copyright Jason Colman 2000-2006
 namespace Amju
 {
 void ReportError(const std::string&);
-  
+
+static const char LINE_SPLIT = '$';
+static const char PAGE_SPLIT = '&';
+static const char TIMED_PAGE = '*';
+
+static const float FONT_SIZE = 1.2f;
+static const float TIME_PER_CHAR = 0.02f;
+static const float BORDER = 0.1f;
+static const float MAX_PAGE_TIME = 5.0f; // time out 
+static const float GROW_TIME = 0.1f;
+
+
 Font* GetFont()
 {
   static Font* font = 
@@ -22,21 +33,13 @@ Font* GetFont()
   return font;
 }
 
-static float TOP = 0;
-static float BOTTOM = -0.9f;
-static float LEFT = -0.9f;
-static float RIGHT = 0.9f;
-static const float MID_Y = (TOP + BOTTOM) * 0.5f;
-static const float LINE_SPACING = 0.1f;
-static const float Y_ADJUST = 0;
-
-void OnCloseTutorial()
-{
-  AMJU_CALL_STACK;
-
-  // Hide the current tutorial text
-  TheTutorial::Instance()->NextPageOrClose();
-}
+//void OnCloseTutorial()
+//{
+//  AMJU_CALL_STACK;
+//
+//  // Hide the current tutorial text
+//  TheTutorial::Instance()->NextPageOrClose();
+//}
 
 Tutorial::Tutorial() : m_show(false)
 {
@@ -50,6 +53,18 @@ Tutorial::Tutorial() : m_show(false)
   m_isLocked = false;
 
   TheEventPoller::Instance()->AddListener(this);
+
+  Clear();
+}
+
+Vec2f Tutorial::GetSize() const
+{
+  return m_bg.GetSize();
+}
+
+Vec2f Tutorial::GetCentre() const
+{
+  return m_bg.GetPos() + Vec2f(m_bg.GetSize().x, -m_bg.GetSize().y) * 0.5f;
 }
 
 void Tutorial::Lock()
@@ -165,7 +180,6 @@ void Tutorial::Update()
   if (m_show)
   {
     // Reveal next character
-    static const float TIME_PER_CHAR = 0.02f;
     if (m_time > (float)(m_numCharsThisPage + 1) * TIME_PER_CHAR)
     {
       ++m_numCharsThisPage;
@@ -186,7 +200,6 @@ void Tutorial::CheckForTimedPage()
 {
   AMJU_CALL_STACK;
 
-  static const float MAX_PAGE_TIME = 5.0f; // TODO CONFIG
   m_maxPageTime = MAX_PAGE_TIME; // TODO
 
 #ifdef ALL_PAGES_TIMED
@@ -197,7 +210,7 @@ void Tutorial::CheckForTimedPage()
 
   m_isTimed = false;
   // Time out current text:
-  // If last character on last line of current page is '*', 
+  // If last character on last line of current page is TIMED_PAGE, 
   //  then the page times out.
   // TODO Set time after '*' ??
   if (!m_pages.empty())
@@ -205,7 +218,7 @@ void Tutorial::CheckForTimedPage()
     Page& page = m_pages[m_currentPage];
     Assert(!page.empty());
     std::string& line = page[page.size() - 1];
-    if (line[line.size() - 1] == '*')
+    if (line[line.size() - 1] == TIMED_PAGE)
     {
 #ifdef TUT_DEBUG
 std::cout << "TUTORIAL: This page is Timed, because last line is \"" << line.c_str() << "\"\n";
@@ -242,7 +255,8 @@ void Tutorial::MouseButton(bool down)
   // the OK button. 
   if (!down)
   {
-    OnCloseTutorial();
+    NextPageOrClose();
+    //OnCloseTutorial();
   }
 }
 
@@ -262,19 +276,6 @@ bool Tutorial::Load()
 {
   AMJU_CALL_STACK;
 
-  /*
-  m_pCloseButton = new GuiTextButton;
-  std::string closeButtonFile = "close-tutorial-button.txt";
-  if (!m_pCloseButton->Load(closeButtonFile))
-  {
-    ReportError("Failed to load close help button.");
-    return false;
-  }
-  */
-  //m_pCloseButton->SetSize(6.0f, 0.75f);
-  //m_pCloseButton->SetRelPos(BOTTOM - 0.2f, 9.0f);
-  //m_pCloseButton->SetCommand(&OnCloseTutorial);
-
   // Load BG box
   if (!m_bg.OpenAndLoad("tutorial-gui.txt")) 
   {
@@ -288,14 +289,18 @@ void Tutorial::DrawBg(float f)
 {
   AMJU_CALL_STACK;
 
-  static const float W2 = (RIGHT - LEFT) * 0.5f;
-  static const float H2 = (BOTTOM - TOP) * 0.5f;
-  static const float X = (LEFT + RIGHT) * 0.5f;
-  static const float Y = (TOP + BOTTOM) * 0.5f;
-  float top = Y - H2 * f;
-  float bottom = Y + H2 * f;
+  float X = GetCentre().x;
+  float Y = GetCentre().y;
+  float W2 = GetSize().x * 0.5f;
+  float H2 = GetSize().y * 0.5f;
+
+  float top = Y + H2 * f;
+  float bottom = Y - H2 * f;
   float left = X - W2 * f;
   float right = X + W2 * f;
+
+  Vec2f pos = m_bg.GetPos();
+  Vec2f size = m_bg.GetSize();
 
   m_bg.SetPos(Vec2f(left, top));
   m_bg.SetSize(Vec2f(right - left, top - bottom));
@@ -304,18 +309,19 @@ void Tutorial::DrawBg(float f)
   MultColour(m_bgColour);
   m_bg.Draw(); 
   PopColour();
+
+  m_bg.SetSize(size);
+  m_bg.SetPos(pos);
 }
 
 void Tutorial::Draw()
 {
   AMJU_CALL_STACK;
 
-  static const float GROW_TIME = 0.1f;
-
-  // TODO Special font ?
-  static Font* pFont = GetFont(); //TODO TheResorEngine::Instance()->GetTextWriter()->GetDefaultFont();
+  static Font* pFont = GetFont(); 
   float size = pFont->GetSize();
-  
+  pFont->SetSize(FONT_SIZE);
+
   if (m_show)
   {
     // TODO If m_time is less than some limit, draw a box which gets larger.
@@ -359,8 +365,12 @@ std::cout << "Tut: m_currentPage: " << m_currentPage
           line = line.substr(0, (m_numCharsThisPage - prevLines));
         }
 
-        const float x = LEFT;
-        const float y = MID_Y + Y_ADJUST + 0.5f * LINE_SPACING * (float)numLines - LINE_SPACING * (float)i;
+        float MID_Y = GetCentre().y; 
+        float LINE_SPACING = 0.15f * FONT_SIZE;
+        float Y_ADJUST = 0;
+
+        const float x = m_bg.GetPos().x + BORDER;
+        const float y = MID_Y + Y_ADJUST + 0.5f * LINE_SPACING * (float)numLines - LINE_SPACING * (float)(i + 1);
 
         pFont->Print(x, y, line.c_str()); 
       }
@@ -414,23 +424,24 @@ void Tutorial::SetText(const std::string& s)
   }
 
   static Font* pFont = GetFont(); 
+  float size = pFont->GetSize();
+  pFont->SetSize(FONT_SIZE);
 
-  // Text is split into Pages with '@'
-  std::vector<std::string> pageLines = Split(s, '@');
+  // Text is split into Pages with PAGE_SPLIT char
+  std::vector<std::string> pageLines = Split(s, PAGE_SPLIT);
 
   // Split each page into lines.
-  // Text can be split into lines with '$'
+  // Text can be split into lines with LINE_SPLIT
   for (unsigned int i = 0; i < pageLines.size(); i++)
   {
     // Check each line in page, make sure it is not too long. If it is,
     // we make an extra line for the overflow.
     std::string line = pageLines[i]; // not split yet
-    Page pageNotWrapped = Split(line, '$');
+    Page pageNotWrapped = Split(line, LINE_SPLIT);
     Page page; // page after word wrapping
     for (unsigned int j = 0 ; j < pageNotWrapped.size(); j++)
     {
-      static const float HACK = 1.0f; // TODO TextWriter::CHAR_SIZE; // ?
-      static const float MAX_WIDTH = HACK * (RIGHT - LEFT);
+      float MAX_WIDTH = GetSize().x - 2.0f * BORDER;
       // Split up line so no text falls outside
       // of the background box.
       Page wrappedLines = WrapFontText(pFont, pageNotWrapped[j].c_str(), MAX_WIDTH);
@@ -450,5 +461,6 @@ std::cout << "Tut SetText: line: '" << wrappedLines[k] << "'\n";
   m_numCharsThisPage = 0;
  
   CheckForTimedPage();
+  pFont->SetSize(size);
 }
 }

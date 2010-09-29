@@ -9,7 +9,6 @@ Amju Games source code (c) Copyright Jason Colman 2000-2006
 #include <string>
 #include <vector>
 #include <Singleton.h>
-//#include "../Gui/GuiElement.h"
 #include <GuiImage.h>
 #include <Colour.h>
 #include <EventListener.h>
@@ -25,11 +24,10 @@ private:
 public:
   virtual void OnMouseButtonEvent(const MouseButtonEvent&);
 
-  void OnNewGame();
+//  void OnNewGame();
 
   void Draw();
   void Update();
-  void NextPageOrClose(); 
   bool Load();
 
   // This resets the Show flag
@@ -38,8 +36,6 @@ public:
   // If the last character of a page is '*' the page times out, no need to
   //  click the close button.
   void SetText(const std::string& s);
-
-  void MouseButton(bool down);
 
   // Call if key pressed to close Tutorial window.
   // Returns true if window was closed.
@@ -67,6 +63,13 @@ private:
   void DrawBg(float f);
 
   void CheckForTimedPage();
+
+  Vec2f GetSize() const;
+  Vec2f GetCentre() const;
+
+  void NextPageOrClose(); 
+
+  void MouseButton(bool down);
 
 private:
   // One page is a vector of lines of text
