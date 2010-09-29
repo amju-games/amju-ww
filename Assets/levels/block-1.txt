@@ -1,17 +1,38 @@
 // Version 
 1
 
+// Coordinates:
+// 1x1 block/platform is 100 * 100, 2x2 is 200 * 200, etc.
+// A gap of 50 between platforms seems jumpable 
+//  (but jumping may be removed as a feature ?)
+//
+// -50 ---+--------+-----------------------------------------------
+//        |        |
+//   0 ---+--------+-----------------------------------------------
+//        |        |
+//  50 ---+--------+-----------------------------------------------
+//             |
+//       -50   0   50   100
+
 // Num Objects
-7
+5
 
 // Translate for next block
-0, 0, -200
+150, 0, 0
 
 
-pet
-104
+// Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
+player
+101
 // Start pos
-200, 220, 0
+0, 20, 0
+// Player ID
+0
+// Mesh
+amju.md2
+// 2 Textures
+amju2.bmp
+amju2a.bmp
 // Shadow
 shadow.bmpa
 20
@@ -30,13 +51,55 @@ end
 staticfloor
 2
 // Centre/pivot point
-0, 200, 0
+0, 0, 0
 // Rot
 0
 // Floor mesh + texture
 block_rect_1x1.obj
+//plat_rect_4x4_std.obj
 plat_wood1.bmp
 end
+
+staticfloor
+3
+// Centre/pivot point
+-150, 0, 0
+// Rot
+0
+// Floor mesh + texture
+block_rect_1x1.obj
+//plat_rect_4x4_std.obj
+plat_wood1.bmp
+end
+
+tut-trigger
+// ID
+10
+// AABB xmin, xmax, ymin, ymax zmin, zmax
+-200, -100, 0, 100, -50, 50 
+// Text
+@@@Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!*
+end
+
+pet
+104
+// Start pos
+250, 220, 0
+// Shadow
+shadow.bmpa
+20
+end
+
+dino
+105
+// Start pos
+150, 220, 0
+// Shadow
+shadow.bmpa
+20
+end
+
+
 
 floor
 3
@@ -75,23 +138,6 @@ staticfloor
 // Floor mesh
 ramp_3x1.obj
 ramp1.bmp
-end
-
-// Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
-player
-101
-// Start pos
-0, 220, 0
-// Player ID
-0
-// Mesh
-amju.md2
-// 2 Textures
-amju2.bmp
-amju2a.bmp
-// Shadow
-shadow.bmpa
-20
 end
 
 //skybox
