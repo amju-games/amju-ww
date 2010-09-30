@@ -24,8 +24,6 @@
 		3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */; };
 		3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.mm */; };
 		3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C40120B17C00080D0FC /* ES1Renderer.mm */; };
-		6D5B7A5E121035B100CD925B /* music-win.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6D5B7A5C121035B100CD925B /* music-win.glue */; };
-		6D5B7A5F121035B100CD925B /* test.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6D5B7A5D121035B100CD925B /* test.glue */; };
 		6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B7B3B121049DD00CD925B /* EventTypes.cpp */; };
 		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */; };
 		6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092D11EB7A0800931FDB /* Shader.fsh */; };
@@ -355,15 +353,31 @@
 		6D5E124411EB9C2300931FDB /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E10F211EB9C2300931FDB /* zlib.h */; };
 		6D5E124511EB9C2300931FDB /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E10F311EB9C2300931FDB /* zutil.c */; };
 		6D5E124611EB9C2300931FDB /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E10F411EB9C2300931FDB /* zutil.h */; };
-		6D5E125311EB9D7B00931FDB /* libAmjuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5E0C8411EB9ACE00931FDB /* libAmjuLib.a */; };
+		6D8416231254C8ED00689B68 /* CollidePlayerPet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D84161B1254C8ED00689B68 /* CollidePlayerPet.cpp */; };
+		6D8416241254C8ED00689B68 /* CollidePlayerTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D84161C1254C8ED00689B68 /* CollidePlayerTrigger.cpp */; };
+		6D8416251254C8ED00689B68 /* Trigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D84161D1254C8ED00689B68 /* Trigger.cpp */; };
+		6D8416261254C8ED00689B68 /* Tutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D84161F1254C8ED00689B68 /* Tutorial.cpp */; };
+		6D8416271254C8ED00689B68 /* TutorialTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D8416211254C8ED00689B68 /* TutorialTrigger.cpp */; };
+		6D8416331254C92900689B68 /* LoadAABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D8416311254C92900689B68 /* LoadAABB.cpp */; };
+		6D84167E1254D8A100689B68 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D84167D1254D8A100689B68 /* icon.png */; };
 		6DCE67A811ECC4BD00074997 /* StartUp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE67A711ECC4BD00074997 /* StartUp.cpp */; };
 		6DCE67E811ECC81800074997 /* AmjuGL-OpenGL-Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE67CD11ECC81800074997 /* AmjuGL-OpenGL-Base.cpp */; };
 		6DCE67F611ECC81800074997 /* AmjuGL-OpenGLES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE67E711ECC81800074997 /* AmjuGL-OpenGLES.cpp */; };
+		6DFDFEDA124B68AB00FD3E49 /* libAmjuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DFDFED9124B68AB00FD3E49 /* libAmjuLib.a */; };
+		6DFDFEF2124B6A0600FD3E49 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEE5124B6A0600FD3E49 /* AI.cpp */; };
+		6DFDFEF3124B6A0600FD3E49 /* AIChasePet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEE7124B6A0600FD3E49 /* AIChasePet.cpp */; };
+		6DFDFEF4124B6A0600FD3E49 /* AIEatPet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEE9124B6A0600FD3E49 /* AIEatPet.cpp */; };
+		6DFDFEF5124B6A0600FD3E49 /* AIFalling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEEB124B6A0600FD3E49 /* AIFalling.cpp */; };
+		6DFDFEF6124B6A0600FD3E49 /* AIGoHighGround.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEED124B6A0600FD3E49 /* AIGoHighGround.cpp */; };
+		6DFDFEF7124B6A0600FD3E49 /* AIIdle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEEF124B6A0600FD3E49 /* AIIdle.cpp */; };
+		6DFDFEF8124B6A0600FD3E49 /* CollideDinoPet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDFEF1124B6A0600FD3E49 /* CollideDinoPet.cpp */; };
+		6DFDFEFF124B7CDE00FD3E49 /* data-iphone.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDFEFD124B7CDE00FD3E49 /* data-iphone.glue */; };
+		6DFDFF00124B7CDE00FD3E49 /* music-iphone.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDFEFE124B7CDE00FD3E49 /* music-iphone.glue */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Amju WW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amju WW.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -392,8 +406,6 @@
 		3F906C3F120B17C00080D0FC /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES1Renderer.h; path = ../../Source/iPhone/Classes/ES1Renderer.h; sourceTree = SOURCE_ROOT; };
 		3F906C40120B17C00080D0FC /* ES1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES1Renderer.mm; path = ../../Source/iPhone/Classes/ES1Renderer.mm; sourceTree = SOURCE_ROOT; };
 		3F906C43120B17C00080D0FC /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESRenderer.h; path = ../../Source/iPhone/Classes/ESRenderer.h; sourceTree = SOURCE_ROOT; };
-		6D5B7A5C121035B100CD925B /* music-win.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music-win.glue"; path = "../../Assets/music-win.glue"; sourceTree = SOURCE_ROOT; };
-		6D5B7A5D121035B100CD925B /* test.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.glue; path = ../../Assets/test.glue; sourceTree = SOURCE_ROOT; };
 		6D5B7B3B121049DD00CD925B /* EventTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventTypes.cpp; sourceTree = "<group>"; };
 		6D5B7B3C121049DD00CD925B /* EventTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTypes.h; sourceTree = "<group>"; };
 		6D5E092011EB79E000931FDB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../Source/iPhone/Classes/EAGLView.h; sourceTree = SOURCE_ROOT; };
@@ -492,7 +504,6 @@
 		6D5E099311EB7B8400931FDB /* TextMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextMaker.h; path = ../../Source/TextMaker.h; sourceTree = SOURCE_ROOT; };
 		6D5E099411EB7B8400931FDB /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewport.cpp; path = ../../Source/Viewport.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E099511EB7B8400931FDB /* Viewport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Viewport.h; path = ../../Source/Viewport.h; sourceTree = SOURCE_ROOT; };
-		6D5E0C8411EB9ACE00931FDB /* libAmjuLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAmjuLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5E0F7711EB9C2200931FDB /* AmjuGL-Impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AmjuGL-Impl.h"; sourceTree = "<group>"; };
 		6D5E0F7811EB9C2200931FDB /* AmjuGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AmjuGL.cpp; sourceTree = "<group>"; };
 		6D5E0F7911EB9C2200931FDB /* AmjuGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmjuGL.h; sourceTree = "<group>"; };
@@ -781,6 +792,17 @@
 		6D5E10F211EB9C2300931FDB /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		6D5E10F311EB9C2300931FDB /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		6D5E10F411EB9C2300931FDB /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
+		6D84161B1254C8ED00689B68 /* CollidePlayerPet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerPet.cpp; path = ../../Source/CollidePlayerPet.cpp; sourceTree = SOURCE_ROOT; };
+		6D84161C1254C8ED00689B68 /* CollidePlayerTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerTrigger.cpp; path = ../../Source/CollidePlayerTrigger.cpp; sourceTree = SOURCE_ROOT; };
+		6D84161D1254C8ED00689B68 /* Trigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Trigger.cpp; path = ../../Source/Trigger.cpp; sourceTree = SOURCE_ROOT; };
+		6D84161E1254C8ED00689B68 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trigger.h; path = ../../Source/Trigger.h; sourceTree = SOURCE_ROOT; };
+		6D84161F1254C8ED00689B68 /* Tutorial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tutorial.cpp; path = ../../Source/Tutorial.cpp; sourceTree = SOURCE_ROOT; };
+		6D8416201254C8ED00689B68 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tutorial.h; path = ../../Source/Tutorial.h; sourceTree = SOURCE_ROOT; };
+		6D8416211254C8ED00689B68 /* TutorialTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TutorialTrigger.cpp; path = ../../Source/TutorialTrigger.cpp; sourceTree = SOURCE_ROOT; };
+		6D8416221254C8ED00689B68 /* TutorialTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialTrigger.h; path = ../../Source/TutorialTrigger.h; sourceTree = SOURCE_ROOT; };
+		6D8416311254C92900689B68 /* LoadAABB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadAABB.cpp; sourceTree = "<group>"; };
+		6D8416321254C92900689B68 /* LoadAABB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadAABB.h; sourceTree = "<group>"; };
+		6D84167D1254D8A100689B68 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../Assets/iphone/icon.png; sourceTree = SOURCE_ROOT; };
 		6DCE67A611ECC4BD00074997 /* StartUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartUp.h; path = ../../Source/StartUp.h; sourceTree = SOURCE_ROOT; };
 		6DCE67A711ECC4BD00074997 /* StartUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartUp.cpp; path = ../../Source/StartUp.cpp; sourceTree = SOURCE_ROOT; };
 		6DCE67CD11ECC81800074997 /* AmjuGL-OpenGL-Base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "AmjuGL-OpenGL-Base.cpp"; sourceTree = "<group>"; };
@@ -788,6 +810,22 @@
 		6DCE67D111ECC81800074997 /* AmjuGL-OpenGLES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AmjuGL-OpenGLES.h"; sourceTree = "<group>"; };
 		6DCE67D511ECC81800074997 /* OpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL.h; sourceTree = "<group>"; };
 		6DCE67E711ECC81800074997 /* AmjuGL-OpenGLES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "AmjuGL-OpenGLES.cpp"; sourceTree = "<group>"; };
+		6DFDFED9124B68AB00FD3E49 /* libAmjuLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAmjuLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDFEE5124B6A0600FD3E49 /* AI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AI.cpp; path = ../../Source/AI.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEE6124B6A0600FD3E49 /* AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AI.h; path = ../../Source/AI.h; sourceTree = SOURCE_ROOT; };
+		6DFDFEE7124B6A0600FD3E49 /* AIChasePet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIChasePet.cpp; path = ../../Source/AIChasePet.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEE8124B6A0600FD3E49 /* AIChasePet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIChasePet.h; path = ../../Source/AIChasePet.h; sourceTree = SOURCE_ROOT; };
+		6DFDFEE9124B6A0600FD3E49 /* AIEatPet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIEatPet.cpp; path = ../../Source/AIEatPet.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEEA124B6A0600FD3E49 /* AIEatPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIEatPet.h; path = ../../Source/AIEatPet.h; sourceTree = SOURCE_ROOT; };
+		6DFDFEEB124B6A0600FD3E49 /* AIFalling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIFalling.cpp; path = ../../Source/AIFalling.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEEC124B6A0600FD3E49 /* AIFalling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIFalling.h; path = ../../Source/AIFalling.h; sourceTree = SOURCE_ROOT; };
+		6DFDFEED124B6A0600FD3E49 /* AIGoHighGround.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIGoHighGround.cpp; path = ../../Source/AIGoHighGround.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEEE124B6A0600FD3E49 /* AIGoHighGround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIGoHighGround.h; path = ../../Source/AIGoHighGround.h; sourceTree = SOURCE_ROOT; };
+		6DFDFEEF124B6A0600FD3E49 /* AIIdle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIIdle.cpp; path = ../../Source/AIIdle.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEF0124B6A0600FD3E49 /* AIIdle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIIdle.h; path = ../../Source/AIIdle.h; sourceTree = SOURCE_ROOT; };
+		6DFDFEF1124B6A0600FD3E49 /* CollideDinoPet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideDinoPet.cpp; path = ../../Source/CollideDinoPet.cpp; sourceTree = SOURCE_ROOT; };
+		6DFDFEFD124B7CDE00FD3E49 /* data-iphone.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "data-iphone.glue"; path = "../../Build/CompiledAssets/data-iphone.glue"; sourceTree = SOURCE_ROOT; };
+		6DFDFEFE124B7CDE00FD3E49 /* music-iphone.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music-iphone.glue"; path = "../../Build/CompiledAssets/music-iphone.glue"; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* iPhone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPhone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -800,7 +838,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
 				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
-				6D5E125311EB9D7B00931FDB /* libAmjuLib.a in Frameworks */,
+				6DFDFEDA124B68AB00FD3E49 /* libAmjuLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +855,27 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6D84161B1254C8ED00689B68 /* CollidePlayerPet.cpp */,
+				6D84161C1254C8ED00689B68 /* CollidePlayerTrigger.cpp */,
+				6D84161D1254C8ED00689B68 /* Trigger.cpp */,
+				6D84161E1254C8ED00689B68 /* Trigger.h */,
+				6D84161F1254C8ED00689B68 /* Tutorial.cpp */,
+				6D8416201254C8ED00689B68 /* Tutorial.h */,
+				6D8416211254C8ED00689B68 /* TutorialTrigger.cpp */,
+				6D8416221254C8ED00689B68 /* TutorialTrigger.h */,
+				6DFDFEE5124B6A0600FD3E49 /* AI.cpp */,
+				6DFDFEE6124B6A0600FD3E49 /* AI.h */,
+				6DFDFEE7124B6A0600FD3E49 /* AIChasePet.cpp */,
+				6DFDFEE8124B6A0600FD3E49 /* AIChasePet.h */,
+				6DFDFEE9124B6A0600FD3E49 /* AIEatPet.cpp */,
+				6DFDFEEA124B6A0600FD3E49 /* AIEatPet.h */,
+				6DFDFEEB124B6A0600FD3E49 /* AIFalling.cpp */,
+				6DFDFEEC124B6A0600FD3E49 /* AIFalling.h */,
+				6DFDFEED124B6A0600FD3E49 /* AIGoHighGround.cpp */,
+				6DFDFEEE124B6A0600FD3E49 /* AIGoHighGround.h */,
+				6DFDFEEF124B6A0600FD3E49 /* AIIdle.cpp */,
+				6DFDFEF0124B6A0600FD3E49 /* AIIdle.h */,
+				6DFDFEF1124B6A0600FD3E49 /* CollideDinoPet.cpp */,
 				3F906C3E120B17C00080D0FC /* EAGLView.mm */,
 				3F906C3F120B17C00080D0FC /* ES1Renderer.h */,
 				3F906C40120B17C00080D0FC /* ES1Renderer.mm */,
@@ -938,8 +997,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* iPhone.app */,
-				6D5E0C8411EB9ACE00931FDB /* libAmjuLib.a */,
+				1D6058910D05DD3D006BFB54 /* Amju WW.app */,
+				6DFDFED9124B68AB00FD3E49 /* libAmjuLib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1003,8 +1062,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6D5B7A5C121035B100CD925B /* music-win.glue */,
-				6D5B7A5D121035B100CD925B /* test.glue */,
+				6D84167D1254D8A100689B68 /* icon.png */,
+				6DFDFEFD124B7CDE00FD3E49 /* data-iphone.glue */,
+				6DFDFEFE124B7CDE00FD3E49 /* music-iphone.glue */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* iPhone-Info.plist */,
 			);
@@ -1212,6 +1272,8 @@
 		6D5E0FF811EB9C2200931FDB /* GeomLoad */ = {
 			isa = PBXGroup;
 			children = (
+				6D8416311254C92900689B68 /* LoadAABB.cpp */,
+				6D8416321254C92900689B68 /* LoadAABB.h */,
 				6D5E0FF911EB9C2200931FDB /* LoadMatrix.cpp */,
 				6D5E0FFA11EB9C2200931FDB /* LoadMatrix.h */,
 				6D5E0FFB11EB9C2200931FDB /* LoadVec2.cpp */,
@@ -1722,7 +1784,7 @@
 			);
 			name = iPhone;
 			productName = iPhone;
-			productReference = 1D6058910D05DD3D006BFB54 /* iPhone.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Amju WW.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6D5E0C8311EB9ACE00931FDB /* AmjuLib */ = {
@@ -1739,7 +1801,7 @@
 			);
 			name = AmjuLib;
 			productName = AmjuLib;
-			productReference = 6D5E0C8411EB9ACE00931FDB /* libAmjuLib.a */;
+			productReference = 6DFDFED9124B68AB00FD3E49 /* libAmjuLib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -1769,8 +1831,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				6D5B7A5E121035B100CD925B /* music-win.glue in Resources */,
-				6D5B7A5F121035B100CD925B /* test.glue in Resources */,
+				6DFDFEFF124B7CDE00FD3E49 /* data-iphone.glue in Resources */,
+				6DFDFF00124B7CDE00FD3E49 /* music-iphone.glue in Resources */,
+				6D84167E1254D8A100689B68 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1848,6 +1911,19 @@
 				3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */,
 				3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */,
 				6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */,
+				6DFDFEF2124B6A0600FD3E49 /* AI.cpp in Sources */,
+				6DFDFEF3124B6A0600FD3E49 /* AIChasePet.cpp in Sources */,
+				6DFDFEF4124B6A0600FD3E49 /* AIEatPet.cpp in Sources */,
+				6DFDFEF5124B6A0600FD3E49 /* AIFalling.cpp in Sources */,
+				6DFDFEF6124B6A0600FD3E49 /* AIGoHighGround.cpp in Sources */,
+				6DFDFEF7124B6A0600FD3E49 /* AIIdle.cpp in Sources */,
+				6DFDFEF8124B6A0600FD3E49 /* CollideDinoPet.cpp in Sources */,
+				6D8416231254C8ED00689B68 /* CollidePlayerPet.cpp in Sources */,
+				6D8416241254C8ED00689B68 /* CollidePlayerTrigger.cpp in Sources */,
+				6D8416251254C8ED00689B68 /* Trigger.cpp in Sources */,
+				6D8416261254C8ED00689B68 /* Tutorial.cpp in Sources */,
+				6D8416271254C8ED00689B68 /* TutorialTrigger.cpp in Sources */,
+				6D8416331254C92900689B68 /* LoadAABB.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2007,7 +2083,7 @@
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "iPhone-Info.plist";
-				PRODUCT_NAME = iPhone;
+				PRODUCT_NAME = "Amju WW";
 			};
 			name = Debug;
 		};
