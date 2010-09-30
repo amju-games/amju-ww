@@ -45,7 +45,7 @@
         Amju::AmjuGL::Init();
 		
 		// Get path to data files
-		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"glue"];
+		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"data-iphone" ofType:@"glue"];
 		
 		// From http://forums.macrumors.com/showthread.php?t=494103
 		//NSString *foo = @"your text here";
