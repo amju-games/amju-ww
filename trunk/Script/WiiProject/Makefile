@@ -45,6 +45,7 @@ AMJU_LIB_DIRS := \
   $(AMJU)/GeomLoad \
   $(AMJU)/Gui \
   $(AMJU)/Image \
+  $(AMJU)/Image/Png \
   $(AMJU)/Localise \
   $(AMJU)/Md2 \
   $(AMJU)/Mem \
@@ -55,7 +56,8 @@ AMJU_LIB_DIRS := \
   $(AMJU)/SoundWii \
   $(AMJU)/Strings \
   $(AMJU)/TimeUtils \
-  $(AMJU)/Utils
+  $(AMJU)/Utils \
+  $(AMJU)/Utils/Zlib
   
 INCLUDES	:=	$(AMJU_LIB_DIRS)
 SOURCES		:=	../../Source $(AMJU_LIB_DIRS)
