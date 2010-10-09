@@ -10,4 +10,5 @@ splash-image
 1.0, 1.0
 
 // Image - ext is resource name
-logo.bmpa
+//logo.bmpa
+logo.png

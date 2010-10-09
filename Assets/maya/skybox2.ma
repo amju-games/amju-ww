@@ -119,7 +119,7 @@ createNode shadingEngine -n "lambert3SG";
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo2";
 createNode file -n "file1";
-	setAttr ".ftn" -type "string" "Y:/projects/balance/Assets/skybox2.bmp";
+	setAttr ".ftn" -type "string" "Y:/projects/balance/Assets/skybox2.png";
 	setAttr ".pf" yes;
 createNode place2dTexture -n "place2dTexture1";
 createNode polyTriangulate -n "polyTriangulate1";

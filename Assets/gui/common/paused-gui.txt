@@ -22,7 +22,7 @@ resume-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 resume
@@ -44,7 +44,7 @@ options-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 options

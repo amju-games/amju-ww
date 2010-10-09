@@ -21,7 +21,7 @@ start-button-1p
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 1 player start
@@ -41,7 +41,7 @@ start-button-2p
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 2 player start
@@ -61,7 +61,7 @@ editor-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 editor

@@ -22,7 +22,7 @@ continue-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 continue
@@ -44,7 +44,7 @@ mainmenu-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 main menu
