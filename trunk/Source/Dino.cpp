@@ -139,9 +139,9 @@ bool Dino::Load(File* f)
 
   static const char* TEXTURES[3][2] = 
   {
-    { "dino1a.bmp", "dino1.bmp" },
-    { "dino2a.bmp", "dino2.bmp" },
-    { "dino3a.bmp", "dino3.bmp" },
+    { "dino1a.png", "dino1.png" },
+    { "dino2a.png", "dino2.png" },
+    { "dino3a.png", "dino3.png" },
   };
 
   if (!f->GetInteger((int*)&m_dinoType))
