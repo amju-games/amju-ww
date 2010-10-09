@@ -236,6 +236,19 @@ void Tutorial::OnMouseButtonEvent(const MouseButtonEvent& mbe)
   MouseButton(mbe.isDown);
 }
 
+void Tutorial::OnButtonEvent(const ButtonEvent& be)
+{
+  if (!m_show)
+  {
+    return;
+  }
+
+  if (be.button == AMJU_BUTTON_A && be.isDown)
+  {
+    NextPageOrClose();
+  }
+}
+
 void Tutorial::MouseButton(bool down)
 {
   AMJU_CALL_STACK;

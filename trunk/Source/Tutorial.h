@@ -23,6 +23,7 @@ private:
 
 public:
   virtual void OnMouseButtonEvent(const MouseButtonEvent&);
+  virtual void OnButtonEvent(const ButtonEvent&);
 
 //  void OnNewGame();
 
