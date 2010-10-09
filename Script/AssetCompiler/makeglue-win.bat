@@ -19,8 +19,11 @@ xcopy /Y /S %SRC_DIR%\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\gui\common\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\gui\win\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\font2d\*.bmp %DEST_DIR%\font2d\
+xcopy /Y /S %SRC_DIR%\font2d\*.png %DEST_DIR%\font2d\
 xcopy /Y /S %SRC_DIR%\tex\common\*.bmp %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\tex\common\*.png %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\tex\win\*.bmp %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\tex\win\*.png %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\md2\*.md2 %DEST_DIR%
 
 cd %DEST_DIR%
@@ -33,8 +36,8 @@ REM make glue file
 REM for each file, add to glue file.
 for %%f in (*.txt, *.md2) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
-REM bmp files
-for %%f in (*.bmp) do %GLUE_EXE% -a %GLUE_FILE% %%f
+REM texture files
+for %%f in (*.bmp, *.png) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM obj files are in sub dir
 for %%f in (obj\*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
@@ -43,7 +46,7 @@ REM Add files in font3d dir
 for %%f in (obj\font3d\*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM Add files in font2d dir
-for %%f in (font2d\*.txt, font2d\*.bmp) do %GLUE_EXE% -a %GLUE_FILE% %%f
+for %%f in (font2d\*.txt, font2d\*.bmp, font2d\*.png) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM Add files in levels dir
 for %%f in (levels\*.txt) do %GLUE_EXE% -a %GLUE_FILE% %%f
