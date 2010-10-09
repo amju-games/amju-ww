@@ -256,6 +256,10 @@ void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 
 void Player::OnRotationEvent(const RotationEvent& re)
 {
+#ifdef GEKKO
+  return; // use nunchuck
+#endif
+
   if (re.controller != GetPlayerId()) 
   {
     return;
