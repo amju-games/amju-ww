@@ -9,5 +9,5 @@ heart
 // size
 0.15, 0.15
 // Image - ext is resource name
-heart.bmpa
+heart.png
 

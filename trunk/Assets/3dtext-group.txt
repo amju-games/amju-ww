@@ -2,7 +2,7 @@
 // version
 1
 // resources
-wh8.bmp
+wh8.png
 font3d/_a_.obj
 font3d/_b_.obj
 font3d/_c_.obj

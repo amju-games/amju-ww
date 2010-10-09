@@ -4,7 +4,7 @@
 // size
 1.0
 // bitmap + alpha
-font2d/cheri_1024.bmpa
+font2d/cheri_1024.png
 // no of chars in x
 16
 // no of chars in y

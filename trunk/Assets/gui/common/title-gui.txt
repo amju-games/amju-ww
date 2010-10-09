@@ -22,7 +22,7 @@ start-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 start
@@ -44,7 +44,7 @@ quit-button
 0.8, 0.2
 
 // Image - ext is resource type, not necessarily a real file extension
-gui-button-4.bmpa
+gui-button-4.png
 
 // Text
 quit

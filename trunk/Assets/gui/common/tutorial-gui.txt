@@ -9,5 +9,5 @@ tutorial
 // size
 1.8, 0.9
 // Image - ext is resource name
-tutorial.bmpa
+tutorial.png
 

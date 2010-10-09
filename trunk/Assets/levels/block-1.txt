@@ -31,10 +31,10 @@ player
 // Mesh
 amju.md2
 // 2 Textures
-amju2.bmp
-amju2a.bmp
+amju2.png
+amju2a.png
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -57,7 +57,7 @@ staticfloor
 // Floor mesh + texture
 block_rect_1x1.obj
 //plat_rect_4x4_std.obj
-plat_wood1.bmp
+plat_wood1.png
 end
 
 staticfloor
@@ -69,7 +69,7 @@ staticfloor
 // Floor mesh + texture
 block_rect_1x1.obj
 //plat_rect_4x4_std.obj
-plat_wood1.bmp
+plat_wood1.png
 end
 
 tut-trigger
@@ -86,7 +86,7 @@ pet
 // Start pos
 250, 220, 0
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -95,7 +95,7 @@ dino
 // Start pos
 150, 220, 0
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -109,7 +109,7 @@ floor
 0
 // Floor mesh
 plat_rect_2x1_std.obj
-plat_wood2.bmp
+plat_wood2.png
 // Rotation axes flags: x=1, y=2, z=4
 4
 // max AABB height
@@ -126,7 +126,7 @@ staticfloor
 0
 // Floor mesh
 block_rect_1x1.obj
-plat_wood1.bmp
+plat_wood1.png
 end
 
 staticfloor
@@ -137,7 +137,7 @@ staticfloor
 0
 // Floor mesh
 ramp_3x1.obj
-ramp1.bmp
+ramp1.png
 end
 
 //skybox
