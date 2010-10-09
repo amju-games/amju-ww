@@ -17,7 +17,12 @@ copy ..\..\Assets\wii\meta.xml %SD_DIR%\%APP_NAME%
 mkdir %SD_DIR%\%APP_NAME%\data
 
 REM Compile assets and copy glue file
-xcopy /Y /S ..\..\Build\CompiledAssets\*.glue %SD_DIR%\%APP_NAME%\data\
+
+REM TODO Build wii-specific glue files
+
+xcopy /Y ..\..\Build\CompiledAssets\data-win.glue %SD_DIR%\%APP_NAME%\data\data-wii.glue
+xcopy /Y ..\..\Build\CompiledAssets\music-wii.glue %SD_DIR%\%APP_NAME%\data\music-wii.glue
+
 
 dir %SD_DIR%\%APP_NAME%
 dir %SD_DIR%\%APP_NAME%\data
