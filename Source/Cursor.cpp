@@ -45,7 +45,8 @@ const Vec2f& Cursor::GetPos() const
 bool Cursor::Load(int id)
 {
   m_id = id;
-  m_pTex = (Texture*)TheResourceManager::Instance()->GetRes("hand.bmpa");
+  // TODO CONFIG
+  m_pTex = (Texture*)TheResourceManager::Instance()->GetRes("hand.png");
   Assert(m_pTex);
   return true;
 }
