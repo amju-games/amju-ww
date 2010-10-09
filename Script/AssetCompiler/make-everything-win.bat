@@ -6,7 +6,7 @@ set SRC_DIR=%TOP_DIR%\Assets
 
 mkdir %COMPILED_ASSETS%
 mkdir %DEST_DIR%
-rem del /S /Q %DEST_DIR%\*.*
+del /S /Q %DEST_DIR%\*.*
 
 REM Convert obj files to binary format, copy to compiled dir
 call MakeObjsBin-win.bat
