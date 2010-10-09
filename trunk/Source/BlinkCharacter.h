@@ -13,6 +13,7 @@ class BlinkCharacter : public Animated
 public:
   BlinkCharacter();
   virtual void Draw();
+  virtual void Update();
 
   bool LoadTextures(const std::string& texture1, const std::string& texture2);
 
