@@ -3,7 +3,7 @@
 #include "GSLoadLevel.h"
 #include "Game.h"
 #include "MySceneGraph.h"
-#include "SoundManager.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -26,7 +26,7 @@ void GSGameOver::OnActive()
 {
   GSText::OnActive();
 
-  TheSoundManager::Instance()->PlayWav("churchbell"); // NB No file ext
+  PlayWav("churchbell"); 
 
   CreateText("game over");
 
