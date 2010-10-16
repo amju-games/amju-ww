@@ -22,6 +22,52 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Dino::NAME, &CreateDino)
 
 const char* Dino::NAME = "dino";
 
+const float BLOOD_GRAVITY = -50.0f;
+static const float PARTICLE_SPEED = 50.0f;
+
+static float rnd(float f)
+{
+  return ((float)rand() / (float)RAND_MAX * 2.0f * f - f);
+}
+
+BloodFx::BloodFx(Dino* d) : m_dino(d)
+{
+}
+
+Vec3f BloodFx::NewPos() const
+{
+  // Origin should be at mouth, which depends on dino size
+  float d = 10.0f; // TODO TEMP TEST
+  float y = 50.0f; 
+  float rad = DegToRad(m_dino->GetDir());
+  float x = cos(rad) * d;
+  float z = sin(rad) * d;
+  return m_dino->GetPos() + Vec3f(x, y, z);
+}
+
+Vec3f BloodFx::NewVel() const
+{
+  return Vec3f(
+    rnd(PARTICLE_SPEED), 
+    rnd(PARTICLE_SPEED),
+    rnd(PARTICLE_SPEED));
+}
+
+float BloodFx::NewTime() const
+{
+  return 0; // was: (float)rand() / (float)RAND_MAX * 5.0f;
+}
+
+Vec3f BloodFx::NewAcc() const
+{
+  return Vec3f(0, BLOOD_GRAVITY, 0); 
+}
+
+void BloodFx::HandleDeadParticle(Particle2d* p)
+{
+  Recycle(p); // for testing
+}
+
 Dino::Dino()
 {
   AddAI(new AIIdle);
@@ -97,8 +143,18 @@ void Dino::Eat(Pet* pet)
   // Change to eating behaviour
   SetAI(AIEatPet::NAME);
   m_ai->SetTarget(pet);
+}
 
-  // This pet disappears - TODO Gory effect
+void Dino::StartBloodEffect()
+{
+  m_bloodFx->Start();
+  // Make sure it's not culled
+  *(m_bloodFx->GetAABB()) = *(m_pSceneNode->GetAABB());
+}
+
+bool Dino::IsEating() const
+{
+  return (m_ai->GetName() == AIEatPet::NAME);
 }
 
 void Dino::Update()
@@ -158,14 +214,23 @@ bool Dino::Load(File* f)
 
   bc->SetGameObj(this);
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(bc);
+  PSceneNode root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
   {
     return false;
   }
+
+  // Blood particle effect for when pet eaten
+  m_bloodFx = new BloodFx(this);
+  if (!m_bloodFx->Load(f))
+  {
+    f->ReportError("Failed to load dino blood fx");
+    return false;
+  }
+  root->AddChild(m_bloodFx.GetPtr());
 
   return true;
 }
