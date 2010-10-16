@@ -107,7 +107,8 @@ void Bonus::Update()
   }
   else
   {
-    UpdateShadow();
+    // TODO ?? Do we need to clear shadow Coll meshes ?? 
+    //UpdateShadow();
   }
 
   // Spin around
