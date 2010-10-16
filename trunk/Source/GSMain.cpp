@@ -107,6 +107,11 @@ void Collisions()
     for ( ; jt != gos->end(); ++jt)
     {
       PGameObject go2 = jt->second;
+
+      if (((WWGameObject*)go2.GetPtr())->IsDead())
+      {
+        continue;
+      }
       
       AABB* aabb1 = go1->GetAABB();
       AABB* aabb2 = go2->GetAABB();
