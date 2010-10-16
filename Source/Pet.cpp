@@ -6,6 +6,7 @@
 #include "AIGoHighGround.h"
 #include "AIIdle.h"
 #include "AIFalling.h"
+#include "Floor.h"
 
 namespace Amju
 {
@@ -63,14 +64,14 @@ bool Pet::Load(File* f)
   SetAI(AIIdle::NAME);
 
   // TODO different colours
-  if (!bc->LoadTextures("pz-pet1a.bmp", "pz-pet1.bmp"))
+  if (!bc->LoadTextures("pz-pet1a.png", "pz-pet1.png"))
   {
     return false;
   }
 
   bc->SetGameObj(this);
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(bc);
+  PSceneNode root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
@@ -78,6 +79,31 @@ bool Pet::Load(File* f)
     return false;
   }
 
+  // Create blood pool scene node
+  m_bloodPool = new Shadow;
+  if (!m_bloodPool->Load(f))
+  {
+    f->ReportError("Failed to load blood pool");
+    return false;
+  }
+  root->AddChild(m_bloodPool);
+  m_bloodPool->SetVisible(true); // TODO
+
   return true;
+}
+
+void Pet::OnEaten()
+{
+  m_bloodPool->AddCollisionMesh(m_floor->GetCollisionMesh());
+
+  m_bloodPool->SetLocalTransform(m_pSceneNode->GetLocalTransform());
+  *(m_bloodPool->GetAABB()) = *(m_pSceneNode->GetAABB());
+  m_bloodPool->SetVisible(true); 
+  // TODO Timer ?
+
+  SetDead(true);
+
+  // TODO if anims done
+  //((Pet*)m_target)->SetAnim("eaten");
 }
 }
