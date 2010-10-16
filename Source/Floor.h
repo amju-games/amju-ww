@@ -53,7 +53,7 @@ public:
   // Set moment of each object - combined effect of all objects causes tilt
   void SetObjMassPos(float mass, const Vec3f& pos);
 
-  const CollisionMesh& GetCollisionMesh() const;
+  CollisionMesh* GetCollisionMesh();
 
   const Vec3f& GetHighPoint() const;
 

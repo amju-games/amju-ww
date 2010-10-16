@@ -133,9 +133,9 @@ bool Floor::Load(File* f)
   return true;
 }
 
-const CollisionMesh& Floor::GetCollisionMesh() const
+CollisionMesh* Floor::GetCollisionMesh()
 {
-  return m_collMesh;
+  return &m_collMesh;
 }
 
 Matrix* Floor::GetMatrix()
