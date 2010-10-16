@@ -89,10 +89,6 @@ Shadow::Shadow()
   m_forceRefresh = true;
 
   m_size = 0;
-  for (int i = 0; i < MAX_MESHES; i++)
-  {
-    m_mesh[i] = 0;
-  }
 
   SetBlended(true);
 }
@@ -126,14 +122,28 @@ void Shadow::SetSize(float size)
   m_size = size;
 }
 
-void Shadow::SetCollisionMesh(CollisionMesh* mesh)
+void Shadow::ClearCollisionMeshes()
 {
+  m_mesh.clear();
+}
+
+void Shadow::AddCollisionMesh(CollisionMesh* mesh)
+{
+  m_mesh.push_back(mesh);
+
+/*
+  if (mesh == m_mesh[0])
+  {
+    return;
+  }
+
   // Lose oldest mesh
   for (int i = MAX_MESHES - 1; i > 0; i--)
   {
     m_mesh[i] = m_mesh[i - 1];
   }
   m_mesh[0] = mesh;
+*/
 }
 
 void Shadow::Draw()
@@ -141,12 +151,10 @@ void Shadow::Draw()
   Assert(m_size > 0);
   Vec3f pos(m_combined[12], m_combined[13], m_combined[14]);
 
-  for (int i = 0; i < MAX_MESHES; i++)
+  for (unsigned int i = 0; i < m_mesh.size(); i++)
   {
-    if (m_mesh[i])
-    {
-      MyDraw(pos, m_size, *(m_mesh[i]));
-    }
+    Assert(m_mesh[i]);
+    MyDraw(pos, m_size, *(m_mesh[i]));
   }
 }
 
@@ -305,6 +313,10 @@ void Shadow::RecalculateList(
   // Get the height poly which is the heighest below y.
 
   float h = 0;
+  // Get highest point on coll mesh ?
+  // Better if we can avoid doing this. Shadow centre (x, z) mat be off
+  //  the mesh!
+  /*
   if (!collMesh.GetY(Vec2f(x, z), &h)) // TODO Must be highest
   {
     return;
@@ -330,6 +342,8 @@ std::cout << "SHADOW: TOO HIGH TO CAST SHADOW??\n";
     RecalcMult(y, h);
 // TODO TEMP TEST//    size *= m_mult;
   }
+  */
+
   Assert(size > 0);
 
   // Redo the list of shadow vertices. 
