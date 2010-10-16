@@ -1,5 +1,5 @@
 #include "AIEatPet.h"
-#include "Npc.h"
+#include "Dino.h"
 #include "Pet.h"
 #include <DegRad.h>
 
@@ -39,9 +39,9 @@ void AIEatPet::Update()
   
   if (m_time > 0.25f) // TODO when angle reached
   {
-    ((Pet*)m_target)->SetDead(true);
-    // TODO if anims done
-    //((Pet*)m_target)->SetAnim("eaten");
+    ((Dino*)m_npc)->StartBloodEffect();
+
+    ((Pet*)m_target)->OnEaten();
   }
 }
 
