@@ -45,6 +45,10 @@ bool ParticleEffect2d::Load(File* f)
     f->ReportError("Expected particle max time");
     return false;
   }
+
+  m_tris.resize(m_numParticles * 2);
+  m_particles.resize(m_numParticles);
+
   return true;
 }
 
@@ -73,19 +77,30 @@ void ParticleEffect2d::Draw()
   AmjuGL::PopAttrib();
 }
 
-Vec3f ParticleEffect2d::NewVel()
+Vec3f ParticleEffect2d::NewPos() const
 {
   return Vec3f();
 }
 
-Vec3f ParticleEffect2d::NewAcc()
+Vec3f ParticleEffect2d::NewVel() const
 {
   return Vec3f();
 }
 
-float ParticleEffect2d::NewTime()
+Vec3f ParticleEffect2d::NewAcc() const
+{
+  return Vec3f();
+}
+
+float ParticleEffect2d::NewTime() const
 {
   return 0;
+}
+
+void ParticleEffect2d::Recycle(Particle2d* p)
+{
+  p->m_pos = NewPos(); // was: Vec3f(m_local[12], m_local[13], m_local[14]);
+  p->m_time = NewTime();
 }
 
 void ParticleEffect2d::HandleDeadParticle(Particle2d* p)
@@ -120,6 +135,7 @@ void ParticleEffect2d::Update()
     if (p.m_time > m_maxTime)
     {
       HandleDeadParticle(&p);
+      // TODO continue ??
     }
     isDead &= p.m_isDead;
 
@@ -170,12 +186,10 @@ void ParticleEffect2d::Start()
 {
   m_isDead = false;
 
-  m_tris.resize(m_numParticles * 2);
-  m_particles.resize(m_numParticles);
   for (int i = 0; i < m_numParticles; i++)
   {
     Particle2d& p = m_particles[i];
-    p.m_pos = Vec3f(0, 0, 0); //m_local[12], m_local[13], m_local[14]);
+    p.m_pos = NewPos();
     p.m_vel = NewVel();
     p.m_acc = NewAcc();
     p.m_time = NewTime();

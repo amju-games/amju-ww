@@ -32,11 +32,16 @@ public:
   void Start(); 
 
   // Set up functions, called for each particle on Reset
-  virtual Vec3f NewVel();
-  virtual Vec3f NewAcc();
-  virtual float NewTime();
+  virtual Vec3f NewPos() const;
+  virtual Vec3f NewVel() const;
+  virtual Vec3f NewAcc() const;
+  virtual float NewTime() const;
   // Called when a particle time expires
   virtual void HandleDeadParticle(Particle2d*);
+
+protected:
+  // Call from HandleDeadParticle to recycle 
+  void Recycle(Particle2d*);
 
 private:
   float m_size; // side length of square billboards
