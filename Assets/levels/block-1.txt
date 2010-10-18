@@ -36,6 +36,15 @@ amju2a.png
 // Shadow
 shadow.png
 20
+// Effect
+// image 
+sparkle1.png
+// size
+10.0
+// number
+10
+// max time
+2.0
 end
 
 // Camera: for a specific viewport, pointing at a specific player

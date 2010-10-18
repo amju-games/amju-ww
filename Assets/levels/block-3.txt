@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-6
+7
 
 // Translate for next block
 500, 0, 0
@@ -44,6 +44,17 @@ plat_wood2.png
 50.0
 end
 
+pet
+110
+// Start pos
+0, 20, 0
+// Shadow
+shadow.png
+20
+// blood pool
+gore.png
+50
+end
 
 dino
 103
@@ -54,6 +65,15 @@ dino
 // Shadow
 shadow.png
 20
+// Blood Effect
+// image 
+gore.png
+// size
+2.0
+// number
+50
+// max time
+2.0
 end
 
 dino
@@ -65,6 +85,15 @@ dino
 // Shadow
 shadow.png
 20
+// Blood Effect
+// image 
+gore.png
+// size
+2.0
+// number
+50
+// max time
+2.0
 end
 
 
