@@ -67,15 +67,7 @@ void OnFloor::SetIsFalling(bool b)
 
 void OnFloor::SetFloor(Floor* floor)
 {
-  if (floor != m_floor)
-  {
-    m_floor = floor;
-    if (m_shadow)
-    {
-      m_shadow->SetVisible(!m_isDead && m_floor != 0);
-      UpdateShadow();
-    }
-  }
+  m_floor = floor;
 }
 
 const Floor* OnFloor::GetFloor() const
@@ -123,14 +115,32 @@ void OnFloor::Reset()
 
 void OnFloor::FindFloor()
 {
+  if (m_shadow)
+  {
+    m_shadow->ClearCollisionMeshes();
+  }
+
   for (unsigned int i = 0; i < s_floors.size(); i++)
   {
     // In general area ? - i.e. do our bounding boxes intersect ?
     Floor* f = s_floors[i];
-    if (!GetAABB()->Intersects(*(f->GetAABB())))
+    const AABB& floorAABB = *(f->GetAABB());
+
+    AABB aabb = *GetAABB();
+    // Extend downwards to check for casting a shadow
+    aabb.SetMin(1, aabb.GetMin(1) - 100.0f);
+    // Do we cast a shadow on this floor
+    if (m_shadow && aabb.Intersects(floorAABB))
+    {
+      m_shadow->SetVisible(!m_isDead);
+      m_shadow->AddCollisionMesh(f->GetCollisionMesh());
+    }
+
+    if (!GetAABB()->Intersects(floorAABB))
     {
       continue;
     }
+
     // Touching surface ?
     float y = 0;
     if (f->GetY(Vec2f(m_pos.x, m_pos.z), &y))
@@ -242,19 +252,6 @@ void OnFloor::UpdateY()
   }
 }
 
-void OnFloor::UpdateShadow()
-{
-  Assert(m_shadow);
-  if (m_floor)
-  {
-    m_shadow->SetCollisionMesh(const_cast<CollisionMesh*>(&(m_floor->GetCollisionMesh())));
-  }
-  else
-  {
-    m_shadow->SetCollisionMesh(0);
-  }
-}
-
 void OnFloor::Update()
 {
   WWGameObject::Update();
@@ -269,9 +266,6 @@ void OnFloor::Update()
   // Set shadow AABB to same as Scene Node so we don't cull it by mistake
   *(m_shadow->GetAABB()) = *(m_pSceneNode->GetAABB());
 
-  // Uncommenting doesn't fix shadow bugs
-  //UpdateShadow(); // done in SetFloor() so we only set when floor changes
-
   UpdatePhysics();
 }
 
@@ -279,10 +273,7 @@ void OnFloor::UpdatePhysics()
 {
   // If we don't know which floor we are on, try to find the closest floor
   //  underneath us
-  if (!m_floor)
-  {
-    FindFloor();
-  }
+  FindFloor();
 
   // Slide in direction of floor tilt
   SetTilt();
