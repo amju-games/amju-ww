@@ -75,7 +75,7 @@ bool Block::Load(File* f)
   // Load position
   if (!LoadVec3(f, &m_pos))
   {
-    f->ReportError("Expected exit position");
+    f->ReportError("Expected block position");
     return false;
   }
   m_pos = m_pos * m_mat;
