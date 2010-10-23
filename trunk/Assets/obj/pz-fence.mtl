@@ -1,3 +1,2 @@
-# j.c. convert leaf file to obj
-newmtl pz-fence
+newmtl pz_fence
 map_Kd pz-fence.png
