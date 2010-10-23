@@ -26,6 +26,7 @@ public:
 
 public:
   SceneNode* m_pSceneNode;
+  float m_yRot;
 };
 }
 
