@@ -37,6 +37,8 @@ public:
   bool IsFalling() const;
   void SetIsFalling(bool);
 
+  const Vec3f& GetOldPos() const;
+
 protected:
   void UpdatePhysics();
   void UpdateShadow();
@@ -88,6 +90,9 @@ protected:
 
   // All objects which are on a floor can cast a shadow onto it
   Shadow* m_shadow;
+
+  // Keep track of pos last frame
+  Vec3f m_oldPos;
 };
 }
 
