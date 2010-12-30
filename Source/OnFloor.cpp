@@ -254,6 +254,8 @@ void OnFloor::UpdateY()
 
 void OnFloor::Update()
 {
+  m_oldPos = m_pos;
+
   WWGameObject::Update();
 
   if (m_isDead)
@@ -267,6 +269,11 @@ void OnFloor::Update()
   *(m_shadow->GetAABB()) = *(m_pSceneNode->GetAABB());
 
   UpdatePhysics();
+}
+
+const Vec3f& OnFloor::GetOldPos() const
+{
+  return m_oldPos;
 }
 
 void OnFloor::UpdatePhysics()
