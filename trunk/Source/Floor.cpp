@@ -24,10 +24,11 @@ FloorMesh::FloorMesh(Floor* floor) : m_floor(floor)
 
 void FloorMesh::Draw()
 {
+  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
   m_pTex->UseThisTexture();
   SceneMesh::Draw();
 
-  m_floor->DrawCollisionMesh();
+  //m_floor->DrawCollisionMesh();
 }
 
 void FloorMesh::SetTexture(PTexture tex)
