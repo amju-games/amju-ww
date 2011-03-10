@@ -2,6 +2,7 @@
 // version
 1
 // resources
+curvedFloorUV2.png
 pz-squirrel.md2
 pz-cat.md2
 pz-dog.md2
