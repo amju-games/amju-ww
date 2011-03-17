@@ -15,12 +15,12 @@
 //       -50   0   50   100
 
 // Num Objects
-5
+7
 
 // Translate for next block
 150, 0, 0
 
-
+// 1
 // Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
 player
 101
@@ -47,6 +47,7 @@ sparkle1.png
 2.0
 end
 
+// 2
 // Camera: for a specific viewport, pointing at a specific player
 camera
 // Game Object ID
@@ -57,32 +58,64 @@ camera
 101
 end
 
+// 3
 staticfloor
 2
 // Centre/pivot point
 0, 0, 0
 // Rot
-90
+0
 // Floor mesh + texture
 //block_rect_1x1.obj
 //plat_rect_4x4_std.obj
-block_rect_curved_1x1.obj
+block_rect_curved_hill_4x2.obj
 //plat_wood1.png
 curvedFloorUV2.png
 end
 
+// 4
 staticfloor
 3
 // Centre/pivot point
--150, 0, 0
+-300, 200, 0
 // Rot
 0
 // Floor mesh + texture
-block_rect_1x1.obj
-//plat_rect_4x4_std.obj
-plat_wood1.png
+//block_rect_1x1.obj
+//plat_wood1.png
+block_rect_curved_2x2.obj
+curvedFloorUV2.png
 end
 
+// 5
+staticfloor
+4
+// Centre/pivot point
+-600, 0, 0
+// Rot
+180
+// Floor mesh + texture
+//block_rect_1x1.obj
+//plat_wood1.png
+block_rect_curved_hill_4x2.obj
+curvedFloorUV2.png
+end
+
+// 6
+staticfloor
+5
+// Centre/pivot point
+-1000, -200, 0
+// Rot
+180
+// Floor mesh + texture
+//block_rect_1x1.obj
+//plat_wood1.png
+block_rect_curved_hill_4x2.obj
+curvedFloorUV2.png
+end
+
+// 7
 tut-trigger
 // ID
 10
@@ -92,6 +125,7 @@ tut-trigger
 @@@Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!*
 end
 
+// 8
 pet
 104
 // Start pos
@@ -101,6 +135,7 @@ shadow.png
 20
 end
 
+// 9
 dino
 105
 // Start pos
@@ -111,9 +146,9 @@ shadow.png
 end
 
 
-
+// 10
 floor
-3
+13
 // Centre/pivot point
 200, 200, 0
 // Rot
@@ -129,8 +164,9 @@ plat_wood2.png
 50.0
 end
 
+// 11
 staticfloor
-4
+14
 // Centre/pivot point
 400, 200, 0
 // Rot
@@ -140,8 +176,9 @@ block_rect_1x1.obj
 plat_wood1.png
 end
 
+// 12
 staticfloor
-5
+15
 // Centre/pivot point
 600, 200, 0
 // Rot
