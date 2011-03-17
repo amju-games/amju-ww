@@ -17,7 +17,6 @@ const char* GSLoadLevel::NAME = "load-level";
 
 void SetGameMode(GameMode mode)
 {
-  ////((GSLoadLevel*)TheGame::Instance()->GetState(TheGSLoadLevel::Instance()))->
   TheGSLoadLevel::Instance()->SetGameMode(mode);
 }
 
@@ -25,7 +24,14 @@ class CommandGo : public GuiCommand
 {
   virtual bool Do()
   {
-    TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
+    if (TheGSLoadLevel::Instance()->GetGameMode() == AMJU_EDIT_MODE)
+    {
+      TheGame::Instance()->SetCurrentState(TheGSMainEdit::Instance());
+    }
+    else
+    {
+      TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
+    }
     return false; //no undo
   }
 };
@@ -109,8 +115,16 @@ void GSLoadLevel::Update()
 #ifdef BYPASS_TITLE
       TheGame::Instance()->SetCurrentState(GSMain::NAME);
 #else
-      m_gui->GetElementByName("go-button")->SetVisible(true);
-      m_gui->GetElementByName("progressbar")->SetVisible(false);
+      if (TheGSLoadLevel::Instance()->GetGameMode() == AMJU_ATTRACT_MODE)
+      {
+        // TODO should be attract mode state
+        TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
+      }
+      else
+      {
+          m_gui->GetElementByName("go-button")->SetVisible(true);
+         m_gui->GetElementByName("progressbar")->SetVisible(false);
+      }
 #endif
     }
   }
