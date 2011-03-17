@@ -9,7 +9,6 @@ class ContextMenu : public GuiMenu
 {
 public:
   ContextMenu();
-  virtual ~ContextMenu();
 
   // GuiElement
   virtual void Draw();
