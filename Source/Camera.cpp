@@ -151,9 +151,8 @@ bool Camera::Load(File* f)
     // No viewport for this ID. No need to create this camera.
     return true;
   }
-  vp->SetCamera(this);
-
   m_pSceneNode = new SceneNodeCamera;
+  vp->SetCamera(this);
 
   return true;
 }
