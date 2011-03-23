@@ -3,6 +3,7 @@
 
 #include "GSMain.h"
 #include "ContextMenu.h"
+#include "WWGameObject.h"
 #include <Singleton.h>
 
 namespace Amju
@@ -42,13 +43,19 @@ public:
   virtual void OnActive();
 
   // EventListener overrides
-//  virtual void OnButtonEvent(const ButtonEvent&);
-//  virtual void OnMouseButtonEvent(const MouseButtonEvent&);
- 
+  //virtual void OnButtonEvent(const ButtonEvent&);
+  virtual void OnMouseButtonEvent(const MouseButtonEvent&);
+  virtual void OnCursorEvent(const CursorEvent&);  
+
 protected:
   // Box where new item can go, or item in box can be edited..?
 
   PContextMenu m_menu;
+  //Vec2f m_cursorPos;
+  WWGameObject* m_selectedObj;
+  Vec2f m_mouseScreen;
+  Vec3f m_mouseWorld;
+  bool m_isSelecting;
 };
 typedef Singleton<GSMainEdit> TheGSMainEdit;
 }
