@@ -283,6 +283,7 @@
     <ClCompile Include="..\..\..\Source\Camera.cpp" />
     <ClCompile Include="..\..\..\Source\CollideDinoDino.cpp" />
     <ClCompile Include="..\..\..\Source\CollideDinoPet.cpp" />
+    <ClCompile Include="..\..\..\Source\CollideObjectFence.cpp" />
     <ClCompile Include="..\..\..\Source\CollideObjectFloor.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerBlock.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerBonus.cpp" />
@@ -298,6 +299,7 @@
     <ClCompile Include="..\..\..\Source\EditModeCamera.cpp" />
     <ClCompile Include="..\..\..\Source\EditViewport.cpp" />
     <ClCompile Include="..\..\..\Source\Exit.cpp" />
+    <ClCompile Include="..\..\..\Source\Fence.cpp" />
     <ClCompile Include="..\..\..\Source\Floor.cpp" />
     <ClCompile Include="..\..\..\Source\GSEditMenu.cpp" />
     <ClCompile Include="..\..\..\Source\GSGameOver.cpp" />
@@ -360,6 +362,7 @@
     <ClInclude Include="..\..\..\Source\EditModeCamera.h" />
     <ClInclude Include="..\..\..\Source\EditViewport.h" />
     <ClInclude Include="..\..\..\Source\Exit.h" />
+    <ClInclude Include="..\..\..\Source\Fence.h" />
     <ClInclude Include="..\..\..\Source\Floor.h" />
     <ClInclude Include="..\..\..\Source\GSEditMenu.h" />
     <ClInclude Include="..\..\..\Source\GSGameOver.h" />

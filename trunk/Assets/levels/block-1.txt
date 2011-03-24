@@ -15,7 +15,7 @@
 //       -50   0   50   100
 
 // Num Objects
-7
+8
 
 // Translate for next block
 150, 0, 0
@@ -116,6 +116,22 @@ curvedFloorUV2.png
 end
 
 // 7
+fence
+7
+-1150, -200, 50
+0
+pz-fence.obj
+end
+
+// 8
+fence
+8
+-1150, -200, -50
+0
+pz-fence.obj
+end
+
+
 tut-trigger
 // ID
 10
