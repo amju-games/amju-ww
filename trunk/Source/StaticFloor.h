@@ -9,6 +9,7 @@ class StaticFloor : public Floor
 {
 public:
   static const char* NAME;
+  virtual const char* GetTypeName() const;
   virtual void Update();
   virtual bool Load(File*);
 };
