@@ -76,6 +76,7 @@ void GSMainEdit::Draw()
     LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
 
     Game::GameObjects* objs = TheGame::Instance()->GetGameObjects();
+    float bestDist = 999999.9f;
     for (auto it = objs->begin(); it != objs->end(); ++it)
     {
       GameObject* pgo = it->second;
@@ -85,20 +86,43 @@ void GSMainEdit::Draw()
       {
         // Line seg intersects this box
         Assert(dynamic_cast<WWGameObject*>(pgo));
-        m_selectedObj = (WWGameObject*)pgo;
-        std::cout << "Selected " << m_selectedObj->GetTypeName() << " ID: " << m_selectedObj->GetId() << "\n";
+        // Choose object whose centre (position) is closest to line seg..?
+        float dist = LineSeg(mouseWorldNear, mouseWorldFar).SqDist(pgo->GetPos());
+        //float dist = (mouseWorldNear - pgo->GetPos()).SqLen(); // pick closest
+        if (dist < bestDist)
+        {
+          bestDist = dist;
+          m_selectedObj = (WWGameObject*)pgo;
+        }
       }
     }
+    if (m_selectedObj)
+    {
+      const std::string name = m_selectedObj->GetTypeName();
+      std::cout << "Selected " << name << " ID: " << m_selectedObj->GetId() << "\n";
 
-    AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
-    AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+      // TODO
+      m_menu->Clear();
+      m_menu->AddItem(new GuiMenuItem("Move " + name));
+      m_menu->AddItem(new GuiMenuItem("Rotate"));
+      m_menu->AddItem(new GuiMenuItem("Duplicate"));
+      m_menu->AddItem(new GuiMenuItem("Delete"));
+    }
+    else
+    {
+      m_menu->Clear();
+      m_menu->AddItem(new GuiMenuItem("Nothing selected"));
+    }
 
-    AmjuGL::DrawLine(
-      AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z),
-      AmjuGL::Vec3(mouseWorldNear.x, mouseWorldNear.y, mouseWorldNear.z)
-    );
+    //AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
+    //AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
 
-    AmjuGL::PopAttrib();
+    //AmjuGL::DrawLine(
+    //  AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z),
+    //  AmjuGL::Vec3(mouseWorldNear.x, mouseWorldNear.y, mouseWorldNear.z)
+    //);
+
+    //AmjuGL::PopAttrib();
   }
 }
 
