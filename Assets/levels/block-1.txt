@@ -18,7 +18,7 @@
 8
 
 // Translate for next block
-150, 0, 0
+300, 0, 0
 
 // 1
 // Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
@@ -118,7 +118,7 @@ end
 // 7
 fence
 7
--1150, -200, 50
+-1175, -200, 50
 0
 pz-fence.obj
 end
@@ -126,7 +126,7 @@ end
 // 8
 fence
 8
--1150, -200, -50
+-1175, -200, -50
 0
 pz-fence.obj
 end
