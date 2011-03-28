@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-7
+10
 
 // Translate for next block
 500, 0, 0
@@ -26,6 +26,22 @@ plat_wood2.png
 50.0
 end
 
+floor
+31
+// Centre/pivot point
+250, 0, 0
+// Rot
+0
+// Floor mesh
+plat_rect_2x2_std.obj
+plat_wood2.png
+// Rotation axes flags: x=1, y=2, z=4
+4
+// max AABB height
+100
+// Moment of inertia
+5.0
+end
 
 floor
 4
@@ -56,6 +72,29 @@ gore.png
 50
 end
 
+pet
+111
+// Start pos
+0, 20, 30
+// Shadow
+shadow.png
+20
+// blood pool
+gore.png
+50
+end
+
+pet
+112
+// Start pos
+0, 20, -30
+// Shadow
+shadow.png
+20
+// blood pool
+gore.png
+50
+end
 dino
 103
 // Start pos
