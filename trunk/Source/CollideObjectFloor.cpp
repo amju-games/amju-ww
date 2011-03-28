@@ -4,6 +4,7 @@
 #include "Floor.h"
 #include "Rect.h"
 #include "Pet.h"
+#include "StaticFloor.h"
 
 namespace Amju
 {
@@ -81,12 +82,26 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   }
 }
 
-static bool b1 = TheCollisionManager::Instance()->Add(
-  Player::NAME, Floor::NAME, &CollideObjectFloor);
+static bool b[] = 
+{
+  TheCollisionManager::Instance()->Add(
+    Player::NAME, Floor::NAME, &CollideObjectFloor),
 
-static bool b2 = TheCollisionManager::Instance()->Add(
-  Dino::NAME, Floor::NAME, &CollideObjectFloor);
+  TheCollisionManager::Instance()->Add(
+    Dino::NAME, Floor::NAME, &CollideObjectFloor),
 
-static bool b3 = TheCollisionManager::Instance()->Add(
-  Pet::NAME, Floor::NAME, &CollideObjectFloor);
+  TheCollisionManager::Instance()->Add(
+    Pet::NAME, Floor::NAME, &CollideObjectFloor),
+
+  // O Noes, have to duplicate because there are 2 floor types?! 
+  // How to avoid this ?
+  TheCollisionManager::Instance()->Add(
+    Player::NAME, StaticFloor::NAME, &CollideObjectFloor),
+
+  TheCollisionManager::Instance()->Add(
+    Dino::NAME, StaticFloor::NAME, &CollideObjectFloor),
+
+  TheCollisionManager::Instance()->Add(
+    Pet::NAME, StaticFloor::NAME, &CollideObjectFloor),
+};
 }
