@@ -11,10 +11,38 @@ namespace Amju
 {
 const char* GSMainEdit::NAME = "main-edit";
 
+// Menu item handlers
+void OnMove()
+{
+  TheGSMainEdit::Instance()->OnMove();
+}
+
+void OnRotate()
+{
+}
+
+void OnDuplicate()
+{
+}
+
+void OnDelete()
+{
+}
+
+void OnProperties()
+{
+}
+
+
 GSMainEdit::GSMainEdit()
 {
   m_isSelecting = false;
   m_selectedObj = 0;
+}
+
+void GSMainEdit::OnMove()
+{
+  // Change mode so arrow keys move currently selected object
 }
 
 void GSMainEdit::OnActive()
@@ -103,10 +131,11 @@ void GSMainEdit::Draw()
 
       // TODO
       m_menu->Clear();
-      m_menu->AddItem(new GuiMenuItem("Move " + name));
-      m_menu->AddItem(new GuiMenuItem("Rotate"));
-      m_menu->AddItem(new GuiMenuItem("Duplicate"));
-      m_menu->AddItem(new GuiMenuItem("Delete"));
+      m_menu->AddItem(new GuiMenuItem("Move " + name, Amju::OnMove));
+      m_menu->AddItem(new GuiMenuItem("Rotate", OnRotate));
+      m_menu->AddItem(new GuiMenuItem("Duplicate", OnDuplicate));
+      m_menu->AddItem(new GuiMenuItem("Delete", OnDelete));
+      m_menu->AddItem(new GuiMenuItem("Properties...", OnProperties));
     }
     else
     {

@@ -47,6 +47,9 @@ public:
   virtual void OnMouseButtonEvent(const MouseButtonEvent&);
   virtual void OnCursorEvent(const CursorEvent&);  
 
+  // Menu item handlers
+  void OnMove();
+
 protected:
   // Box where new item can go, or item in box can be edited..?
 
