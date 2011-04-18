@@ -63,6 +63,11 @@ void Block::Update()
   Matrix mat;
   mat.Translate(m_pos);
   m_pSceneNode->SetLocalTransform(mat);
+
+  // TODO As crates can rotate, recalc OBB and AABB ?
+  // This kind of works but errors accumulate. Reset box coords each time.
+  Vec3f dPos = m_pos - GetOldPos();
+  m_pSceneNode->GetAABB()->Translate(dPos);  // ?
 }
 
 bool Block::Load(File* f)
