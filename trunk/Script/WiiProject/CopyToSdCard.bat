@@ -20,7 +20,7 @@ REM Compile assets and copy glue file
 
 REM TODO Build wii-specific glue files
 
-xcopy /Y ..\..\Build\CompiledAssets\data-win.glue %SD_DIR%\%APP_NAME%\data\data-wii.glue
+xcopy /Y ..\..\Build\CompiledAssets\data-wii.glue %SD_DIR%\%APP_NAME%\data\data-wii.glue
 xcopy /Y ..\..\Build\CompiledAssets\music-wii.glue %SD_DIR%\%APP_NAME%\data\music-wii.glue
 
 
