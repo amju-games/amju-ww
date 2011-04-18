@@ -1,0 +1,53 @@
+// Temp title gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+title-comp
+// Num children
+1
+
+// Button 1 - start
+// element type
+gui-button
+
+// Element name
+start-button
+
+// pos (coords are -1..1)
+-0.8, -0.4
+// size
+1.6, 0.4
+
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.png
+
+// Text
+start
+// Font name, size
+cheri, 2.0
+
+
+
+// Button 2 - quit
+// element type
+gui-button
+
+// Element name
+quit-button
+
+// pos (coords are -1..1)
+-0.4, -0.72
+// size
+0.8, 0.2
+
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.png
+
+// Text
+quit
+// Font name, size
+cheri, 1.0
+
