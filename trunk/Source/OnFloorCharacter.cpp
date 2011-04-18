@@ -41,6 +41,11 @@ void OnFloorCharacter::SetAnim(const std::string& animName)
   ((Animated*)m_pSceneNode)->SetAnim(animName);
 }
 
+void OnFloorCharacter::StopRotating()
+{
+  m_dir = m_dirCurrent;
+}
+
 void OnFloorCharacter::Update()
 {
   OnFloor::Update();
