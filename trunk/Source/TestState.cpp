@@ -11,6 +11,9 @@
 #include "SceneMesh.h"
 #include "BonusParticleEffect.h"
 #include "File.h"
+#include "RBBox.h"
+#include "RBSphere.h"
+#include "Screen.h"
 
 namespace Amju
 {
@@ -90,12 +93,39 @@ void TestState::OnActive()
 
 void TestState::Draw()
 {
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+  const float FOVY = 60.0f;
+  const float NEAR = 1.0f; 
+  const float FAR = 3000.0f;
+  float aspect = (float) Screen::X() / (float) Screen::Y();
+  AmjuGL::SetPerspectiveProjection(FOVY, aspect, NEAR, FAR);
+
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
-  AmjuGL::LookAt(0, 100, 100,   0, 0, 0.0f,  0, 1.0f, 0);
+  AmjuGL::LookAt(0, 0, 20,   0, 0, 0.0f,  0, 1.0f, 0);
 
-  GetGameSceneGraph()->Update();
-  GetGameSceneGraph()->Draw();
+  static RBBox rb;
+  static RBSphere rs;
+  static bool first = true;
+  if (first)
+  {
+    first = false;
+    rb.SetPos(Vec3f(0, 4, 0));
+    rs.SetPos(Vec3f(3, 4, 0));
+
+    //rb.AddForce(Vec3f(0, -10, 0)); // one-time acc, should give constant vel
+    //rb.AddTorque(Vec3f(0, -4, 0), Vec3f(2, 1, 0));
+    //rb.AddTorque(Vec3f(0, 10, 0), Vec3f(-2, 1, 0));
+  }
+  rb.AddForce(Vec3f(0, -1, 0)); // every frame - gravity
+  rs.AddForce(Vec3f(0, -1, 0)); // every frame - gravity
+  rb.Update();
+  rb.Draw();
+  rs.Update();
+  rs.Draw();
+  //GetGameSceneGraph()->Update();
+  //GetGameSceneGraph()->Draw();
 
   /*
   AmjuGL::DrawLighting(
@@ -128,9 +158,9 @@ void TestState::Draw2d()
 //  Font* font = (Font*)TheResourceManager::Instance()->GetRes("font2d/cheri-font.font");
   Font* font = (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
 
-  font->Print(-1, 0.5,  "abcdefghijklmnopqrstuvwxyz");
-  font->Print(-1, 0,    "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-  font->Print(-1, -0.5, "!\"£$%^&*()_-+=[{}#~:;@'<,>.?/");
+  //font->Print(-1, 0.5,  "abcdefghijklmnopqrstuvwxyz");
+  //font->Print(-1, 0,    "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  //font->Print(-1, -0.5, "!\"£$%^&*()_-+=[{}#~:;@'<,>.?/");
   
 
   TheCursorManager::Instance()->Draw();

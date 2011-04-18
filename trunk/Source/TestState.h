@@ -3,6 +3,7 @@
 
 #include "GameState.h"
 #include "ObjMesh.h"
+#include "Singleton.h"
 
 namespace Amju
 {
@@ -18,6 +19,8 @@ public:
 protected:
   PObjMesh m_mesh;
 };
+
+typedef Singleton<TestState> TheTestState;
 }
 
 #endif
