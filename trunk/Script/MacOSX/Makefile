@@ -15,11 +15,11 @@
 .SECONDARY:
 #---------------------------------------------------------------------------------
 
-#ifeq ($(strip $(AMJULIB_MAC_SCRIPT_DIR)),)
-#$(error "Please set AMJULIB_MAC_SCRIPT_DIR in your environment.")
-#endif
+ifeq ($(strip $(AMJULIB_MAC_SCRIPT_PATH)),)
+$(error "Please set AMJULIB_MAC_SCRIPT_PATH in your environment.")
+endif
 
-#include $(AMJULIB_MAC_SCRIPT_DIR)/wii_rules
+include $(AMJULIB_MAC_SCRIPT_PATH)/mac_rules
 
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
@@ -34,7 +34,7 @@ TARGET		:=	$(BUILD)/macgame
 AMJU      := ../../../amjulib/Source
 AMJU_LIB_DIRS := \
   $(AMJU)/AmjuGL \
-  $(AMJU)/AmjuGLGCube \
+  $(AMJU)/AmjuGLOpenGL \
   $(AMJU)/Clip \
   $(AMJU)/Collision \
   $(AMJU)/Events \
@@ -61,17 +61,17 @@ AMJU_LIB_DIRS := \
   $(AMJU)/Utils \
   $(AMJU)/Utils/Zlib
   
-INCLUDES	:=	$(AMJU_LIB_DIRS)
+INCLUDES	:=	$(AMJU_LIB_DIRS) 
 SOURCES		:=	../../Source 
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS	= -save-temps -g -O2 -Wall $(MACHDEP) $(INCLUDE)
+CFLAGS	= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
 CXXFLAGS	=	$(CFLAGS)
 
-LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
+LDFLAGS	=	-g $(MACHDEP) -Wl
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
@@ -80,7 +80,11 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 # j.c. extra for SoundGekko
 
 # TODO j.c.
-LIBS	:=	-framework OpenGL -lm 
+LIBS	:= \
+	$(AMJULIB_MAC_SCRIPT_PATH)/../../Build/Mac/amjulib.a \
+	-framework OpenGL \
+	-framework GLUT \
+	-lstdc++ -lm 
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -141,14 +145,12 @@ export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
 #---------------------------------------------------------------------------------
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-					-I$(CURDIR)/$(BUILD) \
-					-I$(LIBOGC_INC)
+					-I$(CURDIR)/$(BUILD)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
 #---------------------------------------------------------------------------------
-export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib) \
-					-L$(LIBOGC_LIB)
+export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 .PHONY: $(BUILD) clean
@@ -177,6 +179,7 @@ else
 #---------------------------------------------------------------------------------
 #$(OUTPUT).dol: $(OUTPUT).elf
 $(OUTPUT): $(OFILES)
+	$(BUILDEXE)
 
 #---------------------------------------------------------------------------------
 # This rule links in binary data with the .bin extension
