@@ -24,6 +24,18 @@
 		3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */; };
 		3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.mm */; };
 		3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C40120B17C00080D0FC /* ES1Renderer.mm */; };
+		69577A18135C9C4600DBC6C5 /* CollideObjectFence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */; };
+		69577A19135C9C4600DBC6C5 /* Fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0C135C9C4600DBC6C5 /* Fence.cpp */; };
+		69577A1A135C9C4600DBC6C5 /* RBBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0E135C9C4600DBC6C5 /* RBBox.cpp */; };
+		69577A1B135C9C4600DBC6C5 /* RBIntersect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A10135C9C4600DBC6C5 /* RBIntersect.cpp */; };
+		69577A1C135C9C4600DBC6C5 /* RBSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A12135C9C4600DBC6C5 /* RBSphere.cpp */; };
+		69577A1D135C9C4600DBC6C5 /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A14135C9C4600DBC6C5 /* RigidBody.cpp */; };
+		69577A1E135C9C4600DBC6C5 /* Unproject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A16135C9C4600DBC6C5 /* Unproject.cpp */; };
+		69577A29135C9C7C00DBC6C5 /* ClipLineSegBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A23135C9C7C00DBC6C5 /* ClipLineSegBox.cpp */; };
+		69577A2A135C9C7C00DBC6C5 /* OBB2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A25135C9C7C00DBC6C5 /* OBB2.cpp */; };
+		69577A2B135C9C7C00DBC6C5 /* OBB3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A27135C9C7C00DBC6C5 /* OBB3.cpp */; };
+		69577A34135C9CB000DBC6C5 /* DrawOBB2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A30135C9CB000DBC6C5 /* DrawOBB2.cpp */; };
+		69577A35135C9CB000DBC6C5 /* DrawOBB3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A32135C9CB000DBC6C5 /* DrawOBB3.cpp */; };
 		6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B7B3B121049DD00CD925B /* EventTypes.cpp */; };
 		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */; };
 		6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092D11EB7A0800931FDB /* Shader.fsh */; };
@@ -376,7 +388,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6D5E0C8311EB9ACE00931FDB /* AmjuLib */;
+			remoteGlobalIDString = 6D5E0C8311EB9ACE00931FDB;
 			remoteInfo = AmjuLib;
 		};
 /* End PBXContainerItemProxy section */
@@ -412,6 +424,30 @@
 		3F906C3F120B17C00080D0FC /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES1Renderer.h; path = ../../Source/iPhone/Classes/ES1Renderer.h; sourceTree = SOURCE_ROOT; };
 		3F906C40120B17C00080D0FC /* ES1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES1Renderer.mm; path = ../../Source/iPhone/Classes/ES1Renderer.mm; sourceTree = SOURCE_ROOT; };
 		3F906C43120B17C00080D0FC /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESRenderer.h; path = ../../Source/iPhone/Classes/ESRenderer.h; sourceTree = SOURCE_ROOT; };
+		69577A0A135C9C4600DBC6C5 /* AngleVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AngleVec.h; path = ../../Source/AngleVec.h; sourceTree = SOURCE_ROOT; };
+		69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideObjectFence.cpp; path = ../../Source/CollideObjectFence.cpp; sourceTree = SOURCE_ROOT; };
+		69577A0C135C9C4600DBC6C5 /* Fence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fence.cpp; path = ../../Source/Fence.cpp; sourceTree = SOURCE_ROOT; };
+		69577A0D135C9C4600DBC6C5 /* Fence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fence.h; path = ../../Source/Fence.h; sourceTree = SOURCE_ROOT; };
+		69577A0E135C9C4600DBC6C5 /* RBBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBBox.cpp; path = ../../Source/RBBox.cpp; sourceTree = SOURCE_ROOT; };
+		69577A0F135C9C4600DBC6C5 /* RBBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBBox.h; path = ../../Source/RBBox.h; sourceTree = SOURCE_ROOT; };
+		69577A10135C9C4600DBC6C5 /* RBIntersect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBIntersect.cpp; path = ../../Source/RBIntersect.cpp; sourceTree = SOURCE_ROOT; };
+		69577A11135C9C4600DBC6C5 /* RBIntersect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBIntersect.h; path = ../../Source/RBIntersect.h; sourceTree = SOURCE_ROOT; };
+		69577A12135C9C4600DBC6C5 /* RBSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBSphere.cpp; path = ../../Source/RBSphere.cpp; sourceTree = SOURCE_ROOT; };
+		69577A13135C9C4600DBC6C5 /* RBSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBSphere.h; path = ../../Source/RBSphere.h; sourceTree = SOURCE_ROOT; };
+		69577A14135C9C4600DBC6C5 /* RigidBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RigidBody.cpp; path = ../../Source/RigidBody.cpp; sourceTree = SOURCE_ROOT; };
+		69577A15135C9C4600DBC6C5 /* RigidBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RigidBody.h; path = ../../Source/RigidBody.h; sourceTree = SOURCE_ROOT; };
+		69577A16135C9C4600DBC6C5 /* Unproject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Unproject.cpp; path = ../../Source/Unproject.cpp; sourceTree = SOURCE_ROOT; };
+		69577A17135C9C4600DBC6C5 /* Unproject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Unproject.h; path = ../../Source/Unproject.h; sourceTree = SOURCE_ROOT; };
+		69577A23135C9C7C00DBC6C5 /* ClipLineSegBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClipLineSegBox.cpp; sourceTree = "<group>"; };
+		69577A24135C9C7C00DBC6C5 /* ClipLineSegBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipLineSegBox.h; sourceTree = "<group>"; };
+		69577A25135C9C7C00DBC6C5 /* OBB2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OBB2.cpp; sourceTree = "<group>"; };
+		69577A26135C9C7C00DBC6C5 /* OBB2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBB2.h; sourceTree = "<group>"; };
+		69577A27135C9C7C00DBC6C5 /* OBB3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OBB3.cpp; sourceTree = "<group>"; };
+		69577A28135C9C7C00DBC6C5 /* OBB3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBB3.h; sourceTree = "<group>"; };
+		69577A30135C9CB000DBC6C5 /* DrawOBB2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawOBB2.cpp; sourceTree = "<group>"; };
+		69577A31135C9CB000DBC6C5 /* DrawOBB2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawOBB2.h; sourceTree = "<group>"; };
+		69577A32135C9CB000DBC6C5 /* DrawOBB3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawOBB3.cpp; sourceTree = "<group>"; };
+		69577A33135C9CB000DBC6C5 /* DrawOBB3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawOBB3.h; sourceTree = "<group>"; };
 		6D5B7B3B121049DD00CD925B /* EventTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventTypes.cpp; sourceTree = "<group>"; };
 		6D5B7B3C121049DD00CD925B /* EventTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTypes.h; sourceTree = "<group>"; };
 		6D5E092011EB79E000931FDB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../Source/iPhone/Classes/EAGLView.h; sourceTree = SOURCE_ROOT; };
@@ -813,7 +849,7 @@
 		6DCA36D71265B95F00691BC1 /* SavePng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SavePng.h; path = Png/SavePng.h; sourceTree = "<group>"; };
 		6DCA38CD1265D84E00691BC1 /* data-iphone.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "data-iphone.glue"; path = "../../Build/CompiledAssets/data-iphone.glue"; sourceTree = SOURCE_ROOT; };
 		6DCE67A611ECC4BD00074997 /* StartUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartUp.h; path = ../../Source/StartUp.h; sourceTree = SOURCE_ROOT; };
-		6DCE67A711ECC4BD00074997 /* StartUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartUp.cpp; path = ../../Source/StartUp.cpp; sourceTree = SOURCE_ROOT; };
+		6DCE67A711ECC4BD00074997 /* StartUp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = StartUp.cpp; path = ../../Source/StartUp.cpp; sourceTree = SOURCE_ROOT; };
 		6DCE67CD11ECC81800074997 /* AmjuGL-OpenGL-Base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "AmjuGL-OpenGL-Base.cpp"; sourceTree = "<group>"; };
 		6DCE67CE11ECC81800074997 /* AmjuGL-OpenGL-Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AmjuGL-OpenGL-Base.h"; sourceTree = "<group>"; };
 		6DCE67D111ECC81800074997 /* AmjuGL-OpenGLES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AmjuGL-OpenGLES.h"; sourceTree = "<group>"; };
@@ -862,6 +898,20 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				69577A0A135C9C4600DBC6C5 /* AngleVec.h */,
+				69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */,
+				69577A0C135C9C4600DBC6C5 /* Fence.cpp */,
+				69577A0D135C9C4600DBC6C5 /* Fence.h */,
+				69577A0E135C9C4600DBC6C5 /* RBBox.cpp */,
+				69577A0F135C9C4600DBC6C5 /* RBBox.h */,
+				69577A10135C9C4600DBC6C5 /* RBIntersect.cpp */,
+				69577A11135C9C4600DBC6C5 /* RBIntersect.h */,
+				69577A12135C9C4600DBC6C5 /* RBSphere.cpp */,
+				69577A13135C9C4600DBC6C5 /* RBSphere.h */,
+				69577A14135C9C4600DBC6C5 /* RigidBody.cpp */,
+				69577A15135C9C4600DBC6C5 /* RigidBody.h */,
+				69577A16135C9C4600DBC6C5 /* Unproject.cpp */,
+				69577A17135C9C4600DBC6C5 /* Unproject.h */,
 				6D84161B1254C8ED00689B68 /* CollidePlayerPet.cpp */,
 				6D84161C1254C8ED00689B68 /* CollidePlayerTrigger.cpp */,
 				6D84161D1254C8ED00689B68 /* Trigger.cpp */,
@@ -1230,6 +1280,12 @@
 		6D5E0FD611EB9C2200931FDB /* Geom */ = {
 			isa = PBXGroup;
 			children = (
+				69577A23135C9C7C00DBC6C5 /* ClipLineSegBox.cpp */,
+				69577A24135C9C7C00DBC6C5 /* ClipLineSegBox.h */,
+				69577A25135C9C7C00DBC6C5 /* OBB2.cpp */,
+				69577A26135C9C7C00DBC6C5 /* OBB2.h */,
+				69577A27135C9C7C00DBC6C5 /* OBB3.cpp */,
+				69577A28135C9C7C00DBC6C5 /* OBB3.h */,
 				6D5E0FD711EB9C2200931FDB /* AABB.cpp */,
 				6D5E0FD811EB9C2200931FDB /* AABB.h */,
 				6D5E0FD911EB9C2200931FDB /* Capsule.cpp */,
@@ -1264,6 +1320,10 @@
 		6D5E0FF111EB9C2200931FDB /* GeomDraw */ = {
 			isa = PBXGroup;
 			children = (
+				69577A30135C9CB000DBC6C5 /* DrawOBB2.cpp */,
+				69577A31135C9CB000DBC6C5 /* DrawOBB2.h */,
+				69577A32135C9CB000DBC6C5 /* DrawOBB3.cpp */,
+				69577A33135C9CB000DBC6C5 /* DrawOBB3.h */,
 				6D5E0FF211EB9C2200931FDB /* DrawAABB.cpp */,
 				6D5E0FF311EB9C2200931FDB /* DrawAABB.h */,
 				6D5E0FF411EB9C2200931FDB /* DrawRect.cpp */,
@@ -1781,6 +1841,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				690396BD136843A9001E6742 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1842,6 +1903,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		690396BD136843A9001E6742 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Developer/iphoneentitlements401/gen_entitlements.py \"com.yourcompany.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -1949,6 +2026,18 @@
 				6DCA36EA1265B95F00691BC1 /* pngwtran.c in Sources */,
 				6DCA36EB1265B95F00691BC1 /* pngwutil.c in Sources */,
 				6DCA36EC1265B95F00691BC1 /* SavePng.cpp in Sources */,
+				69577A18135C9C4600DBC6C5 /* CollideObjectFence.cpp in Sources */,
+				69577A19135C9C4600DBC6C5 /* Fence.cpp in Sources */,
+				69577A1A135C9C4600DBC6C5 /* RBBox.cpp in Sources */,
+				69577A1B135C9C4600DBC6C5 /* RBIntersect.cpp in Sources */,
+				69577A1C135C9C4600DBC6C5 /* RBSphere.cpp in Sources */,
+				69577A1D135C9C4600DBC6C5 /* RigidBody.cpp in Sources */,
+				69577A1E135C9C4600DBC6C5 /* Unproject.cpp in Sources */,
+				69577A29135C9C7C00DBC6C5 /* ClipLineSegBox.cpp in Sources */,
+				69577A2A135C9C7C00DBC6C5 /* OBB2.cpp in Sources */,
+				69577A2B135C9C7C00DBC6C5 /* OBB3.cpp in Sources */,
+				69577A34135C9CB000DBC6C5 /* DrawOBB2.cpp in Sources */,
+				69577A35135C9CB000DBC6C5 /* DrawOBB3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2143,7 +2232,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -2156,7 +2246,7 @@
 				HEADER_SEARCH_PATHS = "../../../amjulib/Source/**";
 				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
