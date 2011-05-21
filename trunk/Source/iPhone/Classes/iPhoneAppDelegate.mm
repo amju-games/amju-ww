@@ -8,6 +8,9 @@
 
 #import "iPhoneAppDelegate.h"
 #import "EAGLView.h"
+#include "GSPaused.h"
+#include "GSMain.h"
+#include <Game.h>
 
 @implementation iPhoneAppDelegate
 
@@ -34,6 +37,18 @@
 {
     [glView stopAnimation];
 }
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+	// Pause if we are currently playing
+	if (Amju::TheGame::Instance()->GetState() == Amju::TheGSMain::Instance())
+	{
+	  Amju::TheGame::Instance()->SetCurrentState(Amju::TheGSPaused::Instance());
+	  // Force change - doesn't work :-( 
+      Amju::TheGame::Instance()->Update();
+	}
+}
+
 
 - (void)dealloc
 {
