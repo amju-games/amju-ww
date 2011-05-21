@@ -1,12 +1,9 @@
 //
 //  ES1Renderer.m
-//  Untitled
-//
-//  Created by Student on 05/08/2010.
-//  Copyright __MyCompanyName__ 2010. All rights reserved.
-//
 
 #import "ES1Renderer.h"
+
+#include <sys/time.h> // gettimeofday, for FPS count
 #include "StartUp.h"
 #include <Game.h>
 #include <AmjuGL.h>
@@ -18,6 +15,8 @@
 #include <SoundIPhone.h>
 #include <EventPollerImplIPhone.h>
 #include <StringUtils.h>
+#include <Font.h>
+#include <ResourceManager.h>
 
 @implementation ES1Renderer
 
@@ -84,12 +83,29 @@
 #endif
 	
     //glViewport(0, 0, backingWidth, backingHeight);
+	
+	// Get time taken to update/draw/flip, giving the 'real' FPS, not fixed to screen refresh rate
+	timeval tbefore;
+	gettimeofday(&tbefore, 0);
 
 	// TODO swap, may speed up ?
     Amju::TheGame::Instance()->Update();
     Amju::TheGame::Instance()->Draw();
-    Amju::AmjuGL::Flip();     
+	
+	timeval tafter;
+	gettimeofday(&tafter, 0);
+	double t = tafter.tv_sec - tbefore.tv_sec + (tafter.tv_usec - tbefore.tv_usec) * 1e-6;
+	std::cout << "T: " << t << " FPS: " << 1.0/t << "\n";
 
+	// Display time/frame
+	static Amju::Font* font = 
+      (Amju::Font*)Amju::TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
+	std::string s = Amju::ToString((int)(t * 1000.0f));
+	s += "ms";
+	font->Print(-0.9f, 0.8f, s.c_str());
+	
+    Amju::AmjuGL::Flip();     
+	
     // This application only creates a single color renderbuffer which is already bound at this point.
     // This call is redundant, but needed if dealing with multiple renderbuffers.
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
