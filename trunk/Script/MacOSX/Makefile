@@ -29,6 +29,7 @@ include $(AMJULIB_MAC_SCRIPT_PATH)/mac_rules
 #---------------------------------------------------------------------------------
 
 # j.c. we want the Build dir to not be in here - this needed a change further down.
+RUNDIR		:=	../../Build/CompiledAssets
 BUILD		:=	../../Build/Mac
 TARGET		:=	$(BUILD)/macgame
 AMJU      := ../../../amjulib/Source
@@ -38,7 +39,6 @@ AMJU_LIB_DIRS := \
   $(AMJU)/Clip \
   $(AMJU)/Collision \
   $(AMJU)/Events \
-  $(AMJU)/EventsWii \
   $(AMJU)/FileUtils \
   $(AMJU)/Font \
   $(AMJU)/Game \
@@ -55,7 +55,7 @@ AMJU_LIB_DIRS := \
   $(AMJU)/Resource \
   $(AMJU)/Scene \
   $(AMJU)/Sound \
-  $(AMJU)/SoundWii \
+  $(AMJU)/SoundBass \
   $(AMJU)/Strings \
   $(AMJU)/TimeUtils \
   $(AMJU)/Utils \
@@ -82,6 +82,8 @@ LDFLAGS	=	-g $(MACHDEP) -Wl
 # TODO j.c.
 LIBS	:= \
 	$(AMJULIB_MAC_SCRIPT_PATH)/../../Build/Mac/amjulib.a \
+	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib \
+	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/libbassmidi.dylib \
 	-framework OpenGL \
 	-framework GLUT \
 	-lstdc++ -lm 
@@ -169,7 +171,11 @@ clean:
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
 #---------------------------------------------------------------------------------
 run:
-	wiiload $(OUTPUT).dol
+	cp $(TARGET) $(RUNDIR); \
+	cp $(AMJU)/SoundBass/Bass2.4/Macosx/libbassmidi.dylib $(RUNDIR); \
+	cp $(AMJU)/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib $(RUNDIR); \
+	cd $(RUNDIR); \
+	./macgame
 
 #---------------------------------------------------------------------------------
 else
