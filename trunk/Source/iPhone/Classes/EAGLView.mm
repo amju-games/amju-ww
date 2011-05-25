@@ -9,7 +9,7 @@
 #import "EAGLView.h"
 #import "ES1Renderer.h"
 
-#include <EventPollerImplIPhone.h>
+#include <EventPollerImplGeneric.h>
 #include <EventTypes.h>
 
 @implementation EAGLView
@@ -152,7 +152,7 @@
 
 void QueueEvent(Amju::Event* e)
 {
-	((Amju::EventPollerImplIPhone*)Amju::TheEventPoller::Instance()->GetImpl())->QueueEvent(e);
+	((Amju::EventPollerImplGeneric*)Amju::TheEventPoller::Instance()->GetImpl())->QueueEvent(e);
 }
 
 void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
