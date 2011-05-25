@@ -7,6 +7,7 @@
 #include <Game.h>
 #include "StartUp.h"
 #include <SoundManager.h>
+#include <BassSoundPlayer.h>
 #include <AmjuGLWindowInfo.h>
 #include <EventPollerImplGeneric.h>
 
@@ -159,7 +160,7 @@ int main(int argc, char **argv)
   Amju::AmjuGL::CreateWindow(&w);
   Amju::AmjuGL::Init();
 
-  TheSoundManager::Instance()->SetImpl(new SoundPlayerImpl); // TODO
+  TheSoundManager::Instance()->SetImpl(new BassSoundPlayer); 
 
   StartUp();
 
