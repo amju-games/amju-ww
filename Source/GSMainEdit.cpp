@@ -9,7 +9,29 @@
 
 namespace Amju
 {
-const char* GSMainEdit::NAME = "main-edit";
+void SelectedNode::Draw()
+{
+  if (!m_selNode)
+  {
+    return;
+  }
+
+  // TODO Switch to front face culling
+  AmjuGL::PushMatrix();
+//  AmjuGL::PushAttrib(AmjuGL::AMJU_LIGHTING | AmjuGL::AMJU_TEXTURE_2D);
+//  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
+//  AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+  PushColour();
+  AmjuGL::SetColour(0, 0, 0); 
+  static const float s = 1.1f;
+  AmjuGL::Scale(s, s, s);
+
+  m_selNode->Draw();
+
+  PopColour();
+  AmjuGL::PopMatrix();
+//  AmjuGL::PopAttrib();
+}
 
 // Menu item handlers
 void OnMove()
@@ -38,6 +60,7 @@ GSMainEdit::GSMainEdit()
 {
   m_isSelecting = false;
   m_selectedObj = 0;
+  m_selNode = new SelectedNode; 
 }
 
 void GSMainEdit::OnMove()
@@ -49,6 +72,10 @@ void GSMainEdit::OnActive()
 {
   GSMain::OnActive();
   GetGameSceneGraph()->SetCamera(new EditModeCamera);
+  
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  Assert(root);
+  root->AddChild(m_selNode.GetPtr()); // TODO how to ensure we only add it once ?
 
   // Initial option is to load a block
 
@@ -103,6 +130,16 @@ void GSMainEdit::Draw()
     Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 1, &mouseWorldFar);
     LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
 
+/*
+    // Draw for debugging
+    std::cout << "Selecting, mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
+    AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
+    AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+    AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
+      AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
+    AmjuGL::PopAttrib();
+*/
+
     Game::GameObjects* objs = TheGame::Instance()->GetGameObjects();
     float bestDist = 999999.9f;
     for (Game::GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
@@ -128,6 +165,9 @@ void GSMainEdit::Draw()
     {
       const std::string name = m_selectedObj->GetTypeName();
       std::cout << "Selected " << name << " ID: " << m_selectedObj->GetId() << "\n";
+
+      // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
+      m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
 
       // TODO
       m_menu->Clear();
@@ -176,7 +216,8 @@ void GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       m_isSelecting = true;
     }
     break;
-
+  default:
+    break;
   }
 }
 
