@@ -25,7 +25,7 @@ protected:
   int m_targetId;
   int m_viewportId;
   PGameObject m_target;
-  RCPtr<SceneNodeCamera> m_pSceneNode;
+  //RCPtr<SceneNodeCamera> m_pSceneNode;
 };
 }
 

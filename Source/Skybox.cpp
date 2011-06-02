@@ -40,8 +40,9 @@ bool Skybox::Load(File* f)
   m_mesh = LoadMeshResource(f);
   Assert(m_mesh);
 
-  m_pSceneNode = new SceneMesh;
-  m_pSceneNode->SetMesh(m_mesh);
+  SceneMesh* sm = new SceneMesh;
+  sm->SetMesh(m_mesh);
+  m_pSceneNode = sm;
   GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_SKYBOX, m_pSceneNode);
 
   return true;

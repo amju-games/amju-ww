@@ -120,9 +120,11 @@ void Camera::Update()
     m_pos.x, v.y, v.z,  // target -- NB always look straight ahead, so x is the same
     0, 1.0f, 0); // up
   */
-  m_pSceneNode->SetEyePos(m_pos);
-  m_pSceneNode->SetLookAtPos(Vec3f(m_pos.x, v.y, v.z));
-  m_pSceneNode->SetUpVec(Vec3f(0, 1, 0)); 
+  Assert(dynamic_cast<SceneNodeCamera*>(GetSceneNode()));
+  SceneNodeCamera* c = ((SceneNodeCamera*)GetSceneNode());
+  c->SetEyePos(m_pos);
+  c->SetLookAtPos(Vec3f(m_pos.x, v.y, v.z));
+  c->SetUpVec(Vec3f(0, 1, 0)); 
 }
 
 bool Camera::Load(File* f)
@@ -159,6 +161,7 @@ bool Camera::Load(File* f)
 
 void Camera::SetAsSceneGraphCamera()
 {
-  GetGameSceneGraph()->SetCamera(m_pSceneNode.GetPtr());
+  Assert(dynamic_cast<SceneNodeCamera*>(GetSceneNode()));
+  GetGameSceneGraph()->SetCamera((SceneNodeCamera*)GetSceneNode());
 }
 }
