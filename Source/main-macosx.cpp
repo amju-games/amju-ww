@@ -119,8 +119,8 @@ void mousebutton(int button, int state, int x, int y)
     break;
   }
   mbe->isDown = (state == GLUT_DOWN);
-  mbe->x = (float)x / (float)Amju::Screen::X(); 
-  mbe->y = 1.0f - (float)y / (float)Amju::Screen::Y(); 
+  mbe->x = (float)x / (float)Amju::Screen::X() * 2.0f - 1.0f; 
+  mbe->y = 1.0f - (float)y / (float)Amju::Screen::Y() * 2.0f; 
   QueueEvent(mbe);
 }
 
