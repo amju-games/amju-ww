@@ -37,8 +37,8 @@ float OnFloorCharacter::GetDir() const
 
 void OnFloorCharacter::SetAnim(const std::string& animName)
 {
-  Assert(dynamic_cast<Animated*>(m_pSceneNode));
-  ((Animated*)m_pSceneNode)->SetAnim(animName);
+  Assert(dynamic_cast<Animated*>(GetSceneNode()));
+  ((Animated*)GetSceneNode())->SetAnim(animName);
 }
 
 void OnFloorCharacter::StopRotating()

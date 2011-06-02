@@ -3,6 +3,7 @@
 
 #include <GameObject.h>
 #include <Matrix.h>
+#include <SceneNode.h>
 
 namespace Amju
 {
@@ -20,9 +21,13 @@ public:
   void SetDead(bool dead);
   bool IsDead() const;
 
+  SceneNode* GetSceneNode();
+
 protected:
   Matrix m_mat;
   bool m_isDead;
+
+  RCPtr<SceneNode> m_pSceneNode;
 };
 }
 

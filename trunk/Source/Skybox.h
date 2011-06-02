@@ -9,6 +9,7 @@ namespace Amju
 {
 class SceneMesh;
 
+// Why TF is this an EventListener ????
 class Skybox : public WWGameObject, public EventListener
 {
 public:
@@ -28,7 +29,6 @@ private:
   PObjMesh m_mesh;
   float m_xRot;
   float m_yRot;
-  SceneMesh* m_pSceneNode;
 };
 }
 

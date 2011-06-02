@@ -101,9 +101,6 @@ protected:
   // Max height of AABB - so determines the maximum rotation
   float m_maxYSize;
 
-  // Point to scene node - Scene Graph owns it, this is not a leak!
-  FloorMesh* m_pSceneNode;
-
   // Moment Of Inertia, like mass for rotations 
   float m_inertia;
 

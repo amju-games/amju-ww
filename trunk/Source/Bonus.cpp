@@ -53,8 +53,9 @@ bool Bonus::Load(File* f)
     return false;
   }
 
-  m_pSceneNode = new SceneMesh;
-  ((SceneMesh*)m_pSceneNode)->SetMesh(mesh);
+  SceneMesh* sm  = new SceneMesh;
+  sm->SetMesh(mesh);
+  m_pSceneNode = sm;
 
   // Set bounding box 
   static const float XSIZE = 15.0f;

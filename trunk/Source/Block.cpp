@@ -96,8 +96,9 @@ bool Block::Load(File* f)
 //  m_shadow.Load();
 
   // We can just use a Mesh scene node type, right ?
-  m_pSceneNode = new SceneMesh;
-  ((SceneMesh*)m_pSceneNode)->SetMesh(mesh);
+  SceneMesh* sm = new SceneMesh;
+  sm->SetMesh(mesh);
+  m_pSceneNode = sm;
 
   // Calc bounding box from mesh
   CollisionMesh cm;
