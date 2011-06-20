@@ -14,8 +14,8 @@ public:
 
   virtual void Update();
 
-  virtual void OnCursorEvent(const CursorEvent&); 
-  virtual void OnMouseButtonEvent(const MouseButtonEvent&);
+  virtual bool OnCursorEvent(const CursorEvent&); 
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
 
 private:
   bool m_drag;
