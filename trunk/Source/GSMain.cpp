@@ -54,17 +54,19 @@ void GSMain::OnActive()
   }
 }
 
-void GSMain::OnKeyEvent(const KeyEvent& ke)
+bool GSMain::OnKeyEvent(const KeyEvent& ke)
 {
   if (ke.keyType == AMJU_KEY_ESC && !ke.keyDown && !m_exitReached)
   {
     TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
+    return true;
   }
 
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
     (ke.key == 'd' || ke.key == 'D'))
   {
     TheResourceManager::Instance()->Dump();
+    return true;
   }
 
   if (ke.keyType == AMJU_KEY_CHAR && 
@@ -72,7 +74,10 @@ void GSMain::OnKeyEvent(const KeyEvent& ke)
   {
     // Reset - may need to go back to load state
     TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+    return true;
   }
+
+  return false;
 }
 
 void GSMain::OnExitReached()

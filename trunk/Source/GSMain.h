@@ -26,7 +26,7 @@ public:
   virtual void OnActive();
 
   // EventListener overrides
-  virtual void OnKeyEvent(const KeyEvent&);
+  virtual bool OnKeyEvent(const KeyEvent&);
 
   void ClearLevel();
 

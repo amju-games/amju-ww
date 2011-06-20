@@ -23,7 +23,7 @@ static const float FONT_SIZE = 1.2f;
 static const float TIME_PER_CHAR = 0.02f;
 static const float BORDER = 0.1f;
 static const float MAX_PAGE_TIME = 5.0f; // time out 
-static const float GROW_TIME = 0.1f;
+static const float GROW_TIME = 0.3f;
 
 
 Font* GetFont()
@@ -157,7 +157,7 @@ std::cout << "..there are no more pages.\n";
   if (m_storedText.empty())
   {
     m_show = false;
-    //m_time = 0;
+    m_time = 0;
     // Sound FX
   }
   else
@@ -231,31 +231,34 @@ std::cout << "TUTORIAL: This page is Timed, because last line is \"" << line.c_s
 #endif
 }
 
-void Tutorial::OnMouseButtonEvent(const MouseButtonEvent& mbe)
+bool Tutorial::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
-  MouseButton(mbe.isDown);
+  return MouseButton(mbe.isDown);
 }
 
-void Tutorial::OnButtonEvent(const ButtonEvent& be)
+bool Tutorial::OnButtonEvent(const ButtonEvent& be)
 {
   if (!m_show)
   {
-    return;
+    return false;
   }
 
   if (be.button == AMJU_BUTTON_A && be.isDown)
   {
     NextPageOrClose();
+    return true;
   }
+
+  return false;
 }
 
-void Tutorial::MouseButton(bool down)
+bool Tutorial::MouseButton(bool down)
 {
   AMJU_CALL_STACK;
 
   if (!m_show)
   {
-    return;
+    return false;
   }
 /*
   if (m_pCloseButton->IsMouseOver())
@@ -270,7 +273,9 @@ void Tutorial::MouseButton(bool down)
   {
     NextPageOrClose();
     //OnCloseTutorial();
+    return true;
   }
+  return false;
 }
 
 bool Tutorial::IsMouseOver() const
