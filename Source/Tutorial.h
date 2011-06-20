@@ -15,6 +15,7 @@ Amju Games source code (c) Copyright Jason Colman 2000-2006
 
 namespace Amju
 {
+// TODO Should be a GUIElement
 class Tutorial : public EventListener, public NonCopyable
 {
 private:
@@ -22,8 +23,8 @@ private:
   friend class Singleton<Tutorial>;
 
 public:
-  virtual void OnMouseButtonEvent(const MouseButtonEvent&);
-  virtual void OnButtonEvent(const ButtonEvent&);
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
+  virtual bool OnButtonEvent(const ButtonEvent&);
 
 //  void OnNewGame();
 
@@ -70,7 +71,7 @@ private:
 
   void NextPageOrClose(); 
 
-  void MouseButton(bool down);
+  bool MouseButton(bool down);
 
 private:
   // One page is a vector of lines of text
