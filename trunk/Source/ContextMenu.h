@@ -15,8 +15,8 @@ public:
 
   // EventListener overrides
   // Activated by right-click/B Button
-  virtual void OnButtonEvent(const ButtonEvent&);
-  virtual void OnMouseButtonEvent(const MouseButtonEvent&);
+  virtual bool OnButtonEvent(const ButtonEvent&);
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
 
 protected:
   bool m_isVisible;

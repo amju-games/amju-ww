@@ -48,7 +48,7 @@ bool Skybox::Load(File* f)
   return true;
 }
 
-void Skybox::OnCursorEvent(const CursorEvent& ce)
+bool Skybox::OnCursorEvent(const CursorEvent& ce)
 {
   static float oldx = ce.x;
   static float oldy = ce.y;
@@ -59,6 +59,7 @@ void Skybox::OnCursorEvent(const CursorEvent& ce)
 
   m_yRot += xdiff;
   m_xRot += ydiff;
+  return false;
 }
 
 /*

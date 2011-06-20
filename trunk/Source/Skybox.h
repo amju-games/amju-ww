@@ -10,6 +10,7 @@ namespace Amju
 class SceneMesh;
 
 // Why TF is this an EventListener ????
+// So we can rotate sky with mouse.. er, hmm
 class Skybox : public WWGameObject, public EventListener
 {
 public:
@@ -22,7 +23,7 @@ public:
   virtual bool Load(File*);
   virtual void Update();
 
-  virtual void OnCursorEvent(const CursorEvent&);
+  virtual bool OnCursorEvent(const CursorEvent&);
 
 private:
   // TODO Visible meshes - bg and clouds, rotating at different rates..?
