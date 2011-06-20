@@ -26,3 +26,9 @@ run:
 	./macgame
 
 
+runsetup:
+	cp $(TARGET) $(RUNDIR); \
+	cp $(AMJU)/SoundBass/Bass2.4/Macosx/libbassmidi.dylib $(RUNDIR); \
+	cp $(AMJU)/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib $(RUNDIR); 
+
+
