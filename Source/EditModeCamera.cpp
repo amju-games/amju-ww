@@ -18,14 +18,14 @@ EditModeCamera::EditModeCamera()
 
 EditModeCamera::~EditModeCamera()
 {
-  TheEventPoller::Instance()->RemoveListener(this); 
+  // Done in Listener dtor TheEventPoller::Instance()->RemoveListener(this); 
 }
 
 void EditModeCamera::Update()
 {
 }
 
-void EditModeCamera::OnCursorEvent(const CursorEvent& ce)
+bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 {
   static float oldx = ce.x;
   static float oldy = ce.y;
@@ -62,12 +62,14 @@ void EditModeCamera::OnCursorEvent(const CursorEvent& ce)
       break;
     }
   }
+  return false;
 }
 
-void EditModeCamera::OnMouseButtonEvent(const MouseButtonEvent& mbe)
+bool EditModeCamera::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
   m_drag = mbe.isDown;
   m_mode = (Mode)mbe.button;
+  return false;
 }
 }
 
