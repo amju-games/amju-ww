@@ -6,6 +6,7 @@
 #include "Unproject.h"
 #include <ClipLineSegBox.h>
 #include <GuiMenu.h>
+#include <GameObjectFactory.h>
 
 namespace Amju
 {
@@ -23,8 +24,8 @@ void SelectedNode::Draw()
 //  AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
   PushColour();
   AmjuGL::SetColour(0, 0, 0); 
-  static const float s = 1.1f;
-  AmjuGL::Scale(s, s, s);
+  //static const float s = 1.1f;
+  //AmjuGL::Scale(s, s, s);
 
   m_selNode->Draw();
 
@@ -37,6 +38,18 @@ void SelectedNode::Draw()
 void OnMove()
 {
   TheGSMainEdit::Instance()->OnMove();
+}
+
+void OnNewLevelBlock()
+{
+}
+
+void OnLoadLevelBlock()
+{
+}
+
+void OnSaveLevelBlock()
+{
 }
 
 void OnRotate()
@@ -61,6 +74,27 @@ GSMainEdit::GSMainEdit()
   m_isSelecting = false;
   m_selectedObj = 0;
   m_selNode = new SelectedNode; 
+
+  // Set up top menu 
+  m_topMenu = new GuiMenu;
+  m_topMenu->SetIsVertical(false);
+  m_topMenu->SetPos(Vec2f(-0.9f, 0.8f));
+
+  GuiMenu* fileSubmenu = new GuiMenu;
+  fileSubmenu->AddItem(new GuiMenuItem("New level block", OnNewLevelBlock));
+  fileSubmenu->AddItem(new GuiMenuItem("Load level block", OnLoadLevelBlock));
+  fileSubmenu->AddItem(new GuiMenuItem("Save level block", OnSaveLevelBlock));
+
+  GuiMenu* newObjSubmenu = new GuiMenu;
+  // Get types from Game Obj factory
+  std::vector<std::string> names = TheGameObjectFactory::Instance()->GetTypeNames();
+  for (unsigned int i = 0; i < names.size(); i++)
+  {
+    newObjSubmenu->AddItem(new GuiMenuItem(names[i]));
+  }
+
+  m_topMenu->AddItem(new GuiNestMenuItem("File", fileSubmenu));
+  m_topMenu->AddItem(new GuiNestMenuItem("New Object", newObjSubmenu));
 }
 
 void GSMainEdit::OnMove()
@@ -90,18 +124,18 @@ void GSMainEdit::OnActive()
   childMenu->AddItem(new GuiMenuItem("work"));
   */
 
-  m_menu = new ContextMenu;
-  m_menu->AddItem(new GuiMenuItem("New block"));
-  m_menu->AddItem(new GuiMenuItem("Load block..."));
+  m_contextMenu = new ContextMenu;
+  m_contextMenu->AddItem(new GuiMenuItem("New block"));
+  m_contextMenu->AddItem(new GuiMenuItem("Load block..."));
   /*
-  m_menu->AddItem(new GuiMenuItem("I am"));
-  m_menu->AddItem(new GuiMenuItem("some text"));
-  m_menu->AddItem(new GuiNestMenuItem("I R Nested!", childMenu));
+  m_contextMenu->AddItem(new GuiMenuItem("I am"));
+  m_contextMenu->AddItem(new GuiMenuItem("some text"));
+  m_contextMenu->AddItem(new GuiNestMenuItem("I R Nested!", childMenu));
   */
 
-  m_menu->SetName("Parent menu");
+  m_contextMenu->SetName("Parent menu");
 
-  m_menu->SetVisible(false);
+  m_contextMenu->SetVisible(false);
 }
 
 void GSMainEdit::Update()
@@ -170,39 +204,31 @@ void GSMainEdit::Draw()
       m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
 
       // TODO
-      m_menu->Clear();
-      m_menu->AddItem(new GuiMenuItem("Move " + name, Amju::OnMove));
-      m_menu->AddItem(new GuiMenuItem("Rotate", OnRotate));
-      m_menu->AddItem(new GuiMenuItem("Duplicate", OnDuplicate));
-      m_menu->AddItem(new GuiMenuItem("Delete", OnDelete));
-      m_menu->AddItem(new GuiMenuItem("Properties...", OnProperties));
+      m_contextMenu->Clear();
+      m_contextMenu->AddItem(new GuiMenuItem("Move " + name, Amju::OnMove));
+      m_contextMenu->AddItem(new GuiMenuItem("Rotate", OnRotate));
+      m_contextMenu->AddItem(new GuiMenuItem("Duplicate", OnDuplicate));
+      m_contextMenu->AddItem(new GuiMenuItem("Delete", OnDelete));
+      m_contextMenu->AddItem(new GuiMenuItem("Properties...", OnProperties));
     }
     else
     {
-      m_menu->Clear();
-      m_menu->AddItem(new GuiMenuItem("Nothing selected"));
+      m_contextMenu->Clear();
+      m_contextMenu->AddItem(new GuiMenuItem("Nothing selected"));
     }
-
-    //AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
-    //AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-
-    //AmjuGL::DrawLine(
-    //  AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z),
-    //  AmjuGL::Vec3(mouseWorldNear.x, mouseWorldNear.y, mouseWorldNear.z)
-    //);
-
-    //AmjuGL::PopAttrib();
   }
 }
 
 void GSMainEdit::Draw2d()
 {
   GSMain::Draw2d();
-  m_menu->Draw();
+  m_topMenu->SetVisible(true); // always visible
+  m_topMenu->Draw();
+  m_contextMenu->Draw();
   TheCursorManager::Instance()->Draw();
 }
 
-void GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
+bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
   switch (mbe.button)
   {
@@ -214,15 +240,21 @@ void GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       m_mouseScreen.x = mbe.x;
       m_mouseScreen.y = mbe.y;
       m_isSelecting = true;
+      return true;
     }
     break;
+
   default:
     break;
   }
+
+  return false;
 }
 
-void GSMainEdit::OnCursorEvent(const CursorEvent& ce)
+bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
 {
+  // TODO
+  return false;
 }
 
 }

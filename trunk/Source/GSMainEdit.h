@@ -50,8 +50,6 @@ private:
   friend class Singleton<GSMainEdit>;
 
 public:
-//  static const char* NAME;
-
   // GameState overrides
   virtual void Update();
   virtual void Draw();
@@ -60,8 +58,8 @@ public:
 
   // EventListener overrides
   //virtual void OnButtonEvent(const ButtonEvent&);
-  virtual void OnMouseButtonEvent(const MouseButtonEvent&);
-  virtual void OnCursorEvent(const CursorEvent&);  
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
+  virtual bool OnCursorEvent(const CursorEvent&);  
 
   // Menu item handlers
   void OnMove();
@@ -69,7 +67,7 @@ public:
 protected:
   // Box where new item can go, or item in box can be edited..?
 
-  PContextMenu m_menu;
+  PContextMenu m_contextMenu;
   //Vec2f m_cursorPos;
   WWGameObject* m_selectedObj;
   Vec2f m_mouseScreen;
@@ -78,6 +76,8 @@ protected:
 
   // Scene Graph node for selected game object
   RCPtr<SelectedNode> m_selNode;
+
+  PGuiMenu m_topMenu; // horiz menu across top
 };
 typedef Singleton<GSMainEdit> TheGSMainEdit;
 }
