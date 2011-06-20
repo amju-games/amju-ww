@@ -25,7 +25,7 @@ public:
   virtual void OnDeactive();
 
   // EventListener overrides - allow player to click through?
-  virtual void OnKeyEvent(const KeyEvent&);
+  virtual bool OnKeyEvent(const KeyEvent&);
 
 private:
   float m_fade;
