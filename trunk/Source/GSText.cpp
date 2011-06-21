@@ -114,9 +114,11 @@ void GSText::CreateText(const std::string& text)
   node->MultLocalTransform(m);
   // TODO Should combine ?
   node->CombineTransform();
+  node->RecursivelyTransformAABB(m);
 
   SceneNode* parent = new SceneNode;
   parent->AddChild(node);
+  parent->UpdateBoundingVol();
 
   /*
   // Reflection - TODO
