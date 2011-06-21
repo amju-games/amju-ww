@@ -1,3 +1,4 @@
+#include <utility>
 #include "TextMaker.h"
 #include "SceneMesh.h"
 #include "CollisionMesh.h"
@@ -25,7 +26,7 @@ SceneNode* MakeChar(char k, float* width)
   meshNode->SetMesh(mesh);
 
   // Calc width - TODO Use const array, this is stupidly time consuming
-  typedef std::map<char, float> WidthMap;
+  typedef std::map<char, AABB> WidthMap;
   static WidthMap wm;
   WidthMap::iterator it = wm.find(k);
   if (it == wm.end())
@@ -35,11 +36,13 @@ SceneNode* MakeChar(char k, float* width)
     AABB aabb;
     cm.CalcAABB(&aabb);
     *width = aabb.GetXSize();
-    wm[k] = *width;
+    *(meshNode->GetAABB()) = aabb;
+    wm[k] = aabb;
   }
   else
   {
-    *width = it->second;
+    *(meshNode->GetAABB()) = it->second;
+    *width = it->second.GetXSize();
   }
 
   return meshNode;
@@ -67,8 +70,10 @@ SceneNode* TextMaker::MakeText(const std::string& text)
       Matrix m;
       m.Translate(Vec3f(x, 0, y));
       node->SetLocalTransform(m);
+      node->GetAABB()->Translate(Vec3f(x, 0, y));
 
       // Decorate node, e.g. colours, movement
+      // (Decorator node must use bounding vol of node)
       comp->AddChild(Decorate(node));
     }
     x += w;
@@ -81,6 +86,13 @@ SceneNode* TextMaker::MakeText(const std::string& text)
   Matrix m;
   m.Translate(Vec3f(xmax * -0.5f, 0, y * -0.5f));
   comp->SetLocalTransform(m);
+
+  // Makes this AABB union of child AABBs, need better name.
+  // Also make this recursive 
+  comp->UpdateBoundingVol();
+
+  // Do this after comp AABB is properly set
+  comp->RecursivelyTransformAABB(m);
 
   return comp;
 }
