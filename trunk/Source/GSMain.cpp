@@ -23,6 +23,9 @@
 #include "Tutorial.h"
 #include "GSLoadLevel.h"
 #include "GSLevelComplete.h"
+#include "EditModeCamera.h"
+
+#define EDIT_CAM
 
 namespace Amju
 {
@@ -77,6 +80,14 @@ bool GSMain::OnKeyEvent(const KeyEvent& ke)
     return true;
   }
 
+#ifdef EDIT_CAM
+  // Switch to debug camera
+  if (ke.keyType == AMJU_KEY_CHAR && (ke.key == 'c' || ke.key == 'C'))
+  {
+  GetGameSceneGraph()->SetCamera(new EditModeCamera);
+  }
+#endif
+  
   return false;
 }
 
