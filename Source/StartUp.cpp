@@ -4,7 +4,6 @@
 #include <ResourceManager.h>
 #include "GSLogo.h"
 #include "GSLoadLevel.h" // TEMP; so we start immediately in game
-#include "TestState.h" // TODO TEMP TEST
 #include "CursorManager.h"
 #include "Hud.h"
 #include <File.h>
