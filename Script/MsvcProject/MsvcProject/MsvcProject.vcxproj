@@ -116,7 +116,7 @@
 /I "../../../../amjulib/Source/Utils" 
  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -162,7 +162,7 @@
  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -208,7 +208,7 @@
 /I "../../../../amjulib/Source/Utils" 
  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NO_COMPILED_ASSETS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NO_COMPILED_ASSETS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -253,7 +253,7 @@
 /I "../../../../amjulib/Source/Utils" 
  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NO_COMPILED_ASSETS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NO_COMPILED_ASSETS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -333,7 +333,6 @@
     <ClCompile Include="..\..\..\Source\StartGame.cpp" />
     <ClCompile Include="..\..\..\Source\StartUp.cpp" />
     <ClCompile Include="..\..\..\Source\StaticFloor.cpp" />
-    <ClCompile Include="..\..\..\Source\TestState.cpp" />
     <ClCompile Include="..\..\..\Source\TextMaker.cpp" />
     <ClCompile Include="..\..\..\Source\Trigger.cpp" />
     <ClCompile Include="..\..\..\Source\Tutorial.cpp" />
@@ -397,7 +396,6 @@
     <ClInclude Include="..\..\..\Source\StartGame.h" />
     <ClInclude Include="..\..\..\Source\StartUp.h" />
     <ClInclude Include="..\..\..\Source\StaticFloor.h" />
-    <ClInclude Include="..\..\..\Source\TestState.h" />
     <ClInclude Include="..\..\..\Source\TextMaker.h" />
     <ClInclude Include="..\..\..\Source\Trigger.h" />
     <ClInclude Include="..\..\..\Source\Tutorial.h" />
