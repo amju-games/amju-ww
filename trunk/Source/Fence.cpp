@@ -39,38 +39,88 @@ bool Fence::Load(File* f)
     f->ReportError("Expected fence position");
     return false;
   }
-  // Load rotation around y axis
-  if (!f->GetFloat(&m_yRot))
-  {
-    f->ReportError("Expected fence y rot");
+  // Load rotation around y axis - "ew" for east-west orientation, or "ns" for north-south
+  std::string orientation;
+  if (!f->GetDataLine(&orientation))
+  { 
+    f->ReportError("Expected fence orientation");
     return false;
   }
 
+  bool ns = false;
+  if (orientation == "ns")
+  {
+    ns = true;
+    m_yRot = 0;
+  }
+  else if (orientation == "ew")
+  {
+    m_yRot = 90.0f;
+  }
+  else 
+  {
+    f->ReportError("Bad fence orientation, expected \"ns\" or \"ew\"");
+    return false;
+  }
+
+  // Get number of fence units
+  int numUnits = 0;
+  if (!f->GetInteger(&numUnits))
+  {
+    f->ReportError("Expected number of fence units");
+    return false;
+  }
   m_pos = m_pos * m_mat;
+  Vec3f pos = m_pos;
 
-  ObjMesh* mesh = LoadMeshResource(f);
-  if (!mesh)
+  m_pSceneNode = new SceneNode; // parent for all fence units
+
+  std::string meshName; // pz-fence.obj"; // TODO should we specify every time ?
+  if (!f->GetDataLine(&meshName))
   {
-    f->ReportError("Failed to load fence mesh");
+    f->ReportError("Expected fence mesh name");
     return false;
   }
 
-  SceneMesh* sm = new SceneMesh;
-  sm->SetMesh(mesh);
-  m_pSceneNode = sm;
+  for (int i = 0; i < numUnits; i++)
+  {
+    ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(meshName);
 
-  // Calc bounding box from mesh
-  CollisionMesh cm;
-  mesh->CalcCollisionMesh(&cm);
+    if (!mesh)
+    {
+      f->ReportError("Failed to load fence mesh");
+      return false;
+    }
 
-  Matrix m;
-  m.RotateY(DegToRad(m_yRot));
-  m.TranslateKeepRotation(m_pos);
-  cm.Transform(m);
+    SceneMesh* sm = new SceneMesh;
+    sm->SetMesh(mesh);
+    m_pSceneNode->AddChild(sm);
 
-  cm.CalcAABB(m_pSceneNode->GetAABB());
+    // Calc bounding box from mesh
+    CollisionMesh cm;
+    mesh->CalcCollisionMesh(&cm);
 
-  m_pSceneNode->SetLocalTransform(m);
+    Matrix m;
+    m.RotateY(DegToRad(m_yRot));
+    m.TranslateKeepRotation(pos);
+    cm.Transform(m);
+
+    cm.CalcAABB(sm->GetAABB());
+
+    if (ns)
+    {
+      pos += Vec3f(0, 0, sm->GetAABB()->GetZSize());
+    }
+    else
+    {
+      pos += Vec3f(sm->GetAABB()->GetXSize(), 0, 0);
+    }
+
+    sm->SetLocalTransform(m);
+  }
+
+  // Parent BV is union of all children BVs
+  m_pSceneNode->UpdateBoundingVol();
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_pSceneNode);
