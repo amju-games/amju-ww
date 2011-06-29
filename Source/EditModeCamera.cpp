@@ -27,6 +27,8 @@ void EditModeCamera::Update()
 
 bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 {
+  static const float SENSITIVITY = 1000.0f;
+
   static float oldx = ce.x;
   static float oldy = ce.y;
   float dx = ce.x - oldx;
@@ -40,7 +42,7 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
     {
     case AMJU_PAN:
       {
-        Vec3f eyeDiff(dx * -100.0f, dy * -100.0f, 0);
+        Vec3f eyeDiff(dx * -SENSITIVITY, dy * -SENSITIVITY, 0);
         m_eye += eyeDiff;
         m_lookat += eyeDiff;
       }
@@ -48,7 +50,7 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 
     case AMJU_ROTATE:
       {
-        Vec3f eyeDiff(dx * 100.0f, dy * -100.0f, 0);
+        Vec3f eyeDiff(dx * SENSITIVITY, dy * -SENSITIVITY, 0);
         m_eye += eyeDiff;
       }
       break;
@@ -57,7 +59,7 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
       {
         Vec3f viewVec = m_eye - m_lookat;
         viewVec.Normalise();
-        m_eye += viewVec * dy * 100.0f;
+        m_eye += viewVec * dy * SENSITIVITY;
       }
       break;
     }
