@@ -71,6 +71,11 @@ void Viewport::SetCamera(Camera* pCam)
   m_pCamera->SetAsSceneGraphCamera();
 }
 
+Camera* Viewport::GetCamera()
+{
+  return m_pCamera;
+}
+
 Viewport* ViewportManager::GetViewport(int vpNum)
 {
   if (vpNum >= (int)m_viewports.size())

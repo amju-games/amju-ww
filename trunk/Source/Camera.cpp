@@ -24,10 +24,88 @@ Viewport* GetViewport(int i)
   return TheViewportManager::Instance()->GetViewport(i);
 }
 
+void CamZoomInOnPlayer::Update(Camera* cam)
+{
+  Assert(cam);
+  Assert(cam->GetTarget());
+  const Vec3f& v = cam->GetTarget()->GetPos();
+  Vec3f pos = cam->GetPos();
+  Vec3f vel = cam->GetVel();
+  Vec3f acc = cam->GetAcc();
+
+  // Move directly in front of player
+  vel.x = (v.x - pos.x) * 5.0f;
+
+  // Adjust height so same as player
+  //vel.y = (v.y - pos.y) * 5.0f;
+
+  // Zoom in and out in sine wave
+  static float f = 0;
+  f += TheTimer::Instance()->GetDt() * 5.0f;
+
+  pos.z = v.z + Z_OFFSET + sin(f) * 0.5f * Z_OFFSET;
+
+  cam->SetPos(pos);
+  cam->SetVel(vel);
+  cam->SetAcc(acc);
+  cam->SetLookAtPos(v); //Vec3f(pos.x, v.y, v.z));
+}
+
+void CamFollowPlayer::Update(Camera* cam)
+{
+  Assert(cam);
+  Assert(cam->GetTarget());
+
+  const Vec3f& v = cam->GetTarget()->GetPos();
+  Vec3f pos = cam->GetPos();
+  Vec3f vel = cam->GetVel();
+  Vec3f acc = cam->GetAcc();
+
+  static const float CAM_SPEED = 400.0f; // TODO CONFIG
+  static const float CAM_ACC = CAM_SPEED * 2.5f;
+  // TODO Move in x if too far left/right
+  static const float TOO_FAR = 100.0f;
+  if (v.x > (pos.x + TOO_FAR))
+  {
+    vel.x = CAM_SPEED;
+    acc.x = -CAM_ACC;
+  }
+  else if (v.x < (pos.x - TOO_FAR))
+  {
+    vel.x = -CAM_SPEED;
+    acc.x = CAM_ACC;
+  }
+
+  // Prevent changing direction
+  static const float STOP = 10.0f; 
+  if (fabs(vel.x) < STOP)
+  {
+    vel.x = 0;
+    acc.x = 0;
+  }
+
+  // Move in Y - but don't move in y if player is falling
+  if (!((OnFloor*)cam->GetTarget())->IsFalling())
+  {
+    pos.y = v.y + Y_OFFSET;
+  }
+
+  // Z is fixed distance from player
+  pos.z = v.z + Z_OFFSET;
+
+  cam->SetPos(pos);
+  cam->SetVel(vel);
+  cam->SetAcc(acc);
+  cam->SetLookAtPos(Vec3f(pos.x, v.y, v.z));
+}
+
 Camera::Camera()
 {
   m_targetId = -1;
   m_target = 0;
+
+  m_behaviour = new CamFollowPlayer;
+  //m_behaviour = new CamZoomInOnPlayer;
 }
 
 const char* Camera::GetTypeName() const
@@ -46,22 +124,6 @@ void Camera::Reset()
   const Vec3f& v = m_target->GetPos();
   m_pos = Vec3f(v.x, v.y + Y_OFFSET, v.z + Z_OFFSET);
 }
-/*
-void Camera::Draw()
-{
-  if (!m_target)
-  {
-    Reset();
-  }
-
-  const Vec3f& v = m_target->GetPos();
-  // Don't set Identity - camera can be attached to something; multiple cameras..?
-  AmjuGL::LookAt(
-    m_pos.x, m_pos.y, m_pos.z,  // eye
-    m_pos.x, v.y, v.z,  // target -- NB always look straight ahead, so x is the same
-    0, 1.0f, 0); // up
-}
-*/
 
 void Camera::Update()
 {
@@ -77,53 +139,12 @@ void Camera::Update()
     Reset();
   }
 
-  Assert(m_target);
-  const Vec3f& v = m_target->GetPos();
+  m_behaviour->Update(this);
 
-  static const float CAM_SPEED = 400.0f; // TODO CONFIG
-  static const float CAM_ACC = CAM_SPEED * 2.5f;
-  // TODO Move in x if too far left/right
-  static const float TOO_FAR = 100.0f;
-  if (v.x > (m_pos.x + TOO_FAR))
-  {
-    m_vel.x = CAM_SPEED;
-    m_acc.x = -CAM_ACC;
-  }
-  else if (v.x < (m_pos.x - TOO_FAR))
-  {
-    m_vel.x = -CAM_SPEED;
-    m_acc.x = CAM_ACC;
-  }
-
-  // Prevent changing direction
-  static const float STOP = 10.0f; 
-  if (fabs(m_vel.x) < STOP)
-  {
-    m_vel.x = 0;
-    m_acc.x = 0;
-  }
-
-  // Move in Y - but don't move in y if player is falling
-  if (!((OnFloor*)m_target.GetPtr())->IsFalling())
-  {
-    m_pos.y = v.y + Y_OFFSET;
-  }
-
-  // Z is fixed distance from player
-  m_pos.z = v.z + Z_OFFSET;
-
-  /*
-  const Vec3f& v = m_target->GetPos();
-  // Don't set Identity - camera can be attached to something; multiple cameras..?
-  AmjuGL::LookAt(
-    m_pos.x, m_pos.y, m_pos.z,  // eye
-    m_pos.x, v.y, v.z,  // target -- NB always look straight ahead, so x is the same
-    0, 1.0f, 0); // up
-  */
   Assert(dynamic_cast<SceneNodeCamera*>(GetSceneNode()));
   SceneNodeCamera* c = ((SceneNodeCamera*)GetSceneNode());
   c->SetEyePos(m_pos);
-  c->SetLookAtPos(Vec3f(m_pos.x, v.y, v.z));
+  c->SetLookAtPos(m_lookAt);
   c->SetUpVec(Vec3f(0, 1, 0)); 
 }
 

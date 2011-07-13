@@ -28,6 +28,7 @@ Exit::Exit()
   m_activeTime = 0;
   m_rotate = 0;
   m_toLevel = 0;
+  m_isExiting = false;
 }
 
 const char* Exit::GetTypeName() const
@@ -38,6 +39,7 @@ const char* Exit::GetTypeName() const
 void Exit::Reset()
 {
   m_isActive = false;
+  m_isExiting = false;
 }
 
 void Exit::Update()
@@ -59,9 +61,21 @@ void Exit::Update()
   mat.TranslateKeepRotation(m_pos);
   m_pSceneNode->SetLocalTransform(mat);
 
-  if (m_isActive)
+  if (m_isExiting)
   {
     m_activeTime += dt;
+  }
+  
+  if (m_isExiting && 
+      m_activeTime > 3.0f) // TODO CONFIG
+  {
+    // Go to next level
+    // TODO Sound effect, explosion etc
+    m_effect->SetVisible(true);
+
+    // Set next level
+    TheLevelManager::Instance()->SetLevelId(m_toLevel);
+    TheGSMain::Instance()->OnExitReached();
   }
 }
 
@@ -176,17 +190,8 @@ bool Exit::Load(File* f)
 
 void Exit::OnPlayerCollision()
 {
-  if (m_isActive && 
-      m_activeTime > 2.0f) // TODO CONFIG
-  {
-    // Go to next level
-    // TODO Sound effect, explosion etc
-    m_effect->SetVisible(true);
-
-    // Set next level
-    TheLevelManager::Instance()->SetLevelId(m_toLevel);
-    TheGSMain::Instance()->OnExitReached();
-  }
+  Assert(!m_isExiting); // already called
+  m_isExiting = true;
 }
 
 static float rnd(float f)

@@ -41,11 +41,14 @@ public:
   // Call when exit should become visible
   void SetActive();
 
+  // Returns true when we are about to go to next level
+  bool IsExiting() const { return m_isExiting; }
+
 protected:
   //std::string m_toLevel;
   int m_toLevel;
 
-  bool m_isActive;
+  bool m_isActive; // can be used
   float m_activeTime; // time activated
   float m_rotate;
 
@@ -53,6 +56,8 @@ protected:
   SceneNode* m_text;
   Billboard* m_billboard; // when activated
   ExitParticleEffect* m_effect; // when activated
+
+  bool m_isExiting; // is active and player has collided, so we are going to the next level
 };
 }
 
