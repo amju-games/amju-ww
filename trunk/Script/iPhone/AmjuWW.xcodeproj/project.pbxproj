@@ -20,8 +20,6 @@
 		3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A3E120AF14800DFECB9 /* PlayWav.cpp */; };
 		3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A40120AF14800DFECB9 /* StaticFloor.cpp */; };
 		3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */; };
-		3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.mm */; };
-		3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C40120B17C00080D0FC /* ES1Renderer.mm */; };
 		694625E4138AE65F00DEFA37 /* BassSoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694625E2138AE65F00DEFA37 /* BassSoundPlayer.cpp */; };
 		694625EF138AE69100DEFA37 /* EventPollerImplGeneric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694625ED138AE69100DEFA37 /* EventPollerImplGeneric.cpp */; };
 		694625FF138AE8AB00DEFA37 /* libbassmidi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 694625FE138AE8AA00DEFA37 /* libbassmidi.a */; };
@@ -32,21 +30,14 @@
 		6946262D138AFA1E00DEFA37 /* music-iphone.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6946262C138AFA1E00DEFA37 /* music-iphone.glue */; };
 		69577A18135C9C4600DBC6C5 /* CollideObjectFence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */; };
 		69577A19135C9C4600DBC6C5 /* Fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0C135C9C4600DBC6C5 /* Fence.cpp */; };
-		69577A1A135C9C4600DBC6C5 /* RBBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0E135C9C4600DBC6C5 /* RBBox.cpp */; };
-		69577A1B135C9C4600DBC6C5 /* RBIntersect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A10135C9C4600DBC6C5 /* RBIntersect.cpp */; };
-		69577A1C135C9C4600DBC6C5 /* RBSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A12135C9C4600DBC6C5 /* RBSphere.cpp */; };
-		69577A1D135C9C4600DBC6C5 /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A14135C9C4600DBC6C5 /* RigidBody.cpp */; };
 		69577A1E135C9C4600DBC6C5 /* Unproject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A16135C9C4600DBC6C5 /* Unproject.cpp */; };
 		69577A29135C9C7C00DBC6C5 /* ClipLineSegBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A23135C9C7C00DBC6C5 /* ClipLineSegBox.cpp */; };
 		69577A2A135C9C7C00DBC6C5 /* OBB2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A25135C9C7C00DBC6C5 /* OBB2.cpp */; };
 		69577A2B135C9C7C00DBC6C5 /* OBB3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A27135C9C7C00DBC6C5 /* OBB3.cpp */; };
 		69577A34135C9CB000DBC6C5 /* DrawOBB2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A30135C9CB000DBC6C5 /* DrawOBB2.cpp */; };
 		69577A35135C9CB000DBC6C5 /* DrawOBB3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A32135C9CB000DBC6C5 /* DrawOBB3.cpp */; };
+		69E4A02C13D82C7D00B43ED6 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69E4A02B13D82C7D00B43ED6 /* main.mm */; };
 		6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B7B3B121049DD00CD925B /* EventTypes.cpp */; };
-		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.mm */; };
-		6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092D11EB7A0800931FDB /* Shader.fsh */; };
-		6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092E11EB7A0800931FDB /* Shader.vsh */; };
-		6D5E093211EB7A1E00931FDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E093111EB7A1E00931FDB /* main.m */; };
 		6D5E099611EB7B8400931FDB /* Animated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E093811EB7B8400931FDB /* Animated.cpp */; };
 		6D5E099711EB7B8400931FDB /* BlinkCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E093A11EB7B8400931FDB /* BlinkCharacter.cpp */; };
 		6D5E099811EB7B8400931FDB /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E093C11EB7B8400931FDB /* Block.cpp */; };
@@ -91,7 +82,6 @@
 		6D5E09C211EB7B8400931FDB /* Shadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E098A11EB7B8400931FDB /* Shadow.cpp */; };
 		6D5E09C311EB7B8400931FDB /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E098C11EB7B8400931FDB /* Skybox.cpp */; };
 		6D5E09C411EB7B8400931FDB /* StartGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E098E11EB7B8400931FDB /* StartGame.cpp */; };
-		6D5E09C511EB7B8400931FDB /* TestState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E099011EB7B8400931FDB /* TestState.cpp */; };
 		6D5E09C611EB7B8400931FDB /* TextMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E099211EB7B8400931FDB /* TextMaker.cpp */; };
 		6D5E09C711EB7B8400931FDB /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E099411EB7B8400931FDB /* Viewport.cpp */; };
 		6D5E10F511EB9C2300931FDB /* AmjuGL-Impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E0F7711EB9C2200931FDB /* AmjuGL-Impl.h */; };
@@ -406,7 +396,7 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* iPhone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhone_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* AmjuWW_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmjuWW_Prefix.pch; sourceTree = "<group>"; };
 		3F6D8A35120AF14800DFECB9 /* CollideObjectFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideObjectFloor.cpp; path = ../../Source/CollideObjectFloor.cpp; sourceTree = SOURCE_ROOT; };
 		3F6D8A36120AF14800DFECB9 /* GSPaused.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSPaused.cpp; path = ../../Source/GSPaused.cpp; sourceTree = SOURCE_ROOT; };
 		3F6D8A37120AF14800DFECB9 /* GSPaused.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSPaused.h; path = ../../Source/GSPaused.h; sourceTree = SOURCE_ROOT; };
@@ -422,10 +412,6 @@
 		3F6D8A41120AF14800DFECB9 /* StaticFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticFloor.h; path = ../../Source/StaticFloor.h; sourceTree = SOURCE_ROOT; };
 		3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWGameObject.cpp; path = ../../Source/WWGameObject.cpp; sourceTree = SOURCE_ROOT; };
 		3F6D8A43120AF14800DFECB9 /* WWGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWGameObject.h; path = ../../Source/WWGameObject.h; sourceTree = SOURCE_ROOT; };
-		3F906C3E120B17C00080D0FC /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EAGLView.mm; path = ../../Source/iPhone/Classes/EAGLView.mm; sourceTree = SOURCE_ROOT; };
-		3F906C3F120B17C00080D0FC /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES1Renderer.h; path = ../../Source/iPhone/Classes/ES1Renderer.h; sourceTree = SOURCE_ROOT; };
-		3F906C40120B17C00080D0FC /* ES1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES1Renderer.mm; path = ../../Source/iPhone/Classes/ES1Renderer.mm; sourceTree = SOURCE_ROOT; };
-		3F906C43120B17C00080D0FC /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESRenderer.h; path = ../../Source/iPhone/Classes/ESRenderer.h; sourceTree = SOURCE_ROOT; };
 		694625E2138AE65F00DEFA37 /* BassSoundPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BassSoundPlayer.cpp; path = ../../../amjulib/Source/SoundBass/BassSoundPlayer.cpp; sourceTree = SOURCE_ROOT; };
 		694625E3138AE65F00DEFA37 /* BassSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BassSoundPlayer.h; path = ../../../amjulib/Source/SoundBass/BassSoundPlayer.h; sourceTree = SOURCE_ROOT; };
 		694625ED138AE69100DEFA37 /* EventPollerImplGeneric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventPollerImplGeneric.cpp; sourceTree = "<group>"; };
@@ -440,14 +426,6 @@
 		69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideObjectFence.cpp; path = ../../Source/CollideObjectFence.cpp; sourceTree = SOURCE_ROOT; };
 		69577A0C135C9C4600DBC6C5 /* Fence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fence.cpp; path = ../../Source/Fence.cpp; sourceTree = SOURCE_ROOT; };
 		69577A0D135C9C4600DBC6C5 /* Fence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fence.h; path = ../../Source/Fence.h; sourceTree = SOURCE_ROOT; };
-		69577A0E135C9C4600DBC6C5 /* RBBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBBox.cpp; path = ../../Source/RBBox.cpp; sourceTree = SOURCE_ROOT; };
-		69577A0F135C9C4600DBC6C5 /* RBBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBBox.h; path = ../../Source/RBBox.h; sourceTree = SOURCE_ROOT; };
-		69577A10135C9C4600DBC6C5 /* RBIntersect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBIntersect.cpp; path = ../../Source/RBIntersect.cpp; sourceTree = SOURCE_ROOT; };
-		69577A11135C9C4600DBC6C5 /* RBIntersect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBIntersect.h; path = ../../Source/RBIntersect.h; sourceTree = SOURCE_ROOT; };
-		69577A12135C9C4600DBC6C5 /* RBSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBSphere.cpp; path = ../../Source/RBSphere.cpp; sourceTree = SOURCE_ROOT; };
-		69577A13135C9C4600DBC6C5 /* RBSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBSphere.h; path = ../../Source/RBSphere.h; sourceTree = SOURCE_ROOT; };
-		69577A14135C9C4600DBC6C5 /* RigidBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RigidBody.cpp; path = ../../Source/RigidBody.cpp; sourceTree = SOURCE_ROOT; };
-		69577A15135C9C4600DBC6C5 /* RigidBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RigidBody.h; path = ../../Source/RigidBody.h; sourceTree = SOURCE_ROOT; };
 		69577A16135C9C4600DBC6C5 /* Unproject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Unproject.cpp; path = ../../Source/Unproject.cpp; sourceTree = SOURCE_ROOT; };
 		69577A17135C9C4600DBC6C5 /* Unproject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Unproject.h; path = ../../Source/Unproject.h; sourceTree = SOURCE_ROOT; };
 		69577A23135C9C7C00DBC6C5 /* ClipLineSegBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClipLineSegBox.cpp; sourceTree = "<group>"; };
@@ -460,14 +438,9 @@
 		69577A31135C9CB000DBC6C5 /* DrawOBB2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawOBB2.h; sourceTree = "<group>"; };
 		69577A32135C9CB000DBC6C5 /* DrawOBB3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawOBB3.cpp; sourceTree = "<group>"; };
 		69577A33135C9CB000DBC6C5 /* DrawOBB3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawOBB3.h; sourceTree = "<group>"; };
+		69E4A02B13D82C7D00B43ED6 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../Source/main.mm; sourceTree = SOURCE_ROOT; };
 		6D5B7B3B121049DD00CD925B /* EventTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventTypes.cpp; sourceTree = "<group>"; };
 		6D5B7B3C121049DD00CD925B /* EventTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTypes.h; sourceTree = "<group>"; };
-		6D5E092011EB79E000931FDB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../Source/iPhone/Classes/EAGLView.h; sourceTree = SOURCE_ROOT; };
-		6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iPhoneAppDelegate.h; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.h; sourceTree = SOURCE_ROOT; };
-		6D5E092811EB79E000931FDB /* iPhoneAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iPhoneAppDelegate.mm; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.mm; sourceTree = SOURCE_ROOT; };
-		6D5E092D11EB7A0800931FDB /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = ../../Source/iPhone/Shaders/Shader.fsh; sourceTree = SOURCE_ROOT; };
-		6D5E092E11EB7A0800931FDB /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = ../../Source/iPhone/Shaders/Shader.vsh; sourceTree = SOURCE_ROOT; };
-		6D5E093111EB7A1E00931FDB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../Source/iPhone/main.m; sourceTree = SOURCE_ROOT; };
 		6D5E093811EB7B8400931FDB /* Animated.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animated.cpp; path = ../../Source/Animated.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E093911EB7B8400931FDB /* Animated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animated.h; path = ../../Source/Animated.h; sourceTree = SOURCE_ROOT; };
 		6D5E093A11EB7B8400931FDB /* BlinkCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlinkCharacter.cpp; path = ../../Source/BlinkCharacter.cpp; sourceTree = SOURCE_ROOT; };
@@ -552,8 +525,6 @@
 		6D5E098D11EB7B8400931FDB /* Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Skybox.h; path = ../../Source/Skybox.h; sourceTree = SOURCE_ROOT; };
 		6D5E098E11EB7B8400931FDB /* StartGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartGame.cpp; path = ../../Source/StartGame.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E098F11EB7B8400931FDB /* StartGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartGame.h; path = ../../Source/StartGame.h; sourceTree = SOURCE_ROOT; };
-		6D5E099011EB7B8400931FDB /* TestState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestState.cpp; path = ../../Source/TestState.cpp; sourceTree = SOURCE_ROOT; };
-		6D5E099111EB7B8400931FDB /* TestState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestState.h; path = ../../Source/TestState.h; sourceTree = SOURCE_ROOT; };
 		6D5E099211EB7B8400931FDB /* TextMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextMaker.cpp; path = ../../Source/TextMaker.cpp; sourceTree = SOURCE_ROOT; };
 		6D5E099311EB7B8400931FDB /* TextMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextMaker.h; path = ../../Source/TextMaker.h; sourceTree = SOURCE_ROOT; };
 		6D5E099411EB7B8400931FDB /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewport.cpp; path = ../../Source/Viewport.cpp; sourceTree = SOURCE_ROOT; };
@@ -881,7 +852,7 @@
 		6DFDFEEF124B6A0600FD3E49 /* AIIdle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIIdle.cpp; path = ../../Source/AIIdle.cpp; sourceTree = SOURCE_ROOT; };
 		6DFDFEF0124B6A0600FD3E49 /* AIIdle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIIdle.h; path = ../../Source/AIIdle.h; sourceTree = SOURCE_ROOT; };
 		6DFDFEF1124B6A0600FD3E49 /* CollideDinoPet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideDinoPet.cpp; path = ../../Source/CollideDinoPet.cpp; sourceTree = SOURCE_ROOT; };
-		8D1107310486CEB800E47090 /* iPhone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPhone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* AmjuWW-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AmjuWW-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -919,14 +890,6 @@
 				69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */,
 				69577A0C135C9C4600DBC6C5 /* Fence.cpp */,
 				69577A0D135C9C4600DBC6C5 /* Fence.h */,
-				69577A0E135C9C4600DBC6C5 /* RBBox.cpp */,
-				69577A0F135C9C4600DBC6C5 /* RBBox.h */,
-				69577A10135C9C4600DBC6C5 /* RBIntersect.cpp */,
-				69577A11135C9C4600DBC6C5 /* RBIntersect.h */,
-				69577A12135C9C4600DBC6C5 /* RBSphere.cpp */,
-				69577A13135C9C4600DBC6C5 /* RBSphere.h */,
-				69577A14135C9C4600DBC6C5 /* RigidBody.cpp */,
-				69577A15135C9C4600DBC6C5 /* RigidBody.h */,
 				69577A16135C9C4600DBC6C5 /* Unproject.cpp */,
 				69577A17135C9C4600DBC6C5 /* Unproject.h */,
 				6D84161B1254C8ED00689B68 /* CollidePlayerPet.cpp */,
@@ -950,10 +913,6 @@
 				6DFDFEEF124B6A0600FD3E49 /* AIIdle.cpp */,
 				6DFDFEF0124B6A0600FD3E49 /* AIIdle.h */,
 				6DFDFEF1124B6A0600FD3E49 /* CollideDinoPet.cpp */,
-				3F906C3E120B17C00080D0FC /* EAGLView.mm */,
-				3F906C3F120B17C00080D0FC /* ES1Renderer.h */,
-				3F906C40120B17C00080D0FC /* ES1Renderer.mm */,
-				3F906C43120B17C00080D0FC /* ESRenderer.h */,
 				3F6D8A35120AF14800DFECB9 /* CollideObjectFloor.cpp */,
 				3F6D8A36120AF14800DFECB9 /* GSPaused.cpp */,
 				3F6D8A37120AF14800DFECB9 /* GSPaused.h */,
@@ -1053,15 +1012,10 @@
 				6D5E098D11EB7B8400931FDB /* Skybox.h */,
 				6D5E098E11EB7B8400931FDB /* StartGame.cpp */,
 				6D5E098F11EB7B8400931FDB /* StartGame.h */,
-				6D5E099011EB7B8400931FDB /* TestState.cpp */,
-				6D5E099111EB7B8400931FDB /* TestState.h */,
 				6D5E099211EB7B8400931FDB /* TextMaker.cpp */,
 				6D5E099311EB7B8400931FDB /* TextMaker.h */,
 				6D5E099411EB7B8400931FDB /* Viewport.cpp */,
 				6D5E099511EB7B8400931FDB /* Viewport.h */,
-				6D5E092011EB79E000931FDB /* EAGLView.h */,
-				6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */,
-				6D5E092811EB79E000931FDB /* iPhoneAppDelegate.mm */,
 				6DCE67A611ECC4BD00074997 /* StartUp.h */,
 				6DCE67A711ECC4BD00074997 /* StartUp.cpp */,
 			);
@@ -1075,15 +1029,6 @@
 				6DFDFED9124B68AB00FD3E49 /* libAmjuLib.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2514C27610084DB600A42282 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				6D5E092D11EB7A0800931FDB /* Shader.fsh */,
-				6D5E092E11EB7A0800931FDB /* Shader.vsh */,
-			);
-			name = Shaders;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -1116,7 +1061,6 @@
 				6D5E106A11EB9C2200931FDB /* TimeUtils */,
 				6D5E107311EB9C2200931FDB /* Utils */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				2514C27610084DB600A42282 /* Shaders */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -1131,8 +1075,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6D5E093111EB7A1E00931FDB /* main.m */,
-				32CA4F630368D1EE00C91783 /* iPhone_Prefix.pch */,
+				69E4A02B13D82C7D00B43ED6 /* main.mm */,
+				32CA4F630368D1EE00C91783 /* AmjuWW_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1144,7 +1088,7 @@
 				6DCA38CD1265D84E00691BC1 /* data-iphone.glue */,
 				6D84167D1254D8A100689B68 /* icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* iPhone-Info.plist */,
+				8D1107310486CEB800E47090 /* AmjuWW-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1848,9 +1792,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* iPhone */ = {
+		1D6058900D05DD3D006BFB54 /* AmjuWW */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iPhone" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "AmjuWW" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1862,7 +1806,7 @@
 			dependencies = (
 				6DCA37091265BAE700691BC1 /* PBXTargetDependency */,
 			);
-			name = iPhone;
+			name = AmjuWW;
 			productName = iPhone;
 			productReference = 1D6058910D05DD3D006BFB54 /* Amju WW.app */;
 			productType = "com.apple.product-type.application";
@@ -1892,14 +1836,14 @@
 			attributes = {
 				ORGANIZATIONNAME = Amju;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhone" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AmjuWW" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* iPhone */,
+				1D6058900D05DD3D006BFB54 /* AmjuWW */,
 				6D5E0C8311EB9ACE00931FDB /* AmjuLib */,
 			);
 		};
@@ -1940,10 +1884,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.mm in Sources */,
-				6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */,
-				6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */,
-				6D5E093211EB7A1E00931FDB /* main.m in Sources */,
 				6D5E099611EB7B8400931FDB /* Animated.cpp in Sources */,
 				6D5E099711EB7B8400931FDB /* BlinkCharacter.cpp in Sources */,
 				6D5E099811EB7B8400931FDB /* Block.cpp in Sources */,
@@ -1988,7 +1928,6 @@
 				6D5E09C211EB7B8400931FDB /* Shadow.cpp in Sources */,
 				6D5E09C311EB7B8400931FDB /* Skybox.cpp in Sources */,
 				6D5E09C411EB7B8400931FDB /* StartGame.cpp in Sources */,
-				6D5E09C511EB7B8400931FDB /* TestState.cpp in Sources */,
 				6D5E09C611EB7B8400931FDB /* TextMaker.cpp in Sources */,
 				6D5E09C711EB7B8400931FDB /* Viewport.cpp in Sources */,
 				6DCE67A811ECC4BD00074997 /* StartUp.cpp in Sources */,
@@ -2002,8 +1941,6 @@
 				3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */,
 				3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */,
 				3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */,
-				3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */,
-				3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */,
 				6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */,
 				6DFDFEF2124B6A0600FD3E49 /* AI.cpp in Sources */,
 				6DFDFEF3124B6A0600FD3E49 /* AIChasePet.cpp in Sources */,
@@ -2041,10 +1978,6 @@
 				6DCA36EC1265B95F00691BC1 /* SavePng.cpp in Sources */,
 				69577A18135C9C4600DBC6C5 /* CollideObjectFence.cpp in Sources */,
 				69577A19135C9C4600DBC6C5 /* Fence.cpp in Sources */,
-				69577A1A135C9C4600DBC6C5 /* RBBox.cpp in Sources */,
-				69577A1B135C9C4600DBC6C5 /* RBIntersect.cpp in Sources */,
-				69577A1C135C9C4600DBC6C5 /* RBSphere.cpp in Sources */,
-				69577A1D135C9C4600DBC6C5 /* RigidBody.cpp in Sources */,
 				69577A1E135C9C4600DBC6C5 /* Unproject.cpp in Sources */,
 				69577A29135C9C7C00DBC6C5 /* ClipLineSegBox.cpp in Sources */,
 				69577A2A135C9C7C00DBC6C5 /* OBB2.cpp in Sources */,
@@ -2053,6 +1986,7 @@
 				69577A35135C9CB000DBC6C5 /* DrawOBB3.cpp in Sources */,
 				694625E4138AE65F00DEFA37 /* BassSoundPlayer.cpp in Sources */,
 				694625EF138AE69100DEFA37 /* EventPollerImplGeneric.cpp in Sources */,
+				69E4A02C13D82C7D00B43ED6 /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2197,9 +2131,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
+				GCC_PREFIX_HEADER = AmjuWW_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				INFOPLIST_FILE = "iPhone-Info.plist";
+				INFOPLIST_FILE = "AmjuWW-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone\"",
@@ -2215,15 +2149,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
+				GCC_PREFIX_HEADER = AmjuWW_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				INFOPLIST_FILE = "iPhone-Info.plist";
+				INFOPLIST_FILE = "AmjuWW-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone\"",
 					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone/mp3-free\"",
 				);
-				PRODUCT_NAME = iPhone;
+				PRODUCT_NAME = AmjuWW;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2298,7 +2232,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iPhone" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "AmjuWW" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -2316,7 +2250,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhone" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AmjuWW" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
