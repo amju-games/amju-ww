@@ -59,7 +59,7 @@ AMJU_LIB_DIRS := \
   $(AMJU)/Utils \
   $(AMJU)/Utils/Zlib
   
-INCLUDES	:=	$(AMJU_LIB_DIRS)
+INCLUDES	:=	$(AMJU_LIB_DIRS) $(AMJU)/Main
 SOURCES		:=	../../Source $(AMJU_LIB_DIRS)
 
 #---------------------------------------------------------------------------------
