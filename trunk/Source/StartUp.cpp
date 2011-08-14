@@ -55,6 +55,10 @@ void StartUp()
   File::SetRoot("/apps/amju_ww/data/", "/");
 #endif
 
+#if defined (MACOSX)
+  TheSoundManager::Instance()->SetImpl(new BassSoundPlayer);
+#endif
+
   TheGame::Instance()->SetClearColour(Colour(0, 0, 0, 1.0f));
 
   if (!FileImplGlue::OpenGlueFile(GLUE_FILE))
@@ -79,22 +83,22 @@ void StartUp()
     ReportError("No localise string table.");
   }
 
-	// Add resource loaders
-	TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
-	TheResourceManager::Instance()->AddLoader("obj", ObjLoader);
-	TheResourceManager::Instance()->AddLoader("font", FontLoader);
-	TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
-	TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
-	TheResourceManager::Instance()->AddLoader("wav", BinaryResourceLoader);
+  // Add resource loaders
+  TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
+  TheResourceManager::Instance()->AddLoader("obj", ObjLoader);
+  TheResourceManager::Instance()->AddLoader("font", FontLoader);
+  TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
+  TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
+  TheResourceManager::Instance()->AddLoader("wav", BinaryResourceLoader);
 	
-	// Add SceneNode types to factory
-	TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
-	TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
+  // Add SceneNode types to factory
+  TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
+  TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
 	
-	TheCursorManager::Instance()->Load();
+  TheCursorManager::Instance()->Load();
 	
-	TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
-	TheHud::Instance()->Load();
+  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
+  TheHud::Instance()->Load();
 
 #ifdef BYPASS_TITLE
   // TODO Only needed if we bypass title
