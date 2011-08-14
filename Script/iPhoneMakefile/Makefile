@@ -39,18 +39,16 @@ sign:
 setup:
 	mkdir -p "$(APP_DIR)"; \
 	cp $(TARGET) "$(APP_DIR)/$(NICE_NAME)"; \
-	cp $(AMJULIB_IPHONE_SCRIPT_PATH)/../../Assets/iPhone/Info.plist "$(APP_DIR)"; \
+	cp ../../Assets/iphone/Info.plist "$(APP_DIR)"; \
 	cp $(AMJULIB_IPHONE_SCRIPT_PATH)/../../Assets/iPhone/MainWindow.nib "$(APP_DIR)"
 	cp $(AMJULIB_IPHONE_SCRIPT_PATH)/../../Assets/iPhone/PkgInfo "$(APP_DIR)"; \
 	cp ../../Assets/iphone/icon.png "$(APP_DIR)"; \
 	cp ../../Build/CompiledAssets/data-iphone.glue "$(APP_DIR)"; \
-	cp ../../Build/CompiledAssets/music-iphone.glue "$(APP_DIR)"; 
-
-#	/Developer/usr/bin/dsymutil "$(APP_DIR)/$(NICE_NAME)" -o "$(BUILD)/$(NICE_NAME).app.dSYM"
-
+	cp ../../Build/CompiledAssets/music-iphone.glue "$(APP_DIR)"; \
+	chmod +r "$(APP_DIR)/data-iphone.glue"; \
+	chmod +r "$(APP_DIR)/music-iphone.glue"; \
+	make sign
 
 run:
-	cp $(TARGET) $(RUNDIR); \
-	cd $(RUNDIR); \
-	./$(APP)
+	scp -r $(APP_DIR) root@192.168.0.3:/Applications/
 
