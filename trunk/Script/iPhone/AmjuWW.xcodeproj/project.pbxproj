@@ -269,10 +269,6 @@
 		6D5E11DC11EB9C2300931FDB /* Pause.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E107C11EB9C2200931FDB /* Pause.cpp */; };
 		6D5E11DD11EB9C2300931FDB /* Pause.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E107D11EB9C2200931FDB /* Pause.h */; };
 		6D5E11DE11EB9C2300931FDB /* RCPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E107E11EB9C2200931FDB /* RCPtr.h */; };
-		6D5E11DF11EB9C2300931FDB /* ReportError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E107F11EB9C2200931FDB /* ReportError.cpp */; };
-		6D5E11E011EB9C2300931FDB /* ReportError.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E108011EB9C2200931FDB /* ReportError.h */; };
-		6D5E11E111EB9C2300931FDB /* SafeUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E108111EB9C2200931FDB /* SafeUtils.cpp */; };
-		6D5E11E211EB9C2300931FDB /* SafeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E108211EB9C2200931FDB /* SafeUtils.h */; };
 		6D5E11E311EB9C2300931FDB /* SchAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E108311EB9C2200931FDB /* SchAssert.cpp */; };
 		6D5E11E411EB9C2300931FDB /* schassert.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E108411EB9C2200931FDB /* schassert.h */; };
 		6D5E11E511EB9C2300931FDB /* SharedPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5E108511EB9C2200931FDB /* SharedPtr.h */; };
@@ -388,6 +384,18 @@
 			remoteInfo = AmjuLib;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6972ADCC13EEA15C00B2007A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -717,10 +725,6 @@
 		6D5E107C11EB9C2200931FDB /* Pause.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pause.cpp; sourceTree = "<group>"; };
 		6D5E107D11EB9C2200931FDB /* Pause.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pause.h; sourceTree = "<group>"; };
 		6D5E107E11EB9C2200931FDB /* RCPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCPtr.h; sourceTree = "<group>"; };
-		6D5E107F11EB9C2200931FDB /* ReportError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReportError.cpp; sourceTree = "<group>"; };
-		6D5E108011EB9C2200931FDB /* ReportError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportError.h; sourceTree = "<group>"; };
-		6D5E108111EB9C2200931FDB /* SafeUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SafeUtils.cpp; sourceTree = "<group>"; };
-		6D5E108211EB9C2200931FDB /* SafeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUtils.h; sourceTree = "<group>"; };
 		6D5E108311EB9C2200931FDB /* SchAssert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchAssert.cpp; sourceTree = "<group>"; };
 		6D5E108411EB9C2200931FDB /* schassert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schassert.h; sourceTree = "<group>"; };
 		6D5E108511EB9C2200931FDB /* SharedPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedPtr.h; sourceTree = "<group>"; };
@@ -1490,10 +1494,6 @@
 				6D5E107C11EB9C2200931FDB /* Pause.cpp */,
 				6D5E107D11EB9C2200931FDB /* Pause.h */,
 				6D5E107E11EB9C2200931FDB /* RCPtr.h */,
-				6D5E107F11EB9C2200931FDB /* ReportError.cpp */,
-				6D5E108011EB9C2200931FDB /* ReportError.h */,
-				6D5E108111EB9C2200931FDB /* SafeUtils.cpp */,
-				6D5E108211EB9C2200931FDB /* SafeUtils.h */,
 				6D5E108311EB9C2200931FDB /* SchAssert.cpp */,
 				6D5E108411EB9C2200931FDB /* schassert.h */,
 				6D5E108511EB9C2200931FDB /* SharedPtr.h */,
@@ -1749,8 +1749,6 @@
 				6D5E11DB11EB9C2300931FDB /* NonCopyable.h in Headers */,
 				6D5E11DD11EB9C2300931FDB /* Pause.h in Headers */,
 				6D5E11DE11EB9C2300931FDB /* RCPtr.h in Headers */,
-				6D5E11E011EB9C2300931FDB /* ReportError.h in Headers */,
-				6D5E11E211EB9C2300931FDB /* SafeUtils.h in Headers */,
 				6D5E11E411EB9C2300931FDB /* schassert.h in Headers */,
 				6D5E11E511EB9C2300931FDB /* SharedPtr.h in Headers */,
 				6D5E11E711EB9C2300931FDB /* Sign.h in Headers */,
@@ -1800,6 +1798,8 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				690396BD136843A9001E6742 /* ShellScript */,
+				6972ADC413EEA12200B2007A /* ShellScript */,
+				6972ADCC13EEA15C00B2007A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1876,6 +1876,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Developer/iphoneentitlements401/gen_entitlements.py \"com.yourcompany.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+		6972ADC413EEA12200B2007A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2078,8 +2091,6 @@
 				6D5E11D411EB9C2300931FDB /* AmjuAssert.cpp in Sources */,
 				6D5E11DA11EB9C2300931FDB /* mt19937ar-cok.c in Sources */,
 				6D5E11DC11EB9C2300931FDB /* Pause.cpp in Sources */,
-				6D5E11DF11EB9C2300931FDB /* ReportError.cpp in Sources */,
-				6D5E11E111EB9C2300931FDB /* SafeUtils.cpp in Sources */,
 				6D5E11E311EB9C2300931FDB /* SchAssert.cpp in Sources */,
 				6D5E11E611EB9C2300931FDB /* Sign.cpp in Sources */,
 				6D5E11E911EB9C2300931FDB /* Variable.cpp in Sources */,
