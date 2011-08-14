@@ -49,8 +49,8 @@ void AIChasePet::Update()
 typedef std::vector<Pet*> Pets;
 void GetPets(Pets* pets)
 {
-  Game::GameObjects* objs = TheGame::Instance()->GetGameObjects();
-  for (Game::GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
+  GameObjects* objs = TheGame::Instance()->GetGameObjects();
+  for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
   {
     GameObject* go = it->second;
     Pet* p = dynamic_cast<Pet*>(go);
