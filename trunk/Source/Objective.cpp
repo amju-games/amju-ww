@@ -27,8 +27,8 @@ const char* Objective::GetTypeName() const
 void Objective::ObjectiveComplete()
 {
   // Actvate all Exits in the level
-  Game::GameObjects* pGos = TheGame::Instance()->GetGameObjects();
-  for (Game::GameObjects::iterator it = pGos->begin(); it != pGos->end(); ++it)
+  GameObjects* pGos = TheGame::Instance()->GetGameObjects();
+  for (GameObjects::iterator it = pGos->begin(); it != pGos->end(); ++it)
   {
     PGameObject p = it->second;
     Exit* e = dynamic_cast<Exit*>(p.GetPtr());
@@ -63,8 +63,8 @@ void Objective::Update()
   }
 
   // Check dinos - if all are dead, objective is complete
-  Game::GameObjects* pGos = TheGame::Instance()->GetGameObjects();
-  for (Game::GameObjects::iterator it = pGos->begin(); it != pGos->end(); ++it)
+  GameObjects* pGos = TheGame::Instance()->GetGameObjects();
+  for (GameObjects::iterator it = pGos->begin(); it != pGos->end(); ++it)
   {
     PGameObject p = it->second;
     Dino* d = dynamic_cast<Dino*>(p.GetPtr());

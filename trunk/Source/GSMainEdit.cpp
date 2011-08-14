@@ -174,9 +174,9 @@ void GSMainEdit::Draw()
     AmjuGL::PopAttrib();
 */
 
-    Game::GameObjects* objs = TheGame::Instance()->GetGameObjects();
+    GameObjects* objs = TheGame::Instance()->GetGameObjects();
     float bestDist = 999999.9f;
-    for (Game::GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
+    for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
     {
       GameObject* pgo = it->second;
       Assert(pgo);
