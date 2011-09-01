@@ -57,7 +57,7 @@ void GSMain::OnActive()
   GetTextSceneGraph()->Clear();
 
   // Set clear colour for game, TODO depends on skybox
-  TheGame::Instance()->SetClearColour(Colour(0.6f, 0.6f, 1.0f, 1.0f));
+  AmjuGL::SetClearColour(Colour(0.6f, 0.6f, 1.0f, 1.0f));
 
   m_exitReached = false;
   m_exitTimer = 0;
