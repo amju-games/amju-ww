@@ -114,6 +114,7 @@
 /I "../../../../amjulib/Source/GeomLoad" 
 /I "../../../../amjulib/Source/GeomDraw"
 /I "../../../../amjulib/Source/Utils" 
+/I "../../../../amjulib/Source/Main" 
  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
