@@ -15,7 +15,7 @@ SceneNode* MakeChar(char k, float* width)
   }
   char c = tolower(k);
 
-  std::string filename = "font3d/_" + std::string(1, c) + "_.obj";
+  std::string filename = "obj/font3d/_" + std::string(1, c) + "_.obj";
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(filename);
   if (!mesh)
   {
