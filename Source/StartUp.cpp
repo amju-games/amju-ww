@@ -24,6 +24,7 @@
 #include "LevelManager.h"
 #include "StartGame.h"
 #include <AmjuFinal.h>
+#include <BassSoundPlayer.h>
 
 #ifdef MACOSX
 // TODO
@@ -85,7 +86,7 @@ void StartUp()
 
   // Add resource loaders
   TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
-  TheResourceManager::Instance()->AddLoader("obj", ObjLoader);
+  TheResourceManager::Instance()->AddLoader("obj", BinaryObjLoader);
   TheResourceManager::Instance()->AddLoader("font", FontLoader);
   TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
   TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
