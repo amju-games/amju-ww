@@ -34,7 +34,7 @@ bool ContextMenu::OnMouseButtonEvent(const MouseButtonEvent& mbe)
     if (!IsVisible())
     {
       Cursor* c = TheCursorManager::Instance()->GetCursor(0);
-      SetPos(c->GetPos());
+      SetLocalPos(c->GetPos());
       SetVisible(true);
       return true;
     }
