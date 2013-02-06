@@ -7,7 +7,7 @@
 
 namespace Amju
 {
-AmjuGLWindowInfo w(640, 480, false);
+AmjuGLWindowInfo w(640, 480, false, "Amju Wibble Wobble");
 }
 
 #include "StartUp.h"

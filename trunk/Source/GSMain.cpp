@@ -71,13 +71,15 @@ void GSMain::OnActive()
   }
 }
 
-bool GSMain::OnKeyEvent(const KeyEvent& ke)
+bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
 {
+/*
   if (ke.keyType == AMJU_KEY_ESC && !ke.keyDown && !m_exitReached)
   {
     TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
     return true;
   }
+*/
 
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
     (ke.key == 'd' || ke.key == 'D'))
