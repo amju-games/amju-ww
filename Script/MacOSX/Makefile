@@ -14,6 +14,7 @@ LIBS	:= \
 	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/libbassmidi.dylib \
 	-framework OpenGL \
 	-framework GLUT \
+	-framework Carbon \
 	-lstdc++ -lm 
 
 include $(AMJULIB_MAC_SCRIPT_PATH)/GenMakefile
