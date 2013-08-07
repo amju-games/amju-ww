@@ -27,9 +27,8 @@
 #include <BassSoundPlayer.h>
 
 #ifdef MACOSX
-// TODO
 #define GLUE_FILE "data-Mac.glue"
-#define MUSIC_GLUE_FILE "music-win.glue"
+#define MUSIC_GLUE_FILE "music-Mac.glue"
 #endif
 
 #ifdef WIN32
@@ -71,6 +70,8 @@ void StartUpAfterCreateWindow()
     ReportError("Failed to open data glue file");
   }
 
+std::cout << "Opened glue file " << GLUE_FILE << "\n";
+
   // Set up music glue file
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
@@ -90,7 +91,10 @@ void StartUpAfterCreateWindow()
 
   // Add resource loaders
   TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
+
   TheResourceManager::Instance()->AddLoader("obj", BinaryObjLoader);
+  //TheResourceManager::Instance()->AddLoader("obj", TextObjLoader);
+
   TheResourceManager::Instance()->AddLoader("font", FontLoader);
   TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
   TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
