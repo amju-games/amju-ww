@@ -103,7 +103,7 @@ bool LevelManager::Open()
   if (m_levelId == 1)
   {
     // Special case for intro/tutorial level, not built the same as other levels. 
-    blockId = "start";
+    blockId = "1";
   }
   else
   {
