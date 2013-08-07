@@ -29,7 +29,7 @@ cd $DEST_DIR
 # Create empty glue file
 $GLUE_EXE -c $GLUE_FILE
 
-for f in *.txt *.md2 *.png obj/*.obj obj/font3d/*.obj font2d/*.txt font2d/*.png levels/*.txt
+for f in *.txt *.md2 *.png *.obj obj/font3d/*.obj font2d/*.txt font2d/*.png levels/*.txt
 do
     echo "Adding file: " $f
     $GLUE_EXE -a $GLUE_FILE $f
