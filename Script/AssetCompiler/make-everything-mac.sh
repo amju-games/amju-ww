@@ -6,8 +6,8 @@ export TOP_DIR=$THIS_DIR/../..
 export COMPILED_ASSETS=$TOP_DIR/Build/CompiledAssets
 export DEST_DIR=$COMPILED_ASSETS/$PLATFORM
 
-mkdir $COMPILED_ASSETS
-mkdir $DEST_DIR
+mkdir -p $COMPILED_ASSETS
+mkdir -p $DEST_DIR
 
 rm -rf $DEST_DIR/*
 
