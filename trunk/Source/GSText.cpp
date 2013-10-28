@@ -1,3 +1,9 @@
+#include <DegRad.h>
+#include <Timer.h>
+#include <Localise.h>
+#include <Screen.h>
+#include <Game.h>
+#include <EventPoller.h>
 #include "GSText.h"
 #include "CursorManager.h"
 #include "SceneMesh.h"
@@ -5,11 +11,6 @@
 #include "CollisionMesh.h"
 #include "AABB.h"
 #include "MyTextMaker.h"
-#include "DegRad.h"
-#include "Timer.h"
-#include <Localise.h>
-#include <Screen.h>
-#include <Game.h>
 
 namespace Amju
 {
@@ -78,7 +79,10 @@ void GSText::OnDeactive()
 
   // DON'T unload scene
   //TheSceneGraph::Instance()->Clear();
-  m_gui = 0; // should remove itself as a listener
+
+  // remove as a listener
+  TheEventPoller::Instance()->RemoveListener(m_gui);
+  m_gui = 0; 
 }
 
 class Reflect : public SceneNode
