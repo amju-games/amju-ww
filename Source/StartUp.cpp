@@ -1,6 +1,7 @@
 #include <AmjuFirst.h>
 #include "StartUp.h"
 #include <Game.h>
+#include <BruteForce.h>
 #include <ResourceManager.h>
 #include "GSLogo.h"
 #include "GSLoadLevel.h" // TEMP; so we start immediately in game
@@ -54,13 +55,18 @@ void StartUpBeforeCreateWindow()
 
 void StartUpAfterCreateWindow()
 {
+  Game* game = TheGame::Instance();
+  game->SetUpdateCopy(true); // if updating game objects can create/destroy objects
+
+  SoundManager* sm = TheSoundManager::Instance();
+
 #ifdef GEKKO
   // TODO Better to put this in library main() if we can get the app's directory
   File::SetRoot("/apps/amju_ww/data/", "/");
 #endif
 
 #if defined (MACOSX)
-  TheSoundManager::Instance()->SetImpl(new BassSoundPlayer);
+  sm->SetImpl(new BassSoundPlayer);
 #endif
 
   AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
@@ -76,7 +82,7 @@ std::cout << "Opened glue file " << GLUE_FILE << "\n";
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
   {
-    TheSoundManager::Instance()->SetGlueFile(pMusicGlueFile);
+    sm->SetGlueFile(pMusicGlueFile);
   }
   else
   {
@@ -90,15 +96,15 @@ std::cout << "Opened glue file " << GLUE_FILE << "\n";
   }
 
   // Add resource loaders
-  TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
+  ResourceManager* rm = TheResourceManager::Instance();
+  rm->AddLoader("bmpa", BmpALoader);
+  rm->AddLoader("obj", BinaryObjLoader);
+  //rm->AddLoader("obj", TextObjLoader);
 
-  TheResourceManager::Instance()->AddLoader("obj", BinaryObjLoader);
-  //TheResourceManager::Instance()->AddLoader("obj", TextObjLoader);
-
-  TheResourceManager::Instance()->AddLoader("font", FontLoader);
-  TheResourceManager::Instance()->AddLoader("mod", BinaryResourceLoader);
-  TheResourceManager::Instance()->AddLoader("snd", BinaryResourceLoader);
-  TheResourceManager::Instance()->AddLoader("wav", BinaryResourceLoader);
+  rm->AddLoader("font", FontLoader);
+  rm->AddLoader("mod", BinaryResourceLoader);
+  rm->AddLoader("snd", BinaryResourceLoader);
+  rm->AddLoader("wav", BinaryResourceLoader);
 	
   // Add SceneNode types to factory
   TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
@@ -106,8 +112,13 @@ std::cout << "Opened glue file " << GLUE_FILE << "\n";
 	
   TheCursorManager::Instance()->Load(Vec2f(0, 0));
 	
-  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
+  rm->LoadResourceGroup("2dtext-group"); // TODO not useing groups
   TheHud::Instance()->Load();
+
+  // Set collision system
+  CollisionDetector* cd = new BruteForce;
+  // Default intersection test is OK
+  TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
 #ifdef BYPASS_TITLE
   // TODO Only needed if we bypass title
