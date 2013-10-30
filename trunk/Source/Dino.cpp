@@ -223,6 +223,7 @@ bool Dino::Load(File* f)
     return false;
   }
 
+/*
   // Blood particle effect for when pet eaten
   m_bloodFx = new BloodFx(this);
   if (!m_bloodFx->Load(f))
@@ -231,7 +232,7 @@ bool Dino::Load(File* f)
     return false;
   }
   root->AddChild(m_bloodFx.GetPtr());
-
+*/
   return true;
 }
 }
