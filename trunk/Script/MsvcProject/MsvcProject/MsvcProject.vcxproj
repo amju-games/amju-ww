@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -294,8 +294,6 @@
     <ClCompile Include="..\..\..\Source\CollidePlayerPlayer.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerTrigger.cpp" />
     <ClCompile Include="..\..\..\Source\ContextMenu.cpp" />
-    <ClCompile Include="..\..\..\Source\Cursor.cpp" />
-    <ClCompile Include="..\..\..\Source\CursorManager.cpp" />
     <ClCompile Include="..\..\..\Source\Dino.cpp" />
     <ClCompile Include="..\..\..\Source\EditModeCamera.cpp" />
     <ClCompile Include="..\..\..\Source\EditViewport.cpp" />
@@ -324,12 +322,10 @@
     <ClCompile Include="..\..\..\Source\Objective.cpp" />
     <ClCompile Include="..\..\..\Source\OnFloor.cpp" />
     <ClCompile Include="..\..\..\Source\OnFloorCharacter.cpp" />
-    <ClCompile Include="..\..\..\Source\ParticleEffect2d.cpp" />
     <ClCompile Include="..\..\..\Source\Pet.cpp" />
     <ClCompile Include="..\..\..\Source\Player.cpp" />
     <ClCompile Include="..\..\..\Source\PlayerInfo.cpp" />
     <ClCompile Include="..\..\..\Source\PlayWav.cpp" />
-    <ClCompile Include="..\..\..\Source\Shadow.cpp" />
     <ClCompile Include="..\..\..\Source\Skybox.cpp" />
     <ClCompile Include="..\..\..\Source\StartGame.cpp" />
     <ClCompile Include="..\..\..\Source\StartUp.cpp" />
@@ -338,7 +334,6 @@
     <ClCompile Include="..\..\..\Source\Trigger.cpp" />
     <ClCompile Include="..\..\..\Source\Tutorial.cpp" />
     <ClCompile Include="..\..\..\Source\TutorialTrigger.cpp" />
-    <ClCompile Include="..\..\..\Source\Unproject.cpp" />
     <ClCompile Include="..\..\..\Source\Viewport.cpp" />
     <ClCompile Include="..\..\..\Source\WWGameObject.cpp" />
   </ItemGroup>
@@ -356,8 +351,6 @@
     <ClInclude Include="..\..\..\Source\BonusParticleEffect.h" />
     <ClInclude Include="..\..\..\Source\Camera.h" />
     <ClInclude Include="..\..\..\Source\ContextMenu.h" />
-    <ClInclude Include="..\..\..\Source\Cursor.h" />
-    <ClInclude Include="..\..\..\Source\CursorManager.h" />
     <ClInclude Include="..\..\..\Source\Dino.h" />
     <ClInclude Include="..\..\..\Source\EditModeCamera.h" />
     <ClInclude Include="..\..\..\Source\EditViewport.h" />
@@ -385,14 +378,12 @@
     <ClInclude Include="..\..\..\Source\Objective.h" />
     <ClInclude Include="..\..\..\Source\OnFloor.h" />
     <ClInclude Include="..\..\..\Source\OnFloorCharacter.h" />
-    <ClInclude Include="..\..\..\Source\ParticleEffect2d.h" />
     <ClInclude Include="..\..\..\Source\Pet.h" />
     <ClInclude Include="..\..\..\Source\Player.h" />
     <ClInclude Include="..\..\..\Source\PlayerInfo.h" />
     <ClInclude Include="..\..\..\Source\PlayerInfoKey.h" />
     <ClInclude Include="..\..\..\Source\PlayWav.h" />
     <ClInclude Include="..\..\..\Source\Rotateable.h" />
-    <ClInclude Include="..\..\..\Source\Shadow.h" />
     <ClInclude Include="..\..\..\Source\Skybox.h" />
     <ClInclude Include="..\..\..\Source\StartGame.h" />
     <ClInclude Include="..\..\..\Source\StartUp.h" />
@@ -401,17 +392,10 @@
     <ClInclude Include="..\..\..\Source\Trigger.h" />
     <ClInclude Include="..\..\..\Source\Tutorial.h" />
     <ClInclude Include="..\..\..\Source\TutorialTrigger.h" />
-    <ClInclude Include="..\..\..\Source\Unproject.h" />
     <ClInclude Include="..\..\..\Source\Viewport.h" />
     <ClInclude Include="..\..\..\Source\WWGameObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d11.lib" />
-    <Library Include="..\..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib" />
-    <Library Include="..\..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx11.lib" />
-    <Library Include="..\..\..\..\..\..\..\Program Files\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib" />
-    <Library Include="..\..\..\..\amjulib\Source\SDL\lib\SDL.lib" />
-    <Library Include="..\..\..\..\amjulib\Source\SDL\lib\SDL_mixer.lib" />
     <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bass.lib" />
     <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bassmidi.lib" />
   </ItemGroup>
