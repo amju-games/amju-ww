@@ -5,8 +5,13 @@
 
 namespace Amju
 {
-void CollidePlayerDino(Player* go1, Dino* go2)
+void CollidePlayerDino(GameObject* go1, GameObject* go2)
 {
+  Player* player = dynamic_cast<Player*>(go1);
+  Assert(player);
+  Dino* dino = dynamic_cast<Dino*>(go2);
+  Assert(dino);
+
   // Sound effect
   // TODO Make sure not played more than once in successive frames
   // -- have a timer
@@ -36,5 +41,5 @@ void CollidePlayerDino(Player* go1, Dino* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Dino::NAME, (CollisionManager::CollisionHandler)CollidePlayerDino);
+  Player::NAME, Dino::NAME, CollidePlayerDino);
 } 
