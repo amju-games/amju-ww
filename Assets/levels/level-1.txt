@@ -44,7 +44,7 @@ staticfloor
 0
 // Floor mesh + texture
 block_rect_1x1.obj
-plat_wood1.bmp
+plat_wood1.png
 end
 
 floor
@@ -55,7 +55,7 @@ floor
 0
 // Floor mesh
 plat_rect_2x1_std.obj
-plat_wood2.bmp
+plat_wood2.png
 // Rotation axes flags: x=1, y=2, z=4
 4
 // max AABB height
@@ -72,7 +72,7 @@ staticfloor
 0
 // Floor mesh
 block_rect_1x1.obj
-plat_wood1.bmp
+plat_wood1.png
 end
 
 staticfloor
@@ -83,7 +83,7 @@ staticfloor
 45
 // Floor mesh
 ramp_3x1.obj
-ramp1.bmp
+ramp1.png
 end
 
 // Marin start floor
@@ -95,7 +95,7 @@ staticfloor
 0
 // Floor mesh + texture
 block_rect_1x1.obj
-plat_wood1.bmp
+plat_wood1.png
 end
 
 
@@ -109,10 +109,10 @@ player
 // Mesh
 amju.md2
 // 2 Textures
-amju2.bmp
-amju2a.bmp
+amju2.png
+amju2a.png
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -126,10 +126,10 @@ end
 //// Mesh
 //marin.md2
 //// 2 Textures
-//marin1.bmp
-//marin1a.bmp
+//marin1.png
+//marin1a.png
 //// Shadow
-//shadow.bmpa
+//shadow.png
 //20
 //end
 
@@ -138,7 +138,7 @@ dino
 // Start pos
 400, 220, 0
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -149,7 +149,7 @@ end
 //200, 250, 0
 //crate2.obj
 //// Shadow - TODO
-//shadow.bmpa
+//shadow.png
 //20
 //end
 
@@ -160,7 +160,7 @@ bonus
 100, 250, -100
 heart.obj
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -170,7 +170,7 @@ bonus
 100, 250, 100
 heart.obj
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -180,7 +180,7 @@ bonus
 -100, 250, -100
 heart.obj
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -190,7 +190,7 @@ bonus
 -100, 250, 100
 heart.obj
 // Shadow
-shadow.bmpa
+shadow.png
 20
 end
 
@@ -203,12 +203,12 @@ star.obj
 // Next level
 2
 // Billboard
-flare.bmpa
+flare.png
 // size
 100
 // Effect
 // image - TODO TEMP TEST
-sparkle1.bmpa
+sparkle1.png
 // size
 20.0
 // number
@@ -217,7 +217,7 @@ sparkle1.bmpa
 2.0
 // Shadow
 // TODO White "shadow" as exits emit light ?
-shadow.bmpa
+shadow.png
 20
 end
 
