@@ -39,9 +39,9 @@ void GSLogo::OnDeactive()
 void GSLogo::Update()
 {
 #ifdef _DEBUG
-  const int LOGO_SPEED = 4.0f;
+  const float LOGO_SPEED = 4.0f;
 #else
-  const int LOGO_SPEED = 1.0f;
+  const float LOGO_SPEED = 1.0f;
 #endif
   m_fade += TheTimer::Instance()->GetDt() * LOGO_SPEED;
 }
