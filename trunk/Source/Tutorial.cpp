@@ -52,7 +52,8 @@ Tutorial::Tutorial() : m_show(false)
  
   m_isLocked = false;
 
-  TheEventPoller::Instance()->AddListener(this);
+  // No good, must be on heap!
+////  TheEventPoller::Instance()->AddListener(this);
 
   Clear();
 }
