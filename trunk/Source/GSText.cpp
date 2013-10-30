@@ -117,7 +117,7 @@ void GSText::CreateText(const std::string& text)
 
   // Rotate
   Matrix m;
-  m.RotateX(DegToRad(60.0f));
+  m.RotateX(DegToRad(10.0f));
   node->MultLocalTransform(m);
   // TODO Should combine ?
   node->CombineTransform();
@@ -127,12 +127,12 @@ void GSText::CreateText(const std::string& text)
   parent->AddChild(node);
   parent->UpdateBoundingVol();
 
-  /*
+  
   // Reflection - TODO
-  Reflect* reflect = new Reflect;
-  parent->AddChild(reflect);
-  reflect->AddChild(node);
-  */
+//  Reflect* reflect = new Reflect;
+//  parent->AddChild(reflect);
+//  reflect->AddChild(node);
+  
 
   GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 }
