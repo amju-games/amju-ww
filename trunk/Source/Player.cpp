@@ -61,8 +61,15 @@ private:
 
 Player::Player()
 {
-  TheEventPoller::Instance()->AddListener(this);
+  m_controller = new PlayerController(this);
+  TheEventPoller::Instance()->AddListener(m_controller);
+
   m_playerId = 0;
+}
+
+Player::~Player()
+{
+  TheEventPoller::Instance()->RemoveListener(m_controller);
 }
 
 const char* Player::GetTypeName() const
