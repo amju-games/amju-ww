@@ -81,7 +81,10 @@ void GSText::OnDeactive()
   //TheSceneGraph::Instance()->Clear();
 
   // remove as a listener
-  TheEventPoller::Instance()->RemoveListener(m_gui);
+  if (m_gui)
+  {
+    TheEventPoller::Instance()->RemoveListener(m_gui);
+  }
   m_gui = 0; 
 }
 
