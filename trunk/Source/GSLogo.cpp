@@ -38,7 +38,12 @@ void GSLogo::OnDeactive()
 
 void GSLogo::Update()
 {
-  m_fade += TheTimer::Instance()->GetDt();
+#ifdef _DEBUG
+  const int LOGO_SPEED = 4.0f;
+#else
+  const int LOGO_SPEED = 1.0f;
+#endif
+  m_fade += TheTimer::Instance()->GetDt() * LOGO_SPEED;
 }
 
 void GSLogo::Draw()
