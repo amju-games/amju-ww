@@ -21,6 +21,6 @@ del wh8.png
 
 mkdir %DEST_DIR%\obj
 cd ..
-for %%f in (*.obj) do %RESTORE_DIR%\obj2bin %%f %DEST_DIR%\obj\%%f
+for %%f in (*.obj) do %RESTORE_DIR%\obj2bin %%f %DEST_DIR%\%%f
 
 cd %RESTORE_DIR%
