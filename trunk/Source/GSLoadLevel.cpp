@@ -107,7 +107,7 @@ void GSLoadLevel::Update()
     LoadOneObject();
     ++m_currentObj;
 
-    // If done, turn of prog bar and turn on GO button
+    // If done, turn off prog bar and turn on GO button
     // TODO Don't do this for attract mode - go directly to level
     if (m_currentObj == m_numObjects)
     {

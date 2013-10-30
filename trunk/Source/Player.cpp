@@ -133,6 +133,7 @@ bool Player::Load(File* f)
   }
 
   // TODO
+/*
   PlayerTrail* trail = new PlayerTrail(this);
   if (!trail->Load(f))
   {
@@ -142,6 +143,7 @@ bool Player::Load(File* f)
 
   trail->Start();
   root->AddChild(trail);
+*/
 
   return true;
 
