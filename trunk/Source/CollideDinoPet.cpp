@@ -4,17 +4,22 @@
 
 namespace Amju
 {
-void CollideDinoPet(Dino* go1, Pet* go2)
+void CollideDinoPet(GameObject* go1, GameObject* go2)
 {
+  Dino* dino = dynamic_cast<Dino*>(go1);
+  Assert(dino);
+  Pet* pet = dynamic_cast<Pet*>(go2);
+  Assert(pet);
+
 #ifdef COLLIDE_DEBUG
   std::cout << "***Pet/Dino collision\n";
 #endif
-  if (!go1->IsEating())
+  if (!dino->IsEating())
   {
-    go1->Eat(go2);
+    dino->Eat(pet);
   }
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Dino::NAME, Pet::NAME, (CollisionManager::CollisionHandler)&CollideDinoPet);
+  Dino::NAME, Pet::NAME, CollideDinoPet);
 }
