@@ -51,6 +51,7 @@ SceneNode* MakeChar(char k, float* width)
 SceneNode* TextMaker::MakeText(const std::string& text)
 {
   SceneNode* comp = new SceneNode;
+  comp->SetIsLit(true);
   float xmax = 0;
   float x = 0;
   float y = 1.0f;
@@ -67,6 +68,7 @@ SceneNode* TextMaker::MakeText(const std::string& text)
     SceneNode* node = MakeChar(c, &w);
     if (node)
     {
+      node->SetIsLit(true);
       Matrix m;
       m.Translate(Vec3f(x, 0, y));
       node->SetLocalTransform(m);
