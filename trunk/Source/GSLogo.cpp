@@ -1,4 +1,5 @@
 #include <math.h>
+#include <Teapot.h>
 #include "GSLogo.h"
 #include "Game.h"
 #include "Timer.h"
@@ -48,10 +49,23 @@ void GSLogo::Update()
 
 void GSLogo::Draw()
 {
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+
+  // NB Make sure we use MV matrix to transform cursor..?
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+  AmjuGL::SetIdentity();
+
+  Teapot tp;
+
+  AmjuGL::Scale(0.1, 0.1, 0.1);
+  tp.Draw();
 }
 
 void GSLogo::Draw2d()
 {
+  return;
+
   PushColour();
   float s = sin(m_fade);
   if (s < 0)
@@ -62,11 +76,5 @@ void GSLogo::Draw2d()
   MultColour(Colour(s, s, s, 1.0f));
   m_image.Draw();
   PopColour();
-}
-
-bool GSLogo::OnKeyEvent(const KeyEvent& ke)
-{
-  Done();
-  return true;
 }
 }
