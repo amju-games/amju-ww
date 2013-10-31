@@ -24,8 +24,9 @@
 #include <Screen.h>
 #include "LevelManager.h"
 #include "StartGame.h"
-#include <AmjuFinal.h>
+#include <Directory.h>
 #include <BassSoundPlayer.h>
+#include <AmjuFinal.h>
 
 #ifdef MACOSX
 #define GLUE_FILE "data-Mac.glue"
@@ -51,34 +52,27 @@ namespace Amju
 {
 void StartUpBeforeCreateWindow()
 {
-}
-
-void StartUpAfterCreateWindow()
-{
-  Game* game = TheGame::Instance();
-  game->SetUpdateCopy(true); // if updating game objects can create/destroy objects
-
-  SoundManager* sm = TheSoundManager::Instance();
-
-#ifdef GEKKO
-  // TODO Better to put this in library main() if we can get the app's directory
-  File::SetRoot("/apps/amju_ww/data/", "/");
+#if defined(AMJU_IOS)
+  std::string dataDir = GetDataDir();
+  std::cout << "Data Dir: " << dataDir << "\n";
+  File::SetRoot(dataDir, "/");
 #endif
-
+  
+  if (FileImplGlue::OpenGlueFile(GLUE_FILE))
+  {
+    std::cout << "Opened glue file " << GLUE_FILE << "\n";
+  }
+  else
+  {
+    ReportError("Failed to open data glue file");
+  }
+  
+  // Set up music glue file
+  SoundManager* sm = TheSoundManager::Instance();  
 #if defined (MACOSX) || defined(WIN32) || defined(AMJU_IOS)
   sm->SetImpl(new BassSoundPlayer);
 #endif
 
-  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
-
-  if (!FileImplGlue::OpenGlueFile(GLUE_FILE))
-  {
-    ReportError("Failed to open data glue file");
-  }
-
-std::cout << "Opened glue file " << GLUE_FILE << "\n";
-
-  // Set up music glue file
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
   {
@@ -88,6 +82,19 @@ std::cout << "Opened glue file " << GLUE_FILE << "\n";
   {
     ReportError("Failed to open music glue file");
   }
+}
+
+void StartUpAfterCreateWindow()
+{
+  Game* game = TheGame::Instance();
+  game->SetUpdateCopy(true); // if updating game objects can create/destroy objects
+
+#ifdef GEKKO
+  // TODO Better to put this in library main() if we can get the app's directory
+  File::SetRoot("/apps/amju_ww/data/", "/");
+#endif
+
+  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
 
   // TODO Other languages - preferences
   if (!Localise::LoadStringTable("english.txt"))
@@ -112,7 +119,7 @@ std::cout << "Opened glue file " << GLUE_FILE << "\n";
 	
   TheCursorManager::Instance()->Load(Vec2f(0, 0));
 	
-  rm->LoadResourceGroup("2dtext-group"); // TODO not useing groups
+  rm->LoadResourceGroup("2dtext-group"); // TODO not using groups
   TheHud::Instance()->Load();
 
   // Set collision system
