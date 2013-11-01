@@ -14,6 +14,11 @@
 
 namespace Amju
 {
+bool TextStateListener::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
+{
+  return m_textState->OnBalanceBoardEvent(bbe);
+}
+
 GSText::GSText()
 {
   m_timer = 0;
@@ -71,6 +76,9 @@ void GSText::OnActive()
   m_timer = 0;
 
   AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
+
+  m_listener = new TextStateListener(this);
+  TheEventPoller::Instance()->AddListener(m_listener);
 }
 
 void GSText::OnDeactive()
@@ -80,7 +88,10 @@ void GSText::OnDeactive()
   // DON'T unload scene
   //TheSceneGraph::Instance()->Clear();
 
-  // remove as a listener
+  // remove listeners
+  TheEventPoller::Instance()->RemoveListener(m_listener);
+  m_listener = 0;
+
   if (m_gui)
   {
     TheEventPoller::Instance()->RemoveListener(m_gui);
@@ -136,4 +147,13 @@ void GSText::CreateText(const std::string& text)
 
   GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 }
+
+bool GSText::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
+{
+  // Calibrate balance events
+  Vec2f ucpos = bbe.GetUncalibratedCoord();
+  BalanceBoardEvent::SetZeroCoords(ucpos.x, ucpos.y);
+  return false; // not eaten
+}
+
 }

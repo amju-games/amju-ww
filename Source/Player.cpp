@@ -268,13 +268,14 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
     return false;
   }
 
-  float x = bbe.x;
-  float y = bbe.y;
+  Vec2f cp = bbe.GetCalibratedCoord();
+  float x = cp.x;
+  float y = cp.y;
   
 #ifdef IPHONE
 
   // TODO Set OFFSET when in non-game mode
-  const float OFFSET = 0.5f;
+//  const float OFFSET = 0.5f;
   const float DEAD_ZONE = 0.1f;
   // TODO Make these 'sensitivity' settings
   const float X_MULT = 4.0f;
@@ -290,7 +291,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   }
   
   // y=0 when iphone is horizontal, so compensate for angle at which player is holding iphone
-  y -= OFFSET;
+//  y -= OFFSET;
   if (y > -DEAD_ZONE && y < DEAD_ZONE)
   {
     y = 0;
@@ -305,7 +306,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   m_vel.z = y * 100.0f; 
 
   // Work out direction to face
-  SetDir(RadToDeg(atan2((double)bbe.x, (double)bbe.y)));
+  SetDir(RadToDeg(atan2((double)cp.x, (double)cp.y)));
 
   SetIsControlled(true); 
  
