@@ -79,7 +79,7 @@ void GSLoadLevel::OnActive()
 
 void GSLoadLevel::OnDeactive()
 {
-  GameState::OnDeactive();
+  GSText::OnDeactive();
   m_gui = 0; // should remove itself as a listener
 }
 
