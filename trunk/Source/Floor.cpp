@@ -20,6 +20,7 @@ const char* Floor::NAME = "floor";
 
 FloorMesh::FloorMesh(Floor* floor) : m_floor(floor)
 {
+  SetIsLit(true);
 }
 
 void FloorMesh::Draw()
