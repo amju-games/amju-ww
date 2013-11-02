@@ -23,6 +23,11 @@ bool BlinkCharacter::LoadTextures(const std::string& tex1, const std::string& te
 
 void BlinkCharacter::Update()
 {
+  if (!IsVisible())
+  {
+    return;
+  }
+  
   Animated::Update();
 
   m_blinkTime += TheTimer::Instance()->GetDt();
