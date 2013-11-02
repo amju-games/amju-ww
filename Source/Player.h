@@ -32,6 +32,8 @@ public:
 
   void Jump();
 
+  void AddSceneNode();
+
 private:
   // PlayerInfo ID
   int m_playerId;
