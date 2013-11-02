@@ -4,10 +4,6 @@
 // Num Objects
 10
 
-// Translate for next block
-500, 0, 0
-
-
 
 floor
 3
