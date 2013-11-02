@@ -15,10 +15,7 @@
 //       -50   0   50   100
 
 // Num Objects
-4
-
-// Translate for next block
-300, 0, 0
+16
 
 // 1
 // Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
@@ -36,15 +33,15 @@ amju2a.png
 // Shadow
 shadow.png
 20
-// Effect
-// image 
-sparkle1.png
-// size
-10.0
-// number
-10
-// max time
-2.0
+//// Effect
+//// image 
+//sparkle1.png
+//// size
+//10.0
+//// number
+//10
+//// max time
+//2.0
 end
 
 // 2
@@ -73,7 +70,7 @@ block_rect_curved_hill_4x2.obj
 curvedFloorUV2.png
 end
 
-// 11
+// 4
 block
 // ID
 667
@@ -88,19 +85,21 @@ end
 
 
 
-// 4
+// 5
 fence
 // ID
 666
 // Pos
 0, 100, 50
 // Rot 
-90
+ns
+// Num units
+2
 // Mesh
 pz-fence.obj
 end
 
-// 5
+// 6
 staticfloor
 3
 // Centre/pivot point
@@ -114,7 +113,7 @@ block_rect_curved_2x2.obj
 curvedFloorUV2.png
 end
 
-// 6
+// 7
 staticfloor
 4
 // Centre/pivot point
@@ -128,7 +127,7 @@ block_rect_curved_hill_4x2.obj
 curvedFloorUV2.png
 end
 
-// 7
+// 8
 staticfloor
 5
 // Centre/pivot point
@@ -142,23 +141,25 @@ block_rect_curved_hill_4x2.obj
 curvedFloorUV2.png
 end
 
-// 8
+// 9
 fence
 7
 -1175, -200, 50
-0
-pz-fence.obj
-end
-
-// 9
-fence
-8
--1175, -200, -50
-0
+ew
+2
 pz-fence.obj
 end
 
 // 10
+fence
+8
+-1175, -200, -50
+ns
+3
+pz-fence.obj
+end
+
+// 11
 tut-trigger
 // ID
 10
@@ -178,7 +179,7 @@ shadow.png
 20
 end
 
-// 9
+// 13
 dino
 105
 // Start pos
@@ -189,7 +190,7 @@ shadow.png
 end
 
 
-// 10
+// 14
 floor
 13
 // Centre/pivot point
@@ -207,7 +208,7 @@ plat_wood2.png
 50.0
 end
 
-// 11
+// 15
 staticfloor
 14
 // Centre/pivot point
@@ -219,7 +220,7 @@ block_rect_1x1.obj
 plat_wood1.png
 end
 
-// 12
+// 16
 staticfloor
 15
 // Centre/pivot point
@@ -231,8 +232,4 @@ ramp_3x1.obj
 ramp1.png
 end
 
-//skybox
-//999
-//skybox2.obj
-//end
 

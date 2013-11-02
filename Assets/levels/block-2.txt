@@ -4,10 +4,6 @@
 // Num Objects
 5
 
-// Translate for next block
-900, 200, 0
-
-
 staticfloor
 2
 // Centre/pivot point
