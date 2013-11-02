@@ -2,7 +2,7 @@
 
 export RESTORE_DIR=`pwd`
 export TOP_DIR=$RESTORE_DIR/../..
-export DEST_DIR=$TOP_DIR/Build/CompiledAssets/iOS
+export DEST_DIR=$TOP_DIR/Build/CompiledAssets/Mac
 export OBJ2BIN=$RESTORE_DIR/obj2bin
 export SRC_DIR=$TOP_DIR/Assets
 
