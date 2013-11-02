@@ -36,11 +36,6 @@ void Pet::Update()
 {
   Npc::Update();
 
-  if (IsDead())
-  {
-    return;
-  }
-
   RecalcAABB();
 }
 
