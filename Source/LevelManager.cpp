@@ -22,7 +22,7 @@ bool LevelManager::Open()
   m_file = new File;
 
   // TODO use current level number
-  std::string levelFilename = "levels/level-1.txt";
+  std::string levelFilename = "levels/block-1.txt";
 
   if (!m_file->OpenRead(levelFilename))
   {
