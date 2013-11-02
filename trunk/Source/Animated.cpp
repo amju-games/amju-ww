@@ -28,6 +28,11 @@ void Animated::SetGameObj(OnFloorCharacter* gameObj)
 void Animated::SetAnim(const std::string& animName)
 {
   int anim = m_pModel->GetAnimationFromName(animName);
+  if (anim == -1)
+  {
+    std::cout << "No anim '" << animName << "' for animated char.\n";
+    return; // no such anim
+  }
   SetAnim(anim);
 }
 

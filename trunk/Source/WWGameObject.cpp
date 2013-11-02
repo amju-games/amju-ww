@@ -27,4 +27,15 @@ bool WWGameObject::IsDead() const
 {
   return m_isDead;
 }
+
+void WWGameObject::RecalcAABB()
+{
+  m_aabb = AABB(
+    m_pos.x - m_aabbExtents.x, m_pos.x + m_aabbExtents.x,
+    m_pos.y - m_aabbExtents.y, m_pos.y + m_aabbExtents.y,
+    m_pos.z - m_aabbExtents.z, m_pos.z + m_aabbExtents.z);
+
+  m_pSceneNode->SetAABB(m_aabb);
+}
+
 }

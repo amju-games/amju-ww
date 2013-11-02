@@ -54,11 +54,12 @@ void StartGame(int numPlayers, GameMode mode)
   }
 
   // Create PlayerInfo for each player
-  ThePlayerInfoManager::Instance()->Init(numPlayers);
+  PlayerInfoManager* pim = ThePlayerInfoManager::Instance();
+  pim->Init(numPlayers);
   // Start number of lives
   for (int i = 0; i < numPlayers; i++)
   {
-    ThePlayerInfoManager::Instance()->GetPlayerInfo(i)->Set(PlayerInfoKey::LIVES, 3);
+    pim->GetPlayerInfo(i)->Set(PlayerInfoKey::LIVES, 3);
   }
 
   // TODO Hide unused player game objects ?

@@ -30,6 +30,7 @@ private:
   int m_levelId;
   int m_numObjects;
   RCPtr<File> m_file;
+  int m_numPlayers; // keep track of how many players created
 };
 
 typedef Singleton<LevelManager> TheLevelManager;

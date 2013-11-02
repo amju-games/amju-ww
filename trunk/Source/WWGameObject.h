@@ -23,11 +23,16 @@ public:
 
   SceneNode* GetSceneNode();
 
+  // Set AABB around m_pos with extents xsize, ysize, zsize
+  void RecalcAABB(); 
+
 protected:
   Matrix m_mat;
   bool m_isDead;
 
   RCPtr<SceneNode> m_pSceneNode;
+
+  Vec3f m_aabbExtents;
 };
 }
 

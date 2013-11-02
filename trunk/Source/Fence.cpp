@@ -105,7 +105,18 @@ bool Fence::Load(File* f)
     m.TranslateKeepRotation(pos);
     cm.Transform(m);
 
-    cm.CalcAABB(sm->GetAABB());
+    AABB aabb;
+    cm.CalcAABB(&aabb);
+    // Expand total AABB to include this one
+    if (i == 0)
+    {  
+      m_aabb = aabb;
+    }
+    else
+    {
+      m_aabb.Union(aabb);
+    }
+    sm->SetAABB(aabb);
 
     if (ns)
     {
@@ -138,9 +149,4 @@ void Fence::Reset()
   // If fences were moveable, move back to start pos here...
 }
 
-AABB* Fence::GetAABB()
-{
-  Assert(m_pSceneNode);
-  return m_pSceneNode->GetAABB();
-}
 }

@@ -14,7 +14,7 @@ void CollideDinoPet(GameObject* go1, GameObject* go2)
 #ifdef COLLIDE_DEBUG
   std::cout << "***Pet/Dino collision\n";
 #endif
-  if (!dino->IsEating())
+  if (!dino->IsEating() && !pet->IsDead())
   {
     dino->Eat(pet);
   }
