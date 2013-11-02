@@ -15,8 +15,13 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Pet::NAME, &CreatePet);
 
 const char* Pet::NAME = "pet";
 
+static const float XSIZE = 15.0f;
+static const float YSIZE = 60.0f;
+
 Pet::Pet()
 {
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
   AddAI(new AIFalling);
@@ -36,12 +41,7 @@ void Pet::Update()
     return;
   }
 
-  static const float XSIZE = 15.0f;
-  static const float YSIZE = 60.0f;
-  GetAABB()->Set(
-    m_pos.x - XSIZE, m_pos.x + XSIZE, 
-    m_pos.y, m_pos.y + YSIZE, 
-    m_pos.z - XSIZE, m_pos.z + XSIZE);
+  RecalcAABB();
 }
 
 bool Pet::Load(File* f)
@@ -54,8 +54,26 @@ bool Pet::Load(File* f)
   BlinkCharacter* bc = new BlinkCharacter;
   m_pSceneNode = bc;
 
-  // TODO
-  if (!bc->LoadMd2("pz-squirrel.md2"))
+  const int NUM_MESHES = 3;
+  static const char* MESHES[NUM_MESHES] = 
+  {
+    "pz-cat.md2",
+    "pz-rabbit.md2",
+    "pz-squirrel.md2"
+  };
+
+  const int NUM_TEXTURES = 5;
+  static const char* TEXTURES[NUM_TEXTURES][2] = 
+  {
+    { "pz-pet1a.png", "pz-pet1.png" },
+    { "pz-pet2a.png", "pz-pet2.png" },
+    { "pz-pet3a.png", "pz-pet3.png" },
+    { "pz-pet4a.png", "pz-pet4.png" },
+    { "pz-pet5a.png", "pz-pet5.png" }
+  };
+  
+  int r = rand() % NUM_MESHES;
+  if (!bc->LoadMd2(MESHES[r]))
   {
     return false;
   }
@@ -64,7 +82,8 @@ bool Pet::Load(File* f)
   SetAI(AIIdle::NAME);
 
   // TODO different colours
-  if (!bc->LoadTextures("pz-pet1a.png", "pz-pet1.png"))
+  r = rand() % NUM_TEXTURES;
+  if (!bc->LoadTextures(TEXTURES[r][0], TEXTURES[r][1]))
   {
     return false;
   }
@@ -94,12 +113,14 @@ bool Pet::Load(File* f)
 
 void Pet::OnEaten()
 {
+  /*
   m_bloodPool->AddCollisionMesh(m_floor->GetCollisionMesh());
 
   m_bloodPool->SetLocalTransform(m_pSceneNode->GetLocalTransform());
-  *(m_bloodPool->GetAABB()) = *(m_pSceneNode->GetAABB());
+  m_bloodPool->SetAABB(*m_pSceneNode->GetAABB());
   m_bloodPool->SetVisible(false); 
   // TODO Timer ?
+  */
 
   SetDead(true);
 

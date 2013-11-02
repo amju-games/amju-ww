@@ -77,6 +77,7 @@ Dino::Dino()
   AddAI(new AIFalling);
 }
 
+// Unusual as Dino shape needs asymmetric AABB
 void Dino::UpdateAabb()
 {
   static const float XSIZE = 15.0f;
@@ -128,7 +129,8 @@ void Dino::UpdateAabb()
   float miny = m_pos.y;
   float maxy = m_pos.y + YSIZE;
 
-  GetAABB()->Set(minx, maxx, miny, maxy, minz, maxz);
+  m_aabb.Set(minx, maxx, miny, maxy, minz, maxz);
+  m_pSceneNode->SetAABB(m_aabb);
 }
 
 const char* Dino::GetTypeName() const
@@ -147,9 +149,9 @@ void Dino::Eat(Pet* pet)
 
 void Dino::StartBloodEffect()
 {
-  m_bloodFx->Start();
+//  m_bloodFx->Start();
   // Make sure it's not culled
-  *(m_bloodFx->GetAABB()) = *(m_pSceneNode->GetAABB());
+//  m_bloodFx->SetAABB(*m_pSceneNode->GetAABB());
 }
 
 bool Dino::IsEating() const

@@ -55,6 +55,11 @@ void PlayerInfoManager::Init(int numPlayers)
   }
 }
 
+int PlayerInfoManager::GetNumPlayers() const
+{
+  return m_piv.size();
+}
+
 PlayerInfo* PlayerInfoManager::GetPlayerInfo(int player)
 {
   Assert(player < (int)m_piv.size());

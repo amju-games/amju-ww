@@ -20,7 +20,6 @@ public:
   virtual bool Load(File*);
   virtual void Reset(); 
   virtual void Update();
-  virtual AABB* GetAABB();
 
   void SetFloor(Floor*); 
   const Floor* GetFloor() const;

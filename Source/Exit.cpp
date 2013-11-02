@@ -22,8 +22,13 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Exit::NAME, &CreateExit)
 
 const char* Exit::NAME = "exit";
 
+static const float XSIZE = 20.0f;
+static const float YSIZE = 20.0f;
+
 Exit::Exit()
 {
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+
   m_isActive = false;
   m_activeTime = 0;
   m_rotate = 0;
@@ -105,13 +110,7 @@ bool Exit::Load(File* f)
   m_pSceneNode = sm;
 
   // Set AABB 
-  static const float XSIZE = 20.0f;
-  static const float YSIZE = 20.0f;
-  m_pSceneNode->GetAABB()->Set(
-    -XSIZE, XSIZE, 
-    -YSIZE, YSIZE, 
-    -XSIZE, XSIZE);
-  GetAABB()->Translate(m_pos);  
+  RecalcAABB();
 
   // Exit is translucent until activated
   // TODO So should be a Blended node !??
@@ -174,8 +173,8 @@ bool Exit::Load(File* f)
   AABB aabb(-X2, X2, -Y2, Y2, -X2, X2);
   aabb.Translate(m_pos);
   m_text->RecursivelyTransformAABB(mat);
-  *(m_billboard->GetAABB()) = aabb;
-  *(m_effect->GetAABB()) = aabb;
+  m_billboard->SetAABB(aabb);
+  m_effect->SetAABB(aabb);
 
   if (!LoadShadow(f))
   {

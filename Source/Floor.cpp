@@ -59,12 +59,6 @@ const char* Floor::GetTypeName() const
   return NAME;
 }
 
-AABB* Floor::GetAABB()
-{
-  Assert(m_pSceneNode);
-  return m_pSceneNode->GetAABB();
-}
-
 void Floor::Reset()
 {
   m_angularAccel = Quaternion();
@@ -196,7 +190,7 @@ void Floor::Update()
   Quaternion oldQuat = m_quat;
   Matrix oldMatrix = m_matrix;
   CollisionMesh oldCollMesh = m_collMesh;
-  AABB oldAabb = *(GetAABB());
+  AABB oldAabb = GetAABB();
 
   float dt = TheTimer::Instance()->GetDt();
   // We have net moment acting on floor.
@@ -283,7 +277,8 @@ void Floor::Update()
   m_collMesh.Translate(m_pos);
 
   // Calculate AABB for the collision mesh
-  m_collMesh.CalcAABB(m_pSceneNode->GetAABB());
+  m_collMesh.CalcAABB(&m_aabb);
+  m_pSceneNode->SetAABB(m_aabb);
 
   // If the collision mesh AABB is too tall, we have reached the max rotation.
   // In this case, restore the old values for m_quat, m_matrix, m_collMesh, m_aabb
@@ -293,7 +288,8 @@ void Floor::Update()
     m_quat = oldQuat;
     m_matrix = oldMatrix;
     m_collMesh = oldCollMesh;
-    *(m_pSceneNode->GetAABB()) = oldAabb;
+    m_aabb = oldAabb;
+    m_pSceneNode->SetAABB(m_aabb);
   }
 
   m_pSceneNode->SetLocalTransform(m_matrix);
