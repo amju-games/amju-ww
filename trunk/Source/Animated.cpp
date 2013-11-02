@@ -115,11 +115,13 @@ void Animated::Update()
         if (m_pModel->GetDoesActionRepeat(m_anim))
         {
           m_nextFrame = startFrame;
+          Assert(m_gameObj);
           m_gameObj->OnAnimRepeat();
         }
         else if (m_pModel->GetDoesActionFreeze(m_anim))
         {
           m_nextFrame--;
+          Assert(m_gameObj);
           m_gameObj->OnAnimFreeze();
         }
         else
@@ -128,6 +130,7 @@ void Animated::Update()
           // Doesn't repeat or freeze - go back to stand
           m_anim = 0;
           m_nextFrame = 0;
+          Assert(m_gameObj);
           m_gameObj->OnAnimFinished();
         }
       }

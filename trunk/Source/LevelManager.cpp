@@ -87,7 +87,8 @@ bool LevelManager::LoadOneObject()
     return false;
   }
 
-  if (dynamic_cast<Player*>(go.GetPtr()))
+  Player* p = dynamic_cast<Player*>(go.GetPtr());
+  if (p)
   {
     static PlayerInfoManager* pim = ThePlayerInfoManager::Instance();
     m_numPlayers++;
@@ -96,6 +97,11 @@ bool LevelManager::LoadOneObject()
     {
       std::cout << "Not creating player " << m_numPlayers << "\n";
       return true;
+    }
+    else
+    {
+      // Safe to add to scene graph
+      p->AddSceneNode();
     }
   }
 
