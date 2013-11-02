@@ -7,9 +7,10 @@ namespace Amju
 void PlayWav(const std::string& wavNoFileExt)
 {
 #ifdef GEKKO
+  // ?
   std::string s = "sound/wii/" + wavNoFileExt + ".snd";
 #else
-  std::string s = "sound/windows/" + wavNoFileExt + ".wav";
+  std::string s = "sound/" + wavNoFileExt + ".wav";
 #endif
 
 //#ifdef _DEBUG
