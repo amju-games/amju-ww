@@ -44,8 +44,8 @@
 #endif
 
 #ifdef IPHONE
-#define GLUE_FILE "data-iphone.glue"
-#define MUSIC_GLUE_FILE "music-iphone.glue"
+#define GLUE_FILE "data-iOS.glue"
+#define MUSIC_GLUE_FILE "music-iOS.glue"
 #endif
 
 namespace Amju

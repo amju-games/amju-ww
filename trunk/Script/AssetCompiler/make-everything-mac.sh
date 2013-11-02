@@ -11,7 +11,7 @@ mkdir -p $DEST_DIR
 
 rm -rf $DEST_DIR/*
 
-. makeobjsbin.sh
+. makeobjsbin-mac.sh
 
 . makeglue-mac.sh
 
