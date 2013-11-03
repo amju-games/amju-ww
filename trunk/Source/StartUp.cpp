@@ -117,7 +117,7 @@ void StartUpAfterCreateWindow()
   TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
   TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
 	
-  TheCursorManager::Instance()->Load(Vec2f(0, 0));
+  TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
 	
   rm->LoadResourceGroup("2dtext-group"); // TODO not using groups
   TheHud::Instance()->Load();

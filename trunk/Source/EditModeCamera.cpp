@@ -3,9 +3,18 @@
 
 namespace Amju
 {
+EditModeCameraController::EditModeCameraController(EditModeCamera* cam) : m_cam(cam)
+{
+}
+
+EditModeCameraController::~EditModeCameraController()
+{
+}
+
 EditModeCamera::EditModeCamera()
 {
-  TheEventPoller::Instance()->AddListener(this); 
+  m_controller = new EditModeCameraController(this);
+  TheEventPoller::Instance()->AddListener(m_controller); 
 
   // TODO TEMP TEST
   SetEyePos(Vec3f(0, 0, 500));
@@ -18,7 +27,7 @@ EditModeCamera::EditModeCamera()
 
 EditModeCamera::~EditModeCamera()
 {
-  // Done in Listener dtor TheEventPoller::Instance()->RemoveListener(this); 
+  TheEventPoller::Instance()->RemoveListener(m_controller); 
 }
 
 void EditModeCamera::Update()

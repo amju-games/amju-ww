@@ -113,7 +113,7 @@ void GSMainEdit::OnActive()
 
   // Initial option is to load a block
 
-  /*
+  
   GuiMenu* childMenu = new GuiMenu;
   childMenu->SetName("Child menu");
   childMenu->AddChild(new GuiMenuItem("good"));
@@ -122,16 +122,16 @@ void GSMainEdit::OnActive()
   childMenu->AddChild(new GuiMenuItem("seems"));
   childMenu->AddChild(new GuiMenuItem("to"));
   childMenu->AddChild(new GuiMenuItem("work"));
-  */
+ 
 
   m_contextMenu = new ContextMenu;
   m_contextMenu->AddChild(new GuiMenuItem("New block"));
   m_contextMenu->AddChild(new GuiMenuItem("Load block..."));
-  /*
+
   m_contextMenu->AddChild(new GuiMenuItem("I am"));
   m_contextMenu->AddChild(new GuiMenuItem("some text"));
   m_contextMenu->AddChild(new GuiNestMenuItem("I R Nested!", childMenu));
-  */
+
 
   m_contextMenu->SetName("Parent menu");
 
@@ -143,7 +143,7 @@ void GSMainEdit::Update()
   GSMain::Update();
 
   // Don't update game objects; don't check collisions
-  //GetGameSceneGraph()->Update();
+//  GetGameSceneGraph()->Update();
 }
 
 void GSMainEdit::Draw()
