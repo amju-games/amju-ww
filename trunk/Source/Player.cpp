@@ -20,7 +20,8 @@
 #include "PlayerInfo.h"
 #include "PlayerInfoKey.h"
 #include "ParticleEffect2d.h"
-#include "AmjuFinal.h"
+#include "Pet.h"
+#include <AmjuFinal.h>
 
 namespace Amju
 {
@@ -28,7 +29,7 @@ static const float MAX_SPEED = 100.0f; // TODO CONFIG
 static const float RUN_SPEED = MAX_SPEED * 0.5f;
 static const float WALK_SPEED = RUN_SPEED * 0.5f; 
 static const float XSIZE = 15.0f; // AABB size
-static const float YSIZE = 60.0f;
+static const float YSIZE = 30.0f;
 
 GameObject* CreatePlayer() { return new Player; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Player::NAME, &CreatePlayer);
@@ -78,6 +79,94 @@ Player::~Player()
 const char* Player::GetTypeName() const
 {
   return NAME;
+}
+
+const float BOTTOM_PET_Y = 60.0f;
+const float PET_HEIGHT = 30.0f;
+const float DETACH_RADIUS = 25.0f;
+
+void Player::PickUpPet(Pet* pet)
+{
+  if (pet->GetCarryingPlayer())
+  {
+    return;
+  }
+
+std::cout << "Pick up pet! " << pet->GetId() << "\n";
+
+  // Existing pets jump up to make room for new pet
+  pet->SetCarryingPlayer(this);
+  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
+  {
+    Pet* p = *it;
+    // Jump up
+    p->SetVel(Vec3f(0, 50.0f, 0)); // TEST
+  }
+  // Set vel - above player
+  pet->SetVel(Vec3f(0, 0, 0));
+  pet->SetPos(m_pos + Vec3f(0, BOTTOM_PET_Y, 0));
+  pet->RecalcAABB();
+
+  m_pets.push_front(pet);
+}
+
+void Player::UpdatePets()
+{
+  float y = m_pos.y + BOTTOM_PET_Y;
+  Vec3f posUnder = m_pos;
+  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); /* inc in loop body */)
+  {
+    Pet* pet = *it;
+    Vec3f pos = pet->GetPos();
+    Vec3f vel = pet->GetVel();
+    if (pos.y < y)
+    {
+      pos.y = y;
+      // reverse y vel
+//      if (vel.y < 0)
+//      {
+//        vel.y = -vel.y * 0.5f; // damping
+//      }
+
+      vel.y = 10.0f; // TEST
+
+      // Move in dir of player (x, z)
+      Vec3f v = (posUnder - pos) * 10.0f;
+      vel.x = v.x;
+      vel.z = v.z; 
+    }   
+    pet->SetVel(vel);
+    Vec3f acc = pet->GetAcc();
+    acc.x = -vel.x;
+    acc.z = -vel.z;
+    pet->SetAcc(acc);
+
+//    pos.x = m_pos.x;
+//    pos.z = m_pos.z;
+
+    posUnder = pos;
+    pet->SetPos(pos); 
+
+    pet->RecalcAABB();
+
+    y += PET_HEIGHT;
+
+    // Check if pet has fallen off stack
+    Vec3f xz = (pos - m_pos);
+    xz.y = 0;
+    float sqRad = xz.SqLen();
+    if (sqRad > DETACH_RADIUS * DETACH_RADIUS)
+    {
+std::cout << "Dropping pet " << pet->GetId() << "\n";
+      // Remove from stack
+      pet->SetCarryingPlayer(0); 
+      it = m_pets.erase(it);
+    }
+    else
+    {
+      ++it;
+    }
+  }
 }
 
 void Player::SetPlayerId(int playerId)
@@ -434,6 +523,8 @@ void Player::Update()
 
   // Set AABB 
   RecalcAABB();
+
+  UpdatePets();
    
   // If we have fallen, go to life lost state
   if (IsDead())
