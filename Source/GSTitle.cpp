@@ -78,12 +78,5 @@ void GSTitle::OnActive()
   }
 
   CreateText("amju\nwibble\nwobble"); // TODO Localise
-
-  // Load background skybox
-  // TODO We could have movement decorator etc 
-  /*
-  GetTextSceneGraph()->SetRootNode(
-    SceneGraph::AMJU_SKYBOX, LoadScene("title-scene.txt"));
-  */
 }
 }
