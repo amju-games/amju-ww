@@ -4,15 +4,14 @@ REM glue sound files into a Glue file.
 set THIS_DIR=%cd%
 set TOP_DIR=%THIS_DIR%\..\..
 set DEST_DIR=%TOP_DIR%\Build\CompiledAssets\Win
-set SRC_DIR=%TOP_DIR%\Assets
+set SRC_DIR=%TOP_DIR%\Assets\sound
 
-rem mkdir %DEST_DIR%
-rem del /S /Q %DEST_DIR%\*.*
+mkdir %DEST_DIR%
+mkdir %DEST_DIR%\sound
 
 
-REM Copy other files to compiled dir
-xcopy /S /Y %SRC_DIR%\*.wav %DEST_DIR%
-xcopy /S /Y %SRC_DIR%\*.mod %DEST_DIR%
+xcopy /S /Y %SRC_DIR%\windows\*.wav %DEST_DIR%\sound
+xcopy /S /Y %SRC_DIR%\*.mod %DEST_DIR%\sound
 
 
 cd %DEST_DIR%
@@ -24,7 +23,7 @@ REM make glue file
 
 REM Add files in sound dir
 
-for %%f in (sound\windows\*.wav) do %GLUE_EXE% -a %GLUE_FILE% %%f
+for %%f in (sound\*.wav) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 for %%f in (sound\*.mod) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
