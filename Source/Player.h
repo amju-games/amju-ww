@@ -1,12 +1,14 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 
+#include <list>
 #include "EventListener.h"
 #include "OnFloorCharacter.h"
 
 namespace Amju
 {
 class PlayerController;
+class Pet;
 
 class Player : public OnFloorCharacter
 {
@@ -32,8 +34,13 @@ public:
 
   void Jump();
 
-  void AddSceneNode();
+  void AddSceneNode(); // called by level loader
 
+  void PickUpPet(Pet* pet);
+
+private:
+  void UpdatePets();
+ 
 private:
   // PlayerInfo ID
   int m_playerId;
@@ -41,6 +48,10 @@ private:
   Vec3f m_startPos;
 
   RCPtr<PlayerController> m_controller;
+
+  // Pets picked up
+  typedef std::list<Pet*> Pets;
+  Pets m_pets;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network

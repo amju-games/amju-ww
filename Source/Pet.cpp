@@ -16,11 +16,12 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Pet::NAME, &CreatePet);
 const char* Pet::NAME = "pet";
 
 static const float XSIZE = 15.0f;
-static const float YSIZE = 60.0f;
+static const float YSIZE = 20.0f;
 
 Pet::Pet()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_carryingPlayer = 0;
 
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
@@ -32,9 +33,31 @@ const char* Pet::GetTypeName() const
   return NAME;
 }
 
+Player* Pet::GetCarryingPlayer()
+{
+  return m_carryingPlayer;
+}
+
+void Pet::SetCarryingPlayer(Player* player)
+{
+  Assert(!IsDead());
+  if (player)
+  {
+    Assert(!m_carryingPlayer); // already carried!
+  }
+  m_carryingPlayer = player;
+}
+
 void Pet::Update()
 {
-  Npc::Update();
+  if (m_carryingPlayer)
+  {
+    OnFloorCharacter::Update(); // no AI etc
+  }
+  else
+  {
+    Npc::Update();
+  }
 
   RecalcAABB();
 }
