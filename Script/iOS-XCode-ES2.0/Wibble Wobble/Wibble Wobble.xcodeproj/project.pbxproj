@@ -82,7 +82,6 @@
 		69FEF5311821333C00D83578 /* StaticFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4E91821333C00D83578 /* StaticFloor.cpp */; };
 		69FEF5321821333C00D83578 /* TextMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4EB1821333C00D83578 /* TextMaker.cpp */; };
 		69FEF5331821333C00D83578 /* Trigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4ED1821333C00D83578 /* Trigger.cpp */; };
-		69FEF5341821333C00D83578 /* Tutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4EF1821333C00D83578 /* Tutorial.cpp */; };
 		69FEF5351821333C00D83578 /* TutorialTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4F11821333C00D83578 /* TutorialTrigger.cpp */; };
 		69FEF5361821333C00D83578 /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4F31821333C00D83578 /* Viewport.cpp */; };
 		69FEF5371821333C00D83578 /* WWGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4F51821333C00D83578 /* WWGameObject.cpp */; };
@@ -91,8 +90,10 @@
 		69FEF53D182135B800D83578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF53C182135B800D83578 /* SystemConfiguration.framework */; };
 		69FEF53F182135C400D83578 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF53E182135C400D83578 /* AudioToolbox.framework */; };
 		69FEF541182135E700D83578 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF540182135E700D83578 /* libbass.a */; };
-		69FEF54418213A9000D83578 /* data-iphone.glue in Resources */ = {isa = PBXBuildFile; fileRef = 69FEF54218213A9000D83578 /* data-iphone.glue */; };
-		69FEF54518213A9000D83578 /* music-iphone.glue in Resources */ = {isa = PBXBuildFile; fileRef = 69FEF54318213A9000D83578 /* music-iphone.glue */; };
+		69FEF5471823B39F00D83578 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF5461823B39F00D83578 /* CoreMotion.framework */; };
+		69FEF54A182564DD00D83578 /* data-iOS.glue in Resources */ = {isa = PBXBuildFile; fileRef = 69FEF548182564DD00D83578 /* data-iOS.glue */; };
+		69FEF54B182564DD00D83578 /* music-iOS.glue in Resources */ = {isa = PBXBuildFile; fileRef = 69FEF549182564DD00D83578 /* music-iOS.glue */; };
+		69FEF5521826EDCE00D83578 /* LurkMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF5501826EDCD00D83578 /* LurkMsg.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,8 +229,6 @@
 		69FEF4EC1821333C00D83578 /* TextMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextMaker.h; path = ../../../../Source/TextMaker.h; sourceTree = "<group>"; };
 		69FEF4ED1821333C00D83578 /* Trigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Trigger.cpp; path = ../../../../Source/Trigger.cpp; sourceTree = "<group>"; };
 		69FEF4EE1821333C00D83578 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trigger.h; path = ../../../../Source/Trigger.h; sourceTree = "<group>"; };
-		69FEF4EF1821333C00D83578 /* Tutorial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tutorial.cpp; path = ../../../../Source/Tutorial.cpp; sourceTree = "<group>"; };
-		69FEF4F01821333C00D83578 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tutorial.h; path = ../../../../Source/Tutorial.h; sourceTree = "<group>"; };
 		69FEF4F11821333C00D83578 /* TutorialTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TutorialTrigger.cpp; path = ../../../../Source/TutorialTrigger.cpp; sourceTree = "<group>"; };
 		69FEF4F21821333C00D83578 /* TutorialTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialTrigger.h; path = ../../../../Source/TutorialTrigger.h; sourceTree = "<group>"; };
 		69FEF4F31821333C00D83578 /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewport.cpp; path = ../../../../Source/Viewport.cpp; sourceTree = "<group>"; };
@@ -241,8 +240,11 @@
 		69FEF53C182135B800D83578 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		69FEF53E182135C400D83578 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		69FEF540182135E700D83578 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../../amjulib/Source/SoundBass/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = "<group>"; };
-		69FEF54218213A9000D83578 /* data-iphone.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "data-iphone.glue"; path = "../../../../Build/CompiledAssets/data-iphone.glue"; sourceTree = "<group>"; };
-		69FEF54318213A9000D83578 /* music-iphone.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music-iphone.glue"; path = "../../../../Build/CompiledAssets/music-iphone.glue"; sourceTree = "<group>"; };
+		69FEF5461823B39F00D83578 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		69FEF548182564DD00D83578 /* data-iOS.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "data-iOS.glue"; path = "../../../../Build/CompiledAssets/data-iOS.glue"; sourceTree = "<group>"; };
+		69FEF549182564DD00D83578 /* music-iOS.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music-iOS.glue"; path = "../../../../Build/CompiledAssets/music-iOS.glue"; sourceTree = "<group>"; };
+		69FEF5501826EDCD00D83578 /* LurkMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LurkMsg.cpp; path = ../../../../Source/LurkMsg.cpp; sourceTree = "<group>"; };
+		69FEF5511826EDCD00D83578 /* LurkMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LurkMsg.h; path = ../../../../Source/LurkMsg.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69FEF5471823B39F00D83578 /* CoreMotion.framework in Frameworks */,
 				69FEF541182135E700D83578 /* libbass.a in Frameworks */,
 				69FEF53F182135C400D83578 /* AudioToolbox.framework in Frameworks */,
 				69FEF53D182135B800D83578 /* SystemConfiguration.framework in Frameworks */,
@@ -269,6 +272,7 @@
 		69FEF43B1821306800D83578 = {
 			isa = PBXGroup;
 			children = (
+				69FEF5461823B39F00D83578 /* CoreMotion.framework */,
 				69FEF540182135E700D83578 /* libbass.a */,
 				69FEF53E182135C400D83578 /* AudioToolbox.framework */,
 				69FEF53C182135B800D83578 /* SystemConfiguration.framework */,
@@ -319,8 +323,8 @@
 		69FEF4521821306800D83578 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				69FEF54218213A9000D83578 /* data-iphone.glue */,
-				69FEF54318213A9000D83578 /* music-iphone.glue */,
+				69FEF548182564DD00D83578 /* data-iOS.glue */,
+				69FEF549182564DD00D83578 /* music-iOS.glue */,
 				69FEF4531821306800D83578 /* Wibble Wobble-Info.plist */,
 				69FEF4541821306800D83578 /* InfoPlist.strings */,
 				69FEF4591821306800D83578 /* Wibble Wobble-Prefix.pch */,
@@ -334,6 +338,8 @@
 		69FEF47D1821331C00D83578 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				69FEF5501826EDCD00D83578 /* LurkMsg.cpp */,
+				69FEF5511826EDCD00D83578 /* LurkMsg.h */,
 				69FEF47E1821333C00D83578 /* AI.cpp */,
 				69FEF47F1821333C00D83578 /* AI.h */,
 				69FEF4801821333C00D83578 /* AIChasePet.cpp */,
@@ -447,8 +453,6 @@
 				69FEF4EC1821333C00D83578 /* TextMaker.h */,
 				69FEF4ED1821333C00D83578 /* Trigger.cpp */,
 				69FEF4EE1821333C00D83578 /* Trigger.h */,
-				69FEF4EF1821333C00D83578 /* Tutorial.cpp */,
-				69FEF4F01821333C00D83578 /* Tutorial.h */,
 				69FEF4F11821333C00D83578 /* TutorialTrigger.cpp */,
 				69FEF4F21821333C00D83578 /* TutorialTrigger.h */,
 				69FEF4F31821333C00D83578 /* Viewport.cpp */,
@@ -516,8 +520,8 @@
 				69FEF4621821306800D83578 /* Default-568h@2x.png in Resources */,
 				69FEF46C1821306800D83578 /* ViewController_iPhone.xib in Resources */,
 				69FEF46F1821306800D83578 /* ViewController_iPad.xib in Resources */,
-				69FEF54418213A9000D83578 /* data-iphone.glue in Resources */,
-				69FEF54518213A9000D83578 /* music-iphone.glue in Resources */,
+				69FEF54A182564DD00D83578 /* data-iOS.glue in Resources */,
+				69FEF54B182564DD00D83578 /* music-iOS.glue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,10 +596,10 @@
 				69FEF5311821333C00D83578 /* StaticFloor.cpp in Sources */,
 				69FEF5321821333C00D83578 /* TextMaker.cpp in Sources */,
 				69FEF5331821333C00D83578 /* Trigger.cpp in Sources */,
-				69FEF5341821333C00D83578 /* Tutorial.cpp in Sources */,
 				69FEF5351821333C00D83578 /* TutorialTrigger.cpp in Sources */,
 				69FEF5361821333C00D83578 /* Viewport.cpp in Sources */,
 				69FEF5371821333C00D83578 /* WWGameObject.cpp in Sources */,
+				69FEF5521826EDCE00D83578 /* LurkMsg.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
