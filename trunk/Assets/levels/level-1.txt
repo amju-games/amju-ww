@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-10
+9
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -58,17 +58,18 @@ shadow.png
 20
 end
 
-
-dino
-103
-// Start pos
-0, 220, 50
-// Dino Type
-1
-// Shadow
-shadow.png
-20
+staticfloor
+1001
+// Centre/pivot point
+0, 200, 0
+// Rot 
+0
+// Floor mesh
+plat_rect_4x4_std.obj
+plat_wood1.png
 end
+
+
 
 pet
 104
@@ -106,17 +107,16 @@ ew
 pz-fence.obj
 end
 
-staticfloor
-1001
-// Centre/pivot point
-0, 200, 0
-// Rot 
-0
-// Floor mesh
-plat_rect_4x4_std.obj
-plat_wood1.png
+dino
+103
+// Start pos
+0, 220, 50
+// Dino Type
+1
+// Shadow
+shadow.png
+20
 end
-
 
 
 
