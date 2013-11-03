@@ -1,5 +1,5 @@
 #include "TutorialTrigger.h"
-#include "Tutorial.h"
+#include "LurkMsg.h"
 #include <File.h>
 #include <GameObjectFactory.h>
 
@@ -22,9 +22,12 @@ const char* TutorialTrigger::GetTypeName() const
 
 void TutorialTrigger::OnPlayerCollision(Player*)
 {
+std::cout << "Collision with tutorial trigger!\n";
+
   if (!m_hasShownText)
   {
-    TheTutorial::Instance()->SetText(m_text);
+    LurkMsg lm(m_text, Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), AMJU_CENTRE);
+    TheLurker::Instance()->Queue(lm);
     m_hasShownText = true;
   }
 }

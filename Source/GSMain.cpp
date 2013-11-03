@@ -21,10 +21,10 @@
 #include <SAP.h>
 #include "Hud.h"
 #include "GSPaused.h"
-#include "Tutorial.h"
 #include "GSLoadLevel.h"
 #include "GSLevelComplete.h"
 #include "EditModeCamera.h"
+#include "LurkMsg.h"
 
 #define EDIT_CAM
 
@@ -56,7 +56,7 @@ void GSMain::OnActive()
   if (first)
   {
     first = false;
-    TheTutorial::Instance()->Load();
+    //TheLurker::Instance()->Load();
   }
 }
 
@@ -111,8 +111,11 @@ void GSMain::ClearLevel()
 
 void GSMain::Update()
 {
+  static Lurker* lurker = TheLurker::Instance();
+  lurker->Update();
+
   // Freeze if displaying tutorial text
-  if (!TheTutorial::Instance()->IsActive())
+  if (!lurker->IsDisplayingMsg())
   {
     if (m_exitReached)
     {
@@ -134,8 +137,6 @@ void GSMain::Update()
 
     GetGameSceneGraph()->Update();
   }
-
-  TheTutorial::Instance()->Update();
 }
 
 void GSMain::Draw2d()
@@ -155,7 +156,7 @@ void GSMain::Draw2d()
 
 //  TheCursorManager::Instance()->Draw();
 
-  TheTutorial::Instance()->Draw();
+  TheLurker::Instance()->Draw();
 }
 
 void GSMain::Draw()

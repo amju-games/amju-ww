@@ -13,10 +13,8 @@ public:
   virtual void OnPlayerCollision(Player*) = 0;
 
   virtual bool Load(File*); 
-  virtual AABB* GetAABB(); 
 
 protected:
-  AABB m_aabb;
 };
 }
 
