@@ -42,6 +42,7 @@ private:
   SceneNode* m_selNode;
 };
 
+class EditModeController;
 
 class GSMainEdit : public GSMain
 {
@@ -55,6 +56,7 @@ public:
   virtual void Draw();
   virtual void Draw2d();
   virtual void OnActive();
+  virtual void OnDeactive();
 
   // EventListener overrides
   //virtual void OnButtonEvent(const ButtonEvent&);
@@ -78,8 +80,22 @@ protected:
   RCPtr<SelectedNode> m_selNode;
 
   PGuiMenu m_topMenu; // horiz menu across top
+  RCPtr<EditModeController> m_controller; 
 };
+
 typedef Singleton<GSMainEdit> TheGSMainEdit;
+
+class EditModeController : public EventListener
+{
+public:
+  EditModeController(GSMainEdit* state) : m_state(state) {}
+
+  virtual bool OnCursorEvent(const CursorEvent& ce) override { return m_state->OnCursorEvent(ce); }
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_state->OnMouseButtonEvent(mbe); }
+
+private:
+  GSMainEdit* m_state;
+};
 }
 
 #endif
