@@ -83,10 +83,6 @@ void Animated::Draw()
   AmjuGL::Translate(0, 30.0f, 0);
   m_pModel->DrawFrames(m_frame, m_nextFrame, t);
   AmjuGL::PopMatrix();
-
-#ifdef _DEBUG
-  DrawAABB(*GetAABB());
-#endif
 }
 
 void Animated::Update()
