@@ -35,7 +35,10 @@ void WWGameObject::RecalcAABB()
     m_pos.y - m_aabbExtents.y, m_pos.y + m_aabbExtents.y,
     m_pos.z - m_aabbExtents.z, m_pos.z + m_aabbExtents.z);
 
-  m_pSceneNode->SetAABB(m_aabb);
+  if (m_pSceneNode)
+  {
+    m_pSceneNode->SetAABB(m_aabb);
+  }
 }
 
 }
