@@ -127,9 +127,6 @@ void StartUpAfterCreateWindow()
   // Default intersection test is OK
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
-  // For testing
-  SceneNode::SetGlobalShowAABB(true);
-
 #ifdef BYPASS_TITLE
   // TODO Only needed if we bypass title
   TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");

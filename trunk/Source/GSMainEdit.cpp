@@ -81,7 +81,7 @@ GSMainEdit::GSMainEdit()
   // Set up top menu 
   m_topMenu = new GuiMenu;
   m_topMenu->SetIsVertical(false);
-  m_topMenu->SetLocalPos(Vec2f(-0.9f, 0.8f));
+  m_topMenu->SetLocalPos(Vec2f(-1.0f, 1.0f));
 
   GuiMenu* fileSubmenu = new GuiMenu;
   fileSubmenu->AddChild(new GuiMenuItem("New level", OnNewLevel));
@@ -98,6 +98,9 @@ GSMainEdit::GSMainEdit()
 
   m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("New Object", newObjSubmenu));
+
+  m_infoText.SetLocalPos(Vec2f(-1, -0.9f));
+  m_infoText.SetSize(Vec2f(2, 0.1f));
 }
 
 void GSMainEdit::OnMove()
@@ -113,6 +116,9 @@ void GSMainEdit::OnDeactive()
 
 void GSMainEdit::OnActive()
 {
+  // Show bounding boxes
+  SceneNode::SetGlobalShowAABB(true);
+
   GSMain::OnActive();
   GetGameSceneGraph()->SetCamera(new EditModeCamera);
   
@@ -125,7 +131,6 @@ void GSMainEdit::OnActive()
 
   // Initial option is to load a block
 
-  
   GuiMenu* childMenu = new GuiMenu;
   childMenu->SetName("Child menu");
   childMenu->AddChild(new GuiMenuItem("good"));
@@ -147,6 +152,7 @@ void GSMainEdit::OnActive()
 
   m_contextMenu->SetName("Parent menu");
 
+  TheEventPoller::Instance()->AddListener(m_contextMenu);
   m_contextMenu->SetVisible(false);
 }
 
@@ -210,7 +216,8 @@ void GSMainEdit::Draw()
     if (m_selectedObj)
     {
       const std::string name = m_selectedObj->GetTypeName();
-      std::cout << "Selected " << name << " ID: " << m_selectedObj->GetId() << "\n";
+      std::string s = "Selected " + name  + " ID: " + ToString(m_selectedObj->GetId());
+      m_infoText.SetText(s);
 
       // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
       m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
@@ -226,7 +233,7 @@ void GSMainEdit::Draw()
     else
     {
       m_contextMenu->Clear();
-      m_contextMenu->AddChild(new GuiMenuItem("Nothing selected"));
+      m_infoText.SetText("Nothing selected");
     }
   }
 }
@@ -237,6 +244,7 @@ void GSMainEdit::Draw2d()
   m_topMenu->SetVisible(true); // always visible
   m_topMenu->Draw();
   m_contextMenu->Draw();
+  m_infoText.Draw();
   TheCursorManager::Instance()->Draw();
 }
 
@@ -259,6 +267,7 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
   case AMJU_BUTTON_MOUSE_RIGHT:
     if (mbe.isDown)
     {
+      m_contextMenu->SetLocalPos(Vec2f(mbe.x, mbe.y));
       m_contextMenu->SetVisible(true);
     }
 

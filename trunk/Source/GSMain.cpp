@@ -38,6 +38,9 @@ GSMain::GSMain()
 
 void GSMain::OnActive()
 {
+  // TODO Depend on config setting
+  SceneNode::SetGlobalShowAABB(false);
+
   GameState::OnActive();
 
   TheCollisionManager::Instance()->GetCollisionDetector()->Clear();
@@ -50,14 +53,6 @@ void GSMain::OnActive()
 
   m_exitReached = false;
   m_exitTimer = 0;
-
-  // TODO Do all one-time init somewhere
-  static bool first = true;
-  if (first)
-  {
-    first = false;
-    //TheLurker::Instance()->Load();
-  }
 }
 
 bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
@@ -89,7 +84,7 @@ bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
   // Switch to debug camera
   if (ke.keyType == AMJU_KEY_CHAR && (ke.key == 'c' || ke.key == 'C'))
   {
-  GetGameSceneGraph()->SetCamera(new EditModeCamera);
+    GetGameSceneGraph()->SetCamera(new EditModeCamera);
   }
 #endif
   
