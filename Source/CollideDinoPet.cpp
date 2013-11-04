@@ -21,5 +21,5 @@ void CollideDinoPet(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Dino::NAME, Pet::NAME, CollideDinoPet);
+  Dino::NAME, Pet::NAME, CollideDinoPet, AMJU_EVERY_CONTACT);
 }

@@ -85,23 +85,23 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
 static bool b[] = 
 {
   TheCollisionManager::Instance()->Add(
-    Player::NAME, Floor::NAME, &CollideObjectFloor),
+    Player::NAME, Floor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
 
   TheCollisionManager::Instance()->Add(
-    Dino::NAME, Floor::NAME, &CollideObjectFloor),
+    Dino::NAME, Floor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
 
   TheCollisionManager::Instance()->Add(
-    Pet::NAME, Floor::NAME, &CollideObjectFloor),
+    Pet::NAME, Floor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
 
   // O Noes, have to duplicate because there are 2 floor types?! 
   // How to avoid this ?
   TheCollisionManager::Instance()->Add(
-    Player::NAME, StaticFloor::NAME, &CollideObjectFloor),
+    Player::NAME, StaticFloor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
 
   TheCollisionManager::Instance()->Add(
-    Dino::NAME, StaticFloor::NAME, &CollideObjectFloor),
+    Dino::NAME, StaticFloor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
 
   TheCollisionManager::Instance()->Add(
-    Pet::NAME, StaticFloor::NAME, &CollideObjectFloor),
+    Pet::NAME, StaticFloor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
 };
 }

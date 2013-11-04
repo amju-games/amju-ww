@@ -16,5 +16,5 @@ void CollidePlayerBlock(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Block::NAME, &CollidePlayerBlock);
+  Player::NAME, Block::NAME, &CollidePlayerBlock, AMJU_FIRST_CONTACT_ONLY);
 }
