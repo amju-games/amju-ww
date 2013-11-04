@@ -15,5 +15,5 @@ void CollidePlayerBonus(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Bonus::NAME, &CollidePlayerBonus);
+  Player::NAME, Bonus::NAME, &CollidePlayerBonus, AMJU_FIRST_CONTACT_ONLY);
 }
