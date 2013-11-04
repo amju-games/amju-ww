@@ -19,14 +19,35 @@ LevelManager::LevelManager()
   m_numPlayers = 0;
 }
 
-bool LevelManager::Open()
+bool LevelManager::LoadEntireLevel(const std::string& filename)
+{
+  if (!Open(filename))
+  {
+    return false;
+  }
+  for (int i = 0; i < m_numObjects; i++)
+  {
+    if (!LoadOneObject())
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool LevelManager::Open(const std::string& filename)
 {
   m_numPlayers = 0;
   Clear();
   m_file = new File;
 
+
   // TODO use current level number
-  std::string levelFilename = "levels/level-1.txt";
+  std::string levelFilename = filename;
+  if (levelFilename.empty())
+  {
+    levelFilename = "levels/level-1.txt"; // TODO TEMP TEST
+  }
 
   if (!m_file->OpenRead(levelFilename))
   {

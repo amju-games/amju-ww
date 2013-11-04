@@ -21,10 +21,13 @@ public:
   void SetLevelId(int id);
   int GetLevelId() const;
 
-  bool Open();
+  bool Open(const std::string& filename = "");
   bool LoadOneObject();
   int GetNumObjects();
   void Clear(); 
+
+  // Edit mode - just load everything
+  bool LoadEntireLevel(const std::string& filename);
 
 private:
   int m_levelId;
