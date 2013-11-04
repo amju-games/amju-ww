@@ -1,3 +1,4 @@
+#include <EventPoller.h>
 #include "GSMainEdit.h"
 #include "Game.h"
 #include "CursorManager.h"
@@ -35,20 +36,20 @@ void SelectedNode::Draw()
 }
 
 // Menu item handlers
-void OnMove()
+static void OnMove()
 {
   TheGSMainEdit::Instance()->OnMove();
 }
 
-void OnNewLevelBlock()
+static void OnNewLevel()
 {
 }
 
-void OnLoadLevelBlock()
+static void OnLoadLevel()
 {
 }
 
-void OnSaveLevelBlock()
+static void OnSaveLevel()
 {
 }
 
@@ -71,6 +72,8 @@ void OnProperties()
 
 GSMainEdit::GSMainEdit()
 {
+  m_controller = new EditModeController(this);
+
   m_isSelecting = false;
   m_selectedObj = 0;
   m_selNode = new SelectedNode; 
@@ -81,9 +84,9 @@ GSMainEdit::GSMainEdit()
   m_topMenu->SetLocalPos(Vec2f(-0.9f, 0.8f));
 
   GuiMenu* fileSubmenu = new GuiMenu;
-  fileSubmenu->AddChild(new GuiMenuItem("New level block", OnNewLevelBlock));
-  fileSubmenu->AddChild(new GuiMenuItem("Load level block", OnLoadLevelBlock));
-  fileSubmenu->AddChild(new GuiMenuItem("Save level block", OnSaveLevelBlock));
+  fileSubmenu->AddChild(new GuiMenuItem("New level", OnNewLevel));
+  fileSubmenu->AddChild(new GuiMenuItem("Load level", OnLoadLevel));
+  fileSubmenu->AddChild(new GuiMenuItem("Save level", OnSaveLevel));
 
   GuiMenu* newObjSubmenu = new GuiMenu;
   // Get types from Game Obj factory
@@ -93,13 +96,19 @@ GSMainEdit::GSMainEdit()
     newObjSubmenu->AddChild(new GuiMenuItem(names[i]));
   }
 
-  m_topMenu->AddChild(new GuiNestMenuItem("File", fileSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("New Object", newObjSubmenu));
 }
 
 void GSMainEdit::OnMove()
 {
   // Change mode so arrow keys move currently selected object
+}
+
+void GSMainEdit::OnDeactive()
+{
+  TheEventPoller::Instance()->RemoveListener(m_topMenu);
+  TheEventPoller::Instance()->RemoveListener(m_controller);
 }
 
 void GSMainEdit::OnActive()
@@ -110,6 +119,9 @@ void GSMainEdit::OnActive()
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
   root->AddChild(m_selNode.GetPtr()); // TODO how to ensure we only add it once ?
+
+  TheEventPoller::Instance()->AddListener(m_topMenu);
+  TheEventPoller::Instance()->AddListener(m_controller);
 
   // Initial option is to load a block
 
@@ -243,6 +255,12 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       return true;
     }
     break;
+
+  case AMJU_BUTTON_MOUSE_RIGHT:
+    if (mbe.isDown)
+    {
+      m_contextMenu->SetVisible(true);
+    }
 
   default:
     break;
