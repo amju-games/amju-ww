@@ -84,6 +84,9 @@ protected:
   RCPtr<EditModeController> m_controller; 
 
   GuiText m_infoText;
+
+  // If true, Game Objects update and you can play
+  bool m_playTestMode;
 };
 
 typedef Singleton<GSMainEdit> TheGSMainEdit;
