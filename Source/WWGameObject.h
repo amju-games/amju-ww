@@ -22,6 +22,7 @@ public:
   bool IsDead() const;
 
   SceneNode* GetSceneNode();
+  void AddSceneNode(); // Add scene node to graph - called by level loader etc
 
   // Set AABB around m_pos with extents xsize, ysize, zsize
   void RecalcAABB(); 
