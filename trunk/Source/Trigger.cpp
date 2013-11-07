@@ -1,13 +1,32 @@
-#include "Trigger.h"
+#include <AmjuGL.h>
 #include <File.h>
 #include <LoadAABB.h>
 #include <SceneNode.h>
+#include <DrawAABB.h>
+#include "Trigger.h"
 #include "MySceneGraph.h"
 
 namespace Amju
 {
 class TriggerNode : public SceneNode
 {
+public:
+  TriggerNode()
+  {
+    SetBlended(true);
+    SetIsLit(true);
+  }
+
+  virtual void Draw() override
+  {
+    AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
+    AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+    PushColour();
+    MultColour(Colour(0, 0, 1, 0.5f));
+    DrawSolidAABB(m_aabb);
+    PopColour();
+    AmjuGL::PopAttrib();
+  }
 };
 
 bool Trigger::Load(File* f)
@@ -21,6 +40,8 @@ bool Trigger::Load(File* f)
     f->ReportError("Failed to load trigger AABB");
     return false;
   }
+
+  // TODO If edit mode
 #ifdef _DEBUG
   // Create a scene node for this trigger
   TriggerNode* tn = new TriggerNode;
