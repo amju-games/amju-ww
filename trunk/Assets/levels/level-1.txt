@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-10
+12
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -70,6 +70,18 @@ plat_wood1.png
 end
 
 
+staticfloor
+1002
+// Centre/pivot point
+400, 200, 0
+// Rot 
+0
+// Floor mesh
+plat_rect_4x4_std.obj
+plat_wood1.png
+end
+
+
 
 pet
 104
@@ -114,6 +126,33 @@ tut-trigger
 -250, -150, 200, 250, -50, 50 
 // Text
 @@@Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!*
+end
+
+exit
+200
+// Pos
+400, 250, 0
+// Mesh
+star.obj
+// Next level
+2
+// Billboard
+flare.png
+// size
+100
+// Effect
+// image - TODO TEMP TEST
+sparkle1.png
+// size
+20.0
+// number
+50
+// max time
+2.0
+// Shadow
+// TODO White "shadow" as exits emit light ?
+shadow.png
+20
 end
 
 
@@ -245,33 +284,6 @@ bonus
 -100, 250, 100
 heart.obj
 // Shadow
-shadow.png
-20
-end
-
-exit
-200
-// Pos
-0, 250, 0
-// Mesh
-star.obj
-// Next level
-2
-// Billboard
-flare.png
-// size
-100
-// Effect
-// image - TODO TEMP TEST
-sparkle1.png
-// size
-20.0
-// number
-50
-// max time
-2.0
-// Shadow
-// TODO White "shadow" as exits emit light ?
 shadow.png
 20
 end
