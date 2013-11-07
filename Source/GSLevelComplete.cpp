@@ -1,4 +1,5 @@
 #include <Screen.h>
+#include <DegRad.h>
 #include "GSLevelComplete.h"
 #include "MySceneGraph.h"
 #include "Game.h"
@@ -16,13 +17,47 @@ GSLevelComplete::GSLevelComplete()
   m_timer = 0;
 }
 
+void SetObjPos(WWGameObject* obj, float angle)
+{
+  const float RADIUS = 80.0f;
+  Vec3f pos(cos(angle) * RADIUS, sin(angle) * RADIUS, 0);
+  obj->SetPos(pos);  
+  obj->RecalcAABB();
+
+  Matrix mat;
+  mat.RotateY(DegToRad(angle)); // TODO
+  mat.TranslateKeepRotation(pos);
+  obj->GetSceneNode()->SetLocalTransform(mat);
+}
+
+
 void GSLevelComplete::Update()
 {
   GetGameSceneGraph()->Update();
 
+  float dt = TheTimer::Instance()->GetDt();
+
+  // Circle of positions - also set y coord for sprial
+  static float angle = 0; // increases per frame
+  angle += DegToRad(90.0f) * dt;
+
+  float a = angle;
+  SetObjPos(m_player, a);
+
+  const Pets& pets = m_player->GetPets();
+  for (auto it = pets.begin(); it != pets.end(); ++it)
+  {
+    a += DegToRad(30.0f); // TODO
+    Pet* pet = const_cast<Pet*>(*it);
+    SetObjPos(pet, a);
+  }   
+
+  // Update scene nodes
+  //TheGame::Instance()->UpdateGameObjects();
+
   // Inc timer, go to next state
   m_timer += TheTimer::Instance()->GetDt();
-  if (m_timer > 5.0f) // TODO CONFIG
+  if (m_timer > 50.0f) // TODO CONFIG
   {
     // Increment level number done by "Exit" object
     TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
@@ -74,7 +109,6 @@ std::cout << "Showing level complete state...\n";
   Assert(m_player);
   m_player->AddSceneNode();
   m_player->SetPos(Vec3f());
-  m_player->RecalcAABB();
 
   const Pets& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
