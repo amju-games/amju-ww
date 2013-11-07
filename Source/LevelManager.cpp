@@ -127,6 +127,10 @@ bool LevelManager::LoadOneObject()
   }
 
   TheGame::Instance()->AddGameObject(go);
+
+std::cout << "Added game object " << go->GetTypeName() 
+  << " ID: " << go->GetId() << "\n";
+
   return true;
 }
 
