@@ -8,7 +8,7 @@
 #include <StringUtils.h>
 #include "WWGameObject.h"
 #include "Player.h"
-#include "PlayerInfo.h"
+#include "Score.h"
 
 namespace Amju
 {
@@ -111,10 +111,9 @@ bool LevelManager::LoadOneObject()
   Player* p = dynamic_cast<Player*>(go.GetPtr());
   if (p)
   {
-    static PlayerInfoManager* pim = ThePlayerInfoManager::Instance();
     m_numPlayers++;
     // If this is a one-player game, don't create player 2
-    if (m_numPlayers > pim->GetNumPlayers())
+    if (m_numPlayers > Score::GetNumPlayers())
     {
       std::cout << "Not creating player " << m_numPlayers << "\n";
       return true;

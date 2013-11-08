@@ -12,6 +12,7 @@ public:
   bool Load();
   void Draw();
   void SetObjectiveText(const std::string&);
+  void UpdateScores();
 
 private:
   PGuiElement m_gui;

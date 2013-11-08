@@ -17,10 +17,11 @@
 #include "Game.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
-#include "PlayerInfo.h"
-#include "PlayerInfoKey.h"
+//#include "PlayerInfo.h"
+//#include "PlayerInfoKey.h"
 #include "ParticleEffect2d.h"
 #include "Pet.h"
+#include "Score.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -79,6 +80,16 @@ Player::~Player()
 const char* Player::GetTypeName() const
 {
   return NAME;
+}
+
+void Player::ReachedExit()
+{
+  GetSceneNode()->SetVisible(false);
+  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
+  {
+    Pet* p = *it;
+    p->GetSceneNode()->SetVisible(false);
+  }
 }
 
 const float BOTTOM_PET_Y = 60.0f;
@@ -518,11 +529,16 @@ void Player::Update()
   // If we have fallen, go to life lost state
   if (IsDead())
   {
+    Score::PlayerNum pn = (Score::PlayerNum)GetPlayerId();
+    Score::DecLives(pn);
+   
     // Reduce number of lives
-    PlayerInfo* pInfo = ThePlayerInfoManager::Instance()->GetPlayerInfo(GetPlayerId());
-    int lives = pInfo->GetInt(PlayerInfoKey::LIVES);
-    lives--;
-    pInfo->Set(PlayerInfoKey::LIVES, lives);
+    //PlayerInfo* pInfo = ThePlayerInfoManager::Instance()->GetPlayerInfo(GetPlayerId());
+    //int lives = pInfo->GetInt(PlayerInfoKey::LIVES);
+    //lives--;
+    //pInfo->Set(PlayerInfoKey::LIVES, lives);
+
+    int lives = Score::GetLives(pn);
 
 std::cout << "Player is dead! Lives left: " << lives << "\n";
 

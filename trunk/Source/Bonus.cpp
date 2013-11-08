@@ -1,4 +1,5 @@
 #include "Bonus.h"
+#include "Score.h"
 #include "LoadVec3.h"
 #include "GameObjectFactory.h"
 #include "File.h"
@@ -26,10 +27,10 @@ static const float YSIZE = 50.0f;
 Bonus::Bonus()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
-
   m_isCollected = false;
-
   m_yRot = (float)(rand() % 180);
+  m_lives = 0;
+  m_points = 0;
 }
 
 const char* Bonus::GetTypeName() const
@@ -74,6 +75,18 @@ bool Bonus::Load(File* f)
   }
 
   // Load bonus points ?
+  if (!f->GetInteger(&m_points))
+  {
+    f->ReportError("Expected bonus points");
+    return false;
+  }
+
+  if (!f->GetInteger(&m_lives))
+  {
+    f->ReportError("Expected bonus lives");
+    return false;
+  }
+
   File effectFile; 
   // For nested glue files to work, this should be last or destroyed before further reading
   if (!effectFile.OpenRead("bonus-effect.txt"))
@@ -142,11 +155,19 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
   Amju::PlayWav("cashreg"); // NB No file ext
   Amju::PlayWav("bonus_points"); // NB No file ext
 
-  // Inc num lives
-  int id = pPlayer->GetPlayerId();
-  PlayerInfo* pInfo = ThePlayerInfoManager::Instance()->GetPlayerInfo(id);
-  int lives = pInfo->GetInt(PlayerInfoKey::LIVES);
-  ++lives;
-  pInfo->Set(PlayerInfoKey::LIVES, lives);
+  Score::PlayerNum pn = (Score::PlayerNum)pPlayer->GetPlayerId();
+  if (m_points)
+  {
+    // Play wav for points
+   
+    Score::AddToScore(pn, m_points);
+  }
+  
+  if (m_lives)
+  {
+    // Wav
+
+    Score::IncLives(pn);
+  }
 }
 }

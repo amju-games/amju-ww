@@ -123,14 +123,10 @@ void GSMain::Update()
     else
     {
       TheGame::Instance()->UpdateGameObjects();
-      // Perform game-specific collision det & response here
-      //Collisions();
-      // Using Sweep and Prune
-      ////TheSAP::Instance()->Update(*TheGame::Instance()->GetGameObjects());
       TheCollisionManager::Instance()->Update();
+      GetGameSceneGraph()->Update();
     }
 
-    GetGameSceneGraph()->Update();
   }
 }
 
