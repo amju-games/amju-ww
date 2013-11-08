@@ -107,6 +107,9 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
 
   // Existing pets jump up to make room for new pet
   pet->SetCarryingPlayer(this);
+  m_pets.push_front(pet);
+
+/*
   for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* p = *it;
@@ -117,36 +120,39 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
   pet->SetVel(Vec3f(0, 0, 0));
   pet->SetPos(m_pos + Vec3f(0, BOTTOM_PET_Y, 0));
   pet->RecalcAABB();
-
-  m_pets.push_front(pet);
+*/
 }
 
 void Player::UpdatePets()
 {
   float y = m_pos.y + BOTTOM_PET_Y;
   Vec3f posUnder = m_pos;
-  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); /* inc in loop body */)
+  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); 
+    /* inc in loop body */)
   {
     Pet* pet = *it;
-    Vec3f pos = pet->GetPos();
+    Vec3f pos = m_pos; //pet->GetPos();
     Vec3f vel = pet->GetVel();
-    if (pos.y < y && vel.y < 0)
+//    if (pos.y < y) // && vel.y < 0)
     {
       pos.y = y;
 
-      vel.y = 10.0f; // TEST
-
-      // Move in dir of player (x, z)
-      Vec3f v = (posUnder - pos) * 10.0f;
-      vel.x = v.x;
-      vel.z = v.z; 
-    }   
-    pet->SetVel(vel);
+      vel.y = 0; //10.0f; // TEST
+    }
+   
+   // Move in dir of player (x, z)
+    Vec3f v = (posUnder - pos) * 10.0f;
+    vel.x = v.x;
+    vel.z = v.z; 
+       
+    pet->SetVel(Vec3f(0, 0, 0)); //vel);
+/*
     Vec3f acc = pet->GetAcc();
     acc.x = -vel.x;
+    acc.y = 0;
     acc.z = -vel.z;
     pet->SetAcc(acc);
-
+*/
 //    pos.x = m_pos.x;
 //    pos.z = m_pos.z;
 
