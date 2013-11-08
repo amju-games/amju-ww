@@ -1,3 +1,4 @@
+#include <Game.h>
 #include "CollisionManager.h"
 #include "Player.h"
 #include "Exit.h"
@@ -22,16 +23,20 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   exit->OnPlayerCollision();
 
   // Set new camera
+/*
   int id = player->GetPlayerId();
   Viewport* vp = TheViewportManager::Instance()->GetViewport(id);
   Camera* cam = vp->GetCamera();
   cam->SetTarget(exit);
   cam->SetBehaviour(new CamZoomInOnPlayer);
+*/
 
   player->ReachedExit();
 
   // Set player to show in Level complete stage
-  TheGSLevelComplete::Instance()->SetPlayer(player);
+  GSLevelComplete* glc = TheGSLevelComplete::Instance();
+  glc->SetPlayer(player);
+  TheGame::Instance()->SetCurrentState(glc);
 }
 
 static bool b1 = TheCollisionManager::Instance()->Add(
