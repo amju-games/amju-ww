@@ -127,7 +127,7 @@ bool Exit::Load(File* f)
   }
 
   // Next level ID is relative to this Level 
-  m_toLevel += TheLevelManager::Instance()->GetLevelId();
+//  m_toLevel += TheLevelManager::Instance()->GetLevelId();
 
   TextMaker tm;
   m_text = tm.MakeText(ToString(m_toLevel));
@@ -191,6 +191,9 @@ void Exit::OnPlayerCollision()
 {
   Assert(!m_isExiting); // already called
   m_isExiting = true;
+
+  // Do this if we go directly to GSLevelCompleted state, with no time delay
+  TheLevelManager::Instance()->SetLevelId(m_toLevel);
 }
 
 static float rnd(float f)
