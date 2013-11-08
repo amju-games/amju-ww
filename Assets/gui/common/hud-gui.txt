@@ -7,17 +7,88 @@ gui-comp
 // Name
 hud-comp
 // Num children
-1
+8
 
 // Element type
 gui-text
 // Element name
 objective-text
 // pos (coords are -1..1)
--1, 0.9
+-1, -0.8 
 // size
 2.0, 0.1
 // Text (temp - overwritten by each level objective)
-I R Objective
+$$$empty
+arial, 1.0, fgcol=ffffff
+
+gui-text
+p1-score-text
+// pos (coords are -1..1)
+-0.8, 1 
+// size
+0.8, 0.2
+// Text (temp - overwritten by each level objective)
+SCORE 1
+arial, 1.0, fgcol=ffffff, left
+
+gui-text
+p2-score-text
+// pos (coords are -1..1)
+0, 1 
+// size
+0.8, 0.2
+// Text (temp - overwritten by each level objective)
+SCORE 2
+arial, 1.0, fgcol=ffffff, right
+
+
+// element type
+gui-button
+// Element name
+pause-button
+// pos (coords are -1..1)
+// TODO HIDDEN FOR NOW
+-0.2, -1.85
+// size
+0.4, 0.1
+// Image
+gui-button-4.png
+// Text
+pause
+// Font name, size
 arial, 1.0
+
+
+gui-image
+heart-img1
+0.8, 1.0
+0.17, 0.2
+heart.png
+
+gui-image
+heart-img22
+-1.0, 1.0
+0.17, 0.2
+heart.png
+
+gui-text
+p1-lives-text
+// pos (coords are -1..1)
+-1, 1 
+// size
+0.17, 0.2
+// Text (temp - overwritten by each level objective)
+3
+arial, 1.0, fgcol=ffffff
+
+gui-text
+p2-lives-text
+// pos (coords are -1..1)
+0.8, 1 
+// size
+0.17, 0.2
+// Text (temp - overwritten by each level objective)
+33
+arial, 1.0, fgcol=ffffff
+
 

@@ -12,22 +12,18 @@ loadlevel-comp
 
 // element type
 gui-button
-
 // Element name
 go-button
-
 // pos (coords are -1..1)
 -0.4, -0.5
 // size
 0.8, 0.2
-
-// Image - ext is resource type, not necessarily a real file extension
+// Image 
 gui-button-4.png
-
 // Text
 Go!
 // Font name, size
-cheri, 1.0
+arial, 2.0
 
 
 

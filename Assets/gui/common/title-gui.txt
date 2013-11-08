@@ -12,42 +12,35 @@ title-comp
 // Button 1 - start
 // element type
 gui-button
-
 // Element name
 start-button
-
 // pos (coords are -1..1)
 -0.4, -0.5
 // size
 0.8, 0.2
-
-// Image - ext is resource type, not necessarily a real file extension
+// Image 
 gui-button-4.png
-
 // Text
-start
+Start!
 // Font name, size
-cheri, 2.0
-
+arial, 2.0
 
 
 // Button 2 - quit
 // element type
 gui-button
-
 // Element name
 quit-button
-
 // pos (coords are -1..1)
--0.4, -0.72
+-0.2, -0.8
 // size
-0.8, 0.2
+0.4, 0.1
 
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 
 // Text
-quit
+Quit
 // Font name, size
-cheri, 2.0
+arial, 1.0
 
