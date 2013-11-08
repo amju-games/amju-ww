@@ -38,6 +38,9 @@ public:
   void PickUpPet(Pet* pet);
   const Pets& GetPets() const { return m_pets; }
 
+  // Call when we collide with exit
+  void ReachedExit();
+
 private:
   void UpdatePets();
  

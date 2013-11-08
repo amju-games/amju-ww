@@ -3,10 +3,11 @@
 #include "GSMain.h"
 #include "GSMainEdit.h"
 #include "Game.h"
-#include "PlayerInfo.h"
-#include "PlayerInfoKey.h"
+//#include "PlayerInfo.h"
+//#include "PlayerInfoKey.h"
 #include "Screen.h"
 #include "EditViewport.h"
+#include "Score.h"
 
 namespace Amju
 {
@@ -54,13 +55,17 @@ void StartGame(int numPlayers, GameMode mode)
   }
 
   // Create PlayerInfo for each player
-  PlayerInfoManager* pim = ThePlayerInfoManager::Instance();
-  pim->Init(numPlayers);
-  // Start number of lives
-  for (int i = 0; i < numPlayers; i++)
-  {
-    pim->GetPlayerInfo(i)->Set(PlayerInfoKey::LIVES, 3);
-  }
+//  PlayerInfoManager* pim = ThePlayerInfoManager::Instance();
+//  pim->Init(numPlayers);
+//  // Start number of lives
+//  for (int i = 0; i < numPlayers; i++)
+//  {
+//    pim->GetPlayerInfo(i)->Set(PlayerInfoKey::LIVES, 3);
+//  }
+
+  // Simpler way of keeping track of simple score/lives info
+  Score::Reset();
+  Score::SetNumPlayers(numPlayers);
 
   // TODO Hide unused player game objects ?
   // Only add players to scene graph now ?
