@@ -5,6 +5,7 @@
 #include "Viewport.h"
 #include "Camera.h"
 #include "GSLevelComplete.h"
+#include "GSPetBonus.h"
 
 namespace Amju
 {
@@ -36,6 +37,11 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   // Set player to show in Level complete stage
   GSLevelComplete* glc = TheGSLevelComplete::Instance();
   glc->SetPlayer(player);
+
+  // Also need player for bonus state
+  TheGSPetBonus::Instance()->SetPlayer(player);
+
+  // Skip zoom towards exit object
   TheGame::Instance()->SetCurrentState(glc);
 }
 
