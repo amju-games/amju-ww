@@ -59,8 +59,12 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 
     case AMJU_ROTATE:
       {
-        Vec3f eyeDiff(dx * SENSITIVITY, dy * -SENSITIVITY, 0);
-        m_eye += eyeDiff;
+        float angle = dx; // TODO TEMP TEST
+        float s = sin(angle);
+        float c = cos(angle);
+        // Rotate m_eye (x, z) around m_lookat
+        m_eye.x = c * (m_eye.x - m_lookat.x) - s * (m_eye.z - m_lookat.z) + m_lookat.x;
+        m_eye.z = s * (m_eye.x - m_lookat.x) + c * (m_eye.z - m_lookat.z) + m_lookat.z;
       }
       break;
 
