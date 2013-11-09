@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "MySceneGraph.h"
 #include "PlayWav.h"
+#include "Hud.h"
 
 namespace Amju
 {
@@ -11,6 +12,12 @@ const char* GSGameOver::NAME = "gameover";
 
 GSGameOver::GSGameOver()
 {
+}
+
+void GSGameOver::Draw2d()
+{
+  GSText::Draw2d();
+  TheHud::Instance()->Draw();
 }
 
 void GSGameOver::Update()
@@ -29,12 +36,5 @@ void GSGameOver::OnActive()
   PlayWav("churchbell"); 
 
   CreateText("game over");
-
-  /*
-  // Load background skybox
-  // TODO We could have movement decorator etc 
-  GetTextSceneGraph()->SetRootNode(
-    SceneGraph::AMJU_SKYBOX, LoadScene("gameover-scene.txt"));
-  */
 }
 }
