@@ -80,10 +80,8 @@ void CollideObjectFence(GameObject* go1, GameObject* go2)
   // Test that AABBs are no longer intersecting
   if (fence->GetAABB().Intersects(go->GetAABB()))
   {
-    AABB ir = fence->GetAABB().Intersection(go->GetAABB());
+    Assert(0);
   }
-
-//  go->SetVel(vel);
 }
 
 static bool b[] = 
