@@ -28,6 +28,14 @@ void Viewport::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
+  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
+  AmjuGL::DrawLighting(
+    AmjuGL::LightColour(0, 0, 0),
+    AmjuGL::LightColour(0.2f, 0.2f, 0.2f), // Ambient light colour
+    AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
+    AmjuGL::LightColour(1, 1, 1),
+    AmjuGL::Vec3(1, 1, 1)); // Light direction
+
   if (TheGSLoadLevel::Instance()->GetGameMode() != AMJU_EDIT_MODE)
   {
     GetCamera()->SetAsSceneGraphCamera();
