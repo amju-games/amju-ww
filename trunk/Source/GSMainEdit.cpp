@@ -115,6 +115,12 @@ void GSMainEdit::OnDeactive()
   TheEventPoller::Instance()->RemoveListener(m_controller);
 }
 
+static EditModeCamera* GetCamera()
+{
+  SceneNodeCamera* c = GetGameSceneGraph()->GetCamera();
+  return dynamic_cast<EditModeCamera*>(c);
+}
+
 void GSMainEdit::OnActive()
 {
   GSMain::OnActive();
@@ -233,8 +239,12 @@ void GSMainEdit::Draw()
         }
       }
     }
+
     if (m_selectedObj)
     {
+      // Don't move camera
+      GetCamera()->SetControllable(false);
+
       const std::string name = m_selectedObj->GetTypeName();
       std::string s = "Selected " + name  + " ID: " + ToString(m_selectedObj->GetId());
       m_infoText.SetText(s);
@@ -254,6 +264,7 @@ void GSMainEdit::Draw()
     {
       m_contextMenu->Clear();
       m_infoText.SetText("Nothing selected");
+      GetCamera()->SetControllable(true);
     }
   }
 }
@@ -268,6 +279,8 @@ void GSMainEdit::Draw2d()
   TheCursorManager::Instance()->Draw();
 }
 
+static bool s_drag = false;
+
 bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
   switch (mbe.button)
@@ -277,11 +290,18 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
     // Find nearest object which intersects line seg.
     if (mbe.isDown)
     {
+      s_drag = true;
+
       m_mouseScreen.x = mbe.x;
       m_mouseScreen.y = mbe.y;
       m_isSelecting = true;
       return true;
     }
+    else
+    {
+      s_drag = false;
+    }
+
     break;
 
   case AMJU_BUTTON_MOUSE_RIGHT:
@@ -311,11 +331,33 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
   Vec2f diff = pos - oldPos;
 
   // TODO
-  if (m_selectedObj)
+  if (m_selectedObj && s_drag)
   {
 std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
     // Decide which direction to move - i.e. is diff more closely aligned 
     //  with +x, -1, +y, -1, +z or -z 
+    Vec3f dir(diff.x, diff.y, 0);
+    dir.Normalise();
+
+    // Get camera rotation matrix
+    SceneNodeCamera* camera = GetGameSceneGraph()->GetCamera();
+    Matrix mv = camera->GetMatrix();
+
+    Vec3f axes[3] = 
+    {
+      Vec3f(mv[0], mv[4], mv[8]),
+      Vec3f(mv[1], mv[5], mv[9]),
+      Vec3f(mv[2], mv[6], mv[10])
+    };
+    float dots[3] =
+    {
+      DotProduct(dir, axes[0]),
+      DotProduct(dir, axes[1]),
+      DotProduct(dir, axes[2])
+    };
+std::cout << "X dot: " << dots[0] << "\n";
+std::cout << "Y dot: " << dots[1] << "\n";
+std::cout << "Z dot: " << dots[2] << "\n";
 
   }
 
