@@ -3,10 +3,11 @@
 #include "GSLevelComplete.h"
 #include "MySceneGraph.h"
 #include "Game.h"
-#include "GSLoadLevel.h"
+#include "GSPetBonus.h"
 #include "LevelManager.h"
 #include "Timer.h"
 #include "Pet.h"
+#include "Hud.h"
 
 namespace Amju
 {
@@ -25,7 +26,7 @@ GSLevelComplete::GSLevelComplete()
 void SetObjPos(WWGameObject* obj, float angle, float z)
 {
   static const float RADIUS = 80.0f;
-  Vec3f pos(cos(angle) * RADIUS, sin(angle) * RADIUS, z);
+  Vec3f pos(cos(-angle) * RADIUS, sin(-angle) * RADIUS, z);
   obj->SetPos(pos);  
   obj->RecalcAABB();
 
@@ -35,7 +36,6 @@ void SetObjPos(WWGameObject* obj, float angle, float z)
   obj->GetSceneNode()->SetLocalTransform(mat);
   obj->GetSceneNode()->SetVisible(true);
 }
-
 
 void GSLevelComplete::Update()
 {
@@ -67,13 +67,14 @@ void GSLevelComplete::Update()
   m_timer += TheTimer::Instance()->GetDt();
   if (m_timer > 10.0f) // TODO CONFIG
   {
-    // Increment level number done by "Exit" object
-    TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+    // New level number is set by "Exit" object
+    TheGame::Instance()->SetCurrentState(TheGSPetBonus::Instance());
   }
 }
 
 void GSLevelComplete::Draw2d()
 {
+  TheHud::Instance()->Draw();
 }
 
 void GSLevelComplete::Draw()
