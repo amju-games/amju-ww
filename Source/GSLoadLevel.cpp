@@ -1,3 +1,4 @@
+#include <StringUtils.h>
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "GSMainEdit.h"
@@ -9,7 +10,7 @@
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "LevelManager.h"
-#include <StringUtils.h>
+#include "Hud.h"
 
 namespace Amju
 {
@@ -36,13 +37,18 @@ class CommandGo : public GuiCommand
   }
 };
 
-
 GSLoadLevel::GSLoadLevel()
 {
   m_maxBarX = 0;
   m_numObjects = 0;
   m_currentObj = 0;
   m_mode = AMJU_MAIN_GAME_MODE;
+}
+
+void GSLoadLevel::Draw2d()
+{
+  GSText::Draw2d();
+  TheHud::Instance()->Draw();
 }
 
 void GSLoadLevel::SetGameMode(GameMode mode)
@@ -67,12 +73,6 @@ void GSLoadLevel::OnActive()
   // Hide GO button until loaded
   m_gui->GetElementByName("go-button")->SetVisible(false);
   m_gui->GetElementByName("go-button")->SetCommand(new CommandGo);
-
-  /*
-  // Load background skybox
-  GetTextSceneGraph()->SetRootNode(
-    SceneGraph::AMJU_SKYBOX, LoadScene("loadlevel-scene.txt"));
-  */
 
   StartLoad();
 }

@@ -23,6 +23,7 @@ public:
   virtual void OnActive();
   virtual void OnDeactive();
   virtual void Update();
+  virtual void Draw2d();
 
   void SetGameMode(GameMode);
   GameMode GetGameMode() const { return m_mode; }
