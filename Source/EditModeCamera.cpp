@@ -3,7 +3,8 @@
 
 namespace Amju
 {
-EditModeCameraController::EditModeCameraController(EditModeCamera* cam) : m_cam(cam)
+EditModeCameraController::EditModeCameraController(EditModeCamera* cam) : 
+  m_cam(cam)
 {
 }
 
@@ -13,6 +14,7 @@ EditModeCameraController::~EditModeCameraController()
 
 EditModeCamera::EditModeCamera()
 {
+  m_controllable = true;
   m_controller = new EditModeCameraController(this);
   TheEventPoller::Instance()->AddListener(m_controller); 
 
@@ -30,6 +32,11 @@ EditModeCamera::~EditModeCamera()
   TheEventPoller::Instance()->RemoveListener(m_controller); 
 }
 
+void EditModeCamera::SetControllable(bool controllable)
+{
+  m_controllable = controllable;
+}
+
 void EditModeCamera::Update()
 {
 }
@@ -45,13 +52,17 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
   oldx = ce.x;
   oldy = ce.y;
 
-  if (m_drag)
+  if (m_drag && m_controllable)
   {
     switch (m_mode)
     {
     case AMJU_PAN:
       {
-        Vec3f eyeDiff(dx * -SENSITIVITY, dy * -SENSITIVITY, 0);
+        Vec3f forward(m_lookat - m_eye);
+        Vec3f up(0, 1, 0);
+        Vec3f right = CrossProduct(forward, up);
+        right.Normalise();
+        Vec3f eyeDiff = right * dx * SENSITIVITY - up * dy * SENSITIVITY;
         m_eye += eyeDiff;
         m_lookat += eyeDiff;
       }
