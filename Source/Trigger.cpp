@@ -19,6 +19,9 @@ public:
 
   virtual void Draw() override
   {
+#ifdef AMJU_IOS
+    // Can't draw Tri Lists directly in ES - TODO change DrawSolidAABB etc
+#else
     AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
     AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
     PushColour();
@@ -26,6 +29,7 @@ public:
     DrawSolidAABB(m_aabb);
     PopColour();
     AmjuGL::PopAttrib();
+#endif
   }
 };
 
