@@ -46,4 +46,11 @@ void Hud::UpdateScores()
   }
 }
 
+void Hud::SetNumPlayers(int num)
+{
+  GuiElement* elem = m_gui->GetElementByName("p2-comp");
+  Assert(elem);
+  elem->SetVisible(num == 2);
+}
+
 }
