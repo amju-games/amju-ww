@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6908C06E182E4E820067759D /* CollidePetPet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6908C069182E4E820067759D /* CollidePetPet.cpp */; };
+		6908C06F182E4E820067759D /* PreventIntersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6908C06A182E4E820067759D /* PreventIntersection.cpp */; };
+		6908C070182E4E820067759D /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6908C06C182E4E820067759D /* Score.cpp */; };
+		690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690D1BF7182FFED900A92946 /* GSPetBonus.cpp */; };
 		69FEF4481821306800D83578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4471821306800D83578 /* UIKit.framework */; };
 		69FEF44A1821306800D83578 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4491821306800D83578 /* Foundation.framework */; };
 		69FEF44C1821306800D83578 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF44B1821306800D83578 /* CoreGraphics.framework */; };
@@ -97,6 +101,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6908C069182E4E820067759D /* CollidePetPet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePetPet.cpp; path = ../../../../Source/CollidePetPet.cpp; sourceTree = "<group>"; };
+		6908C06A182E4E820067759D /* PreventIntersection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PreventIntersection.cpp; path = ../../../../Source/PreventIntersection.cpp; sourceTree = "<group>"; };
+		6908C06B182E4E820067759D /* PreventIntersection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreventIntersection.h; path = ../../../../Source/PreventIntersection.h; sourceTree = "<group>"; };
+		6908C06C182E4E820067759D /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Score.cpp; path = ../../../../Source/Score.cpp; sourceTree = "<group>"; };
+		6908C06D182E4E820067759D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = ../../../../Source/Score.h; sourceTree = "<group>"; };
+		690D1BF7182FFED900A92946 /* GSPetBonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSPetBonus.cpp; path = ../../../../Source/GSPetBonus.cpp; sourceTree = "<group>"; };
+		690D1BF8182FFED900A92946 /* GSPetBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSPetBonus.h; path = ../../../../Source/GSPetBonus.h; sourceTree = "<group>"; };
 		69FEF4441821306800D83578 /* Wibble Wobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wibble Wobble.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FEF4471821306800D83578 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69FEF4491821306800D83578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -338,6 +349,13 @@
 		69FEF47D1821331C00D83578 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				690D1BF7182FFED900A92946 /* GSPetBonus.cpp */,
+				690D1BF8182FFED900A92946 /* GSPetBonus.h */,
+				6908C069182E4E820067759D /* CollidePetPet.cpp */,
+				6908C06A182E4E820067759D /* PreventIntersection.cpp */,
+				6908C06B182E4E820067759D /* PreventIntersection.h */,
+				6908C06C182E4E820067759D /* Score.cpp */,
+				6908C06D182E4E820067759D /* Score.h */,
 				69FEF5501826EDCD00D83578 /* LurkMsg.cpp */,
 				69FEF5511826EDCD00D83578 /* LurkMsg.h */,
 				69FEF47E1821333C00D83578 /* AI.cpp */,
@@ -600,6 +618,10 @@
 				69FEF5361821333C00D83578 /* Viewport.cpp in Sources */,
 				69FEF5371821333C00D83578 /* WWGameObject.cpp in Sources */,
 				69FEF5521826EDCE00D83578 /* LurkMsg.cpp in Sources */,
+				6908C06E182E4E820067759D /* CollidePetPet.cpp in Sources */,
+				6908C06F182E4E820067759D /* PreventIntersection.cpp in Sources */,
+				6908C070182E4E820067759D /* Score.cpp in Sources */,
+				690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +774,7 @@
 				69FEF4741821306800D83578 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
