@@ -29,8 +29,9 @@ private:
   void ShowPet();
 
   RCPtr<Player> m_player;
-  Pets m_pets;
+  std::vector<Pet*> m_pets;
   int m_petNum;
+  int m_scoreInc;
 };
 typedef Singleton<GSPetBonus> TheGSPetBonus;
 }
