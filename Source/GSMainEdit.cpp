@@ -1,13 +1,14 @@
 #include <EventPoller.h>
-#include "GSMainEdit.h"
-#include "Game.h"
-#include "CursorManager.h"
-#include "MySceneGraph.h"
-#include "EditModeCamera.h"
 #include <Unproject.h>
 #include <ClipLineSegBox.h>
 #include <GuiMenu.h>
 #include <GameObjectFactory.h>
+#include "GSMainEdit.h"
+#include "GSTitle.h"
+#include "Game.h"
+#include "CursorManager.h"
+#include "MySceneGraph.h"
+#include "EditModeCamera.h"
 
 namespace Amju
 {
@@ -39,6 +40,12 @@ void SelectedNode::Draw()
 static void OnMove()
 {
   TheGSMainEdit::Instance()->OnMove();
+}
+
+static void OnQuitEditMode()
+{
+  // TODO prompt for save
+  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
 }
 
 static void OnNewLevel()
@@ -85,6 +92,7 @@ GSMainEdit::GSMainEdit()
   m_topMenu->SetLocalPos(Vec2f(-1.0f, 1.0f));
 
   GuiMenu* fileSubmenu = new GuiMenu;
+  fileSubmenu->AddChild(new GuiMenuItem("Quit", OnQuitEditMode));
   fileSubmenu->AddChild(new GuiMenuItem("New level", OnNewLevel));
   fileSubmenu->AddChild(new GuiMenuItem("Load level", OnLoadLevel));
   fileSubmenu->AddChild(new GuiMenuItem("Save level", OnSaveLevel));
@@ -125,7 +133,7 @@ void GSMainEdit::OnActive()
 {
   GSMain::OnActive();
   // Show bounding boxes
-  SceneNode::SetGlobalShowAABB(true);
+//  SceneNode::SetGlobalShowAABB(true);
 
   GetGameSceneGraph()->SetCamera(new EditModeCamera);
   
