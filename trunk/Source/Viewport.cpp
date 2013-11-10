@@ -1,3 +1,5 @@
+#include <Game.h>
+#include <DrawAABB.h>
 #include "Viewport.h"
 #include "MySceneGraph.h"
 #include "AmjuGL.h"
@@ -28,6 +30,7 @@ void Viewport::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
+  AmjuGL::PushMatrix();
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::DrawLighting(
     AmjuGL::LightColour(0, 0, 0),
@@ -41,6 +44,27 @@ void Viewport::Draw()
     GetCamera()->SetAsSceneGraphCamera();
   }
   GetGameSceneGraph()->Draw();
+  AmjuGL::PopMatrix();
+
+#ifdef DRAW_AABB_DEBUG
+  // Draw AABBs 
+  AmjuGL::PushMatrix();
+  GetGameSceneGraph()->GetCamera()->Draw();
+  AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
+  AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+  PushColour();
+  AmjuGL::SetColour(Colour(0, 0, 0, 1));
+  
+  GameObjects* gos = TheGame::Instance()->GetGameObjects();
+  for (auto it = gos->begin(); it != gos->end(); ++it)
+  {
+    GameObject* go = it->second;
+    DrawAABB(go->GetAABB());
+  }
+  PopColour();
+  AmjuGL::PopAttrib();
+  AmjuGL::PopMatrix();
+#endif
 }
 
 void Viewport::Draw2d()

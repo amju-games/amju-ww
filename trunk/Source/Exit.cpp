@@ -28,6 +28,7 @@ static const float YSIZE = 20.0f;
 Exit::Exit()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsSet = true;
 
   m_isActive = false;
   m_activeTime = 0;
