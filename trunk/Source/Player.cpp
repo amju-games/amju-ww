@@ -17,11 +17,10 @@
 #include "Game.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
-//#include "PlayerInfo.h"
-//#include "PlayerInfoKey.h"
 #include "ParticleEffect2d.h"
 #include "Pet.h"
 #include "Score.h"
+#include "PlayWav.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -535,15 +534,11 @@ void Player::Update()
   // If we have fallen, go to life lost state
   if (IsDead())
   {
+    Amju::PlayWav("churchbell"); 
+
     Score::PlayerNum pn = (Score::PlayerNum)GetPlayerId();
     Score::DecLives(pn);
    
-    // Reduce number of lives
-    //PlayerInfo* pInfo = ThePlayerInfoManager::Instance()->GetPlayerInfo(GetPlayerId());
-    //int lives = pInfo->GetInt(PlayerInfoKey::LIVES);
-    //lives--;
-    //pInfo->Set(PlayerInfoKey::LIVES, lives);
-
     int lives = Score::GetLives(pn);
 
 std::cout << "Player is dead! Lives left: " << lives << "\n";
