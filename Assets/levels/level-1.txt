@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-12
+17
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -82,6 +82,20 @@ plat_wood1.png
 end
 
 
+staticfloor
+1003
+// Centre/pivot point
+-400, 200, 0
+// Rot
+0
+// Floor mesh + texture
+//block_rect_1x1.obj
+//plat_rect_4x4_std.obj
+block_rect_curved_hill_4x2.obj
+//plat_wood1.png
+curvedFloorUV2.png
+end
+
 
 pet
 104
@@ -155,6 +169,62 @@ shadow.png
 20
 end
 
+
+bonus
+110
+// Pos
+100, 250, -50
+fruit1.obj
+// Shadow
+shadow.png
+20
+// points
+3
+// lives
+1
+end
+
+bonus
+111
+// Pos
+150, 250, -50
+fruit2.obj
+// Shadow
+shadow.png
+20
+// points
+3
+// lives
+1
+end
+
+bonus
+112
+// Pos
+200, 250, -50
+fruit3.obj
+// Shadow
+shadow.png
+20
+// points
+3
+// lives
+1
+end
+
+bonus
+113
+// Pos
+250, 250, -50
+fruit4.obj
+// Shadow
+shadow.png
+20
+// points
+3
+// lives
+1
+end
 
 dino
 103
