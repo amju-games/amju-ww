@@ -19,6 +19,10 @@ public:
   virtual void OnActive();
   virtual void Update();
   virtual void Draw2d();
+
+  virtual bool OnKeyEvent(const KeyEvent&) override;
+  virtual bool OnButtonEvent(const ButtonEvent&) override;
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent&) override;
 };
 typedef Singleton<GSGameOver> TheGSGameOver;
 }

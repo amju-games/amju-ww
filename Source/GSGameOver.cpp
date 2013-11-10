@@ -21,10 +21,28 @@ void GSGameOver::Draw2d()
   TheHud::Instance()->Draw();
 }
 
+bool GSGameOver::OnKeyEvent(const KeyEvent&) 
+{
+  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  return true;
+}
+
+bool GSGameOver::OnButtonEvent(const ButtonEvent&)
+{
+  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  return true;
+}
+
+bool GSGameOver::OnMouseButtonEvent(const MouseButtonEvent&)
+{
+  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  return true;
+}
+
 void GSGameOver::Update()
 {
   GSText::Update();
-  if (m_timer > 3.0f) // TODO Or tapped
+  if (m_timer > 20.0f) // TODO song length
   {
     TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
   }
@@ -33,7 +51,9 @@ void GSGameOver::Update()
 void GSGameOver::OnActive()
 {
   GSText::OnActive();
-  TheSoundManager::Instance()->PlaySong("gameover.it");
+
+  // TODO No loop
+  TheSoundManager::Instance()->PlaySong("sound/gameover.it");
 
   CreateText("game over");
 }
