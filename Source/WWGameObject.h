@@ -34,6 +34,7 @@ protected:
   RCPtr<SceneNode> m_pSceneNode;
 
   Vec3f m_aabbExtents;
+  bool m_extentsSet; // if set, use extents and recalc AABB
 };
 }
 

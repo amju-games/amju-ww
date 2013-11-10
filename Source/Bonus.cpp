@@ -27,6 +27,7 @@ static const float YSIZE = 50.0f;
 Bonus::Bonus()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsSet = true;
   m_isCollected = false;
   m_yRot = (float)(rand() % 180);
   m_lives = 0;

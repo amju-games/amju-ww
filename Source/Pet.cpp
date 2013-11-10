@@ -21,6 +21,7 @@ static const float YSIZE = 20.0f;
 Pet::Pet()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsSet = true;
   m_carryingPlayer = 0;
 
   AddAI(new AIGoHighGround);

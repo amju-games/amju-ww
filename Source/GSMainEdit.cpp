@@ -279,7 +279,7 @@ void GSMainEdit::Draw()
 
 void GSMainEdit::Draw2d()
 {
-  GSMain::Draw2d();
+//  GSMain::Draw2d();
   m_topMenu->SetVisible(true); // always visible
   m_topMenu->Draw();
   m_contextMenu->Draw();
