@@ -42,7 +42,7 @@ bool GSGameOver::OnMouseButtonEvent(const MouseButtonEvent&)
 void GSGameOver::Update()
 {
   GSText::Update();
-  if (m_timer > 20.0f) // TODO song length
+  if (m_timer > 15.0f) // TODO song length
   {
     TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
   }
@@ -53,7 +53,7 @@ void GSGameOver::OnActive()
   GSText::OnActive();
 
   // TODO No loop
-  TheSoundManager::Instance()->PlaySong("sound/gameover.it");
+  TheSoundManager::Instance()->PlaySong("sound/gameover.mod");
 
   CreateText("game over");
 }
