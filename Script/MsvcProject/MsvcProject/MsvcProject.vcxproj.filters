@@ -221,6 +221,9 @@
     <ClCompile Include="..\..\..\Source\Score.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Source\ShadowManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\AI.h">
@@ -398,6 +401,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\ShadowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
