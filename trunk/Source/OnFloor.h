@@ -86,7 +86,7 @@ protected:
 
   // All objects which are on a floor can cast a shadow onto it
   // TODO Move to WWGameObject ?
-  Shadow* m_shadow;
+  //Shadow* m_shadow;
 
   // Keep track of pos last frame
   Vec3f m_oldPos;

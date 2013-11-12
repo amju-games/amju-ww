@@ -1,11 +1,12 @@
+#include <GameObjectFactory.h>
+#include <File.h>
+#include <DegRad.h>
 #include "StaticFloor.h"
 #include "LoadVec3.h"
 #include "LoadMeshResource.h"
 #include "LoadTextureResource.h"
 #include "MySceneGraph.h"
-#include <GameObjectFactory.h>
-#include <File.h>
-#include <DegRad.h>
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -77,6 +78,8 @@ bool StaticFloor::Load(File* f)
   m_pSceneNode->SetAABB(m_aabb);
 
   m_pSceneNode->SetLocalTransform(m_matrix);
+
+  TheShadowManager::Instance()->AddFloor(this);
 
   return true;
 }

@@ -8,6 +8,7 @@
 #include "File.h"
 #include "LoadVec3.h"
 #include "Sign.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -28,7 +29,6 @@ void OnFloor::ClearFloors()
 OnFloor::OnFloor()
 {
   m_mass = 1.0f; // Default value, change in subclass ctor 
-  m_shadow = 0;
   m_pSceneNode = 0;
 
   // Everything should accelerate down at the same rate
@@ -89,13 +89,21 @@ bool OnFloor::LoadShadow(File* f)
 {
   Assert(m_pSceneNode);
 
-  m_shadow = new Shadow;
-
-  if (!m_shadow->Load(f))
+  std::string texName;
+  if (!f->GetDataLine(&texName))
   {
+    f->ReportError("Expected shadow texture resource name");
     return false;
   }
-  m_pSceneNode->AddChild(m_shadow);
+
+  float size = 0;
+  if (!f->GetFloat(&size))
+  {
+    f->ReportError("Expected shadow size");
+    return false;
+  }
+
+  TheShadowManager::Instance()->AddCaster(this, size, texName);
 
   return true;
 }
@@ -120,9 +128,9 @@ void OnFloor::FindFloor()
   {
     // In general area ? - i.e. do our bounding boxes intersect ?
     Floor* f = s_floors[i];
+/*
     const AABB& floorAABB = f->GetAABB();
 
-/*
     AABB aabb = *GetAABB();
     // Extend downwards to check for casting a shadow
     aabb.SetMin(1, aabb.GetMin(1) - 100.0f);
@@ -259,12 +267,14 @@ void OnFloor::Update()
   if (m_isDead)
   {
     m_pSceneNode->SetVisible(false);
-    m_shadow->SetVisible(false);
+    //m_shadow->SetVisible(false);
+    // Remove from ShadowManager
+    TheShadowManager::Instance()->RemoveCaster(this);
     return;
   }
 
   // Set shadow AABB to same as Scene Node so we don't cull it by mistake
-  m_shadow->SetAABB(*m_pSceneNode->GetAABB());
+//  m_shadow->SetAABB(*m_pSceneNode->GetAABB());
 
   UpdatePhysics();
 }

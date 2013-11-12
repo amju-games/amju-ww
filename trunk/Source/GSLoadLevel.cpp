@@ -11,6 +11,7 @@
 #include "ResourceManager.h"
 #include "LevelManager.h"
 #include "Hud.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -73,6 +74,8 @@ void GSLoadLevel::OnActive()
   // Hide GO button until loaded
   m_gui->GetElementByName("go-button")->SetVisible(false);
   m_gui->GetElementByName("go-button")->SetCommand(new CommandGo);
+
+  TheShadowManager::Instance()->Clear();
 
   StartLoad();
 }
