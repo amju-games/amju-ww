@@ -45,7 +45,7 @@ p2-comp
 gui-text
 p2-score-text
 // pos (coords are -1..1)
-0, 0 
+0, 1
 // size
 0.8, 0.2
 // Text (temp - overwritten by each level objective)
@@ -54,14 +54,14 @@ arial, 1.0, fgcol=ffffff, right
 
 gui-image
 heart-img2
-0.8, 0
+0.8, 1
 0.17, 0.2
 heart.png
 
 gui-text
 p2-lives-text
 // pos (coords are -1..1)
-0.8, 0 
+0.8, 1 
 // size
 0.17, 0.2
 // Text (temp - overwritten by each level objective)
