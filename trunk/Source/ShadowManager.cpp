@@ -13,6 +13,13 @@ void ShadowManager::Clear()
 void ShadowManager::AddFloor(Floor* floor)
 {
   m_floors.insert(floor);
+
+  // TEMP TEST - add floor collision mesh for all shadow casters
+  for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
+  {
+    Shadow* shadow = it->second;
+    shadow->AddCollisionMesh(floor->GetCollisionMesh());
+  }
 }
 
 void ShadowManager::RemoveCaster(WWGameObject* obj)
@@ -38,6 +45,7 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   Shadow* shadow = new Shadow;
   shadow->SetSize(size);
   shadow->SetTexture(tex);
+  shadow->SetHeightRange(1000, 1000);
 
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   root->AddChild(shadow);
@@ -51,6 +59,14 @@ void ShadowManager::Update()
   // If a shadow caster moves, update its shadow transform matrix,
   //  and for each floor, check if it casts a shadow onto it.
   // NB Make sure AABB is updated so not culled
+  for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
+  {
+    WWGameObject* go = it->first;
+    Shadow* shadow = it->second;
+    Matrix mat;
+    mat.Translate(go->GetPos());
+    shadow->SetLocalTransform(mat);
+  }
 
   // If a floor moves, recalc all the shadows which are casting on to it
   for (auto it = m_floorToCasterMap.begin(); it != m_floorToCasterMap.end(); ++it)

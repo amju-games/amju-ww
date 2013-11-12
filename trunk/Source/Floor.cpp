@@ -69,7 +69,7 @@ void Floor::Reset()
   m_matrix.SetIdentity();
 }
 
-bool Floor::Load(File* f)
+bool Floor::LoadMesh(File* f)
 {
   if (!GameObject::Load(f))
   {
@@ -94,14 +94,35 @@ bool Floor::Load(File* f)
   // Load mesh 
   ObjMesh* mesh = LoadMeshResource(f);
 
-  mesh->CalcCollisionMesh(&m_collMesh);
+  m_collMesh = new CollisionMesh;
+
+  mesh->CalcCollisionMesh(m_collMesh);
   Matrix m;
   m.RotateY(DegToRad(m_yRot));
   m.TranslateKeepRotation(m_pos);
-  m_collMesh.Transform(m);
+  m_collMesh->Transform(m);
 
   // Load texture
   Texture* pTex = LoadTextureResource(f); 
+
+  FloorMesh* fm = new FloorMesh(this);
+  fm->SetMesh(mesh);
+  fm->SetTexture(pTex);
+  m_pSceneNode = fm;
+
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
+
+  return true;
+}
+
+bool Floor::Load(File* f)
+{
+  if (!LoadMesh(f))
+  {
+    return false;
+  }
+
 
   if (!f->GetInteger((int*)&m_rotAxes))
   {
@@ -121,20 +142,12 @@ bool Floor::Load(File* f)
     return false;
   }
 
-  FloorMesh* fm= new FloorMesh(this);
-  fm->SetMesh(mesh);
-  fm->SetTexture(pTex);
-  m_pSceneNode = fm;
-
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
-
   return true;
 }
 
 CollisionMesh* Floor::GetCollisionMesh()
 {
-  return &m_collMesh;
+  return m_collMesh;
 }
 
 Matrix* Floor::GetMatrix()
@@ -144,7 +157,7 @@ Matrix* Floor::GetMatrix()
 
 bool Floor::GetY(const Vec2f& v, float* pY)
 {
-  return m_collMesh.GetY(v, pY);
+  return m_collMesh->GetY(v, pY);
 }
 
 void Floor::SetObjMassPos(float mass, const Vec3f& pos)
@@ -189,7 +202,7 @@ void Floor::Update()
   // Remember old values, in case we need to restore them
   Quaternion oldQuat = m_quat;
   Matrix oldMatrix = m_matrix;
-  CollisionMesh oldCollMesh = m_collMesh;
+  CollisionMesh oldCollMesh = *m_collMesh;
   AABB oldAabb = GetAABB();
 
   float dt = TheTimer::Instance()->GetDt();
@@ -270,14 +283,14 @@ void Floor::Update()
   Matrix qMat;
   velFrac.CreateMatrix(&qMat);
   // Reverse translation so we rotate about origin
-  m_collMesh.Translate(-m_pos);
+  m_collMesh->Translate(-m_pos);
   // Perform rotation
-  m_collMesh.Transform(qMat);
+  m_collMesh->Transform(qMat);
   // Move back to position
-  m_collMesh.Translate(m_pos);
+  m_collMesh->Translate(m_pos);
 
   // Calculate AABB for the collision mesh
-  m_collMesh.CalcAABB(&m_aabb);
+  m_collMesh->CalcAABB(&m_aabb);
   m_pSceneNode->SetAABB(m_aabb);
 
   // If the collision mesh AABB is too tall, we have reached the max rotation.
@@ -287,7 +300,7 @@ void Floor::Update()
     m_angularVel = Quaternion();
     m_quat = oldQuat;
     m_matrix = oldMatrix;
-    m_collMesh = oldCollMesh;
+    *m_collMesh = oldCollMesh;
     m_aabb = oldAabb;
     m_pSceneNode->SetAABB(m_aabb);
   }
@@ -302,7 +315,7 @@ const Vec3f& Floor::GetHighPoint() const
 
 void Floor::DrawCollisionMesh()
 {
-  m_collMesh.Draw();
+  m_collMesh->Draw();
 }
 }
 
