@@ -43,8 +43,6 @@ private:
   SceneNode* m_selNode;
 };
 
-class EditModeController;
-
 class GSMainEdit : public GSMain
 {
 private:
@@ -81,7 +79,6 @@ protected:
   RCPtr<SelectedNode> m_selNode;
 
   PGuiMenu m_topMenu; // horiz menu across top
-  RCPtr<EditModeController> m_controller; 
 
   GuiText m_infoText;
 
@@ -90,18 +87,6 @@ protected:
 };
 
 typedef Singleton<GSMainEdit> TheGSMainEdit;
-
-class EditModeController : public EventListener
-{
-public:
-  EditModeController(GSMainEdit* state) : m_state(state) {}
-
-  virtual bool OnCursorEvent(const CursorEvent& ce) override { return m_state->OnCursorEvent(ce); }
-  virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_state->OnMouseButtonEvent(mbe); }
-
-private:
-  GSMainEdit* m_state;
-};
 }
 
 #endif
