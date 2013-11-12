@@ -26,6 +26,7 @@
 #include "EditModeCamera.h"
 #include "LurkMsg.h"
 #include "Score.h"
+#include "ShadowManager.h"
 
 #define EDIT_CAM
 
@@ -131,6 +132,7 @@ void GSMain::Update()
     {
       TheGame::Instance()->UpdateGameObjects();
       TheCollisionManager::Instance()->Update();
+      TheShadowManager::Instance()->Update();
       GetGameSceneGraph()->Update();
     }
   }
