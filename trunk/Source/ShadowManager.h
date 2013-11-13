@@ -15,6 +15,8 @@ typedef Singleton<ShadowManager> TheShadowManager;
 class ShadowManager
 {
 public:
+  ShadowManager();
+
   void Clear();
 
   void AddFloor(Floor*);
@@ -26,10 +28,12 @@ public:
   void Update();
 
 private:
+  bool m_first;
+
   // All objects which can have shadows cast on them
   typedef std::set<RCPtr<Floor> > Floors;
 
-  // Map all casters in scene to their shadow node
+  // Map each caster in scene to its shadow node
   typedef std::map<RCPtr<WWGameObject>, RCPtr<Shadow> > CasterMap; 
 
   // For each floor, the set of casters which cast on to it
