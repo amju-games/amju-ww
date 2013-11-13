@@ -71,27 +71,29 @@ void ShadowManager::Update()
     m_first = false;
   
     // For each floor, add its collision mesh to all casters which overlap
-    for (auto ft = m_floors.begin(); ft != m_floors.end(); ++ft)
+    for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
     {
-      Floor* floor = *ft;
-      for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
+      // TODO Check if caster overlaps floor
+      WWGameObject* go = it->first;
+      Shadow* shadow = it->second;
+
+      Matrix mat;
+      Vec3f p = go->GetPos();
+      mat.Translate(p);
+      shadow->SetLocalTransform(mat);
+
+      static const float S = 10.0f;
+      AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
+      shadow->SetAABB(aabb);
+
+      for (auto ft = m_floors.begin(); ft != m_floors.end(); ++ft)
       {
-        // TODO Check if caster overlaps floor
-        WWGameObject* go = it->first;
-        Shadow* shadow = it->second;
+        Floor* floor = *ft;
 
 #ifdef SHADOW_MGR_DEBUG
 std::cout << "Shadow mgr: caster ID: " << go->GetId() 
   << " casts onto floor ID: " << floor->GetId() << "\n";
 #endif
-        Matrix mat;
-        Vec3f p = go->GetPos();
-        mat.Translate(p);
-        shadow->SetLocalTransform(mat);
-
-        static const float S = 10.0f;
-        AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
-        shadow->SetAABB(aabb);
 
         shadow->AddCollisionMesh(floor->GetCollisionMesh());
       }
@@ -113,6 +115,7 @@ std::cout << "Shadow mgr: caster ID: " << go->GetId()
     static const float S = 10.0f;
     AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
     shadow->SetAABB(aabb);
+    shadow->Recalc();
   }
 
   // If a floor moves, recalc all the shadows which are casting on to it
