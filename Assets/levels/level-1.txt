@@ -165,7 +165,7 @@ sparkle1.png
 2.0
 // Shadow
 // TODO White "shadow" as exits emit light ?
-shadow.png
+flare.png
 20
 end
 
