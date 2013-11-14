@@ -1,7 +1,7 @@
 #include "ShadowManager.h"
 #include "MySceneGraph.h"
 
-#define SHADOW_MGR_DEBUG
+//#define SHADOW_MGR_DEBUG
 
 namespace Amju
 {
@@ -30,9 +30,21 @@ std::cout << "Shadow mgr: added floor " << floor->GetTypeName()
 
 void ShadowManager::RemoveCaster(WWGameObject* obj)
 {
+  Shadow* shadow = m_casters[obj];
+
+  // Remove scene node
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->DelChild(shadow);
+
   // Remove from m_casters
+  m_casters.erase(obj);
 
   // Remove from list of casters for each floor
+  for (auto it = m_floorToCasterMap.begin(); it != m_floorToCasterMap.end(); ++it)
+  {
+    Casters& casters = it->second;
+    casters.erase(obj);
+  }
 }
 
 void ShadowManager::AddCaster(WWGameObject* obj, float size, 
@@ -57,10 +69,10 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   root->AddChild(shadow);
   m_casters.insert(std::make_pair(obj, shadow));
 
-#ifdef SHADOW_MGR_DEBUG
-std::cout << "Shadow mgr: added caster " << obj->GetTypeName()
-  << " ID: " << obj->GetId() << "\n";
-#endif
+//#ifdef SHADOW_MGR_DEBUG
+std::cout << "Shadow mgr: added caster (" << obj->GetTypeName()
+  << ") ID: " << obj->GetId() << "\n";
+//#endif
 }
 
 void ShadowManager::Update()
@@ -118,6 +130,7 @@ std::cout << "Shadow mgr: caster ID: " << go->GetId()
     shadow->Recalc();
   }
 
+/*
   // If a floor moves, recalc all the shadows which are casting on to it
   for (auto it = m_floorToCasterMap.begin(); it != m_floorToCasterMap.end(); ++it)
   {
@@ -126,7 +139,9 @@ std::cout << "Shadow mgr: caster ID: " << go->GetId()
     {
       // Update shadow casters
       Casters& casters = it->second;
-      for (auto jt = casters.begin(); jt != casters.end(); /* inc in loop */)
+      for (auto jt = casters.begin(); jt != casters.end(); 
+           // inc in loop 
+          )
       {
         WWGameObject* go = *jt;
         // Is the shadow still casting onto this floor? 
@@ -138,7 +153,7 @@ std::cout << "Shadow mgr: caster ID: " << go->GetId()
       }
     }
   }
-
+*/
 }
 
 }
