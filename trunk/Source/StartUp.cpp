@@ -28,6 +28,8 @@
 #include <BassSoundPlayer.h>
 #include <AmjuFinal.h>
 
+//#define SHOW_FRAME_RATE
+
 #ifdef MACOSX
 #define GLUE_FILE "data-Mac.glue"
 #define MUSIC_GLUE_FILE "music-Mac.glue"
@@ -119,13 +121,17 @@ void StartUpAfterCreateWindow()
 	
   TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
 	
-  rm->LoadResourceGroup("2dtext-group"); // TODO not using groups
   TheHud::Instance()->Load();
 
   // Set collision system
   CollisionDetector* cd = new BruteForce;
   // Default intersection test is OK
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
+
+#ifdef SHOW_FRAME_RATE
+  Font* font = (Font*)rm->GetRes("font2d/arial-font.font");
+  game->SetFrameTimeFont(font);
+#endif
 
 #ifdef BYPASS_TITLE
   // TODO Only needed if we bypass title
