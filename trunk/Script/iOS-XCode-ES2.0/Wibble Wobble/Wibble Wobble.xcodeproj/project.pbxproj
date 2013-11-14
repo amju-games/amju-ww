@@ -11,6 +11,7 @@
 		6908C06F182E4E820067759D /* PreventIntersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6908C06A182E4E820067759D /* PreventIntersection.cpp */; };
 		6908C070182E4E820067759D /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6908C06C182E4E820067759D /* Score.cpp */; };
 		690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690D1BF7182FFED900A92946 /* GSPetBonus.cpp */; };
+		690D1BFC183503A500A92946 /* ShadowManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690D1BFA183503A500A92946 /* ShadowManager.cpp */; };
 		69FEF4481821306800D83578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4471821306800D83578 /* UIKit.framework */; };
 		69FEF44A1821306800D83578 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4491821306800D83578 /* Foundation.framework */; };
 		69FEF44C1821306800D83578 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF44B1821306800D83578 /* CoreGraphics.framework */; };
@@ -108,6 +109,8 @@
 		6908C06D182E4E820067759D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = ../../../../Source/Score.h; sourceTree = "<group>"; };
 		690D1BF7182FFED900A92946 /* GSPetBonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSPetBonus.cpp; path = ../../../../Source/GSPetBonus.cpp; sourceTree = "<group>"; };
 		690D1BF8182FFED900A92946 /* GSPetBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSPetBonus.h; path = ../../../../Source/GSPetBonus.h; sourceTree = "<group>"; };
+		690D1BFA183503A500A92946 /* ShadowManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShadowManager.cpp; path = ../../../../Source/ShadowManager.cpp; sourceTree = "<group>"; };
+		690D1BFB183503A500A92946 /* ShadowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadowManager.h; path = ../../../../Source/ShadowManager.h; sourceTree = "<group>"; };
 		69FEF4441821306800D83578 /* Wibble Wobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wibble Wobble.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FEF4471821306800D83578 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69FEF4491821306800D83578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -349,6 +352,8 @@
 		69FEF47D1821331C00D83578 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				690D1BFA183503A500A92946 /* ShadowManager.cpp */,
+				690D1BFB183503A500A92946 /* ShadowManager.h */,
 				690D1BF7182FFED900A92946 /* GSPetBonus.cpp */,
 				690D1BF8182FFED900A92946 /* GSPetBonus.h */,
 				6908C069182E4E820067759D /* CollidePetPet.cpp */,
@@ -622,6 +627,7 @@
 				6908C06F182E4E820067759D /* PreventIntersection.cpp in Sources */,
 				6908C070182E4E820067759D /* Score.cpp in Sources */,
 				690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */,
+				690D1BFC183503A500A92946 /* ShadowManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
