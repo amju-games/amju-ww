@@ -9,6 +9,7 @@
 #include "WWGameObject.h"
 #include "Player.h"
 #include "Score.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -113,9 +114,10 @@ bool LevelManager::LoadOneObject()
   {
     m_numPlayers++;
     // If this is a one-player game, don't create player 2
-    if (m_numPlayers > Score::GetNumPlayers())
+    if (m_numPlayers > TheScores::Instance()->GetNumPlayers())
     {
       std::cout << "Not creating player " << m_numPlayers << "\n";
+      TheShadowManager::Instance()->RemoveCaster(p);
       return true;
     }
     else

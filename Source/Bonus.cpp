@@ -156,19 +156,19 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
   Amju::PlayWav("cashreg"); // NB No file ext
   Amju::PlayWav("bonus_points"); // NB No file ext
 
-  Score::PlayerNum pn = (Score::PlayerNum)pPlayer->GetPlayerId();
+  PlayerNum pn = (PlayerNum)pPlayer->GetPlayerId();
   if (m_points)
   {
     // Play wav for points
    
-    Score::AddToScore(pn, m_points);
+    TheScores::Instance()->AddToScore(pn, m_points);
   }
   
   if (m_lives)
   {
     // Wav
 
-    Score::IncLives(pn);
+    TheScores::Instance()->IncLives(pn);
   }
 }
 }

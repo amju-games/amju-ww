@@ -74,7 +74,8 @@ void GSLevelComplete::Update()
 
 void GSLevelComplete::Draw2d()
 {
-  TheHud::Instance()->Draw();
+  // Can't see white text very well
+  //TheHud::Instance()->Draw();
 }
 
 void GSLevelComplete::Draw()
