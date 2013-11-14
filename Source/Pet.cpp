@@ -7,6 +7,7 @@
 #include "AIIdle.h"
 #include "AIFalling.h"
 #include "Floor.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -142,6 +143,7 @@ void Pet::OnEaten()
   */
 
   SetDead(true);
+  TheShadowManager::Instance()->RemoveCaster(this);
 
   // TODO if anims done
   //((Pet*)m_target)->SetAnim("eaten");

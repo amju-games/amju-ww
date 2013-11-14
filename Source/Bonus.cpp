@@ -13,6 +13,7 @@
 #include "PlayerInfo.h"
 #include "PlayerInfoKey.h"
 #include "Player.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -151,7 +152,8 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
 
   m_pSceneNode->SetVisible(false);
   m_effect->SetVisible(true);
-  ////m_shadow->SetVisible(false);
+
+  TheShadowManager::Instance()->RemoveCaster(this);
 
   Amju::PlayWav("cashreg"); // NB No file ext
   Amju::PlayWav("bonus_points"); // NB No file ext
