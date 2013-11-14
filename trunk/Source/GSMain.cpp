@@ -60,7 +60,7 @@ void GSMain::OnActive()
 
   GuiElement* splitLine = m_gui->GetElementByName("split-screen-line");
   Assert(splitLine);
-  splitLine->SetVisible(Score::GetNumPlayers() == 2);
+  splitLine->SetVisible(TheScores::Instance()->GetNumPlayers() == 2);
 }
 
 bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
@@ -132,8 +132,8 @@ void GSMain::Update()
     {
       TheGame::Instance()->UpdateGameObjects();
       TheCollisionManager::Instance()->Update();
-      TheShadowManager::Instance()->Update();
       GetGameSceneGraph()->Update();
+      TheShadowManager::Instance()->Update();
     }
   }
 }

@@ -45,8 +45,8 @@ std::cout << "Showing pet " << pet->GetId() << "\n";
 
     // TODO Sound
 //    PlayWav("");
-    Score::PlayerNum pn = (Score::PlayerNum)m_player->GetPlayerId();
-    Score::AddToScore(pn, m_scoreInc); 
+    PlayerNum pn = (PlayerNum)m_player->GetPlayerId();
+    TheScores::Instance()->AddToScore(pn, m_scoreInc); 
     m_scoreInc *= 2;
   }
 }
