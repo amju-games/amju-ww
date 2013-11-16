@@ -10,12 +10,18 @@ typedef RCPtr<Dialog> PDialog;
 
 void DoModalDialog(Dialog* dlg);
 
+// Type of function called when dialog is finished
+typedef void (*DialogFinishCallback)(Dialog*);
+
+enum { AMJU_RESULT_NOT_SET, AMJU_OK, AMJU_CANCEL };
+
 class Dialog : public GameState
 {
 public:
   Dialog();
 
   void SetPrevState(GameState*);
+  void SetFinishCallback(DialogFinishCallback);
 
   virtual void Draw() override;
   virtual void Draw2d() override;
@@ -25,8 +31,12 @@ public:
 
   void Close();
 
-  virtual void GetDlgContents() = 0;
-  virtual void SetDlgContents() = 0;
+  // Get button used to close the dialog, usually AMJU_OK or AMJU_CANCEL
+  int GetResult() const;
+  void SetResult(int);
+
+  virtual void GetDataFromGui() = 0;
+  virtual void SetDataToGui() = 0;
 
   virtual bool OnKeyEvent(const KeyEvent&) override; 
   virtual bool OnCursorEvent(const CursorEvent&) override;
@@ -42,17 +52,26 @@ protected:
   GameState* m_prevState;
   PGuiElement m_gui;
   std::string m_guiFilename;
+  DialogFinishCallback m_finishCallback;
+  int m_result;
 };
 
 class FileDialog : public Dialog
 {
 public:
   FileDialog();
-  virtual void GetDlgContents() override; 
-  virtual void SetDlgContents() override;
+  
+  virtual void GetDataFromGui() override;
+  virtual void SetDataToGui() override;
+
+  // Get selected file with path
+  const std::string& GetFilePath() const;
+
+  // Set path for dialog to start in
+  void SetPath(const std::string&);
 
 protected:
-
+  std::string m_filepath;
 };
 }
 
