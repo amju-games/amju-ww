@@ -22,6 +22,12 @@ public:
   int GetLevelId() const;
 
   bool Open(const std::string& filename = "");
+  void Close();
+
+  // Returns true if between Open and Close calls -- don't Open if already
+  //  open!
+  bool IsOpen() const;
+
   bool LoadOneObject();
   int GetNumObjects();
   void Clear(); 
@@ -34,6 +40,7 @@ private:
   int m_numObjects;
   RCPtr<File> m_file;
   int m_numPlayers; // keep track of how many players created
+  bool m_isOpen;
 };
 
 typedef Singleton<LevelManager> TheLevelManager;
