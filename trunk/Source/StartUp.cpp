@@ -26,6 +26,7 @@
 #include "StartGame.h"
 #include <Directory.h>
 #include <BassSoundPlayer.h>
+#include "GSPaused.h"
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
@@ -128,6 +129,8 @@ void StartUpAfterCreateWindow()
   // Default intersection test is OK
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
+  game->RegisterPauseState(TheGSPaused::Instance());
+
 #ifdef SHOW_FRAME_RATE
   Font* font = (Font*)rm->GetRes("font2d/arial-font.font");
   game->SetFrameTimeFont(font);
@@ -135,8 +138,6 @@ void StartUpAfterCreateWindow()
 
 #ifdef BYPASS_TITLE
   // TODO Only needed if we bypass title
-  TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
-  TheResourceManager::Instance()->LoadResourceGroup("gui-group");
   TheLevelManager::Instance()->SetLevelId(1);
   StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
   TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME); 
