@@ -18,6 +18,7 @@ LevelManager::LevelManager()
   m_levelId = 0;
   m_numObjects = 0;
   m_numPlayers = 0;
+  m_isOpen = false;
 }
 
 bool LevelManager::LoadEntireLevel(const std::string& filename)
@@ -33,24 +34,44 @@ bool LevelManager::LoadEntireLevel(const std::string& filename)
       return false;
     }
   }
+  Close();
   return true;
+}
+
+void LevelManager::Close()
+{
+  m_file = 0;
+  m_isOpen = false;
+}
+
+bool LevelManager::IsOpen() const
+{
+  return m_isOpen;
 }
 
 bool LevelManager::Open(const std::string& filename)
 {
+  Assert(!IsOpen());
+
   m_numPlayers = 0;
   Clear();
-  m_file = new File;
-
 
   // TODO use current level number
   std::string levelFilename = filename;
+  bool HAS_VERSION_INFO = true;
+  bool NOT_BINARY = false;
+  bool useRoot = true;
+  File::Impl impl = File::STD;
   if (levelFilename.empty())
   {
     levelFilename = "levels/level-1.txt"; // TODO TEMP TEST
+    impl = File::GLUE;
+    useRoot = false;
   }
 
-  if (!m_file->OpenRead(levelFilename))
+  m_file = new File(HAS_VERSION_INFO, impl);
+
+  if (!m_file->OpenRead(levelFilename, NOT_BINARY, useRoot))
   {
     Assert(0);
     return false;
@@ -62,6 +83,7 @@ bool LevelManager::Open(const std::string& filename)
     return false;
   }
 
+  m_isOpen = true;
   return true;
 }
 
@@ -77,6 +99,8 @@ int LevelManager::GetLevelId() const
 
 bool LevelManager::LoadOneObject()
 {
+  Assert(IsOpen());
+
   std::string s;
   if (!m_file->GetDataLine(&s))
   {
@@ -145,5 +169,6 @@ void LevelManager::Clear()
   // Clear game objects
   TheGame::Instance()->ClearGameObjects();
   OnFloor::ClearFloors();
+  Close();
 }
 }
