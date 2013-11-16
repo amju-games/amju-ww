@@ -1,6 +1,0 @@
-// Resource group
-// version
-1
-// resources
-sound/ww1.mod
-
