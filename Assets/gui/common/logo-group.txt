@@ -1,5 +1,0 @@
-// Resource group
-// version
-1
-// resources
-logo.png
