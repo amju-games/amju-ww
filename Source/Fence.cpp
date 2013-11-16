@@ -26,6 +26,12 @@ const char* Fence::GetTypeName() const
   return NAME;
 }
 
+bool Fence::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Fence::Load(File* f)
 {
   if (!GameObject::Load(f))

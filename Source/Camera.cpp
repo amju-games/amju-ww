@@ -137,6 +137,12 @@ void Camera::Update()
   c->SetUpVec(Vec3f(0, 1, 0)); 
 }
 
+bool Camera::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Camera::Load(File* f)
 {
   if (!GameObject::Load(f)) // Load ID

@@ -30,6 +30,12 @@ const char* Skybox::GetTypeName() const
   return NAME;
 }
 
+bool Skybox::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Skybox::Load(File* f)
 {
   if (!GameObject::Load(f))

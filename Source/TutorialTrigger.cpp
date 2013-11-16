@@ -32,6 +32,12 @@ std::cout << "Collision with tutorial trigger!\n";
   }
 }
 
+bool TutorialTrigger::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool TutorialTrigger::Load(File* f)
 {
   if (!Trigger::Load(f))

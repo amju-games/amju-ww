@@ -64,6 +64,12 @@ void Pet::Update()
   RecalcAABB();
 }
 
+bool Pet::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Pet::Load(File* f)
 {
   if (!Npc::Load(f))

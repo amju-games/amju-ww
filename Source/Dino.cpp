@@ -171,6 +171,12 @@ void Dino::Update()
   UpdateAabb(); // updates shape of AABB, DOES change its position
 }
 
+bool Dino::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Dino::Load(File* f)
 {
   if (!Npc::Load(f))
