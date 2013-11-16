@@ -12,6 +12,8 @@ class WWGameObject : public GameObject
 public:
   WWGameObject();
 
+  virtual bool Save(File* f) = 0;
+
   // For this game, GameObjects for a level are created in "blocks".
   // The blocks are transformed, so the positions of the objects are
   // given relative to the local block origin. This matrix determines
