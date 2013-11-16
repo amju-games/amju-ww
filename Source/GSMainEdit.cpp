@@ -9,9 +9,12 @@
 #include "CursorManager.h"
 #include "MySceneGraph.h"
 #include "EditModeCamera.h"
+#include "ModalDialog.h"
 
 namespace Amju
 {
+static FileDialog fileDialog; // ?
+
 void SelectedNode::Draw()
 {
   if (!m_selNode)
@@ -54,6 +57,9 @@ static void OnNewLevel()
 
 static void OnLoadLevel()
 {
+std::cout << "Starting file modal dialog...\n";
+
+  DoModalDialog(&fileDialog);
 }
 
 static void OnSaveLevel()
@@ -131,7 +137,7 @@ void GSMainEdit::OnActive()
 {
   GSMain::OnActive();
   // Show bounding boxes
-//  SceneNode::SetGlobalShowAABB(true);
+  SceneNode::SetGlobalShowAABB(true);
 
   GetGameSceneGraph()->SetCamera(new EditModeCamera);
   
@@ -359,10 +365,41 @@ std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
       DotProduct(dir, axes[1]),
       DotProduct(dir, axes[2])
     };
-std::cout << "X dot: " << dots[0] << "\n";
-std::cout << "Y dot: " << dots[1] << "\n";
-std::cout << "Z dot: " << dots[2] << "\n";
+    float fabs[3] = 
+    {
+      (float)::fabs(dots[0]), 
+      (float)::fabs(dots[1]), 
+      (float)::fabs(dots[2]) 
+    };
 
+//std::cout << "X dot: " << dots[0] << "\n";
+//std::cout << "Y dot: " << dots[1] << "\n";
+//std::cout << "Z dot: " << dots[2] << "\n";
+
+    Vec3f move = dots[0] < 0 ? Vec3f(-1, 0, 0) : Vec3f(1, 0, 0);
+    if (fabs[1] > fabs[0] && fabs[1] > fabs[2])
+    {
+      // Y axis
+      move = dots[1] < 0 ? Vec3f(0, -1, 0) : Vec3f(0, 1, 0);
+    }
+    else if (fabs[2] > fabs[0] && fabs[2] > fabs[1])
+    {
+      // Z axis
+      move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
+    }
+/*
+    Vec3f p = m_selectedObj->GetPos();
+    move *= 10.0f;
+    p += move;
+    m_selectedObj->SetPos(p);
+    m_selectedObj->RecalcAABB();
+
+    SceneNode* sn = m_selectedObj->GetSceneNode();
+    Assert(sn);
+    Matrix mat;
+    mat.Translate(move);
+    sn->MultLocalTransform(mat);
+*/
   }
 
   oldPos = pos;
