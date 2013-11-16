@@ -34,6 +34,11 @@ namespace Amju
 {
 const char* GSMain::NAME = "main";
 
+static void OnPause()
+{
+  TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
+}
+
 GSMain::GSMain()
 {
   m_gui = LoadGui("main-gui.txt");
@@ -61,6 +66,10 @@ void GSMain::OnActive()
   GuiElement* splitLine = m_gui->GetElementByName("split-screen-line");
   Assert(splitLine);
   splitLine->SetVisible(TheScores::Instance()->GetNumPlayers() == 2);
+
+  GuiButton* pause = (GuiButton*)m_gui->GetElementByName("pause-button");
+  Assert(pause);
+  pause->SetCommand(OnPause);
 }
 
 bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
