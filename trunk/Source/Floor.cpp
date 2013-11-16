@@ -116,6 +116,12 @@ bool Floor::LoadMesh(File* f)
   return true;
 }
 
+bool Floor::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Floor::Load(File* f)
 {
   if (!LoadMesh(f))

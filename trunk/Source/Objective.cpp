@@ -39,6 +39,12 @@ void Objective::ObjectiveComplete()
   }
 }
 
+bool Objective::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Objective::Load(File* f)
 {
   if (!GameObject::Load(f))

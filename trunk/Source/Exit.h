@@ -33,6 +33,7 @@ public:
   virtual const char* GetTypeName() const;
   virtual void Update();
   virtual bool Load(File*);
+  virtual bool Save(File*);
   virtual void Reset();
 
   // Call when player collides

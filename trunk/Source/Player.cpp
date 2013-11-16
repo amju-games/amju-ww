@@ -191,6 +191,12 @@ int Player::GetPlayerId() const
   return m_playerId;
 }
 
+bool Player::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Player::Load(File* f)
 {
   if (!OnFloorCharacter::Load(f))
