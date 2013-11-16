@@ -25,37 +25,6 @@ const char* Block::GetTypeName() const
   return NAME;
 }
 
-//AABB* Block::GetAABB()
-//{
-//  Assert(m_pSceneNode);
-//  return m_pSceneNode->GetAABB();
-//}
-
-/*
-void Block::Draw()
-{
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-  AmjuGL::PushMatrix();
-
-  // Blocks must lean in same dir as Floor
-  if (m_floor)
-  {
-    m_matrix = *(m_floor->GetMatrix());
-  }
-  // TODO else block gets rotational velocity so it tumbles..?
-
-  m_matrix.TranslateKeepRotation(m_pos);
-  AmjuGL::MultMatrix(m_matrix);
-  
-  m_mesh->Draw();
-  AmjuGL::PopMatrix();
-
-  m_aabb.Draw();
-
-  // TODO Shadow
-}
-*/
-
 void Block::Update()
 {
   OnFloor::Update();
@@ -68,6 +37,10 @@ void Block::Update()
   // This kind of works but errors accumulate. Reset box coords each time.
 //  Vec3f dPos = m_pos - GetOldPos();
 //  m_pSceneNode->GetAABB()->Translate(dPos);  // ?
+}
+  
+bool Block::Save(File* f)
+{
 }
 
 bool Block::Load(File* f)
@@ -92,10 +65,6 @@ bool Block::Load(File* f)
     return false;
   }
 
-  // Separate SceneNode
-//  m_shadow.Load();
-
-  // We can just use a Mesh scene node type, right ?
   SceneMesh* sm = new SceneMesh;
   sm->SetMesh(mesh);
   m_pSceneNode = sm;

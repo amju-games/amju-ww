@@ -17,9 +17,7 @@ public:
   virtual const char* GetTypeName() const;
   virtual void Update();
   virtual bool Load(File*);
-
-protected:
-//  Matrix m_matrix;
+  virtual bool Save(File* f);
 };
 }
 

@@ -17,6 +17,7 @@ public:
   Bonus();
   virtual const char* GetTypeName() const;
   virtual bool Load(File*);
+  virtual bool Save(File* f);
   virtual void Update(); // NB Don't move with floor!
 
   void OnPlayerCollision(Player*);

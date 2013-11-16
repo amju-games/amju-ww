@@ -26,6 +26,7 @@ public:
   virtual const char* GetTypeName() const;
   virtual void Update();
   virtual bool Load(File* f);
+  virtual bool Save(File* f);
 
   virtual bool OnButtonEvent(const ButtonEvent& be);
   virtual bool OnJoyAxisEvent(const JoyAxisEvent& je);
