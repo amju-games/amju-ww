@@ -33,6 +33,20 @@ public:
   }
 };
 
+bool Trigger::Save(File* f)
+{
+  if (!f->WriteInteger(GetId()))
+  {
+    return false;
+  }
+  if (!SaveAABB(f, m_aabb))
+  {
+    f->ReportError("Failed to save trigger AABB");
+    return false;
+  }
+  return true;
+}
+
 bool Trigger::Load(File* f)
 {
   if (!WWGameObject::Load(f))

@@ -34,6 +34,7 @@ public:
 
   // Edit mode - just load everything
   bool LoadEntireLevel(const std::string& filename);
+  bool SaveLevel(const std::string& filename);
 
 private:
   int m_levelId;

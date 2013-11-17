@@ -21,6 +21,59 @@ LevelManager::LevelManager()
   m_isOpen = false;
 }
 
+bool LevelManager::SaveLevel(const std::string& filename)
+{
+  bool HAS_VERSION_INFO = true;
+  bool NOT_BINARY = false;
+  bool DONT_USE_ROOT = false;
+  File::Impl impl = File::STD;
+
+  File f(HAS_VERSION_INFO, impl);
+
+  if (!f.OpenWrite(filename, File::CURRENT_VERSION, NOT_BINARY, DONT_USE_ROOT))
+  {
+    return false;
+  }
+
+  // Write Number of objects
+  // For each object
+  //  Write Typename
+  //  Call Save on object
+  //  Write "end"
+
+  GameObjects* gos = TheGame::Instance()->GetGameObjects();
+
+  f.WriteComment("// Num game objects");
+  f.WriteInteger(gos->size());
+
+  for (auto it = gos->begin(); it != gos->end(); ++it)
+  {
+    GameObject* go = it->second;
+
+std::cout << "Saving: " << go->GetTypeName() << " ID: " << go->GetId() << "\n";
+
+    WWGameObject* ww = dynamic_cast<WWGameObject*>(go);
+    if (!ww)
+    {
+std::cout << " - Fail: Can't save this type of object.\n";
+      return false;
+    }
+
+    f.WriteComment("");
+    f.WriteComment("// Game object type");
+    f.Write(go->GetTypeName());
+    
+    if (!ww->Save(&f))
+    {
+std::cout << " - Save Failed at object: " << go->GetTypeName() << " ID: " << go->GetId() << "\n";
+      return false;
+    }  
+    f.Write("end");
+  }
+std::cout << "Save completed successfully?!\n";
+  return true;
+}
+
 bool LevelManager::LoadEntireLevel(const std::string& filename)
 {
   if (!Open(filename))

@@ -119,6 +119,14 @@ static void OnSaveDialogClosed(Dialog* dlg)
 
     // Try to save
 std::cout << "File Save: filename/path: " << filename << "\n";    
+    if (TheLevelManager::Instance()->SaveLevel(filename))
+    {
+std::cout << "Saved level OK!\n";
+    }
+    else
+    {
+std::cout << "FAILED TO SAVE LEVEL!\n";
+    }
   }
   else
   {

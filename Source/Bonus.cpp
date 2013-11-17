@@ -42,8 +42,26 @@ const char* Bonus::GetTypeName() const
 
 bool Bonus::Save(File* f)
 {
-  // TODO
-  return false;
+  f->WriteInteger(GetId());
+  if (!SaveVec3(f, m_pos))
+  {
+    f->ReportError("Failed to save bonus position");
+    return false;
+  }
+  if (!SaveMeshResource(f))
+  {
+    f->ReportError("Failed to save bonus mesh");
+    return false;
+  }
+  if (!SaveShadow(f))
+  {
+    f->ReportError("Failed to save bonus shadow");
+    return false;
+  }
+  return f->WriteComment("// Bonus points") &&
+    f->WriteInteger(m_points) &&
+    f->WriteComment("// Bonus lives") &&
+    f->WriteInteger(m_lives);
 }
 
 bool Bonus::Load(File* f)
