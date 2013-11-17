@@ -98,6 +98,15 @@ bool Exit::Save(File* f)
   // Next level
   f->WriteComment("// Next level");
   f->WriteInteger(m_toLevel);
+  // TODO Hard coded values for billboard and particles
+  f->WriteComment("// Billboard");
+  f->Write("flare.png");
+  f->WriteFloat(100.0f);
+  f->WriteComment("// Particles");
+  f->Write("sparkle1.png"); // TODO
+  f->WriteFloat(20.0f); // TODO
+  f->WriteInteger(50); // TODO
+  f->WriteFloat(2.0f); // TODO
 
   return SaveShadow(f);
 }
