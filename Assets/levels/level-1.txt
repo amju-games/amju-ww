@@ -66,7 +66,6 @@ staticfloor
 0
 // Floor mesh
 plat_rect_4x4_std.obj
-plat_wood1.png
 end
 
 
@@ -78,7 +77,6 @@ staticfloor
 0
 // Floor mesh
 plat_rect_4x4_std.obj
-plat_wood1.png
 end
 
 
@@ -88,12 +86,8 @@ staticfloor
 -400, 200, 0
 // Rot
 0
-// Floor mesh + texture
-//block_rect_1x1.obj
-//plat_rect_4x4_std.obj
+// Floor mesh 
 block_rect_curved_hill_4x2.obj
-//plat_wood1.png
-curvedFloorUV2.png
 end
 
 
@@ -128,8 +122,7 @@ end
 fence
 2001
 0, 200, -100
-ew
-2
+0
 pz-fence.obj
 end
 
@@ -243,25 +236,23 @@ end
 
 
 staticfloor
-1002
+4002
 // Centre/pivot point
 0, 200, 0
 // Rot
 0
 // Floor mesh + texture
 block_rect_1x1.obj
-plat_wood1.png
 end
 
 floor
-1003
+4003
 // Centre/pivot point
 200, 200, 0
 // Rot
 0
 // Floor mesh
 plat_rect_2x1_std.obj
-plat_wood2.png
 // Rotation axes flags: x=1, y=2, z=4
 4
 // max AABB height
@@ -271,85 +262,39 @@ plat_wood2.png
 end
 
 staticfloor
-1004
+4004
 // Centre/pivot point
 400, 200, 0
 // Rot
 0
 // Floor mesh
-block_rect_1x1.obj
 plat_wood1.png
 end
 
 staticfloor
-1005
+4005
 // Centre/pivot point
 600, 200, 0
 // Rot
 45
 // Floor mesh
 ramp_3x1.obj
-ramp1.png
 end
 
 // Marin start floor
 staticfloor
-1006
+4006
 // Centre/pivot point
 -200, 200, 0
 // Rot
 0
 // Floor mesh + texture
 block_rect_1x1.obj
-plat_wood1.png
 end
 
 
-
-
-//block
-//150
-//// Start pos
-//200, 250, 0
-//crate2.obj
-//// Shadow - TODO
-//shadow.png
-//20
-//end
-
-
 bonus
-110
-// Pos
-100, 250, -100
-heart.obj
-// Shadow
-shadow.png
-20
-end
-
-bonus
-111
-// Pos
-100, 250, 100
-heart.obj
-// Shadow
-shadow.png
-20
-end
-
-bonus
-112
-// Pos
--100, 250, -100
-heart.obj
-// Shadow
-shadow.png
-20
-end
-
-bonus
-113
+413
 // Pos
 -100, 250, 100
 heart.obj

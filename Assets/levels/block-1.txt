@@ -67,7 +67,7 @@ staticfloor
 //plat_rect_4x4_std.obj
 block_rect_curved_hill_4x2.obj
 //plat_wood1.png
-curvedFloorUV2.png
+//curvedFloorUV2.png
 end
 
 // 4
@@ -92,9 +92,7 @@ fence
 // Pos
 -1000, 100, 50
 // Rot 
-ns
-// Num units
-2
+0
 // Mesh
 pz-fence.obj
 end
@@ -110,7 +108,7 @@ staticfloor
 //block_rect_1x1.obj
 //plat_wood1.png
 block_rect_curved_2x2.obj
-curvedFloorUV2.png
+//curvedFloorUV2.png
 end
 
 // 7
@@ -124,7 +122,7 @@ staticfloor
 //block_rect_1x1.obj
 //plat_wood1.png
 block_rect_curved_hill_4x2.obj
-curvedFloorUV2.png
+//curvedFloorUV2.png
 end
 
 // 8
@@ -138,15 +136,14 @@ staticfloor
 //block_rect_1x1.obj
 //plat_wood1.png
 block_rect_curved_hill_4x2.obj
-curvedFloorUV2.png
+//curvedFloorUV2.png
 end
 
 // 9
 fence
 7
 -1175, -200, 50
-ew
-2
+90
 pz-fence.obj
 end
 
@@ -154,8 +151,7 @@ end
 fence
 8
 -1175, -200, -50
-ns
-3
+90
 pz-fence.obj
 end
 
@@ -201,7 +197,7 @@ floor
 0
 // Floor mesh
 plat_rect_2x1_std.obj
-plat_wood2.png
+//plat_wood2.png
 // Rotation axes flags: x=1, y=2, z=4
 4
 // max AABB height
@@ -219,7 +215,7 @@ staticfloor
 0
 // Floor mesh
 block_rect_1x1.obj
-plat_wood1.png
+//plat_wood1.png
 end
 
 // 16
@@ -231,7 +227,7 @@ staticfloor
 0
 // Floor mesh
 ramp_3x1.obj
-ramp1.png
+//ramp1.png
 end
 
 
