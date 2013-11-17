@@ -41,8 +41,23 @@ void Block::Update()
   
 bool Block::Save(File* f)
 {
-  // TODO
-  return false;
+  f->WriteInteger(GetId());
+  if (!SaveVec3(f, m_pos))
+  {
+    f->ReportError("Failed to save block position");
+    return false;
+  }
+  if (!SaveMeshResource(f))
+  {
+    f->ReportError("Failed to save block mesh");
+    return false;
+  }
+  if (!SaveShadow(f))
+  {
+    f->ReportError("Failed to save block shadow");
+    return false;
+  }
+  return true;
 }
 
 bool Block::Load(File* f)

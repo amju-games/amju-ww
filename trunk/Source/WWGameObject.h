@@ -7,6 +7,8 @@
 
 namespace Amju
 {
+class ObjMesh;
+
 class WWGameObject : public GameObject
 {
 public:
@@ -30,6 +32,13 @@ public:
   void RecalcAABB(); 
 
 protected:
+  // Convenience functions for Load/Save
+  ObjMesh* LoadMeshResource(File*);
+  bool SaveMeshResource(File*); // m_meshFilename must be set
+  bool LoadShadow(File*);
+  bool SaveShadow(File*);
+
+protected:
   Matrix m_mat;
   bool m_isDead;
 
@@ -37,6 +46,10 @@ protected:
 
   Vec3f m_aabbExtents;
   bool m_extentsSet; // if set, use extents and recalc AABB
+
+  std::string m_meshFilename;
+  std::string m_shadowTexName;
+  float m_shadowSize;
 };
 }
 

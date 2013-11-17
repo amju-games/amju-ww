@@ -1,7 +1,8 @@
-#include "TutorialTrigger.h"
-#include "LurkMsg.h"
 #include <File.h>
 #include <GameObjectFactory.h>
+#include <Localise.h>
+#include "TutorialTrigger.h"
+#include "LurkMsg.h"
 
 namespace Amju
 {
@@ -26,7 +27,7 @@ std::cout << "Collision with tutorial trigger!\n";
 
   if (!m_hasShownText)
   {
-    LurkMsg lm(m_text, Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), AMJU_CENTRE);
+    LurkMsg lm(Lookup(m_text), Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), AMJU_CENTRE);
     TheLurker::Instance()->Queue(lm);
     m_hasShownText = true;
   }
@@ -34,8 +35,12 @@ std::cout << "Collision with tutorial trigger!\n";
 
 bool TutorialTrigger::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!Trigger::Save(f))
+  {
+    return false;
+  }
+  return f->WriteComment("// Tutorial text") &&
+    f->Write(m_text.empty() ? "$$$empty" : m_text);
 }
 
 bool TutorialTrigger::Load(File* f)
@@ -45,7 +50,7 @@ bool TutorialTrigger::Load(File* f)
     return false;
   }
   // Get tutorial text - NB should be localised
-  if (!f->GetLocalisedString(&m_text))
+  if (!f->GetDataLine(&m_text))
   {
     f->ReportError("Expected tutorial text");
     return false;

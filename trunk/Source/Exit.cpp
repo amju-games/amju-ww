@@ -87,12 +87,28 @@ void Exit::Update()
 
 bool Exit::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!OnFloor::Save(f))
+  {
+    return false;
+  }
+  if (!SaveMeshResource(f))
+  {
+    return false;
+  }
+  // Next level
+  f->WriteComment("// Next level");
+  f->WriteInteger(m_toLevel);
+
+  return SaveShadow(f);
 }
 
 bool Exit::Load(File* f)
-{
+{ 
+  if (!OnFloor::Load(f))
+  {
+    return false;
+  }
+/* replacing
   if (!GameObject::Load(f)) // Get ID
   {
     return false;
@@ -104,6 +120,7 @@ bool Exit::Load(File* f)
     return false;
   }
   m_pos = m_pos * m_mat;
+*/
 
   ObjMesh* mesh = LoadMeshResource(f);
   if (!mesh)

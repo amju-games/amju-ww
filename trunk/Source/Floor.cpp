@@ -27,17 +27,17 @@ void FloorMesh::Draw()
 {
   AmjuGL::PushAttrib(AmjuGL::AMJU_LIGHTING);
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-  m_pTex->UseThisTexture();
+//  m_pTex->UseThisTexture();
   SceneMesh::Draw();
   AmjuGL::PopAttrib();
 
   //m_floor->DrawCollisionMesh();
 }
 
-void FloorMesh::SetTexture(PTexture tex)
-{
-  m_pTex = tex;
-}
+//void FloorMesh::SetTexture(PTexture tex)
+//{
+//  m_pTex = tex;
+//}
 
 Floor::Floor()
 {
@@ -67,6 +67,22 @@ void Floor::Reset()
   ResetMoments();
   m_quat.SetIdentity();
   m_matrix.SetIdentity();
+}
+
+bool Floor::SaveMesh(File* f)
+{
+  f->WriteInteger(GetId());
+  if (!SaveVec3(f, m_pos))
+  {
+    return false;
+  }
+  f->WriteComment("// Y rotation");
+  f->WriteFloat(m_yRot);
+  if (!SaveMeshResource(f))
+  {
+    return false;
+  }
+  return true;
 }
 
 bool Floor::LoadMesh(File* f)
@@ -103,11 +119,11 @@ bool Floor::LoadMesh(File* f)
   m_collMesh->Transform(m);
 
   // Load texture
-  Texture* pTex = LoadTextureResource(f); 
+//  Texture* pTex = LoadTextureResource(f); 
 
   FloorMesh* fm = new FloorMesh(this);
   fm->SetMesh(mesh);
-  fm->SetTexture(pTex);
+//  fm->SetTexture(pTex);
   m_pSceneNode = fm;
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
@@ -118,8 +134,20 @@ bool Floor::LoadMesh(File* f)
 
 bool Floor::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!SaveMesh(f))
+  {
+    return false;
+  }
+  f->WriteComment("// Rotation axis flags");
+  f->WriteInteger(m_rotAxes);
+
+  f->WriteComment("// Max AABB height");
+  f->WriteFloat(m_maxYSize);
+
+  f->WriteComment("// Inertia");
+  f->WriteFloat(m_inertia);
+
+  return true;
 }
 
 bool Floor::Load(File* f)
@@ -128,7 +156,6 @@ bool Floor::Load(File* f)
   {
     return false;
   }
-
 
   if (!f->GetInteger((int*)&m_rotAxes))
   {

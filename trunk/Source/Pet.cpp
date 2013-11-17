@@ -66,8 +66,12 @@ void Pet::Update()
 
 bool Pet::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!Npc::Save(f))
+  {
+    return false;
+  }
+ 
+  return SaveShadow(f);
 }
 
 bool Pet::Load(File* f)

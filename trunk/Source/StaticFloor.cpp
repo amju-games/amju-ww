@@ -26,6 +26,11 @@ void StaticFloor::Update()
 {
 }
 
+bool StaticFloor::Save(File* f)
+{
+  return SaveMesh(f);
+}
+
 bool StaticFloor::Load(File* f)
 {
   if (!LoadMesh(f))
