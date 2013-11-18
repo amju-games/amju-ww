@@ -8,8 +8,6 @@
 
 namespace Amju
 {
-enum GameMode { AMJU_MAIN_GAME_MODE, AMJU_ATTRACT_MODE, AMJU_EDIT_MODE };
-
 class GSLoadLevel : public GSText, public NonCopyable
 {
 private:
@@ -25,9 +23,6 @@ public:
   virtual void Update();
   virtual void Draw2d();
 
-  void SetGameMode(GameMode);
-  GameMode GetGameMode() const { return m_mode; }
-
 private:
   void LoadOneObject();
   void StartLoad();
@@ -37,11 +32,7 @@ private:
 
   int m_numObjects;
   int m_currentObj;
-  GameMode m_mode;
 };
-
-// Convenience function
-void SetGameMode(GameMode);
 
 typedef Singleton<GSLoadLevel> TheGSLoadLevel;
 }

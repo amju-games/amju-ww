@@ -65,6 +65,9 @@ public:
 
   // Menu item handlers
   void OnMove();
+  void OnDuplicate();
+  void OnRunStart();
+  void OnRunStop();
 
 protected:
   // Box where new item can go, or item in box can be edited..?

@@ -14,6 +14,20 @@ WWGameObject::WWGameObject()
   m_shadowSize = 0;
 }
 
+void WWGameObject::Move(const Vec3f& move)
+{
+  Vec3f p = GetPos();
+  p += move;
+  SetPos(p);
+  RecalcAABB();
+
+  SceneNode* sn = GetSceneNode();
+  Assert(sn);
+  Matrix mat;
+  mat.Translate(move);
+  sn->MultLocalTransform(mat);
+}
+
 ObjMesh* WWGameObject::LoadMeshResource(File* f)
 {
   if (!f->GetDataLine(&m_meshFilename))

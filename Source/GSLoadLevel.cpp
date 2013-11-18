@@ -12,21 +12,17 @@
 #include "LevelManager.h"
 #include "Hud.h"
 #include "ShadowManager.h"
+#include "GameMode.h"
 
 namespace Amju
 {
 const char* GSLoadLevel::NAME = "load-level";
 
-void SetGameMode(GameMode mode)
-{
-  TheGSLoadLevel::Instance()->SetGameMode(mode);
-}
-
 class CommandGo : public GuiCommand
 {
   virtual bool Do()
   {
-    if (TheGSLoadLevel::Instance()->GetGameMode() == AMJU_EDIT_MODE)
+    if (IsEditMode())
     {
       TheGame::Instance()->SetCurrentState(TheGSMainEdit::Instance());
     }
@@ -43,18 +39,12 @@ GSLoadLevel::GSLoadLevel()
   m_maxBarX = 0;
   m_numObjects = 0;
   m_currentObj = 0;
-  m_mode = AMJU_MAIN_GAME_MODE;
 }
 
 void GSLoadLevel::Draw2d()
 {
   GSText::Draw2d();
   TheHud::Instance()->Draw();
-}
-
-void GSLoadLevel::SetGameMode(GameMode mode)
-{
-  m_mode = mode;
 }
 
 void GSLoadLevel::OnActive()
@@ -126,7 +116,7 @@ void GSLoadLevel::Update()
 #ifdef BYPASS_TITLE
       TheGame::Instance()->SetCurrentState(GSMain::NAME);
 #else
-      if (TheGSLoadLevel::Instance()->GetGameMode() == AMJU_ATTRACT_MODE)
+      if (GetGameMode() == AMJU_ATTRACT_MODE)
       {
         // TODO should be attract mode state
         TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
