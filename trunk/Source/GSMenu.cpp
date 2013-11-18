@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "GSEditMenu.h"
 #include "LevelManager.h"
+#include "GameMode.h"
 
 namespace Amju
 {

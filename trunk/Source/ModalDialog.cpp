@@ -25,6 +25,17 @@ static void DialogOnOk()
   dlg->Close();
 }
 
+static void DialogOnNo()
+{
+  Game* game = TheGame::Instance();
+  GameState* s = game->GetState();
+  Dialog* dlg = dynamic_cast<Dialog*>(s);
+  Assert(dlg);
+  dlg->SetResult((int)AMJU_NO);
+  dlg->GetDataFromGui(); // load GUI strings into member variables
+  dlg->Close();
+}
+
 static void DialogOnCancel()
 {
   Game* game = TheGame::Instance();
@@ -38,10 +49,16 @@ static void DialogOnCancel()
 Dialog::Dialog()
 {
   m_prevState = nullptr;
-  m_finishCallback = nullptr;
+  m_onOK = nullptr;
+  m_onCancel = nullptr;
   m_result = (int)AMJU_RESULT_NOT_SET;
 }
  
+void Dialog::SetGuiFilename(const std::string& filename)
+{
+  m_guiFilename = filename;
+}
+
 int Dialog::GetResult() const
 {
   return m_result;
@@ -57,9 +74,19 @@ void Dialog::SetPrevState(GameState* s)
   m_prevState = s;
 }
 
+/*
+void Dialog::SetOkCancelCallbacks(
+  DialogFinishCallback onOK, DialogFinishCallback onCancel)
+{
+  m_onOK = onOK;
+  m_onCancel = onCancel;
+}
+*/
+
 void Dialog::SetFinishCallback(DialogFinishCallback cb)
 {
-  m_finishCallback = cb;
+  m_onOK = cb;
+  m_onCancel = nullptr;
 }
 
 void Dialog::Draw()
@@ -81,6 +108,8 @@ void Dialog::Update()
 
 void Dialog::OnActive()
 {
+std::cout << "This dialog: " << m_guiFilename << " is activating...\n";
+
   m_gui = LoadGui(m_guiFilename, false); // don't add as listener 
   Assert(m_gui);
   // GUI should get events through this game state's handler functions
@@ -94,6 +123,12 @@ void Dialog::OnActive()
   Assert(ok);
   ok->SetCommand(DialogOnOk);
 
+  GuiButton* no = (GuiButton*)m_gui->GetElementByName("ok-button");
+  if (no)
+  {
+    no->SetCommand(DialogOnNo);
+  }
+
   GuiButton* cancel = (GuiButton*)m_gui->GetElementByName("cancel-button");
   Assert(cancel);
   cancel->SetCommand(DialogOnCancel);
@@ -101,20 +136,26 @@ void Dialog::OnActive()
 
 void Dialog::OnDeactive()
 {
-  m_gui = 0;
+std::cout << "This dialog: " << m_guiFilename << " is deactivating...\n";
+
+//  m_gui = 0;
 }
 
 void Dialog::Close()
 {
   Assert(m_result != (int)AMJU_RESULT_NOT_SET);
 
-  // Copy any values from GUI elements to member variables ???
   TheGame::Instance()->SetCurrentState(m_prevState);
 
   // Call the callback function to say this dialog has finished
-  if (m_finishCallback)
+  if (m_onCancel && m_result == AMJU_CANCEL)
   {
-    m_finishCallback(this);
+    m_onCancel(this);
+  }
+  else
+  {
+    Assert(m_onOK);
+    m_onOK(this);
   }
 }
 
@@ -179,6 +220,32 @@ bool Dialog::OnTextEvent(const TextEvent& e)
   Assert(m_gui);
   m_gui->OnTextEvent(e);
   return true; 
+}
+
+MessageBox::MessageBox()
+{
+  m_guiFilename = "gui-message-box.txt";
+}
+
+void MessageBox::GetDataFromGui() 
+{
+}
+
+void MessageBox::SetDataToGui() 
+{
+  GuiText* t = (GuiText*)m_gui->GetElementByName("message-text");
+  Assert(t);
+  t->SetText(m_message);
+
+  t = (GuiText*)m_gui->GetElementByName("title-text");
+  Assert(t);
+  t->SetText(m_title);
+}
+
+void MessageBox::SetMessage(const std::string& message, const std::string& title)
+{
+  m_message = message;
+  m_title = title;
 }
 
 FileDialog::FileDialog()

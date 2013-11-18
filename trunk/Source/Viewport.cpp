@@ -6,6 +6,7 @@
 #include "GuiImage.h"
 #include "Camera.h"
 #include "GSLoadLevel.h"
+#include "GameMode.h"
 
 namespace Amju
 {
@@ -43,7 +44,7 @@ void Viewport::Draw()
     AmjuGL::LightColour(1, 1, 1),
     AmjuGL::Vec3(1, 1, 1)); // Light direction
 
-  if (TheGSLoadLevel::Instance()->GetGameMode() != AMJU_EDIT_MODE)
+  if (!IsEditMode())
   {
     GetCamera()->SetAsSceneGraphCamera();
   }
