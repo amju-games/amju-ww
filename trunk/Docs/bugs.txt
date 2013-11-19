@@ -1,0 +1,60 @@
+Levels
+======
+
+All objs need UV mapping and materials
+
+More sound FX 
+
+
+Game play
+=========
+
+
+amjulib
+=======
+Title bar in Dialogs, show title, allow drag
+
+File dialog :- dir contents disappears when you type a filename. Should only 
+ refresh contents for a path with no filename suffixed?
+
+GUI Manager 
+ - sends events to all active GUIs - is the only GUI event handler
+ - handles KB for text entry
+ - Tooltips
+ - Active default button/element
+ - (Makes sure Cursor drawn last?)
+
+Edit mode
+=========
+
+Crashes in file save dialogs
+
+Crash after run/stop
+ - This is Lurk msgs - ptr to deleted GUI object maybe?
+ - OK now it seems - Updated Luker
+
+Stop does not reset positions
+ - Implement Reset() in all types
+ - OK
+
+Can't duplicate
+ - Needs AddToGame, replacing AddSceneNode
+
+Can't delete
+
+Can't set properties - need something like AntTweakBar
+
+Moving objects is too sensitive - use camera to work out how far mouse 
+  has moved in world coords
+
+Low priority
+------------
+Initial camera pos should point at player 1
+
+Show filename and if any unsaved changes
+
+Disable (grey out) Undo/Redo
+
+Keyboard shortcuts
+
+
