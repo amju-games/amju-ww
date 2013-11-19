@@ -27,6 +27,7 @@ public:
   virtual void Update();
   virtual bool Load(File* f);
   virtual bool Save(File* f);
+  virtual void Reset() override;
 
   virtual bool OnButtonEvent(const ButtonEvent& be);
   virtual bool OnJoyAxisEvent(const JoyAxisEvent& je);
@@ -38,6 +39,7 @@ public:
 
   void PickUpPet(Pet* pet);
   const Pets& GetPets() const { return m_pets; }
+  void DropPets();
 
   // Call when we collide with exit
   void ReachedExit();
@@ -48,8 +50,6 @@ private:
 private:
   // PlayerInfo ID
   int m_playerId;
-  // Start position for current level
-  Vec3f m_startPos;
 
   RCPtr<PlayerController> m_controller;
 

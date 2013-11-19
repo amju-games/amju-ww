@@ -80,6 +80,7 @@ bool Pet::Load(File* f)
   {
     return false;
   }
+  m_startPos = m_pos;
 
   BlinkCharacter* bc = new BlinkCharacter;
   m_pSceneNode = bc;

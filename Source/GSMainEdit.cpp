@@ -15,6 +15,7 @@
 #include "EditModeCamera.h"
 #include "ModalDialog.h"
 #include "LevelManager.h"
+#include "LurkMsg.h"
 
 namespace Amju
 {
@@ -447,6 +448,8 @@ void GSMainEdit::Update()
         w->RecalcAABB();
       }
     }
+
+    TheLurker::Instance()->Update();
   }
 }
 
@@ -532,6 +535,8 @@ void GSMainEdit::Draw()
 void GSMainEdit::Draw2d()
 {
 //  GSMain::Draw2d();
+  TheLurker::Instance()->Draw();
+
   m_topMenu->SetVisible(true); // always visible
   m_topMenu->Draw();
   m_contextMenu->Draw();

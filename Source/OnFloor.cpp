@@ -94,6 +94,8 @@ bool OnFloor::Load(File* f)
 
 void OnFloor::Reset()
 {
+  WWGameObject::Reset(); 
+
   m_isDead = false;
   SetFloor(0);
   m_onFloor = false;

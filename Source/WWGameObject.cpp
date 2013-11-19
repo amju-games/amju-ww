@@ -14,10 +14,24 @@ WWGameObject::WWGameObject()
   m_shadowSize = 0;
 }
 
+void WWGameObject::Reset() 
+{
+  SetPos(m_startPos);
+  RecalcAABB();
+  SceneNode* sn = GetSceneNode();
+  if (sn)
+  {
+    Matrix mat;
+    mat.Translate(m_startPos);
+    sn->SetLocalTransform(mat);
+  }
+}
+
 void WWGameObject::Move(const Vec3f& move)
 {
   Vec3f p = GetPos();
   p += move;
+  m_startPos = p;
   SetPos(p);
   RecalcAABB();
 
