@@ -47,6 +47,8 @@ bool Fence::Load(File* f)
     f->ReportError("Expected fence position");
     return false;
   }
+  m_startPos = m_pos;
+
   // Load rotation around y axis 
   if (!f->GetFloat(&m_yRot))
   { 
@@ -92,7 +94,7 @@ void Fence::Update()
 
 void Fence::Reset()
 {
-  // If fences were moveable, move back to start pos here...
+  WWGameObject::Reset();
 }
 
 }
