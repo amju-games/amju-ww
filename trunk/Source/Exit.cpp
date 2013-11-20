@@ -42,6 +42,24 @@ const char* Exit::GetTypeName() const
   return NAME;
 }
 
+void Exit::AddToGame() 
+{
+  OnFloor::AddToGame();
+  Assert(m_text);
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  Assert(root);
+  root->AddChild(m_text);
+}
+
+void Exit::RemoveFromGame() 
+{
+  OnFloor::RemoveFromGame();
+  Assert(m_text);
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  Assert(root);
+  root->DelChild(m_text);
+}
+
 void Exit::Reset()
 {
   OnFloor::Reset();
@@ -142,9 +160,11 @@ bool Exit::Load(File* f)
     return false;
   }
 
+  SceneNode* smRoot = new SceneNode;
   SceneMesh* sm = new SceneMesh;
   sm->SetMesh(mesh);
-  m_pSceneNode = sm;
+  smRoot->AddChild(sm);
+  m_pSceneNode = smRoot;
 
   // Set AABB 
   RecalcAABB();
@@ -153,8 +173,8 @@ bool Exit::Load(File* f)
   // TODO So should be a Blended node !??
   m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+//    AddChild(m_pSceneNode);
 
   // Load next level
   if (!f->GetInteger(&m_toLevel))
@@ -169,8 +189,11 @@ bool Exit::Load(File* f)
   TextMaker tm;
   m_text = tm.MakeText(ToString(m_toLevel));
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_text);
+  //GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+
+  // Add separately in AddToGame
+  //  smRoot->AddChild(m_text);
+
   // If you add as child of exit node, numbers spin and are translucent... 
   //m_pSceneNode->AddChild(m_text);
 
@@ -194,7 +217,7 @@ bool Exit::Load(File* f)
     f->ReportError("Failed to load exit billboard");
     return false;
   }
-  m_pSceneNode->AddChild(m_billboard);
+  sm->AddChild(m_billboard);
 
   m_effect = new ExitParticleEffect;
   if (!m_effect->Load(f))
@@ -203,7 +226,7 @@ bool Exit::Load(File* f)
     return false;
   }
   m_effect->SetVisible(true);
-  m_pSceneNode->AddChild(m_effect);
+  sm->AddChild(m_effect);
 
   // Set nice big AABB for text, billboard and effect, so they are not culled
   static const float X2 = 40.0f;

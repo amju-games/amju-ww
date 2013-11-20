@@ -65,8 +65,8 @@ bool Trigger::Load(File* f)
   TriggerNode* tn = new TriggerNode;
   tn->SetAABB(m_aabb);
   m_pSceneNode = tn;
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+//    AddChild(m_pSceneNode);
 
 #endif
 

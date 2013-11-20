@@ -129,8 +129,8 @@ bool Floor::LoadMesh(File* f)
 //  fm->SetTexture(pTex);
   m_pSceneNode = fm;
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+//    AddChild(m_pSceneNode);
 
   return true;
 }

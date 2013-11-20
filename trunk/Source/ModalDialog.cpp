@@ -250,7 +250,6 @@ void MessageBox::SetMessage(const std::string& message, const std::string& title
 
 FileDialog::FileDialog()
 {
-  m_guiFilename = "gui-file-dialog.txt";
 }
 
 void FileDialog::GetDataFromGui() 

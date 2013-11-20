@@ -22,6 +22,7 @@
 #include "Score.h"
 #include "PlayWav.h"
 #include "Describe.h"
+#include "GameMode.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -570,7 +571,7 @@ void Player::Update()
   UpdatePets();
    
   // If we have fallen, go to life lost state
-  if (IsDead())
+  if (IsDead() && !IsEditMode())
   {
     Amju::PlayWav("churchbell"); 
 

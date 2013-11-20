@@ -100,6 +100,16 @@ const char* Camera::GetTypeName() const
   return NAME;
 }
 
+void Camera::AddToGame()
+{
+  TheGame::Instance()->AddGameObject(this);
+}
+
+void Camera::RemoveFromGame()
+{
+  TheGame::Instance()->EraseGameObject(GetId());
+}
+
 void Camera::Reset()
 {
   if (!m_target)

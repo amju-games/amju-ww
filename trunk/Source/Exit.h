@@ -36,6 +36,9 @@ public:
   virtual bool Save(File*);
   virtual void Reset();
 
+  virtual void AddToGame() override;
+  virtual void RemoveFromGame() override;
+
   // Call when player collides
   void OnPlayerCollision();
 
