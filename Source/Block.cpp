@@ -92,8 +92,8 @@ bool Block::Load(File* f)
 //  cm.CalcAABB(m_pSceneNode->GetAABB());
 //  m_pSceneNode->GetAABB()->Translate(m_pos);  // ?
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+//    AddChild(m_pSceneNode);
  
   if (!LoadShadow(f))
   {

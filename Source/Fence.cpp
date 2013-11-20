@@ -82,8 +82,8 @@ bool Fence::Load(File* f)
   sm->SetAABB(m_aabb);
   sm->SetLocalTransform(m);
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+//    AddChild(m_pSceneNode);
  
   return true;
 }

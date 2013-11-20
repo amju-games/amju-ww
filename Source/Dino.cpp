@@ -228,8 +228,8 @@ bool Dino::Load(File* f)
 
   bc->SetGameObj(this);
 
-  PSceneNode root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-  root->AddChild(bc);
+//  PSceneNode root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+//  root->AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))

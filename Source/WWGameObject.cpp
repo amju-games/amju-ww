@@ -1,4 +1,5 @@
 #include <File.h>
+#include <Game.h>
 #include "WWGameObject.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
@@ -12,6 +13,41 @@ WWGameObject::WWGameObject()
   m_pSceneNode = 0;
   m_extentsSet = false;
   m_shadowSize = 0;
+}
+  
+void WWGameObject::AddToGame()
+{
+  if (!m_shadowTexName.empty())
+  {
+    TheShadowManager::Instance()->AddCaster(this, m_shadowSize, m_shadowTexName);
+  }
+  TheGame::Instance()->AddGameObject(this);
+
+  SceneNode* sn = GetSceneNode();
+  if (sn)
+  {
+    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+    Assert(root);
+    root->AddChild(sn);
+  }
+}
+
+void WWGameObject::RemoveFromGame()
+{
+  if (!m_shadowTexName.empty())
+  {
+    TheShadowManager::Instance()->RemoveCaster(this);
+  }
+
+  TheGame::Instance()->EraseGameObject(GetId());
+
+  SceneNode* sn = GetSceneNode();
+  if (sn)
+  {
+    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+    Assert(root);
+    root->DelChild(sn);
+  }
 }
 
 void WWGameObject::Reset() 
@@ -92,20 +128,12 @@ bool WWGameObject::LoadShadow(File* f)
     return false;
   }
 
-  TheShadowManager::Instance()->AddCaster(this, m_shadowSize, m_shadowTexName);
-
   return true;
 }
 
 SceneNode* WWGameObject::GetSceneNode()
 {
   return m_pSceneNode;
-}
-
-void WWGameObject::AddSceneNode()
-{
-  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-  root->AddChild(m_pSceneNode);
 }
 
 void WWGameObject::SetTransform(const Matrix& mat)

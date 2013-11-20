@@ -192,26 +192,19 @@ bool LevelManager::LoadOneObject()
   {
     m_numPlayers++;
     // Only need to check in one-player game
-//    bool addP2 = true;
 
     // If this is a one-player game, don't create player 2
     if (m_numPlayers > TheScores::Instance()->GetNumPlayers() &&
        !IsEditMode())
     {
-//      addP2 = false;
-
       std::cout << "Not creating player " << m_numPlayers << "\n";
-      TheShadowManager::Instance()->RemoveCaster(p);
       return true;
-    }
-    else
-    {
-      // Safe to add to scene graph
-      p->AddSceneNode();
     }
   }
 
-  TheGame::Instance()->AddGameObject(go);
+  WWGameObject* ww = dynamic_cast<WWGameObject*>(go.GetPtr());
+  Assert(ww);
+  ww->AddToGame();
 
 std::cout << "Added game object " << go->GetTypeName() 
   << " ID: " << go->GetId() << "\n";

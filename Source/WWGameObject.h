@@ -29,7 +29,14 @@ public:
   bool IsDead() const;
 
   SceneNode* GetSceneNode();
-  void AddSceneNode(); // Add scene node to graph - called by level loader etc
+
+  // Load does not add Game Object to Game immediately - call this to do so
+  virtual void AddToGame();
+  // For Edit Mode, remove an object
+  virtual void RemoveFromGame();
+
+// Replacing:
+////  void AddSceneNode(); // Add scene node to graph - called by level loader etc
 
   // Set AABB around m_pos with extents xsize, ysize, zsize
   void RecalcAABB(); 

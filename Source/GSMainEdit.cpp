@@ -16,6 +16,7 @@
 #include "ModalDialog.h"
 #include "LevelManager.h"
 #include "LurkMsg.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -53,12 +54,6 @@ void SelectedNode::Draw()
   AmjuGL::PopMatrix();
 //  AmjuGL::PopAttrib();
 }
-
-// Menu item handlers
-//static void OnMove()
-//{
-//  TheGSMainEdit::Instance()->OnMove();
-//}
 
 static void OnStart()
 {
@@ -286,6 +281,7 @@ void OnDuplicate()
 
 void OnDelete()
 {
+  TheGSMainEdit::Instance()->OnDelete();
 }
 
 void OnProperties()
@@ -364,9 +360,38 @@ void GSMainEdit::OnDuplicate()
   }
 }
 
-void GSMainEdit::OnMove()
+class DeleteCommand : public GuiCommand
 {
-  // Change mode so arrow keys move currently selected object
+public:
+  DeleteCommand(WWGameObject* obj) : m_obj(obj)
+  {
+  }
+
+  virtual bool Do() override
+  {
+    m_obj->RemoveFromGame();
+    s_unsaved++;
+    return true;
+  }
+
+  virtual void Undo() override
+  {
+    m_obj->AddToGame();
+    s_unsaved--;
+  }
+
+private:
+  RCPtr<WWGameObject> m_obj;
+};
+
+void GSMainEdit::OnDelete()
+{
+  if (m_selectedObj)
+  {
+    // TODO Are you sure? Anyway, this is undoable
+    DeleteCommand* dc = new DeleteCommand(m_selectedObj);
+    TheGuiCommandHandler::Instance()->DoNewCommand(dc);
+  }
 }
 
 void GSMainEdit::OnDeactive()
@@ -393,7 +418,6 @@ void GSMainEdit::OnActive()
   
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
-//  root->AddChild(m_selNode.GetPtr()); // TODO how to ensure we only add it once ?
 
   TheEventPoller::Instance()->AddListener(m_topMenu);
 
@@ -520,7 +544,7 @@ void GSMainEdit::Draw()
       //m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
       //m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnRotate));
       m_contextMenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
-      m_contextMenu->AddChild(new GuiMenuItem("Delete", OnDelete));
+      m_contextMenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
       m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
     }
     else
@@ -597,27 +621,13 @@ public:
 
   virtual bool Do() override
   {
-//std::cout << "Doing move\n";
     m_obj->Move(m_move);
     s_unsaved++;
-/*
-    Vec3f p = m_obj->GetPos();
-    p += m_move;
-    m_obj->SetPos(p);
-    m_obj->RecalcAABB();
-
-    SceneNode* sn = m_obj->GetSceneNode();
-    Assert(sn);
-    Matrix mat;
-    mat.Translate(m_move);
-    sn->MultLocalTransform(mat);
-*/
     return true;
   }
 
   virtual void Undo() override
   {
-//std::cout << "Undoing move\n";
     s_unsaved--;
     m_move = -m_move;
     Do();
