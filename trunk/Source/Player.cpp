@@ -79,6 +79,11 @@ Player::~Player()
   TheEventPoller::Instance()->RemoveListener(m_controller);
 }
 
+WWGameObject* Player::Clone()
+{
+  return new Player(*this);
+}
+
 const char* Player::GetTypeName() const
 {
   return NAME;

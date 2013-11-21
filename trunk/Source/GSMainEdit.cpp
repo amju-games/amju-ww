@@ -17,6 +17,7 @@
 #include "LevelManager.h"
 #include "LurkMsg.h"
 #include "ShadowManager.h"
+#include "Describe.h"
 
 namespace Amju
 {
@@ -320,17 +321,23 @@ GSMainEdit::GSMainEdit()
     newObjSubmenu->AddChild(new GuiMenuItem(names[i]));
   }
 
+  GuiMenu* objectSubmenu = new GuiMenu;
+  objectSubmenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
+  objectSubmenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
+  objectSubmenu->AddChild(new GuiNestMenuItem("New > ", newObjSubmenu));
+
   GuiMenu* runSubmenu = new GuiMenu;
   runSubmenu->AddChild(new GuiMenuItem("Start     ", OnStart));
   runSubmenu->AddChild(new GuiMenuItem("Stop    ", OnStop));
 
   m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Edit    ", editSubmenu));
-  m_topMenu->AddChild(new GuiNestMenuItem("New Object    ", newObjSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("Object    ", objectSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Run    ", runSubmenu));
 
   m_infoText.SetLocalPos(Vec2f(-1, -0.9f));
   m_infoText.SetSize(Vec2f(2, 0.1f));
+  m_infoText.SetBgCol(Colour(1, 1, 1, 1));
 }
 
 void GSMainEdit::OnRunStart()
@@ -357,6 +364,22 @@ void GSMainEdit::OnDuplicate()
 {
   if (m_selectedObj)
   {
+std::cout << "Duplicating object: " << Describe(m_selectedObj) << "\n";
+
+    RCPtr<WWGameObject> newObj = m_selectedObj->Clone();
+    int id = TheLevelManager::Instance()->GetUniqueId();
+std::cout << "New unique ID: " << id << "\n";
+    newObj->SetId(id);
+
+    // Need to call Load on the new object?? Easier than cloning all scene nodes?
+
+    newObj->AddToGame();
+    // Move away from original object, so we can tell the objects apart
+    Vec3f move(10, 10, 10);
+    newObj->Move(move);
+
+    // Make the new object the selected obj
+    m_selectedObj = newObj;
   }
 }
 
@@ -419,7 +442,7 @@ void GSMainEdit::OnActive()
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
 
-  TheEventPoller::Instance()->AddListener(m_topMenu);
+  TheEventPoller::Instance()->AddListener(m_topMenu, -1); // hi pri
 
   // Initial option is to load a block
   /*

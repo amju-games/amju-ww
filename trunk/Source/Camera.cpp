@@ -95,6 +95,11 @@ Camera::Camera()
   //m_behaviour = new CamZoomInOnPlayer;
 }
 
+WWGameObject* Camera::Clone() 
+{
+  return new Camera(*this);
+}
+
 const char* Camera::GetTypeName() const
 {
   return NAME;

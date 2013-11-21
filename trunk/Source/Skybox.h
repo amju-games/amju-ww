@@ -20,6 +20,7 @@ public:
 
   // GameObject overrides
   virtual const char* GetTypeName() const;
+  virtual WWGameObject* Clone() override;
   virtual bool Load(File*);
   virtual bool Save(File*);
   virtual void Update();

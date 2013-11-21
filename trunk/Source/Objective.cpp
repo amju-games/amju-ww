@@ -19,6 +19,11 @@ Objective::Objective()
   m_isComplete = false;
 }
 
+WWGameObject* Objective::Clone()
+{
+  return new Objective(*this);
+}
+
 const char* Objective::GetTypeName() const
 {
   return NAME;
