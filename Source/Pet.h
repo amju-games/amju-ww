@@ -14,6 +14,7 @@ public:
 
   Pet();
   virtual const char* GetTypeName() const;
+  virtual WWGameObject* Clone() override;
   virtual void Update();
   virtual bool Load(File*);
   virtual bool Save(File*);

@@ -17,6 +17,11 @@ TutorialTrigger::TutorialTrigger()
   m_hasShownText = false;
 }
 
+WWGameObject* TutorialTrigger::Clone()
+{
+  return new TutorialTrigger(*this);
+}
+
 const char* TutorialTrigger::GetTypeName() const
 {
   return NAME;

@@ -21,6 +21,11 @@ Fence::Fence()
   m_yRot = 0;
 }
 
+WWGameObject* Fence::Clone() 
+{
+  return new Fence(*this);
+}
+
 const char* Fence::GetTypeName() const
 {
   return NAME;

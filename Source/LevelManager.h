@@ -18,6 +18,9 @@ class LevelManager : public NonCopyable
   friend class Singleton<LevelManager>;
 
 public:
+  // Get a unique game object ID, for new objects
+  int GetUniqueId();
+
   void SetLevelId(int id);
   int GetLevelId() const;
 

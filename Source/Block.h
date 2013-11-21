@@ -14,10 +14,11 @@ public:
   static const char* NAME;
 
   Block();
-  virtual const char* GetTypeName() const;
-  virtual void Update();
-  virtual bool Load(File*);
-  virtual bool Save(File* f);
+  virtual const char* GetTypeName() const override;
+  virtual WWGameObject* Clone() override;
+  virtual void Update() override;
+  virtual bool Load(File*) override;
+  virtual bool Save(File* f) override;
 };
 }
 

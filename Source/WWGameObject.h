@@ -15,6 +15,7 @@ public:
   WWGameObject();
 
   // For Edit mode
+  virtual WWGameObject* Clone() = 0;
   virtual bool Save(File* f) = 0;
   virtual void Move(const Vec3f& deltaPos);
   virtual void Reset() override;

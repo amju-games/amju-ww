@@ -35,6 +35,11 @@ Bonus::Bonus()
   m_points = 0;
 }
 
+WWGameObject* Bonus::Clone() 
+{
+  return new Bonus(*this);
+}
+
 const char* Bonus::GetTypeName() const
 {
   return NAME;
