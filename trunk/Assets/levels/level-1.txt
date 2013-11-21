@@ -87,7 +87,7 @@ staticfloor
 // Rot
 0
 // Floor mesh 
-block_rect_curved_hill_4x2.obj
+block_rect_curved_hill_1x1.obj
 end
 
 
