@@ -316,6 +316,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSMain.cpp" />
     <ClCompile Include="..\..\..\Source\GSMainEdit.cpp" />
     <ClCompile Include="..\..\..\Source\GSMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\GSOptions.cpp" />
     <ClCompile Include="..\..\..\Source\GSPaused.cpp" />
     <ClCompile Include="..\..\..\Source\GSPetBonus.cpp" />
     <ClCompile Include="..\..\..\Source\GSText.cpp" />
@@ -380,6 +381,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSMain.h" />
     <ClInclude Include="..\..\..\Source\GSMainEdit.h" />
     <ClInclude Include="..\..\..\Source\GSMenu.h" />
+    <ClInclude Include="..\..\..\Source\GSOptions.h" />
     <ClInclude Include="..\..\..\Source\GSPaused.h" />
     <ClInclude Include="..\..\..\Source\GSPetBonus.h" />
     <ClInclude Include="..\..\..\Source\GSText.h" />
