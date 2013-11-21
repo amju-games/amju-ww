@@ -7,7 +7,7 @@ gui-comp
 // Name
 title-comp
 // Num children
-2
+3
 
 // Button 1 - start
 // element type
@@ -15,31 +15,47 @@ gui-button
 // Element name
 resume-button
 // pos (coords are -1..1)
--0.4, -0.5
+-0.4, -0.3
 // size
 0.8, 0.2
 // Image 
 gui-button-4.png
 // Text
-resume
+Resume
 // Font name, size
-arial, 1.0
+arial, 2.0
 
 
 
-// Button 2 - quit
+// Button 2 - Options
 // element type
 gui-button
 // Element name
 options-button
 // pos (coords are -1..1)
--0.4, -0.72
+-0.4, -0.55
 // size
 0.8, 0.2
 // Image 
 gui-button-4.png
 // Text
-options
+Options
+// Font name, size
+arial, 2.0
+
+// Button 3 - quit
+// element type
+gui-button
+// Element name
+quit-button
+// pos (coords are -1..1)
+-0.2, -0.8
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Quit
 // Font name, size
 arial, 1.0
 
