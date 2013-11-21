@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
-//Name: block_rect_curved_1x1.ma
-//Last modified: Thu, Nov 21, 2013 12:03:01 AM
+//Name: block_rect_curved_4x4.ma
+//Last modified: Thu, Nov 21, 2013 12:08:29 AM
 //Codeset: UTF-8
 requires maya "2012";
 requires "stereoCamera" "10.0";
@@ -13,14 +13,14 @@ fileInfo "osv" "Mac OS X 10.8.5";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 347.54087836827478 37.001745207610114 947.88702966915866 ;
-	setAttr ".r" -type "double3" -6.3383527296000306 381.79999999998574 6.4228659771544112e-16 ;
+	setAttr ".t" -type "double3" 1041.7023056754467 530.21522622785062 -1926.0578193260794 ;
+	setAttr ".r" -type "double3" -14.138352729600856 511.39999999997582 0 ;
 	setAttr ".rp" -type "double3" -7.1054273576010019e-15 -3.5527136788005009e-15 0 ;
 	setAttr ".rpt" -type "double3" 6.5184814731626971e-15 -1.7964803633334456e-16 4.2455051146643743e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 996.28627574622305;
+	setAttr ".coi" 2282.8771107961425;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -547,8 +547,12 @@ createNode mesh -n "block_rect_curved_1x1:polySurfaceShape1" -p "block_rect_curv
 	setAttr ".ndt" 2;
 	setAttr ".dn" yes;
 createNode transform -n "polySurface1" -p "block_rect_curved_1x1:plat_rect_1x1_std:Mesh";
-createNode mesh -n "polySurfaceShape1" -p "polySurface1";
+createNode transform -n "transform5" -p "polySurface1";
+	setAttr ".v" no;
+createNode mesh -n "polySurfaceShape1" -p "transform5";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr -s 2 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.62503182888031006 0.5 ;
@@ -560,8 +564,11 @@ createNode mesh -n "polySurfaceShape1" -p "polySurface1";
 	setAttr ".bw" 3;
 createNode transform -n "polySurface2" -p "block_rect_curved_1x1:plat_rect_1x1_std:Mesh";
 createNode transform -n "polySurface3" -p "polySurface2";
-createNode mesh -n "polySurfaceShape3" -p "polySurface3";
+createNode transform -n "transform4" -p "polySurface3";
+	setAttr ".v" no;
+createNode mesh -n "polySurfaceShape3" -p "transform4";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -571,8 +578,12 @@ createNode mesh -n "polySurfaceShape3" -p "polySurface3";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 createNode transform -n "polySurface4" -p "polySurface2";
-createNode mesh -n "polySurfaceShape4" -p "polySurface4";
+createNode transform -n "transform3" -p "polySurface4";
+	setAttr ".v" no;
+createNode mesh -n "polySurfaceShape4" -p "transform3";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr -s 2 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
@@ -609,6 +620,58 @@ createNode mesh -n "block_rect_curved_1x1:plat_rect_1x1_std:MeshShape" -p "trans
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".ndt" 2;
 	setAttr ".dn" yes;
+createNode transform -n "polySurface5";
+	setAttr ".s" -type "double3" 4 1 4 ;
+createNode transform -n "polySurface6" -p "polySurface5";
+createNode mesh -n "polySurfaceShape6" -p "polySurface6";
+	setAttr -k off ".v";
+	setAttr -s 2 ".iog[0].og";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.62503147125244141 0.5 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode transform -n "polySurface7" -p "polySurface5";
+createNode mesh -n "polySurfaceShape7" -p "polySurface7";
+	setAttr -k off ".v";
+	setAttr -s 2 ".iog[0].og";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" -1.0343678513449941 -1.0132897432074954 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode transform -n "polySurface8" -p "polySurface5";
+createNode mesh -n "polySurfaceShape8" -p "polySurface8";
+	setAttr -k off ".v";
+	setAttr -s 2 ".iog[0].og";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.75003182888031006 0.5 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode transform -n "transform6" -p "polySurface5";
+	setAttr ".v" no;
+createNode mesh -n "polySurfaceShape5" -p "transform6";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr -s 6 ".iog[0].og";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".bw" 3;
 createNode lightLinker -s -n "lightLinker1";
 	setAttr -s 9 ".lnk";
 	setAttr -s 9 ".slnk";
@@ -736,9 +799,9 @@ createNode polyTweak -n "polyTweak1";
 createNode lambert -n "top_surface";
 createNode shadingEngine -n "lambert2SG";
 	setAttr ".ihi" 0;
-	setAttr -s 3 ".dsm";
+	setAttr -s 5 ".dsm";
 	setAttr ".ro" yes;
-	setAttr -s 3 ".gn";
+	setAttr -s 5 ".gn";
 createNode materialInfo -n "materialInfo1";
 createNode groupId -n "groupId1";
 	setAttr ".ihi" 0;
@@ -905,7 +968,9 @@ createNode polyChipOff -n "polyChipOff2";
 createNode lambert -n "ground_edge2";
 createNode shadingEngine -n "lambert4SG";
 	setAttr ".ihi" 0;
+	setAttr -s 4 ".dsm";
 	setAttr ".ro" yes;
+	setAttr -s 4 ".gn";
 createNode materialInfo -n "materialInfo3";
 createNode file -n "file4";
 	setAttr ".ftn" -type "string" "/Users/jay/projects/amju-ww/Assets/tex/common/ground21_edge.png";
@@ -969,7 +1034,9 @@ createNode groupParts -n "groupParts8";
 createNode lambert -n "under_ground";
 createNode shadingEngine -n "lambert5SG";
 	setAttr ".ihi" 0;
+	setAttr -s 4 ".dsm";
 	setAttr ".ro" yes;
+	setAttr -s 4 ".gn";
 createNode materialInfo -n "materialInfo4";
 createNode file -n "file5";
 	setAttr ".ftn" -type "string" "/Users/jay/projects/amju-ww/Assets/tex/common/underground1.png";
@@ -982,6 +1049,97 @@ createNode polyCylProj -n "polyCylProj2";
 	setAttr ".pc" -type "double3" 0 -100.55600070953369 0 ;
 	setAttr ".ps" -type "double2" 180 185.67565727233887 ;
 	setAttr ".r" 200;
+createNode polyUnite -n "polyUnite1";
+	setAttr -s 3 ".ip";
+	setAttr -s 3 ".im";
+createNode groupId -n "groupId9";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts9";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[0:35]";
+createNode groupId -n "groupId10";
+	setAttr ".ihi" 0;
+createNode groupId -n "groupId11";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts10";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[0:9]";
+createNode groupId -n "groupId12";
+	setAttr ".ihi" 0;
+createNode groupId -n "groupId13";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts11";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[0:35]";
+createNode groupId -n "groupId14";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts12";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[36:163]";
+createNode groupId -n "groupId15";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts13";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[164:173]";
+createNode polySeparate -n "polySeparate3";
+	setAttr ".ic" 3;
+	setAttr -s 3 ".out";
+createNode groupId -n "groupId16";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts14";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 36 "f[0]" "f[1]" "f[2]" "f[3]" "f[4]" "f[5]" "f[6]" "f[7]" "f[8]" "f[9]" "f[10]" "f[11]" "f[12]" "f[13]" "f[14]" "f[15]" "f[16]" "f[17]" "f[18]" "f[19]" "f[20]" "f[21]" "f[22]" "f[23]" "f[24]" "f[25]" "f[26]" "f[27]" "f[28]" "f[29]" "f[30]" "f[31]" "f[32]" "f[33]" "f[34]" "f[35]";
+createNode groupId -n "groupId17";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts15";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 128 "f[0]" "f[1]" "f[2]" "f[3]" "f[4]" "f[5]" "f[6]" "f[7]" "f[8]" "f[9]" "f[10]" "f[11]" "f[12]" "f[13]" "f[14]" "f[15]" "f[16]" "f[17]" "f[18]" "f[19]" "f[20]" "f[21]" "f[22]" "f[23]" "f[24]" "f[25]" "f[26]" "f[27]" "f[28]" "f[29]" "f[30]" "f[31]" "f[32]" "f[33]" "f[34]" "f[35]" "f[36]" "f[37]" "f[38]" "f[39]" "f[40]" "f[41]" "f[42]" "f[43]" "f[44]" "f[45]" "f[46]" "f[47]" "f[48]" "f[49]" "f[50]" "f[51]" "f[52]" "f[53]" "f[54]" "f[55]" "f[56]" "f[57]" "f[58]" "f[59]" "f[60]" "f[61]" "f[62]" "f[63]" "f[64]" "f[65]" "f[66]" "f[67]" "f[68]" "f[69]" "f[70]" "f[71]" "f[72]" "f[73]" "f[74]" "f[75]" "f[76]" "f[77]" "f[78]" "f[79]" "f[80]" "f[81]" "f[82]" "f[83]" "f[84]" "f[85]" "f[86]" "f[87]" "f[88]" "f[89]" "f[90]" "f[91]" "f[92]" "f[93]" "f[94]" "f[95]" "f[96]" "f[97]" "f[98]" "f[99]" "f[100]" "f[101]" "f[102]" "f[103]" "f[104]" "f[105]" "f[106]" "f[107]" "f[108]" "f[109]" "f[110]" "f[111]" "f[112]" "f[113]" "f[114]" "f[115]" "f[116]" "f[117]" "f[118]" "f[119]" "f[120]" "f[121]" "f[122]" "f[123]" "f[124]" "f[125]" "f[126]" "f[127]";
+createNode groupId -n "groupId18";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts16";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 10 "f[0]" "f[1]" "f[2]" "f[3]" "f[4]" "f[5]" "f[6]" "f[7]" "f[8]" "f[9]";
+createNode polyTweakUV -n "polyTweakUV5";
+	setAttr ".uopa" yes;
+	setAttr -s 81 ".uvtk[0:80]" -type "float2" -1.53499949 -0.7496224 -1.53499949
+		 -0.36723614 -1.9307996 -0.7496224 -1.9307996 -0.36723614 -2.32659936 -1.51439488
+		 -2.72239947 -1.51439488 -2.32659936 -1.89678133 -2.72239947 -1.89678133 -1.53499949
+		 -2.27916765 -1.53499949 -2.66155386 -1.1391995 -2.27916765 -1.1391995 -2.66155386
+		 -0.74339896 -1.51439488 -0.34759891 -1.51439488 -0.74339896 -1.13200855 -0.34759891
+		 -1.13200855 -2.32659936 -0.36723614 -2.32659936 0.015150495 -2.72239947 -0.36723614
+		 -2.72239947 0.015150495 -3.11819959 -0.7496224 -3.11819959 -1.13200855 -2.72239947
+		 -0.7496224 -2.72239947 -1.13200855 -2.32659936 -1.13200855 -1.9307996 -1.13200855
+		 -1.9307996 -1.51439488 -2.72239947 -2.27916765 -3.11819959 -2.27916765 -2.72239947
+		 -2.66155386 -3.11819959 -2.66155386 -2.32659936 -3.043940306 -1.9307996 -3.043940306
+		 -2.32659936 -2.66155386 -1.9307996 -2.66155386 -1.9307996 -2.27916765 -1.9307996
+		 -1.89678133 -1.53499949 -1.89678133 -0.74339896 -2.66155386 -0.74339896 -3.043940306
+		 -0.34759891 -2.66155386 -0.34759891 -3.043940306 0.048201479 -2.27916765 0.048201479
+		 -1.89678133 -0.34759891 -2.27916765 -0.34759891 -1.89678133 -0.74339896 -1.89678133
+		 -1.1391995 -1.89678133 -1.1391995 -1.51439488 -0.34759891 -0.7496224 0.048201479
+		 -0.7496224 -0.34759891 -0.36723614 0.048201479 -0.36723614 -0.74339896 0.015150495
+		 -1.1391995 0.015150495 -0.74339896 -0.36723614 -1.1391995 -0.36723614 -1.1391995
+		 -0.7496224 -1.1391995 -1.13200855 -1.53499949 -1.13200855 -1.53499949 0.015150495
+		 -1.9307996 0.015150495 -2.32659936 -0.7496224 -3.11819959 -1.51439488 -3.11819959
+		 -1.89678133 -2.32659936 -2.27916765 -1.53499949 -3.043940306 -1.1391995 -3.043940306
+		 -0.74339896 -2.27916765 0.048201479 -1.51439488 0.048201479 -1.13200855 -0.74339896
+		 -0.7496224 -3.11819959 0.015150495 -3.11819959 -0.36723614 -1.53499949 -1.51439488
+		 -3.11819959 -3.043940306 -2.72239947 -3.043940306 0.048201479 -3.043940306 0.048201479
+		 -2.66155386 0.048201479 0.015150495 -0.34759891 0.015150495;
+createNode polyTweakUV -n "polyTweakUV6";
+	setAttr ".uopa" yes;
+	setAttr -s 10 ".uvtk[0:9]" -type "float2" 1.45557928 0 0.72778964 0
+		 -0.72778964 0 0 0 1.45557928 0 0.72778964 0 -0.72778964 0 -1.45557928 0 -1.45557928
+		 0 0 0;
+createNode polyTweakUV -n "polyTweakUV7";
+	setAttr ".uopa" yes;
+	setAttr -s 38 ".uvtk[0:37]" -type "float2" -11.45210743 0 3.81737089
+		 0 -11.45210743 0 -10.072746277 0 -8.32441807 0 -6.19876862 0 -3.81736827 0 -1.43596673
+		 0 0.68968099 0 2.43801117 0 3.81737089 0 19.086845398 0 34.35632324 0 20.46620941
+		 0 22.21454048 0 24.34018326 0 26.72158432 0 -34.35632706 0 -26.72159004 0 -31.97492409
+		 0 -29.84927368 0 -28.10094643 0 -26.72159004 0 19.086845398 0 5.19672918 0 6.94506025
+		 0 9.070709229 0 11.45210934 0 13.83351231 0 15.95915699 0 17.70749092 0 -25.34222794
+		 0 -23.59389496 0 -21.46825027 0 -19.086847305 0 -16.70544815 0 -14.57979774 0 -12.83146572
+		 0;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -1009,12 +1167,18 @@ select -ne :hardwareRenderGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-connectAttr "polyTweakUV4.out" "polySurfaceShape1.i";
+connectAttr "groupParts9.og" "polySurfaceShape1.i";
+connectAttr "groupId9.id" "polySurfaceShape1.iog.og[1].gid";
+connectAttr "lambert4SG.mwc" "polySurfaceShape1.iog.og[1].gco";
 connectAttr "polyTweakUV4.uvtk[0]" "polySurfaceShape1.uvst[0].uvtw";
+connectAttr "groupId10.id" "polySurfaceShape1.ciog.cog[0].cgid";
 connectAttr "groupParts8.og" "polySurfaceShape3.i";
 connectAttr "groupId8.id" "polySurfaceShape3.iog.og[0].gid";
 connectAttr "lambert2SG.mwc" "polySurfaceShape3.iog.og[0].gco";
-connectAttr "polyCylProj2.out" "polySurfaceShape4.i";
+connectAttr "groupParts10.og" "polySurfaceShape4.i";
+connectAttr "groupId11.id" "polySurfaceShape4.iog.og[1].gid";
+connectAttr "lambert5SG.mwc" "polySurfaceShape4.iog.og[1].gco";
+connectAttr "groupId12.id" "polySurfaceShape4.ciog.cog[0].cgid";
 connectAttr "polyChipOff3.out" "polySurfaceShape2.i";
 connectAttr "groupId6.id" "polySurfaceShape2.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "polySurfaceShape2.iog.og[0].gco";
@@ -1038,6 +1202,25 @@ connectAttr "groupId2.id" "block_rect_curved_1x1:plat_rect_1x1_std:MeshShape.cio
 		;
 connectAttr "polyTweakUV2.uvtk[0]" "block_rect_curved_1x1:plat_rect_1x1_std:MeshShape.uvst[0].uvtw"
 		;
+connectAttr "polyTweakUV7.out" "polySurfaceShape6.i";
+connectAttr "groupId16.id" "polySurfaceShape6.iog.og[0].gid";
+connectAttr "lambert4SG.mwc" "polySurfaceShape6.iog.og[0].gco";
+connectAttr "polyTweakUV7.uvtk[0]" "polySurfaceShape6.uvst[0].uvtw";
+connectAttr "polyTweakUV5.out" "polySurfaceShape7.i";
+connectAttr "groupId17.id" "polySurfaceShape7.iog.og[0].gid";
+connectAttr "lambert2SG.mwc" "polySurfaceShape7.iog.og[0].gco";
+connectAttr "polyTweakUV5.uvtk[0]" "polySurfaceShape7.uvst[0].uvtw";
+connectAttr "polyTweakUV6.out" "polySurfaceShape8.i";
+connectAttr "groupId18.id" "polySurfaceShape8.iog.og[0].gid";
+connectAttr "lambert5SG.mwc" "polySurfaceShape8.iog.og[0].gco";
+connectAttr "polyTweakUV6.uvtk[0]" "polySurfaceShape8.uvst[0].uvtw";
+connectAttr "groupParts13.og" "polySurfaceShape5.i";
+connectAttr "groupId13.id" "polySurfaceShape5.iog.og[0].gid";
+connectAttr "lambert4SG.mwc" "polySurfaceShape5.iog.og[0].gco";
+connectAttr "groupId14.id" "polySurfaceShape5.iog.og[1].gid";
+connectAttr "lambert2SG.mwc" "polySurfaceShape5.iog.og[1].gco";
+connectAttr "groupId15.id" "polySurfaceShape5.iog.og[2].gid";
+connectAttr "lambert5SG.mwc" "polySurfaceShape5.iog.og[2].gco";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_4x4:initialShadingGroup.message" ":defaultLightSet.message";
@@ -1130,10 +1313,14 @@ connectAttr "top_surface.oc" "lambert2SG.ss";
 connectAttr "groupId3.msg" "lambert2SG.gn" -na;
 connectAttr "groupId7.msg" "lambert2SG.gn" -na;
 connectAttr "groupId8.msg" "lambert2SG.gn" -na;
+connectAttr "groupId14.msg" "lambert2SG.gn" -na;
+connectAttr "groupId17.msg" "lambert2SG.gn" -na;
 connectAttr "block_rect_curved_1x1:plat_rect_1x1_std:MeshShape.iog.og[1]" "lambert2SG.dsm"
 		 -na;
 connectAttr "polySurfaceShape2.iog.og[1]" "lambert2SG.dsm" -na;
 connectAttr "polySurfaceShape3.iog.og[0]" "lambert2SG.dsm" -na;
+connectAttr "polySurfaceShape5.iog.og[1]" "lambert2SG.dsm" -na;
+connectAttr "polySurfaceShape7.iog.og[0]" "lambert2SG.dsm" -na;
 connectAttr "lambert2SG.msg" "materialInfo1.sg";
 connectAttr "top_surface.msg" "materialInfo1.m";
 connectAttr "file2.msg" "materialInfo1.t" -na;
@@ -1225,7 +1412,14 @@ connectAttr "groupParts7.og" "polyChipOff2.ip";
 connectAttr "polySurfaceShape2.wm" "polyChipOff2.mp";
 connectAttr "file4.oc" "ground_edge2.c";
 connectAttr "ground_edge2.oc" "lambert4SG.ss";
-connectAttr "polySurfaceShape1.iog" "lambert4SG.dsm" -na;
+connectAttr "polySurfaceShape1.iog.og[1]" "lambert4SG.dsm" -na;
+connectAttr "polySurfaceShape1.ciog.cog[0]" "lambert4SG.dsm" -na;
+connectAttr "polySurfaceShape5.iog.og[0]" "lambert4SG.dsm" -na;
+connectAttr "polySurfaceShape6.iog.og[0]" "lambert4SG.dsm" -na;
+connectAttr "groupId9.msg" "lambert4SG.gn" -na;
+connectAttr "groupId10.msg" "lambert4SG.gn" -na;
+connectAttr "groupId13.msg" "lambert4SG.gn" -na;
+connectAttr "groupId16.msg" "lambert4SG.gn" -na;
 connectAttr "lambert4SG.msg" "materialInfo3.sg";
 connectAttr "ground_edge2.msg" "materialInfo3.m";
 connectAttr "file4.msg" "materialInfo3.t" -na;
@@ -1259,7 +1453,14 @@ connectAttr "polySeparate2.out[0]" "groupParts8.ig";
 connectAttr "groupId8.id" "groupParts8.gi";
 connectAttr "file5.oc" "under_ground.c";
 connectAttr "under_ground.oc" "lambert5SG.ss";
-connectAttr "polySurfaceShape4.iog" "lambert5SG.dsm" -na;
+connectAttr "polySurfaceShape4.iog.og[1]" "lambert5SG.dsm" -na;
+connectAttr "polySurfaceShape4.ciog.cog[0]" "lambert5SG.dsm" -na;
+connectAttr "polySurfaceShape5.iog.og[2]" "lambert5SG.dsm" -na;
+connectAttr "polySurfaceShape8.iog.og[0]" "lambert5SG.dsm" -na;
+connectAttr "groupId11.msg" "lambert5SG.gn" -na;
+connectAttr "groupId12.msg" "lambert5SG.gn" -na;
+connectAttr "groupId15.msg" "lambert5SG.gn" -na;
+connectAttr "groupId18.msg" "lambert5SG.gn" -na;
 connectAttr "lambert5SG.msg" "materialInfo4.sg";
 connectAttr "under_ground.msg" "materialInfo4.m";
 connectAttr "file5.msg" "materialInfo4.t" -na;
@@ -1283,6 +1484,32 @@ connectAttr "place2dTexture5.o" "file5.uv";
 connectAttr "place2dTexture5.ofs" "file5.fs";
 connectAttr "polySeparate2.out[1]" "polyCylProj2.ip";
 connectAttr "polySurfaceShape4.wm" "polyCylProj2.mp";
+connectAttr "polySurfaceShape1.o" "polyUnite1.ip[0]";
+connectAttr "polySurfaceShape3.o" "polyUnite1.ip[1]";
+connectAttr "polySurfaceShape4.o" "polyUnite1.ip[2]";
+connectAttr "polySurfaceShape1.wm" "polyUnite1.im[0]";
+connectAttr "polySurfaceShape3.wm" "polyUnite1.im[1]";
+connectAttr "polySurfaceShape4.wm" "polyUnite1.im[2]";
+connectAttr "polyTweakUV4.out" "groupParts9.ig";
+connectAttr "groupId9.id" "groupParts9.gi";
+connectAttr "polyCylProj2.out" "groupParts10.ig";
+connectAttr "groupId11.id" "groupParts10.gi";
+connectAttr "polyUnite1.out" "groupParts11.ig";
+connectAttr "groupId13.id" "groupParts11.gi";
+connectAttr "groupParts11.og" "groupParts12.ig";
+connectAttr "groupId14.id" "groupParts12.gi";
+connectAttr "groupParts12.og" "groupParts13.ig";
+connectAttr "groupId15.id" "groupParts13.gi";
+connectAttr "polySurfaceShape5.o" "polySeparate3.ip";
+connectAttr "polySeparate3.out[0]" "groupParts14.ig";
+connectAttr "groupId16.id" "groupParts14.gi";
+connectAttr "polySeparate3.out[1]" "groupParts15.ig";
+connectAttr "groupId17.id" "groupParts15.gi";
+connectAttr "polySeparate3.out[2]" "groupParts16.ig";
+connectAttr "groupId18.id" "groupParts16.gi";
+connectAttr "groupParts15.og" "polyTweakUV5.ip";
+connectAttr "groupParts16.og" "polyTweakUV6.ip";
+connectAttr "groupParts14.og" "polyTweakUV7.ip";
 connectAttr "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_4x4:initialShadingGroup.pa" ":renderPartition.st"
 		 -na;
 connectAttr "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_1x1:initialShadingGroup.pa" ":renderPartition.st"
@@ -1326,4 +1553,4 @@ connectAttr "place2dTexture3.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture4.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture5.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-// End of block_rect_curved_1x1.ma
+// End of block_rect_curved_4x4.ma
