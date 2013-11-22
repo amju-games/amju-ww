@@ -123,6 +123,8 @@ bool Exit::Save(File* f)
   // Next level
   f->WriteComment("// Next level");
   f->WriteInteger(m_toLevel);
+
+/*
   // TODO Hard coded values for billboard and particles
   f->WriteComment("// Billboard");
   f->Write("flare.png");
@@ -132,6 +134,7 @@ bool Exit::Save(File* f)
   f->WriteFloat(20.0f); // TODO
   f->WriteInteger(50); // TODO
   f->WriteFloat(2.0f); // TODO
+*/
 
   return SaveShadow(f);
 }
@@ -144,42 +147,11 @@ bool Exit::Load(File* f)
   }
   m_startPos = m_pos;
 
-/* replacing
-  if (!GameObject::Load(f)) // Get ID
-  {
-    return false;
-  }
-  // Load position
-  if (!LoadVec3(f, &m_pos))
-  {
-    f->ReportError("Expected exit position");
-    return false;
-  }
-  m_pos = m_pos * m_mat;
-*/
-
-  ObjMesh* mesh = LoadMeshResource(f);
-  if (!mesh)
+  if (!LoadMeshResource(f))
   {
     f->ReportError("Failed to load exit mesh");
     return false;
   }
-
-  SceneNode* smRoot = new SceneNode;
-  SceneMesh* sm = new SceneMesh;
-  sm->SetMesh(mesh);
-  smRoot->AddChild(sm);
-  m_pSceneNode = smRoot;
-
-  // Set AABB 
-  RecalcAABB();
-
-  // Exit is translucent until activated
-  // TODO So should be a Blended node !??
-  m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
-
-//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-//    AddChild(m_pSceneNode);
 
   // Load next level
   if (!f->GetInteger(&m_toLevel))
@@ -188,19 +160,27 @@ bool Exit::Load(File* f)
     return false;
   }
 
-  // Next level ID is relative to this Level 
-//  m_toLevel += TheLevelManager::Instance()->GetLevelId();
+  if (!LoadShadow(f))
+  {
+    return false;
+  }
+
+  return true;
+}
+
+bool Exit::CreateSceneNode()
+{
+  if (!OnFloor::CreateSceneNode())
+  {
+    return false;
+  }
+
+  // Exit is translucent until activated
+  // TODO So should be a Blended node !??
+  m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
 
   TextMaker tm;
   m_text = tm.MakeText(ToString(m_toLevel));
-
-  //GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-
-  // Add separately in AddToGame
-  //  smRoot->AddChild(m_text);
-
-  // If you add as child of exit node, numbers spin and are translucent... 
-  //m_pSceneNode->AddChild(m_text);
 
   // Transformation for text
   Matrix mat;
@@ -217,21 +197,22 @@ bool Exit::Load(File* f)
   m_billboard = new Billboard;
   m_billboard->SetVisible(false);
   m_billboard->SetIsZReadEnabled(false);
-  if (!m_billboard->Load(f))
-  {
-    f->ReportError("Failed to load exit billboard");
-    return false;
-  }
-  sm->AddChild(m_billboard);
+//  if (!m_billboard->Load(f))
+//  {
+//    f->ReportError("Failed to load exit billboard");
+//    return false;
+//  }
+
+//  m_pSceneNode->AddChild(m_billboard);
 
   m_effect = new ExitParticleEffect;
-  if (!m_effect->Load(f))
-  {
-    f->ReportError("Failed to load exit effect");
-    return false;
-  }
+//  if (!m_effect->Load(f))
+//  {
+//    f->ReportError("Failed to load exit effect");
+//    return false;
+//  }
   m_effect->SetVisible(true);
-  sm->AddChild(m_effect);
+//  m_pSceneNode->AddChild(m_effect);
 
   // Set nice big AABB for text, billboard and effect, so they are not culled
   static const float X2 = 40.0f;
@@ -241,11 +222,6 @@ bool Exit::Load(File* f)
   m_text->RecursivelyTransformAABB(mat);
   m_billboard->SetAABB(aabb);
   m_effect->SetAABB(aabb);
-
-  if (!LoadShadow(f))
-  {
-    return false;
-  }
 
   // Currently there are no objectives, so all exits are enabled
   SetActive(); 

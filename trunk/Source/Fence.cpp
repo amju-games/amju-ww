@@ -62,17 +62,26 @@ bool Fence::Load(File* f)
   }
   m_pos = m_pos * m_mat;
 
-  ObjMesh* mesh = LoadMeshResource(f);
-
-  if (!mesh)
+  if (!LoadMeshResource(f))
   {
     f->ReportError("Failed to load fence mesh");
     return false;
   }
 
-  SceneMesh* sm = new SceneMesh;
-  m_pSceneNode = sm;
+  return true;
+}
+
+bool Fence::CreateSceneNode()
+{
+  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
+  if (!mesh)
+  {
+    return false;
+  }
+
+  SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
+  m_pSceneNode = sm;
 
   // Calc bounding box from mesh
   CollisionMesh cm;
@@ -84,12 +93,9 @@ bool Fence::Load(File* f)
   cm.Transform(m);
 
   cm.CalcAABB(&m_aabb);
-  sm->SetAABB(m_aabb);
-  sm->SetLocalTransform(m);
+  m_pSceneNode->SetAABB(m_aabb);
+  m_pSceneNode->SetLocalTransform(m);
 
-//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-//    AddChild(m_pSceneNode);
- 
   return true;
 }
 

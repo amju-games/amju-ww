@@ -84,19 +84,18 @@ bool Bonus::Load(File* f)
   m_startPos = m_pos;
   m_pos = m_pos * m_mat;
  
-  ObjMesh* mesh = LoadMeshResource(f);
-  if (!mesh)
+  if (!LoadMeshResource(f))
   {
     f->ReportError("Failed to load bonus mesh");
     return false;
   }
 
-  SceneMesh* sm  = new SceneMesh;
-  sm->SetMesh(mesh);
-  m_pSceneNode = sm;
+//  SceneMesh* sm  = new SceneMesh;
+//  sm->SetMesh(mesh);
+//  m_pSceneNode = sm;
 
-  // Set bounding box 
-  RecalcAABB();
+//  // Set bounding box 
+//  RecalcAABB();
 
 //  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
 //    AddChild(m_pSceneNode);
@@ -119,6 +118,16 @@ bool Bonus::Load(File* f)
     return false;
   }
 
+  return true;
+}
+
+bool Bonus::CreateSceneNode()
+{
+  if (!OnFloor::CreateSceneNode())
+  {
+    return false;
+  } 
+
   File effectFile; 
   // For nested glue files to work, this should be last or destroyed before further reading
   if (!effectFile.OpenRead("bonus-effect.txt"))
@@ -135,7 +144,7 @@ bool Bonus::Load(File* f)
 
   m_pSceneNode->AddChild(m_effect);
 
-  return true;
+  return false;
 }
 
 void Bonus::Update()

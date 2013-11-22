@@ -24,6 +24,7 @@ public:
   virtual bool Save(File*);
   virtual void Update();
   virtual void Reset();
+  virtual bool CreateSceneNode() override;
 
 public:
   float m_yRot;

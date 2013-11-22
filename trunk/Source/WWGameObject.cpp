@@ -23,6 +23,8 @@ void WWGameObject::AddToGame()
   }
   TheGame::Instance()->AddGameObject(this);
 
+  CreateSceneNode(); 
+
   SceneNode* sn = GetSceneNode();
   if (sn)
   {
@@ -80,16 +82,35 @@ void WWGameObject::Move(const Vec3f& move)
   sn->MultLocalTransform(mat);
 }
 
-ObjMesh* WWGameObject::LoadMeshResource(File* f)
+bool WWGameObject::CreateSceneNode()
+{
+  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
+  if (!mesh) 
+  {
+    return false;
+  }
+
+  SceneMesh* sm  = new SceneMesh;
+  sm->SetMesh(mesh);
+  m_pSceneNode = sm;
+
+  // Set bounding box
+  RecalcAABB();
+
+  return true;
+}
+
+bool WWGameObject::LoadMeshResource(File* f)
 {
   if (!f->GetDataLine(&m_meshFilename))
   {
     f->ReportError("Expected mesh file name");
-    return 0;
+    return false;
   }
-  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
-  Assert(mesh);
-  return mesh;
+  
+  // TODO verify file exists?
+
+  return true;
 }
 
 bool WWGameObject::SaveMeshResource(File* f)
@@ -116,8 +137,6 @@ bool WWGameObject::SaveShadow(File* f)
 
 bool WWGameObject::LoadShadow(File* f)
 {
-  Assert(m_pSceneNode);
-
   if (!f->GetDataLine(&m_shadowTexName))
   {
     f->ReportError("Expected shadow texture resource name");

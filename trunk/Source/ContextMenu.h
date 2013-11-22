@@ -5,7 +5,7 @@
 
 namespace Amju
 {
-class ContextMenu : public GuiMenu
+class ContextMenu : public GuiFloatingMenu
 {
 public:
   ContextMenu();
@@ -17,10 +17,8 @@ public:
   // Activated by right-click/B Button
   virtual bool OnButtonEvent(const ButtonEvent&);
   virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
-
-protected:
-  bool m_isVisible;
 };
+
 typedef RCPtr<ContextMenu> PContextMenu;
 }
 

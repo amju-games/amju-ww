@@ -20,6 +20,7 @@ public:
   virtual bool Load(File*) override;
   virtual bool Save(File* f) override;
   virtual void Update() override; // NB Don't move with floor!
+  virtual bool CreateSceneNode() override;
 
   void OnPlayerCollision(Player*);
 

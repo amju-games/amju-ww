@@ -6,15 +6,12 @@ namespace Amju
 {
 ContextMenu::ContextMenu()
 {
-  m_isVisible = false;
+  SetVisible(false);
 }
 
 void ContextMenu::Draw()
 {
-  //if (m_isVisible)
-  {
-    GuiMenu::Draw();
-  }
+  GuiFloatingMenu::Draw();
 }
 
 bool ContextMenu::OnButtonEvent(const ButtonEvent& be)
@@ -26,7 +23,7 @@ bool ContextMenu::OnButtonEvent(const ButtonEvent& be)
 bool ContextMenu::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
   // Do regular processing but reposition on R button
-  GuiMenu::OnMouseButtonEvent(mbe);
+  GuiFloatingMenu::OnMouseButtonEvent(mbe);
 
   if (mbe.button == AMJU_BUTTON_MOUSE_RIGHT &&
       mbe.isDown)

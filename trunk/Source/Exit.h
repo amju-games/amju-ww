@@ -39,6 +39,7 @@ public:
 
   virtual void AddToGame() override;
   virtual void RemoveFromGame() override;
+  virtual bool CreateSceneNode() override;
 
   // Call when player collides
   void OnPlayerCollision();
