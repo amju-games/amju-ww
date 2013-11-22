@@ -1,6 +1,8 @@
 #include "EditModeCamera.h"
 #include "EventPoller.h"
 
+//#define EMC_DEBUG
+
 namespace Amju
 {
 EditModeCameraController::EditModeCameraController(EditModeCamera* cam) : 
@@ -24,12 +26,38 @@ EditModeCamera::EditModeCamera()
   SetUpVec(Vec3f(0, 1, 0));
 
   m_drag = false;
-  m_mode = AMJU_PAN;
+  m_mode = AMJU_ROTATE;
 }
 
 EditModeCamera::~EditModeCamera()
 {
   TheEventPoller::Instance()->RemoveListener(m_controller); 
+}
+  
+EditModeCamera::Mode EditModeCamera::GetMode() const
+{
+  return m_mode;
+}
+
+void EditModeCamera::SetMode(Mode mode)
+{
+#ifdef EMC_DEBUG
+std::cout << "Edit Cam: Setting mode to ";
+switch (mode)
+{
+case AMJU_ROTATE:
+  std::cout << "Rotate\n";
+  break;
+case AMJU_PAN:
+  std::cout << "Pan\n";
+  break;
+case AMJU_ZOOM:
+  std::cout << "Zoom\n";
+  break;
+};
+#endif
+
+  m_mode = mode;
 }
 
 void EditModeCamera::SetControllable(bool controllable)
@@ -54,6 +82,10 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 
   if (m_drag)
   {
+#ifdef EMC_DEBUG
+std::cout << "Drag camera\n";
+#endif
+
     switch (m_mode)
     {
     case AMJU_PAN:
@@ -82,6 +114,12 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
         m_eye.y += angleY;
         m_eye.z = sx * (m_eye.x - m_lookat.x) + cx * (m_eye.z - m_lookat.z) + m_lookat.z;
       }
+      else
+      {
+#ifdef EMC_DEBUG
+std::cout << "Edit cam: not controllable\n";
+#endif
+      }
       break;
 
     case AMJU_ZOOM:
@@ -98,8 +136,13 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 
 bool EditModeCamera::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
+#ifdef EMC_DEBUG
+std::cout << "Edit camera mouse button " << (mbe.isDown ? "DOWN" : "UP") << "\n";
+#endif
+
   m_drag = mbe.isDown;
-  m_mode = (Mode)mbe.button;
+  // Hmm, maybe?
+  //m_mode = (Mode)mbe.button;
   return false;
 }
 }

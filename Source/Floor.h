@@ -15,6 +15,7 @@ namespace Amju
 {
 class Floor;
 
+/*
 // Scene Node for floors 
 class FloorMesh : public SceneMesh
 {
@@ -27,8 +28,9 @@ private:
   PTexture m_pTex;
   Floor* m_floor;
 };
+*/
 
-// Floor for a balance game: tilts depending on axes of freedom, and the
+// Floor for our balance game: tilts depending on axes of freedom, and the
 //  moments acting on it
 class Floor : public WWGameObject
 {
@@ -44,6 +46,8 @@ public:
   virtual bool Save(File*);
   virtual void Update();
   virtual void Reset();
+  virtual bool CreateSceneNode() override;
+  virtual void AddToGame();
 
   // Get matrix - this is the rotation of the Floor
   Matrix* GetMatrix();

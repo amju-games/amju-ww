@@ -43,6 +43,12 @@ bool StaticFloor::Load(File* f)
     return false;
   }
 
+  return true;
+}
+
+/*
+void StaticFloor::AddToGame()
+{
   Matrix yRot;
   yRot.SetIdentity(); // TODO need this ?
   yRot.RotateY(DegToRad(m_yRot));
@@ -56,7 +62,7 @@ bool StaticFloor::Load(File* f)
   m_pSceneNode->SetLocalTransform(m_matrix);
 
   TheShadowManager::Instance()->AddFloor(this);
-
-  return true;
 }
+*/
+
 }

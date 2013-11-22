@@ -1,15 +1,18 @@
-#include "DegRad.h"
-#include "Floor.h"
-#include "ResourceManager.h"
-#include "Timer.h"
-#include "GameObjectFactory.h"
-#include "OnFloor.h"
+#include <DegRad.h>
 #include <File.h>
+#include <Game.h>
+#include <GameObjectFactory.h>
+#include <ResourceManager.h>
+#include <Timer.h>
+#include "Floor.h"
+#include "OnFloor.h"
 #include "LoadMeshResource.h"
 #include "LoadVec3.h"
 #include "MySceneGraph.h"
 #include "SceneMesh.h"
-#include "LoadTextureResource.h"
+#include "ShadowManager.h"
+
+//#include "LoadTextureResource.h"
 
 namespace Amju
 {
@@ -18,6 +21,7 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Floor::NAME, &CreateFloo
 
 const char* Floor::NAME = "floor";
 
+/*
 FloorMesh::FloorMesh(Floor* floor) : m_floor(floor)
 {
   SetIsLit(true);
@@ -33,11 +37,7 @@ void FloorMesh::Draw()
 
   //m_floor->DrawCollisionMesh();
 }
-
-//void FloorMesh::SetTexture(PTexture tex)
-//{
-//  m_pTex = tex;
-//}
+*/
 
 Floor::Floor()
 {
@@ -115,8 +115,38 @@ bool Floor::LoadMesh(File* f)
     return false;
   }
 
-  // Load mesh 
-  ObjMesh* mesh = LoadMeshResource(f);
+  if (!LoadMeshResource(f))
+  {
+    return false;
+  }
+
+  return true;
+}
+
+void Floor::AddToGame()
+{
+  TheGame::Instance()->AddGameObject(this);
+
+  CreateSceneNode(); 
+
+  SceneNode* sn = GetSceneNode();
+  if (sn)
+  {
+    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+    Assert(root);
+    root->AddChild(sn);
+  }
+
+  TheShadowManager::Instance()->AddFloor(this);
+}
+
+bool Floor::CreateSceneNode()
+{
+  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
+  if (!mesh)
+  {
+    return false;
+  }
 
   m_collMesh = new CollisionMesh;
 
@@ -126,16 +156,13 @@ bool Floor::LoadMesh(File* f)
   m.TranslateKeepRotation(m_pos);
   m_collMesh->Transform(m);
 
-  // Load texture
-//  Texture* pTex = LoadTextureResource(f); 
-
-  FloorMesh* fm = new FloorMesh(this);
+  SceneMesh* fm = new SceneMesh;
   fm->SetMesh(mesh);
-//  fm->SetTexture(pTex);
   m_pSceneNode = fm;
+  m_pSceneNode->SetLocalTransform(m);
 
-//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-//    AddChild(m_pSceneNode);
+  m_collMesh->CalcAABB(&m_aabb);
+  m_pSceneNode->SetAABB(m_aabb);
 
   return true;
 }

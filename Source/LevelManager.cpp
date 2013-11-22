@@ -11,6 +11,7 @@
 #include "Score.h"
 #include "ShadowManager.h"
 #include "GameMode.h"
+#include "Describe.h"
 
 namespace Amju
 {
@@ -26,7 +27,7 @@ LevelManager::LevelManager()
 
 int LevelManager::GetUniqueId()
 {
-  return s_uniqueId++;
+  return ++s_uniqueId;
 }
 
 bool LevelManager::SaveLevel(const std::string& filename)
@@ -220,8 +221,9 @@ bool LevelManager::LoadOneObject()
   Assert(ww);
   ww->AddToGame();
 
-std::cout << "Added game object " << go->GetTypeName() 
-  << " ID: " << go->GetId() << "\n";
+#ifdef LM_DEBUG
+std::cout << "Added game object " << Describe(go) << "\n";
+#endif
 
   return true;
 }

@@ -56,6 +56,12 @@ void SelectedNode::Draw()
 //  AmjuGL::PopAttrib();
 }
 
+static EditModeCamera* GetCamera()
+{
+  SceneNodeCamera* c = GetGameSceneGraph()->GetCamera();
+  return dynamic_cast<EditModeCamera*>(c);
+}
+
 static void OnStart()
 {
   TheGSMainEdit::Instance()->OnRunStart();
@@ -238,7 +244,7 @@ static void OnLoadLevel()
   }
 }
 
-void OnUndo()
+static void OnUndo()
 {
   GuiCommandHandler* gch = TheGuiCommandHandler::Instance();
 
@@ -270,22 +276,43 @@ std::cout << "Can't redo\n";
   }
 }
 
-void OnRotate()
+static void OnObjectRotateCW()
 {
+  TheGSMainEdit::Instance()->OnObjectRotate(90.0f);
 }
 
-void OnDuplicate()
+static void OnObjectRotateCCW()
+{
+  TheGSMainEdit::Instance()->OnObjectRotate(-90.0f);
+}
+
+static void OnCamRotate()
+{
+  GetCamera()->SetMode(EditModeCamera::AMJU_ROTATE);
+}
+
+static void OnPan()
+{
+  GetCamera()->SetMode(EditModeCamera::AMJU_PAN);
+}
+
+static void OnZoom()
+{
+  GetCamera()->SetMode(EditModeCamera::AMJU_ZOOM);
+}
+
+static void OnDuplicate()
 {
   // Clone currently selected object
   TheGSMainEdit::Instance()->OnDuplicate();
 }
 
-void OnDelete()
+static void OnDelete()
 {
   TheGSMainEdit::Instance()->OnDelete();
 }
 
-void OnProperties()
+static void OnProperties()
 {
 }
 
@@ -324,16 +351,24 @@ GSMainEdit::GSMainEdit()
   GuiMenu* objectSubmenu = new GuiMenu;
   objectSubmenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
   objectSubmenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
+  objectSubmenu->AddChild(new GuiMenuItem("Rotate +90", Amju::OnObjectRotateCW));
+  objectSubmenu->AddChild(new GuiMenuItem("Rotate -90", Amju::OnObjectRotateCCW));
   objectSubmenu->AddChild(new GuiNestMenuItem("New > ", newObjSubmenu));
 
   GuiMenu* runSubmenu = new GuiMenu;
   runSubmenu->AddChild(new GuiMenuItem("Start     ", OnStart));
   runSubmenu->AddChild(new GuiMenuItem("Stop    ", OnStop));
 
+  GuiMenu* cameraSubmenu = new GuiMenu;
+  cameraSubmenu->AddChild(new GuiMenuItem("Rotate     ", OnCamRotate));
+  cameraSubmenu->AddChild(new GuiMenuItem("Pan     ", OnPan));
+  cameraSubmenu->AddChild(new GuiMenuItem("Zoom     ", OnZoom));
+
   m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Edit    ", editSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Object    ", objectSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Run    ", runSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("Camera    ", cameraSubmenu));
 
   m_infoText.SetLocalPos(Vec2f(-1, -0.9f));
   m_infoText.SetSize(Vec2f(2, 0.1f));
@@ -360,6 +395,39 @@ void GSMainEdit::OnRunStop()
   }
 }
 
+class AddNewCommand : public GuiCommand
+{
+public:
+  AddNewCommand(WWGameObject* obj) : m_obj(obj)
+  {
+  }
+
+  virtual bool Do() override
+  {
+    m_obj->AddToGame();
+
+    // Move away from original object, so we can tell the objects apart
+    // TODO Make move a ctor param
+    //Vec3f move(10, 10, 10);
+    //m_obj->Move(move);
+
+    TheGSMainEdit::Instance()->SetSelectedObject(m_obj);
+
+    s_unsaved++;
+    return true; // undoable
+  }
+
+  virtual void Undo() override
+  {
+    m_obj->RemoveFromGame();
+    s_unsaved--;
+  }
+
+private:
+  RCPtr<WWGameObject> m_obj;
+};
+
+
 void GSMainEdit::OnDuplicate()
 {
   if (m_selectedObj)
@@ -373,13 +441,11 @@ std::cout << "New unique ID: " << id << "\n";
 
     // Need to call Load on the new object?? Easier than cloning all scene nodes?
 
-    newObj->AddToGame();
-    // Move away from original object, so we can tell the objects apart
-    Vec3f move(10, 10, 10);
-    newObj->Move(move);
-
-    // Make the new object the selected obj
+    // Make the new object the selected obj ?
     m_selectedObj = newObj;
+
+    AddNewCommand* c = new AddNewCommand(newObj);
+    TheGuiCommandHandler::Instance()->DoNewCommand(c);
   }
 }
 
@@ -417,15 +483,43 @@ void GSMainEdit::OnDelete()
   }
 }
 
+class RotateCommand : public GuiCommand
+{
+public:
+  RotateCommand(WWGameObject* obj, float angleDegs) : m_obj(obj), m_yRot(angleDegs)
+  {
+  }
+
+  virtual bool Do() override
+  {
+    m_obj->RotateY(m_yRot);
+    s_unsaved++;
+    return true;
+  }
+
+  virtual void Undo() override
+  {
+    m_obj->RotateY(-m_yRot);
+    s_unsaved--;
+  }
+
+private:
+  RCPtr<WWGameObject> m_obj;
+  float m_yRot;
+};
+
+void GSMainEdit::OnObjectRotate(float degs)
+{
+  if (m_selectedObj)
+  {
+    RotateCommand* c = new RotateCommand(m_selectedObj, degs);
+    TheGuiCommandHandler::Instance()->DoNewCommand(c);
+  }
+}
+
 void GSMainEdit::OnDeactive()
 {
   TheEventPoller::Instance()->RemoveListener(m_topMenu);
-}
-
-static EditModeCamera* GetCamera()
-{
-  SceneNodeCamera* c = GetGameSceneGraph()->GetCamera();
-  return dynamic_cast<EditModeCamera*>(c);
 }
 
 void GSMainEdit::OnActive()
@@ -550,32 +644,40 @@ void GSMainEdit::Draw()
       }
     }
 
-    if (m_selectedObj)
-    {
-      // Don't move camera
-      GetCamera()->SetControllable(false);
+    SetSelectedObject(m_selectedObj);
+  }
+}
 
-      const std::string name = m_selectedObj->GetTypeName();
-      std::string s = "Selected " + name  + " ID: " + ToString(m_selectedObj->GetId());
-      m_infoText.SetText(s);
+void GSMainEdit::SetSelectedObject(GameObject* obj)
+{
+  m_accumulatedDragMove = Vec3f();
+  if (obj)
+  {
+    m_selectedObj = dynamic_cast<WWGameObject*>(obj);
 
-      // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
-      m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
+    // Don't move camera
+    GetCamera()->SetControllable(false);
 
-      // TODO
-      m_contextMenu->Clear();
-      //m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
-      //m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnRotate));
-      m_contextMenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
-      m_contextMenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
-      m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
-    }
-    else
-    {
-      m_contextMenu->Clear();
-      m_infoText.SetText("Nothing selected");
-      GetCamera()->SetControllable(true);
-    }
+    const std::string name = m_selectedObj->GetTypeName();
+    std::string s = "Selected " + name  + " ID: " + ToString(m_selectedObj->GetId());
+    m_infoText.SetText(s);
+
+    // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
+    m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
+
+    // TODO
+    m_contextMenu->Clear();
+    //m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
+    //m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnObjectRotate));
+    m_contextMenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
+    m_contextMenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
+    m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
+  }
+  else
+  {
+    m_contextMenu->Clear();
+    m_infoText.SetText("Nothing selected");
+    GetCamera()->SetControllable(true);
   }
 }
 
@@ -616,6 +718,7 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
     break;
 
   case AMJU_BUTTON_MOUSE_RIGHT:
+/*
     if (mbe.isDown)
     {
       m_contextMenu->SetLocalPos(Vec2f(mbe.x, mbe.y));
@@ -626,6 +729,7 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       // Hide menu
       m_contextMenu->SetVisible(false);
     }
+*/
     break;
 
   default:
@@ -717,9 +821,16 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
       move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
     }
 
-    move *= 50.0f;
-    MoveCommand* mc = new MoveCommand(m_selectedObj, move);
-    TheGuiCommandHandler::Instance()->DoNewCommand(mc);
+    m_accumulatedDragMove += move; // * sqrt(diff.SqLen());
+    const float LIMIT = 10;
+    if (m_accumulatedDragMove.SqLen() > LIMIT * LIMIT)
+    {
+      const float MOVE = 50.0f;
+      m_accumulatedDragMove = Vec3f();
+      move *= MOVE;
+      MoveCommand* mc = new MoveCommand(m_selectedObj, move);
+      TheGuiCommandHandler::Instance()->DoNewCommand(mc);
+    }
   }
 
   oldPos = pos;
