@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-17
+18
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -83,11 +83,11 @@ end
 staticfloor
 1003
 // Centre/pivot point
--400, 200, 0
+-600, 200, 0
 // Rot
 0
 // Floor mesh 
-block_rect_curved_hill_1x1.obj
+block_rect_curved_4x4.obj
 end
 
 
@@ -118,6 +118,17 @@ shadow.png
 20
 end
 
+dino
+107
+// Start pos
+150, 220, 0
+// Type 0-2
+0
+// Shadow
+shadow.png
+20
+end
+
 
 fence
 2001
@@ -143,19 +154,6 @@ exit
 star.obj
 // Next level
 2
-// Billboard
-flare.png
-// size
-100
-// Effect
-// image - TODO TEMP TEST
-sparkle1.png
-// size
-20.0
-// number
-50
-// max time
-2.0
 // Shadow
 // TODO White "shadow" as exits emit light ?
 flare.png
