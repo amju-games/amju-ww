@@ -12,6 +12,15 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   Dino* dino = dynamic_cast<Dino*>(go2);
   Assert(dino);
 
+  player->DropPets();
+
+  Vec3f vel = player->GetVel();
+  player->SetVel(-vel);
+
+  vel = dino->GetVel();
+  dino->SetVel(-vel);
+
+/*
   // Sound effect
   // TODO Make sure not played more than once in successive frames
   // -- have a timer
@@ -38,6 +47,7 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   go2->SetVel(v2);
   //go2->SetAcc(-v2);
   //go2->StopRotating();
+*/
 }
 
 static bool b = TheCollisionManager::Instance()->Add(

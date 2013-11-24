@@ -56,9 +56,6 @@ private:
 
   // Pets picked up
   Pets m_pets;
-
-  std::string m_meshName;
-  std::string m_tex1Name, m_tex2Name;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network

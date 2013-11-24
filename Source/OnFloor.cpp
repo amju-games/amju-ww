@@ -253,10 +253,6 @@ void OnFloor::Update()
 
   if (m_isDead && !IsEditMode())
   {
-    m_pSceneNode->SetVisible(false);
-    //m_shadow->SetVisible(false);
-    // Remove from ShadowManager
-    TheShadowManager::Instance()->RemoveCaster(this);
     return;
   }
 

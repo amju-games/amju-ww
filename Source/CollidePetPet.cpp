@@ -23,12 +23,13 @@ void CollidePetPet(GameObject* go1, GameObject* go2)
 //std::cout << "Push away  pet " << pet1->GetId() << " and pet " << pet2->GetId() << "\n";
 
   Vec3f vel = pet1->GetVel();
-//  vel.x = vel.z = 0;
+  vel.y = -vel.y; // so we always fall
   pet1->SetVel(-vel);
 
   vel = pet2->GetVel();
-//  vel.x = vel.z = 0;
+  vel.y = -vel.y; // so we always fall
   pet2->SetVel(-vel);
+
   // TODO Handle y axis
 /*
   Vec3f pos1 = pet1->GetPos();
