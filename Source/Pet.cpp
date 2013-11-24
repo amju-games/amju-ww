@@ -1,6 +1,7 @@
 #include <GameObjectFactory.h>
 #include <File.h>
 #include <Timer.h>
+#include <DegRad.h>
 #include "Pet.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
@@ -9,6 +10,7 @@
 #include "AIFalling.h"
 #include "Floor.h"
 #include "ShadowManager.h"
+#include "Dino.h"
 
 namespace Amju
 {
@@ -170,6 +172,15 @@ bool Pet::Load(File* f)
   return true;
 }
 
+void Pet::OnAnimFinished() 
+{
+  Npc::OnAnimFinished();
+  if (m_eatenState == BEING_EATEN)
+  {
+    m_pSceneNode->SetVisible(false);    
+  }
+}
+
 void Pet::StartBeingEaten(Dino* eater)
 {
   // TODO Should only be called once per pet
@@ -178,7 +189,15 @@ void Pet::StartBeingEaten(Dino* eater)
 
   SetDead(true); // So physics won't be updated any more
 
-  m_pSceneNode->SetVisible(false);
+  float dir = eater->GetDir();
+  Matrix mat;
+  mat.RotateY(DegToRad(dir));
+  m_pos = eater->GetPos();
+  mat.TranslateKeepRotation(m_pos);
+  m_pSceneNode->SetLocalTransform(mat);
+
+  SetAnim("eaten");
+
   // Remove from ShadowManager
   TheShadowManager::Instance()->RemoveCaster(this);
 
@@ -197,15 +216,5 @@ void Pet::StartBeingEaten(Dino* eater)
   m_bloodPool->SetVisible(false); 
   // TODO Timer ?
   */
-
-//  if (!IsDead())
-//  {
-//    TheShadowManager::Instance()->RemoveCaster(this); 
-//  }
-
-//  SetDead(true);
-
-  // TODO if anims done
-  //((Pet*)m_target)->SetAnim("eaten");
 }
 }

@@ -23,6 +23,7 @@ public:
   virtual void AddToGame() override;
 
   void StartBeingEaten(Dino* eater);
+  virtual void OnAnimFinished() override;
   bool CanBeEaten() const;
 
   void SetCarryingPlayer(Player* player);
