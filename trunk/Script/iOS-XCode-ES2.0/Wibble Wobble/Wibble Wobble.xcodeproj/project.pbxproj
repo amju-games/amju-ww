@@ -12,6 +12,10 @@
 		6908C070182E4E820067759D /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6908C06C182E4E820067759D /* Score.cpp */; };
 		690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690D1BF7182FFED900A92946 /* GSPetBonus.cpp */; };
 		690D1BFC183503A500A92946 /* ShadowManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690D1BFA183503A500A92946 /* ShadowManager.cpp */; };
+		691130051840C16000763639 /* Describe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69112FFD1840C16000763639 /* Describe.cpp */; };
+		691130061840C16000763639 /* GameMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69112FFF1840C16000763639 /* GameMode.cpp */; };
+		691130071840C16000763639 /* GSOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 691130011840C16000763639 /* GSOptions.cpp */; };
+		691130081840C16000763639 /* ModalDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 691130031840C16000763639 /* ModalDialog.cpp */; };
 		69FEF4481821306800D83578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4471821306800D83578 /* UIKit.framework */; };
 		69FEF44A1821306800D83578 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4491821306800D83578 /* Foundation.framework */; };
 		69FEF44C1821306800D83578 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF44B1821306800D83578 /* CoreGraphics.framework */; };
@@ -111,6 +115,14 @@
 		690D1BF8182FFED900A92946 /* GSPetBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSPetBonus.h; path = ../../../../Source/GSPetBonus.h; sourceTree = "<group>"; };
 		690D1BFA183503A500A92946 /* ShadowManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShadowManager.cpp; path = ../../../../Source/ShadowManager.cpp; sourceTree = "<group>"; };
 		690D1BFB183503A500A92946 /* ShadowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadowManager.h; path = ../../../../Source/ShadowManager.h; sourceTree = "<group>"; };
+		69112FFD1840C16000763639 /* Describe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Describe.cpp; path = ../../../../Source/Describe.cpp; sourceTree = "<group>"; };
+		69112FFE1840C16000763639 /* Describe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Describe.h; path = ../../../../Source/Describe.h; sourceTree = "<group>"; };
+		69112FFF1840C16000763639 /* GameMode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameMode.cpp; path = ../../../../Source/GameMode.cpp; sourceTree = "<group>"; };
+		691130001840C16000763639 /* GameMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameMode.h; path = ../../../../Source/GameMode.h; sourceTree = "<group>"; };
+		691130011840C16000763639 /* GSOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSOptions.cpp; path = ../../../../Source/GSOptions.cpp; sourceTree = "<group>"; };
+		691130021840C16000763639 /* GSOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSOptions.h; path = ../../../../Source/GSOptions.h; sourceTree = "<group>"; };
+		691130031840C16000763639 /* ModalDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModalDialog.cpp; path = ../../../../Source/ModalDialog.cpp; sourceTree = "<group>"; };
+		691130041840C16000763639 /* ModalDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModalDialog.h; path = ../../../../Source/ModalDialog.h; sourceTree = "<group>"; };
 		69FEF4441821306800D83578 /* Wibble Wobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wibble Wobble.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FEF4471821306800D83578 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69FEF4491821306800D83578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -352,6 +364,14 @@
 		69FEF47D1821331C00D83578 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				69112FFD1840C16000763639 /* Describe.cpp */,
+				69112FFE1840C16000763639 /* Describe.h */,
+				69112FFF1840C16000763639 /* GameMode.cpp */,
+				691130001840C16000763639 /* GameMode.h */,
+				691130011840C16000763639 /* GSOptions.cpp */,
+				691130021840C16000763639 /* GSOptions.h */,
+				691130031840C16000763639 /* ModalDialog.cpp */,
+				691130041840C16000763639 /* ModalDialog.h */,
 				690D1BFA183503A500A92946 /* ShadowManager.cpp */,
 				690D1BFB183503A500A92946 /* ShadowManager.h */,
 				690D1BF7182FFED900A92946 /* GSPetBonus.cpp */,
@@ -628,6 +648,10 @@
 				6908C070182E4E820067759D /* Score.cpp in Sources */,
 				690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */,
 				690D1BFC183503A500A92946 /* ShadowManager.cpp in Sources */,
+				691130051840C16000763639 /* Describe.cpp in Sources */,
+				691130061840C16000763639 /* GameMode.cpp in Sources */,
+				691130071840C16000763639 /* GSOptions.cpp in Sources */,
+				691130081840C16000763639 /* ModalDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +744,7 @@
 		69FEF4731821306800D83578 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wibble Wobble/Wibble Wobble-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -746,7 +770,7 @@
 		69FEF4741821306800D83578 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wibble Wobble/Wibble Wobble-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Users/jay/projects/amjulib/Source/**";
