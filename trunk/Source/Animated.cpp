@@ -80,7 +80,7 @@ void Animated::Draw()
   AmjuGL::PushMatrix();
   AmjuGL::MultMatrix(m_local);
   // TODO Offset Y so feet are at zero
-  AmjuGL::Translate(0, 30.0f, 0);
+  AmjuGL::Translate(0, 23.0f, 0);
   m_pModel->DrawFrames(m_frame, m_nextFrame, t);
   AmjuGL::PopMatrix();
 }
