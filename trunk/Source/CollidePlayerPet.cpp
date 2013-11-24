@@ -12,7 +12,10 @@ void CollidePlayerPet(GameObject* go1, GameObject* go2)
   Pet* pet = dynamic_cast<Pet*>(go2);
 
   // Balance on top of player's stack of pets
-  player->PickUpPet(pet);
+  if (!player->IsFalling() && !pet->IsFalling())
+  {
+    player->PickUpPet(pet);
+  }
 
   // This pet disappears, add to player score
 //  ((Pet*)go2)->SetDead(true);

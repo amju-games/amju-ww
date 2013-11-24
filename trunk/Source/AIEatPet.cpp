@@ -26,28 +26,14 @@ void AIEatPet::Update()
   std::cout << "Dino eating pet!\n";
 #endif
 
-  Vec3f v = m_npc->GetPos() - m_target->GetPos();
-  float degs = RadToDeg(atan2(-v.x, v.z)); // TODO ??
-  m_npc->SetDir(degs);
-
-  // TODO Wait till we are facing
-
   m_npc->SetAnim("eat");
   // TODO Eaten anim for pet, make dead after delay
   m_target->SetVel(Vec3f(0, 0, 0)); // Stop pet moving
   m_npc->SetVel(Vec3f(0, 0, 0)); // Stop this dino moving
-  
-  if (m_time > 0.25f) // TODO when angle reached
-  {
-    ((Dino*)m_npc)->StartBloodEffect();
-
-    ((Pet*)m_target)->OnEaten();
-  }
 }
 
 void AIEatPet::OnAnimFinished()
 {
-  ((Pet*)m_target)->SetDead(true);
   m_npc->DecideAI();
 }
 

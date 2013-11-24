@@ -16,8 +16,8 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Camera::NAME, &CreateCam
 
 const char* Camera::NAME = "camera";
 
-static const float Y_OFFSET = 200.0f;
-static const float Z_OFFSET = 300.0f;
+static const float Y_OFFSET = 100.0f;
+static const float Z_OFFSET = 150.0f;
 
 Viewport* GetViewport(int i)
 {

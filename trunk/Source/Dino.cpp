@@ -14,6 +14,7 @@
 #include "AIIdle.h"
 #include "AIChasePet.h"
 #include "AIFalling.h"
+#include "AITurnToFace.h"
 
 namespace Amju
 {
@@ -21,52 +22,8 @@ GameObject* CreateDino() { return new Dino; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Dino::NAME, &CreateDino);
 
 const char* Dino::NAME = "dino";
-
-const float BLOOD_GRAVITY = -50.0f;
-static const float PARTICLE_SPEED = 50.0f;
-
-static float rnd(float f)
-{
-  return ((float)rand() / (float)RAND_MAX * 2.0f * f - f);
-}
-
-BloodFx::BloodFx(Dino* d) : m_dino(d)
-{
-}
-
-Vec3f BloodFx::NewPos() const
-{
-  // Origin should be at mouth, which depends on dino size
-  float d = 10.0f; // TODO TEMP TEST
-  float y = 50.0f; 
-  float rad = DegToRad(m_dino->GetDir());
-  float x = cos(rad) * d;
-  float z = sin(rad) * d;
-  return m_dino->GetPos() + Vec3f(x, y, z);
-}
-
-Vec3f BloodFx::NewVel() const
-{
-  return Vec3f(
-    rnd(PARTICLE_SPEED), 
-    rnd(PARTICLE_SPEED),
-    rnd(PARTICLE_SPEED));
-}
-
-float BloodFx::NewTime() const
-{
-  return 0; // was: (float)rand() / (float)RAND_MAX * 5.0f;
-}
-
-Vec3f BloodFx::NewAcc() const
-{
-  return Vec3f(0, BLOOD_GRAVITY, 0); 
-}
-
-void BloodFx::HandleDeadParticle(Particle2d* p)
-{
-  Recycle(p); // for testing
-}
+static const float XSIZE = 25.0f; // AABB size
+static const float YSIZE = 30.0f;
 
 Dino::Dino()
 {
@@ -75,6 +32,10 @@ Dino::Dino()
   AddAI(new AIEatPet);
   AddAI(new AIChasePet);
   AddAI(new AIFalling);
+  AddAI(new AITurnToFace);
+
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsSet = true;
 }
 
 WWGameObject* Dino::Clone() 
@@ -82,9 +43,18 @@ WWGameObject* Dino::Clone()
   return new Dino(*this);
 }
 
+void Dino::AddToGame() 
+{
+  Npc::AddToGame();
+  
+  SetAI(AIIdle::NAME); // can set now that we have created scene node
+  // (when AI state is activated, it will set animation)
+}
+
 // Unusual as Dino shape needs asymmetric AABB
 void Dino::UpdateAabb()
 {
+/*
   static const float XSIZE = 15.0f;
   static const float YSIZE = 60.0f;
   static const float ZSIZE = 45.0f;
@@ -136,6 +106,7 @@ void Dino::UpdateAabb()
 
   m_aabb.Set(minx, maxx, miny, maxy, minz, maxz);
   m_pSceneNode->SetAABB(m_aabb);
+*/
 }
 
 const char* Dino::GetTypeName() const
@@ -148,15 +119,9 @@ void Dino::Eat(Pet* pet)
   Assert(!pet->IsDead());
 
   // Change to eating behaviour
-  SetAI(AIEatPet::NAME);
+  SetAI(AITurnToFace::NAME);
   m_ai->SetTarget(pet);
-}
-
-void Dino::StartBloodEffect()
-{
-//  m_bloodFx->Start();
-  // Make sure it's not culled
-//  m_bloodFx->SetAABB(*m_pSceneNode->GetAABB());
+  m_ais[AIEatPet::NAME]->SetTarget(pet);
 }
 
 bool Dino::IsEating() const
@@ -173,7 +138,8 @@ void Dino::Update()
     return;
   }
 
-  UpdateAabb(); // updates shape of AABB, DOES change its position
+  // Asymmetric AABB not great for eating pets
+//  UpdateAabb(); // updates shape of AABB, DOES change its position
 }
 
 bool Dino::Save(File* f)
@@ -195,22 +161,7 @@ bool Dino::Load(File* f)
   }
   m_startPos = m_pos;
 
-  BlinkCharacter* bc = new BlinkCharacter;
-  m_pSceneNode = bc;
-
-  std::string md2name = "dino.md2";
-  Md2Model* model = (Md2Model*)TheResourceManager::Instance()->GetRes(md2name);
-  if (!model)
-  {
-    ReportError("Failed to load MD2: " + md2name);
-    return false;
-  }
-  //model->SetDoesFreeze(model->GetAnimationFromName("eat"), true);
-
-  bc->SetMd2(model);
-
-  // Can set AI now we have a model
-  SetAI(AIIdle::NAME);
+  m_md2Name = "dino.md2";
 
   static const char* TEXTURES[3][2] = 
   {
@@ -226,15 +177,8 @@ bool Dino::Load(File* f)
   }
   Assert(m_dinoType >= 0 && m_dinoType <= 2);
 
-  if (!bc->LoadTextures(TEXTURES[m_dinoType][0], TEXTURES[m_dinoType][1]))
-  {
-    return false;
-  }
-
-  bc->SetGameObj(this);
-
-//  PSceneNode root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-//  root->AddChild(bc);
+  m_texNames[0] = TEXTURES[m_dinoType][0];
+  m_texNames[1] = TEXTURES[m_dinoType][1];
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
@@ -242,16 +186,6 @@ bool Dino::Load(File* f)
     return false;
   }
 
-/*
-  // Blood particle effect for when pet eaten
-  m_bloodFx = new BloodFx(this);
-  if (!m_bloodFx->Load(f))
-  {
-    f->ReportError("Failed to load dino blood fx");
-    return false;
-  }
-  root->AddChild(m_bloodFx.GetPtr());
-*/
   return true;
 }
 }

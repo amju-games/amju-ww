@@ -1,8 +1,9 @@
+#include <Timer.h>
+#include <DegRad.h>
+#include <ReportError.h>
 #include "OnFloorCharacter.h"
 #include "BlinkCharacter.h"
 #include "Floor.h"
-#include <Timer.h>
-#include <DegRad.h>
 
 namespace Amju
 {
@@ -12,18 +13,31 @@ OnFloorCharacter::OnFloorCharacter()
   m_dirCurrent = 0;
 }
 
-//AABB* OnFloorCharacter::GetAABB()
-//{
-//  Assert(m_pSceneNode);
-//  return m_pSceneNode->GetAABB();
-//}
+bool OnFloorCharacter::CreateSceneNode()
+{
+  BlinkCharacter* bc = new BlinkCharacter;
+  m_pSceneNode = bc;
 
-//void OnFloorCharacter::SetDir(float degs)
-//{
-//  Assert(dynamic_cast<Animated*>(m_pSceneNode));
-//  ((Animated*)m_pSceneNode)->SetDir(degs);
-//}
-//
+  Assert(!m_md2Name.empty());
+  Md2Model* model = (Md2Model*)TheResourceManager::Instance()->GetRes(m_md2Name);
+  if (!model)
+  {
+    ReportError("Failed to load MD2: " + m_md2Name);
+    return false;
+  }
+
+  bc->SetMd2(model);
+
+  if (!bc->LoadTextures(m_texNames[0], m_texNames[1]))
+  {
+    ReportError("Failed to load character textures: " + m_texNames[0] + "/" + m_texNames[1]);
+    return false;
+  }
+
+  bc->SetGameObj(this);
+
+  return true;
+}
 
 void OnFloorCharacter::SetDir(float degs)
 {

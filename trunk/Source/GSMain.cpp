@@ -33,6 +33,7 @@
 namespace Amju
 {
 const char* GSMain::NAME = "main";
+static bool s_showAABBs = false;
 
 static void OnPause()
 {
@@ -47,8 +48,7 @@ GSMain::GSMain()
 
 void GSMain::OnActive()
 {
-  // TODO Depend on config setting
-  SceneNode::SetGlobalShowAABB(false);
+  SceneNode::SetGlobalShowAABB(s_showAABBs);
 
   GameState::OnActive();
 
@@ -81,6 +81,14 @@ bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
     return true;
   }
 */
+
+  if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
+    (ke.key == 'a' || ke.key == 'A'))
+  {
+    s_showAABBs = !s_showAABBs;
+    std::cout << "Show AABBs: " << s_showAABBs << "\n";
+    SceneNode::SetGlobalShowAABB(s_showAABBs);
+  }
 
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
     (ke.key == 'd' || ke.key == 'D'))

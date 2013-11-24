@@ -27,13 +27,20 @@ void AIChasePet::Update()
   if (vel.SqLen() < MAX_DIST_SQ) 
   {
     vel.Normalise();
+
+//std::cout << "AI Chase: vel x: " << vel.x << " z: " << vel.z;
+
     static const float SPEED = 100.0f; // TODO CONFIG
     vel *= SPEED;
     Vec3f v = m_npc->GetVel();
     v.x = vel.x;
     v.z = vel.z;
     m_npc->SetVel(v);
-    m_npc->SetDir(RadToDeg(atan2(vel.x, vel.z)));
+    float degs = RadToDeg(atan2(vel.x, vel.z)); 
+
+//std::cout << " => heading " << degs << " degs.\n";
+
+    m_npc->SetDir(degs);
     m_npc->SetIsControlled(true); 
     m_npc->SetAnim("run");
   }
