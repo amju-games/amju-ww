@@ -1,6 +1,7 @@
 #ifndef PET_H
 #define PET_H
 
+#include <SceneMesh.h>
 #include "Npc.h"
 #include "BloodFx.h"
 
@@ -35,7 +36,7 @@ protected:
  
   float m_eatenTime;
 
-  Shadow* m_bloodPool;
+  RCPtr<SceneMesh> m_bloodPool;
   RCPtr<BloodFx> m_bloodFx;
 
   Player* m_carryingPlayer;

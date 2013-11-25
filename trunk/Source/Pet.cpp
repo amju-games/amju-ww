@@ -60,17 +60,14 @@ void Pet::AddToGame()
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   root->AddChild(m_bloodFx.GetPtr());
 
-/*
   // Create blood pool scene node
-  m_bloodPool = new Shadow;
-  if (!m_bloodPool->Load(f))
-  {
-    f->ReportError("Failed to load blood pool");
-    return false;
-  }
-  root->AddChild(m_bloodPool);
-  m_bloodPool->SetVisible(false); // TODO
-*/
+  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("blood_pool.obj");
+  Assert(mesh);
+  SceneMesh* sm  = new SceneMesh;
+  sm->SetMesh(mesh);
+  m_bloodPool = sm;
+  root->AddChild(sm);
+  m_bloodPool->SetVisible(false);
 }
 
 WWGameObject* Pet::Clone()
@@ -196,9 +193,13 @@ void Pet::StartBeingEaten(Dino* eater)
   float dir = eater->GetDir();
   Matrix mat;
   mat.RotateY(DegToRad(dir));
-  m_pos = eater->GetPos();
-  mat.TranslateKeepRotation(m_pos);
+  Vec3f pos = eater->GetPos();
+  mat.TranslateKeepRotation(pos);
   m_pSceneNode->SetLocalTransform(mat);
+
+  mat.Translate(m_pos); 
+  m_bloodPool->SetLocalTransform(mat);
+  m_bloodPool->SetVisible(true);
 
   SetAnim("eaten");
 
