@@ -37,6 +37,9 @@ protected:
   float m_eatenTime;
 
   RCPtr<SceneMesh> m_bloodPool;
+  Vec3f m_bloodPoolPos;
+  Vec2f m_bloodPoolXZSize;
+  float m_bloodPoolScale;
   RCPtr<BloodFx> m_bloodFx;
 
   Player* m_carryingPlayer;
