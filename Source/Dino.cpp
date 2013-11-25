@@ -116,12 +116,23 @@ const char* Dino::GetTypeName() const
 
 void Dino::Eat(Pet* pet)
 {
+  Assert(!IsEating());
+  Assert(!IsDead());
   Assert(!pet->IsDead());
+  Assert(pet->CanBeEaten());
 
   // Change to eating behaviour
   SetAI(AITurnToFace::NAME);
   m_ai->SetTarget(pet);
   m_ais[AIEatPet::NAME]->SetTarget(pet);
+
+  // Change texture to bloody version.
+  BlinkCharacter* bc = dynamic_cast<BlinkCharacter*>(m_pSceneNode.GetPtr());
+  Assert(bc);
+  bc->LoadTextures("dino1a-withblood.png", "dino1-withblood.png"); 
+  // TODO Load the textures up front
+
+  // Pause action and zoom camera on Dino??
 }
 
 bool Dino::IsEating() const
