@@ -180,7 +180,6 @@ bool Dino::Load(File* f)
   m_texNames[0] = TEXTURES[m_dinoType][0];
   m_texNames[1] = TEXTURES[m_dinoType][1];
 
-  // Create Shadow Scene Node
   if (!LoadShadow(f))
   {
     return false;

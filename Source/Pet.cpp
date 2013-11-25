@@ -11,6 +11,7 @@
 #include "Floor.h"
 #include "ShadowManager.h"
 #include "Dino.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -183,7 +184,10 @@ void Pet::OnAnimFinished()
 
 void Pet::StartBeingEaten(Dino* eater)
 {
-  // TODO Should only be called once per pet
+  // Is only called once per pet
+  Amju::PlayWav("goopy");
+//  Amju::PlayWav("goopy");
+
   Assert(m_eatenState == NOT_EATEN_YET);
   m_eatenState = BEING_EATEN;
 
