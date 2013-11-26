@@ -1,5 +1,7 @@
 #include <GameObjectFactory.h>
+#include <DegRad.h>
 #include "Bird.h"
+#include "AIFly.h"
 
 namespace Amju
 {
@@ -7,6 +9,24 @@ const char* Bird::NAME = "bird";
 
 GameObject* CreateBird() { return new Bird; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Bird::NAME, &CreateBird);
+
+static const float XSIZE = 15.0f;
+static const float YSIZE = 20.0f;
+
+Bird::Bird()
+{
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsSet = true;
+
+  AddAI(new AIFly);
+}
+
+void Bird::AddToGame() 
+{
+  Npc::AddToGame();
+  
+  SetAI(AIFly::NAME); 
+}
 
 const char* Bird::GetTypeName() const
 {
@@ -51,7 +71,14 @@ bool Bird::Save(File* f)
 void Bird::Update()
 {
   Npc::Update();
-  SetAnim("fly");
+
+  Matrix scale;
+  scale.Scale(0.5f, 0.5f, 0.5f);
+  Matrix mat;
+  mat.RotateY(DegToRad(m_dirCurrent));
+  mat = scale * mat;
+  mat.TranslateKeepRotation(m_pos);
+  m_pSceneNode->SetLocalTransform(mat);
 }
 
 }
