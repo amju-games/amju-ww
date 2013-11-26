@@ -47,6 +47,17 @@ class CommandQuit : public GuiCommand
   }
 };
 
+void GSTitle::Update()
+{
+  GSText::Update();
+  if (m_timer > 3.0f) // TODO
+  {
+    // Go to attract mode
+    TheLevelManager::Instance()->SetLevelId(1);
+    StartGame(1, AMJU_ATTRACT_MODE); // TODO two player etc
+  }
+}
+
 void GSTitle::OnActive()
 {
   GSText::OnActive();

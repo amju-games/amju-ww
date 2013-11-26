@@ -16,7 +16,8 @@ public:
   static const char* NAME;
 
   // GSText overrides
-  virtual void OnActive();
+  virtual void OnActive() override;
+  virtual void Update() override;
 };
 typedef Singleton<GSTitle> TheGSTitle;
 }
