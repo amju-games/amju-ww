@@ -16,15 +16,16 @@ public:
   static const char* NAME;
 
   Pet();
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
-  virtual void Update();
-  virtual bool Load(File*);
-  virtual bool Save(File*);
+  virtual void Update() override;
+  virtual bool Load(File*) override;
+  virtual bool Save(File*) override;
   virtual void AddToGame() override;
 
-  void StartBeingEaten(Dino* eater);
   virtual void OnAnimFinished() override;
+
+  void StartBeingEaten(Dino* eater);
   bool CanBeEaten() const;
   bool JustDropped() const;
   void SetCarryingPlayer(Player* player);
