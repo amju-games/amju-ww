@@ -2,6 +2,7 @@
 #include <DegRad.h>
 #include "Bird.h"
 #include "AIFly.h"
+#include "Player.h"
 
 namespace Amju
 {
@@ -24,8 +25,6 @@ Bird::Bird()
 void Bird::AddToGame() 
 {
   Npc::AddToGame();
-  
-  SetAI(AIFly::NAME); 
 }
 
 const char* Bird::GetTypeName() const
@@ -70,8 +69,21 @@ bool Bird::Save(File* f)
 
 void Bird::Update()
 {
-  Npc::Update();
+  SetAI(AIFly::NAME); 
+  if (m_ai)
+  {
+    Player* p = Player::GetPlayer(AMJU_P1);
+    Assert(p);
+    m_ai->SetTarget(p);
+    m_ai->Update();
+  }
 
+  // Not
+  //  Npc::Update();
+  // .. because doesn't fall!
+
+  OnFloorCharacter::Update();
+ 
   Matrix scale;
   scale.Scale(0.5f, 0.5f, 0.5f);
   Matrix mat;

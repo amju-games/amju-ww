@@ -10,6 +10,7 @@ public:
   AIFly();
   static const char* NAME;
   virtual const char* GetName() const;
+  virtual void OnActivated();
   virtual void Update();
 };
 }
