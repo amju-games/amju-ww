@@ -284,6 +284,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\AIStunned.cpp" />
     <ClCompile Include="..\..\..\Source\AITurnToFace.cpp" />
     <ClCompile Include="..\..\..\Source\Animated.cpp" />
+    <ClCompile Include="..\..\..\Source\Bird.cpp" />
     <ClCompile Include="..\..\..\Source\BlinkCharacter.cpp" />
     <ClCompile Include="..\..\..\Source\Block.cpp" />
     <ClCompile Include="..\..\..\Source\BloodFx.cpp" />
@@ -423,6 +424,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\TutorialTrigger.h" />
     <ClInclude Include="..\..\..\Source\Viewport.h" />
     <ClInclude Include="..\..\..\Source\WWGameObject.h" />
+    <ClInclude Include="Bird.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bass.lib" />
