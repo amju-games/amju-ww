@@ -66,11 +66,13 @@ Vec3f BloodFx::NewAcc() const
 
 void BloodFx::HandleMinY(Particle2d* p)
 {
-  // Make sure we are above ground
-  static const float OFFSET = 1.0f;
-  p->m_pos.y = m_dino->GetPos().y + OFFSET;
-  p->m_vel = Vec3f(0, 0, 0);
-  p->m_acc = Vec3f(0, 0, 0);
+  p->m_isDead = true;
+
+//  // Make sure we are above ground
+//  static const float OFFSET = 1.0f;
+//  p->m_pos.y = m_dino->GetPos().y + OFFSET;
+//  p->m_vel = Vec3f(0, 0, 0);
+//  p->m_acc = Vec3f(0, 0, 0);
 }
 
 void BloodFx::HandleDeadParticle(Particle2d* p)
