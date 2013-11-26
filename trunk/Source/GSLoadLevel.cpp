@@ -2,6 +2,7 @@
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "GSMainEdit.h"
+#include "GSAttract.h"
 #include "Game.h"
 #include "MySceneGraph.h"
 #include "Timer.h"
@@ -116,10 +117,9 @@ void GSLoadLevel::Update()
 #ifdef BYPASS_TITLE
       TheGame::Instance()->SetCurrentState(GSMain::NAME);
 #else
-      if (GetGameMode() == AMJU_ATTRACT_MODE)
+      if (IsAttractMode())
       {
-        // TODO should be attract mode state
-        TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
+        TheGame::Instance()->SetCurrentState(TheGSAttract::Instance());
       }
       else
       {

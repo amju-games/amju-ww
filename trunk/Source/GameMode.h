@@ -13,5 +13,6 @@ enum GameMode
 void SetGameMode(GameMode);
 GameMode GetGameMode(); 
 bool IsEditMode();
+bool IsAttractMode();
 }
 
