@@ -26,7 +26,7 @@ public:
   void StartBeingEaten(Dino* eater);
   virtual void OnAnimFinished() override;
   bool CanBeEaten() const;
-
+  bool JustDropped() const;
   void SetCarryingPlayer(Player* player);
   Player* GetCarryingPlayer();
 
@@ -35,6 +35,8 @@ protected:
   EatenState m_eatenState;
  
   float m_eatenTime;
+  float m_justDroppedTime;
+  bool m_justDropped;
 
   RCPtr<SceneMesh> m_bloodPool;
   Vec3f m_bloodPoolPos;

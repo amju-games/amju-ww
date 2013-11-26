@@ -33,16 +33,27 @@ Pet::Pet()
   m_carryingPlayer = 0;
   m_eatenState = NOT_EATEN_YET;
   m_eatenTime = 0;
-  m_bloodPoolScale = 0;
+  m_justDroppedTime = 0;
+  m_justDropped= false;
 
+  m_bloodPoolScale = 0;
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
   AddAI(new AIFalling);
 }
   
+bool Pet::JustDropped() const
+{
+  return m_justDropped;
+}
+  
 bool Pet::CanBeEaten() const
 {
-  bool b = (m_eatenState == NOT_EATEN_YET) && !IsDead();
+  bool b = !m_justDropped && 
+    (m_eatenState == NOT_EATEN_YET) && 
+    !IsDead() &&
+    !IsFalling();
+
   return b;
 }
 
@@ -94,6 +105,10 @@ void Pet::SetCarryingPlayer(Player* player)
   {
     Assert(!m_carryingPlayer); // already carried!
   }
+  else
+  {
+    m_justDropped = true;
+  }
   m_carryingPlayer = player;
 }
 
@@ -110,9 +125,20 @@ void Pet::Update()
 
   RecalcAABB();
 
+  float dt = TheTimer::Instance()->GetDt();
+
+  if (m_justDropped)
+  {
+    m_justDroppedTime += dt;
+    if (m_justDroppedTime > 3.0f) // TODO
+    {
+      m_justDropped = false;
+      m_justDroppedTime = 0;
+    }
+  }
+
   if (m_eatenState == BEING_EATEN)
   {
-    float dt = TheTimer::Instance()->GetDt();
     m_eatenTime += dt;
 
     if (m_eatenTime > MAX_BEING_EATEN_TIME)
@@ -200,10 +226,12 @@ void Pet::OnAnimFinished()
 void Pet::StartBeingEaten(Dino* eater)
 {
   // Is only called once per pet
+  Assert(m_eatenState == NOT_EATEN_YET);
+  Assert(!m_justDropped);
+
   Amju::PlayWav("goopy");
 //  Amju::PlayWav("goopy");
 
-  Assert(m_eatenState == NOT_EATEN_YET);
   m_eatenState = BEING_EATEN;
 
   SetDead(true); // So physics won't be updated any more
@@ -219,6 +247,7 @@ void Pet::StartBeingEaten(Dino* eater)
   mat.Scale(0, 1, 0);
 //  mat.Translate(m_pos); 
   m_bloodPool->SetLocalTransform(mat);
+  m_bloodPool->SetAABB(*(GetSceneNode()->GetAABB()));
   m_bloodPool->SetVisible(true);
   m_bloodPoolXZSize = Vec2f(1.5f + Rnd(0, 1.0f), 1.5f + Rnd(0, 1.0f));
 
