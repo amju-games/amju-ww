@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Dino.h"
 #include "PlayWav.h"
+#include "AIStunned.h"
 
 namespace Amju
 {
@@ -18,7 +19,8 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   player->SetVel(-vel);
 
   vel = dino->GetVel();
-  dino->SetVel(-vel);
+  dino->SetVel(Vec3f(0, 0, 0));
+  dino->SetAI(AIStunned::NAME);
 
 /*
   // Sound effect
