@@ -281,6 +281,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\AIFalling.cpp" />
     <ClCompile Include="..\..\..\Source\AIGoHighGround.cpp" />
     <ClCompile Include="..\..\..\Source\AIIdle.cpp" />
+    <ClCompile Include="..\..\..\Source\AIStunned.cpp" />
     <ClCompile Include="..\..\..\Source\AITurnToFace.cpp" />
     <ClCompile Include="..\..\..\Source\Animated.cpp" />
     <ClCompile Include="..\..\..\Source\BlinkCharacter.cpp" />
@@ -360,6 +361,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\AIFalling.h" />
     <ClInclude Include="..\..\..\Source\AIGoHighGround.h" />
     <ClInclude Include="..\..\..\Source\AIIdle.h" />
+    <ClInclude Include="..\..\..\Source\AIStunned.h" />
     <ClInclude Include="..\..\..\Source\AITurnToFace.h" />
     <ClInclude Include="..\..\..\Source\AngleVec.h" />
     <ClInclude Include="..\..\..\Source\Animated.h" />
