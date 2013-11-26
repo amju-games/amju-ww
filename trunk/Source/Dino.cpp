@@ -45,6 +45,21 @@ WWGameObject* Dino::Clone()
   return new Dino(*this);
 }
 
+bool Dino::CreateSceneNode() 
+{
+  if (!Npc::CreateSceneNode())
+  {
+    return false;
+  }
+  BlinkCharacter* bc = dynamic_cast<BlinkCharacter*>(GetSceneNode());
+  Assert(bc);
+  Md2Model* md2 = bc->GetMd2();
+  Md2Model::Animation anim = md2->GetAnimationFromName("stunned");
+  md2->SetDoesFreeze(anim, true);
+
+  return true;
+}
+
 void Dino::AddToGame() 
 {
   Npc::AddToGame();
