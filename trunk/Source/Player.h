@@ -4,6 +4,7 @@
 #include <list>
 #include "EventListener.h"
 #include "OnFloorCharacter.h"
+#include "PlayerNum.h"
 
 namespace Amju
 {
@@ -14,6 +15,8 @@ typedef std::list<Pet*> Pets;
 class Player : public OnFloorCharacter
 {
 public:
+  static Player* GetPlayer(PlayerNum pn);
+
   static const char* NAME;
 
   Player();
