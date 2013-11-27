@@ -92,6 +92,8 @@ void Bird::Update()
   mat = scale * mat;
   mat.TranslateKeepRotation(m_pos);
   m_pSceneNode->SetLocalTransform(mat);
+
+  RecalcAABB();
 }
 
 }
