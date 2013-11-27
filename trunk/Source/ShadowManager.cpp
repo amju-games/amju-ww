@@ -2,7 +2,7 @@
 #include "MySceneGraph.h"
 #include "Describe.h"
 
-#define SHADOW_MGR_DEBUG
+//#define SHADOW_MGR_DEBUG
 
 namespace Amju
 {
