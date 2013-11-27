@@ -78,6 +78,7 @@ void Pet::AddToGame()
   Assert(mesh);
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
+  sm->SetIsZWriteEnabled(false); // will give better visuals?
   m_bloodPool = sm;
   root->AddChild(sm);
   m_bloodPool->SetVisible(false);
