@@ -134,7 +134,7 @@ std::cout << "Shadow mgr: caster ID: " << go->GetId()
     static const float S = 10.0f;
     AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
     shadow->SetAABB(aabb);
-    shadow->Recalc();
+    //shadow->Recalc();
   }
 
 /*
