@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-19
+21
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -150,7 +150,7 @@ tut-trigger
 // AABB xmin, xmax, ymin, ymax zmin, zmax
 -250, -150, 200, 250, -50, 50 
 // Text
-@@@Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!*
+Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!
 end
 
 exit
@@ -224,26 +224,10 @@ shadow.png
 1
 end
 
-dino
-103
-// Start pos
-0, 220, 50
-// Dino Type
-1
-// Shadow
-shadow.png
-20
-end
-
-
-
-
-
-
 staticfloor
 4002
 // Centre/pivot point
-0, 200, 0
+0, 200, 250 
 // Rot
 0
 // Floor mesh + texture
@@ -253,7 +237,7 @@ end
 floor
 4003
 // Centre/pivot point
-200, 200, 0
+0, 200, 350
 // Rot
 0
 // Floor mesh
@@ -265,6 +249,12 @@ plat_rect_2x1_std.obj
 // Moment of inertia
 50.0
 end
+
+
+
+
+
+
 
 staticfloor
 4004
