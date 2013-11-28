@@ -1,4 +1,5 @@
 #include "GSOptions.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
@@ -17,7 +18,7 @@ void GSOptions::OnActive()
   m_timer = 0;
 
   // buttons
-  m_gui = LoadGui("options-gui.txt");
+  m_gui = WWLoadGui("options-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("back-button")->SetCommand(OnBack);
 }

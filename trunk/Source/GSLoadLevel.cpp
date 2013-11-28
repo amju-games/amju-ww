@@ -14,6 +14,7 @@
 #include "Hud.h"
 #include "ShadowManager.h"
 #include "GameMode.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
@@ -57,7 +58,7 @@ void GSLoadLevel::OnActive()
 
   m_timer = 0;
 
-  m_gui = LoadGui("loadlevel-gui.txt");
+  m_gui = WWLoadGui("loadlevel-gui.txt");
   Assert(m_gui);
   GuiElement* bar = m_gui->GetElementByName("bar");
   m_maxBarX = bar->GetSize().x;

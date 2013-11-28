@@ -1,24 +1,24 @@
-#include "GSMain.h"
-#include <AmjuGL.h>
-#include "CursorManager.h"
 #include <Game.h>
-#include "Floor.h"
-#include "Player.h"
-#include "Dino.h"
+#include <AmjuGL.h>
 #include <File.h>
 #include <ReportError.h>
 #include <GameObjectFactory.h>
 #include <EventPoller.h>
-#include "MySceneGraph.h"
-#include "CollisionManager.h"
 #include <Font.h>
 #include <SceneNodeCamera.h>
-#include "Camera.h"
 #include <Timer.h>
 #include <StringUtils.h>
 #include <Pause.h>
 #include <Screen.h>
 #include <SAP.h>
+#include "GSMain.h"
+#include "CursorManager.h"
+#include "Floor.h"
+#include "Player.h"
+#include "Dino.h"
+#include "MySceneGraph.h"
+#include "CollisionManager.h"
+#include "Camera.h"
 #include "Hud.h"
 #include "GSPaused.h"
 #include "GSLoadLevel.h"
@@ -27,6 +27,7 @@
 #include "LurkMsg.h"
 #include "Score.h"
 #include "ShadowManager.h"
+#include "WWLoadGui.h"
 
 #define EDIT_CAM
 
@@ -42,7 +43,7 @@ static void OnPause()
 
 GSMain::GSMain()
 {
-  m_gui = LoadGui("main-gui.txt");
+  m_gui = WWLoadGui("main-gui.txt");
   Assert(m_gui);
 }
 

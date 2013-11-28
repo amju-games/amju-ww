@@ -1,5 +1,6 @@
+#include <Game.h>
 #include "GSEditMenu.h"
-#include "Game.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
@@ -10,7 +11,7 @@ void GSEditMenu::OnActive()
   GSText::OnActive();
 
   /*
-  m_gui = LoadGui("edit-menu-gui.txt");
+  m_gui = WWLoadGui("edit-menu-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("new-level-button")->SetCommand(new CommandEditNewLevel);
   */
