@@ -100,6 +100,7 @@ void ShadowManager::Update()
       Vec3f p = go->GetPos();
       mat.Translate(p);
       shadow->SetLocalTransform(mat);
+      shadow->CombineTransform();
 
       static const float S = 10.0f;
       AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
