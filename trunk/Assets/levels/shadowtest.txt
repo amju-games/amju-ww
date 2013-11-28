@@ -42,18 +42,6 @@ staticfloor
 0
 // Floor mesh
 plat_rect_4x4_std.obj
-plat_wood1.png
-end
-
-staticfloor
-1002
-// Centre/pivot point
-400, 200, 0
-// Rot 
-0
-// Floor mesh
-plat_rect_4x4_std.obj
-plat_wood1.png
 end
 
 
