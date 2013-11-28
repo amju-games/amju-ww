@@ -1,0 +1,28 @@
+// Temp title gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+title-comp
+// Num children
+1
+
+// Button 1 - start
+// element type
+gui-button
+// Element name
+start-button
+// pos (coords are -1..1)
+-0.4, -0.5
+// size
+0.8, 0.2
+// Image 
+gui-button-4.png
+// Text
+Start
+// Font name, size
+arial, 2.0
+
+
