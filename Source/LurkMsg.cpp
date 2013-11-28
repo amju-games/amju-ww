@@ -5,6 +5,7 @@
 #include <TextToSpeech.h>
 #include "ROConfig.h"
 #include "LurkMsg.h"
+#include "WWLoadGui.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -283,7 +284,7 @@ static void OnLurkNo()
 
 Lurker::Lurker()
 {
-  m_gui = LoadGui("gui-lurk.txt");
+  m_gui = WWLoadGui("gui-lurk.txt");
   Assert(m_gui);
 
   m_ok = (GuiButton*)GetElementByName(m_gui, "ok-button");

@@ -1,12 +1,13 @@
 #include <GuiText.h>
 #include "Hud.h"
 #include "Score.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
 bool Hud::Load()
 { 
-  m_gui = LoadGui("hud-gui.txt");
+  m_gui = WWLoadGui("hud-gui.txt");
   Assert(m_gui);
   return (m_gui != 0);
 }

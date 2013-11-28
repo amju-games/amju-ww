@@ -8,8 +8,11 @@
 #include "SoundManager.h"
 #include "GSMenu.h"
 #include "StartGame.h"
+#include "WWLoadGui.h"
 
-//#define NO_MAIN_MENU
+#ifdef AMJU_IOS
+#define NO_MAIN_MENU
+#endif
 
 namespace Amju
 {
@@ -26,7 +29,7 @@ class CommandStart : public GuiCommand
 #ifdef NO_MAIN_MENU
     // No main menu - just straight into the game..?
     TheLevelManager::Instance()->SetLevelId(1);
-    StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
+    StartGame(1, AMJU_MAIN_GAME_MODE); 
 #else
     // If menu state, do this INSTEAD of the above
     TheGame::Instance()->SetCurrentState(TheGSMenu::Instance());
@@ -65,7 +68,7 @@ void GSTitle::OnActive()
   // Start theme music
   TheSoundManager::Instance()->PlaySong("sound/ww1.mod");
 
-  m_gui = LoadGui("title-gui.txt");
+  m_gui = WWLoadGui("title-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("start-button")->SetCommand(new CommandStart);
   GuiElement* quit = m_gui->GetElementByName("quit-button");

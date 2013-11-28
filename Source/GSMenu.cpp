@@ -5,6 +5,7 @@
 #include "GSEditMenu.h"
 #include "LevelManager.h"
 #include "GameMode.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
@@ -53,7 +54,7 @@ void GSMenu::OnActive()
 
   CreateText("");
 
-  m_gui = LoadGui("menu-gui.txt");
+  m_gui = WWLoadGui("menu-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("start-button-1p")->SetCommand(new CommandStartGame1p);
   m_gui->GetElementByName("start-button-2p")->SetCommand(new CommandStartGame2p);
