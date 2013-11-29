@@ -1,4 +1,5 @@
 #include <SoundManager.h>
+#include <GuiButton.h>
 #include "GSMenu.h"
 #include "StartGame.h"
 #include "Game.h"
@@ -56,11 +57,16 @@ void GSMenu::OnActive()
 
   m_gui = WWLoadGui("menu-gui.txt");
   Assert(m_gui);
-  m_gui->GetElementByName("start-button-1p")->SetCommand(new CommandStartGame1p);
+
+  GuiButton* start1p = (GuiButton*)m_gui->GetElementByName("start-button-1p");
+  start1p->SetCommand(new CommandStartGame1p);
+  start1p->SetIsFocusButton(true);
+  start1p->SetShowIfFocus(true);
+
   m_gui->GetElementByName("start-button-2p")->SetCommand(new CommandStartGame2p);
   m_gui->GetElementByName("editor-button")->SetCommand(new CommandEditor);
 
-  TheSoundManager::Instance()->PlaySong("sound/piano.mod");
+  TheSoundManager::Instance()->PlaySong("sound/piano.it");
 }
 }
 
