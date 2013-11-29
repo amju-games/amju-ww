@@ -6,7 +6,7 @@ export DEST_DIR=$TOP_DIR/Build/CompiledAssets/iOS
 export OBJ2BIN=$RESTORE_DIR/obj2bin
 export SRC_DIR=$TOP_DIR/Assets
 
-mkdir $DEST_DIR
+mkdir -p $DEST_DIR
 mkdir $DEST_DIR/obj
 mkdir $DEST_DIR/obj/font3d
 
