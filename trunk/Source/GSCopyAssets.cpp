@@ -26,21 +26,9 @@ bool CopyFromGlueFile(const std::string& destDir)
   // The glue file has already been loaded into mem
   GlueFile* gf = FileImplGlue::GetGlueFile();
   Assert(gf);
-  const std::string& srcGlueFilePath = gf->GetFilename();
+  const std::string& srcGlueFilePath = File::GetRoot() + gf->GetFilename();
 
 std::cout << "Glue file + path: '" << srcGlueFilePath << "'\n";
-
-//  std::string oldRoot = File::GetRoot();
-//  File::SetRoot("", "/");
-//  GlueFile gf;
-//  bool loaded = gf.OpenGlueFile(srcGlueFilePath, true);
-//  File::SetRoot(oldRoot, "/");
-//  if (!loaded)
-//  {
-//    std::cout << "Failed to open glue file " << srcGlueFilePath << "\n";
-//    Assert(0);
-//    return false;
-//  }
 
   Time glueTime = GetFileModifiedTime(srcGlueFilePath);
 
@@ -50,17 +38,18 @@ std::cout << "Glue file + path: '" << srcGlueFilePath << "'\n";
   for (int i = 0; i < size; i++)
   {
     const std::string& subfile = strs[i];
-#ifdef FILECOPY_DEBUG
-    std::cout << "Found file " << subfile << " from glue file...  ";
+#ifdef FILECOPY_DEBUG_2
+    std::cout << "Found file " << subfile << " from glue file...\n";
 #endif
 
     if (subfile == "roconfig.txt" || subfile.substr(0, 6) == "levels")
     {
+#ifdef FILECOPY_DEBUG_2
 std::cout << "We DO want to copy this file!\n";
+#endif
     }
     else
     {
-std::cout << "...Skipping.\n";
       continue;
     }
 
@@ -71,15 +60,16 @@ std::cout << "...Skipping.\n";
 
     if (FileExists(outFileName))
     {
-#ifdef FILECOPY_DEBUG
+#ifdef FILECOPY_DEBUG_2
 std::cout << "File already exists: " << outFileName << "\n";
 #endif
       Time destTime = GetFileModifiedTime(outFileName);
 
       if (!(destTime < glueTime))
       {
-#ifdef FILECOPY_DEBUG
-std::cout << "  Don't copy, OS file is more recent than glue file.\n";
+#ifdef FILECOPY_DEBUG_2
+std::cout << "  Don't copy, OS file is more recent than glue file. (Glue file time: "
+          << glueTime.ToString() << ")\n";
 #endif
         doCopy = false; // more recent copy already there
       }
