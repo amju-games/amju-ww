@@ -49,25 +49,29 @@ const char* Exit::GetTypeName() const
 
 void Exit::AddToGame() 
 {
-  OnFloor::AddToGame();
+  StaticFloor::AddToGame();
+
   Assert(m_text);
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
   root->AddChild(m_text);
+  root->AddChild(m_cylinder);
 }
 
 void Exit::RemoveFromGame() 
 {
-  OnFloor::RemoveFromGame();
+  StaticFloor::RemoveFromGame();
+
   Assert(m_text);
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
   root->DelChild(m_text);
+  root->DelChild(m_cylinder);
 }
 
 void Exit::Reset()
 {
-  OnFloor::Reset();
+  StaticFloor::Reset();
  
   m_isActive = false;
   m_isExiting = false;
@@ -75,14 +79,6 @@ void Exit::Reset()
 
 void Exit::Update()
 {
-  if (!m_floor)
-  {
-    FindFloor();
-  }
-
-  // TODO ?? Do we need to clear shadow Coll meshes ?? 
-  //UpdateShadow();
-
   float dt = TheTimer::Instance()->GetDt();
   static const float ROT_SPEED = 3.0f;
   m_rotate += ROT_SPEED * dt;
@@ -90,7 +86,9 @@ void Exit::Update()
   Matrix mat;
   mat.RotateY(m_rotate);
   mat.TranslateKeepRotation(m_pos);
-  m_pSceneNode->SetLocalTransform(mat);
+
+  // TODO Inner mesh
+//  m_pSceneNode->SetLocalTransform(mat);
 
   if (m_isExiting)
   {
@@ -112,14 +110,14 @@ void Exit::Update()
 
 bool Exit::Save(File* f)
 {
-  if (!OnFloor::Save(f))
+  if (!StaticFloor::Save(f))
   {
     return false;
   }
-  if (!SaveMeshResource(f))
-  {
-    return false;
-  }
+//  if (!SaveMeshResource(f))
+//  {
+//    return false;
+//  }
   // Next level
   f->WriteComment("// Next level");
   f->WriteInteger(m_toLevel);
@@ -141,17 +139,17 @@ bool Exit::Save(File* f)
 
 bool Exit::Load(File* f)
 { 
-  if (!OnFloor::Load(f))
+  if (!StaticFloor::Load(f))
   {
     return false;
   }
   m_startPos = m_pos;
 
-  if (!LoadMeshResource(f))
-  {
-    f->ReportError("Failed to load exit mesh");
-    return false;
-  }
+//  if (!LoadMeshResource(f))
+//  {
+//    f->ReportError("Failed to load exit mesh");
+//    return false;
+//  }
 
   // Load next level
   if (!f->GetInteger(&m_toLevel))
@@ -170,7 +168,7 @@ bool Exit::Load(File* f)
 
 bool Exit::CreateSceneNode()
 {
-  if (!OnFloor::CreateSceneNode())
+  if (!StaticFloor::CreateSceneNode())
   {
     return false;
   }
@@ -178,6 +176,18 @@ bool Exit::CreateSceneNode()
   // Exit is translucent until activated
   // TODO So should be a Blended node !??
   m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
+
+  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("transporter2.obj");
+  if (!mesh)
+  {
+    return false;
+  }
+
+  SceneMesh* sm  = new SceneMesh;
+  sm->SetMesh(mesh);
+  sm->SetBlended(true);
+  m_cylinder = sm;
+//  m_pSceneNode->AddChild(sm);
 
   TextMaker tm;
   m_text = tm.MakeText(ToString(m_toLevel));
@@ -222,6 +232,7 @@ bool Exit::CreateSceneNode()
   m_text->RecursivelyTransformAABB(mat);
   m_billboard->SetAABB(aabb);
   m_effect->SetAABB(aabb);
+  m_cylinder->SetAABB(aabb);
 
   // Currently there are no objectives, so all exits are enabled
   SetActive(); 
