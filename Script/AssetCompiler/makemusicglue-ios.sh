@@ -20,7 +20,7 @@ cd $DEST_DIR
 # Create empty glue file
 $GLUE_EXE -c $GLUE_FILE
 
-for f in sound/*.wav sound/*.mod
+for f in sound/*.wav sound/*.it
 do
   echo "Adding file: " $f
   $GLUE_EXE -a $GLUE_FILE $f
