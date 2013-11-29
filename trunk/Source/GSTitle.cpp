@@ -67,7 +67,7 @@ void GSTitle::OnActive()
   GSText::OnActive();
 
   // Start theme music
-  TheSoundManager::Instance()->PlaySong("sound/ww1.mod");
+  TheSoundManager::Instance()->PlaySong("sound/ww1.it");
 
   m_gui = WWLoadGui("title-gui.txt");
   Assert(m_gui);

@@ -68,9 +68,11 @@ void GSMain::OnActive()
   Assert(splitLine);
   splitLine->SetVisible(TheScores::Instance()->GetNumPlayers() == 2);
 
-  GuiButton* pause = (GuiButton*)m_gui->GetElementByName("pause-button");
-  Assert(pause);
-  pause->SetCommand(OnPause);
+  m_pauseButton = (GuiButton*)m_gui->GetElementByName("pause-button");
+  Assert(m_pauseButton);
+  m_pauseButton->SetCommand(OnPause);
+  m_pauseButton->SetIsCancelButton(true);
+  m_pauseButton->SetShowIfFocus(true);
 }
 
 bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
@@ -136,17 +138,15 @@ void GSMain::Update()
   lurker->Update();
 
   // Disable pause button if Lurk msg showing
-  // Make member to avoid constant lookup TODO
-  GuiButton* pauseButton = (GuiButton*)m_gui->GetElementByName("pause-button");
 
   // Freeze if displaying tutorial text
   if (lurker->IsDisplayingMsg())
   {
-    pauseButton->SetIsEnabled(false);
+    m_pauseButton->SetVisible(false);
   }
   else
   {
-    pauseButton->SetIsEnabled(true);
+    m_pauseButton->SetVisible(true);
     if (m_exitReached)
     {
       m_exitTimer += TheTimer::Instance()->GetDt();

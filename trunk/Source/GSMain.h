@@ -5,6 +5,7 @@
 #include <Singleton.h>
 #include <EventListener.h>
 #include <GuiElement.h>
+#include <GuiButton.h>
 #include "GameState.h"
 #include "Viewport.h"
 
@@ -42,6 +43,7 @@ protected:
   bool m_exitReached;
   float m_exitTimer;
   PGuiElement m_gui; // GUI elements (extra on HUD)
+  RCPtr<GuiButton> m_pauseButton;
 };
 typedef Singleton<GSMain> TheGSMain;
 }
