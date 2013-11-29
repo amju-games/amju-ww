@@ -1,3 +1,4 @@
+#include <ROConfig.h>
 #include "Camera.h"
 #include "GameObjectFactory.h"
 #include "File.h"
@@ -15,9 +16,6 @@ GameObject* CreateCamera() { return new Camera; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Camera::NAME, &CreateCamera);
 
 const char* Camera::NAME = "camera";
-
-static const float Y_OFFSET = 100.0f;
-static const float Z_OFFSET = 150.0f;
 
 Viewport* GetViewport(int i)
 {
@@ -40,6 +38,9 @@ void CamZoomInOnPlayer::Update(Camera* cam)
 
 void CamFollowPlayer::Update(Camera* cam)
 {
+  static const float Y_OFFSET = ROConfig()->GetFloat("cam-y-offset"); 
+  static const float Z_OFFSET = ROConfig()->GetFloat("cam-z-offset"); 
+
   Assert(cam);
   Assert(cam->GetTarget());
 
@@ -48,10 +49,10 @@ void CamFollowPlayer::Update(Camera* cam)
   Vec3f vel = cam->GetVel();
   Vec3f acc = cam->GetAcc();
 
-  static const float CAM_SPEED = 400.0f; // TODO CONFIG
+  static const float CAM_SPEED = ROConfig()->GetFloat("cam-speed"); 
   static const float CAM_ACC = CAM_SPEED * 2.5f;
   // TODO Move in x if too far left/right
-  static const float TOO_FAR = 100.0f;
+  static const float TOO_FAR = ROConfig()->GetFloat("cam-too-far"); 
   if (v.x > (pos.x + TOO_FAR))
   {
     vel.x = CAM_SPEED;
@@ -64,7 +65,7 @@ void CamFollowPlayer::Update(Camera* cam)
   }
 
   // Prevent changing direction
-  static const float STOP = 10.0f; 
+  static const float STOP = ROConfig()->GetFloat("cam-stop"); 
   if (fabs(vel.x) < STOP)
   {
     vel.x = 0;
@@ -117,6 +118,9 @@ void Camera::RemoveFromGame()
 
 void Camera::Reset()
 {
+  static const float Y_OFFSET = ROConfig()->GetFloat("cam-y-offset"); 
+  static const float Z_OFFSET = ROConfig()->GetFloat("cam-z-offset"); 
+
   if (!m_target)
   {
 std::cout << "Camera obj ID: " << GetId() << " target ID: " << m_targetId << "\n";
