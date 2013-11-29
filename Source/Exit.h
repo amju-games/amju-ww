@@ -1,7 +1,7 @@
 #ifndef EXIT_H
 #define EXIT_H
 
-#include "OnFloor.h"
+#include "StaticFloor.h"
 #include "ObjMesh.h"
 #include "SceneNode.h"
 #include "Billboard.h"
@@ -24,7 +24,7 @@ public:
 };
 
 // TODO Should cast shadow on Floor, so should be an OnFloor ??
-class Exit : public OnFloor
+class Exit : public StaticFloor
 {
 public:
   static const char* NAME;
@@ -59,6 +59,7 @@ protected:
   float m_rotate;
 
   // Children of m_pSceneNode
+  SceneNode* m_cylinder;
   SceneNode* m_text;
   Billboard* m_billboard; // when activated
   ExitParticleEffect* m_effect; // when activated

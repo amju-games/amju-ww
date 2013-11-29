@@ -156,9 +156,11 @@ end
 exit
 200
 // Pos
-400, 250, 0
+400, 220, 0
+// Rot 
+0
 // Mesh
-star.obj
+transporter.obj
 // Next level
 2
 // Shadow
