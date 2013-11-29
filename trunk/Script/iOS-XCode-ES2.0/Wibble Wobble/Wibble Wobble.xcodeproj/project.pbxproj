@@ -16,6 +16,15 @@
 		691130061840C16000763639 /* GameMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69112FFF1840C16000763639 /* GameMode.cpp */; };
 		691130071840C16000763639 /* GSOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 691130011840C16000763639 /* GSOptions.cpp */; };
 		691130081840C16000763639 /* ModalDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 691130031840C16000763639 /* ModalDialog.cpp */; };
+		6911300F1843FFAA00763639 /* AITurnToFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6911300B1843FFAA00763639 /* AITurnToFace.cpp */; };
+		691130101843FFAA00763639 /* BloodFx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6911300D1843FFAA00763639 /* BloodFx.cpp */; };
+		6911301A184677D400763639 /* AIFly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69113011184677D300763639 /* AIFly.cpp */; };
+		6911301B184677D400763639 /* AIStunned.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69113013184677D400763639 /* AIStunned.cpp */; };
+		6911301C184677D400763639 /* Bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69113015184677D400763639 /* Bird.cpp */; };
+		6911301D184677D400763639 /* GSAttract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69113017184677D400763639 /* GSAttract.cpp */; };
+		6911302018476BFB00763639 /* WWLoadGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6911301E18476BFB00763639 /* WWLoadGui.cpp */; };
+		691130251848BCDC00763639 /* GSCopyAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 691130211848BCDB00763639 /* GSCopyAssets.cpp */; };
+		691130261848BCDC00763639 /* SaveDir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 691130231848BCDC00763639 /* SaveDir.cpp */; };
 		69FEF4481821306800D83578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4471821306800D83578 /* UIKit.framework */; };
 		69FEF44A1821306800D83578 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4491821306800D83578 /* Foundation.framework */; };
 		69FEF44C1821306800D83578 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF44B1821306800D83578 /* CoreGraphics.framework */; };
@@ -123,6 +132,25 @@
 		691130021840C16000763639 /* GSOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSOptions.h; path = ../../../../Source/GSOptions.h; sourceTree = "<group>"; };
 		691130031840C16000763639 /* ModalDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModalDialog.cpp; path = ../../../../Source/ModalDialog.cpp; sourceTree = "<group>"; };
 		691130041840C16000763639 /* ModalDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModalDialog.h; path = ../../../../Source/ModalDialog.h; sourceTree = "<group>"; };
+		6911300B1843FFAA00763639 /* AITurnToFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AITurnToFace.cpp; path = ../../../../Source/AITurnToFace.cpp; sourceTree = "<group>"; };
+		6911300C1843FFAA00763639 /* AITurnToFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AITurnToFace.h; path = ../../../../Source/AITurnToFace.h; sourceTree = "<group>"; };
+		6911300D1843FFAA00763639 /* BloodFx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BloodFx.cpp; path = ../../../../Source/BloodFx.cpp; sourceTree = "<group>"; };
+		6911300E1843FFAA00763639 /* BloodFx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BloodFx.h; path = ../../../../Source/BloodFx.h; sourceTree = "<group>"; };
+		69113011184677D300763639 /* AIFly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIFly.cpp; path = ../../../../Source/AIFly.cpp; sourceTree = "<group>"; };
+		69113012184677D300763639 /* AIFly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIFly.h; path = ../../../../Source/AIFly.h; sourceTree = "<group>"; };
+		69113013184677D400763639 /* AIStunned.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AIStunned.cpp; path = ../../../../Source/AIStunned.cpp; sourceTree = "<group>"; };
+		69113014184677D400763639 /* AIStunned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIStunned.h; path = ../../../../Source/AIStunned.h; sourceTree = "<group>"; };
+		69113015184677D400763639 /* Bird.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bird.cpp; path = ../../../../Source/Bird.cpp; sourceTree = "<group>"; };
+		69113016184677D400763639 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bird.h; path = ../../../../Source/Bird.h; sourceTree = "<group>"; };
+		69113017184677D400763639 /* GSAttract.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSAttract.cpp; path = ../../../../Source/GSAttract.cpp; sourceTree = "<group>"; };
+		69113018184677D400763639 /* GSAttract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSAttract.h; path = ../../../../Source/GSAttract.h; sourceTree = "<group>"; };
+		69113019184677D400763639 /* PlayerNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerNum.h; path = ../../../../Source/PlayerNum.h; sourceTree = "<group>"; };
+		6911301E18476BFB00763639 /* WWLoadGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWLoadGui.cpp; path = ../../../../Source/WWLoadGui.cpp; sourceTree = "<group>"; };
+		6911301F18476BFB00763639 /* WWLoadGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWLoadGui.h; path = ../../../../Source/WWLoadGui.h; sourceTree = "<group>"; };
+		691130211848BCDB00763639 /* GSCopyAssets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSCopyAssets.cpp; path = ../../../../Source/GSCopyAssets.cpp; sourceTree = "<group>"; };
+		691130221848BCDB00763639 /* GSCopyAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSCopyAssets.h; path = ../../../../Source/GSCopyAssets.h; sourceTree = "<group>"; };
+		691130231848BCDC00763639 /* SaveDir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SaveDir.cpp; path = ../../../../Source/SaveDir.cpp; sourceTree = "<group>"; };
+		691130241848BCDC00763639 /* SaveDir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveDir.h; path = ../../../../Source/SaveDir.h; sourceTree = "<group>"; };
 		69FEF4441821306800D83578 /* Wibble Wobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wibble Wobble.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FEF4471821306800D83578 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69FEF4491821306800D83578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -364,25 +392,6 @@
 		69FEF47D1821331C00D83578 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				69112FFD1840C16000763639 /* Describe.cpp */,
-				69112FFE1840C16000763639 /* Describe.h */,
-				69112FFF1840C16000763639 /* GameMode.cpp */,
-				691130001840C16000763639 /* GameMode.h */,
-				691130011840C16000763639 /* GSOptions.cpp */,
-				691130021840C16000763639 /* GSOptions.h */,
-				691130031840C16000763639 /* ModalDialog.cpp */,
-				691130041840C16000763639 /* ModalDialog.h */,
-				690D1BFA183503A500A92946 /* ShadowManager.cpp */,
-				690D1BFB183503A500A92946 /* ShadowManager.h */,
-				690D1BF7182FFED900A92946 /* GSPetBonus.cpp */,
-				690D1BF8182FFED900A92946 /* GSPetBonus.h */,
-				6908C069182E4E820067759D /* CollidePetPet.cpp */,
-				6908C06A182E4E820067759D /* PreventIntersection.cpp */,
-				6908C06B182E4E820067759D /* PreventIntersection.h */,
-				6908C06C182E4E820067759D /* Score.cpp */,
-				6908C06D182E4E820067759D /* Score.h */,
-				69FEF5501826EDCD00D83578 /* LurkMsg.cpp */,
-				69FEF5511826EDCD00D83578 /* LurkMsg.h */,
 				69FEF47E1821333C00D83578 /* AI.cpp */,
 				69FEF47F1821333C00D83578 /* AI.h */,
 				69FEF4801821333C00D83578 /* AIChasePet.cpp */,
@@ -391,17 +400,27 @@
 				69FEF4831821333C00D83578 /* AIEatPet.h */,
 				69FEF4841821333C00D83578 /* AIFalling.cpp */,
 				69FEF4851821333C00D83578 /* AIFalling.h */,
+				69113011184677D300763639 /* AIFly.cpp */,
+				69113012184677D300763639 /* AIFly.h */,
 				69FEF4861821333C00D83578 /* AIGoHighGround.cpp */,
 				69FEF4871821333C00D83578 /* AIGoHighGround.h */,
 				69FEF4881821333C00D83578 /* AIIdle.cpp */,
 				69FEF4891821333C00D83578 /* AIIdle.h */,
+				69113013184677D400763639 /* AIStunned.cpp */,
+				69113014184677D400763639 /* AIStunned.h */,
+				6911300B1843FFAA00763639 /* AITurnToFace.cpp */,
+				6911300C1843FFAA00763639 /* AITurnToFace.h */,
 				69FEF48A1821333C00D83578 /* AngleVec.h */,
 				69FEF48B1821333C00D83578 /* Animated.cpp */,
 				69FEF48C1821333C00D83578 /* Animated.h */,
+				69113015184677D400763639 /* Bird.cpp */,
+				69113016184677D400763639 /* Bird.h */,
 				69FEF48D1821333C00D83578 /* BlinkCharacter.cpp */,
 				69FEF48E1821333C00D83578 /* BlinkCharacter.h */,
 				69FEF48F1821333C00D83578 /* Block.cpp */,
 				69FEF4901821333C00D83578 /* Block.h */,
+				6911300D1843FFAA00763639 /* BloodFx.cpp */,
+				6911300E1843FFAA00763639 /* BloodFx.h */,
 				69FEF4911821333C00D83578 /* Bonus.cpp */,
 				69FEF4921821333C00D83578 /* Bonus.h */,
 				69FEF4931821333C00D83578 /* BonusParticleEffect.cpp */,
@@ -412,6 +431,7 @@
 				69FEF4981821333C00D83578 /* CollideDinoPet.cpp */,
 				69FEF4991821333C00D83578 /* CollideObjectFence.cpp */,
 				69FEF49A1821333C00D83578 /* CollideObjectFloor.cpp */,
+				6908C069182E4E820067759D /* CollidePetPet.cpp */,
 				69FEF49B1821333C00D83578 /* CollidePlayerBlock.cpp */,
 				69FEF49C1821333C00D83578 /* CollidePlayerBonus.cpp */,
 				69FEF49D1821333C00D83578 /* CollidePlayerDino.cpp */,
@@ -421,6 +441,8 @@
 				69FEF4A11821333C00D83578 /* CollidePlayerTrigger.cpp */,
 				69FEF4A21821333C00D83578 /* ContextMenu.cpp */,
 				69FEF4A31821333C00D83578 /* ContextMenu.h */,
+				69112FFD1840C16000763639 /* Describe.cpp */,
+				69112FFE1840C16000763639 /* Describe.h */,
 				69FEF4A41821333C00D83578 /* Dino.cpp */,
 				69FEF4A51821333C00D83578 /* Dino.h */,
 				69FEF4A61821333C00D83578 /* EditModeCamera.cpp */,
@@ -433,6 +455,12 @@
 				69FEF4AD1821333C00D83578 /* Fence.h */,
 				69FEF4AE1821333C00D83578 /* Floor.cpp */,
 				69FEF4AF1821333C00D83578 /* Floor.h */,
+				69112FFF1840C16000763639 /* GameMode.cpp */,
+				691130001840C16000763639 /* GameMode.h */,
+				69113017184677D400763639 /* GSAttract.cpp */,
+				69113018184677D400763639 /* GSAttract.h */,
+				691130211848BCDB00763639 /* GSCopyAssets.cpp */,
+				691130221848BCDB00763639 /* GSCopyAssets.h */,
 				69FEF4B01821333C00D83578 /* GSEditMenu.cpp */,
 				69FEF4B11821333C00D83578 /* GSEditMenu.h */,
 				69FEF4B21821333C00D83578 /* GSGameOver.cpp */,
@@ -449,8 +477,12 @@
 				69FEF4BD1821333C00D83578 /* GSMainEdit.h */,
 				69FEF4BE1821333C00D83578 /* GSMenu.cpp */,
 				69FEF4BF1821333C00D83578 /* GSMenu.h */,
+				691130011840C16000763639 /* GSOptions.cpp */,
+				691130021840C16000763639 /* GSOptions.h */,
 				69FEF4C01821333C00D83578 /* GSPaused.cpp */,
 				69FEF4C11821333C00D83578 /* GSPaused.h */,
+				690D1BF7182FFED900A92946 /* GSPetBonus.cpp */,
+				690D1BF8182FFED900A92946 /* GSPetBonus.h */,
 				69FEF4C21821333C00D83578 /* GSText.cpp */,
 				69FEF4C31821333C00D83578 /* GSText.h */,
 				69FEF4C41821333C00D83578 /* GSTitle.cpp */,
@@ -463,6 +495,10 @@
 				69FEF4CB1821333C00D83578 /* LoadMeshResource.h */,
 				69FEF4CC1821333C00D83578 /* LoadTextureResource.cpp */,
 				69FEF4CD1821333C00D83578 /* LoadTextureResource.h */,
+				69FEF5501826EDCD00D83578 /* LurkMsg.cpp */,
+				69FEF5511826EDCD00D83578 /* LurkMsg.h */,
+				691130031840C16000763639 /* ModalDialog.cpp */,
+				691130041840C16000763639 /* ModalDialog.h */,
 				69FEF4CE1821333C00D83578 /* MySceneGraph.cpp */,
 				69FEF4CF1821333C00D83578 /* MySceneGraph.h */,
 				69FEF4D01821333C00D83578 /* MyTextMaker.cpp */,
@@ -482,9 +518,18 @@
 				69FEF4DE1821333C00D83578 /* PlayerInfo.cpp */,
 				69FEF4DF1821333C00D83578 /* PlayerInfo.h */,
 				69FEF4E01821333C00D83578 /* PlayerInfoKey.h */,
+				69113019184677D400763639 /* PlayerNum.h */,
 				69FEF4E11821333C00D83578 /* PlayWav.cpp */,
 				69FEF4E21821333C00D83578 /* PlayWav.h */,
+				6908C06A182E4E820067759D /* PreventIntersection.cpp */,
+				6908C06B182E4E820067759D /* PreventIntersection.h */,
 				69FEF4E31821333C00D83578 /* Rotateable.h */,
+				691130231848BCDC00763639 /* SaveDir.cpp */,
+				691130241848BCDC00763639 /* SaveDir.h */,
+				6908C06C182E4E820067759D /* Score.cpp */,
+				6908C06D182E4E820067759D /* Score.h */,
+				690D1BFA183503A500A92946 /* ShadowManager.cpp */,
+				690D1BFB183503A500A92946 /* ShadowManager.h */,
 				69FEF4E41821333C00D83578 /* Skybox.cpp */,
 				69FEF4E51821333C00D83578 /* Skybox.h */,
 				69FEF4E61821333C00D83578 /* StartGame.cpp */,
@@ -502,6 +547,8 @@
 				69FEF4F41821333C00D83578 /* Viewport.h */,
 				69FEF4F51821333C00D83578 /* WWGameObject.cpp */,
 				69FEF4F61821333C00D83578 /* WWGameObject.h */,
+				6911301E18476BFB00763639 /* WWLoadGui.cpp */,
+				6911301F18476BFB00763639 /* WWLoadGui.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -652,6 +699,15 @@
 				691130061840C16000763639 /* GameMode.cpp in Sources */,
 				691130071840C16000763639 /* GSOptions.cpp in Sources */,
 				691130081840C16000763639 /* ModalDialog.cpp in Sources */,
+				6911300F1843FFAA00763639 /* AITurnToFace.cpp in Sources */,
+				691130101843FFAA00763639 /* BloodFx.cpp in Sources */,
+				6911301A184677D400763639 /* AIFly.cpp in Sources */,
+				6911301B184677D400763639 /* AIStunned.cpp in Sources */,
+				6911301C184677D400763639 /* Bird.cpp in Sources */,
+				6911301D184677D400763639 /* GSAttract.cpp in Sources */,
+				6911302018476BFB00763639 /* WWLoadGui.cpp in Sources */,
+				691130251848BCDC00763639 /* GSCopyAssets.cpp in Sources */,
+				691130261848BCDC00763639 /* SaveDir.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
