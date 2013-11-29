@@ -8,6 +8,8 @@
 #include "WWLoadGui.h"
 #include <AmjuFinal.h>
 
+//#define TEXT_TO_SPEECH
+
 namespace Amju
 {
 static const float LURK_MAX_TIME = 3.0f;
@@ -62,7 +64,9 @@ void LurkMsg::Update()
   switch (m_state)
   {
   case LURK_NEW:
-//    TheSoundManager::Instance()->PlayWav(ROConfig()->GetValue("sound-new-lurkmsg"));
+    static std::string soundfx = ROConfig()->GetValue("sound-new-lurkmsg");
+    TheSoundManager::Instance()->PlayWav(soundfx);
+
     m_state = LURK_SHOWING;
     m_rect->SetVisible(true);
     m_text->SetVisible(true);
@@ -89,7 +93,9 @@ void LurkMsg::Update()
       m_rect->SetLocalPos(m_showPos - 0.5f * Vec2f(EXTRA.x, -EXTRA.y));
       m_text->SetLocalPos(m_showPos);
 
+#ifdef TEXT_TO_SPEECH
       m_text->TextToSpeech();
+#endif
 
       m_state = LURK_SHOWN;
     }
@@ -98,7 +104,9 @@ void LurkMsg::Update()
       m_scale = 1.0f;
       m_state = LURK_SHOWN;
 
+#ifdef TEXT_TO_SPEECH
       m_text->TextToSpeech();
+#endif
     }
     else 
     {
@@ -383,6 +391,8 @@ void Lurker::Draw()
       pos.x = 0;
       m_gui->SetLocalPos(pos);
       m_gui->SetVisible(true);
+      m_ok->SetIsFocusButton(true);
+      m_ok->SetShowIfFocus(true);
 
       // Hide buttons with no command
 

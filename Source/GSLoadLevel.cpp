@@ -1,4 +1,5 @@
 #include <StringUtils.h>
+#include <GuiButton.h>
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "GSMainEdit.h"
@@ -64,8 +65,11 @@ void GSLoadLevel::OnActive()
   m_maxBarX = bar->GetSize().x;
 
   // Hide GO button until loaded
-  m_gui->GetElementByName("go-button")->SetVisible(false);
-  m_gui->GetElementByName("go-button")->SetCommand(new CommandGo);
+  GuiButton* go = (GuiButton*)m_gui->GetElementByName("go-button");
+  go->SetIsFocusButton(true);
+  go->SetShowIfFocus(true);
+  go->SetVisible(false);
+  go->SetCommand(new CommandGo);
 
   TheShadowManager::Instance()->Clear();
 
