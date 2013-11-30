@@ -6,20 +6,10 @@
 #include <EventListener.h>
 #include <GuiElement.h>
 #include <GuiButton.h>
-#include "GameState.h"
-#include "Viewport.h"
+#include <GameState.h>
 
 namespace Amju
 {
-class Floor;
-
-class GSMainEventListener : public EventListener
-{
-public:
-  // EventListener overrides
-  virtual bool OnKeyEvent(const KeyEvent&);
-};
-
 class GSMain : public GameState, public NonCopyable
 {
 protected:
@@ -30,10 +20,11 @@ public:
   static const char* NAME;
 
   // GameState overrides
-  virtual void Update();
-  virtual void Draw();
-  virtual void Draw2d();
-  virtual void OnActive();
+  virtual void Update() override;
+  virtual void Draw() override;
+  virtual void Draw2d() override;
+  virtual void OnActive() override;
+  virtual bool OnKeyEvent(const KeyEvent&) override;
 
   void ClearLevel();
 

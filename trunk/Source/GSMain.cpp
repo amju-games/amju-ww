@@ -27,6 +27,7 @@
 #include "LurkMsg.h"
 #include "Score.h"
 #include "ShadowManager.h"
+#include "Viewport.h"
 #include "WWLoadGui.h"
 
 #define EDIT_CAM
@@ -75,16 +76,9 @@ void GSMain::OnActive()
   m_pauseButton->SetShowIfFocus(true);
 }
 
-bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
+bool GSMain::OnKeyEvent(const KeyEvent& ke)
 {
-/*
-  if (ke.keyType == AMJU_KEY_ESC && !ke.keyDown && !m_exitReached)
-  {
-    TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
-    return true;
-  }
-*/
-
+#ifdef _DEBUG
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
     (ke.key == 'a' || ke.key == 'A'))
   {
@@ -92,6 +86,7 @@ bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
     std::cout << "Show AABBs: " << s_showAABBs << "\n";
     SceneNode::SetGlobalShowAABB(s_showAABBs);
   }
+#endif
 
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
     (ke.key == 'd' || ke.key == 'D'))

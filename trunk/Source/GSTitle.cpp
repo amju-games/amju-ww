@@ -8,6 +8,7 @@
 #include "ResourceManager.h"
 #include "SoundManager.h"
 #include "GSMenu.h"
+#include "GSChooseLevel.h"
 #include "StartGame.h"
 #include "WWLoadGui.h"
 
@@ -33,6 +34,7 @@ class CommandStart : public GuiCommand
     StartGame(1, AMJU_MAIN_GAME_MODE); 
 #else
     // If menu state, do this INSTEAD of the above
+    //TheGame::Instance()->SetCurrentState(TheGSChooseLevel::Instance());
     TheGame::Instance()->SetCurrentState(TheGSMenu::Instance());
 #endif
 
