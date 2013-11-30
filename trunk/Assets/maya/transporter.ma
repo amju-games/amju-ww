@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: transporter.ma
-//Last modified: Sat, Nov 30, 2013 10:35:56 AM
+//Last modified: Sat, Nov 30, 2013 02:57:55 PM
 //Codeset: UTF-8
 requires maya "2012";
 currentUnit -l centimeter -a degree -t film;
