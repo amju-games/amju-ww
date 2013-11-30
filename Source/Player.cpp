@@ -23,6 +23,7 @@
 #include "PlayWav.h"
 #include "Describe.h"
 #include "GameMode.h"
+#include "ShadowManager.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -91,11 +92,14 @@ const char* Player::GetTypeName() const
 
 void Player::ReachedExit()
 {
+  ShadowManager* shm = TheShadowManager::Instance();
+  shm->RemoveCaster(this);
   GetSceneNode()->SetVisible(false);
   for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* p = *it;
     p->GetSceneNode()->SetVisible(false);
+    shm->RemoveCaster(p);
   }
 }
 
