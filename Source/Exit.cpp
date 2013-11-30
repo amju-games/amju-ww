@@ -86,9 +86,7 @@ void Exit::Update()
   Matrix mat;
   mat.RotateY(m_rotate);
   mat.TranslateKeepRotation(m_pos);
-
-  // TODO Inner mesh
-//  m_pSceneNode->SetLocalTransform(mat);
+  m_cylinder->SetLocalTransform(mat);
 
   if (m_isExiting)
   {
@@ -114,25 +112,10 @@ bool Exit::Save(File* f)
   {
     return false;
   }
-//  if (!SaveMeshResource(f))
-//  {
-//    return false;
-//  }
+
   // Next level
   f->WriteComment("// Next level");
   f->WriteInteger(m_toLevel);
-
-/*
-  // TODO Hard coded values for billboard and particles
-  f->WriteComment("// Billboard");
-  f->Write("flare.png");
-  f->WriteFloat(100.0f);
-  f->WriteComment("// Particles");
-  f->Write("sparkle1.png"); // TODO
-  f->WriteFloat(20.0f); // TODO
-  f->WriteInteger(50); // TODO
-  f->WriteFloat(2.0f); // TODO
-*/
 
   return SaveShadow(f);
 }
@@ -144,12 +127,6 @@ bool Exit::Load(File* f)
     return false;
   }
   m_startPos = m_pos;
-
-//  if (!LoadMeshResource(f))
-//  {
-//    f->ReportError("Failed to load exit mesh");
-//    return false;
-//  }
 
   // Load next level
   if (!f->GetInteger(&m_toLevel))
@@ -175,8 +152,9 @@ bool Exit::CreateSceneNode()
 
   // Exit is translucent until activated
   // TODO So should be a Blended node !??
-  m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
+//  m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
 
+  // Rotating cylinder
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("transporter2.obj");
   if (!mesh)
   {
@@ -186,19 +164,23 @@ bool Exit::CreateSceneNode()
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
   sm->SetBlended(true);
+  sm->SetIsZWriteEnabled(false);
+  Matrix mat;
+  mat.Translate(m_pos);
+  sm->SetLocalTransform(mat);
   m_cylinder = sm;
-//  m_pSceneNode->AddChild(sm);
 
   TextMaker tm;
   m_text = tm.MakeText(ToString(m_toLevel));
 
   // Transformation for text
-  Matrix mat;
+  mat.SetIdentity();
   Matrix mat2;
   // Rotate the text 90 degs about x, so it's vertical
   mat.RotateX(DegToRad(90.0f));
   mat2.Scale(20, 20, 20);
   mat *= mat2;
+  // TODO Vary height?
   mat.TranslateKeepRotation(m_pos + Vec3f(0, 40.0f, 0));
   m_text->SetLocalTransform(mat);
   // Text is black
@@ -216,13 +198,9 @@ bool Exit::CreateSceneNode()
 //  m_pSceneNode->AddChild(m_billboard);
 
   m_effect = new ExitParticleEffect;
-//  if (!m_effect->Load(f))
-//  {
-//    f->ReportError("Failed to load exit effect");
-//    return false;
-//  }
   m_effect->SetVisible(true);
-//  m_pSceneNode->AddChild(m_effect);
+  // So particles rotate with cylinder
+  m_cylinder->AddChild(m_effect);
 
   // Set nice big AABB for text, billboard and effect, so they are not culled
   static const float X2 = 40.0f;
@@ -249,23 +227,25 @@ void Exit::OnPlayerCollision()
   TheLevelManager::Instance()->SetLevelId(m_toLevel);
 }
 
+ExitParticleEffect::ExitParticleEffect()
+{
+  Set("sparkle1.png", 2.0f, 50, 2.0, 0);
+}
+
 static float rnd(float f)
 {
   return ((float)rand() / (float)RAND_MAX * 2.0f * f - f);
 }
 
-static const float PARTICLE_SPEED = 300.0f;
+Vec3f ExitParticleEffect::NewPos() const
+{
+  float SIZE = 15.0f;
+  return Vec3f(rnd(SIZE), 0, rnd(SIZE));
+}
 
 Vec3f ExitParticleEffect::NewVel() const
 {
-  return Vec3f(
-    rnd(PARTICLE_SPEED), 
-    rnd(PARTICLE_SPEED),
-    rnd(PARTICLE_SPEED));
-
-  // Particles spin so we want to emit them in all directions
-  // z always towards us, or will be hidden by billboard
-  //(float)rand() / (float)RAND_MAX * PARTICLE_SPEED);
+  return Vec3f(0, 50.0f, 0);
 }
 
 float ExitParticleEffect::NewTime() const

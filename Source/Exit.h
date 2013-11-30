@@ -18,6 +18,8 @@ class SceneMesh;
 class ExitParticleEffect : public ParticleEffect2d
 {
 public:
+  ExitParticleEffect();
+  virtual Vec3f NewPos() const;
   virtual Vec3f NewVel() const;
   virtual float NewTime() const;
   virtual void HandleDeadParticle(Particle2d*);
