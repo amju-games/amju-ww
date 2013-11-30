@@ -26,7 +26,8 @@ void CamZoomInOnPlayer::Update(Camera* cam)
 {
   Assert(cam);
   Assert(cam->GetTarget());
-  const Vec3f& v = cam->GetTarget()->GetPos();
+  Vec3f v = cam->GetTarget()->GetPos();
+  v.y += 50.0f; // TODO TEMP TEST - zoom in on player, not her feet
   Vec3f pos = cam->GetPos();
   
   // Get closer to player
