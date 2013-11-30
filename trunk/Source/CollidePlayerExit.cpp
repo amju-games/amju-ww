@@ -27,7 +27,7 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   int id = player->GetPlayerId();
   Viewport* vp = TheViewportManager::Instance()->GetViewport(id);
   Camera* cam = vp->GetCamera();
-  cam->SetTarget(player);
+  cam->SetTarget(exit);
   cam->SetBehaviour(new CamZoomInOnPlayer);
 
   player->ReachedExit();
