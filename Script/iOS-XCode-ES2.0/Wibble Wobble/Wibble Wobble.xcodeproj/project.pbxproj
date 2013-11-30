@@ -103,7 +103,6 @@
 		69FEF5351821333C00D83578 /* TutorialTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4F11821333C00D83578 /* TutorialTrigger.cpp */; };
 		69FEF5361821333C00D83578 /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4F31821333C00D83578 /* Viewport.cpp */; };
 		69FEF5371821333C00D83578 /* WWGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FEF4F51821333C00D83578 /* WWGameObject.cpp */; };
-		69FEF5391821355200D83578 /* libAmjulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF5381821355200D83578 /* libAmjulib.a */; };
 		69FEF53B182135A300D83578 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF53A182135A300D83578 /* CFNetwork.framework */; };
 		69FEF53D182135B800D83578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF53C182135B800D83578 /* SystemConfiguration.framework */; };
 		69FEF53F182135C400D83578 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF53E182135C400D83578 /* AudioToolbox.framework */; };
@@ -311,7 +310,6 @@
 				69FEF53F182135C400D83578 /* AudioToolbox.framework in Frameworks */,
 				69FEF53D182135B800D83578 /* SystemConfiguration.framework in Frameworks */,
 				69FEF53B182135A300D83578 /* CFNetwork.framework in Frameworks */,
-				69FEF5391821355200D83578 /* libAmjulib.a in Frameworks */,
 				69FEF4481821306800D83578 /* UIKit.framework in Frameworks */,
 				69FEF44A1821306800D83578 /* Foundation.framework in Frameworks */,
 				69FEF44C1821306800D83578 /* CoreGraphics.framework in Frameworks */,
@@ -817,6 +815,7 @@
 					"\"$(SRCROOT)/../../../../amjulib/Source/SoundBass/Bass2.4/iPhone/mp3-free\"",
 					"\"$(SRCROOT)/../../../../amjulib/Build/iOSAmjulibXCode/Amjulib/build/Debug-iphoneos\"",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "../../../../amjulib/Build/ioS/build/Debug/Debug-iphoneos/libAmjulib.a";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "/Users/jay/projects/amju-ww/Build/iOS-ES2/";
 				WRAPPER_EXTENSION = app;
