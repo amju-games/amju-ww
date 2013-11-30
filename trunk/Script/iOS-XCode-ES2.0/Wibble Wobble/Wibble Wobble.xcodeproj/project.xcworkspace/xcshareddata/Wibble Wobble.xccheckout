@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ABAE49F6-90F1-4D47-9853-44173304CD9F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Wibble Wobble</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>809E4B94-5159-4DFE-84B8-64759ECD6228</key>
+		<string>https://amju-ww.googlecode.com/svn/trunk</string>
+		<key>CD878B98-7FEC-4654-A8E3-0EBD350DE9FB</key>
+		<string>https://amjulib.googlecode.com/svn/trunk</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Script/iOS-XCode-ES2.0/Wibble Wobble/Wibble Wobble.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>809E4B94-5159-4DFE-84B8-64759ECD6228</key>
+		<string>../../../../..</string>
+		<key>CD878B98-7FEC-4654-A8E3-0EBD350DE9FB</key>
+		<string>../../../../../../amjulib</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>809E4B94-5159-4DFE-84B8-64759ECD6228</key>
+		<string>https://amju-ww.googlecode.com/svn</string>
+		<key>CD878B98-7FEC-4654-A8E3-0EBD350DE9FB</key>
+		<string>https://amjulib.googlecode.com/svn</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://amju-ww.googlecode.com/svn/trunk/Script/iOS-XCode-ES2.0/Wibble%20Wobble/Wibble%20Wobble.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>809E4B94-5159-4DFE-84B8-64759ECD6228</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>809E4B94-5159-4DFE-84B8-64759ECD6228</string>
+			<key>IDESourceControlWCCName</key>
+			<string>amju-ww</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CD878B98-7FEC-4654-A8E3-0EBD350DE9FB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>amjulib</string>
+		</dict>
+	</array>
+</dict>
+</plist>
