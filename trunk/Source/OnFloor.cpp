@@ -104,35 +104,10 @@ void OnFloor::Reset()
 
 void OnFloor::FindFloor()
 {
-/*
-  if (m_shadow)
-  {
-    m_shadow->ClearCollisionMeshes();
-  }
-*/
-
   for (unsigned int i = 0; i < s_floors.size(); i++)
   {
     // In general area ? - i.e. do our bounding boxes intersect ?
     Floor* f = s_floors[i];
-/*
-    const AABB& floorAABB = f->GetAABB();
-
-    AABB aabb = *GetAABB();
-    // Extend downwards to check for casting a shadow
-    aabb.SetMin(1, aabb.GetMin(1) - 100.0f);
-    // Do we cast a shadow on this floor
-    if (m_shadow && aabb.Intersects(floorAABB))
-    {
-      m_shadow->SetVisible(!m_isDead);
-      m_shadow->AddCollisionMesh(f->GetCollisionMesh());
-    }
-
-    if (!GetAABB()->Intersects(floorAABB))
-    {
-      continue;
-    }
-*/
 
     // Touching surface ?
     float y = 0;
@@ -255,9 +230,6 @@ void OnFloor::Update()
   {
     return;
   }
-
-  // Set shadow AABB to same as Scene Node so we don't cull it by mistake
-//  m_shadow->SetAABB(*m_pSceneNode->GetAABB());
 
   UpdatePhysics();
 }
