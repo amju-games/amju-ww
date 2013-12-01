@@ -6,6 +6,7 @@
 #include <GameObjectFactory.h>
 #include <LoadVec3.h>
 #include <StringUtils.h>
+#include <Directory.h>
 #include "WWGameObject.h"
 #include "Player.h"
 #include "Score.h"
@@ -127,7 +128,17 @@ bool LevelManager::Open(const std::string& filename)
   File::Impl impl = File::STD;
   if (levelFilename.empty())
   {
-    levelFilename = GetSaveDir() + "levels/level-1.txt"; // TODO TEMP TEST
+    levelFilename = GetSaveDir() + "levels/level-" +
+      ToString(m_levelId) + ".txt"; 
+    std::cout << "Level file: " << levelFilename << "\n";
+
+    if (!FileExists(levelFilename))
+    {
+      std::cout << "Oh no! Level file does not exist! Using level 1...\n";
+      levelFilename = GetSaveDir() + "levels/level-1.txt";
+    }
+
+    // Never glue file -- level files are extracted to OS dir
 //    impl = File::GLUE;
     useRoot = false;
   }
