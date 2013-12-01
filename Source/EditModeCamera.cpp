@@ -17,7 +17,10 @@ EditModeCameraController::~EditModeCameraController()
 EditModeCamera::EditModeCamera()
 {
   m_controllable = true;
-  m_controller = new EditModeCameraController(this);
+  if (!m_controller)
+  {
+    m_controller = new EditModeCameraController(this);
+  }
   TheEventPoller::Instance()->AddListener(m_controller, 100); // low pri 
 
   // TODO TEMP TEST

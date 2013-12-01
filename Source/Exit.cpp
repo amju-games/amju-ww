@@ -1,19 +1,20 @@
+#include <ConfigFile.h>
+#include <StringUtils.h>
+#include <DegRad.h>
+#include <Game.h>
+#include <Timer.h>
+#include <Colour.h>
 #include "Exit.h"
-#include "Game.h"
 #include "GSLevelComplete.h"
 #include "LoadMeshResource.h"
 #include "GameObjectFactory.h"
 #include "LoadVec3.h"
-#include "Timer.h"
-#include "DegRad.h"
-#include "Colour.h"
 #include "GSMain.h"
 #include "TextMaker.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
-#include <StringUtils.h>
-#include <DegRad.h>
 #include "LevelManager.h"
+#include "GameConsts.h"
 
 namespace Amju
 {
@@ -227,6 +228,9 @@ void Exit::OnPlayerCollision()
 
   // Do this if we go directly to GSLevelCompleted state, with no time delay
   TheLevelManager::Instance()->SetLevelId(m_toLevel);
+
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+  gcf->SetInt(CONTINUE_LEVEL_KEY, m_toLevel);
 }
 
 ExitParticleEffect::ExitParticleEffect()
