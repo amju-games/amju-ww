@@ -16,24 +16,15 @@ my_message_box
 
 // Children
 // Num children
-5
+4
 
 //   .. each child
 
-// Title/heading
-gui-text
-title-text
-0.05, -0.1
-1.45, 0.1
-// Text
-Title
-// Font name, size
-arial, 1.0, left, multi, bgcol=ffffff, fgcol=000000
 
 // The message 
 gui-text
 message-text
-0.05, -0.3
+0.05, -0.1
 1.45, 0.4
 // Text
 Message
