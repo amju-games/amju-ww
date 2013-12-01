@@ -4,6 +4,7 @@
 #include <Screen.h>
 #include <Game.h>
 #include <EventPoller.h>
+#include <Billboard.h>
 #include "GSText.h"
 #include "CursorManager.h"
 #include "SceneMesh.h"
@@ -146,6 +147,46 @@ void GSText::CreateText(const std::string& text)
   
 
   GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
+
+  SceneNode* stars = new SceneNode;
+  parent->AddChild(stars);
+  m.RotateX(DegToRad(-60.0f));
+  stars->MultLocalTransform(m);
+ 
+  // Add stars
+  ResourceManager* rm = TheResourceManager::Instance();
+  ObjMesh* mesh = (ObjMesh*)rm->GetRes("star.obj");
+  Matrix mat2;
+  mat2.Scale(0.01f, 0.01f, 0.01f);
+  const float S = 10.0f;
+
+  int numStars = 100;
+  for (int i = 0; i < numStars; i++)
+  {
+    SceneMesh* sm = new SceneMesh;
+    sm->SetMesh(mesh);
+    Matrix mat;
+    float r = (float)i * 20.0f;
+    float angle = (float)i * 0.6f;
+    Vec3f tr(r * cos(angle), r * sin(angle), -80);
+    mat.Translate(tr);
+    mat *= mat2;
+    sm->SetLocalTransform(mat);
+    AABB aabb(-S, S, -S, S, -S, S); 
+    aabb.Translate(tr);
+    sm->SetAABB(aabb);
+/*
+  Billboard* bb = new Billboard;
+  Texture* tex = (Texture*)rm->GetRes("flare.png");
+  Assert(tex);
+  bb->SetTexture(tex);
+  bb->SetSize(1.0f);
+  sm->AddChild(bb);
+  bb->SetAABB(aabb);
+*/
+
+    stars->AddChild(sm);
+  }
 }
 
 bool GSText::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
