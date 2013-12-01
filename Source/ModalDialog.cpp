@@ -268,10 +268,6 @@ void MessageBox::SetDataToGui()
   GuiText* t = (GuiText*)m_gui->GetElementByName("message-text");
   Assert(t);
   t->SetText(m_message);
-
-  t = (GuiText*)m_gui->GetElementByName("title-text");
-  Assert(t);
-  t->SetText(m_title);
 }
 
 void MessageBox::SetMessage(const std::string& message)

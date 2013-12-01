@@ -42,7 +42,7 @@ public:
   // Set AABB around m_pos with extents xsize, ysize, zsize
   void RecalcAABB(); 
 
-  virtual void RotateY(float angleDegs) {}
+  virtual void RotateY(float angleDegs);
 
 protected:
   // Create appropriate scene node type, load mesh and texture, etc.

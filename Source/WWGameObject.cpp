@@ -1,5 +1,6 @@
 #include <File.h>
 #include <Game.h>
+#include <DegRad.h>
 #include "WWGameObject.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
@@ -80,6 +81,18 @@ void WWGameObject::Move(const Vec3f& move)
   Matrix mat;
   mat.Translate(move);
   sn->MultLocalTransform(mat);
+}
+
+void WWGameObject::RotateY(float angleDegs)
+{
+  float rads = DegToRad(angleDegs);
+  Matrix mat;
+  mat.RotateY(rads);
+  m_aabb.Transform(mat);
+  SceneNode* sn = GetSceneNode();
+  Assert(sn);
+  sn->MultLocalTransform(mat);
+  sn->SetAABB(m_aabb);
 }
 
 bool WWGameObject::CreateSceneNode()
