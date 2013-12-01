@@ -25,7 +25,6 @@ public:
   virtual void Update() override;
   virtual void Reset() override;
   virtual bool CreateSceneNode() override;
-  virtual void Move(const Vec3f& deltaPos) override;
 
 public:
   float m_yRot;
