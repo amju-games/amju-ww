@@ -18,13 +18,14 @@ public:
   Fence();
 
   // GameObject overrides
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
-  virtual bool Load(File*);
-  virtual bool Save(File*);
-  virtual void Update();
-  virtual void Reset();
+  virtual bool Load(File*) override;
+  virtual bool Save(File*) override;
+  virtual void Update() override;
+  virtual void Reset() override;
   virtual bool CreateSceneNode() override;
+  virtual void Move(const Vec3f& deltaPos) override;
 
 public:
   float m_yRot;
