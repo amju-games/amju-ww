@@ -74,10 +74,12 @@ void WWGameObject::Move(const Vec3f& move)
   p += move;
   m_startPos = p;
   SetPos(p);
-  RecalcAABB();
+
+  m_aabb.Translate(move);
 
   SceneNode* sn = GetSceneNode();
   Assert(sn);
+  sn->SetAABB(m_aabb);
   Matrix mat;
   mat.Translate(move);
   sn->MultLocalTransform(mat);
