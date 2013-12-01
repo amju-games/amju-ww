@@ -112,6 +112,7 @@ static void OnSaveLevel()
   s_fileDialog.SetGuiFilename("gui-file-save-dialog.txt");
   s_fileDialog.SetFinishCallback(OnSaveDialogClosed);
   s_fileDialog.SetPath(s_lastPath);
+  s_fileDialog.SetTitle("Save level");
   DoModalDialog(&s_fileDialog);
 }
 
@@ -141,8 +142,8 @@ static void OnQuitEditMode()
   if (s_unsaved)
   {
     s_messageBox.SetFinishCallback(OnQuitSaveChanges);
-    s_messageBox.SetMessage("Unsaved changes! Do you want to save?",
-      "Quit edit mode");
+    s_messageBox.SetMessage("Unsaved changes! Do you want to save?");
+    s_messageBox.SetTitle("Quit edit mode");
     DoModalDialog(&s_messageBox); 
   }
   else 
@@ -178,8 +179,8 @@ static void OnNewLevel()
   if (s_unsaved)
   {
     s_messageBox.SetFinishCallback(OnNewSaveChanges);
-    s_messageBox.SetMessage("Unsaved changes! Do you want to save?",
-      "New level");
+    s_messageBox.SetMessage("Unsaved changes! Do you want to save?");
+    s_messageBox.SetTitle("New level");
     DoModalDialog(&s_messageBox); 
   }
 
@@ -223,6 +224,7 @@ static void DoLoadDialog()
   s_fileDialog.SetGuiFilename("gui-file-load-dialog.txt");
   s_fileDialog.SetFinishCallback(OnLoadDialogClosed);
   s_fileDialog.SetPath(s_lastPath);
+  s_fileDialog.SetTitle("Load level");
   DoModalDialog(&s_fileDialog);
 }
 
@@ -230,16 +232,19 @@ static void OnLoadSaveChanges(Dialog* dlg)
 {
   if (dlg->GetResult() == AMJU_OK)
   {
+    std::cout << "Load->Save OK clicked.\n";
     // Yes/OK - save
     OnSaveLevel();
   }
   else if (dlg->GetResult() == AMJU_NO)
   {
+    std::cout << "Load->Save NO clicked.\n";
     // Don't save, go to Load dialog
     DoLoadDialog();
   }
   else
   {
+    std::cout << "Load->Save CANCEL clicked.\n";
     // Cancel: do nothing
   }
 }
@@ -250,8 +255,8 @@ static void OnLoadLevel()
   if (s_unsaved)
   {
     s_messageBox.SetFinishCallback(OnLoadSaveChanges);
-    s_messageBox.SetMessage("Unsaved changes! Do you want to save?",
-      "Load level");
+    s_messageBox.SetMessage("Unsaved changes! Do you want to save?");
+    s_messageBox.SetTitle("Load level");
     DoModalDialog(&s_messageBox); 
   }
   else

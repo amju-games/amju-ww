@@ -54,6 +54,11 @@ Dialog::Dialog()
   m_result = (int)AMJU_RESULT_NOT_SET;
 }
  
+void Dialog::SetTitle(const std::string& title)
+{
+  m_title = title;
+}
+
 void Dialog::SetGuiFilename(const std::string& filename)
 {
   m_guiFilename = filename;
@@ -119,6 +124,15 @@ std::cout << "This dialog: " << m_guiFilename << " is activating...\n";
 
   // Set GUI text boxes etc. from member variables
   SetDataToGui();
+
+  if (!m_title.empty())
+  {
+    GuiDialog* dlg = dynamic_cast<GuiDialog*>(m_gui.GetPtr());
+    if (dlg)
+    {
+      dlg->SetTitle(m_title);
+    }
+  }
 
   // Set OK and cancel buttons
   GuiButton* ok = (GuiButton*)m_gui->GetElementByName("ok-button");
@@ -260,10 +274,9 @@ void MessageBox::SetDataToGui()
   t->SetText(m_title);
 }
 
-void MessageBox::SetMessage(const std::string& message, const std::string& title)
+void MessageBox::SetMessage(const std::string& message)
 {
   m_message = message;
-  m_title = title;
 }
 
 FileDialog::FileDialog()

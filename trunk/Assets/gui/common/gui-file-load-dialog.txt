@@ -15,7 +15,7 @@ my_file_dialog
 
 // Children
 // Num children
-5
+4
 
 //   .. each child
 
@@ -24,7 +24,7 @@ gui-file-list-box
 fd-file-list-box
 // Pos, size
 0.05, -0.25
-0.7, 0.7
+1.45, 0.7
 
 // Text box showing path + Filename
 gui-text-edit
@@ -37,12 +37,12 @@ path
 arial, 1.0, left
 
 
-gui-obj-view
-fd-obj-view
-0.8, -0.25
-0.7, 0.7
-// obj file name
-$$$empty
+//gui-obj-view
+//fd-obj-view
+//0.8, -0.25
+//0.7, 0.7
+//// obj file name
+//$$$empty
 
 gui-button
 ok-button
