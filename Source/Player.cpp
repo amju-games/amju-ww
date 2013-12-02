@@ -553,7 +553,7 @@ void Player::Update()
   if (IsFalling())
   {
     // TODO fall/jump should be different
-    SetAnim("jump");
+    //SetAnim("fall");
   }
   else if (speed > RUN_SPEED)
   {

@@ -160,7 +160,7 @@ void GSText::CreateText(const std::string& text)
   m.RotateX(DegToRad(10.0f));
   node->MultLocalTransform(m);
   // TODO Should combine ?
-//  node->CombineTransform();
+//  node->CombineTransform(); - hmm, this must be being called elsewhere
   node->RecursivelyTransformAABB(m);
 
   SceneNode* parent = new SceneNode;
