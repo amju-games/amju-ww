@@ -4,6 +4,7 @@
 #include "OnFloorCharacter.h"
 #include "BlinkCharacter.h"
 #include "Floor.h"
+#include "Describe.h"
 
 namespace Amju
 {
@@ -11,6 +12,7 @@ OnFloorCharacter::OnFloorCharacter()
 {
   m_dir = 0;
   m_dirCurrent = 0;
+  m_anim = -1;
 }
 
 bool OnFloorCharacter::CreateSceneNode()
@@ -51,8 +53,15 @@ float OnFloorCharacter::GetDir() const
 
 void OnFloorCharacter::SetAnim(const std::string& animName)
 {
-  Assert(dynamic_cast<Animated*>(GetSceneNode()));
-  ((Animated*)GetSceneNode())->SetAnim(animName);
+  Animated* a = dynamic_cast<Animated*>(GetSceneNode());
+  Assert(a);
+  int anim = a->GetMd2()->GetAnimationFromName(animName);
+  if (anim != m_anim)
+  {
+    std::cout << Describe(this) << " anim: " << animName << "\n";
+  }
+  m_anim = anim;
+  a->SetAnim(animName);
 }
 
 void OnFloorCharacter::StopRotating()
