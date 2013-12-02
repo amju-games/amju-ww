@@ -1,4 +1,5 @@
 #include <DegRad.h>
+#include <AmjuRand.h>
 #include <Timer.h>
 #include <Localise.h>
 #include <Screen.h>
@@ -15,6 +16,36 @@
 
 namespace Amju
 {
+class StarMesh : public SceneMesh
+{
+public:
+  StarMesh()
+  {
+    m_rot = 0;
+    m_rotVel = Rnd(-2.0f, 2.0f); // rad/sec
+  }
+
+  virtual void BeforeDraw() 
+  {
+    static Timer* t = TheTimer::Instance();
+    float dt = t->GetDt();
+ 
+    Matrix mat;
+    mat.RotateZ(m_rotVel * dt);
+    m_local = mat * m_local;
+
+    m_rot += m_rotVel * dt;
+  }
+
+  virtual void AfterDraw() 
+  {    
+  }
+
+private:
+  float m_rot;
+  float m_rotVel;
+};
+
 GSText::GSText()
 {
   m_timer = 0;
@@ -43,13 +74,14 @@ void GSText::Draw()
   // TODO CONFIG!!
   a += TheTimer::Instance()->GetDt(); 
   //AmjuGL::LookAt(cos(a), 10.0f + sin(a), 6.0f,   0, 0, 0.0f,  0, 1.0f, 0);
-  m_camera->SetEyePos(Vec3f(0, 10, 6)); //Vec3f(cos(a),10.0f + sin(a), 6.0f)); 
+  m_camera->SetEyePos(Vec3f(0, 10, 6)); //Vec3f(cos(a), 10.0f + sin(a), 6.0f)); 
 
   Matrix mat;
   mat.RotateZ(a * 0.1f); // TODO TEMP TEST
   Matrix m2;
   m2.RotateX(DegToRad(-60.0f));
   m_stars->SetLocalTransform(mat * m2);
+  m_stars->CombineTransform();
 
   // TODO Lighting node
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
@@ -78,14 +110,14 @@ void GSText::OnActive()
   GameState::OnActive();
   m_timer = 0;
 
-  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
+  AmjuGL::SetClearColour(Colour(0, 0, 1, 1.0f));
 }
 
 void GSText::OnDeactive()
 {
   GameState::OnDeactive();
 
-  // DON'T unload scene
+  // DON'T unload scene - why??
   //TheSceneGraph::Instance()->Clear();
 
   // remove listeners
@@ -128,18 +160,12 @@ void GSText::CreateText(const std::string& text)
   m.RotateX(DegToRad(10.0f));
   node->MultLocalTransform(m);
   // TODO Should combine ?
-  node->CombineTransform();
+//  node->CombineTransform();
   node->RecursivelyTransformAABB(m);
 
   SceneNode* parent = new SceneNode;
   parent->AddChild(node);
   parent->UpdateBoundingVol();
-
-  
-  // Reflection - TODO
-//  Reflect* reflect = new Reflect;
-//  parent->AddChild(reflect);
-//  reflect->AddChild(node);
   
   SceneGraph* g = GetTextSceneGraph();
   g->Clear();
@@ -151,27 +177,28 @@ void GSText::CreateText(const std::string& text)
   // TODO shouldn't this apply to all children??
   m_stars->SetIsZWriteEnabled(false);
   parent->AddChild(m_stars);
-  m.RotateX(DegToRad(-60.0f));
-  m_stars->MultLocalTransform(m);
  
   // Add stars
   ResourceManager* rm = TheResourceManager::Instance();
   ObjMesh* mesh = (ObjMesh*)rm->GetRes("star.obj");
   Texture* tex = (Texture*)rm->GetRes("flare.png");
-  Matrix mat2;
-  mat2.Scale(0.01f, 0.01f, 0.01f);
   const float S = 1000.0f;
 
   int numStars = 100;
-  for (int i = 0; i < numStars; i++)
+  for (int i = 10; i < numStars + 10; i++)
   {
-    SceneMesh* sm = new SceneMesh;
+    SceneMesh* sm = new StarMesh;
     sm->SetMesh(mesh);
     Matrix mat;
     float r = (float)i * 20.0f;
     float angle = (float)i * 0.6f;
-    Vec3f tr(r * cos(angle), r * sin(angle), -80);
+    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-80, 80) - 400);
     mat.Translate(tr);
+
+    float sc = Rnd(0.005f, 0.015f);
+    Matrix mat2;
+    mat2.Scale(sc, sc, sc);
+
     mat *= mat2;
     sm->SetLocalTransform(mat);
     AABB aabb(-S, S, -S, S, -S, S); 
@@ -181,10 +208,10 @@ void GSText::CreateText(const std::string& text)
     Billboard* bb = new Billboard;
     Assert(tex);
     bb->SetTexture(tex);
-    bb->SetSize(1.0f);
-    sm->AddChild(bb);
+    bb->SetSize(Rnd(60.0f, 100.0f));
     bb->SetAABB(aabb);
 
+    sm->AddChild(bb);
     m_stars->AddChild(sm);
   }
 }
