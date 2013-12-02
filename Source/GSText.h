@@ -1,24 +1,13 @@
 #ifndef GAME_STATE_TEXT_H
 #define GAME_STATE_TEXT_H
 
-#include "GameState.h"
-#include "GuiElement.h"
-#include "SceneNode.h"
+#include <GameState.h>
+#include <GuiElement.h>
+#include <SceneNodeCamera.h>
 
 namespace Amju
 {
 class GSText;
-
-// Listen for events - especially balance events to calibrate
-class TextStateListener : public EventListener
-{
-public:
-  TextStateListener(GSText* textState) : m_textState(textState) {}
-  virtual bool OnBalanceBoardEvent(const BalanceBoardEvent&);
-
-protected:
-  GSText* m_textState;
-};
 
 class GSText : public GameState
 {
@@ -45,7 +34,8 @@ protected:
   // Time in current state
   float m_timer;
 
-  RCPtr<TextStateListener> m_listener;
+  SceneNode* m_stars;
+  SceneNodeCamera* m_camera;
 };
 }
 

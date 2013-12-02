@@ -15,11 +15,6 @@
 
 namespace Amju
 {
-bool TextStateListener::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
-{
-  return m_textState->OnBalanceBoardEvent(bbe);
-}
-
 GSText::GSText()
 {
   m_timer = 0;
@@ -47,7 +42,14 @@ void GSText::Draw()
   static float a = 0; 
   // TODO CONFIG!!
   a += TheTimer::Instance()->GetDt(); 
-  AmjuGL::LookAt(cos(a), 10.0f + sin(a), 6.0f,   0, 0, 0.0f,  0, 1.0f, 0);
+  //AmjuGL::LookAt(cos(a), 10.0f + sin(a), 6.0f,   0, 0, 0.0f,  0, 1.0f, 0);
+  m_camera->SetEyePos(Vec3f(0, 10, 6)); //Vec3f(cos(a),10.0f + sin(a), 6.0f)); 
+
+  Matrix mat;
+  mat.RotateZ(a * 0.1f); // TODO TEMP TEST
+  Matrix m2;
+  m2.RotateX(DegToRad(-60.0f));
+  m_stars->SetLocalTransform(mat * m2);
 
   // TODO Lighting node
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
@@ -77,9 +79,6 @@ void GSText::OnActive()
   m_timer = 0;
 
   AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
-
-  m_listener = new TextStateListener(this);
-  TheEventPoller::Instance()->AddListener(m_listener);
 }
 
 void GSText::OnDeactive()
@@ -90,9 +89,6 @@ void GSText::OnDeactive()
   //TheSceneGraph::Instance()->Clear();
 
   // remove listeners
-  TheEventPoller::Instance()->RemoveListener(m_listener);
-  m_listener = 0;
-
   if (m_gui)
   {
     TheEventPoller::Instance()->RemoveListener(m_gui);
@@ -145,20 +141,26 @@ void GSText::CreateText(const std::string& text)
 //  parent->AddChild(reflect);
 //  reflect->AddChild(node);
   
+  SceneGraph* g = GetTextSceneGraph();
+  g->Clear();
+  m_camera = new SceneNodeCamera;
+  g->SetCamera(m_camera);
+  g->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 
-  GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
-
-  SceneNode* stars = new SceneNode;
-  parent->AddChild(stars);
+  m_stars = new SceneNode;
+  // TODO shouldn't this apply to all children??
+  m_stars->SetIsZWriteEnabled(false);
+  parent->AddChild(m_stars);
   m.RotateX(DegToRad(-60.0f));
-  stars->MultLocalTransform(m);
+  m_stars->MultLocalTransform(m);
  
   // Add stars
   ResourceManager* rm = TheResourceManager::Instance();
   ObjMesh* mesh = (ObjMesh*)rm->GetRes("star.obj");
+  Texture* tex = (Texture*)rm->GetRes("flare.png");
   Matrix mat2;
   mat2.Scale(0.01f, 0.01f, 0.01f);
-  const float S = 10.0f;
+  const float S = 1000.0f;
 
   int numStars = 100;
   for (int i = 0; i < numStars; i++)
@@ -175,17 +177,15 @@ void GSText::CreateText(const std::string& text)
     AABB aabb(-S, S, -S, S, -S, S); 
     aabb.Translate(tr);
     sm->SetAABB(aabb);
-/*
-  Billboard* bb = new Billboard;
-  Texture* tex = (Texture*)rm->GetRes("flare.png");
-  Assert(tex);
-  bb->SetTexture(tex);
-  bb->SetSize(1.0f);
-  sm->AddChild(bb);
-  bb->SetAABB(aabb);
-*/
 
-    stars->AddChild(sm);
+    Billboard* bb = new Billboard;
+    Assert(tex);
+    bb->SetTexture(tex);
+    bb->SetSize(1.0f);
+    sm->AddChild(bb);
+    bb->SetAABB(aabb);
+
+    m_stars->AddChild(sm);
   }
 }
 
