@@ -9,6 +9,8 @@ title-comp
 // Num children
 2
 
+elastic
+0, -4.0
 // Button 1 - start
 // element type
 gui-button
