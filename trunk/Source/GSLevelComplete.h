@@ -5,10 +5,11 @@
 #include <Singleton.h>
 #include <GuiImage.h>
 #include "Player.h"
+#include "GSText.h" // ??
 
 namespace Amju
 {
-class GSLevelComplete : public GameState, public NonCopyable
+class GSLevelComplete : public GSText
 {
 private:
   GSLevelComplete();

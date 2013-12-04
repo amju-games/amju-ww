@@ -1,4 +1,5 @@
 #include <ROConfig.h>
+#include <AmjuRand.h>
 #include "Camera.h"
 #include "GameObjectFactory.h"
 #include "File.h"
@@ -54,12 +55,14 @@ void CamFollowPlayer::Update(Camera* cam)
   static const float CAM_ACC = CAM_SPEED * 2.5f;
   // TODO Move in x if too far left/right
   static const float TOO_FAR = ROConfig()->GetFloat("cam-too-far"); 
-  if (v.x > (pos.x + TOO_FAR))
+
+  // Don't change dir if camera already moving
+  if ((v.x > (pos.x + TOO_FAR)) && vel.x == 0)
   {
     vel.x = CAM_SPEED;
     acc.x = -CAM_ACC;
   }
-  else if (v.x < (pos.x - TOO_FAR))
+  else if ((v.x < (pos.x - TOO_FAR)) && vel.x == 0)
   {
     vel.x = -CAM_SPEED;
     acc.x = CAM_ACC;
@@ -92,6 +95,7 @@ Camera::Camera()
 {
   m_targetId = -1;
   m_target = 0;
+  m_earthquakeSeverity = 0;
 
   m_behaviour = new CamFollowPlayer;
   //m_behaviour = new CamZoomInOnPlayer;
@@ -134,6 +138,11 @@ std::cout << "Camera obj ID: " << GetId() << " target ID: " << m_targetId << "\n
   m_pos = Vec3f(v.x, v.y + Y_OFFSET, v.z + Z_OFFSET);
 }
 
+void Camera::SetEarthquake(float severity)
+{
+  m_earthquakeSeverity = severity;
+}
+
 void Camera::Update()
 {
   if (!m_pSceneNode)
@@ -153,7 +162,19 @@ void Camera::Update()
   Assert(dynamic_cast<SceneNodeCamera*>(GetSceneNode()));
   SceneNodeCamera* c = ((SceneNodeCamera*)GetSceneNode());
   c->SetEyePos(m_pos);
-  c->SetLookAtPos(m_lookAt);
+  Vec3f look = m_lookAt;
+  if (m_earthquakeSeverity > 0)
+  {
+    float e = m_earthquakeSeverity * 1.0f; // TODO
+    float dt = TheTimer::Instance()->GetDt();
+    m_earthquakeSeverity -= dt;
+    if (m_earthquakeSeverity < 0)
+    {
+      m_earthquakeSeverity = 0;
+    } 
+    look += Vec3f(Rnd(-e, e), 0, Rnd(-e, e));
+  }
+  c->SetLookAtPos(look);
   c->SetUpVec(Vec3f(0, 1, 0)); 
 }
 
