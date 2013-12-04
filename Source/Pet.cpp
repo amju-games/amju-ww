@@ -1,3 +1,4 @@
+#include <Game.h>
 #include <GameObjectFactory.h>
 #include <File.h>
 #include <Timer.h>
@@ -9,6 +10,7 @@
 #include "AIGoHighGround.h"
 #include "AIIdle.h"
 #include "AIFalling.h"
+#include "AIFlee.h"
 #include "Floor.h"
 #include "ShadowManager.h"
 #include "Dino.h"
@@ -26,6 +28,21 @@ static const float YSIZE = 20.0f;
 
 static const float MAX_BEING_EATEN_TIME = 6.0f;
 
+// TODO Keep track of Pets with static container
+void GetPets(Pets* pets)
+{
+  GameObjects* objs = TheGame::Instance()->GetGameObjects();
+  for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
+  {
+    GameObject* go = it->second;
+    Pet* p = dynamic_cast<Pet*>(go);
+    if (p && !p->IsDead())
+    {
+      pets->push_back(p);
+    }
+  }
+}
+
 Pet::Pet()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
@@ -40,6 +57,7 @@ Pet::Pet()
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
   AddAI(new AIFalling);
+  AddAI(new AIFlee);
 }
   
 bool Pet::JustDropped() const

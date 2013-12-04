@@ -95,7 +95,7 @@ void Player::ReachedExit()
   ShadowManager* shm = TheShadowManager::Instance();
   shm->RemoveCaster(this);
   GetSceneNode()->SetVisible(false);
-  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
+  for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* p = *it;
     p->GetSceneNode()->SetVisible(false);
@@ -142,7 +142,7 @@ void Player::Reset()
 
 void Player::DropPets()
 {
-  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
+  for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* pet = *it;
     pet->SetCarryingPlayer(0); 
@@ -154,7 +154,7 @@ void Player::UpdatePets()
 {
   float y = m_pos.y + BOTTOM_PET_Y;
   Vec3f posUnder = m_pos;
-  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); 
+  for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); 
     /* inc in loop body */)
   {
     Pet* pet = *it;

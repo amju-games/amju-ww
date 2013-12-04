@@ -13,10 +13,6 @@
 #include "StartGame.h"
 #include "WWLoadGui.h"
 
-#ifdef AMJU_IOS
-#define NO_MAIN_MENU
-#endif
-
 namespace Amju
 {
 const char* GSTitle::NAME = "title";

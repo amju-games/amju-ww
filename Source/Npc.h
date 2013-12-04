@@ -11,6 +11,7 @@ class Npc : public OnFloorCharacter
 {
 public:
   Npc();
+  AI* GetAI(const char* aiName);
   void SetAI(const char* aiName);
   void SetAI(AI*);
 

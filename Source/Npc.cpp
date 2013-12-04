@@ -1,12 +1,20 @@
 #include "Npc.h"
 #include "AmjuAssert.h"
 #include "AIFalling.h"
+#include "Describe.h"
 
 namespace Amju
 {
 Npc::Npc()
 {
   m_ai = 0;
+}
+  
+AI* Npc::GetAI(const char* aiName)
+{
+  auto it = m_ais.find(aiName);
+  Assert(it != m_ais.end());
+  return it->second;
 }
 
 void Npc::DecideAI()
@@ -17,11 +25,17 @@ void Npc::DecideAI()
   // Rank each behaviour, choose best
   for (AIs::iterator it = m_ais.begin(); it != m_ais.end(); ++it)
   {
-    float rank = it->second->GetRank();
+    AI* ai = it->second;
+    float rank = ai->GetRank();
+#ifdef AI_DEBUG
+    std::cout << Describe(this) << ": rank for " 
+      << ai->GetName() << ": " << rank << "\n";   
+#endif
+
     if (rank >= best.first)
     {
       best.first = rank;
-      best.second = it->second;
+      best.second = ai;
     }
   }
 #ifdef AI_DEBUG

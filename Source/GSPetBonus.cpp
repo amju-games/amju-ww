@@ -62,7 +62,7 @@ void GSPetBonus::OnActive()
 
   Assert(m_player);
   // Copy list into vector
-  const Pets& pets = m_player->GetPets();
+  const PetList& pets = m_player->GetPets();
   m_pets.assign(pets.begin(), pets.end());
   ShowPet();
 }
