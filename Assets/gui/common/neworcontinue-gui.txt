@@ -9,6 +9,8 @@ menu-comp
 // Num children
 3
 
+elastic
+0, -1.0
 // element type
 gui-button
 // Element name
@@ -25,6 +27,8 @@ New game
 arial, 2.0, sx=0.7
 
 
+elastic
+0, -1.0
 // element type
 gui-button
 // Element name
@@ -41,6 +45,8 @@ Continue
 arial, 2.0, sx=0.7
 
 
+elastic
+0, -1.0
 // element type
 gui-button
 // Element name
