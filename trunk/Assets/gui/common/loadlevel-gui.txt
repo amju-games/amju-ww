@@ -27,7 +27,8 @@ arial, 2.0
 
 
 
-
+elastic
+0, -0.5
 // Element type
 gui-comp
 // Name
