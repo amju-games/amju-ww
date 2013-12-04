@@ -57,12 +57,12 @@ void CamFollowPlayer::Update(Camera* cam)
   static const float TOO_FAR = ROConfig()->GetFloat("cam-too-far"); 
 
   // Don't change dir if camera already moving
-  if ((v.x > (pos.x + TOO_FAR)) && vel.x == 0)
+  if (v.x > (pos.x + TOO_FAR))
   {
     vel.x = CAM_SPEED;
     acc.x = -CAM_ACC;
   }
-  else if ((v.x < (pos.x - TOO_FAR)) && vel.x == 0)
+  else if (v.x < (pos.x - TOO_FAR))
   {
     vel.x = -CAM_SPEED;
     acc.x = CAM_ACC;
