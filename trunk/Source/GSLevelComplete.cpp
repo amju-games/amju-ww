@@ -58,7 +58,7 @@ void GSLevelComplete::Update()
   SetObjPos(m_player, a, m_z);
   m_player->SetAnim("fall");
 
-  const Pets& pets = m_player->GetPets();
+  const PetList& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
   {
     a += DegToRad(30.0f); // TODO
@@ -159,7 +159,7 @@ void GSLevelComplete::OnActive()
   AddSceneNode(m_player);
   m_player->SetPos(Vec3f());
 
-  const Pets& pets = m_player->GetPets();
+  const PetList& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
   {
     Pet* pet = const_cast<Pet*>(*it);

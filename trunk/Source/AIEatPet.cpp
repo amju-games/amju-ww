@@ -1,7 +1,8 @@
+#include <DegRad.h>
 #include "AIEatPet.h"
+#include "AIFlee.h"
 #include "Dino.h"
 #include "Pet.h"
-#include <DegRad.h>
 
 namespace Amju
 {
@@ -16,6 +17,26 @@ AIEatPet::AIEatPet()
 const char* AIEatPet::GetName() const
 {
   return NAME;
+}
+  
+void AIEatPet::OnActivated() 
+{
+  AI::OnActivated();
+
+  // All pets within range flee
+  Pets pets;
+  GetPets(&pets);
+  for (auto it = pets.begin(); it != pets.end(); ++it)
+  {
+    Pet* pet = *it;
+    if (!pet->IsDead())
+    {
+      // TODO And within range
+      AI* flee = pet->GetAI(AIFlee::NAME);
+      flee->SetTarget(m_npc);
+      pet->SetAI(flee);
+    }
+  }
 }
 
 void AIEatPet::Update()

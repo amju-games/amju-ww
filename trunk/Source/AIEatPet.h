@@ -13,10 +13,10 @@ public:
   static const char* NAME;
 
   AIEatPet();
-  virtual void Update();
-  virtual const char* GetName() const;
-
-  virtual void OnAnimFinished();
+  virtual void Update() override;
+  virtual const char* GetName() const override;
+  virtual void OnActivated() override;
+  virtual void OnAnimFinished() override;
 
 private:
 };

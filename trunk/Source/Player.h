@@ -10,7 +10,7 @@ namespace Amju
 {
 class PlayerController;
 class Pet;
-typedef std::list<Pet*> Pets;
+typedef std::list<Pet*> PetList;
 
 class Player : public OnFloorCharacter
 {
@@ -44,7 +44,7 @@ public:
   void Jump();
 
   void PickUpPet(Pet* pet);
-  const Pets& GetPets() const { return m_pets; }
+  const PetList& GetPets() const { return m_pets; }
   void DropPets();
 
   // Call when we collide with exit
@@ -60,7 +60,7 @@ private:
   RCPtr<PlayerController> m_controller;
 
   // Pets picked up
-  Pets m_pets;
+  PetList m_pets;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network
