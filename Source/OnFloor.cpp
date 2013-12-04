@@ -194,7 +194,8 @@ void OnFloor::UpdateY()
           PlayWav(AMJU_EVENT_LANDED);
           SetIsFalling(false);
         }
-        m_vel.y = m_vel.y * -0.1f;
+        static const float DAMP = 0.2f; // TODO ROCONFIG
+        m_vel.y = m_vel.y * -DAMP;
         m_onFloor = false;
         if (fabs(m_vel.y) < 1.0f) // TODO Bounce damp
         {

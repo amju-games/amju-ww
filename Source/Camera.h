@@ -51,13 +51,16 @@ public:
 
   GameObject* GetTarget() { return m_target; }
   void SetTarget(GameObject* target) { m_target = target; }
- 
+
+  void SetEarthquake(float severity);
+  
 protected:
   int m_targetId;
   int m_viewportId;
   GameObject* m_target;
   PCamBehaviour m_behaviour;
   Vec3f m_lookAt;
+  float m_earthquakeSeverity;
 };
 }
 

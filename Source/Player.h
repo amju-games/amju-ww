@@ -39,6 +39,8 @@ public:
   virtual bool OnBalanceBoardEvent(const BalanceBoardEvent& bbe);
   virtual bool OnRotationEvent(const RotationEvent&);
 
+  virtual void OnAnimFinished();
+
   void Jump();
 
   void PickUpPet(Pet* pet);

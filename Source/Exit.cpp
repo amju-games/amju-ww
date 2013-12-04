@@ -51,6 +51,7 @@ const char* Exit::GetTypeName() const
 void Exit::AddToGame() 
 {
   StaticFloor::AddToGame();
+  RecalcAABB();
 
   Assert(m_text);
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
