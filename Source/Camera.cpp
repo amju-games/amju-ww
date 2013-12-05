@@ -56,6 +56,7 @@ void CamFollowPlayer::Update(Camera* cam)
   // TODO Move in x if too far left/right
   static const float TOO_FAR = ROConfig()->GetFloat("cam-too-far"); 
 
+/*
   // Don't change dir if camera already moving
   if (v.x > (pos.x + TOO_FAR))
   {
@@ -75,6 +76,9 @@ void CamFollowPlayer::Update(Camera* cam)
     vel.x = 0;
     acc.x = 0;
   }
+*/
+  // x-axis
+  pos.x = v.x; 
 
   // Move in Y - but don't move in y if player is falling
   if (!((OnFloor*)cam->GetTarget())->IsFalling())
