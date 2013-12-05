@@ -3,6 +3,8 @@
 #include "Dino.h"
 #include "PlayWav.h"
 #include "AIStunned.h"
+#include "Pet.h"
+#include "AIFlee.h"
 
 namespace Amju
 {
@@ -13,8 +15,18 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   Dino* dino = dynamic_cast<Dino*>(go2);
   Assert(dino);
 
+  // Get the pets to flee the dino
+  PetList pets = player->GetPets();
   player->DropPets();
+  for (auto it = pets.begin(); it != pets.end(); ++it)
+  {
+    Pet* pet = *it;
+    AI* ai = pet->GetAI(AIFlee::NAME);
+    ai->SetTarget(dino);
+    pet->SetAI(ai);
+  }
 
+  // ???
   Vec3f vel = player->GetVel();
   player->SetVel(-vel);
 
