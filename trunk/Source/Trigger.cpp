@@ -5,6 +5,7 @@
 #include <DrawAABB.h>
 #include "Trigger.h"
 #include "MySceneGraph.h"
+#include "GameMode.h"
 
 namespace Amju
 {
@@ -59,18 +60,17 @@ bool Trigger::Load(File* f)
     return false;
   }
 
-  // TODO If edit mode
-#ifdef _DEBUG
-  // Create a scene node for this trigger
-  TriggerNode* tn = new TriggerNode;
-  tn->SetAABB(m_aabb);
-  m_pSceneNode = tn;
-//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-//    AddChild(m_pSceneNode);
-
-#endif
-
   return true;
 }
 
+bool Trigger::CreateSceneNode()
+{
+  if (IsEditMode())
+  {
+    TriggerNode* tn = new TriggerNode;
+    tn->SetAABB(m_aabb);
+    m_pSceneNode = tn;
+  }
+  return true;
+}
 }
