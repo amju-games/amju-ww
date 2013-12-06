@@ -687,6 +687,7 @@ void GSMainEdit::SetSelectedObject(GameObject* obj)
     // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
     m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
 
+/*
     // TODO
     m_contextMenu->Clear();
     //m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
@@ -694,6 +695,7 @@ void GSMainEdit::SetSelectedObject(GameObject* obj)
     m_contextMenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
     m_contextMenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
     m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
+*/
   }
   else
   {

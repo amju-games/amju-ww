@@ -105,7 +105,7 @@ std::cout << "Drag camera\n";
       break;
 
     case AMJU_ROTATE:
-      if (m_controllable)
+      // always allow //if (m_controllable)
       {
         float angleX = dx; // TODO TEMP TEST
         float angleY = dy * 1000.0f;
@@ -117,12 +117,14 @@ std::cout << "Drag camera\n";
         m_eye.y += angleY;
         m_eye.z = sx * (m_eye.x - m_lookat.x) + cx * (m_eye.z - m_lookat.z) + m_lookat.z;
       }
+/*
       else
       {
 #ifdef EMC_DEBUG
 std::cout << "Edit cam: not controllable\n";
 #endif
       }
+*/
       break;
 
     case AMJU_ZOOM:
@@ -145,7 +147,7 @@ std::cout << "Edit camera mouse button " << (mbe.isDown ? "DOWN" : "UP") << "\n"
 
   m_drag = mbe.isDown;
   // Hmm, maybe?
-  //m_mode = (Mode)mbe.button;
+  m_mode = (Mode)mbe.button;
   return false;
 }
 }

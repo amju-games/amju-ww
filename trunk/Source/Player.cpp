@@ -4,6 +4,7 @@
 #define _USE_MATH_DEFINES // ffs
 #endif // WIN32
 #include <math.h>
+#include <AmjuRand.h>
 #include "File.h"
 #include "ReportError.h"
 #include "ResourceManager.h"
@@ -24,6 +25,7 @@
 #include "Describe.h"
 #include "GameMode.h"
 #include "ShadowManager.h"
+#include "Describe.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -145,7 +147,15 @@ void Player::DropPets()
   for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* pet = *it;
-    pet->SetCarryingPlayer(0); 
+    pet->SetCarryingPlayer(0);
+ 
+    // Random (x, z) dir
+    float rad = Rnd(0, 7.0);  // TODO 2*pi
+    Vec3f dir(cos(rad), 0, sin(rad));
+    float speed = 50.0f; // TODO
+    dir *= speed; 
+    std::cout << Describe(pet) << " dir: " << Describe(dir) << "\n";
+    pet->SetVel(dir);
   }
   m_pets.clear();
 }

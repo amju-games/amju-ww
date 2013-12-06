@@ -5,6 +5,8 @@
 #include "AIStunned.h"
 #include "Pet.h"
 #include "AIFlee.h"
+#include "Camera.h"
+#include "Camera.h"
 
 namespace Amju
 {
@@ -34,6 +36,11 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   dino->SetVel(Vec3f(0, 0, 0));
   dino->SetAI(AIStunned::NAME);
 
+  PlayWav("hammer_anvil3"); // NB No file ext
+  Camera* cam = GetActiveCamera();
+  Assert(cam);
+  cam->SetEarthquake(1.0f);
+ 
 /*
   // Sound effect
   // TODO Make sure not played more than once in successive frames
@@ -65,5 +72,5 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Dino::NAME, CollidePlayerDino, AMJU_EVERY_CONTACT);
+  Player::NAME, Dino::NAME, CollidePlayerDino, AMJU_FIRST_CONTACT_ONLY);
 } 

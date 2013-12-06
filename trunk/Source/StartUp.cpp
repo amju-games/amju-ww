@@ -21,6 +21,7 @@
 #include <ConfigFile.h>
 #include <ROConfig.h>
 #include <BassSoundPlayer.h>
+#include <GuiButton.h>
 #include "StartUp.h"
 #include "GSLogo.h"
 #include "GSLoadLevel.h" // TEMP; so we start immediately in game
@@ -157,6 +158,8 @@ void StartUpAfterCreateWindow()
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
   game->RegisterPauseState(TheGSPaused::Instance());
+
+  GuiButton::SetClickFilename("sound/navigate_40.wav");
 
 #ifdef SHOW_FRAME_RATE
   Font* font = (Font*)rm->GetRes("font2d/arial-font.font");

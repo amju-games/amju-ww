@@ -3,6 +3,7 @@
 #include "AIFlee.h"
 #include "Dino.h"
 #include "Pet.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -56,6 +57,7 @@ void AIEatPet::Update()
 void AIEatPet::OnAnimFinished()
 {
   m_npc->DecideAI();
+  PlayWav("burp");
 }
 
 }

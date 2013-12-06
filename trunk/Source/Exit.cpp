@@ -15,6 +15,7 @@
 #include "MySceneGraph.h"
 #include "LevelManager.h"
 #include "GameConsts.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -230,6 +231,8 @@ void Exit::OnPlayerCollision()
 
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   gcf->SetInt(CONTINUE_LEVEL_KEY, m_toLevel);
+
+  PlayWav("button112");
 }
 
 ExitParticleEffect::ExitParticleEffect()
