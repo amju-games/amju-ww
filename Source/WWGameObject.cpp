@@ -90,10 +90,17 @@ void WWGameObject::RotateY(float angleDegs)
   float rads = DegToRad(angleDegs);
   Matrix mat;
   mat.RotateY(rads);
-  m_aabb.Transform(mat);
+
   SceneNode* sn = GetSceneNode();
   Assert(sn);
-  sn->MultLocalTransform(mat);
+  Matrix m2 = sn->GetLocalTransform();
+  Matrix inv = m2;
+  inv.Inverse();
+  mat = mat * m2;
+  sn->SetLocalTransform(mat);
+
+  m_aabb.Transform(inv);
+  m_aabb.Transform(mat); 
   sn->SetAABB(m_aabb);
 }
 
