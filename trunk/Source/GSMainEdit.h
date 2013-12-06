@@ -95,6 +95,7 @@ protected:
   // Add movement vector to this. Actually move the selected object
   //  when we exceed some limit in one axis.
   Vec3f m_accumulatedDragMove;
+  float m_gridSize; // this is the limit - effectively the size of cubes in a notional grid
 };
 
 typedef Singleton<GSMainEdit> TheGSMainEdit;

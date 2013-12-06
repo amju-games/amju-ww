@@ -341,6 +341,7 @@ static void OnProperties()
 GSMainEdit::GSMainEdit()
 {
   m_playTestMode = false;
+  m_gridSize = 50.0f;
 
   m_isSelecting = false;
   m_selectedObj = 0;
@@ -846,12 +847,11 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
     }
 
     m_accumulatedDragMove += move; // * sqrt(diff.SqLen());
-    const float LIMIT = 10;
-    if (m_accumulatedDragMove.SqLen() > LIMIT * LIMIT)
+    float limit = m_gridSize * 0.2f; // TODO
+    if (m_accumulatedDragMove.SqLen() > limit * limit)
     {
-      const float MOVE = 50.0f;
       m_accumulatedDragMove = Vec3f();
-      move *= MOVE;
+      move *= m_gridSize;
       MoveCommand* mc = new MoveCommand(m_selectedObj, move);
       TheGuiCommandHandler::Instance()->DoNewCommand(mc);
     }
@@ -863,10 +863,25 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
 
 bool GSMainEdit::OnKeyEvent(const KeyEvent& ke)
 {
+  // Keyboard shortcuts
   if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'z')
   {
     OnUndo();
     return true;
+  }
+
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'g')
+  {
+    m_gridSize *= 2.0f;
+    std::string s = "Grid size: " + ToString(m_gridSize, 2);
+    m_infoText.SetText(s);
+  }
+
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'h')
+  {
+    m_gridSize *= 0.5f;
+    std::string s = "Grid size: " + ToString(m_gridSize, 2);
+    m_infoText.SetText(s);
   }
 
   return false;
