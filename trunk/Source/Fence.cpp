@@ -31,6 +31,12 @@ const char* Fence::GetTypeName() const
   return NAME;
 }
 
+void Fence::RotateY(float angleDegs)
+{
+  m_yRot += angleDegs;
+  WWGameObject::RotateY(angleDegs);
+}
+
 bool Fence::Save(File* f)
 {
   f->WriteInteger(GetId());
@@ -89,7 +95,9 @@ bool Fence::CreateSceneNode()
 
   Matrix m;
   m.RotateY(DegToRad(m_yRot));
-  m.TranslateKeepRotation(m_pos);
+  Matrix m2;
+  m2.Translate(m_pos);
+  m = m * m2; // TODO check
   cm.Transform(m);
 
   cm.CalcAABB(&m_aabb);
