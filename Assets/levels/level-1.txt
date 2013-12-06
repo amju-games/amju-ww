@@ -159,7 +159,7 @@ staticfloor
 // Y rotation
 0.000000
 // Mesh filename
-block_rect_curved_4x4.obj
+field_4x4.obj
 end
 
 // Game object type
