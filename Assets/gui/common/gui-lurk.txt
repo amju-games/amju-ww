@@ -10,10 +10,10 @@ lurk-comp
 
 gui-button
 ok-button
--0.4, 0
-0.8, 0.2
-gui-button-4.png
-ok
+-0.1, 0
+0.2, 0.2
+gui-button-1.png
+$$$empty
 arial, 2.0
 
 gui-button
