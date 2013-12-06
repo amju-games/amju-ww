@@ -18,6 +18,12 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Camera::NAME, &CreateCam
 
 const char* Camera::NAME = "camera";
 
+static Camera* s_activeCamera = 0;
+Camera* GetActiveCamera()
+{
+  return s_activeCamera;
+}
+
 Viewport* GetViewport(int i)
 {
   return TheViewportManager::Instance()->GetViewport(i);
@@ -230,5 +236,6 @@ void Camera::SetAsSceneGraphCamera()
 {
   Assert(dynamic_cast<SceneNodeCamera*>(GetSceneNode()));
   GetGameSceneGraph()->SetCamera((SceneNodeCamera*)GetSceneNode());
+  s_activeCamera = this;
 }
 }

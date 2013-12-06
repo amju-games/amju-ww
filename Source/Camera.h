@@ -62,6 +62,8 @@ protected:
   Vec3f m_lookAt;
   float m_earthquakeSeverity;
 };
+
+Camera* GetActiveCamera();
 }
 
 #endif

@@ -44,39 +44,39 @@ std::cout << "Pen depths: " << Describe(penDist) << ": ";
   if (oldBox.GetMax(0) < stationaryBox.GetMin(0))
   {
     // Old box to left of stationary object, so move away to the left
-    Assert(penDist.x > 0);
+//    Assert(penDist.x > 0);
     goPos.x -= penDist.x; 
 
 std::cout << "x -= " << penDist.x;
   }
   else if (oldBox.GetMin(0) > stationaryBox.GetMax(0))
   {
-    Assert(penDist.x > 0);
+//    Assert(penDist.x > 0);
     goPos.x += penDist.x;
 
 std::cout << "x += " << penDist.x;
   }
   if (oldBox.GetMax(1) < stationaryBox.GetMin(1))
   {
-    Assert(penDist.y > 0);
+//    Assert(penDist.y > 0);
     goPos.y -= penDist.y;
 std::cout << "y -= " << penDist.y;
   }
   else if (oldBox.GetMin(1) > stationaryBox.GetMax(1))
   {
-    Assert(penDist.y > 0);
+//    Assert(penDist.y > 0);
     goPos.y += penDist.y;
 std::cout << "y += " << penDist.y;
   }
   if (oldBox.GetMax(2) < stationaryBox.GetMin(2))
   {
-    Assert(penDist.z > 0);
+//    Assert(penDist.z > 0);
     goPos.z -= penDist.z;
 std::cout << "z -= " << penDist.z;
   }
   else if (oldBox.GetMin(2) > stationaryBox.GetMax(2))
   {
-    Assert(penDist.z > 0);
+//    Assert(penDist.z > 0);
     goPos.z += penDist.z;
 std::cout << "z += " << penDist.z;
   }

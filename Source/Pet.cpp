@@ -137,7 +137,7 @@ void Pet::Update()
   {
     OnFloorCharacter::Update(); // no AI etc
   }
-  else
+  else 
   {
     Npc::Update();
   }

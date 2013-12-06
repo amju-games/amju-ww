@@ -16,6 +16,7 @@
 #include "ShadowManager.h"
 #include "GameMode.h"
 #include "WWLoadGui.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -31,6 +32,7 @@ class CommandGo : public GuiCommand
     }
     else
     {
+      PlayWav("gong");
       TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
     }
     return false; //no undo

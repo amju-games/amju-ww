@@ -20,6 +20,7 @@ void CollidePetPet(GameObject* go1, GameObject* go2)
     return;
   }
 
+/*
   PreventIntersection(pet1, pet2, pet1->GetOldPos());
   pet1->RecalcAABB();
 
@@ -27,7 +28,7 @@ void CollidePetPet(GameObject* go1, GameObject* go2)
   pet2->RecalcAABB();
 
   return;
-
+*/
 //std::cout << "Push away  pet " << pet1->GetId() << " and pet " << pet2->GetId() << "\n";
 
   Vec3f vel = pet1->GetVel();
@@ -56,5 +57,5 @@ void CollidePetPet(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Pet::NAME, Pet::NAME, &CollidePetPet, AMJU_EVERY_CONTACT);
+  Pet::NAME, Pet::NAME, &CollidePetPet, AMJU_FIRST_CONTACT_ONLY);
 } 

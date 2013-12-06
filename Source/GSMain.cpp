@@ -10,7 +10,7 @@
 #include <StringUtils.h>
 #include <Pause.h>
 #include <Screen.h>
-#include <SAP.h>
+#include <SoundManager.h>
 #include "GSMain.h"
 #include "CursorManager.h"
 #include "Floor.h"
@@ -50,6 +50,8 @@ GSMain::GSMain()
 
 void GSMain::OnActive()
 {
+  TheSoundManager::Instance()->PlaySong("sound/apz2.it");
+
   SceneNode::SetGlobalShowAABB(s_showAABBs);
 
   GameState::OnActive();
