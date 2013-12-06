@@ -45,17 +45,24 @@ static void OnPause()
 
 GSMain::GSMain()
 {
-  m_gui = WWLoadGui("main-gui.txt");
+  m_gui = WWLoadGui("main-gui.txt", false);
   Assert(m_gui);
+}
+
+void GSMain::OnDeactive()
+{
+  GameState::OnDeactive();
+  TheEventPoller::Instance()->RemoveListener(m_gui);
 }
 
 void GSMain::OnActive()
 {
+  GameState::OnActive();
+  TheEventPoller::Instance()->AddListener(m_gui);
+
   TheSoundManager::Instance()->PlaySong("sound/apz2.it");
 
   SceneNode::SetGlobalShowAABB(s_showAABBs);
-
-  GameState::OnActive();
 
   TheCollisionManager::Instance()->GetCollisionDetector()->Clear();
 
@@ -63,7 +70,7 @@ void GSMain::OnActive()
   GetTextSceneGraph()->Clear();
 
   // Set clear colour for game, TODO depends on skybox
-  AmjuGL::SetClearColour(Colour(0.6f, 0.6f, 1.0f, 1.0f));
+  AmjuGL::SetClearColour(Colour(0.0f, 0.0f, 1.0f, 1.0f));
 
   m_exitReached = false;
   m_exitTimer = 0;
