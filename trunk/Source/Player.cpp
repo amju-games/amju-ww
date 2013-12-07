@@ -71,15 +71,29 @@ Player::Player()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsSet = true;
-  m_controller = new PlayerController(this);
-  TheEventPoller::Instance()->AddListener(m_controller, 99); // low priority
-
   m_playerId = 0;
 }
 
 Player::~Player()
 {
-  TheEventPoller::Instance()->RemoveListener(m_controller);
+  KillController();
+}
+
+void Player::CreateController()
+{
+  // TODO depends on whether local or remote
+  m_controller = new PlayerController(this);
+  TheEventPoller::Instance()->AddListener(m_controller, 99); // low priority
+}
+
+void Player::KillController()
+{
+  static EventPoller* ep = TheEventPoller::Instance();
+  if (m_controller && ep->HasListener(m_controller))
+  {
+    ep->RemoveListener(m_controller);
+  }
+  m_controller = 0;
 }
 
 WWGameObject* Player::Clone()
@@ -94,6 +108,8 @@ const char* Player::GetTypeName() const
 
 void Player::ReachedExit()
 {
+  KillController();
+
   ShadowManager* shm = TheShadowManager::Instance();
   shm->RemoveCaster(this);
   GetSceneNode()->SetVisible(false);
@@ -606,6 +622,7 @@ void Player::Update()
   // If we have fallen, go to life lost state
   if (IsDead() && !IsEditMode())
   {
+    KillController();
     Amju::PlayWav("churchbell"); 
 
     PlayerNum pn = (PlayerNum)GetPlayerId();

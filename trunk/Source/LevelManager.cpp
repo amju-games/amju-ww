@@ -233,6 +233,11 @@ bool LevelManager::LoadOneObject()
   Assert(ww);
   ww->AddToGame();
 
+  if (p)
+  {
+    p->CreateController();
+  }
+
 #ifdef LM_DEBUG
 std::cout << "Added game object " << Describe(go) << "\n";
 #endif
