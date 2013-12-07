@@ -7,6 +7,8 @@ cam-too-far 50
 cam-stop 10
 cam-y-offset 100
 cam-z-offset 150
+cam-y-pet-offset 40
+cam-z-pet-offset 40
 
 sound-new-lurkmsg  waterdrop
 sound-tut-trigger  whistlehere
