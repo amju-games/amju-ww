@@ -85,8 +85,7 @@ void Pet::AddToGame()
   // Blood particle effect for when pet eaten
   m_bloodFx = new BloodFx;
   // Tex, size, num, time
-  //m_bloodFx->Set("wh8.png", 10, 20, 2.0f); // TODO TEMP TEST
-  m_bloodFx->Set("gore.png", 2, 100, 2.0f, 0); // TODO TEMP TEST
+  m_bloodFx->Set("gore.png", 2, 100, 2.0f, 0); // TODO CONFIG
 
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   root->AddChild(m_bloodFx.GetPtr());
@@ -96,7 +95,8 @@ void Pet::AddToGame()
   Assert(mesh);
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
-  sm->SetIsZWriteEnabled(false); // will give better visuals?
+  // Bad idea!
+  //sm->SetIsZWriteEnabled(false); // will give better visuals? - no, can cause blood pool to be hidden by things drawn after 
   m_bloodPool = sm;
   root->AddChild(sm);
   m_bloodPool->SetVisible(false);
