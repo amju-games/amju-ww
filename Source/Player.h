@@ -65,6 +65,8 @@ private:
 
   // Pets picked up
   PetList m_pets;
+
+  bool m_reachedExit;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network
