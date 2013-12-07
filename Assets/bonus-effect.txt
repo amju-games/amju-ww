@@ -4,9 +4,9 @@
 // image - TODO TEMP TEST
 sparkle1.png
 // size
-10.0
+5.0
 // number
-20
+30
 // particle max time
 6.0
 
