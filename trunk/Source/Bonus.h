@@ -27,7 +27,7 @@ public:
 protected:
   bool m_isCollected;
   float m_yRot;
-  BonusParticleEffect* m_effect; // Child of scene node
+  BonusParticleEffect* m_effect; 
   int m_points;
   int m_lives;
 };
