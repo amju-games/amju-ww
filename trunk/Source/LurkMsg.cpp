@@ -6,6 +6,7 @@
 #include "ROConfig.h"
 #include "LurkMsg.h"
 #include "WWLoadGui.h"
+#include "PlayWav.h"
 #include <AmjuFinal.h>
 
 //#define TEXT_TO_SPEECH
@@ -66,7 +67,7 @@ void LurkMsg::Update()
   case LURK_NEW:
     {
     static std::string soundfx = ROConfig()->GetValue("sound-new-lurkmsg");
-    TheSoundManager::Instance()->PlayWav(soundfx);
+    PlayWav(soundfx);
 
     m_state = LURK_SHOWING;
     m_rect->SetVisible(true);
