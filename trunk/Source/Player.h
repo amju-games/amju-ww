@@ -38,6 +38,7 @@ public:
   virtual bool OnKeyEvent(const KeyEvent& ke);
   virtual bool OnBalanceBoardEvent(const BalanceBoardEvent& bbe);
   virtual bool OnRotationEvent(const RotationEvent&);
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe);
 
   virtual void OnAnimFinished();
 
@@ -74,6 +75,7 @@ public:
   virtual bool OnKeyEvent(const KeyEvent& ke) override { return m_player->OnKeyEvent(ke); }
   virtual bool OnBalanceBoardEvent(const BalanceBoardEvent& bbe) override { return m_player->OnBalanceBoardEvent(bbe); }
   virtual bool OnRotationEvent(const RotationEvent& re) override { return m_player->OnRotationEvent(re); }
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_player->OnMouseButtonEvent(mbe); }
 
 private:
   Player* m_player;

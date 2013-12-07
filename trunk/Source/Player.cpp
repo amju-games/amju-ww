@@ -563,6 +563,16 @@ bool Player::OnJoyAxisEvent(const JoyAxisEvent& je)
   return true;
 }
 
+bool Player::OnMouseButtonEvent(const MouseButtonEvent& mbe)
+{
+  // Tap to jump
+  if (mbe.isDown && mbe.button == AMJU_BUTTON_MOUSE_LEFT)
+  {
+    Jump();
+  }
+  return true;
+}
+
 void Player::Update()
 {
   OnFloorCharacter::Update();
