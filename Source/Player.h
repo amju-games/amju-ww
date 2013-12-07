@@ -78,7 +78,7 @@ public:
   virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_player->OnMouseButtonEvent(mbe); }
 
 private:
-  Player* m_player;
+  RCPtr<Player> m_player;
 };
 
 }

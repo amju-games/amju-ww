@@ -72,7 +72,7 @@ Player::Player()
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsSet = true;
   m_controller = new PlayerController(this);
-  TheEventPoller::Instance()->AddListener(m_controller);
+  TheEventPoller::Instance()->AddListener(m_controller, 99); // low priority
 
   m_playerId = 0;
 }
