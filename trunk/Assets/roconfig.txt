@@ -12,4 +12,4 @@ sound-new-lurkmsg  waterdrop
 sound-tut-trigger  whistlehere
 
 
-
+level-complete-max-time 4.0
