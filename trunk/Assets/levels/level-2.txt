@@ -1,309 +1,394 @@
-// Version 
-1
+// File version
+11
 
-// Num Objects
-21
+// Num game objects
+37
 
-// Camera: for a specific viewport, pointing at a specific player
+// Game object type
 camera
-// Game Object ID
+// ID
 0
 // Viewport ID
 0
-// Player ID
+// Target ID
 101
 end
 
+// Game object type
 camera
-// Game Object ID
+// ID
 1
 // Viewport ID
 1
-// Player ID
+// Target ID
 102
 end
 
-
-// Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
-player
-101
-// Start pos
--100, 220, 0
-// Player ID
-0
-// Mesh
-amju.md2
-// 2 Textures
-amju2.png
-amju2a.png
-// Shadow
-shadow.png
-20
+// Game object type
+tut-trigger
+10
+// AABB
+150.000000, 250.000000, 100.000000, 150.000000, -200.000000, -100.000000
+// Tutorial text
+Oh yeah, did I mention the dinosaurs?&Relax, dinosaurs won't eat you...&...but they love to eat pets!
 end
 
+// Game object type
 bird
 99
--150, 220, 0
+// Position
+100.032928, 120.011620, -199.999542
+// Shadow texture & size
 shadow.png
-10
+10.000000
 end
 
-// Player 2
+// Game object type
+player
+101
+// Position
+300.000000, 144.848099, -350.000000
+// Player ID
+0
+// MD2 mesh name
+amju.md2
+// Texture names
+amju2.png
+amju2a.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
 player
 102
-// Start pos
-100, 220, 0
+// Position
+100.000000, 219.848114, 0.000000
 // Player ID
 1
-// Mesh
+// MD2 mesh name
 marin.md2
-// 2 Textures
+// Texture names
 marin1.png
 marin1a.png
-// Shadow
+// Shadow texture & size
 shadow.png
-20
+20.000000
 end
 
-staticfloor
-1001
-// Centre/pivot point
-0, 200, 0
-// Rot 
-0
-// Floor mesh
-plat_rect_4x4_std.obj
-end
-
-
-staticfloor
-1002
-// Centre/pivot point
-400, 200, 0
-// Rot 
-0
-// Floor mesh
-plat_rect_4x4_std.obj
-end
-
-
-staticfloor
-1003
-// Centre/pivot point
--600, 200, 0
-// Rot
-0
-// Floor mesh 
-block_rect_curved_4x4.obj
-end
-
-
+// Game object type
 pet
 104
-// Start pos
-150, 220, 150
-// Shadow
+// Position
+250.000000, 169.959091, -200.000000
+// Shadow texture & size
 shadow.png
-20
+20.000000
 end
 
+// Game object type
 pet
 105
-// Start pos
--150, 220, 150
-// Shadow
+// Position
+300.000000, 169.959091, -100.000000
+// Shadow texture & size
 shadow.png
-20
+20.000000
 end
 
+// Game object type
 pet
 106
-// Start pos
--150, 220, -100
-// Shadow
+// Position
+200.000000, 169.959091, -100.000000
+// Shadow texture & size
 shadow.png
-20
+20.000000
 end
 
+// Game object type
 dino
 107
-// Start pos
-150, 220, 0
-// Type 0-2
+// Position
+0.000000, 119.959099, 50.000000
+// Dino type
 0
-// Shadow
+// Shadow texture & size
 shadow.png
-20
+20.000000
 end
 
+// Game object type
+bonus
+110
+250.000000, 125.000000, 50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1
+// Bonus lives
+0
+end
 
+// Game object type
+bonus
+111
+-6.250000, 131.250000, -50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+112
+6.250000, 125.000000, -262.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+113
+275.000000, 125.000000, -262.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1
+// Bonus lives
+0
+end
+
+// Game object type
+exit
+200
+0.000000, 120.000000, 150.000000
+// Y rotation
+0.000000
+// Mesh filename
+transporter.obj
+// Next level
+3
+// Shadow texture & size
+flare.png
+20.000000
+end
+
+// Game object type
+staticfloor
+1003
+150.000000, 112.500000, -56.250000
+// Y rotation
+0.000000
+// Mesh filename
+field_8x8.obj
+end
+
+// Game object type
 fence
 2001
-0, 200, -100
-0
+-50.000000, 100.000000, 50.000000
+0.000000
+// Mesh filename
 pz-fence.obj
 end
 
+// Game object type
+fence
+2002
+-50.000000, 100.000000, 150.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2003
+100.000000, 100.000000, -300.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2004
+350.000000, 100.000000, 50.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2005
+50.000000, 100.000000, 150.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2006
+-50.000000, 100.000000, -50.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2007
+-50.000000, 100.000000, -250.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2009
+300.000000, 100.000000, -400.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2010
+0.000000, 100.000000, 200.000000
+270.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2011
+0.000000, 100.000000, -300.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2012
+100.000000, 100.000000, 100.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2013
+300.000000, 100.000000, 100.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2014
+350.000000, 100.000000, -50.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2015
+250.000000, 100.000000, -350.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2016
+200.000000, 100.000000, -300.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2017
+200.000000, 100.000000, 100.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2018
+350.000000, 100.000000, -150.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2019
+-50.000000, 100.000000, -150.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2021
+350.000000, 100.000000, -250.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+fence
+2022
+350.000000, 100.000000, -350.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
 tut-trigger
-// ID
-10
-// AABB xmin, xmax, ymin, ymax zmin, zmax
--250, -150, 200, 250, -50, 50 
-// Text
-Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!
+2023
+// AABB
+250.000000, 350.000000, 100.000000, 150.000000, -300.000000, -200.000000
+// Tutorial text
+OK, you seem to be getting the hang of this!&See those cute little pets? See if you can pick 'em up...&More pets means more points for you!
 end
-
-exit
-200
-// Pos
-400, 220, 0
-// Rot 
-0
-// Mesh
-transporter.obj
-// Next level
-2
-// Shadow
-// TODO White "shadow" as exits emit light ?
-flare.png
-20
-end
-
-
-bonus
-110
-// Pos
-100, 250, -50
-fruit1.obj
-// Shadow
-shadow.png
-20
-// points
-3
-// lives
-1
-end
-
-bonus
-111
-// Pos
-150, 250, -50
-fruit2.obj
-// Shadow
-shadow.png
-20
-// points
-3
-// lives
-1
-end
-
-bonus
-112
-// Pos
-200, 250, -50
-fruit3.obj
-// Shadow
-shadow.png
-20
-// points
-3
-// lives
-1
-end
-
-bonus
-113
-// Pos
-250, 250, -50
-fruit4.obj
-// Shadow
-shadow.png
-20
-// points
-3
-// lives
-1
-end
-
-staticfloor
-4002
-// Centre/pivot point
-0, 200, 250 
-// Rot
-0
-// Floor mesh + texture
-block_rect_1x1.obj
-end
-
-floor
-4003
-// Centre/pivot point
-0, 200, 350
-// Rot
-0
-// Floor mesh
-plat_rect_2x1_std.obj
-// Rotation axes flags: x=1, y=2, z=4
-4
-// max AABB height
-100
-// Moment of inertia
-50.0
-end
-
-
-
-
-
-
-
-staticfloor
-4004
-// Centre/pivot point
-400, 200, 0
-// Rot
-0
-// Floor mesh
-plat_wood1.png
-end
-
-staticfloor
-4005
-// Centre/pivot point
-600, 200, 0
-// Rot
-45
-// Floor mesh
-ramp_3x1.obj
-end
-
-// Marin start floor
-staticfloor
-4006
-// Centre/pivot point
--200, 200, 0
-// Rot
-0
-// Floor mesh + texture
-block_rect_1x1.obj
-end
-
-
-bonus
-413
-// Pos
--100, 250, 100
-heart.obj
-// Shadow
-shadow.png
-20
-end
-
-
-objective
-10000
-// Text
-Get rid of the dinosaur!
-end
-
