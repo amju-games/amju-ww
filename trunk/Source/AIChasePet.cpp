@@ -1,14 +1,12 @@
-#include "AIChasePet.h"
 #include <Game.h>
-#include "Pet.h"
 #include <DegRad.h>
+#include <ROConfig.h>
+#include "Pet.h"
+#include "AIChasePet.h"
 #include "AIIdle.h"
 
 namespace Amju
 {
-static const float MAX_DIST = 200.0f; // ??
-static const float MAX_DIST_SQ = MAX_DIST * MAX_DIST;
-
 const char* AIChasePet::NAME = "ai-chase-pet";
 
 const char* AIChasePet::GetName() const
@@ -24,21 +22,21 @@ void AIChasePet::Update()
   Vec3f aim = m_target->GetPos();
   Vec3f vel = aim - m_npc->GetPos();
   vel.y = 0;
+
+  static const float MAX_DIST = ROConfig()->GetFloat("dino-chase-dist"); 
+  static const float MAX_DIST_SQ = MAX_DIST * MAX_DIST;
+
   if (vel.SqLen() < MAX_DIST_SQ) 
   {
     vel.Normalise();
 
-//std::cout << "AI Chase: vel x: " << vel.x << " z: " << vel.z;
-
-    static const float SPEED = 100.0f; // TODO CONFIG
+    static const float SPEED = ROConfig()->GetFloat("dino-chase-speed"); 
     vel *= SPEED;
     Vec3f v = m_npc->GetVel();
     v.x = vel.x;
     v.z = vel.z;
     m_npc->SetVel(v);
     float degs = RadToDeg(atan2(vel.x, vel.z)); 
-
-//std::cout << " => heading " << degs << " degs.\n";
 
     m_npc->SetDir(degs);
     m_npc->SetIsControlled(true); 
@@ -53,7 +51,6 @@ void AIChasePet::Update()
   }
 }
 
-
 float AIChasePet::GetRank()
 {
   // Find pets, get dist to each one
@@ -65,6 +62,10 @@ float AIChasePet::GetRank()
   {
     Pet* pet = pets[i];
     float distSq = (m_npc->GetPos() - pet->GetPos()).SqLen();
+
+    static const float MAX_DIST = ROConfig()->GetFloat("dino-chase-dist"); 
+    static const float MAX_DIST_SQ = MAX_DIST * MAX_DIST;
+
     if (distSq < bestDist && distSq < MAX_DIST_SQ)
     {
       bestDist = distSq;
