@@ -13,23 +13,6 @@
 
 namespace Amju
 {
-class Floor;
-
-/*
-// Scene Node for floors 
-class FloorMesh : public SceneMesh
-{
-public:
-  FloorMesh(Floor* floor);
-  virtual void Draw();
-  void SetTexture(PTexture);
-
-private:
-  PTexture m_pTex;
-  Floor* m_floor;
-};
-*/
-
 // Floor for our balance game: tilts depending on axes of freedom, and the
 //  moments acting on it
 class Floor : public WWGameObject
