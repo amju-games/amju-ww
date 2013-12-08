@@ -156,10 +156,13 @@ void Pet::Update()
   {
     static const float MAX_JUST_DROPPED_TIME = ROConfig()->GetFloat("pet-max-just-dropped-time");
     m_justDroppedTime += dt;
-    // Flash
-    float t = m_justDroppedTime * 10;
-    m_pSceneNode->SetVisible((int)t % 2 == 0);
-    
+    if (m_eatenState == NOT_EATEN_YET)
+    {
+      // Flash
+      float t = m_justDroppedTime * 10;
+      m_pSceneNode->SetVisible((int)t % 2 == 0);
+    }
+
     if (m_justDroppedTime > MAX_JUST_DROPPED_TIME) 
     {
       m_justDropped = false;
@@ -189,39 +192,11 @@ void Pet::Update()
               1.0f,
               m_bloodPoolXZSize.y * m_bloodPoolScale);
 
-      // Just do this bit once
-      Floor* floor = const_cast<Floor*>(GetFloor());
-      // If we are on a static floor, get triangles under the blood pool, as
-      //  floor might be a funny shape. Get a rough rotation matrix from the
-      //  tris.
-      CollisionMesh* cm = floor->GetCollisionMesh();
-      CollisionMesh::Tris tris;
-      // May need to extend box downwards?
-      cm->GetAllTrisInBox(m_aabb, &tris);
-     
-std::cout << "BLOOD POOL CALC...\n"; 
-      Vec3f normal(0, 1, 0); // normal to surface here, must point up, roughly.
-      if (tris.empty())
-      {
-std::cout << "Bah, no tris for blood pool.\n";
-      }
-      else
-      {
-        // TODO average of all tri normals
-        normal = tris[0].CalcNormal();
-        // Get matrix which rotates (0, 1, 0) to this normal
-        Vec3f forward(0, 0, 1);
-        Vec3f right = CrossProduct(forward, normal);
-        forward = CrossProduct(right, normal);
-std::cout << "Normal:  " << Describe(normal) << "\n";
-std::cout << "Forward: " << Describe(forward) << "\n";
-std::cout << "Right:   " << Describe(right) << "\n";
-      }
+      // TODO Rotate by floor rotation every frame if on a tilting floor
 
-      // TODO DO this every frame the blood pool is visible if on a tilting floor
-      Matrix mat = *(floor->GetMatrix());
-
+      Matrix mat; //*(floor->GetMatrix());
       mat.Scale(s.x, 1.0f, s.z);
+      mat *= m_bloodPoolMatrix; // TODO check
       mat.TranslateKeepRotation(m_bloodPoolPos); 
       m_bloodPool->SetLocalTransform(mat);
     }
@@ -287,6 +262,59 @@ void Pet::OnAnimFinished()
   }
 }
 
+void Pet::CalcBloodPoolMatrix()
+{
+  // Just do this once for static floors.
+  Floor* floor = const_cast<Floor*>(GetFloor());
+  // If we are on a static floor, get triangles under the blood pool, as
+  //  floor might be a funny shape. Get a rough rotation matrix from the
+  //  tris.
+  CollisionMesh* cm = floor->GetCollisionMesh();
+  CollisionMesh::Tris tris;
+  // May need to extend box downwards?
+  cm->GetAllTrisInBox(m_aabb, &tris);
+     
+  Vec3f normal(0, 1, 0); // normal to surface here, must point up, roughly.
+  Matrix mat; // identity if normal is (0, 1, 0)
+  if (tris.empty())
+  {
+std::cout << "Bah, no tris for blood pool.\n";
+  }
+  else
+  {
+    // Average all tri normals which face up
+    int s = tris.size();
+    for (int i = 0; i < s; i++)
+    {
+      Vec3f n = tris[0].CalcNormal();
+      if (n.y > 0)
+      {
+        normal += n;
+      }
+    }
+    normal.Normalise();
+    // Get matrix which rotates (0, 1, 0) to this normal
+    Vec3f forward(0, 0, 1);
+    Vec3f right = CrossProduct(forward, normal);
+    forward = CrossProduct(right, normal);
+
+    // Ideally something like this:
+    //Matrix3x3 rot(right, normal, forward);
+    //mat.Set3x3(rot);
+    mat[0]  = right.x;
+    mat[1]  = right.y;
+    mat[2]  = right.z;
+    mat[4]  = normal.x;
+    mat[5]  = normal.y;
+    mat[6]  = normal.z;
+    mat[8]  = forward.x;
+    mat[9]  = forward.y;
+    mat[10] = forward.z;
+  }
+
+  m_bloodPoolMatrix = mat;
+}
+
 void Pet::StartBeingEaten(Dino* eater)
 {
   // Is only called once per pet
@@ -294,7 +322,6 @@ void Pet::StartBeingEaten(Dino* eater)
   Assert(!m_justDropped);
 
   Amju::PlayWav("goopy");
-//  Amju::PlayWav("goopy");
 
   m_eatenState = BEING_EATEN;
 
@@ -308,12 +335,13 @@ void Pet::StartBeingEaten(Dino* eater)
   m_pSceneNode->SetLocalTransform(mat);
 
   m_bloodPoolPos = m_pos;
-  mat.Scale(0, 1, 0);
-//  mat.Translate(m_pos); 
+  mat.Scale(0, 1, 0); // start size 0 in (x, z)
   m_bloodPool->SetLocalTransform(mat);
   m_bloodPool->SetAABB(*(GetSceneNode()->GetAABB()));
   m_bloodPool->SetVisible(true);
   m_bloodPoolXZSize = Vec2f(1.5f + Rnd(0, 1.0f), 1.5f + Rnd(0, 1.0f));
+
+  CalcBloodPoolMatrix();
 
   SetAnim("eaten");
 
@@ -326,14 +354,5 @@ void Pet::StartBeingEaten(Dino* eater)
 
   // Make sure it's not culled
   m_bloodFx->SetAABB(*m_pSceneNode->GetAABB());
-
-  /*
-  m_bloodPool->AddCollisionMesh(m_floor->GetCollisionMesh());
-
-  m_bloodPool->SetLocalTransform(m_pSceneNode->GetLocalTransform());
-  m_bloodPool->SetAABB(*m_pSceneNode->GetAABB());
-  m_bloodPool->SetVisible(false); 
-  // TODO Timer ?
-  */
 }
 }

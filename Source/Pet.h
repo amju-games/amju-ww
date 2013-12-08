@@ -32,6 +32,9 @@ public:
   Player* GetCarryingPlayer();
 
 protected:
+  void CalcBloodPoolMatrix();
+
+protected:
   enum EatenState { NOT_EATEN_YET, BEING_EATEN, HAS_BEEN_EATEN };
   EatenState m_eatenState;
  
@@ -44,6 +47,7 @@ protected:
   Vec2f m_bloodPoolXZSize;
   float m_bloodPoolScale;
   RCPtr<BloodFx> m_bloodFx;
+  Matrix m_bloodPoolMatrix; // rotation matrix, depends on floor
 
   Player* m_carryingPlayer;
 };
