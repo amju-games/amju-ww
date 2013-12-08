@@ -1,12 +1,12 @@
 #include <iostream>
+#include <ROConfig.h>
 #include "CollisionManager.h"
 #include "Pet.h"
 #include "PreventIntersection.h"
+#include "Describe.h"
 
 namespace Amju
 {
-static const float RADIUS = 15.0f; // extent of AABB in (x, z)
-
 void CollidePetPet(GameObject* go1, GameObject* go2)
 {
   // Push both objects away from each other
@@ -20,40 +20,30 @@ void CollidePetPet(GameObject* go1, GameObject* go2)
     return;
   }
 
-/*
-  PreventIntersection(pet1, pet2, pet1->GetOldPos());
-  pet1->RecalcAABB();
+std::cout << "Push away  pet " << pet1->GetId() << " and pet " << pet2->GetId() << "\n";
 
-  PreventIntersection(pet2, pet1, pet2->GetOldPos());
-  pet2->RecalcAABB();
+  // Radius of circle around pet. If circles overlap, move apart by 
+  //  penetration depth.
+  static const float RADIUS = ROConfig()->GetFloat("pet-collide-radius");
 
-  return;
-*/
-//std::cout << "Push away  pet " << pet1->GetId() << " and pet " << pet2->GetId() << "\n";
-
-  Vec3f vel = pet1->GetVel();
-  vel.y = -vel.y; // so we always fall
-  pet1->SetVel(-vel);
-
-  vel = pet2->GetVel();
-  vel.y = -vel.y; // so we always fall
-  pet2->SetVel(-vel);
-
-  // TODO Handle y axis
-/*
   Vec3f pos1 = pet1->GetPos();
   Vec3f pos2 = pet2->GetPos();
-  Vec3f v = pos1-pos2;
-  v.Normalise();
-  v *= RADIUS;
-  pos1 += v;
-  pos2 -= v;
-  pet1->SetPos(pos1);
-  pet2->SetPos(pos2);
-*/
+  Vec3f v = pos1 - pos2; // from pos2 to pos1
+  v.y = 0; // ignore diff in y
+  float len = sqrt(v.SqLen());
+std::cout << "Position diff: " << len << "\n";
+  if (len < 2 * RADIUS)
+  {
+    // Get penetration dist
+    float diff = (RADIUS * 2 - len) * 0.5f;
+    v *= diff / len;
+std::cout << "Moving pets apart: " << Describe(v) << "\n";
 
-/*
-*/
+    pos1 += v;
+    pos2 -= v;
+    pet1->SetPos(pos1);
+    pet2->SetPos(pos2);
+  }
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
