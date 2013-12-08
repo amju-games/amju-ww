@@ -33,6 +33,7 @@ public:
 
 protected:
   void CalcBloodPoolMatrix();
+  void UpdateBloodPoolRotation();
 
 protected:
   enum EatenState { NOT_EATEN_YET, BEING_EATEN, HAS_BEEN_EATEN };
@@ -48,6 +49,8 @@ protected:
   float m_bloodPoolScale;
   RCPtr<BloodFx> m_bloodFx;
   Matrix m_bloodPoolMatrix; // rotation matrix, depends on floor
+  Matrix m_invFloorMatrix; // inv of rotation of floor when blood pool created
+  Matrix m_floorRot; // rotation due to floor tilt relative to when blood pool created
 
   Player* m_carryingPlayer;
 };
