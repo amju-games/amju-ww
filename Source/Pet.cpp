@@ -16,6 +16,7 @@
 #include "ShadowManager.h"
 #include "Dino.h"
 #include "PlayWav.h"
+#include "Describe.h"
 
 namespace Amju
 {
@@ -153,8 +154,13 @@ void Pet::Update()
 
   if (m_justDropped)
   {
+    static const float MAX_JUST_DROPPED_TIME = ROConfig()->GetFloat("pet-max-just-dropped-time");
     m_justDroppedTime += dt;
-    if (m_justDroppedTime > 3.0f) // TODO
+    // Flash
+    float t = m_justDroppedTime / (MAX_JUST_DROPPED_TIME * 5.0f);
+    m_pSceneNode->SetVisible(t < 0.1f);
+    
+    if (m_justDroppedTime > MAX_JUST_DROPPED_TIME) 
     {
       m_justDropped = false;
       m_justDroppedTime = 0;
@@ -168,6 +174,8 @@ void Pet::Update()
     if (m_eatenTime > MAX_BEING_EATEN_TIME)
     {
       m_eatenState = HAS_BEEN_EATEN;
+      // TODO Fade 
+      //m_bloodPool->SetVisible(false);
     }
     else
     {
@@ -181,7 +189,38 @@ void Pet::Update()
               1.0f,
               m_bloodPoolXZSize.y * m_bloodPoolScale);
 
-      Matrix mat;
+      // Just do this bit once
+      Floor* floor = const_cast<Floor*>(GetFloor());
+      // If we are on a static floor, get triangles under the blood pool, as
+      //  floor might be a funny shape. Get a rough rotation matrix from the
+      //  tris.
+      CollisionMesh* cm = floor->GetCollisionMesh();
+      CollisionMesh::Tris tris;
+      // May need to extend box downwards?
+      cm->GetAllTrisInBox(m_aabb, &tris);
+     
+std::cout << "BLOOD POOL CALC...\n"; 
+      Vec3f normal(0, 1, 0); // normal to surface here, must point up, roughly.
+      if (tris.empty())
+      {
+std::cout << "Bah, no tris for blood pool.\n";
+      }
+      else
+      {
+        // TODO average of all tri normals
+        normal = tris[0].CalcNormal();
+        // Get matrix which rotates (0, 1, 0) to this normal
+        Vec3f forward(0, 0, 1);
+        Vec3f right = CrossProduct(forward, normal);
+        forward = CrossProduct(right, normal);
+std::cout << "Normal:  " << Describe(normal) << "\n";
+std::cout << "Forward: " << Describe(forward) << "\n";
+std::cout << "Right:   " << Describe(right) << "\n";
+      }
+
+      // TODO DO this every frame the blood pool is visible if on a tilting floor
+      Matrix mat = *(floor->GetMatrix());
+
       mat.Scale(s.x, 1.0f, s.z);
       mat.TranslateKeepRotation(m_bloodPoolPos); 
       m_bloodPool->SetLocalTransform(mat);
