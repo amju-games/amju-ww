@@ -157,8 +157,8 @@ void Pet::Update()
     static const float MAX_JUST_DROPPED_TIME = ROConfig()->GetFloat("pet-max-just-dropped-time");
     m_justDroppedTime += dt;
     // Flash
-    float t = m_justDroppedTime / (MAX_JUST_DROPPED_TIME * 5.0f);
-    m_pSceneNode->SetVisible(t < 0.1f);
+    float t = m_justDroppedTime * 10;
+    m_pSceneNode->SetVisible((int)t % 2 == 0);
     
     if (m_justDroppedTime > MAX_JUST_DROPPED_TIME) 
     {
