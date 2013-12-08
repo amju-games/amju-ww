@@ -26,6 +26,7 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
     AI* ai = pet->GetAI(AIFlee::NAME);
     ai->SetTarget(dino);
     pet->SetAI(ai);
+    pet->SetIsFalling(true);
   }
 
   // ???

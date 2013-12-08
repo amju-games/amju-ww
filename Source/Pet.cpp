@@ -4,6 +4,7 @@
 #include <Timer.h>
 #include <DegRad.h>
 #include <AmjuRand.h>
+#include <ROConfig.h>
 #include "Pet.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
@@ -95,8 +96,12 @@ void Pet::AddToGame()
   Assert(mesh);
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
+
   // Bad idea!
-  //sm->SetIsZWriteEnabled(false); // will give better visuals? - no, can cause blood pool to be hidden by things drawn after 
+  // will give better visuals? - no, can cause blood pool to be 
+  //  hidden by things drawn after 
+  //sm->SetIsZWriteEnabled(false); 
+
   m_bloodPool = sm;
   root->AddChild(sm);
   m_bloodPool->SetVisible(false);
@@ -167,7 +172,8 @@ void Pet::Update()
     else
     {
       // Increase blood pool size
-      if (m_bloodPoolScale < 1.0f)
+      static const float MAX_BP_SCALE = ROConfig()->GetFloat("pet-bloodpool-max-scale");
+      if (m_bloodPoolScale < MAX_BP_SCALE)
       {
         m_bloodPoolScale += dt; 
       }
