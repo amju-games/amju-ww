@@ -29,6 +29,12 @@ void AIFlee::Update()
     return;
   }
 
+  if (m_npc->IsFalling())
+  {
+    // Wait till we hit ground to start fleeing
+    return;
+  }
+
   Vec3f vel = m_npc->GetPos() - m_target->GetPos();
   vel.y = 0;
   static const float MAX_FLEE_DIST = 200.0f; // TODO CONFIG
