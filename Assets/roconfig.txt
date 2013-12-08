@@ -23,3 +23,5 @@ pet-min-drop-speed 30
 pet-max-drop-speed 70
 pet-bloodpool-max-scale 0.5
 
+dino-chase-speed 120
+dino-chase-dist 300
