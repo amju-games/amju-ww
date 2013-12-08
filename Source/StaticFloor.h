@@ -14,7 +14,6 @@ public:
   virtual void Update();
   virtual bool Load(File*);
   virtual bool Save(File*);
-//  virtual void AddToGame();
 };
 }
 
