@@ -180,26 +180,39 @@ void Pet::Update()
       // TODO Fade 
       //m_bloodPool->SetVisible(false);
     }
-    else
+  }
+
+  if (m_eatenState == BEING_EATEN || m_eatenState == HAS_BEEN_EATEN)
+  {
+    // Increase blood pool size
+    static const float MAX_BP_SCALE = ROConfig()->GetFloat("pet-bloodpool-max-scale");
+    if (m_bloodPoolScale < MAX_BP_SCALE)
     {
-      // Increase blood pool size
-      static const float MAX_BP_SCALE = ROConfig()->GetFloat("pet-bloodpool-max-scale");
-      if (m_bloodPoolScale < MAX_BP_SCALE)
-      {
-        m_bloodPoolScale += dt; 
-      }
-      Vec3f s(m_bloodPoolXZSize.x * m_bloodPoolScale, 
-              1.0f,
-              m_bloodPoolXZSize.y * m_bloodPoolScale);
-
-      // TODO Rotate by floor rotation every frame if on a tilting floor
-
-      Matrix mat; //*(floor->GetMatrix());
-      mat.Scale(s.x, 1.0f, s.z);
-      mat *= m_bloodPoolMatrix; // TODO check
-      mat.TranslateKeepRotation(m_bloodPoolPos); 
-      m_bloodPool->SetLocalTransform(mat);
+      m_bloodPoolScale += dt; 
     }
+    Vec3f s(m_bloodPoolXZSize.x * m_bloodPoolScale, 
+            1.0f,
+            m_bloodPoolXZSize.y * m_bloodPoolScale);
+
+    // Rotate by floor rotation every frame if on a tilting floor
+    UpdateBloodPoolRotation();
+
+    Matrix mat; 
+    mat.Scale(s.x, 1.0f, s.z);
+    mat *= m_bloodPoolMatrix; // rotation due to floor shape
+    mat.TranslateKeepRotation(m_bloodPoolPos); 
+
+
+    // Only required if floor can tilt
+    // Rotate by rotation of floor, around the floor centre
+    Matrix tr1;
+    tr1.Translate(-m_floor->GetPos());
+    Matrix tr2;
+    tr2.Translate( m_floor->GetPos());
+    Matrix floorRot = tr1 * m_floorRot * tr2;
+    mat *= floorRot;
+
+    m_bloodPool->SetLocalTransform(mat);
   }
 }
 
@@ -262,6 +275,14 @@ void Pet::OnAnimFinished()
   }
 }
 
+void Pet::UpdateBloodPoolRotation()
+{
+  Floor* floor = const_cast<Floor*>(GetFloor());
+  m_floorRot = *(floor->GetMatrix()); 
+  m_floorRot.TranslateKeepRotation(Vec3f()); // just the rotation
+  m_floorRot = m_invFloorMatrix * m_floorRot; // rotation relative to when blood pool created
+}
+
 void Pet::CalcBloodPoolMatrix()
 {
   // Just do this once for static floors.
@@ -313,6 +334,10 @@ std::cout << "Bah, no tris for blood pool.\n";
   }
 
   m_bloodPoolMatrix = mat;
+  m_invFloorMatrix = *(floor->GetMatrix());
+  // Just the rotation
+  m_invFloorMatrix.TranslateKeepRotation(Vec3f());
+  m_invFloorMatrix = Transpose(m_invFloorMatrix); // inverse
 }
 
 void Pet::StartBeingEaten(Dino* eater)
@@ -335,6 +360,11 @@ void Pet::StartBeingEaten(Dino* eater)
   m_pSceneNode->SetLocalTransform(mat);
 
   m_bloodPoolPos = m_pos;
+  // Get accurate y
+  Floor* floor = const_cast<Floor*>(GetFloor());
+  CollisionMesh* cm = floor->GetCollisionMesh();
+  cm->GetY(Vec2f(m_bloodPoolPos.x, m_bloodPoolPos.z), &m_bloodPoolPos.y);
+
   mat.Scale(0, 1, 0); // start size 0 in (x, z)
   m_bloodPool->SetLocalTransform(mat);
   m_bloodPool->SetAABB(*(GetSceneNode()->GetAABB()));
