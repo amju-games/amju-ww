@@ -54,6 +54,7 @@ GSMain::GSMain()
 void GSMain::OnDeactive()
 {
   GameState::OnDeactive();
+  TheLurker::Instance()->SetAsListener(false);
   TheEventPoller::Instance()->RemoveListener(m_gui);
 }
 
@@ -61,6 +62,8 @@ void GSMain::OnActive()
 {
   GameState::OnActive();
   TheEventPoller::Instance()->AddListener(m_gui);
+
+  TheLurker::Instance()->SetAsListener(true);
 
   TheSoundManager::Instance()->PlaySong("sound/apz2.it");
 
