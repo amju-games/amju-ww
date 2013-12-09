@@ -22,11 +22,21 @@ class StarEffect : public ParticleEffect2d
 public:
   virtual Vec3f NewPos() const override
   {
-    int i = (int)Rnd(10, 110);
-    float r = (float)i * 0.01f; // radius
+    int i = (int)Rnd(20, 220);
+    float r = (float)i * 0.005f; // radius
     float angle = (float)i * 0.6f;
     Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-0.5, 0.5));
     return tr;
+  }
+
+  virtual float NewRot() const
+  {
+    return Rnd(-6.0f, 6.0f);
+  }
+
+  virtual float NewRotVel() const
+  {
+    return Rnd(-2.0f, 2.0f);
   }
 };
 
@@ -146,7 +156,7 @@ void GSText::CreateText(const std::string& text)
 
   StarEffect* stars = new StarEffect;
   m_stars = stars;
-  stars->Set("star1.png", 0.1f, 100, 99999.9f, -99999.9f);
+  stars->Set("star1.png", 0.05f, 30, 99999.9f, -99999.9f);
   stars->Start();
 
 //SceneNode;
