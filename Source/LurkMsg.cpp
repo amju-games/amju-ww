@@ -295,7 +295,7 @@ static void OnLurkNo()
 
 Lurker::Lurker()
 {
-  m_gui = WWLoadGui("gui-lurk.txt");
+  m_gui = WWLoadGui("gui-lurk.txt", false);
   Assert(m_gui);
 
   m_ok = (GuiButton*)GetElementByName(m_gui, "ok-button");
@@ -437,6 +437,33 @@ bool Lurker::IsDisplayingMsg() const
   return false;
 }
 
+void Lurker::SetAsListener(bool listen)
+{
+  static EventPoller* ep = TheEventPoller::Instance();
+
+  if (listen)
+  {
+    if (ep->HasListener(m_gui))
+    {
+std::cout << "Lurk gui already a listener\n";
+    }
+    else
+    {
+      ep->AddListener(m_gui);
+    }
+  }
+  else
+  {
+    if (ep->HasListener(m_gui))
+    {
+      ep->RemoveListener(m_gui);
+    }
+    else
+    {
+std::cout << "Lurk gui not a listener, can't remove\n";
+    }
+  }
+}
 
 //void Lurker::TextToSpeech(const std::string& text)
 //{

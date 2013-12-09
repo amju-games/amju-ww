@@ -26,6 +26,7 @@
 #include "GameMode.h"
 #include "ShadowManager.h"
 #include "Describe.h"
+#include "LurkMsg.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -597,8 +598,11 @@ bool Player::OnMouseButtonEvent(const MouseButtonEvent& mbe)
     return false;
   }
 
+  Lurker* lurker = TheLurker::Instance();
+
   // Tap to jump
-  if (mbe.isDown && mbe.button == AMJU_BUTTON_MOUSE_LEFT)
+  if (mbe.isDown && mbe.button == AMJU_BUTTON_MOUSE_LEFT &&
+      !lurker->IsDisplayingMsg() )
   {
     Jump();
   }
