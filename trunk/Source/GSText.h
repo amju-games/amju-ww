@@ -34,7 +34,7 @@ protected:
   // Time in current state
   float m_timer;
 
-  SceneNode* m_stars;
+  SceneNode* m_stars[2];
   SceneNodeCamera* m_camera;
 };
 }
