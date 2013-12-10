@@ -1,20 +1,94 @@
 #include <GuiText.h>
+#include <Timer.h>
+#include <ROConfig.h>
 #include "Hud.h"
 #include "Score.h"
 #include "WWLoadGui.h"
 
 namespace Amju
 {
+static float s_lifeTimer = 0;
+static float s_scoreExpandTimer[3] = { 0, 0, 0 };
+
 bool Hud::Load()
 { 
   m_gui = WWLoadGui("hud-gui.txt");
   Assert(m_gui);
   return (m_gui != 0);
 }
+  
+void Hud::ExpandScore(ScoreType st)
+{
+  s_scoreExpandTimer[(int) st] = 1.0f; // TODO CONFIG
+}
 
 void Hud::Draw()
 {
+  float dt = TheTimer::Instance()->GetDt();
+
+  static const char* SCORE_NAME[3] = 
+  {
+    "p1-score-text", 
+    "p2-score-text",
+    "hi-score-text"
+  };
+
+  static const float origSize[3] = 
+  {
+    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[0]))->GetTextSize(),
+    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[1]))->GetTextSize(),
+    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[2]))->GetTextSize()
+  };
+
+  for (int i = 0; i < 3; i++)
+  {
+    if (s_scoreExpandTimer[i] > 0)
+    {
+      s_scoreExpandTimer[i] -= dt;
+      if (s_scoreExpandTimer[i] < 0)
+      {
+        s_scoreExpandTimer[i] = 0;
+      }
+      GuiText* text = dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[i]));
+      Assert(text);
+      text->SetTextSize(origSize[i] * (s_scoreExpandTimer[i] + 1.0f));
+      std::string s = text->GetText();
+      text->SetText("");
+      text->SetText(s); // force tri list rebuild
+    }
+  }
+
+  if (s_lifeTimer > 0)
+  {
+    s_lifeTimer -= dt;
+    if (s_lifeTimer < 0)
+    {
+      s_lifeTimer = 0;
+    }
+    static const char* GUI_NAME[4] = 
+    {
+      "heart-img1", 
+      "p1-lives-text",
+      "heart-img2", 
+      "p2-lives-text"
+    };
+    float t = s_lifeTimer * 10;
+    bool vis = (((int)t % 2) == 0);
+    for (int i = 0; i < 4; i++)
+    {
+      GuiElement* elem = m_gui->GetElementByName(GUI_NAME[i]);
+      Assert(elem);
+      elem->SetVisible(vis);
+    }
+  } 
+
   m_gui->Draw();
+}
+
+void Hud::FlashLives()
+{
+  static const float MAX_LIFE_FLASH = ROConfig()->GetFloat("hud-max-life-flash");
+  s_lifeTimer = MAX_LIFE_FLASH;
 }
 
 void Hud::SetObjectiveText(const std::string& s)
