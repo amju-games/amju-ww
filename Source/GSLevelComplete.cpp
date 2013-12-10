@@ -65,6 +65,7 @@ void GSLevelComplete::Update()
     a += DegToRad(30.0f); // TODO
     Pet* pet = const_cast<Pet*>(*it);
     SetObjPos(pet, a, m_z + Z_INCREMENT);
+    pet->SetAnim("fall");
   }   
 
   // Inc timer, go to next state

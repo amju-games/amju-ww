@@ -73,13 +73,17 @@ int Scores::GetScore(PlayerNum pn) const
 
 void Scores::AddToScore(PlayerNum pn, int toAdd)
 {
+  static Hud* h = TheHud::Instance();
+
   s_scores[ (int)pn ] += toAdd;
+  h->ExpandScore((Hud::ScoreType)pn);
 
   if (s_scores[ (int)pn ] > hiScore)
   {
     hiScore = s_scores[ (int)pn ];
     static GameConfigFile* gcf = TheGameConfigFile::Instance();
     gcf->SetInt(HI_SCORE_KEY, hiScore);
+    h->ExpandScore(Hud::AMJU_HI_SCORE);
   }
 
   UpdateHud();

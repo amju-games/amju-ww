@@ -14,6 +14,10 @@ public:
   void SetObjectiveText(const std::string&);
   void UpdateScores();
   void SetNumPlayers(int num);
+  void FlashLives(); // start flashing lives
+
+  enum ScoreType { AMJU_P1_SCORE, AMJU_P2_SCORE, AMJU_HI_SCORE };
+  void ExpandScore(ScoreType);
 
 private:
   PGuiElement m_gui;
