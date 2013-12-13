@@ -2,9 +2,7 @@
 // v 
 1
 
-//cam-speed 400
-//cam-too-far 50
-//cam-stop 10
+hud-max-life-flash  3.0
 
 cam-y-offset 100
 cam-z-offset 150
