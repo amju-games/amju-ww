@@ -37,7 +37,7 @@ end
 bird
 99
 // Position
--149.993164, 220.006836, 0.000000
+-149.988266, 220.011719, 0.000000
 // Shadow texture & size
 shadow.png
 10.000000
@@ -47,7 +47,7 @@ end
 player
 101
 // Position
--100.000000, 219.961395, 0.000000
+-100.000000, 219.933731, 0.000000
 // Player ID
 0
 // MD2 mesh name
@@ -64,7 +64,7 @@ end
 player
 102
 // Position
-100.000000, 219.961395, 0.000000
+100.000000, 219.933731, 0.000000
 // Player ID
 1
 // MD2 mesh name
@@ -81,7 +81,7 @@ end
 pet
 104
 // Position
-150.000000, 219.961395, 750.000000
+150.000000, 250.933731, 50.000000
 // Shadow texture & size
 shadow.png
 20.000000
@@ -91,7 +91,7 @@ end
 pet
 105
 // Position
--150.000000, 219.961395, 150.000000
+-150.000000, 250.933731, 50.000000
 // Shadow texture & size
 shadow.png
 20.000000
@@ -101,7 +101,7 @@ end
 pet
 106
 // Position
--150.000000, 219.961395, 700.000000
+-150.000000, 300.933731, 150.000000
 // Shadow texture & size
 shadow.png
 20.000000
@@ -111,7 +111,7 @@ end
 dino
 107
 // Position
-150.000000, 219.961395, 0.000000
+600.000000, 269.933716, 0.000000
 // Dino type
 0
 // Shadow texture & size
@@ -188,7 +188,7 @@ exit
 // Mesh filename
 transporter.obj
 // Next level
-2
+3
 // Shadow texture & size
 flare.png
 20.000000
@@ -207,7 +207,7 @@ end
 // Game object type
 staticfloor
 1003
-0.000000, 0.000000, 0.000000
+0.000000, 125.000000, 0.000000
 // Y rotation
 0.000000
 // Mesh filename
