@@ -31,7 +31,12 @@ private:
   RCPtr<Player> m_player;
   std::vector<Pet*> m_pets;
   int m_petNum;
-  int m_scoreInc;
+  int m_scoreInc; // number of bonus points to award for the current pet
+
+  int m_bonus; // current bonus being added to score
+  int m_bonusPortion; // amount added to score/subtracted from m_bonus with each change
+  enum State { WAITING, COUNTING, FINISHED };
+  State m_state;
 };
 typedef Singleton<GSPetBonus> TheGSPetBonus;
 }
