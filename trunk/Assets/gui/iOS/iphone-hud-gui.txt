@@ -15,30 +15,30 @@ hi-text
 // pos (coords are -1..1)
 -1, 1 
 // size
-2.0, 0.2
+1.95, 0.2
 // Text 
 HI
-arial, 2.0, fgcol=ffffff, centre
+arial, 2.0, fgcol=ffffff, right
 
 gui-text
 hi-score-text
 // pos (coords are -1..1)
 -1, 0.8
 // size
-2.0, 0.2
+1.95, 0.2
 // Text 
 HI SCORE
-arial, 2.0, fgcol=ffffff, centre
+arial, 2.0, fgcol=ffffff, right
 
 gui-text
 hi-name-text
 // pos (coords are -1..1)
 -1, 0.6
 // size
-2.0, 0.2
+1.95, 0.2
 // Text 
 HI SCORE
-arial, 1.4, fgcol=ffffff, centre
+arial, 1.4, fgcol=ffffff, right
 
 gui-text
 p1-name-text
