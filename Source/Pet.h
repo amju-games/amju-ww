@@ -30,6 +30,7 @@ public:
   bool JustDropped() const;
   void SetCarryingPlayer(Player* player);
   Player* GetCarryingPlayer();
+  void ResetEatenState();
 
 protected:
   void CalcBloodPoolMatrix();

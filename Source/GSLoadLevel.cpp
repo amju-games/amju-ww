@@ -56,6 +56,8 @@ void GSLoadLevel::OnActive()
 {
   GSText::OnActive();
 
+  PlayWav("battle003");
+
   CreateText("level  " + ToString(TheLevelManager::Instance()->GetLevelId()));
   //CreateText("abcdefgh\nijklmnop\nqrstuvwxyz\n!1234567890");
 

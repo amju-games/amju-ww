@@ -1,6 +1,7 @@
 #ifndef ON_FLOOR_CHARACTER_H
 #define ON_FLOOR_CHARACTER_H
 
+#include <SceneMesh.h>
 #include "OnFloor.h"
 
 namespace Amju
@@ -30,6 +31,11 @@ public:
   virtual void OnAnimFreeze();
   virtual void OnAnimRepeat();
 
+  void SetIsTeleporting(bool isTeleporting);
+
+protected:
+  void UpdateCocoon();
+
 protected:
   float m_dir; // Direction of movement - DEGREES
   // Direction we currently face -- we will reduce the difference
@@ -40,6 +46,10 @@ protected:
   std::string m_md2Name;
   std::string m_texNames[2];  
   int m_anim;
+
+  RCPtr<SceneMesh> m_cocoon;
+  bool m_isTeleporting;
+  float m_teleportScale;
 };
 }
 

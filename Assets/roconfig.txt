@@ -13,7 +13,7 @@ sound-new-lurkmsg  waterdrop
 sound-tut-trigger  whistlehere
 
 
-level-complete-max-time 4.0
+level-complete-max-time 4.05
 
 pet-max-just-dropped-time 2.0
 pet-collide-radius 25

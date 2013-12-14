@@ -266,6 +266,11 @@ bool Pet::Load(File* f)
   return true;
 }
 
+void Pet::ResetEatenState() 
+{
+  m_eatenState = NOT_EATEN_YET;
+}
+
 void Pet::OnAnimFinished() 
 {
   Npc::OnAnimFinished();
