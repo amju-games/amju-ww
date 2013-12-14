@@ -1,3 +1,4 @@
+#include <iostream>
 #include <Timer.h>
 #include <DegRad.h>
 #include <ReportError.h>
@@ -5,6 +6,7 @@
 #include "BlinkCharacter.h"
 #include "Floor.h"
 #include "Describe.h"
+#include "MySceneGraph.h"
 
 namespace Amju
 {
@@ -43,10 +45,12 @@ bool OnFloorCharacter::CreateSceneNode()
   bc->SetGameObj(this);
 
   m_cocoon = new SceneMesh;
-  bc->AddChild(m_cocoon.GetPtr());
+  ////bc->AddChild(m_cocoon.GetPtr());
   ObjMesh* cocoonMesh = (ObjMesh*)rm->GetRes("ball.obj");
   m_cocoon->SetMesh(cocoonMesh);
-  m_cocoon->SetVisible(false);
+  // Or Add to scene later?
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->AddChild(m_cocoon.GetPtr());
+//  m_cocoon->SetVisible(false);
 
   return true;
 }
@@ -90,13 +94,18 @@ void OnFloorCharacter::UpdateCocoon()
   if (m_isTeleporting)
   {
     float dt = TheTimer::Instance()->GetDt();
-    m_teleportScale += 0.01f * dt;
+    const float SCALE_MULT = 1.0f;
+    m_teleportScale += SCALE_MULT * dt;
 
     Matrix tr;
-    tr.Translate(Vec3f(0, 25, 0)); // move to half way up character - TODO per character type
+    tr.Translate(m_pos + Vec3f(0, 25, 0)); // move to half way up character - TODO per character type
+//std::cout << "Teleport: cocoon pos: " << Describe(m_pos) << "\n";
+
     Matrix scale;
-    scale.Scale(m_teleportScale, m_teleportScale, m_teleportScale);
-    m_cocoon->SetLocalTransform(scale);
+    const float XZ_SCALE = 0.01f / m_teleportScale; // TEST 0.1f; // TODO CONFIG
+    scale.Scale(XZ_SCALE, m_teleportScale, XZ_SCALE);
+    m_cocoon->SetLocalTransform(scale * tr);
+    m_cocoon->SetAABB(m_aabb);
   }
 }
 
