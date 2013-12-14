@@ -3,6 +3,7 @@
 1
 
 hud-max-life-flash  3.0
+hud-expand-scale    0.5
 
 cam-y-offset 100
 cam-z-offset 150
