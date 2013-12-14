@@ -113,15 +113,18 @@ void Player::ReachedExit()
 {
   m_reachedExit = true;
 
+  SetIsTeleporting(true);
+
   KillController();
 
   ShadowManager* shm = TheShadowManager::Instance();
   shm->RemoveCaster(this);
-  GetSceneNode()->SetVisible(false);
+  //GetSceneNode()->SetVisible(false);
   for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* p = *it;
-    p->GetSceneNode()->SetVisible(false);
+    //p->GetSceneNode()->SetVisible(false);
+    p->SetIsTeleporting(true);
     shm->RemoveCaster(p);
   }
 }
@@ -614,6 +617,7 @@ void Player::Update()
 {
   if (m_reachedExit)
   {
+    UpdateCocoon();
     return;
   }
 

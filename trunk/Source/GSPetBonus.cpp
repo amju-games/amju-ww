@@ -3,6 +3,7 @@
 #include <Timer.h>
 #include <DegRad.h>
 #include <GuiText.h>
+#include <SoundManager.h>
 #include "GSPetBonus.h"
 #include "GSLoadLevel.h"
 #include "Hud.h"
@@ -31,6 +32,8 @@ void GSPetBonus::ShowPet()
   if (!m_pets.empty())
   {
     Pet* pet = m_pets[m_petNum];
+    pet->ResetEatenState();
+
 std::cout << "Showing pet " << pet->GetId() << "\n";
 
     float x = ((float)m_petNum - (float)(m_pets.size() - 1) / 2.0f) * 50.0f;
@@ -70,6 +73,9 @@ std::cout << "Showing pet " << pet->GetId() << "\n";
 void GSPetBonus::OnActive()
 {
   GSText::OnActive();
+
+  PlayWav("battle003");
+  TheSoundManager::Instance()->PlaySong("sound/piano.it");
 
   m_state = WAITING;
 
