@@ -51,7 +51,8 @@ void Hud::Draw()
       }
       GuiText* text = dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[i]));
       Assert(text);
-      text->SetTextSize(origSize[i] * (s_scoreExpandTimer[i] + 1.0f));
+      static const float EXPAND_SCALE = ROConfig()->GetFloat("hud-expand-scale");
+      text->SetTextSize(origSize[i] * (s_scoreExpandTimer[i] * EXPAND_SCALE + 1.0f));
       std::string s = text->GetText();
       text->SetText("");
       text->SetText(s); // force tri list rebuild
