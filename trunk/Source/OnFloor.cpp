@@ -104,6 +104,8 @@ void OnFloor::Reset()
 
 void OnFloor::FindFloor()
 {
+  Floor* bestFloor = 0;
+  float bestY = -99999;
   for (unsigned int i = 0; i < s_floors.size(); i++)
   {
     // In general area ? - i.e. do our bounding boxes intersect ?
@@ -117,10 +119,18 @@ void OnFloor::FindFloor()
       //  or below surface, but not too low..?
       if (m_pos.y < (y + 100.0f) && m_pos.y > (y - 10.0f))
       {
-        SetFloor(f);
-        break;
+        if (y > bestY)
+        {
+          bestY = y;
+          bestFloor = f;
+        }
       }
     }
+  }
+
+  if (bestFloor)
+  {
+    SetFloor(bestFloor);
   }
 }
 
