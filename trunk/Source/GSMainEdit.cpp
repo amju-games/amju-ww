@@ -846,8 +846,11 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
       move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
     }
 
-    m_accumulatedDragMove += move; // * sqrt(diff.SqLen());
-    float limit = m_gridSize * 0.2f; // TODO
+    EditModeCamera* cam = GetCamera();
+    float zoomDist = sqrt((cam->GetEyePos() - cam->GetLookAtPos()).SqLen());
+
+    m_accumulatedDragMove += move; 
+    float limit = m_gridSize * 100.0f / zoomDist; 
     if (m_accumulatedDragMove.SqLen() > limit * limit)
     {
       m_accumulatedDragMove = Vec3f();
