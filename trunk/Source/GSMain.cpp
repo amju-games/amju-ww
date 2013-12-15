@@ -11,6 +11,7 @@
 #include <Pause.h>
 #include <Screen.h>
 #include <SoundManager.h>
+#include <ROConfig.h>
 #include "GSMain.h"
 #include "CursorManager.h"
 #include "Floor.h"
@@ -200,7 +201,10 @@ void GSMain::Update()
     if (m_exitState == FINISHED_EXITING)
     {
       m_exitTimer += TheTimer::Instance()->GetDt();
-      if (m_exitTimer > 1.0f) // TODO CONFIG
+
+      static const float EXIT_DELAY_2 = ROConfig()->GetFloat("exit-delay-2");
+
+      if (m_exitTimer > EXIT_DELAY_2) 
       {
         game->SetCurrentState(TheGSLevelComplete::Instance());
       }
