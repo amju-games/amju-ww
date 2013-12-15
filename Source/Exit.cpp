@@ -102,8 +102,10 @@ void Exit::Update()
     m_billboard->MultLocalTransform(mat);
   }
   
+  static const float EXIT_DELAY_1 = ROConfig()->GetFloat("exit-delay-1");
+
   if (m_isExiting && 
-      m_activeTime > 3.0f) // TODO CONFIG
+      m_activeTime > EXIT_DELAY_1) 
   {
     // Go to next level
     // TODO Sound effect, explosion etc
