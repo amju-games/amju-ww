@@ -45,7 +45,8 @@ void CamZoomInOnPlayer::Update(Camera* cam)
   
   // Get closer to player
   Vec3f vel = v - pos;
-
+  static const float CAM_ZOOM_VEL_SCALE = ROConfig()->GetFloat("cam-zoom-vel-scale");
+  vel *= CAM_ZOOM_VEL_SCALE;
   cam->SetVel(vel);
   cam->SetLookAtPos(v); 
 }
