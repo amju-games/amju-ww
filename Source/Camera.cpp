@@ -73,14 +73,34 @@ void CamFollowPlayer::Update(Camera* cam)
   Assert(player); // can point to other things??
   int numPets = player->GetPets().size();
 
+  static const float PET_DIST_SPEED = 2.0f; // TODO CONFIG
+  float dt = TheTimer::Instance()->GetDt();
+  
+  if (numPets > m_petDist)
+  {
+    m_petDist += dt * PET_DIST_SPEED;
+    if (m_petDist > numPets)
+    {
+      m_petDist = numPets;
+    }
+  }
+  else if (numPets < m_petDist)
+  {
+    m_petDist -= dt * PET_DIST_SPEED;
+    if (m_petDist < numPets)
+    {
+      m_petDist = numPets;
+    }
+  }
+
   // Move in Y - but don't move in y if player is falling
   if (!player->IsFalling())
   {
-    pos.y = v.y + Y_OFFSET + numPets * Y_PET_OFFSET;
+    pos.y = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
   }
 
   // Z is fixed distance from player
-  pos.z = v.z + Z_OFFSET + numPets * Z_PET_OFFSET;
+  pos.z = v.z + Z_OFFSET + m_petDist * Z_PET_OFFSET;
 
   cam->SetPos(pos);
   cam->SetVel(vel);

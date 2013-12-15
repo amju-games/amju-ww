@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "GSLevelComplete.h"
 #include "GSPetBonus.h"
+#include "GSMain.h"
 
 namespace Amju
 {
@@ -24,13 +25,13 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   exit->OnPlayerCollision();
 
   // Set new camera
-  int id = player->GetPlayerId();
-  Viewport* vp = TheViewportManager::Instance()->GetViewport(id);
-  Camera* cam = vp->GetCamera();
+  Camera* cam = GetActiveCamera();
+  Assert(cam);
   cam->SetTarget(exit);
   cam->SetBehaviour(new CamZoomInOnPlayer);
+  cam->SetEarthquake(1.0f); // TODO CONFIG
 
-  player->ReachedExit();
+  player->ReachedExit(exit);
 
   // Set player to show in Level complete stage
   GSLevelComplete* glc = TheGSLevelComplete::Instance();
@@ -38,6 +39,8 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
 
   // Also need player for bonus state
   TheGSPetBonus::Instance()->SetPlayer(player);
+
+  TheGSMain::Instance()->SetExitState(GSMain::IS_EXITING);
 
   // Skip zoom towards exit object
 //  TheGame::Instance()->SetCurrentState(glc);

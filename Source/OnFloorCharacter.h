@@ -32,6 +32,7 @@ public:
   virtual void OnAnimRepeat();
 
   void SetIsTeleporting(bool isTeleporting);
+  bool IsTeleporting() const  { return m_isTeleporting; }
 
 protected:
   void UpdateCocoon();
