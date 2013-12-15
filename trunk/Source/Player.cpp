@@ -28,6 +28,7 @@
 #include "Describe.h"
 #include "LurkMsg.h"
 #include "Hud.h"
+#include "Exit.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -109,9 +110,10 @@ const char* Player::GetTypeName() const
   return NAME;
 }
 
-void Player::ReachedExit()
+void Player::ReachedExit(Exit* exit)
 {
   m_reachedExit = true;
+  m_exitPos = exit->GetPos();
 
   SetIsTeleporting(true);
 
@@ -617,6 +619,16 @@ void Player::Update()
 {
   if (m_reachedExit)
   {
+    // Move towards centre of teleporter
+    Vec3f v = m_exitPos - m_pos;
+    SetVel(v); // TODO
+    GameObject::Update(); // calc new pos  
+  
+    Matrix mat;
+    mat.RotateY(DegToRad(m_dirCurrent));
+    mat.TranslateKeepRotation(m_pos);
+    m_pSceneNode->SetLocalTransform(mat);
+
     UpdateCocoon();
     return;
   }

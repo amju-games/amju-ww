@@ -19,7 +19,12 @@ typedef RCPtr<CamBehaviour> PCamBehaviour;
 class CamFollowPlayer : public CamBehaviour
 {
 public:
+  CamFollowPlayer() : m_petDist(0) {}
   virtual void Update(Camera*);
+
+private:
+  float m_petDist; // distance proportional to number of pets carried,
+    // but changes gradually over frames
 };
 
 class CamZoomInOnPlayer : public CamBehaviour

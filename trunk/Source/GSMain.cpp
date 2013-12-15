@@ -16,6 +16,8 @@
 #include "Floor.h"
 #include "Player.h"
 #include "Dino.h"
+#include "Pet.h"
+#include "Exit.h"
 #include "MySceneGraph.h"
 #include "CollisionManager.h"
 #include "Camera.h"
@@ -49,6 +51,7 @@ GSMain::GSMain()
 {
   m_gui = WWLoadGui("main-gui.txt", false);
   Assert(m_gui);
+  m_exitState = NOT_EXITED;
 }
 
 void GSMain::OnDeactive()
@@ -77,7 +80,7 @@ void GSMain::OnActive()
   // Set clear colour for game, TODO depends on skybox
   AmjuGL::SetClearColour(Colour(0.0f, 0.0f, 1.0f, 1.0f));
 
-  m_exitReached = false;
+  m_exitState = NOT_EXITED;
   m_exitTimer = 0;
 
   GuiElement* splitLine = m_gui->GetElementByName("split-screen-line");
@@ -129,16 +132,16 @@ bool GSMain::OnKeyEvent(const KeyEvent& ke)
   return false;
 }
 
-void GSMain::OnExitReached()
+void GSMain::SetExitState(ExitState es)
 {
-  m_exitReached = true;
+  m_exitState = es;
   m_exitTimer = 0;
 }
 
 void GSMain::ClearLevel()
 {
   OnFloor::ClearFloors();
-  m_exitReached = false;
+  m_exitState = NOT_EXITED;
   m_exitTimer = 0;
 }
 
@@ -168,10 +171,33 @@ void GSMain::Update()
       }
     }
   }
+  else if (m_exitState == IS_EXITING)
+  {
+    m_pauseButton->SetVisible(false);
+    scenegraph->Update(); // DO still update the scene graph?
+    // TODO Also still update Bird?
+    GameObjects* objs = game->GetGameObjects();
+    for (auto it = objs->begin(); it != objs->end(); ++it)
+    {
+      GameObject* obj = it->second;
+      if (dynamic_cast<Player*>(obj))
+      {
+        obj->Update();
+      }
+      Pet* pet = dynamic_cast<Pet*>(obj);
+      if (pet && pet->IsTeleporting())
+      {
+        pet->Update();
+      }
+      if (dynamic_cast<Exit*>(obj))
+      {
+        obj->Update();
+      }
+    }
+  }
   else
   {
-    m_pauseButton->SetVisible(true);
-    if (m_exitReached)
+    if (m_exitState == FINISHED_EXITING)
     {
       m_exitTimer += TheTimer::Instance()->GetDt();
       if (m_exitTimer > 1.0f) // TODO CONFIG
@@ -181,6 +207,8 @@ void GSMain::Update()
     }
     else
     {
+      m_pauseButton->SetVisible(true);
+
       game->UpdateGameObjects();
       TheCollisionManager::Instance()->Update();
       scenegraph->Update();
