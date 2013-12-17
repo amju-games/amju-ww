@@ -6,6 +6,7 @@
 #include <ConfigFile.h>
 #include <Directory.h>
 #include <GuiCommandHandler.h>
+#include <Screen.h>
 #include "GSMainEdit.h"
 #include "GSTitle.h"
 #include "GSLoadLevel.h"
@@ -19,6 +20,7 @@
 #include "ShadowManager.h"
 #include "Describe.h"
 #include "SaveDir.h"
+#include "Viewport.h"
 
 namespace Amju
 {
@@ -619,56 +621,63 @@ void GSMainEdit::Update()
 
 void GSMainEdit::Draw()
 {
-  GSMain::Draw();
-
-  if (m_isSelecting)
+  //GSMain::Draw();
+  int numVps = TheViewportManager::Instance()->GetNumViewports();
+  for (int i = 0; i < numVps; i++)
   {
-    m_isSelecting = false;
-    m_selectedObj = 0;
+    TheViewportManager::Instance()->GetViewport(i)->Draw();
 
-    GetGameSceneGraph()->GetCamera()->Draw();
-
-    Vec3f mouseWorldNear;
-    Vec3f mouseWorldFar;
-
-    Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 0, &mouseWorldNear);
-    Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 1, &mouseWorldFar);
-    LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
-
-/*
-    // Draw for debugging
-    std::cout << "Selecting, mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
-    AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
-    AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-    AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
-      AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
-    AmjuGL::PopAttrib();
-*/
-
-    GameObjects* objs = TheGame::Instance()->GetGameObjects();
-    float bestDist = 999999.9f;
-    for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
+    if (m_isSelecting)
     {
-      GameObject* pgo = it->second;
-      Assert(pgo);
-      const AABB& aabb = pgo->GetAABB();
-      if (Clip(lineSeg, aabb, 0))
+      m_isSelecting = false;
+      m_selectedObj = 0;
+
+      GetGameSceneGraph()->GetCamera()->Draw();
+
+      Vec3f mouseWorldNear;
+      Vec3f mouseWorldFar;
+
+      Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 0, &mouseWorldNear);
+      Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 1, &mouseWorldFar);
+      LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
+
+  /*
+      // Draw for debugging
+      std::cout << "Selecting, mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
+      AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
+      AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+      AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
+        AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
+      AmjuGL::PopAttrib();
+  */
+
+      GameObjects* objs = TheGame::Instance()->GetGameObjects();
+      float bestDist = 999999.9f;
+      for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
       {
-        // Line seg intersects this box
-        Assert(dynamic_cast<WWGameObject*>(pgo));
-        // Choose object whose centre (position) is closest to line seg..?
-        float dist = LineSeg(mouseWorldNear, mouseWorldFar).SqDist(pgo->GetPos());
-        //float dist = (mouseWorldNear - pgo->GetPos()).SqLen(); // pick closest
-        if (dist < bestDist)
+        GameObject* pgo = it->second;
+        Assert(pgo);
+        const AABB& aabb = pgo->GetAABB();
+        if (Clip(lineSeg, aabb, 0))
         {
-          bestDist = dist;
-          m_selectedObj = (WWGameObject*)pgo;
+          // Line seg intersects this box
+          Assert(dynamic_cast<WWGameObject*>(pgo));
+          // Choose object whose centre (position) is closest to line seg..?
+          float dist = LineSeg(mouseWorldNear, mouseWorldFar).SqDist(pgo->GetPos());
+          //float dist = (mouseWorldNear - pgo->GetPos()).SqLen(); // pick closest
+          if (dist < bestDist)
+          {
+            bestDist = dist;
+            m_selectedObj = (WWGameObject*)pgo;
+          }
         }
       }
-    }
 
-    SetSelectedObject(m_selectedObj);
+      SetSelectedObject(m_selectedObj);
+    }
   }
+
+  AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
 }
 
 void GSMainEdit::SetSelectedObject(GameObject* obj)
