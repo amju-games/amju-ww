@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-20
+37
 
 // Game object type
 camera
@@ -37,7 +37,7 @@ end
 bird
 99
 // Position
--149.988266, 220.011719, 0.000000
+-149.999832, 220.000168, 0.000000
 // Shadow texture & size
 shadow.png
 10.000000
@@ -47,7 +47,7 @@ end
 player
 101
 // Position
--100.000000, 219.933731, 0.000000
+1675.000000, -30.001007, -1025.000000
 // Player ID
 0
 // MD2 mesh name
@@ -64,7 +64,7 @@ end
 player
 102
 // Position
-100.000000, 219.933731, 0.000000
+1700.000000, 44.998993, -1100.000000
 // Player ID
 1
 // MD2 mesh name
@@ -81,7 +81,7 @@ end
 pet
 104
 // Position
-150.000000, 250.933731, 50.000000
+1625.000000, 19.998993, -975.000000
 // Shadow texture & size
 shadow.png
 20.000000
@@ -91,7 +91,7 @@ end
 pet
 105
 // Position
--150.000000, 250.933731, 50.000000
+1600.000000, -30.001007, -975.000000
 // Shadow texture & size
 shadow.png
 20.000000
@@ -101,7 +101,7 @@ end
 pet
 106
 // Position
--150.000000, 300.933731, 150.000000
+1675.000000, -5.001007, -1025.000000
 // Shadow texture & size
 shadow.png
 20.000000
@@ -111,7 +111,7 @@ end
 dino
 107
 // Position
-600.000000, 269.933716, 0.000000
+950.000000, -30.001007, -1075.000000
 // Dino type
 0
 // Shadow texture & size
@@ -182,36 +182,131 @@ end
 // Game object type
 exit
 200
-0.000000, 220.000000, 0.000000
+1000.000000, -130.000000, -800.000000
 // Y rotation
 0.000000
 // Mesh filename
 transporter.obj
 // Next level
-3
+4
 // Shadow texture & size
 flare.png
 20.000000
 end
 
 // Game object type
+bonus
+413
+-100.000000, 250.000000, 100.000000
+// Mesh filename
+heart.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+0
+// Bonus lives
+1
+end
+
+// Game object type
 staticfloor
 1001
-600.000000, 200.000000, 0.000000
+900.000000, 50.000000, -1050.000000
 // Y rotation
 0.000000
 // Mesh filename
-plat_rect_4x4_std.obj
+block_rect_1x1.obj
+end
+
+// Game object type
+staticfloor
+1002
+350.000000, 150.000000, -1050.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_1x1.obj
 end
 
 // Game object type
 staticfloor
 1003
-0.000000, 125.000000, 0.000000
+-800.000000, 200.000000, 0.000000
 // Y rotation
 0.000000
 // Mesh filename
 block_rect_curved_4x4.obj
+end
+
+// Game object type
+staticfloor
+1004
+1650.000000, -150.000000, -1050.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_2x2.obj
+end
+
+// Game object type
+staticfloor
+1005
+1100.000000, 200.000000, -1500.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_1x1.obj
+end
+
+// Game object type
+staticfloor
+1006
+750.000000, 34.375000, -1050.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_2x2.obj
+end
+
+// Game object type
+staticfloor
+1007
+2000.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_4x2.obj
+end
+
+// Game object type
+staticfloor
+1008
+2500.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_4x4.obj
+end
+
+// Game object type
+staticfloor
+1010
+0.000000, 200.000000, 800.000000
+// Y rotation
+0.000000
+// Mesh filename
+field_4x4.obj
+end
+
+// Game object type
+staticfloor
+1011
+1400.000000, 200.000000, 1200.000000
+// Y rotation
+0.000000
+// Mesh filename
+field_8x8.obj
 end
 
 // Game object type
@@ -226,17 +321,17 @@ end
 // Game object type
 staticfloor
 4002
-0.000000, 200.000000, 250.000000
+1300.000000, -150.000000, -1600.000000
 // Y rotation
 0.000000
 // Mesh filename
-block_rect_1x1.obj
+plat_rect_3x1_std.obj
 end
 
 // Game object type
 floor
 4003
-0.000000, 200.000000, 350.000000
+1325.000000, -150.000000, -1050.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -247,4 +342,96 @@ plat_rect_2x1_std.obj
 100.000000
 // Inertia
 50.000000
+end
+
+// Game object type
+staticfloor
+4004
+0.000000, 200.000000, -350.000000
+// Y rotation
+0.000000
+// Mesh filename
+ramp_2x1.obj
+end
+
+// Game object type
+staticfloor
+4005
+0.000000, 200.000000, -600.000000
+// Y rotation
+0.000000
+// Mesh filename
+ramp_3x1.obj
+end
+
+// Game object type
+staticfloor
+4006
+-200.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_1x1.obj
+end
+
+// Game object type
+floor
+4007
+550.000000, 150.000000, -1050.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_2x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+floor
+4008
+450.000000, 25.000000, -350.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_2x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+staticfloor
+4009
+1000.000000, -150.000000, -800.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_1x1.obj
+end
+
+// Game object type
+staticfloor
+4010
+300.000000, 200.000000, 250.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_1x1_std.obj
+end
+
+// Game object type
+staticfloor
+4011
+1000.000000, -150.000000, -1050.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_2x2.obj
 end
