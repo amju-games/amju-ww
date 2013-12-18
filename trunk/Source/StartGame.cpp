@@ -7,10 +7,11 @@
 #include "EditViewport.h"
 #include "Score.h"
 #include "Hud.h"
+#include "EditModeCamera.h"
 
 namespace Amju
 {
-void CreateEditViewport()
+void CreateEditViewports()
 {
   int x = Screen::X();
   int y = Screen::Y();
@@ -18,14 +19,27 @@ void CreateEditViewport()
   int y2 = y / 2;
 
   // 4 viewports
-  TheViewportManager::Instance()->AddViewport(new EditViewport(0, 0, 0, x2, y2)); 
+
+  EditViewport* vp = new EditViewport(0, 0, 0, x2, y2); 
   //   id, x, y, w, h
+  TheViewportManager::Instance()->AddViewport(vp);
+  EditModeCamera* cam = new EditModeCamera(AMJU_EDITCAM_TOP);
+  vp->SetSceneNodeCamera(cam);
 
-  TheViewportManager::Instance()->AddViewport(new EditViewport(1, x2, 0, x2, y2)); 
+  vp = new EditViewport(1, x2, 0, x2, y2); 
+  TheViewportManager::Instance()->AddViewport(vp);
+  cam = new EditModeCamera(AMJU_EDITCAM_FRONT);
+  vp->SetSceneNodeCamera(cam);
 
-  TheViewportManager::Instance()->AddViewport(new EditViewport(1, 0,  y2, x2, y2)); 
+  vp = new EditViewport(1, 0,  y2, x2, y2); 
+  TheViewportManager::Instance()->AddViewport(vp);
+  cam = new EditModeCamera(AMJU_EDITCAM_SIDE);
+  vp->SetSceneNodeCamera(cam);
 
-  TheViewportManager::Instance()->AddViewport(new EditViewport(1, x2,  y2, x2, y2)); 
+  vp = new EditViewport(1, x2,  y2, x2, y2); 
+  TheViewportManager::Instance()->AddViewport(vp);
+  cam = new EditModeCamera(AMJU_EDITCAM_PERSP);
+  vp->SetSceneNodeCamera(cam);
 }
 
 void CreateViewports(int numPlayers)
@@ -69,7 +83,7 @@ void StartGame(int numPlayers, GameMode mode)
   TheViewportManager::Instance()->ClearViewports();
   if (mode == AMJU_EDIT_MODE)
   {
-    CreateEditViewport();
+    CreateEditViewports();
   }
   else
   {

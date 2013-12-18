@@ -1,3 +1,4 @@
+#include <AmjuGL.h>
 #include "EditModeCamera.h"
 #include "EventPoller.h"
 
@@ -14,19 +15,31 @@ EditModeCameraController::~EditModeCameraController()
 {
 }
 
-EditModeCamera::EditModeCamera()
+EditModeCamera::EditModeCamera(EditCamType camType)
 {
+  m_camType = camType;
   m_controllable = true;
-  if (!m_controller)
-  {
-    m_controller = new EditModeCameraController(this);
-  }
+  
+  m_controller = new EditModeCameraController(this);
+  
   TheEventPoller::Instance()->AddListener(m_controller, 90); // low pri 
 
   // TODO TEMP TEST
-  SetEyePos(Vec3f(0, 0, 500));
+  Vec3f eye(0, 0, 500);
+  Vec3f up(0, 1, 0);
+  if (m_camType == AMJU_EDITCAM_SIDE)
+  {
+    eye = Vec3f(500, 0, 0);
+  }
+  else if (m_camType == AMJU_EDITCAM_TOP)
+  {
+    eye = Vec3f(0, 500, 0);
+    up = Vec3f(0, 0, -1);
+  }
+
+  SetEyePos(eye);
   SetLookAtPos(Vec3f(0, 0, 0));
-  SetUpVec(Vec3f(0, 1, 0));
+  SetUpVec(up);
 
   m_drag = false;
   m_mode = AMJU_ROTATE;
@@ -70,6 +83,24 @@ void EditModeCamera::SetControllable(bool controllable)
 
 void EditModeCamera::Update()
 {
+}
+
+void EditModeCamera::Draw()
+{
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+  const float FOVY = 60.0f;
+  const float NEAR = 1.0f;
+  const float FAR = 3000.0f;
+
+  const float ASPECT = 1.5f; // Always show the same amount of the world,
+    // but distorted if viewport does not have this aspect ratio
+
+  AmjuGL::SetPerspectiveProjection(FOVY, ASPECT, NEAR, FAR);
+
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+  AmjuGL::SetIdentity();
+  SceneNodeCamera::Draw(); // look at
 }
 
 bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
