@@ -25,7 +25,7 @@ public:
   void SetCamera(Camera*);
   Camera* GetCamera();
 
-private:
+protected:
   // Target for camera to look at
   // (Not Game Object ID ?)
   //SceneNode* m_pCameraTarget;

@@ -556,7 +556,7 @@ void GSMainEdit::OnActive()
   // Show bounding boxes - TODO don't use this, draw object AABBs
   SceneNode::SetGlobalShowAABB(true);
 
-  GetGameSceneGraph()->SetCamera(new EditModeCamera);
+  //GetGameSceneGraph()->SetCamera(new EditModeCamera);
   
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);

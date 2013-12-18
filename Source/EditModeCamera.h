@@ -8,13 +8,21 @@ namespace Amju
 {
 class EditModeCameraController;
 
+enum EditCamType { 
+  AMJU_EDITCAM_FRONT,
+  AMJU_EDITCAM_SIDE,
+  AMJU_EDITCAM_TOP,
+  AMJU_EDITCAM_PERSP
+};
+
 class EditModeCamera : public SceneNodeCamera
 {
 public:
-  EditModeCamera();
+  EditModeCamera(EditCamType type);
   virtual ~EditModeCamera();
 
   virtual void Update();
+  virtual void Draw();
 
   virtual bool OnCursorEvent(const CursorEvent&); 
   virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
@@ -30,6 +38,7 @@ private:
   Mode m_mode;
   RCPtr<EditModeCameraController> m_controller;
   bool m_controllable;
+  EditCamType m_camType;
 };
 
 class EditModeCameraController : public EventListener
