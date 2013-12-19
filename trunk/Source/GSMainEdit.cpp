@@ -21,6 +21,7 @@
 #include "Describe.h"
 #include "SaveDir.h"
 #include "Viewport.h"
+#include "EditViewport.h"
 
 namespace Amju
 {
@@ -748,6 +749,39 @@ static bool s_drag = false;
 
 bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
+  if (mbe.isDown)
+  {
+    int active = -1;
+    // Choose active viewport - this matches what's in StartGame.cpp:CreateEditViewports()
+    if (mbe.x > 0)
+    {
+      // Right
+      if (mbe.y > 0)
+      {
+        // Top
+        active = AMJU_TOP_RIGHT; 
+      }
+      else
+      {
+        active = AMJU_BOTTOM_RIGHT;
+      }
+    }
+    else
+    {
+      // Left
+      if (mbe.y > 0)
+      {
+        // Top
+        active = AMJU_TOP_LEFT;
+      }
+      else
+      {
+        active = AMJU_BOTTOM_LEFT;
+      }
+    }
+    EditViewport::SetActiveId(active);
+  }
+
   switch (mbe.button)
   {
   case AMJU_BUTTON_MOUSE_LEFT:
