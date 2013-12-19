@@ -1,12 +1,23 @@
-#include <AmjuGL.h>
+#include <GuiRect.h>
 #include "EditViewport.h"
-#include "Font.h"
 #include "MySceneGraph.h"
 
 namespace Amju
 {
-EditViewport::EditViewport(int id, int x, int y, int w, int h) : 
-  Viewport(id, x, y, w, h)
+static int s_activeId = 0;
+
+bool EditViewport::IsActive() const
+{
+  return m_id == s_activeId;
+}
+
+void EditViewport::SetActiveId(int activeViewportId)
+{
+  s_activeId = activeViewportId;
+}
+
+EditViewport::EditViewport(int id, int x, int y, int w, int h, const std::string& name) : 
+  Viewport(id, x, y, w, h), m_name(name)
 {
 }
 
@@ -24,11 +35,25 @@ void EditViewport::Draw()
 
 void EditViewport::Draw2d()
 {
-  static Font* font = 
-    (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
-  Assert(font);
+  AmjuGL::Viewport(m_x, m_y, m_w, m_h);
 
-//  font->Print(0, 0, "Edit mode");
+  // Draw border
+  static GuiRect r;
+  r.SetLocalPos(Vec2f(-1, 1));
+  r.SetSize(Vec2f(0.05f, 2.0f));
+  r.SetColour(Colour(1, 1, 0, 1));
+  r.Draw();
+
+  std::string str = m_name;
+  if (IsActive())
+  {
+    str += " (active)";
+  }
+  m_text.SetText(str);
+  m_text.SetLocalPos(Vec2f(0, 0));
+  m_text.SetSize(Vec2f(0.5f, 0.1f));
+//  m_text.SetDrawBg(true);
+  m_text.Draw();
 }
 }
 
