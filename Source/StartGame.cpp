@@ -20,23 +20,23 @@ void CreateEditViewports()
 
   // 4 viewports
 
-  EditViewport* vp = new EditViewport(0, 0, 0, x2, y2); 
+  EditViewport* vp = new EditViewport(0, 0, 0, x2, y2, "Top"); 
   //   id, x, y, w, h
   TheViewportManager::Instance()->AddViewport(vp);
   EditModeCamera* cam = new EditModeCamera(AMJU_EDITCAM_TOP);
   vp->SetSceneNodeCamera(cam);
 
-  vp = new EditViewport(1, x2, 0, x2, y2); 
+  vp = new EditViewport(1, x2, 0, x2, y2, "Front"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_FRONT);
   vp->SetSceneNodeCamera(cam);
 
-  vp = new EditViewport(1, 0,  y2, x2, y2); 
+  vp = new EditViewport(1, 0,  y2, x2, y2, "Side"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_SIDE);
   vp->SetSceneNodeCamera(cam);
 
-  vp = new EditViewport(1, x2,  y2, x2, y2); 
+  vp = new EditViewport(1, x2,  y2, x2, y2, "Persp"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_PERSP);
   vp->SetSceneNodeCamera(cam);
