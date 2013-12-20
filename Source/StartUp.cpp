@@ -1,5 +1,6 @@
 #include <AmjuFirst.h>
 #include <Game.h>
+#include <AmjuGLWindowInfo.h>
 #include <BruteForce.h>
 #include <ResourceManager.h>
 #include <File.h>
@@ -22,6 +23,7 @@
 #include <ROConfig.h>
 #include <BassSoundPlayer.h>
 #include <GuiButton.h>
+#include <EventPoller.h>
 #include "StartUp.h"
 #include "GSLogo.h"
 #include "GSLoadLevel.h" // TEMP; so we start immediately in game
@@ -32,6 +34,7 @@
 #include "StartGame.h"
 #include "GSPaused.h"
 #include "SaveDir.h"
+#include "ResizeHandler.h"
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
@@ -58,6 +61,8 @@
 
 namespace Amju
 {
+extern Amju::AmjuGLWindowInfo w;
+
 // Filename for the writable game config file, not the read-only config.
 static std::string ConfigFilename()
 {
@@ -87,6 +92,18 @@ void StartUpBeforeCreateWindow()
   {
     std::cout << "Failed to load game config file: " << filename << "\n";
   }
+
+#ifndef AMJU_IOS
+  // Can't resize on iOS!
+  const char* SCREEN_X = "screen-x"; // TODO Must match ResizeHandler - use GameConsts
+  const char* SCREEN_Y = "screen-y";
+
+  if (gcf->Exists(SCREEN_X) && gcf->Exists(SCREEN_Y))
+  {
+    w.SetWidth(gcf->GetInt(SCREEN_X));
+    w.SetHeight(gcf->GetInt(SCREEN_Y));
+  }
+#endif
 
   GlueFileMem* gfm = new GlueFileMem;  
   if (FileImplGlue::OpenGlueFile(GLUE_FILE, gfm))
@@ -158,6 +175,10 @@ void StartUpAfterCreateWindow()
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
   game->RegisterPauseState(TheGSPaused::Instance());
+
+#ifndef AMJU_IOS
+  TheEventPoller::Instance()->AddListener(new ResizeHandler);
+#endif
 
   GuiButton::SetClickFilename("sound/navigate_40.wav");
 
