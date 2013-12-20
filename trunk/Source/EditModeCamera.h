@@ -43,6 +43,8 @@ private:
   bool m_isActive; // if false we ignore all events
   bool m_controllable; // Camera may be active but not controllable because we are dragging an object
   EditCamType m_camType;
+  float m_oldx, m_oldy;
+  float m_scale; // zoom for ortho projections
 };
 
 class EditModeCameraController : public EventListener
