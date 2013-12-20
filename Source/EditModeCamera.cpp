@@ -19,7 +19,8 @@ EditModeCamera::EditModeCamera(EditCamType camType)
 {
   m_camType = camType;
   m_controllable = true;
-  
+  m_isActive = false;
+
   m_controller = new EditModeCameraController(this);
   
   TheEventPoller::Instance()->AddListener(m_controller, 90); // low pri 
@@ -76,6 +77,16 @@ case AMJU_ZOOM:
   m_mode = mode;
 }
 
+void EditModeCamera::SetIsActive(bool isActive)
+{
+  m_isActive = isActive;
+}
+
+bool EditModeCamera::IsActive() const
+{
+  return m_isActive;
+}
+
 void EditModeCamera::SetControllable(bool controllable)
 {
   m_controllable = controllable;
@@ -113,6 +124,11 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
   float dy = ce.y - oldy;
   oldx = ce.x;
   oldy = ce.y;
+
+  if (!IsActive())
+  {
+    return false;
+  }
 
   if (m_drag)
   {
