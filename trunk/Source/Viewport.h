@@ -16,7 +16,7 @@ class Camera;
 class Viewport : public RefCounted
 {
 public:
-  Viewport(int id, int x, int y, int w, int h);
+  Viewport(int id, float x, float y, float w, float h);
   virtual ~Viewport() {}
 
   virtual void Draw();
@@ -31,7 +31,7 @@ protected:
   //SceneNode* m_pCameraTarget;
   Camera* m_pCamera;
   int m_id;
-  int m_x, m_y, m_w, m_h;
+  float m_x, m_y, m_w, m_h;
   float m_aspect;
 };
 
