@@ -28,13 +28,13 @@ void CreateEditViewports()
   vp->SetSceneNodeCamera(cam);
 
   // Top left
-  vp = new EditViewport(AMJU_TOP_LEFT, 0, 0.5f, 0.5f, 0.5f, "Side"); 
+  vp = new EditViewport(AMJU_TOP_LEFT, 0, 0.5f, 0.5f, 0.45f, "Side"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_SIDE);
   vp->SetSceneNodeCamera(cam);
 
   // Top right
-  vp = new EditViewport(AMJU_TOP_RIGHT, 0.5f, 0.5f, 0.5f, 0.5f, "Persp"); 
+  vp = new EditViewport(AMJU_TOP_RIGHT, 0.5f, 0.5f, 0.5f, 0.45f, "Persp"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_PERSP);
   vp->SetSceneNodeCamera(cam);
