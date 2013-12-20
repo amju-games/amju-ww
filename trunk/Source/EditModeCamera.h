@@ -33,11 +33,15 @@ public:
   void SetMode(Mode mode);
   Mode GetMode() const;
 
+  void SetIsActive(bool);
+  bool IsActive() const;
+
 private:
   bool m_drag;
   Mode m_mode;
   RCPtr<EditModeCameraController> m_controller;
-  bool m_controllable;
+  bool m_isActive; // if false we ignore all events
+  bool m_controllable; // Camera may be active but not controllable because we are dragging an object
   EditCamType m_camType;
 };
 
