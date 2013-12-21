@@ -18,12 +18,12 @@ EditModeCameraController::~EditModeCameraController()
 
 EditModeCamera::EditModeCamera(EditCamType camType)
 {
-  float SCALE = 0.001f; // TODO CONFIG
+  float SCALE = 0.002f; // TODO CONFIG
   m_scale = SCALE;
   m_oldx = 0;
   m_oldy = 0;
   m_camType = camType;
-  m_controllable = true;
+  m_controllable = false; // Press special key to make controllable
   m_isActive = false;
 
   m_controller = new EditModeCameraController(this);
@@ -31,15 +31,15 @@ EditModeCamera::EditModeCamera(EditCamType camType)
   TheEventPoller::Instance()->AddListener(m_controller, 90); // low pri 
 
   // TODO TEMP TEST
-  Vec3f eye(0, 0, 500);
+  Vec3f eye(0, 0, 300);
   Vec3f up(0, 1, 0);
   if (m_camType == AMJU_EDITCAM_SIDE)
   {
-    eye = Vec3f(500, 0, 0);
+    eye = Vec3f(300, 0, 0); // TODO CONFIG - maybe save in Game Config file
   }
   else if (m_camType == AMJU_EDITCAM_TOP)
   {
-    eye = Vec3f(0, 500, 0);
+    eye = Vec3f(0, 300, 0);
     up = Vec3f(0, 0, -1);
   }
 
@@ -129,6 +129,7 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 {
   static const float SENSITIVITY = 1000.0f;
 
+  // Initialise old values on first call... this is no good, it only works for one camera
   static float oldxInit = (m_oldx = ce.x);
   static float oldyInit = (m_oldy = ce.y);
 
@@ -222,5 +223,17 @@ std::cout << "Edit camera mouse button " << (mbe.isDown ? "DOWN" : "UP") << "\n"
   m_mode = (Mode)mbe.button;
   return false;
 }
+
+bool EditModeCamera::OnKeyEvent(const KeyEvent& ke)
+{
+  // Only move camera when special key held down, so we can also drag mouse to select etc.
+  if (ke.keyType == AMJU_KEY_SPACE) // TODO
+  {
+    m_controllable = ke.keyDown;
+    return true;
+  }
+  return false;
+}
+
 }
 

@@ -1,8 +1,8 @@
 #ifndef EDIT_MODE_CAMERA_H
 #define EDIT_MODE_CAMERA_H
 
-#include "SceneNodeCamera.h"
-#include "EventListener.h"
+#include <SceneNodeCamera.h>
+#include <EventListener.h>
 
 namespace Amju
 {
@@ -21,11 +21,12 @@ public:
   EditModeCamera(EditCamType type);
   virtual ~EditModeCamera();
 
-  virtual void Update();
-  virtual void Draw();
+  virtual void Update() override;
+  virtual void Draw() override;
 
-  virtual bool OnCursorEvent(const CursorEvent&); 
-  virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
+  bool OnCursorEvent(const CursorEvent&); 
+  bool OnMouseButtonEvent(const MouseButtonEvent&);
+  bool OnKeyEvent(const KeyEvent& ke);
 
   void SetControllable(bool controllable);
 
@@ -55,6 +56,7 @@ public:
 
   virtual bool OnCursorEvent(const CursorEvent& ce) override { return m_cam->OnCursorEvent(ce); }
   virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_cam->OnMouseButtonEvent(mbe); }
+  virtual bool OnKeyEvent(const KeyEvent& ke) override { return m_cam->OnKeyEvent(ke); }
 
 private:
   EditModeCamera* m_cam;
