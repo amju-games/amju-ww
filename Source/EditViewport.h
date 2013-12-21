@@ -26,6 +26,9 @@ public:
 
   void SetSceneNodeCamera(SceneNodeCamera* cam) { m_cam = cam; }
 
+  // Convert coord from entire window (-1..1) to this viewport.
+  Vec2f ConvertScreenCoord(const Vec2f& screenCoord);
+
   bool IsActive() const;
   static void SetActiveId(int activeViewportId);
 
