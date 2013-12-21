@@ -18,6 +18,23 @@ void EditViewport::SetActiveId(int activeViewportId)
   s_activeId = activeViewportId;
 }
 
+Vec2f EditViewport::ConvertScreenCoord(const Vec2f& screenCoord)
+{
+  // Convert x and y from [0..1] to [-1..1] range 
+  float x = m_x * 2.0f - 1.0f;
+  float y = m_y * 2.0f - 1.0f;
+  // Convert width and height from [0..1] to [0..2] range
+  float w = m_w * 2.0f;
+  float h = m_h * 2.0f;
+
+  // Convert screen coord to viewport coord
+  Vec2f res(
+    (screenCoord.x - x) / w * 2.0f - 1.0f,
+    (screenCoord.y - y) / h * 2.0f - 1.0f 
+  );
+  return res;
+}
+
 EditViewport::EditViewport(int id, float x, float y, float w, float h, const std::string& name) : 
   Viewport(id, x, y, w, h), m_name(name)
 {
