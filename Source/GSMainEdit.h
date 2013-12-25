@@ -64,6 +64,7 @@ public:
   virtual bool OnKeyEvent(const KeyEvent&);
 
   // Menu item handlers
+  void OnProperties();
   void OnDuplicate();
   void OnDelete();
   void OnRunStart();
