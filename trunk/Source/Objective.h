@@ -23,6 +23,7 @@ public:
   virtual bool Save(File*);
   virtual void Update();
   virtual void Reset();
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
 protected:
   // Called by Update() when we have completed the objective for the level

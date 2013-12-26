@@ -1,11 +1,13 @@
-#include "Objective.h"
+#include <Localise.h>
 #include <Game.h>
+#include <GameObjectFactory.h>
+#include "Objective.h"
 #include "Dino.h"
 #include "Exit.h"
 #include "GSLevelComplete.h"
-#include <GameObjectFactory.h>
 #include "Hud.h"
-#include <Localise.h>
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -22,6 +24,11 @@ Objective::Objective()
 WWGameObject* Objective::Clone()
 {
   return new Objective(*this);
+}
+
+void Objective::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  dlg->AddItem(new PropertiesDialog::TextItem("Text", m_text, PROP_TEXT));
 }
 
 const char* Objective::GetTypeName() const

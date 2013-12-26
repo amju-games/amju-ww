@@ -16,6 +16,7 @@
 #include "AIFalling.h"
 #include "AITurnToFace.h"
 #include "AIStunned.h"
+#include "PropertiesDialog.h"
 
 namespace Amju
 {
@@ -38,6 +39,12 @@ Dino::Dino()
 
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsSet = true;
+}
+
+void Dino::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  // TODO
+//  dlg->AddItem(new PropertiesDialog::IntItem("Type", m_dinoType));
 }
 
 WWGameObject* Dino::Clone() 

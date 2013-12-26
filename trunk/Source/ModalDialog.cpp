@@ -22,6 +22,7 @@ static void DialogOnOk()
   Assert(dlg);
   dlg->SetResult((int)AMJU_OK);
   dlg->GetDataFromGui(); // load GUI strings into member variables
+  dlg->OnOk();
   dlg->Close();
 }
 

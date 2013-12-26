@@ -1,9 +1,12 @@
 #pragma once
 
 #include "ModalDialog.h"
+#include "WWGameObject.h"
 
 namespace Amju
 {
+class PropertyChangeCommand;
+
 // Types for properties
 enum ItemType
 {
@@ -21,28 +24,33 @@ public:
   // One item in the dialog
   struct Item : public RefCounted
   {
-    Item(const std::string& label, ItemType it) : m_label(label), m_itemType(it)
+    Item(const std::string& label, ItemType it, PropertyKey key) : m_label(label), m_itemType(it), m_key(key)
     {
     }
 
     virtual GuiComposite* CreateGui() = 0;
+
+    virtual void AddChangeToCommand(PropertyChangeCommand*) = 0;
 
     std::string m_label; // displayed in GUI
     ItemType m_itemType; // so we know how to display and change
     // Call back when changed?
 
     RCPtr<GuiComposite> m_gui;
+
+    PropertyKey m_key; // Key to set the object member variable
   };
   typedef RCPtr<Item> PItem;
   typedef std::vector<PItem> Items;
 
   struct TextItem : public Item
   {
-    TextItem(const std::string& label, const std::string& value) : Item(label, AMJU_PROP_TEXT),
+    TextItem(const std::string& label, const std::string& value, PropertyKey key) : Item(label, AMJU_PROP_TEXT, key),
       m_value(value)
     {}
 
     virtual GuiComposite* CreateGui() override;
+    virtual void AddChangeToCommand(PropertyChangeCommand*) override;
 
     void SetValue(const std::string& value);
 
@@ -52,7 +60,7 @@ public:
 
   struct FilenameItem : public TextItem
   {
-    FilenameItem(const std::string& label, const std::string& value) : TextItem(label, value)
+    FilenameItem(const std::string& label, const std::string& value, PropertyKey key) : TextItem(label, value, key)
     {
       m_itemType = AMJU_PROP_FILE;
     }
@@ -66,12 +74,15 @@ public:
   virtual void OnActive() override;
   virtual void GetDataFromGui() override;
   virtual void SetDataToGui() override;
+  virtual void OnOk() override;
 
+  void SetObj(WWGameObject* obj);
   void Clear();
   void AddItem(PItem);
 
 protected:
   Items m_items;
 //  int m_numItems;
+  RCPtr<WWGameObject> m_obj;
 };
 }

@@ -1,13 +1,15 @@
+#include <GameObjectFactory.h>
+#include <LoadVec3.h>
+#include <CollisionMesh.h>
+#include <File.h>
+//#include "LoadMeshResource.h"
+#include <SceneMesh.h>
+#include <ObjMesh.h>
+#include <DegRad.h>
 #include "Fence.h"
-#include "GameObjectFactory.h"
-#include "LoadVec3.h"
-#include "CollisionMesh.h"
-#include "File.h"
-#include "LoadMeshResource.h"
-#include "SceneMesh.h"
 #include "MySceneGraph.h"
-#include "ObjMesh.h"
-#include "DegRad.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -19,6 +21,11 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Fence::NAME, &CreateFenc
 Fence::Fence()
 {
   m_yRot = 0;
+}
+
+void Fence::AddPropertiesGui(PropertiesDialog* dlg)
+{
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
 WWGameObject* Fence::Clone() 
@@ -66,7 +73,7 @@ bool Fence::Load(File* f)
     f->ReportError("Expected fence orientation");
     return false;
   }
-  m_pos = m_pos * m_mat;
+//  m_pos = m_pos * m_mat;
 
   if (!LoadMeshResource(f))
   {

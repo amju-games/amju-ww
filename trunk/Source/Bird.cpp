@@ -22,6 +22,14 @@ Bird::Bird()
   AddAI(new AIFly);
 }
 
+void Bird::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  // TODO
+//  dlg->AddItem(new PropertiesDialog::IntItem("Type", m_dinoType));
+//  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name));
+//  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0]));
+}
+
 void Bird::AddToGame() 
 {
   Npc::AddToGame();

@@ -45,9 +45,9 @@ public:
   virtual void Update() override;
   virtual bool Load(File*) override;
   virtual bool Save(File*) override;
-
   virtual void AddToGame() override;
   virtual void RemoveFromGame() override;
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
   void SetAsSceneGraphCamera();
   void SetLookAtPos(const Vec3f& v) { m_lookAt = v; }

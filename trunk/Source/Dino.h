@@ -20,6 +20,7 @@ public:
   virtual bool Save(File*) override;
   virtual void AddToGame() override;
   virtual bool CreateSceneNode() override; 
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
   void Eat(Pet*);
   bool IsEating() const;

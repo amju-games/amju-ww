@@ -32,6 +32,8 @@ public:
   Player* GetCarryingPlayer();
   void ResetEatenState();
 
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+
 protected:
   void CalcBloodPoolMatrix();
   void UpdateBloodPoolRotation();

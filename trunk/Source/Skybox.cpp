@@ -5,6 +5,7 @@
 #include "EventPoller.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
+#include "PropertiesDialog.h"
 
 //#define MOUSE_MOVE_SKYBOX
 
@@ -28,6 +29,11 @@ Skybox::Skybox()
 WWGameObject* Skybox::Clone()
 {
   return new Skybox(*this);
+}
+
+void Skybox::AddPropertiesGui(PropertiesDialog* dlg)
+{
+  // TODO
 }
 
 const char* Skybox::GetTypeName() const
