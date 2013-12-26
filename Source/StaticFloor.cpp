@@ -7,6 +7,8 @@
 #include "LoadTextureResource.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -20,6 +22,11 @@ const char* StaticFloor::NAME = "staticfloor";
 WWGameObject* StaticFloor::Clone()
 {
   return new StaticFloor(*this);
+}
+
+void StaticFloor::AddPropertiesGui(PropertiesDialog* dlg)
+{
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
 const char* StaticFloor::GetTypeName() const

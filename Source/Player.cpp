@@ -29,6 +29,8 @@
 #include "LurkMsg.h"
 #include "Hud.h"
 #include "Exit.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -82,6 +84,15 @@ Player::Player()
 Player::~Player()
 {
   KillController();
+}
+
+void Player::AddPropertiesGui(PropertiesDialog* dlg)
+{
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name, PROP_MD2));
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0], PROP_TEXTURE_1));
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture2", m_texNames[1], PROP_TEXTURE_2));
+  // TODO
+//  dlg->AddItem(new PropertiesDialog::IntItem("Player ID", m_playerId));
 }
 
 void Player::CreateController()

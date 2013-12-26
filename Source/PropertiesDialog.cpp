@@ -1,14 +1,90 @@
 #include <GuiTextEdit.h>
 #include <GuiButton.h>
 #include "PropertiesDialog.h"
+#include "WWGameObject.h"
 
 namespace Amju
 {
+// Ahh crap
+extern int s_unsaved;
+
+// One atomic list of all changes in one command
+class PropertyChangeCommand : public GuiCommand
+{
+public:
+  struct Change
+  {
+    Change(PropertyKey key, PropertyValue value) :
+      m_key(key), m_value(value) {}
+
+    void Do(WWGameObject* obj)
+    {
+      m_oldValue = obj->GetProp(m_key);
+      obj->SetProp(m_key, m_value);
+    }
+
+    void Undo(WWGameObject* obj)
+    {
+      obj->SetProp(m_key, m_oldValue);
+    }
+
+    PropertyKey m_key;
+    PropertyValue m_value, m_oldValue;
+  };
+  
+  PropertyChangeCommand(WWGameObject* obj) : m_obj(obj) {}
+
+  void AddChange(const Change& change)
+  {
+    m_changes.push_back(change);
+  }
+
+  bool HasChanges() const
+  {
+    return !m_changes.empty();
+  }
+
+  virtual bool Do() override
+  {
+    for (auto it = m_changes.begin(); it != m_changes.end(); ++it)
+    {
+      it->Do(m_obj);
+    }
+    // TODO Reload object
+
+    s_unsaved++;
+    return true;
+  }
+
+  virtual void Undo() override
+  {
+    for (auto it = m_changes.begin(); it != m_changes.end(); ++it)
+    {
+      it->Undo(m_obj);
+    }
+
+    // TODO Reload
+
+    s_unsaved--;
+  }
+
+private:
+  RCPtr<WWGameObject> m_obj;
+  std::vector<Change> m_changes;
+};
+
+
 void PropertiesDialog::TextItem::SetValue(const std::string& value)
 {
+  // Called when browse dialog OK'ed 
   m_value = value;
   // Update GUI text
   // TODO - not required?????
+}
+
+void PropertiesDialog::TextItem::AddChangeToCommand(PropertyChangeCommand* pcc) 
+{
+  pcc->AddChange(PropertyChangeCommand::Change(m_key, m_value));
 }
 
 GuiComposite* PropertiesDialog::TextItem::CreateGui() 
@@ -129,6 +205,31 @@ void PropertiesDialog::AddItem(PItem item)
 void PropertiesDialog::Clear()
 {
   m_items.clear();
+}
+
+void PropertiesDialog::SetObj(WWGameObject* obj)
+{
+  m_obj = obj;
+}
+
+void PropertiesDialog::OnOk()
+{
+  // Create a command for all (changed) properties
+  Assert(m_obj);
+
+  RCPtr<PropertyChangeCommand> pcc = new PropertyChangeCommand(m_obj);
+
+  for (auto it = m_items.begin(); it != m_items.end(); ++it)
+  {
+    PItem item = *it;
+    item->AddChangeToCommand(pcc); // can skip if unchanged
+  }
+
+  // Skip if no changes
+  if (pcc->HasChanges())
+  {
+    TheGuiCommandHandler::Instance()->DoNewCommand(pcc.GetPtr());
+  }
 }
 
 void PropertiesDialog::OnActive()

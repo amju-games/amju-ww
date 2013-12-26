@@ -19,6 +19,7 @@ public:
   virtual void Update() override;
   virtual bool Load(File*) override;
   virtual bool Save(File* f) override;
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 };
 }
 

@@ -24,6 +24,7 @@ public:
   virtual void Update();
   virtual void AddToGame() override;
   virtual bool CreateSceneNode() override;
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
 private:
   // TODO Visible meshes - bg and clouds, rotating at different rates..?

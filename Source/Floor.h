@@ -31,6 +31,7 @@ public:
   virtual void Reset();
   virtual bool CreateSceneNode() override;
   virtual void AddToGame();
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
   // Get matrix - this is the rotation of the Floor
   Matrix* GetMatrix();

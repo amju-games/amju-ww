@@ -14,6 +14,8 @@
 #include "PlayerInfoKey.h"
 #include "Player.h"
 #include "ShadowManager.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -33,6 +35,15 @@ Bonus::Bonus()
   m_yRot = (float)(rand() % 180);
   m_lives = 0;
   m_points = 0;
+}
+
+void Bonus::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
+
+  // TODO
+//  dlg->AddItem(new PropertiesDialog::IntItem("Points", m_points));
+//  dlg->AddItem(new PropertiesDialog::IntItem("Lives", m_lives));
 }
 
 WWGameObject* Bonus::Clone() 
@@ -82,7 +93,7 @@ bool Bonus::Load(File* f)
     return false;
   }
   m_startPos = m_pos;
-  m_pos = m_pos * m_mat;
+//  m_pos = m_pos * m_mat;
  
   if (!LoadMeshResource(f))
   {

@@ -8,6 +8,8 @@
 #include "MySceneGraph.h"
 #include "Floor.h"
 #include "ObjMesh.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -18,6 +20,11 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Block::NAME, &CreateBloc
 
 Block::Block()
 {
+}
+
+void Block::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
 WWGameObject* Block::Clone() 
@@ -78,7 +85,7 @@ bool Block::Load(File* f)
     f->ReportError("Expected block position");
     return false;
   }
-  m_pos = m_pos * m_mat;
+//  m_pos = m_pos * m_mat;
 
   if (!LoadMeshResource(f))
   {

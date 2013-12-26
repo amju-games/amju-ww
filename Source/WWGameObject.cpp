@@ -6,6 +6,7 @@
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
 #include "Describe.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -66,6 +67,25 @@ void WWGameObject::Reset()
     Matrix mat;
     mat.Translate(m_startPos);
     sn->SetLocalTransform(mat);
+  }
+}
+
+PropertyValue WWGameObject::GetProp(PropertyKey key)
+{
+  switch (key)
+  {
+  case PROP_MESH:
+    return m_meshFilename;
+  }
+  return PropertyValue();
+}
+
+void WWGameObject::SetProp(PropertyKey key, PropertyValue value)
+{
+  switch (key)
+  {
+  case PROP_MESH:
+    m_meshFilename = value.GetString();
   }
 }
 
@@ -186,10 +206,10 @@ SceneNode* WWGameObject::GetSceneNode()
   return m_pSceneNode;
 }
 
-void WWGameObject::SetTransform(const Matrix& mat)
-{
-  m_mat = mat;
-}
+//void WWGameObject::SetTransform(const Matrix& mat)
+//{
+//  m_mat = mat;
+//}
 
 void WWGameObject::SetDead(bool dead)
 {

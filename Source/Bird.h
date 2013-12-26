@@ -15,5 +15,6 @@ public:
   virtual bool Save(File*) override;
   virtual void Update() override;
   virtual void AddToGame() override;
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 };
 }

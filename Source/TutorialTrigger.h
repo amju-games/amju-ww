@@ -17,6 +17,8 @@ public:
   virtual bool Save(File*); 
   virtual void OnPlayerCollision(Player*);
 
+  virtual void AddPropertiesGui(PropertiesDialog* dlg);
+
 private:
   std::string m_text;
   bool m_hasShownText;

@@ -21,6 +21,7 @@ public:
   virtual bool Save(File* f) override;
   virtual void Update() override; // NB Don't move with floor!
   virtual bool CreateSceneNode() override;
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
   void OnPlayerCollision(Player*);
 

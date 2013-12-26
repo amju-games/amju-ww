@@ -62,6 +62,13 @@ Pet::Pet()
   AddAI(new AIFlee);
 }
   
+void Pet::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  // TODO Random currently
+//  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name));
+//  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0]));
+}
+
 bool Pet::JustDropped() const
 {
   return m_justDropped;

@@ -62,6 +62,8 @@ public:
   virtual bool OnBalanceBoardEvent(const BalanceBoardEvent&) override;
   virtual bool OnTextEvent(const TextEvent&) override;
   
+  virtual void OnOk() {}
+
 protected:
   GameState* m_prevState;
   PGuiElement m_gui;
