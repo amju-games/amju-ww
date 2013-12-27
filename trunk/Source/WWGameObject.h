@@ -52,8 +52,8 @@ public:
 
   // Properties
   virtual void AddPropertiesGui(PropertiesDialog* dlg) = 0;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) = 0;
+  virtual void SetProp(PropertyKey, PropertyValue) = 0;
 
 protected:
   // Create appropriate scene node type, load mesh and texture, etc.
