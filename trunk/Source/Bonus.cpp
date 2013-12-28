@@ -46,6 +46,26 @@ void Bonus::AddPropertiesGui(PropertiesDialog* dlg)
 //  dlg->AddItem(new PropertiesDialog::IntItem("Lives", m_lives));
 }
 
+PropertyValue Bonus::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return OnFloor::GetProp(key);
+}
+
+void Bonus::SetProp(PropertyKey key, PropertyValue value)
+{
+  OnFloor::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 WWGameObject* Bonus::Clone() 
 {
   return new Bonus(*this);

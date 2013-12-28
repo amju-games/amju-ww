@@ -22,6 +22,8 @@ public:
   virtual void Update() override; // NB Don't move with floor!
   virtual bool CreateSceneNode() override;
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
   void OnPlayerCollision(Player*);
 

@@ -31,6 +31,26 @@ void Objective::AddPropertiesGui(PropertiesDialog* dlg)
   dlg->AddItem(new PropertiesDialog::TextItem("Text", m_text, PROP_TEXT));
 }
 
+PropertyValue Objective::GetProp(PropertyKey key)
+{
+  switch (key)
+  {
+  case PROP_TEXT:
+    return m_text;
+  }
+  return WWGameObject::GetProp(key);
+}
+
+void Objective::SetProp(PropertyKey key, PropertyValue value)
+{
+  WWGameObject::SetProp(key, value);
+  switch (key)
+  {
+  case PROP_TEXT:
+    m_text = value.GetString();
+  }
+}
+
 const char* Objective::GetTypeName() const
 {
   return NAME;

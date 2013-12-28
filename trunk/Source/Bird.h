@@ -16,5 +16,7 @@ public:
   virtual void Update() override;
   virtual void AddToGame() override;
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 };
 }

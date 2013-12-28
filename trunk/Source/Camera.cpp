@@ -125,6 +125,26 @@ void Camera::AddPropertiesGui(PropertiesDialog* dlg)
 //  dlg->AddItem(new PropertiesDialog::IntItem("Viewport ID", m_viewportId));
 }
 
+PropertyValue Camera::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return WWGameObject::GetProp(key);
+}
+
+void Camera::SetProp(PropertyKey key, PropertyValue value)
+{
+  WWGameObject::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 WWGameObject* Camera::Clone() 
 {
   return new Camera(*this);

@@ -36,6 +36,26 @@ void Skybox::AddPropertiesGui(PropertiesDialog* dlg)
   // TODO
 }
 
+PropertyValue Skybox::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return WWGameObject::GetProp(key);
+}
+
+void Skybox::SetProp(PropertyKey key, PropertyValue value)
+{
+  WWGameObject::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 const char* Skybox::GetTypeName() const
 {
   return NAME;

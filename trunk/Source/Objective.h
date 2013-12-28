@@ -24,6 +24,8 @@ public:
   virtual void Update();
   virtual void Reset();
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
 protected:
   // Called by Update() when we have completed the objective for the level
