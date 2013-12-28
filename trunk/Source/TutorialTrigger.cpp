@@ -36,6 +36,26 @@ void TutorialTrigger::AddPropertiesGui(PropertiesDialog* dlg)
   dlg->AddItem(new PropertiesDialog::TextItem("Text", m_text, PROP_TEXT));
 }
 
+PropertyValue TutorialTrigger::GetProp(PropertyKey key)
+{
+  switch (key)
+  {
+  case PROP_TEXT:
+    return m_text;
+  }
+  return Trigger::GetProp(key);
+}
+
+void TutorialTrigger::SetProp(PropertyKey key, PropertyValue value)
+{
+  Trigger::SetProp(key, value);
+  switch (key)
+  {
+  case PROP_TEXT:
+    m_text = value.GetString();
+  }
+}
+
 void TutorialTrigger::OnPlayerCollision(Player*)
 {
   if (!m_hasShownText)

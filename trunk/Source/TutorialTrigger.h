@@ -16,8 +16,9 @@ public:
   virtual bool Load(File*); 
   virtual bool Save(File*); 
   virtual void OnPlayerCollision(Player*);
-
   virtual void AddPropertiesGui(PropertiesDialog* dlg);
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
 private:
   std::string m_text;
