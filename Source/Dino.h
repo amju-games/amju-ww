@@ -21,6 +21,8 @@ public:
   virtual void AddToGame() override;
   virtual bool CreateSceneNode() override; 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
   void Eat(Pet*);
   bool IsEating() const;

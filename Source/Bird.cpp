@@ -30,6 +30,28 @@ void Bird::AddPropertiesGui(PropertiesDialog* dlg)
 //  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0]));
 }
 
+PropertyValue Bird::GetProp(PropertyKey key)
+{
+  // TODO
+//  switch (key)
+//  {
+//  case PROP_MESH:
+//    return m_meshFilename;
+//  }
+  return Npc::GetProp(key);
+}
+
+void Bird::SetProp(PropertyKey key, PropertyValue value)
+{
+  // TODO
+//  switch (key)
+//  {
+//  case PROP_MESH:
+//    m_meshFilename = value.GetString();
+//  }
+  Npc::SetProp(key, value);
+}
+
 void Bird::AddToGame() 
 {
   Npc::AddToGame();

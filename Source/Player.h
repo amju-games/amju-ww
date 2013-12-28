@@ -55,6 +55,8 @@ public:
   void ReachedExit(Exit* exit);
 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
 private:
   void UpdatePets();

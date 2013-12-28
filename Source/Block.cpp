@@ -27,6 +27,16 @@ void Block::AddPropertiesGui(PropertiesDialog* dlg)
   dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
+PropertyValue Block::GetProp(PropertyKey key)
+{
+  return OnFloor::GetProp(key);
+}
+
+void Block::SetProp(PropertyKey key, PropertyValue value)
+{
+  OnFloor::SetProp(key, value);
+}
+
 WWGameObject* Block::Clone() 
 {
   return new Block(*this);

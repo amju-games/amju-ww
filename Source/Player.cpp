@@ -79,6 +79,8 @@ Player::Player()
   m_playerId = 0;
   m_reachedExit = false;
   m_jumpCount = 0;
+
+  Reset();
 }
 
 Player::~Player()
@@ -93,6 +95,37 @@ void Player::AddPropertiesGui(PropertiesDialog* dlg)
   dlg->AddItem(new PropertiesDialog::FilenameItem("Texture2", m_texNames[1], PROP_TEXTURE_2));
   // TODO
 //  dlg->AddItem(new PropertiesDialog::IntItem("Player ID", m_playerId));
+}
+
+PropertyValue Player::GetProp(PropertyKey key)
+{
+  switch (key)
+  {
+  case PROP_MD2:
+    return m_md2Name;
+  case PROP_TEXTURE_1:
+    return m_texNames[0];
+  case PROP_TEXTURE_2:
+    return m_texNames[1];
+  }
+  return OnFloorCharacter::GetProp(key);
+}
+
+void Player::SetProp(PropertyKey key, PropertyValue value)
+{
+  OnFloorCharacter::SetProp(key, value);
+  switch (key)
+  {
+  case PROP_MD2:
+    m_md2Name = value.GetString();
+    break;
+  case PROP_TEXTURE_1:
+    m_texNames[0] = value.GetString();
+    break;
+  case PROP_TEXTURE_2:
+    m_texNames[1] = value.GetString();
+    break;
+  }
 }
 
 void Player::CreateController()

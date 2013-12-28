@@ -48,6 +48,8 @@ public:
   virtual void AddToGame() override;
   virtual void RemoveFromGame() override;
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
   void SetAsSceneGraphCamera();
   void SetLookAtPos(const Vec3f& v) { m_lookAt = v; }

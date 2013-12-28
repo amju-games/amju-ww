@@ -69,6 +69,26 @@ void Pet::AddPropertiesGui(PropertiesDialog* dlg)
 //  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0]));
 }
 
+PropertyValue Pet::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return Npc::GetProp(key);
+}
+
+void Pet::SetProp(PropertyKey key, PropertyValue value)
+{
+  Npc::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 bool Pet::JustDropped() const
 {
   return m_justDropped;
