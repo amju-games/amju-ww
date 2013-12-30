@@ -77,8 +77,11 @@ void GSText::Draw()
 
   for (int i = 0; i < 2; i++)
   {
-    m_stars[i]->Update();
-    m_stars[i]->Draw();
+    if (m_stars[i])
+    {
+      m_stars[i]->Update();
+      m_stars[i]->Draw();
+    }
   }
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
