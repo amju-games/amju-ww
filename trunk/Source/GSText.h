@@ -36,6 +36,8 @@ protected:
 
   SceneNode* m_stars[2];
   SceneNodeCamera* m_camera;
+
+  float m_starRotVel;
 };
 }
 

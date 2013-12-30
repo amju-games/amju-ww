@@ -47,6 +47,7 @@ public:
 GSText::GSText()
 {
   m_timer = 0;
+  m_starRotVel = 1.0;
 }
 
 void GSText::Update()
@@ -72,7 +73,7 @@ void GSText::Draw()
 
   Matrix mat;
   static float a = 0; 
-  a += TheTimer::Instance()->GetDt();   // TODO CONFIG!!
+  a += TheTimer::Instance()->GetDt() * m_starRotVel;   
   AmjuGL::RotateZ(a * 5.0f); // TODO TEMP TEST
 
   for (int i = 0; i < 2; i++)
@@ -124,6 +125,7 @@ void GSText::OnActive()
 {
   GameState::OnActive();
   m_timer = 0;
+  m_starRotVel = 1.0f; // TODO CONFIG
 }
 
 void GSText::OnDeactive()
