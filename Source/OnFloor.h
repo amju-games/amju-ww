@@ -39,12 +39,12 @@ public:
 
   const Vec3f& GetOldPos() const;
 
+  // Set m_floor to point to floor under us, or 0 if we are lower than any floor
+  void FindFloor();
+
 protected:
   void UpdatePhysics();
   void UpdateShadow();
-
-  // Set m_floor to point to floor under us, or 0 if we are lower than any floor
-  void FindFloor();
 
 private:
   void SetTilt();
