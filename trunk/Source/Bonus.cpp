@@ -169,10 +169,10 @@ bool Bonus::CreateSceneNode()
 void Bonus::Update()
 {
   // We don't want Bonuses to move
-  if (!m_floor)
-  {
-    FindFloor();
-  }
+//  if (!m_floor)
+//  {
+//    FindFloor();
+//  }
 
   if (m_isCollected)
   {

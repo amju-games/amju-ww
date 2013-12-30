@@ -254,7 +254,12 @@ void OnFloor::UpdatePhysics()
 {
   // If we don't know which floor we are on, try to find the closest floor
   //  underneath us
-  FindFloor();
+
+  // Called in ColllideObjectFloor as well
+  if (!m_floor)
+  {
+    FindFloor();
+  }
 
   // Slide in direction of floor tilt
   SetTilt();
