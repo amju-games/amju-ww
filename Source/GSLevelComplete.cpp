@@ -47,6 +47,9 @@ void GSLevelComplete::Update()
   GetGameSceneGraph()->Update();
 
   float dt = TheTimer::Instance()->GetDt();
+  static const float SPEEDUP_MULT = ROConfig()->GetFloat("level-complete-star-speedup-mult");
+
+  m_starRotVel += dt * SPEEDUP_MULT; //*= 1.01f; // TODO TEMP TEST
   
   static const float Z_VEL = 200.0f;
   static const float Z_INCREMENT = 40.0f;

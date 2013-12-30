@@ -19,6 +19,7 @@ exit-delay-1  2.0
 exit-delay-2  0.5
 
 level-complete-max-time 4.05
+level-complete-star-speedup-mult 8.0
 
 pet-max-just-dropped-time 2.0
 pet-collide-radius 25
