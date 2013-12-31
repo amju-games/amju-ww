@@ -85,7 +85,7 @@ void WWGameObject::SetProp(PropertyKey key, PropertyValue value)
   switch (key)
   {
   case PROP_MESH:
-    m_meshFilename = value.GetString();
+    m_meshFilename = StripPath(value.GetString()); // obj files in Glue file are in top level dir
   }
 }
 
