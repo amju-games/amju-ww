@@ -50,7 +50,9 @@ public:
     {
       it->Do(m_obj);
     }
-    // TODO Reload object
+    // Reload object
+    m_obj->RemoveFromGame();
+    m_obj->AddToGame();
 
     s_unsaved++;
     return true;
@@ -63,7 +65,9 @@ public:
       it->Undo(m_obj);
     }
 
-    // TODO Reload
+    // Reload
+    m_obj->RemoveFromGame();
+    m_obj->AddToGame();
 
     s_unsaved--;
   }
@@ -84,6 +88,7 @@ void PropertiesDialog::TextItem::SetValue(const std::string& value)
 
 void PropertiesDialog::TextItem::AddChangeToCommand(PropertyChangeCommand* pcc) 
 {
+  m_value = m_edit->GetText();
   pcc->AddChange(PropertyChangeCommand::Change(m_key, m_value));
 }
 
@@ -101,15 +106,15 @@ GuiComposite* PropertiesDialog::TextItem::CreateGui()
   label->SetText(m_label);
   comp->AddChild(label);
 
-  GuiTextEdit* edit = new GuiTextEdit;
-  edit->SetName("value");
-  edit->SetFgCol(Colour(1, 1, 1, 1)); // ?
-  edit->SetBgCol(Colour(0, 0, 0, 1)); // ?
-  edit->SetTextSize(1.0f);
-  edit->SetLocalPos(Vec2f(0.5f, -0.05f)); // TODO
-  edit->SetSize(Vec2f(0.5f, 0.1f));
-  edit->SetText(m_value);
-  comp->AddChild(edit);
+  m_edit = new GuiTextEdit;
+  m_edit->SetName("value");
+  m_edit->SetFgCol(Colour(1, 1, 1, 1)); // ?
+  m_edit->SetBgCol(Colour(0, 0, 0, 1)); // ?
+  m_edit->SetTextSize(1.0f);
+  m_edit->SetLocalPos(Vec2f(0.5f, -0.05f)); // TODO
+  m_edit->SetSize(Vec2f(0.5f, 0.1f));
+  m_edit->SetText(m_value);
+  comp->AddChild(m_edit);
 
   m_gui = comp;
 

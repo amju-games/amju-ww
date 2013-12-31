@@ -6,6 +6,7 @@
 namespace Amju
 {
 class PropertyChangeCommand;
+class GuiTextEdit;
 
 // Types for properties
 enum ItemType
@@ -46,7 +47,7 @@ public:
   struct TextItem : public Item
   {
     TextItem(const std::string& label, const std::string& value, PropertyKey key) : Item(label, AMJU_PROP_TEXT, key),
-      m_value(value)
+      m_value(value), m_edit(0)
     {}
 
     virtual GuiComposite* CreateGui() override;
@@ -56,6 +57,7 @@ public:
 
   protected:
     std::string m_value;
+    GuiTextEdit* m_edit; // pointer to edit control so we can read back changes to text value
   };
 
   struct FilenameItem : public TextItem
