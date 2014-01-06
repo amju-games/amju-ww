@@ -90,6 +90,11 @@ protected:
 
   // Keep track of pos last frame
   Vec3f m_oldPos;
+
+  // The last known rotation, when we were on a floor.
+  // Use this to rotate object when we are falling and no longer have
+  //  a current floor.
+  Matrix m_lastFloorRotation;
 };
 }
 
