@@ -51,8 +51,8 @@ void Block::Update()
 {
   OnFloor::Update();
 
-  Matrix mat;
-  mat.Translate(m_pos);
+  Matrix mat = m_lastFloorRotation; 
+  mat.TranslateKeepRotation(m_pos);
   m_pSceneNode->SetLocalTransform(mat);
 
   // TODO As crates can rotate, recalc OBB and AABB ?
