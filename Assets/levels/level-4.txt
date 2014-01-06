@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-20
+21
 
 // Game object type
 camera
@@ -247,4 +247,14 @@ plat_rect_4x4_std.obj
 100.000000
 // Inertia
 50.000000
+end
+
+block
+4004
+// Start pos
+50, 250, 50
+crate2.obj
+// Shadow - TODO
+shadow.png
+20
 end
