@@ -339,7 +339,7 @@ std::cout << "Bah, no tris for blood pool.\n";
     int s = tris.size();
     for (int i = 0; i < s; i++)
     {
-      Vec3f n = tris[0].CalcNormal();
+      Vec3f n = tris[i].CalcNormal(); // was tris[0] ?!??
       if (n.y > 0)
       {
         normal += n;
