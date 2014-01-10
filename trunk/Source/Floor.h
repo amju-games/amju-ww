@@ -98,9 +98,6 @@ protected:
 
   // Moment Of Inertia, like mass for rotations 
   float m_inertia;
-
-  // Rotation - more for static floors, ramps etc
-  float m_yRot;
 };
 }
 

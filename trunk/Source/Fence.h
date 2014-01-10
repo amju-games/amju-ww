@@ -30,8 +30,6 @@ public:
   virtual PropertyValue GetProp(PropertyKey);
   virtual void SetProp(PropertyKey, PropertyValue);
 
-private:
-  float m_yRot; // TODO Move to base class?
 };
 }
 

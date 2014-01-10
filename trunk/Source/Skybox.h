@@ -32,7 +32,6 @@ private:
   // TODO Visible meshes - bg and clouds, rotating at different rates..?
   PObjMesh m_mesh;
   float m_xRot;
-  float m_yRot;
 };
 }
 
