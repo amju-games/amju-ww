@@ -35,7 +35,7 @@ REM for each file, add to glue file.
 for %%f in (*.txt, *.md2) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM texture files
-for %%f in (*.bmp, *.png) do %GLUE_EXE% -a %GLUE_FILE% %%f
+for %%f in (*.png) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM obj files are NOT in sub dir
 for %%f in (*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
