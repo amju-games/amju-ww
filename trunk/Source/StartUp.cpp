@@ -161,10 +161,6 @@ void StartUpAfterCreateWindow()
   rm->AddLoader("snd", BinaryResourceLoader);
   rm->AddLoader("wav", BinaryResourceLoader);
 	
-  // Add SceneNode types to factory
-  TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
-  TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
-	
   TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
 	
   TheHud::Instance()->Load();
