@@ -169,6 +169,8 @@ bool Floor::CreateSceneNode()
   m_collMesh->CalcAABB(&m_aabb);
   m_pSceneNode->SetAABB(m_aabb);
 
+  m_pSceneNode->SetIsLit(true);
+
   return true;
 }
 
