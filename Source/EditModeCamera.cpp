@@ -116,8 +116,8 @@ void EditModeCamera::Draw()
   }
   else
   {
-    AmjuGL::Translate(0, 0, 1);
-    AmjuGL::Scale(m_scale, m_scale, m_scale * 0.01f);
+    AmjuGL::Translate(0, 0, -0.5f);
+    AmjuGL::Scale(m_scale, m_scale, m_scale * -0.001f);
   }
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
