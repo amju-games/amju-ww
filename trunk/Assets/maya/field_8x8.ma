@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: field_8x8.ma
-//Last modified: Sat, Jan 11, 2014 03:57:54 PM
+//Last modified: Sat, Jan 11, 2014 04:33:48 PM
 //Codeset: UTF-8
 requires maya "2012";
 requires "stereoCamera" "10.0";
@@ -1140,6 +1140,8 @@ createNode lambert -n "pasted__lambert6";
 createNode file -n "pasted__file6";
 	setAttr ".ftn" -type "string" "/Users/jay/projects/amju-ww/Assets/tex/common/underground2.png";
 createNode place2dTexture -n "pasted__place2dTexture6";
+createNode polyTriangulate -n "polyTriangulate2";
+	setAttr ".ics" -type "componentList" 1 "f[*]";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -1187,7 +1189,7 @@ connectAttr "polyFlipEdge1.out" "polySurfaceShape7.i";
 connectAttr "groupId17.id" "polySurfaceShape7.iog.og[0].gid";
 connectAttr "lambert2SG.mwc" "polySurfaceShape7.iog.og[0].gco";
 connectAttr "polyTweakUV5.uvtk[0]" "polySurfaceShape7.uvst[0].uvtw";
-connectAttr "pasted__polyTweakUV7.out" "pasted__pCubeShape1.i";
+connectAttr "polyTriangulate2.out" "pasted__pCubeShape1.i";
 connectAttr "pasted__polyTweakUV7.uvtk[0]" "pasted__pCubeShape1.uvst[0].uvtw";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
@@ -1486,6 +1488,7 @@ connectAttr "pasted__place2dTexture6.vt3" "pasted__file6.vt3";
 connectAttr "pasted__place2dTexture6.vc1" "pasted__file6.vc1";
 connectAttr "pasted__place2dTexture6.o" "pasted__file6.uv";
 connectAttr "pasted__place2dTexture6.ofs" "pasted__file6.fs";
+connectAttr "pasted__polyTweakUV7.out" "polyTriangulate2.ip";
 connectAttr "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_4x4:initialShadingGroup.pa" ":renderPartition.st"
 		 -na;
 connectAttr "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_1x1:initialShadingGroup.pa" ":renderPartition.st"

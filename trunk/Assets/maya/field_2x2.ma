@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: field_2x2.ma
-//Last modified: Sat, Jan 11, 2014 02:18:11 PM
+//Last modified: Sat, Jan 11, 2014 04:35:02 PM
 //Codeset: UTF-8
 requires maya "2012";
 requires "stereoCamera" "10.0";
@@ -679,24 +679,6 @@ createNode mesh -n "polySurfaceShape8" -p "polySurface8";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 85 ".pt";
-	setAttr ".pt[2:5]" -type "float3" 0 48.655048 0  0 48.655048 0  0 48.655048 
-		0  0 48.655048 0 ;
-	setAttr ".pt[8:88]" -type "float3" 0 48.655048 0  0 48.655048 0  0 48.655048 
-		0  0 48.655048 0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 48.655048 0  0 48.655048 
-		0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 23.169067 
-		0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 48.655048 
-		0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 
-		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 
-		0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 
-		0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 0  0 23.169067 
-		0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 
-		0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 
-		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 0  0 23.169067 
-		0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 
-		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 
-		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 0  0 23.169067 
-		0 ;
 	setAttr ".ndt" 2;
 	setAttr ".dn" yes;
 createNode lightLinker -s -n "lightLinker1";
@@ -1250,6 +1232,28 @@ createNode polyTweakUV -n "polyTweakUV8";
 		0.48524076 -0.52436972  0.48524076 -0.39327732  1.8626451e-07 -6.3329935e-08  0.48524076 
 		0.52436972  0.36393067 0.52436972  -0.48524076 0.52436972  -0.48524076 0.39327723  
 		-0.48524076 -0.52436972  -0.36393046 -0.52436972 ;
+createNode polyTriangulate -n "polyTriangulate2";
+	setAttr ".ics" -type "componentList" 1 "f[*]";
+createNode polyTweak -n "polyTweak2";
+	setAttr ".uopa" yes;
+	setAttr -s 85 ".tk";
+	setAttr ".tk[2:5]" -type "float3" 0 48.655048 0  0 48.655048 0  0 48.655048 
+		0  0 48.655048 0 ;
+	setAttr ".tk[8:88]" -type "float3" 0 48.655048 0  0 48.655048 0  0 48.655048 
+		0  0 48.655048 0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 48.655048 0  0 48.655048 
+		0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 23.169067 
+		0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 48.655048 
+		0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 
+		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 
+		0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 
+		0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 0  0 23.169067 
+		0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 
+		0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 
+		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 0  0 23.169067 
+		0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 48.655048 0  0 23.169067 0  0 23.169067 
+		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 23.169067 0  0 48.655048 
+		0  0 48.655048 0  0 23.169067 0  0 23.169067 0  0 48.655048 0  0 23.169067 0  0 23.169067 
+		0 ;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -1276,8 +1280,6 @@ select -ne :hardwareRenderGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr "groupParts9.og" "polySurfaceShape1.i";
 connectAttr "groupId9.id" "polySurfaceShape1.iog.og[1].gid";
 connectAttr "lambert4SG.mwc" "polySurfaceShape1.iog.og[1].gco";
@@ -1304,7 +1306,7 @@ connectAttr "lambert6SG.mwc" "pCubeShape1.iog.og[0].gco";
 connectAttr "groupParts16.og" "pCubeShape1.i";
 connectAttr "polyTweakUV7.uvtk[0]" "pCubeShape1.uvst[0].uvtw";
 connectAttr "groupId19.id" "pCubeShape1.ciog.cog[0].cgid";
-connectAttr "polyTweakUV8.out" "polySurfaceShape8.i";
+connectAttr "polyTriangulate2.out" "polySurfaceShape8.i";
 connectAttr "groupId20.id" "polySurfaceShape8.iog.og[0].gid";
 connectAttr "lambert6SG.mwc" "polySurfaceShape8.iog.og[0].gco";
 connectAttr "groupId21.id" "polySurfaceShape8.iog.og[1].gid";
@@ -1626,6 +1628,8 @@ connectAttr "groupId20.id" "groupParts17.gi";
 connectAttr "groupParts17.og" "groupParts18.ig";
 connectAttr "groupId21.id" "groupParts18.gi";
 connectAttr "groupParts18.og" "polyTweakUV8.ip";
+connectAttr "polyTweak2.out" "polyTriangulate2.ip";
+connectAttr "polyTweakUV8.out" "polyTweak2.ip";
 connectAttr "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_4x4:initialShadingGroup.pa" ":renderPartition.st"
 		 -na;
 connectAttr "block_rect_curved_1x1:block_rect_curved_hill_4x4:block_rect_curved_1x1:initialShadingGroup.pa" ":renderPartition.st"
