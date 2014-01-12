@@ -127,6 +127,11 @@ void WWGameObject::RotateY(float angleDegs)
   sn->SetAABB(m_aabb);
 }
 
+void WWGameObject::SetSceneNode(RCPtr<SceneNode> node)
+{
+  m_pSceneNode = node;
+}
+
 bool WWGameObject::CreateSceneNode()
 {
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
@@ -137,7 +142,7 @@ bool WWGameObject::CreateSceneNode()
 
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
-  m_pSceneNode = sm;
+  SetSceneNode(sm);
 
   // Set bounding box
   RecalcAABB();

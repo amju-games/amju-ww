@@ -70,6 +70,13 @@ public:
     virtual GuiComposite* CreateGui() override;
   };
 
+  struct IntItem : public TextItem
+  {
+    IntItem(const std::string& label, int value, PropertyKey key);
+
+    virtual void AddChangeToCommand(PropertyChangeCommand*) override;
+  };
+
 public:
   PropertiesDialog();
 

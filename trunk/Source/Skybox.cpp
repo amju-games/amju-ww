@@ -86,7 +86,7 @@ void Skybox::AddToGame()
 {
   // Different - no shadows. In future may be comprised of multiple cloud
   //  billboards.
-  GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_SKYBOX, m_pSceneNode);
+  GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_SKYBOX, GetSceneNode());
 }
 
 bool Skybox::CreateSceneNode()
@@ -101,7 +101,7 @@ bool Skybox::CreateSceneNode()
 
   SceneMesh* sm = new SceneMesh;
   sm->SetMesh(m_mesh);
-  m_pSceneNode = sm;
+  SetSceneNode(sm);
 
   return true;
 }
@@ -115,7 +115,7 @@ void Skybox::Update()
   mat.RotateX(m_xRot);
   Matrix mat2;
   mat.RotateY(m_yRot);
-  m_pSceneNode->SetLocalTransform(mat);
-  m_pSceneNode->MultLocalTransform(mat2);
+  GetSceneNode()->SetLocalTransform(mat);
+  GetSceneNode()->MultLocalTransform(mat2);
 }
 }

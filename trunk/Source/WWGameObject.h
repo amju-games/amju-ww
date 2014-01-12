@@ -39,6 +39,7 @@ public:
   bool IsDead() const;
 
   SceneNode* GetSceneNode();
+  void SetSceneNode(RCPtr<SceneNode>);
 
   // Load does not add Game Object to Game immediately - call this to do so
   virtual void AddToGame();
@@ -66,11 +67,11 @@ protected:
   bool LoadShadow(File*);
   bool SaveShadow(File*);
 
-protected:
-////  Matrix m_mat;
-  bool m_isDead;
-
+private:
   RCPtr<SceneNode> m_pSceneNode;
+
+protected:
+  bool m_isDead;
 
   Vec3f m_aabbExtents;
   bool m_extentsSet; // if set, use extents and recalc AABB

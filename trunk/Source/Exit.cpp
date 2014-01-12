@@ -204,7 +204,7 @@ bool Exit::CreateSceneNode()
   Assert(bbtex);
   m_billboard->SetTexture(bbtex);
   m_billboard->SetSize(50.0f); 
-  m_pSceneNode->AddChild(m_billboard);
+  GetSceneNode()->AddChild(m_billboard);
 
   m_effect = new ExitParticleEffect;
   m_effect->SetVisible(true);
@@ -287,6 +287,6 @@ void Exit::SetActive()
   m_activeTime = 0;
   m_effect->Start();
   m_billboard->SetVisible(true);
-  m_pSceneNode->SetColour(Colour(1, 1, 1, 1));
+  GetSceneNode()->SetColour(Colour(1, 1, 1, 1));
 }
 }

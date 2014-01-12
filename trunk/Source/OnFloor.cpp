@@ -30,7 +30,6 @@ void OnFloor::ClearFloors()
 OnFloor::OnFloor()
 {
   m_mass = 1.0f; // Default value, change in subclass ctor 
-  m_pSceneNode = 0;
 
   // Everything should accelerate down at the same rate
   m_acc = Vec3f(0, GRAVITY, 0); 

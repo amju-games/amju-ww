@@ -163,13 +163,13 @@ bool Floor::CreateSceneNode()
 
   SceneMesh* fm = new SceneMesh;
   fm->SetMesh(mesh);
-  m_pSceneNode = fm;
-  m_pSceneNode->SetLocalTransform(m);
+  SetSceneNode(fm);
+  fm->SetLocalTransform(m);
 
   m_collMesh->CalcAABB(&m_aabb);
-  m_pSceneNode->SetAABB(m_aabb);
+  fm->SetAABB(m_aabb);
 
-  m_pSceneNode->SetIsLit(true);
+  fm->SetIsLit(true);
 
   return true;
 }
@@ -366,21 +366,21 @@ void Floor::Update()
 
   // Calculate AABB for the collision mesh
   m_collMesh->CalcAABB(&m_aabb);
-  m_pSceneNode->SetAABB(m_aabb);
+  GetSceneNode()->SetAABB(m_aabb);
 
   // If the collision mesh AABB is too tall, we have reached the max rotation.
   // In this case, restore the old values for m_quat, m_matrix, m_collMesh, m_aabb
-  if (m_pSceneNode->GetAABB()->GetYSize() > m_maxYSize)
+  if (GetSceneNode()->GetAABB()->GetYSize() > m_maxYSize)
   {
     m_angularVel = Quaternion();
     m_quat = oldQuat;
     m_matrix = oldMatrix;
     *m_collMesh = oldCollMesh;
     m_aabb = oldAabb;
-    m_pSceneNode->SetAABB(m_aabb);
+    GetSceneNode()->SetAABB(m_aabb);
   }
 
-  m_pSceneNode->SetLocalTransform(m_matrix);
+  GetSceneNode()->SetLocalTransform(m_matrix);
 }
 
 const Vec3f& Floor::GetHighPoint() const

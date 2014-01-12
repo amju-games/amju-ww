@@ -43,8 +43,7 @@ Dino::Dino()
 
 void Dino::AddPropertiesGui(PropertiesDialog* dlg) 
 {
-  // TODO
-//  dlg->AddItem(new PropertiesDialog::IntItem("Type", m_dinoType));
+  Npc::AddPropertiesGui(dlg);
 }
 
 PropertyValue Dino::GetProp(PropertyKey key)
@@ -171,7 +170,7 @@ void Dino::Eat(Pet* pet)
   m_ais[AIEatPet::NAME]->SetTarget(pet);
 
   // Change texture to bloody version.
-  BlinkCharacter* bc = dynamic_cast<BlinkCharacter*>(m_pSceneNode.GetPtr());
+  BlinkCharacter* bc = dynamic_cast<BlinkCharacter*>(GetSceneNode());
   Assert(bc);
   bc->LoadTextures("dino1a-withblood.png", "dino1-withblood.png"); 
   // TODO Load the textures up front as this will hit frame rate on first load.
@@ -201,8 +200,13 @@ bool Dino::Save(File* f)
   {
     return false;
   }
-  f->WriteComment("// Dino type");
-  f->WriteInteger(m_dinoType);
+
+  if (!f->Write(m_md2Name) || !f->Write(m_texNames[0]) || !f->Write(m_texNames[1]))
+  {
+    f->ReportError("Failed to write pet md2/texture data!");
+    return false;
+  }
+
   return SaveShadow(f);
 }
 
@@ -214,6 +218,26 @@ bool Dino::Load(File* f)
   }
   m_startPos = m_pos;
 
+  // Load mesh and 2 textures
+  if (!f->GetDataLine(&m_md2Name))
+  {
+    f->ReportError("Expected pet md2 filename");
+    return false;
+  }
+
+  if (!f->GetDataLine(&m_texNames[0]))
+  {
+    f->ReportError("Expected pet tex0 filename");
+    return false;
+  }
+
+  if (!f->GetDataLine(&m_texNames[1]))
+  {
+    f->ReportError("Expected pet tex1 filename");
+    return false;
+  }
+
+  /*
   m_md2Name = "dino.md2";
 
   static const char* TEXTURES[3][2] = 
@@ -232,6 +256,7 @@ bool Dino::Load(File* f)
 
   m_texNames[0] = TEXTURES[m_dinoType][0];
   m_texNames[1] = TEXTURES[m_dinoType][1];
+  */
 
   if (!LoadShadow(f))
   {

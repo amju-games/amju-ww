@@ -3,6 +3,7 @@
 #include "Bird.h"
 #include "AIFly.h"
 #include "Player.h"
+#include "PropertiesDialog.h"
 
 namespace Amju
 {
@@ -24,10 +25,7 @@ Bird::Bird()
 
 void Bird::AddPropertiesGui(PropertiesDialog* dlg) 
 {
-  // TODO
-//  dlg->AddItem(new PropertiesDialog::IntItem("Type", m_dinoType));
-//  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name));
-//  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0]));
+  Npc::AddPropertiesGui(dlg);
 }
 
 PropertyValue Bird::GetProp(PropertyKey key)
@@ -74,11 +72,25 @@ bool Bird::Load(File* f)
     return false;
   }
   m_startPos = m_pos;
-  m_md2Name = "pz-bird.md2";
 
-  // TODO Diff colours
-  m_texNames[0] = "bird1a.png";
-  m_texNames[1] = "bird1.png";
+    // Load mesh and 2 textures
+  if (!f->GetDataLine(&m_md2Name))
+  {
+    f->ReportError("Expected pet md2 filename");
+    return false;
+  }
+
+  if (!f->GetDataLine(&m_texNames[0]))
+  {
+    f->ReportError("Expected pet tex0 filename");
+    return false;
+  }
+
+  if (!f->GetDataLine(&m_texNames[1]))
+  {
+    f->ReportError("Expected pet tex1 filename");
+    return false;
+  }
 
   if (!LoadShadow(f))
   {
@@ -94,6 +106,12 @@ bool Bird::Save(File* f)
     return false;
   }
  
+  if (!f->Write(m_md2Name) || !f->Write(m_texNames[0]) || !f->Write(m_texNames[1]))
+  {
+    f->ReportError("Failed to write bird md2/texture data!");
+    return false;
+  }
+
   return SaveShadow(f);
 }
 
@@ -121,7 +139,7 @@ void Bird::Update()
   mat.RotateY(DegToRad(m_dirCurrent));
   mat = scale * mat;
   mat.TranslateKeepRotation(m_pos);
-  m_pSceneNode->SetLocalTransform(mat);
+  GetSceneNode()->SetLocalTransform(mat);
 
   RecalcAABB();
 }

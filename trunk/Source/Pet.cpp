@@ -17,6 +17,7 @@
 #include "Dino.h"
 #include "PlayWav.h"
 #include "Describe.h"
+#include "PropertiesDialog.h"
 
 namespace Amju
 {
@@ -64,9 +65,7 @@ Pet::Pet()
   
 void Pet::AddPropertiesGui(PropertiesDialog* dlg) 
 {
-  // TODO Random currently
-//  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name));
-//  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0]));
+  Npc::AddPropertiesGui(dlg);
 }
 
 PropertyValue Pet::GetProp(PropertyKey key)
@@ -187,7 +186,7 @@ void Pet::Update()
     {
       // Flash
       float t = m_justDroppedTime * 10;
-      m_pSceneNode->SetVisible((int)t % 2 == 0);
+      GetSceneNode()->SetVisible((int)t % 2 == 0);
     }
 
     if (m_justDroppedTime > MAX_JUST_DROPPED_TIME) 
@@ -249,7 +248,13 @@ bool Pet::Save(File* f)
   {
     return false;
   }
- 
+
+  if (!f->Write(m_md2Name) || !f->Write(m_texNames[0]) || !f->Write(m_texNames[1]))
+  {
+    f->ReportError("Failed to write pet md2/texture data!");
+    return false;
+  }
+
   return SaveShadow(f);
 }
 
@@ -261,6 +266,26 @@ bool Pet::Load(File* f)
   }
   m_startPos = m_pos;
 
+  // Load mesh and 2 textures
+  if (!f->GetDataLine(&m_md2Name))
+  {
+    f->ReportError("Expected pet md2 filename");
+    return false;
+  }
+
+  if (!f->GetDataLine(&m_texNames[0]))
+  {
+    f->ReportError("Expected pet tex0 filename");
+    return false;
+  }
+
+  if (!f->GetDataLine(&m_texNames[1]))
+  {
+    f->ReportError("Expected pet tex1 filename");
+    return false;
+  }
+
+  /*
   const int NUM_MESHES = 3;
   static const char* MESHES[NUM_MESHES] = 
   {
@@ -285,6 +310,7 @@ bool Pet::Load(File* f)
   r = rand() % NUM_TEXTURES; // TODO Load colour
   m_texNames[0] = TEXTURES[r][0];
   m_texNames[1] = TEXTURES[r][1];
+  */
 
   if (!LoadShadow(f))
   {
@@ -303,7 +329,7 @@ void Pet::OnAnimFinished()
   Npc::OnAnimFinished();
   if (m_eatenState == BEING_EATEN)
   {
-    m_pSceneNode->SetVisible(false);    
+    GetSceneNode()->SetVisible(false);    
   }
 }
 
@@ -389,7 +415,7 @@ void Pet::StartBeingEaten(Dino* eater)
   mat.RotateY(DegToRad(dir));
   Vec3f pos = eater->GetPos();
   mat.TranslateKeepRotation(pos);
-  m_pSceneNode->SetLocalTransform(mat);
+  GetSceneNode()->SetLocalTransform(mat);
 
   m_bloodPoolPos = m_pos;
   // Get accurate y
@@ -415,6 +441,6 @@ void Pet::StartBeingEaten(Dino* eater)
   m_bloodFx->Start();
 
   // Make sure it's not culled
-  m_bloodFx->SetAABB(*m_pSceneNode->GetAABB());
+  m_bloodFx->SetAABB(*GetSceneNode()->GetAABB());
 }
 }

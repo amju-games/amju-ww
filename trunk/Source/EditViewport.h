@@ -32,6 +32,8 @@ public:
   bool IsActive() const;
   static void SetActiveId(int activeViewportId);
 
+  Vec3f GetMoveAxis(const Vec2f& screenVec);
+
 private:
   RCPtr<SceneNodeCamera> m_cam;
   std::string m_name;

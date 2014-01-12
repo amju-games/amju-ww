@@ -14,7 +14,8 @@
 #include "EditModeCamera.h"
 
 #ifdef _DEBUG
-#define EDIT_CAM
+// Currently with this we can't have normal camera after edit mode
+//#define EDIT_CAM
 #endif
 
 namespace Amju
@@ -189,7 +190,7 @@ void Camera::SetEarthquake(float severity)
 
 void Camera::Update()
 {
-  if (!m_pSceneNode)
+  if (!GetSceneNode())
   {
     return;
   }
@@ -260,7 +261,7 @@ bool Camera::Load(File* f)
     // No viewport for this ID. No need to create this camera.
     return true;
   }
-  m_pSceneNode = new SceneNodeCamera;
+  SetSceneNode(new SceneNodeCamera);
   vp->SetCamera(this);
 
   return true;
@@ -274,7 +275,7 @@ void Camera::SetAsSceneGraphCamera()
   // Check for edit mode camera
   if (dynamic_cast<EditModeCamera*>(graph->GetCamera().GetPtr()))
   {
-    return;
+//    return;
   }
 #endif
 
