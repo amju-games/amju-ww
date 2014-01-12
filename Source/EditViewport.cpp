@@ -1,5 +1,6 @@
 #include <GuiRect.h>
 #include <Screen.h>
+#include <Vec3.h>
 #include "EditViewport.h"
 #include "MySceneGraph.h"
 #include "EditModeCamera.h"
@@ -95,5 +96,53 @@ void EditViewport::Draw2d()
 //  m_text.SetDrawBg(true);
   m_text.Draw();
 }
+
+Vec3f EditViewport::GetMoveAxis(const Vec2f& diff)
+{
+  Vec3f dir(diff.x, diff.y, 0);
+  dir.Normalise();
+
+  // Get camera rotation matrix
+  SceneNodeCamera* camera = m_cam; //GetGameSceneGraph()->GetCamera();
+  Matrix mv = camera->GetMatrix();
+
+  Vec3f axes[3] = 
+  {
+    Vec3f(mv[0], mv[4], mv[8]),
+    Vec3f(mv[1], mv[5], mv[9]),
+    Vec3f(mv[2], mv[6], mv[10])
+  };
+  float dots[3] =
+  {
+    DotProduct(dir, axes[0]),
+    DotProduct(dir, axes[1]),
+    DotProduct(dir, axes[2])
+  };
+  float fabs[3] = 
+  {
+    (float)::fabs(dots[0]), 
+    (float)::fabs(dots[1]), 
+    (float)::fabs(dots[2]) 
+  };
+
+//std::cout << "X dot: " << dots[0] << "\n";
+//std::cout << "Y dot: " << dots[1] << "\n";
+//std::cout << "Z dot: " << dots[2] << "\n";
+
+  Vec3f move = dots[0] < 0 ? Vec3f(-1, 0, 0) : Vec3f(1, 0, 0);
+  if (fabs[1] > fabs[0] && fabs[1] > fabs[2])
+  {
+    // Y axis
+    move = dots[1] < 0 ? Vec3f(0, -1, 0) : Vec3f(0, 1, 0);
+  }
+  else if (fabs[2] > fabs[0] && fabs[2] > fabs[1])
+  {
+    // Z axis
+    move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
+  }
+
+  return move;
+}
+
 }
 

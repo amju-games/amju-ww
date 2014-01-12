@@ -108,7 +108,7 @@ bool Fence::CreateSceneNode()
 
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
-  m_pSceneNode = sm;
+  SetSceneNode(sm);
 
   // Calc bounding box from mesh
   CollisionMesh cm;
@@ -122,10 +122,10 @@ bool Fence::CreateSceneNode()
   cm.Transform(m);
 
   cm.CalcAABB(&m_aabb);
-  m_pSceneNode->SetAABB(m_aabb);
-  m_pSceneNode->SetLocalTransform(m);
+  GetSceneNode()->SetAABB(m_aabb);
+  GetSceneNode()->SetLocalTransform(m);
 
-  m_pSceneNode->SetIsLit(true);
+  GetSceneNode()->SetIsLit(true);
 
   return true;
 }

@@ -2,7 +2,7 @@
 
 namespace Amju
 {
-// Consts for SetProps/GetProps
+// Consts for SetProps/GetProps: a unique ID for every get/settable attribute
 
 enum PropertyKeys
 {
@@ -13,5 +13,8 @@ enum PropertyKeys
   PROP_TEXTURE_1,
   PROP_TEXTURE_2,
   PROP_TEXT,
+  PROP_PLAYER_ID,
+  PROP_BONUS_POINTS,
+  PROP_BONUS_LIVES
 };
 }

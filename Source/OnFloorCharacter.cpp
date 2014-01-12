@@ -7,11 +7,66 @@
 #include "Floor.h"
 #include "Describe.h"
 #include "MySceneGraph.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 //#define ANIM_DEBUG
 
 namespace Amju
 {
+void OnFloorCharacter::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  // TODO change these to listbox items, as you have to choose from files in the glue file
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name, PROP_MD2));
+  // TODO create 2 names from one base name
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0], PROP_TEXTURE_1));
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture2", m_texNames[1], PROP_TEXTURE_2));
+}
+
+PropertyValue OnFloorCharacter::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+
+  switch (key)
+  {
+  case PROP_MD2:
+    return m_md2Name;
+  case PROP_TEXTURE_1:
+    return m_texNames[0];
+  case PROP_TEXTURE_2:
+    return m_texNames[1];
+  }
+
+  return OnFloor::GetProp(key);
+}
+
+void OnFloorCharacter::SetProp(PropertyKey key, PropertyValue value)
+{
+  switch (key)
+  {
+  case PROP_MD2:
+    m_md2Name = value.GetString();
+    break;
+  case PROP_TEXTURE_1:
+    m_texNames[0] = value.GetString();
+    break;
+  case PROP_TEXTURE_2:
+    m_texNames[1] = value.GetString();
+    break;
+  }
+
+  OnFloor::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 OnFloorCharacter::OnFloorCharacter()
 {
   m_dir = 0;
@@ -26,7 +81,7 @@ bool OnFloorCharacter::CreateSceneNode()
   ResourceManager* rm = TheResourceManager::Instance();
 
   BlinkCharacter* bc = new BlinkCharacter;
-  m_pSceneNode = bc;
+  SetSceneNode(bc);
 
   Assert(!m_md2Name.empty());
   Md2Model* model = (Md2Model*)rm->GetRes(m_md2Name);
@@ -129,7 +184,7 @@ void OnFloorCharacter::Update()
   Matrix mat;
   mat.RotateY(DegToRad(m_dirCurrent));
   mat.TranslateKeepRotation(m_pos);
-  m_pSceneNode->SetLocalTransform(mat);
+  GetSceneNode()->SetLocalTransform(mat);
 
   static const float ROT_SPEED = 10.0f; // TODO CONFIG
   float angleDiff = m_dir - m_dirCurrent;

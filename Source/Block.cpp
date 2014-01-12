@@ -53,7 +53,7 @@ void Block::Update()
 
   Matrix mat = m_lastFloorRotation; 
   mat.TranslateKeepRotation(m_pos);
-  m_pSceneNode->SetLocalTransform(mat);
+  GetSceneNode()->SetLocalTransform(mat);
 
   // TODO As crates can rotate, recalc OBB and AABB ?
   // This kind of works but errors accumulate. Reset box coords each time.

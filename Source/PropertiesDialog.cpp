@@ -121,6 +121,18 @@ GuiComposite* PropertiesDialog::TextItem::CreateGui()
   return m_gui;
 }
 
+PropertiesDialog::IntItem::IntItem(const std::string& label, int value, PropertyKey key) : 
+  TextItem(label, ToString(value), key)
+{
+}
+
+void PropertiesDialog::IntItem::AddChangeToCommand(PropertyChangeCommand* pcc) 
+{
+  m_value = m_edit->GetText();
+  pcc->AddChange(PropertyChangeCommand::Change(m_key, ToInt(m_value)));
+}
+
+
 static std::string s_lastPath; // TODO
 
 // Special file dialog that knows the properties item to which it relates
