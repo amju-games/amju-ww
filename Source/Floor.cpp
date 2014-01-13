@@ -134,6 +134,8 @@ void Floor::AddToGame()
 
   CreateSceneNode(); 
 
+  AddSceneNodeToGraph();
+  /* ...replacing:
   SceneNode* sn = GetSceneNode();
   if (sn)
   {
@@ -141,6 +143,7 @@ void Floor::AddToGame()
     Assert(root);
     root->AddChild(sn);
   }
+  */
 
   TheShadowManager::Instance()->AddFloor(this);
 }

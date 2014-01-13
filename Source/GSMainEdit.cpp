@@ -43,30 +43,6 @@ int s_unsaved = 0; // number of commands away from save
 static bool s_drag = false;
 
 
-void SelectedNode::Draw()
-{
-  if (!m_selNode)
-  {
-    return;
-  }
-
-  // TODO Switch to front face culling
-  AmjuGL::PushMatrix();
-//  AmjuGL::PushAttrib(AmjuGL::AMJU_LIGHTING | AmjuGL::AMJU_TEXTURE_2D);
-//  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
-//  AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-  PushColour();
-  AmjuGL::SetColour(0, 0, 0); 
-  //static const float s = 1.1f;
-  //AmjuGL::Scale(s, s, s);
-
-  m_selNode->Draw();
-
-  PopColour();
-  AmjuGL::PopMatrix();
-//  AmjuGL::PopAttrib();
-}
-
 static EditModeCamera* GetCamera()
 {
   SceneNodeCamera* c = GetGameSceneGraph()->GetCamera();
@@ -356,7 +332,6 @@ GSMainEdit::GSMainEdit()
 
   m_isSelecting = false;
   m_selectedObj = 0;
-  m_selNode = new SelectedNode; 
 
   // Set up top menu 
   m_topMenu = new GuiMenu;
@@ -754,7 +729,8 @@ void GSMainEdit::SetSelectedObject(GameObject* obj)
     m_infoText.SetText(s);
 
     // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
-    m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
+    //m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
+    m_selectedObj->SetSelected(true);
 
 /*
     // TODO
@@ -951,7 +927,7 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
     float zoomDist = sqrt((cam->GetEyePos() - cam->GetLookAtPos()).SqLen());
 
     m_accumulatedDragMove += move; 
-    float limit = m_gridSize * 100.0f / zoomDist; 
+    float limit = 20.0f; // TODO TEMP TEST m_gridSize * 100.0f / zoomDist; 
     if (m_accumulatedDragMove.SqLen() > limit * limit)
     {
       m_accumulatedDragMove = Vec3f();

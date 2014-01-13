@@ -5,6 +5,7 @@
 #include <Matrix.h>
 #include <SceneNode.h>
 #include <Variable.h>
+#include "SelectedNode.h"
 
 namespace Amju
 {
@@ -29,17 +30,13 @@ public:
   virtual void Move(const Vec3f& deltaPos);
   virtual void Reset() override;
 
-  // For this game, GameObjects for a level are created in "blocks".
-  // The blocks are transformed, so the positions of the objects are
-  // given relative to the local block origin. This matrix determines
-  // the world coords of the object.
-////  void SetTransform(const Matrix& mat);
-
   void SetDead(bool dead);
   bool IsDead() const;
 
   SceneNode* GetSceneNode();
   void SetSceneNode(RCPtr<SceneNode>);
+  void AddSceneNodeToGraph();
+  void RemoveSceneNodeFromGraph();
 
   // Load does not add Game Object to Game immediately - call this to do so
   virtual void AddToGame();
@@ -55,6 +52,10 @@ public:
   virtual void AddPropertiesGui(PropertiesDialog* dlg) = 0;
   virtual PropertyValue GetProp(PropertyKey) = 0;
   virtual void SetProp(PropertyKey, PropertyValue) = 0;
+
+  // Edit mode
+  void SetSelected(bool selected);
+  bool IsSelected() const;
 
 protected:
   // Create appropriate scene node type, load mesh and texture, etc.
@@ -84,6 +85,9 @@ protected:
 
   // Rotation - more for static floors, ramps etc
   float m_yRot;
+
+  bool m_editModeIsSelected;
+  RCPtr<SelectedNode> m_selNode;
 };
 }
 

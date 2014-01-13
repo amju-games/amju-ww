@@ -352,6 +352,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\ResizeHandler.cpp" />
     <ClCompile Include="..\..\..\Source\SaveDir.cpp" />
     <ClCompile Include="..\..\..\Source\Score.cpp" />
+    <ClCompile Include="..\..\..\Source\SelectedNode.cpp" />
     <ClCompile Include="..\..\..\Source\ShadowManager.cpp" />
     <ClCompile Include="..\..\..\Source\Skybox.cpp" />
     <ClCompile Include="..\..\..\Source\StartGame.cpp" />
@@ -434,6 +435,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\Rotateable.h" />
     <ClInclude Include="..\..\..\Source\SaveDir.h" />
     <ClInclude Include="..\..\..\Source\Score.h" />
+    <ClInclude Include="..\..\..\Source\SelectedNode.h" />
     <ClInclude Include="..\..\..\Source\ShadowManager.h" />
     <ClInclude Include="..\..\..\Source\Skybox.h" />
     <ClInclude Include="..\..\..\Source\StartGame.h" />
