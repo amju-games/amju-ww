@@ -188,7 +188,7 @@ exit
 // Mesh filename
 transporter.obj
 // Next level
-2
+5
 // Shadow texture & size
 flare.png
 20.000000
