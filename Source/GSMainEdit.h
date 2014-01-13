@@ -31,6 +31,10 @@ namespace Amju
 // - Level name/number
 // - Help ?
 
+// Selected objects - allows for multi select
+typedef std::set<RCPtr<WWGameObject> > SelSet;
+
+
 class GSMainEdit : public GSMain
 {
 private:
@@ -66,9 +70,15 @@ protected:
 
   PContextMenu m_contextMenu;
   //Vec2f m_cursorPos;
-  WWGameObject* m_selectedObj;
+
+  // Selected objects - allows for multi select
+  SelSet m_selset;
+
+  // Rectangle for selecting
   Vec2f m_mouseScreen;
   Vec2f m_mouseScreenAnchor;
+  // number of items selected in this rectangle - if none, clear selection
+  int m_numSelThisRect;
 
   Vec3f m_mouseWorld;
   bool m_isSelecting;

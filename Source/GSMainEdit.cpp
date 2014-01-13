@@ -331,7 +331,7 @@ GSMainEdit::GSMainEdit()
   m_gridSize = 50.0f;
 
   m_isSelecting = false;
-  m_selectedObj = 0;
+  m_numSelThisRect = 0;
 
   // Set up top menu 
   m_topMenu = new GuiMenu;
@@ -420,7 +420,7 @@ public:
     //Vec3f move(10, 10, 10);
     //m_obj->Move(move);
 
-    TheGSMainEdit::Instance()->SetSelectedObject(m_obj);
+    //TheGSMainEdit::Instance()->SetSelectedObject(m_obj);
 
     s_unsaved++;
     return true; // undoable
@@ -439,55 +439,66 @@ private:
 
 void GSMainEdit::OnDuplicate()
 {
-  if (m_selectedObj)
+  if (!m_selset.empty())
   {
-std::cout << "Duplicating object: " << Describe(m_selectedObj) << "\n";
+std::cout << "Duplicating selected objects: " << m_selset.size() << "\n";
 
-    RCPtr<WWGameObject> newObj = m_selectedObj->Clone();
-    int id = TheLevelManager::Instance()->GetUniqueId();
-std::cout << "New unique ID: " << id << "\n";
-    newObj->SetId(id);
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      // TODO All the duplicates should be created in one command
 
-    // Need to call Load on the new object?? Easier than cloning all scene nodes?
+      RCPtr<WWGameObject> newObj = (*it)->Clone();
+      int id = TheLevelManager::Instance()->GetUniqueId();
+  std::cout << "New unique ID: " << id << "\n";
+      newObj->SetId(id);
 
-    // Make the new object the selected obj ?
-    m_selectedObj = newObj;
+      // Need to call Load on the new object?? Easier than cloning all scene nodes?
 
-    AddNewCommand* c = new AddNewCommand(newObj);
-    TheGuiCommandHandler::Instance()->DoNewCommand(c);
+      // Make the new object the selected obj ?
+      //m_selectedObj = newObj;
+
+      AddNewCommand* c = new AddNewCommand(newObj);
+      TheGuiCommandHandler::Instance()->DoNewCommand(c);
+    }
   }
 }
 
 class DeleteCommand : public GuiCommand
 {
 public:
-  DeleteCommand(WWGameObject* obj) : m_obj(obj)
+  DeleteCommand(SelSet selset) : m_selset(selset)
   {
   }
 
   virtual bool Do() override
   {
-    m_obj->RemoveFromGame();
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->RemoveFromGame();
+    }
     s_unsaved++;
     return true;
   }
 
   virtual void Undo() override
   {
-    m_obj->AddToGame();
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->AddToGame();
+    }
     s_unsaved--;
   }
 
 private:
-  RCPtr<WWGameObject> m_obj;
+  SelSet m_selset;
 };
 
 void GSMainEdit::OnDelete()
 {
-  if (m_selectedObj)
+  if (!m_selset.empty())
   {
-    // TODO Are you sure? Anyway, this is undoable
-    DeleteCommand* dc = new DeleteCommand(m_selectedObj);
+    // This is undoable so no confirm
+    DeleteCommand* dc = new DeleteCommand(m_selset);
     TheGuiCommandHandler::Instance()->DoNewCommand(dc);
   }
 }
@@ -495,38 +506,44 @@ void GSMainEdit::OnDelete()
 class RotateCommand : public GuiCommand
 {
 public:
-  RotateCommand(WWGameObject* obj, float angleDegs) : m_obj(obj), m_yRot(angleDegs)
+  RotateCommand(SelSet selset, float angleDegs) : m_selset(selset), m_yRot(angleDegs)
   {
   }
 
   virtual bool Do() override
   {
-    m_obj->RotateY(m_yRot);
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->RotateY(m_yRot);
+    }
     s_unsaved++;
     return true;
   }
 
   virtual void Undo() override
   {
-    m_obj->RotateY(-m_yRot);
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->RotateY(-m_yRot);
+    }
     s_unsaved--;
   }
 
 private:
-  RCPtr<WWGameObject> m_obj;
+  SelSet m_selset;
   float m_yRot;
 };
 
 void GSMainEdit::OnObjectRotate(float degs)
 {
-  if (m_selectedObj)
+  if (m_selset.empty())
   {
-    RotateCommand* c = new RotateCommand(m_selectedObj, degs);
-    TheGuiCommandHandler::Instance()->DoNewCommand(c);
+    std::cout << "No objects selected to rotate!\n";
   }
   else
   {
-    std::cout << "No object selected to rotate!\n";
+    RotateCommand* c = new RotateCommand(m_selset, degs);
+    TheGuiCommandHandler::Instance()->DoNewCommand(c);
   }
 }
 
@@ -544,24 +561,30 @@ static void OnPropertiesDialogClosed(Dialog* dlg)
 
 void GSMainEdit::OnProperties()
 {
-  if (m_selectedObj)
+  if (m_selset.size() == 1)
   {
     m_propsDialog.Clear();
 
+    WWGameObject* obj = *(m_selset.begin());
+
     // Properties dialog - TODO something along the lines of AntTweakBar
-    m_propsDialog.SetTitle("Properties for " + Describe(m_selectedObj));
+    m_propsDialog.SetTitle("Properties for " + Describe(obj));
     m_propsDialog.SetFinishCallback(OnPropertiesDialogClosed);
 
-    m_propsDialog.SetObj(m_selectedObj);
+    m_propsDialog.SetObj(obj);
 
     // Populate properties
-    m_selectedObj->AddPropertiesGui(&m_propsDialog);
+    obj->AddPropertiesGui(&m_propsDialog);
 
     DoModalDialog(&m_propsDialog);
   }
-  else
+  else if (m_selset.empty())
   {
     std::cout << "No object selected to get/set properties!\n";
+  }
+  else
+  {
+    std::cout << "Too many objects selected to get/set properties!\n";
   }
 }
 
@@ -573,7 +596,7 @@ void GSMainEdit::OnDeactive()
 
 void GSMainEdit::OnActive()
 {
-  m_selectedObj = 0;
+  m_selset.clear();
   m_isSelecting = false;
 
   GSMain::OnActive();
@@ -656,8 +679,8 @@ void GSMainEdit::Draw()
 
     if (evp->IsActive() && m_isSelecting)
     {
-      m_isSelecting = false;
-      m_selectedObj = 0; // TODO multi select
+      ////m_isSelecting = false;
+      //m_selectedObj = 0; // TODO multi select
 
       GetGameSceneGraph()->GetCamera()->Draw(); // ?
 
@@ -702,12 +725,14 @@ void GSMainEdit::Draw()
           if (dist < bestDist)
           {
             bestDist = dist;
-            m_selectedObj = (WWGameObject*)pgo;
+            WWGameObject* ww = dynamic_cast<WWGameObject*>(pgo);
+            Assert(ww);
+            m_selset.insert(ww);
+            SetSelectedObject(ww);
+            m_numSelThisRect++;
           }
         }
       }
-
-      SetSelectedObject(m_selectedObj);
     }
   }
 
@@ -719,18 +744,18 @@ void GSMainEdit::SetSelectedObject(GameObject* obj)
   m_accumulatedDragMove = Vec3f();
   if (obj)
   {
-    m_selectedObj = dynamic_cast<WWGameObject*>(obj);
+    WWGameObject* ww = dynamic_cast<WWGameObject*>(obj);
 
     // Don't move camera
     GetCamera()->SetControllable(false);
 
-    const std::string name = m_selectedObj->GetTypeName();
-    std::string s = "Selected " + name  + " ID: " + ToString(m_selectedObj->GetId());
+    const std::string name = ww->GetTypeName();
+    std::string s = "Selected " + name  + " ID: " + ToString(ww->GetId());
     m_infoText.SetText(s);
 
     // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
     //m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
-    m_selectedObj->SetSelected(true);
+    ww->SetSelected(true);
 
 /*
     // TODO
@@ -846,9 +871,21 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       m_mouseScreenAnchor = m_mouseScreen;
 
       m_isSelecting = true;
+      m_numSelThisRect = 0;
     }
     else
     {
+      // Mouse button up - stop selecting
+      if (m_isSelecting && m_numSelThisRect == 0)
+      {
+        // Clear sel
+        for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+        {
+          (*it)->SetSelected(false);
+        }
+        m_selset.clear();
+      }
+      m_isSelecting = 0;
       s_drag = false;
     }
 
@@ -879,27 +916,31 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 class MoveCommand : public GuiCommand
 {
 public:
-  MoveCommand(WWGameObject* obj, const Vec3f& move) : m_obj(obj), m_move(move)
+  MoveCommand(SelSet selset, const Vec3f& move) : m_selset(selset), m_move(move)
   {
   }
 
   virtual bool Do() override
   {
-    m_obj->Move(m_move);
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->Move(m_move);
+    }
     s_unsaved++;
     return true;
   }
 
   virtual void Undo() override
   {
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->Move(-m_move);
+    }
     s_unsaved--;
-    m_move = -m_move;
-    Do();
-    m_move = -m_move;
   }
 
 private:
-  RCPtr<WWGameObject> m_obj;
+  SelSet m_selset;
   Vec3f m_move;
 };
 
@@ -913,7 +954,7 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
   Vec2f diff = pos - oldPos; // TODO can now use dx/dy in CursorEvent
 
   // TODO
-  if (m_selectedObj && s_drag)
+  if (!m_selset.empty() && s_drag)
   {
 //std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
     // Decide which direction to move - i.e. is diff more closely aligned 
@@ -932,7 +973,7 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
     {
       m_accumulatedDragMove = Vec3f();
       move *= m_gridSize;
-      MoveCommand* mc = new MoveCommand(m_selectedObj, move);
+      MoveCommand* mc = new MoveCommand(m_selset, move);
       TheGuiCommandHandler::Instance()->DoNewCommand(mc);
     }
   }
