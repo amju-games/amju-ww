@@ -7,6 +7,7 @@
 #include "ShadowManager.h"
 #include "Describe.h"
 #include "PropertyKeys.h"
+#include "GameMode.h"
 
 namespace Amju
 {
@@ -18,7 +19,21 @@ WWGameObject::WWGameObject()
   m_shadowSize = 0;
   m_yRot = 0;
 }
-  
+ 
+void WWGameObject::SetSelected(bool selected)
+{
+  m_editModeIsSelected = selected;
+  Assert(IsEditMode());
+  // Set flag on extra scene node
+  Assert(m_selNode);
+  m_selNode->SetSel(selected);
+}
+
+bool WWGameObject::IsSelected() const
+{
+  return m_editModeIsSelected;
+}
+
 void WWGameObject::AddToGame()
 {
   if (!m_shadowTexName.empty())
@@ -28,7 +43,8 @@ void WWGameObject::AddToGame()
   TheGame::Instance()->AddGameObject(this);
 
   CreateSceneNode(); 
-
+  AddSceneNodeToGraph();
+  /*
   SceneNode* sn = GetSceneNode();
   if (sn)
   {
@@ -36,6 +52,7 @@ void WWGameObject::AddToGame()
     Assert(root);
     root->AddChild(sn);
   }
+  */
 }
 
 void WWGameObject::RemoveFromGame()
@@ -47,6 +64,9 @@ void WWGameObject::RemoveFromGame()
 
   TheGame::Instance()->EraseGameObject(GetId());
 
+  // TODO Fix for edit mode
+  RemoveSceneNodeFromGraph();
+  /*
   SceneNode* sn = GetSceneNode();
   if (sn)
   {
@@ -54,6 +74,7 @@ void WWGameObject::RemoveFromGame()
     Assert(root);
     root->DelChild(sn);
   }
+  */
 }
 
 void WWGameObject::Reset() 
@@ -211,6 +232,46 @@ bool WWGameObject::LoadShadow(File* f)
 SceneNode* WWGameObject::GetSceneNode()
 {
   return m_pSceneNode;
+}
+
+void WWGameObject::RemoveSceneNodeFromGraph()
+{
+  SceneNode* sn = GetSceneNode();
+  if (sn)
+  {
+    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+    Assert(root);
+
+    if (IsEditMode())
+    {
+      root->DelChild(m_selNode.GetPtr());
+    }
+    else
+    {
+      root->DelChild(sn);
+    }
+  }
+
+}
+
+void WWGameObject::AddSceneNodeToGraph()
+{
+  Assert(m_pSceneNode);
+
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  Assert(root);
+
+  if (IsEditMode())
+  {
+    m_selNode = new SelectedNode;
+    m_selNode->AddChild(m_pSceneNode);
+
+    root->AddChild(m_selNode.GetPtr());
+  }
+  else
+  {
+    root->AddChild(m_pSceneNode);
+  }
 }
 
 //void WWGameObject::SetTransform(const Matrix& mat)
