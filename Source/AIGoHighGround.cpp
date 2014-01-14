@@ -17,7 +17,7 @@ float AIGoHighGround::GetRank()
 {
   Assert(m_npc);
 
-  if (!m_npc->GetFloor())
+  if (!m_npc->IsOnFloor())
   {
     // Not on a floor - falling ?
     return -1000;
@@ -33,7 +33,7 @@ void AIGoHighGround::Update()
 {
   AI::Update();
   Assert(m_npc);
-  if (!m_npc->GetFloor())
+  if (!m_npc->IsOnFloor())
   {
     return;
   }
