@@ -235,6 +235,11 @@ Matrix* Floor::GetMatrix()
 
 bool Floor::GetY(const Vec2f& v, float* pY)
 {
+  // Check AABB around coll mesh first
+  if (!m_aabb.Intersects(Vec3f(v.x, m_aabb.GetMax(1), v.y)))
+  {
+    return false;
+  }
   return m_collMesh->GetY(v, pY);
 }
 

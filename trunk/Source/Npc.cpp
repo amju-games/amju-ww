@@ -86,7 +86,7 @@ void Npc::Update()
     return;
   }
 
-  if (!GetFloor())
+  if (!IsOnFloor())
   {
     // Falling
     SetAI(AIFalling::NAME); 
