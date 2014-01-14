@@ -46,7 +46,7 @@ void Viewport::Draw()
     ambient, // Ambient light colour
     AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
     AmjuGL::LightColour(1, 1, 1),
-    AmjuGL::Vec3(1, 1, -1)); // Light direction
+    AmjuGL::Vec3(1, 1, 1)); // Light direction
 
   if (!IsEditMode())
   {
