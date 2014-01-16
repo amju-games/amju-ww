@@ -81,7 +81,6 @@ protected:
   int m_numSelThisRect;
 
   Vec3f m_mouseWorld;
-  bool m_isSelecting;
 
   PGuiMenu m_topMenu; // horiz menu across top
 
