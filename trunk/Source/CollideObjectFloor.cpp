@@ -26,7 +26,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   {
     const Tri& tri = *it;
     Vec3f n = tri.CalcNormal();
-    if (n.y > 0.2f) // TODO
+    if (n.y < 0.2f) // TODO
     {
       // Treat this tri as a vertical wall
       norm += n;
@@ -36,10 +36,22 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
       // Treat this tri as a floor
     }
   }
+  if (norm.SqLen() < 0.001f) // TODO
+  {
+    std::cout << "Whoops\n";
+    return;
+  }
+
   norm.Normalise();
   Vec3f pos = go1->GetPos();
-  pos += norm; // TODO pen depth
+  pos += norm * 10.0f; // TODO pen depth
   go1->SetPos(pos); 
+
+  // If falling, also push away from wall
+  OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
+  Assert(onfloor);
+  Vec3f vel = norm; //TODO * PUSH_AWAY_VEL;
+  onfloor->SetVel(vel);
 }
 
 void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
@@ -119,27 +131,23 @@ void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
   }
 }
 
+#define Fun CollideObjectFloor
+
 static bool contactType = AMJU_EVERY_CONTACT;
 static bool b[] = 
 {
-  TheCollisionManager::Instance()->Add(
-    Player::NAME, Floor::NAME, &CollideObjectFloor, contactType),
+  TheCollisionManager::Instance()->Add(Player::NAME, Floor::NAME, &Fun, contactType),
 
-  TheCollisionManager::Instance()->Add(
-    Dino::NAME, Floor::NAME, &CollideObjectFloor, contactType),
+  TheCollisionManager::Instance()->Add(Dino::NAME, Floor::NAME, &Fun, contactType),
 
-  TheCollisionManager::Instance()->Add(
-    Pet::NAME, Floor::NAME, &CollideObjectFloor, contactType),
+  TheCollisionManager::Instance()->Add(Pet::NAME, Floor::NAME, &Fun, contactType),
 
   // O Noes, have to duplicate because there are 2 floor types?! 
   // How to avoid this ?
-  TheCollisionManager::Instance()->Add(
-    Player::NAME, StaticFloor::NAME, &CollideObjectFloor, contactType),
+  TheCollisionManager::Instance()->Add(Player::NAME, StaticFloor::NAME, &Fun, contactType),
 
-  TheCollisionManager::Instance()->Add(
-    Dino::NAME, StaticFloor::NAME, &CollideObjectFloor, contactType),
+  TheCollisionManager::Instance()->Add(Dino::NAME, StaticFloor::NAME, &Fun, contactType),
 
-  TheCollisionManager::Instance()->Add(
-    Pet::NAME, StaticFloor::NAME, &CollideObjectFloor, contactType),
+  TheCollisionManager::Instance()->Add(Pet::NAME, StaticFloor::NAME, &Fun, contactType),
 };
 }
