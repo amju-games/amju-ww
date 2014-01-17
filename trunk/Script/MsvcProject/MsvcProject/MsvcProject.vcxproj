@@ -316,6 +316,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GameConsts.cpp" />
     <ClCompile Include="..\..\..\Source\GameMode.cpp" />
     <ClCompile Include="..\..\..\Source\GSAttract.cpp" />
+    <ClCompile Include="..\..\..\Source\GSChooseLevel.cpp" />
     <ClCompile Include="..\..\..\Source\GSCopyAssets.cpp" />
     <ClCompile Include="..\..\..\Source\GSEditMenu.cpp" />
     <ClCompile Include="..\..\..\Source\GSGameOver.cpp" />
@@ -396,6 +397,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GameConsts.h" />
     <ClInclude Include="..\..\..\Source\GameMode.h" />
     <ClInclude Include="..\..\..\Source\GSAttract.h" />
+    <ClInclude Include="..\..\..\Source\GSChooseLevel.h" />
     <ClInclude Include="..\..\..\Source\GSCopyAssets.h" />
     <ClInclude Include="..\..\..\Source\GSEditMenu.h" />
     <ClInclude Include="..\..\..\Source\GSGameOver.h" />

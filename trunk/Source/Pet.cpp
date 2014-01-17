@@ -28,6 +28,7 @@ const char* Pet::NAME = "pet";
 
 static const float XSIZE = 15.0f;
 static const float YSIZE = 20.0f;
+static const float YOFFSET = 5.0f;
 
 static const float MAX_BEING_EATEN_TIME = 6.0f;
 
@@ -49,6 +50,8 @@ void GetPets(Pets* pets)
 Pet::Pet()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsYOffset = YSIZE + YOFFSET;
+
   m_extentsSet = true;
   m_carryingPlayer = 0;
   m_eatenState = NOT_EATEN_YET;
