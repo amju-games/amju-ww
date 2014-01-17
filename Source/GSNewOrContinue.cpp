@@ -1,7 +1,9 @@
+#include <Game.h>
 #include <SoundManager.h>
 #include <GuiButton.h>
 #include <ConfigFile.h>
 #include "GSNewOrContinue.h"
+#include "GSChooseLevel.h"
 #include "WWLoadGui.h"
 #include "StartGame.h"
 #include "GameConsts.h"
@@ -9,6 +11,11 @@
 
 namespace Amju
 {
+static void OnChooseLevel()
+{
+  TheGame::Instance()->SetCurrentState(TheGSChooseLevel::Instance());
+}
+
 static void OnNew()
 {
   TheLevelManager::Instance()->SetLevelId(1);
@@ -79,6 +86,7 @@ void GSNewOrContinue::OnActive()
 
   m_gui->GetElementByName("new-button")->SetCommand(OnNew);
   m_gui->GetElementByName("editor-button")->SetCommand(OnEditor);
+  m_gui->GetElementByName("choose-level-button")->SetCommand(OnChooseLevel);
 
   TheSoundManager::Instance()->PlaySong("sound/piano.it");
 }
