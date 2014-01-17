@@ -1,0 +1,50 @@
+// Choose level (debug mode) 
+// version
+1
+
+// element type
+gui-comp
+// Name
+choose-level-comp
+// Num children
+4
+
+// element type
+gui-button
+// Element name
+ok-button
+// pos (coords are -1..1)
+-0.9, -0.8
+// size
+0.8, 0.2
+// Image 
+gui-button-4.png
+// Text
+OK
+// Font name, size
+arial, 2.0, sx=0.7
+
+
+// element type
+gui-button
+// Element name
+cancel-button
+// pos (coords are -1..1)
+0.1, -0.8
+// size
+0.8, 0.2
+// Image 
+gui-button-4.png
+// Text
+Cancel
+// Font name, size
+arial, 2.0, sx=0.7
+
+// List box of levels
+gui-list-box
+// Name
+level-list-box
+// Pos, size
+-0.75, 0.8
+1.5, 1.5
+ 
