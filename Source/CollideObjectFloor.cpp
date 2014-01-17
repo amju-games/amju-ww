@@ -28,7 +28,11 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   {
     const Tri& tri = *it;
     Vec3f n = tri.CalcNormal();
-    if (n.y < 0.2f) // TODO
+    if (n.y < 0)
+    {
+      // Hit a ceiling?
+    }
+    else if (n.y < 0.2f) // TODO
     {
       // Treat this tri as a vertical wall
       norm += n;
@@ -72,7 +76,8 @@ void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
 {
   OnFloorCharacter* ofc = (dynamic_cast<OnFloorCharacter*>(go1));
   Assert(ofc);
-  ofc->FindFloor();
+// TODO Uncomment this if we use this func!
+//  ofc->FindFloor();
 
   Assert(dynamic_cast<Floor*>(go2));
 

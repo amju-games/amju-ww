@@ -38,8 +38,9 @@ namespace Amju
 static const float MAX_SPEED = 100.0f; // TODO CONFIG
 static const float RUN_SPEED = MAX_SPEED * 0.5f;
 static const float WALK_SPEED = RUN_SPEED * 0.5f; 
-static const float XSIZE = 15.0f; // AABB size
-static const float YSIZE = 30.0f;
+static const float XSIZE = 10.0f; // AABB size
+static const float YSIZE = 20.0f;
+static const float YOFFSET = 5.0f;
 
 GameObject* CreatePlayer() { return new Player; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Player::NAME, &CreatePlayer);
@@ -75,6 +76,7 @@ private:
 Player::Player()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsYOffset = YSIZE + YOFFSET;
   m_extentsSet = true;
   m_playerId = 0;
   m_reachedExit = false;
@@ -169,6 +171,8 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
 
   // Existing pets jump up to make room for new pet
   pet->SetCarryingPlayer(this);
+  Vec3f pos = GetPos();
+  pet->SetPos(pos);
   m_pets.push_front(pet);
 
 /*
@@ -252,6 +256,7 @@ void Player::UpdatePets()
 */
 //    pos.x = m_pos.x;
 //    pos.z = m_pos.z;
+
 
     posUnder = pos;
     pet->SetPos(pos); 
@@ -677,7 +682,15 @@ void Player::Update()
 
   OnFloorCharacter::Update();
 
-  if (!IsFalling())
+  if (IsFalling())
+  {
+    // Probably very annoying
+    //if (!m_floor)
+    //{
+    //   DropPets();
+    //}
+  }
+  else
   {
     m_jumpCount = 0;
   }
@@ -704,15 +717,7 @@ void Player::Update()
   }
 
   // Set AABB 
-//  RecalcAABB();
-  m_aabb = AABB(
-      m_pos.x - m_aabbExtents.x, m_pos.x + m_aabbExtents.x,
-      m_pos.y, m_pos.y + m_aabbExtents.y, // don't go negative
-      m_pos.z - m_aabbExtents.z, m_pos.z + m_aabbExtents.z);
-
-  // TODO extend this box downwards for shadows????
-  GetSceneNode()->SetAABB(m_aabb);
-
+  RecalcAABB();
 
   UpdatePets();
    
