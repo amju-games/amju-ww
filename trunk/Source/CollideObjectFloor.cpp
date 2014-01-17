@@ -21,6 +21,8 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     return;
   } 
 
+  bool foundfloor = false;
+  bool foundwall = false;
   Vec3f norm;
   for (auto it = tris.begin(); it != tris.end(); ++it)
   {
@@ -30,15 +32,24 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     {
       // Treat this tri as a vertical wall
       norm += n;
+      foundwall = true;
     }
     else
     {
       // Treat this tri as a floor
+      foundfloor = true;
     }
   }
-  if (norm.SqLen() < 0.001f) // TODO
+
+  if (foundfloor)
   {
-    std::cout << "Whoops\n";
+    OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
+    Assert(onfloor);
+    onfloor->SetFloor(floor);
+  }
+
+  if (!foundwall) //norm.SqLen() < 0.001f) // TODO
+  {
     return;
   }
 
@@ -50,8 +61,11 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   // If falling, also push away from wall
   OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
   Assert(onfloor);
-  Vec3f vel = norm; //TODO * PUSH_AWAY_VEL;
-  onfloor->SetVel(vel);
+  if (onfloor->IsFalling())
+  {
+    Vec3f vel = norm; //TODO * PUSH_AWAY_VEL;
+    onfloor->SetVel(vel);
+  }
 }
 
 void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
