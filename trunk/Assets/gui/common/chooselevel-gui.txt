@@ -7,7 +7,7 @@ gui-comp
 // Name
 choose-level-comp
 // Num children
-4
+3
 
 // element type
 gui-button
