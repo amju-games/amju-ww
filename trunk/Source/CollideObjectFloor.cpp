@@ -1,3 +1,5 @@
+#include <IntAABBPlane.h>
+#include <Plane.h>
 #include "CollisionManager.h"
 #include "Player.h"
 #include "Dino.h"
@@ -22,7 +24,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   } 
 
   bool foundfloor = false;
-  bool foundwall = false;
+  int foundwall = 0;
   Vec3f norm;
   for (auto it = tris.begin(); it != tris.end(); ++it)
   {
@@ -35,8 +37,20 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     else if (n.y < 0.2f) // TODO
     {
       // Treat this tri as a vertical wall
-      norm += n;
-      foundwall = true;
+      norm += n; // keep track of avg normal for velocity
+      foundwall++;
+
+      // Un-penetrate this tri
+      Plane plane(tri);
+      float penDepth = 0;
+      bool intersects = (Intersects(ab, plane, &penDepth) == AMJU_INTERSECTING_PLANE);
+      if (intersects)
+      {
+        // Penetration depth: most negative distance from a box corner to plane.
+        Vec3f pos = go1->GetPos();
+        pos += n * penDepth;
+        go1->SetPos(pos); 
+      }
     }
     else
     {
@@ -57,17 +71,16 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     return;
   }
 
-  norm.Normalise();
-  Vec3f pos = go1->GetPos();
-  pos += norm * 10.0f; // TODO pen depth
-  go1->SetPos(pos); 
+  float f = 1.0f / (float)foundwall;
+  norm *= f; // Normalise
 
   // If falling, also push away from wall
+  const float PUSH_AWAY_VEL = 10.0f; // TODO
   OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
   Assert(onfloor);
   if (onfloor->IsFalling())
   {
-    Vec3f vel = norm; //TODO * PUSH_AWAY_VEL;
+    Vec3f vel = norm * PUSH_AWAY_VEL;
     onfloor->SetVel(vel);
   }
 }
