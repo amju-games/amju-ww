@@ -44,6 +44,8 @@ public:
   virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe);
 
   virtual void OnAnimFinished();
+  virtual void OnWallCollision(const Vec3f& normal) override;
+
 
   void Jump();
 

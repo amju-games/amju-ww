@@ -29,7 +29,15 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   for (auto it = tris.begin(); it != tris.end(); ++it)
   {
     const Tri& tri = *it;
-    Vec3f n = tri.CalcNormal();
+    Plane plane(tri);
+    float penDepth = 0; // Penetration depth: most negative distance from a box corner to plane.
+    bool intersects = (Intersects(ab, plane, &penDepth) == AMJU_INTERSECTING_PLANE);
+    if (!intersects)
+    {      
+      continue;
+    }
+
+    Vec3f n = plane.Normal();
     if (n.y < 0)
     {
       // Hit a ceiling?
@@ -40,18 +48,12 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
       norm += n; // keep track of avg normal for velocity
       foundwall++;
 
-      // Un-penetrate this tri
-      Plane plane(tri);
-      float penDepth = 0;
-      bool intersects = (Intersects(ab, plane, &penDepth) == AMJU_INTERSECTING_PLANE);
-      if (intersects)
-      {
-        // Penetration depth: most negative distance from a box corner to plane.
-        Vec3f pos = go1->GetPos();
-        pos += n * penDepth;
-        go1->SetPos(pos); 
-        ab.Translate(pos);
-      }
+      // Unpenetrate tri
+      Vec3f pos = go1->GetPos();
+      pos += n * penDepth;
+      go1->SetPos(pos); 
+      ab.Translate(pos);
+
     }
     else
     {
@@ -60,29 +62,30 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     }
   }
 
+  OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
+  Assert(onfloor);
+
   if (foundfloor)
   {
-    OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
-    Assert(onfloor);
     onfloor->SetFloor(floor);
   }
 
-  if (!foundwall) //norm.SqLen() < 0.001f) // TODO
+  if (foundwall) 
   {
-    return;
-  }
+    float f = 1.0f / (float)foundwall;
+    norm *= f; // Normalise
 
-  float f = 1.0f / (float)foundwall;
-  norm *= f; // Normalise
+    onfloor->OnWallCollision(norm);
 
-  // If falling, also push away from wall
-  const float PUSH_AWAY_VEL = 10.0f; // TODO
-  OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
-  Assert(onfloor);
-  if (onfloor->IsFalling())
-  {
-    Vec3f vel = norm * PUSH_AWAY_VEL;
-    onfloor->SetVel(vel);
+    // If falling, also push away from wall
+    const float PUSH_AWAY_VEL = 100.0f; // TODO
+    OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
+    Assert(onfloor);
+    if (onfloor->IsFalling())
+    {
+      Vec3f vel = norm * PUSH_AWAY_VEL;
+      onfloor->SetVel(vel);
+    }
   }
 }
 
