@@ -13,7 +13,9 @@ namespace Amju
 {
 static void OnChooseLevel()
 {
-  TheGame::Instance()->SetCurrentState(TheGSChooseLevel::Instance());
+  GSChooseLevel* gcl = TheGSChooseLevel::Instance();
+  gcl->SetPrevState(TheGSNewOrContinue::Instance());
+  TheGame::Instance()->SetCurrentState(gcl);
 }
 
 static void OnNew()
