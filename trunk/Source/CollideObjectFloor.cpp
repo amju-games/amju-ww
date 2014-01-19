@@ -16,7 +16,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   Assert(floor);
   const CollisionMesh* collmesh = floor->GetCollisionMesh();
   CollisionMesh::Tris tris;
-  const AABB& ab = go1->GetAABB();
+  AABB ab = go1->GetAABB();
   collmesh->GetAllTrisInBox(ab, &tris);
   if (tris.empty())
   {
@@ -50,6 +50,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
         Vec3f pos = go1->GetPos();
         pos += n * penDepth;
         go1->SetPos(pos); 
+        ab.Translate(pos);
       }
     }
     else
