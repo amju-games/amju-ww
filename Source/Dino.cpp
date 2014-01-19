@@ -24,8 +24,9 @@ GameObject* CreateDino() { return new Dino; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Dino::NAME, &CreateDino);
 
 const char* Dino::NAME = "dino";
-static const float XSIZE = 25.0f; // AABB size
+static const float XSIZE = 20.0f; // AABB size
 static const float YSIZE = 30.0f;
+static const float YOFFSET = 5.0f;
 
 Dino::Dino()
 {
@@ -38,6 +39,7 @@ Dino::Dino()
   AddAI(new AIStunned);
 
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsYOffset = YSIZE + YOFFSET;
   m_extentsSet = true;
 }
 

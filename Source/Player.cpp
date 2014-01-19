@@ -379,6 +379,11 @@ bool Player::Load(File* f)
   */
 }
 
+void Player::OnWallCollision(const Vec3f& normal) 
+{
+  DropPets(); //?
+}
+
 void Player::OnAnimFinished()
 {
   if (IsFalling())

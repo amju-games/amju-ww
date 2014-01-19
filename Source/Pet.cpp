@@ -18,6 +18,7 @@
 #include "PlayWav.h"
 #include "Describe.h"
 #include "PropertiesDialog.h"
+#include "Player.h"
 
 namespace Amju
 {
@@ -150,6 +151,14 @@ const char* Pet::GetTypeName() const
 Player* Pet::GetCarryingPlayer()
 {
   return m_carryingPlayer;
+}
+
+void Pet::OnWallCollision(const Vec3f& normal) 
+{
+  if (m_carryingPlayer)
+  {
+//    m_carryingPlayer->DropPets();
+  }
 }
 
 void Pet::SetCarryingPlayer(Player* player)

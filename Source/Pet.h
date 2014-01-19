@@ -24,6 +24,7 @@ public:
   virtual void AddToGame() override;
 
   virtual void OnAnimFinished() override;
+  virtual void OnWallCollision(const Vec3f& normal) override;
 
   void StartBeingEaten(Dino* eater);
   bool CanBeEaten() const;
