@@ -715,17 +715,7 @@ std::cout << ModeNames[(int)s_mode] << "\n";
       Unproject(Vec2f(mouseScreen.x, mouseScreen.y), 1, &mouseWorldFar);
       LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
 
-      //// Draw for debugging
-      //std::cout << "Selecting, screen mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
-      //std::cout << "  Viewport: x: " << mouseScreen.x << " y: " << mouseScreen.y << "\n";
-      //AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
-      //AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-      //AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
-      //  AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
-      //AmjuGL::PopAttrib();
-
       GameObjects* objs = TheGame::Instance()->GetGameObjects();
-      float bestDist = 999999.9f;
       for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
       {
         GameObject* pgo = it->second;
