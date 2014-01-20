@@ -23,15 +23,13 @@ public:
   virtual bool Save(File*);
   virtual void Update();
   virtual void AddToGame() override;
-  virtual bool CreateSceneNode() override;
+  //virtual bool CreateSceneNode() override;
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey) override;
   virtual void SetProp(PropertyKey, PropertyValue) override;
 
 private:
-  // TODO Visible meshes - bg and clouds, rotating at different rates..?
-  PObjMesh m_mesh;
-  float m_xRot;
+  Colour m_colour;
 };
 }
 
