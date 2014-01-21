@@ -131,8 +131,8 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
   static const float SENSITIVITY = 1000.0f;
 
   // Initialise old values on first call... this is no good, it only works for one camera
-  static float oldxInit = (m_oldx = ce.x);
-  static float oldyInit = (m_oldy = ce.y);
+  //static float oldxInit = (m_oldx = ce.x);
+  //static float oldyInit = (m_oldy = ce.y);
 
   float dx = ce.x - m_oldx;
   float dy = ce.y - m_oldy;
@@ -231,7 +231,7 @@ bool EditModeCamera::OnKeyEvent(const KeyEvent& ke)
   if (ke.keyType == AMJU_KEY_SPACE) // TODO
   {
     m_controllable = ke.keyDown;
-    return true;
+    return false;
   }
   return false;
 }
