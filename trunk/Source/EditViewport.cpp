@@ -70,7 +70,10 @@ void EditViewport::Draw()
   float y = (float)Screen::Y();
   AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
+  PushColour();
+  MultColour(Colour(1, 1, 1, 0.5f)); // TEST Xray mode
   graph->Draw();
+  PopColour();
 }
 
 void EditViewport::Draw2d()
