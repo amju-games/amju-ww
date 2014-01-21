@@ -58,6 +58,16 @@ void TutorialTrigger::SetProp(PropertyKey key, PropertyValue value)
 
 void TutorialTrigger::OnPlayerCollision(Player*)
 {
+  // Only show once in process
+  typedef std::set<int> IdSet;
+  static IdSet idSet;
+  if (idSet.insert(GetId()).second == false)
+  {
+    // Not inserted - already in set
+std::cout << "Already triggered tutorial trigger " << GetId() << "\n";
+    return;
+  }
+
   if (!m_hasShownText)
   {
     if (!IsEditMode()) // Edit mode "fix" - TODO
