@@ -10,6 +10,15 @@
 
 namespace Amju
 {
+// Default box size
+static const float SIZE = 50.0f;
+
+Trigger::Trigger()
+{
+  m_aabbExtents = Vec3f(SIZE, SIZE, SIZE);
+  m_extentsSet = true;
+}
+
 bool Trigger::Save(File* f)
 {
   if (!f->WriteInteger(GetId()))
