@@ -34,11 +34,14 @@ public:
 
   Vec3f GetMoveAxis(const Vec2f& screenVec);
 
+  void SetXRay(bool isXRay);
+
 private:
   RCPtr<SceneNodeCamera> m_cam;
   std::string m_name;
   GuiText m_text;
   GuiRect m_rect[4];
+  bool m_xray;
 };
 }
 
