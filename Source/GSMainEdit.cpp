@@ -338,6 +338,20 @@ static void OnProperties()
   TheGSMainEdit::Instance()->OnProperties();
 }
 
+// This type of command is executed from the main menu. There is one
+//  instance of this class per game object type. This command is not
+//  itself undoable, as we would not know which object to remove. But
+//  for each call to Do, we can create an undoable command.
+class NewObjectCommand : public GuiCommand
+{
+public:
+  NewObjectCommand(const std::string& typeName) : m_typeName(typeName) {}
+
+  virtual bool Do() override;
+  
+private:
+  const std::string m_typeName; 
+};
 
 GSMainEdit::GSMainEdit()
 {
@@ -366,7 +380,7 @@ GSMainEdit::GSMainEdit()
   std::vector<std::string> names = TheGameObjectFactory::Instance()->GetTypeNames();
   for (unsigned int i = 0; i < names.size(); i++)
   {
-    newObjSubmenu->AddChild(new GuiMenuItem(names[i]));
+    newObjSubmenu->AddChild(new GuiMenuItem(names[i], new NewObjectCommand(names[i])));
   }
 
   GuiMenu* objectSubmenu = new GuiMenu;
@@ -449,6 +463,16 @@ private:
   RCPtr<WWGameObject> m_obj;
 };
 
+bool NewObjectCommand::Do() 
+{
+  RCPtr<WWGameObject> newObj = dynamic_cast<WWGameObject*>(
+    TheGameObjectFactory::Instance()->Create(m_typeName));
+
+  AddNewCommand* c = new AddNewCommand(newObj);
+  TheGuiCommandHandler::Instance()->DoNewCommand(c);
+  return false; // no undo
+}
+  
 
 void GSMainEdit::OnDuplicate()
 {
