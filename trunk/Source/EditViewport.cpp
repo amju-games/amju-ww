@@ -53,6 +53,13 @@ EditViewport::EditViewport(int id, float x, float y, float w, float h, const std
   // Down
   m_rect[3].SetLocalPos(Vec2f(-1, -1 + H));
   m_rect[3].SetSize(Vec2f(2.0f, H));
+
+  m_xray = false;
+}
+
+void EditViewport::SetXRay(bool isXRay)
+{
+  m_xray = isXRay;
 }
 
 void EditViewport::Draw()
@@ -70,10 +77,20 @@ void EditViewport::Draw()
   float y = (float)Screen::Y();
   AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
-  PushColour();
-  MultColour(Colour(1, 1, 1, 0.5f)); // TEST Xray mode
-  graph->Draw();
-  PopColour();
+  if (m_xray)
+  {
+    PushColour();
+    AmjuGL::PushAttrib(AmjuGL::AMJU_BLEND);
+    AmjuGL::Enable(AmjuGL::AMJU_BLEND);
+    MultColour(Colour(1, 1, 1, 0.5f)); // TEST Xray mode
+    graph->Draw();
+    AmjuGL::PopAttrib();
+    PopColour();
+  }
+  else
+  {
+    graph->Draw();
+  }
 }
 
 void EditViewport::Draw2d()
