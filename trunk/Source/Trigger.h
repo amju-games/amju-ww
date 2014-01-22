@@ -10,6 +10,8 @@ class Player;
 class Trigger : public WWGameObject
 {
 public:
+  Trigger();
+
   virtual void OnPlayerCollision(Player*) = 0;
 
   virtual bool Load(File*); 
