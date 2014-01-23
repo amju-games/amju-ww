@@ -13,8 +13,13 @@ const char* Portal::NAME = "portal";
 GameObject* CreatePortal() { return new Portal; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Portal::NAME, &CreatePortal);
 
+// Default portal size
+static const float SIZE = 25.0f;
+
 Portal::Portal()
 {
+  m_aabb.Set(-SIZE, SIZE, -SIZE, SIZE, -SIZE, SIZE);
+
   m_destId = -1;
 }
 
@@ -56,17 +61,44 @@ bool Portal::Save(File* f)
 void Portal::OnPlayerCollision(Player* p)
 {
   // TODO Special state?
+  if (m_collidingPlayers.count(p) > 0)
+  {
+    return;
+  }
 
   Assert(m_destId != -1);
   GameObject* obj = TheGame::Instance()->GetGameObject(m_destId);
+  Portal* otherPortal = dynamic_cast<Portal*>(obj);
+  if (otherPortal)
+  {
+    // Set the other object as collided with, so we don't keep travelling
+    //  back and forth between 2 portals
+    otherPortal->m_collidingPlayers.insert(p);
+  }
+
   Vec3f pos = obj->GetPos();
   p->SetPos(pos);
-  // Set the other object as collided with, so we don't keep travelling
-  //  back and forth between 2 portals
-  // TODO
 
   // Set the player forward dir to the heading of the portal
   //p->SetDir(GetDir());
+}
+
+void Portal::Update()
+{
+  Trigger::Update();
+  for (auto& it = m_collidingPlayers.begin(); it != m_collidingPlayers.end();    )
+  {
+    Player* p = *it;
+    if (p->GetAABB().Intersects(GetAABB()))
+    {
+      ++it;
+    }
+    else
+    {
+      // No intersection - remove this player
+      it = m_collidingPlayers.erase(it);
+    }
+  }
 }
 
 void Portal::AddPropertiesGui(PropertiesDialog* dlg)

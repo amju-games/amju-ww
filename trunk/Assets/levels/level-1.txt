@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-58
+63
 
 // Game object type
 camera
@@ -37,7 +37,7 @@ end
 bird
 99
 // Position
--149.256073, 120.167625, 50.006672
+-149.050369, 120.209732, 50.006672
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -50,7 +50,7 @@ end
 player
 101
 // Position
-200.000000, 141.916779, 50.000000
+200.000000, 141.076889, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -67,7 +67,7 @@ end
 player
 102
 // Position
-100.000000, 216.916794, 0.000000
+100.000000, 216.076904, 0.000000
 // Player ID
 1
 // MD2 mesh name
@@ -84,7 +84,7 @@ end
 pet
 104
 // Position
-950.000000, 17.566385, -50.000000
+950.000000, 16.726484, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -97,7 +97,7 @@ end
 pet
 105
 // Position
--150.000000, 267.566406, -50.000000
+-150.000000, 266.726532, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -110,7 +110,7 @@ end
 pet
 106
 // Position
-750.000000, 117.566399, -50.000000
+750.000000, 116.726509, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -123,7 +123,7 @@ end
 dino
 107
 // Position
-1400.000000, -182.433640, -50.000000
+1400.000000, -183.273529, -50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -356,7 +356,7 @@ end
 tut-trigger
 2020
 // AABB
-0.000000, 100.000000, 100.000000, 150.000000, -100.000000, 0.000000
+150.000000, 250.000000, 100.000000, 150.000000, -400.000000, -300.000000
 // Tutorial text
 Hey, mushroom head! Wait up!&You've got the hang of moving around, yeah?&Oh, I'm the Tutorial Bird. Call me TB!
 end
@@ -618,7 +618,7 @@ end
 pet
 4022
 // Position
-850.000000, 67.566414, -50.000000
+850.000000, 66.726524, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -640,9 +640,57 @@ end
 // Game object type
 staticfloor
 4024
+-500.000000, -87.500000, 243.750000
+// Y rotation
+90.000000
+// Mesh filename
+log_1x2.obj
+end
+
+// Game object type
+staticfloor
+4026
 -300.000000, -87.500000, 243.750000
 // Y rotation
 0.000000
 // Mesh filename
 field_1x1.obj
+end
+
+// Game object type
+staticfloor
+4027
+-850.000000, -87.500000, 343.750000
+// Y rotation
+0.000000
+// Mesh filename
+log_2x1.obj
+end
+
+// Game object type
+staticfloor
+4028
+-650.000000, -87.500000, 243.750000
+// Y rotation
+0.000000
+// Mesh filename
+log_1x1.obj
+end
+
+// Game object type
+portal
+4029
+// AABB
+-75.000000, -25.000000, -75.000000, -25.000000, -425.000000, -375.000000
+// Dest ID
+4030
+end
+
+// Game object type
+portal
+4030
+// AABB
+-25.000000, 25.000000, -87.500000, -37.500000, -81.250000, -31.250000
+// Dest ID
+4029
 end
