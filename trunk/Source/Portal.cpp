@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "PropertyKeys.h"
 #include "PropertiesDialog.h"
+#include "GSSpiral.h"
+#include "GSMain.h"
 
 namespace Amju
 {
@@ -81,11 +83,18 @@ void Portal::OnPlayerCollision(Player* p)
 
   // Set the player forward dir to the heading of the portal
   //p->SetDir(GetDir());
+
+  static GSSpiral* sp = TheGSSpiral::Instance();
+  sp->SetPrevState(TheGSMain::Instance());
+  TheGame::Instance()->SetCurrentState(sp);
 }
 
 void Portal::Update()
 {
   Trigger::Update();
+
+  // Check for players no longer intersecting
+  // NB erasing elements while iterating over container
   for (auto& it = m_collidingPlayers.begin(); it != m_collidingPlayers.end();    )
   {
     Player* p = *it;
