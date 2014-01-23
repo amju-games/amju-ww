@@ -341,8 +341,8 @@ static void OnProperties()
 
 static void OnObjectViewAll()
 {
-  static ObjectDialog dlg;
-  DoModalDialog(&dlg);
+  ObjectDialog* dlg = TheObjectDialog::Instance();
+  DoModalDialog(dlg);
 }
 
 // This type of command is executed from the main menu. There is one
@@ -478,6 +478,10 @@ bool NewObjectCommand::Do()
   
   Assert(newObj);
 
+  int id = TheLevelManager::Instance()->GetUniqueId();
+  std::cout << "New unique ID: " << id << "\n";
+  newObj->SetId(id);
+
   AddNewCommand* c = new AddNewCommand(newObj);
   TheGuiCommandHandler::Instance()->DoNewCommand(c);
   return false; // no undo
@@ -546,6 +550,7 @@ void GSMainEdit::OnDelete()
   {
     // This is undoable so no confirm
     DeleteCommand* dc = new DeleteCommand(m_selset);
+    ClearSelection();
     TheGuiCommandHandler::Instance()->DoNewCommand(dc);
   }
 }
@@ -606,24 +611,27 @@ static void OnPropertiesDialogClosed(Dialog* dlg)
   }
 }
 
+void GSMainEdit::ShowPropertiesDlgForObject(WWGameObject* obj)
+{
+  m_propsDialog.Clear();
+  // Properties dialog - TODO something along the lines of AntTweakBar
+  m_propsDialog.SetTitle("Properties for " + Describe(obj));
+  m_propsDialog.SetFinishCallback(OnPropertiesDialogClosed);
+
+  m_propsDialog.SetObj(obj);
+
+  // Populate properties
+  obj->AddPropertiesGui(&m_propsDialog);
+
+  DoModalDialog(&m_propsDialog);
+}
+
 void GSMainEdit::OnProperties()
 {
   if (m_selset.size() == 1)
   {
-    m_propsDialog.Clear();
-
     WWGameObject* obj = *(m_selset.begin());
-
-    // Properties dialog - TODO something along the lines of AntTweakBar
-    m_propsDialog.SetTitle("Properties for " + Describe(obj));
-    m_propsDialog.SetFinishCallback(OnPropertiesDialogClosed);
-
-    m_propsDialog.SetObj(obj);
-
-    // Populate properties
-    obj->AddPropertiesGui(&m_propsDialog);
-
-    DoModalDialog(&m_propsDialog);
+    ShowPropertiesDlgForObject(obj);
   }
   else if (m_selset.empty())
   {
@@ -762,14 +770,12 @@ std::cout << ModeNames[(int)s_mode] << "\n";
           Assert(ww);
           if (s_mode == AMJU_MODE_SELECT)
           {
-            m_selset.insert(ww);
-            ww->SetSelected(true);
+            SetSelectedObject(ww, true);
             m_numSelThisRect++;
           }
           else
           {
-            m_selset.erase(ww);
-            ww->SetSelected(false);
+            SetSelectedObject(ww, false);
             m_numSelThisRect--;
           }
 
@@ -795,39 +801,46 @@ std::cout << ModeNames[(int)s_mode] << "\n";
   AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
 }
 
-void GSMainEdit::SetSelectedObject(GameObject* obj)
+void GSMainEdit::ClearSelection()
 {
-  m_accumulatedDragMove = Vec3f();
-  if (obj)
+  for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
   {
-    WWGameObject* ww = dynamic_cast<WWGameObject*>(obj);
+    (*it)->SetSelected(false);
+  }
+  m_selset.clear();
+  m_infoText.SetText("Nothing selected");
+}
 
-    // Don't move camera
-    GetCamera()->SetControllable(false);
+void GSMainEdit::SetSelectedObject(GameObject* obj, bool addNotRemove)
+{
+  Assert(obj);
 
-    const std::string name = ww->GetTypeName();
-    std::string s = "Selected " + name  + " ID: " + ToString(ww->GetId());
-    m_infoText.SetText(s);
+  WWGameObject* ww = dynamic_cast<WWGameObject*>(obj);
 
-    // Set m_selNode to decorate node for the selected game object (assume all Game objects have a scene node)
-    //m_selNode->SetSelNode(m_selectedObj->GetSceneNode());
+  if (addNotRemove)
+  {
     ww->SetSelected(true);
-
-/*
-    // TODO
-    m_contextMenu->Clear();
-    //m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
-    //m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnObjectRotate));
-    m_contextMenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
-    m_contextMenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
-    m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
-*/
+    m_selset.insert(ww);
   }
   else
   {
-    m_contextMenu->Clear();
+    ww->SetSelected(false);
+    m_selset.erase(ww);
+  }
+
+  if (m_selset.empty())
+  {
     m_infoText.SetText("Nothing selected");
-    //GetCamera()->SetControllable(true);
+  }
+  else if (m_selset.size() == 1)
+  {
+    std::string s = "Selected: " + Describe(*(m_selset.begin()));
+    m_infoText.SetText(s);
+  }
+  else
+  {
+    std::string s = "Selected: " + ToString((int)m_selset.size()) + " objects";
+    m_infoText.SetText(s);
   }
 }
 
@@ -1097,14 +1110,7 @@ std::cout << ModeNames[(int)s_mode] << "\n";
 
   if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'c')
   {
-    // Clear selection
-std::cout << ModeNames[(int)s_mode] << "\n";
-    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
-    {
-      (*it)->SetSelected(false);
-    }
-    m_selset.clear();
-    m_infoText.SetText("Nothing selected");
+    ClearSelection();
     s_mode = AMJU_MODE_DONOTHING;
   }
 
