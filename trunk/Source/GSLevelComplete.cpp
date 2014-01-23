@@ -14,8 +14,6 @@
 
 namespace Amju
 {
-const char* GSLevelComplete::NAME = "level-complete";
-
 GSLevelComplete::GSLevelComplete()
 {
   m_timer = 0;
