@@ -17,10 +17,10 @@ void TriggerNode::Draw()
 #else
   AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
   AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-  PushColour();
-  MultColour(Colour(1, 0, 1, 0.9f));
+//  PushColour();
+//  MultColour(Colour(1, 1, 1, 0.9f));
   DrawSolidAABB(m_aabb);
-  PopColour();
+//  PopColour();
   AmjuGL::PopAttrib();
 #endif
 }
