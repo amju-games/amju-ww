@@ -63,7 +63,10 @@ public:
   void OnRunStop();
   void OnObjectRotate(float degs); // rotate around y axis
 
-  void SetSelectedObject(GameObject* obj);
+  // Called from menu item handlers etc and Object Dialog
+  void ShowPropertiesDlgForObject(WWGameObject* obj);
+  void SetSelectedObject(GameObject* obj, bool addNotRemoveFromSelection);
+  void ClearSelection();
 
 protected:
   // Box where new item can go, or item in box can be edited..?
