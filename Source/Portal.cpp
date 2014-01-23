@@ -7,6 +7,7 @@
 #include "PropertiesDialog.h"
 #include "GSSpiral.h"
 #include "GSMain.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -87,6 +88,8 @@ void Portal::OnPlayerCollision(Player* p)
   static GSSpiral* sp = TheGSSpiral::Instance();
   sp->SetPrevState(TheGSMain::Instance());
   TheGame::Instance()->SetCurrentState(sp);
+
+  PlayWav("laser_x");
 }
 
 void Portal::Update()
