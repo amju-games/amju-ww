@@ -16,8 +16,6 @@ private:
   friend class Singleton<GSLevelComplete>;
 
 public:
-  static const char* NAME;
-
   virtual void Update() override;
   virtual void OnActive() override;
   virtual void OnDeactive() override;
