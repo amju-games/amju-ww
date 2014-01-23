@@ -341,7 +341,7 @@ static void OnProperties()
 
 static void OnObjectViewAll()
 {
-  ObjectDialog dlg;
+  static ObjectDialog dlg;
   DoModalDialog(&dlg);
 }
 
