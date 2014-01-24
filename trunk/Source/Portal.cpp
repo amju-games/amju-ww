@@ -63,7 +63,6 @@ bool Portal::Save(File* f)
 
 void Portal::OnPlayerCollision(Player* p)
 {
-  // TODO Special state?
   if (m_collidingPlayers.count(p) > 0)
   {
     return;
@@ -71,6 +70,7 @@ void Portal::OnPlayerCollision(Player* p)
 
   Assert(m_destId != -1);
   GameObject* obj = TheGame::Instance()->GetGameObject(m_destId);
+  Assert(obj);
   Portal* otherPortal = dynamic_cast<Portal*>(obj);
   if (otherPortal)
   {
@@ -79,12 +79,16 @@ void Portal::OnPlayerCollision(Player* p)
     otherPortal->m_collidingPlayers.insert(p);
   }
 
+  // Can't take pets through portal, so using it has a cost
+  p->DropPets();
+
   Vec3f pos = obj->GetPos();
   p->SetPos(pos);
 
   // Set the player forward dir to the heading of the portal
   //p->SetDir(GetDir());
 
+  // Special state, with spiral for a split second
   static GSSpiral* sp = TheGSSpiral::Instance();
   sp->SetPrevState(TheGSMain::Instance());
   TheGame::Instance()->SetCurrentState(sp);
@@ -98,7 +102,7 @@ void Portal::Update()
 
   // Check for players no longer intersecting
   // NB erasing elements while iterating over container
-  for (auto& it = m_collidingPlayers.begin(); it != m_collidingPlayers.end();    )
+  for (auto it = m_collidingPlayers.begin(); it != m_collidingPlayers.end();    )
   {
     Player* p = *it;
     if (p->GetAABB().Intersects(GetAABB()))
@@ -108,7 +112,12 @@ void Portal::Update()
     else
     {
       // No intersection - remove this player
+#ifdef WIN32
       it = m_collidingPlayers.erase(it);
+#else
+      m_collidingPlayers.erase(it);
+      ++it;
+#endif
     }
   }
 }
