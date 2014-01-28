@@ -32,22 +32,22 @@ void Skybox::AddPropertiesGui(PropertiesDialog* dlg)
 
 PropertyValue Skybox::GetProp(PropertyKey key)
 {
-//  switch (key)
-//  {
-//  case PROP_TEXT:
-//    return m_text;
-//  }
+  switch (key)
+  {
+  case PROP_COLOUR:
+    return ToHexString(m_colour);
+  }
   return WWGameObject::GetProp(key);
 }
 
 void Skybox::SetProp(PropertyKey key, PropertyValue value)
 {
   WWGameObject::SetProp(key, value);
-//  switch (key)
-//  {
-//  case PROP_TEXT:
-//    m_text = value.GetString();
-//  }
+  switch (key)
+  {
+  case PROP_COLOUR:
+    m_colour = FromHexString(value.GetString());
+  }
 }
 
 const char* Skybox::GetTypeName() const
