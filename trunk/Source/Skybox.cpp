@@ -57,8 +57,24 @@ const char* Skybox::GetTypeName() const
 
 bool Skybox::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!f->WriteInteger(GetId()))
+  {
+    f->ReportError("Skybox: Failed to write ID");
+    return false;
+  }
+
+  if (!SaveMeshResource(f))
+  {
+    return false;
+  }
+
+  std::string s = ToHexString(m_colour);
+  if (!f->Write(s))
+  {
+    f->ReportError("Couldn't save colour string");
+    return false;
+  }
+  return true;
 }
 
 bool Skybox::Load(File* f)
@@ -73,6 +89,14 @@ bool Skybox::Load(File* f)
     return false;
   }
 
+  std::string s;
+  if (!f->GetDataLine(&s))
+  {
+    f->ReportError("Expected skybox colour");
+    return false;
+  }
+  m_colour = FromHexString(s);
+
   return true;
 }
 
@@ -80,7 +104,9 @@ void Skybox::AddToGame()
 {
   // Different - no shadows. In future may be comprised of multiple cloud
   //  billboards.
-  GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_SKYBOX, GetSceneNode());
+  //GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, GetSceneNode());
+
+  WWGameObject::AddToGame();
 }
 
 /*
