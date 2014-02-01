@@ -48,6 +48,8 @@ private:
 
 void GSChooseLevel::OnActive() 
 {
+  GSText::OnActive();
+
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("ball.obj");
   Assert(mesh);
 
