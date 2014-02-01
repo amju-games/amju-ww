@@ -2,7 +2,7 @@
 // v 
 1
 
-max-speed 150.0
+max-speed 50.0
 max-y-vel 200.0
 max-drop  500.0
 jump-vel-initial 100
