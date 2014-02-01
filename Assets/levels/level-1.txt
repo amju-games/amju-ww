@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-66
+70
 
 // Game object type
 camera
@@ -28,16 +28,16 @@ end
 tut-trigger
 10
 // AABB
-350.000000, 450.000000, 100.000000, 150.000000, -200.000000, -100.000000
+150.000000, 250.000000, 100.000000, 150.000000, 0.000000, 100.000000
 // Tutorial text
-Tap to jump!
+Hey, mushroom head!&How did you get up here?&Whatever, tilt to move around. Try it!
 end
 
 // Game object type
 bird
 99
 // Position
--149.017517, 120.216408, 50.006672
+-148.044891, 120.409294, 50.006664
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -50,7 +50,7 @@ end
 player
 101
 // Position
-200.000000, 140.942795, 50.000000
+200.000000, 136.976624, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -67,7 +67,7 @@ end
 player
 102
 // Position
-100.000000, 215.942810, 0.000000
+100.000000, 211.976639, 0.000000
 // Player ID
 1
 // MD2 mesh name
@@ -84,7 +84,7 @@ end
 pet
 104
 // Position
-950.000000, 16.592384, -50.000000
+950.000000, 12.626205, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -97,7 +97,7 @@ end
 pet
 105
 // Position
--150.000000, 266.592438, -50.000000
+-150.000000, 262.626312, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -110,7 +110,7 @@ end
 pet
 106
 // Position
-750.000000, 116.592415, -50.000000
+750.000000, 112.626228, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -123,7 +123,7 @@ end
 dino
 107
 // Position
-1400.000000, -183.407623, -50.000000
+1550.000000, -137.373795, -50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -165,9 +165,9 @@ end
 // Game object type
 bonus
 112
-506.250000, 175.000000, -62.500000
+-143.750000, 50.000000, -62.500000
 // Mesh filename
-fruit1.obj
+fruit2.obj
 // Shadow texture & size
 shadow.png
 20.000000
@@ -210,7 +210,7 @@ end
 // Game object type
 staticfloor
 1003
-2100.000000, 112.500000, -56.250000
+2900.000000, 112.500000, -1906.250000
 // Y rotation
 180.000000
 // Mesh filename
@@ -220,7 +220,7 @@ end
 // Game object type
 fence
 2001
-50.000000, 100.000000, 50.000000
+100.000000, 100.000000, -950.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -229,7 +229,7 @@ end
 // Game object type
 fence
 2002
-525.000000, 107.812500, 65.625000
+350.000000, 107.812500, -9.375000
 0.000000
 // Mesh filename
 rock_1x1.obj
@@ -238,7 +238,7 @@ end
 // Game object type
 fence
 2003
-100.000000, 100.000000, -200.000000
+-300.000000, 100.000000, -850.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -247,7 +247,7 @@ end
 // Game object type
 fence
 2004
-350.000000, 100.000000, 50.000000
+400.000000, 100.000000, -1100.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -256,7 +256,7 @@ end
 // Game object type
 fence
 2005
--375.000000, -100.000000, 200.000000
+-775.000000, -100.000000, -450.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -265,7 +265,7 @@ end
 // Game object type
 fence
 2006
-50.000000, 100.000000, -50.000000
+100.000000, 100.000000, -1050.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -274,7 +274,7 @@ end
 // Game object type
 fence
 2007
--350.000000, 100.000000, -400.000000
+1400.000000, -300.000000, -175.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -283,7 +283,7 @@ end
 // Game object type
 fence
 2009
-300.000000, 100.000000, -200.000000
+350.000000, 100.000000, -1200.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -301,7 +301,7 @@ end
 // Game object type
 fence
 2012
-100.000000, 100.000000, 100.000000
+-300.000000, 100.000000, -550.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -310,7 +310,7 @@ end
 // Game object type
 fence
 2013
-300.000000, 100.000000, 100.000000
+550.000000, 100.000000, -100.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -319,7 +319,7 @@ end
 // Game object type
 fence
 2016
-200.000000, 100.000000, -200.000000
+250.000000, 100.000000, -1200.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -328,7 +328,7 @@ end
 // Game object type
 fence
 2017
-200.000000, 100.000000, 100.000000
+450.000000, 100.000000, -100.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -337,7 +337,7 @@ end
 // Game object type
 fence
 2018
-350.000000, 100.000000, -150.000000
+600.000000, 100.000000, -1100.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -346,7 +346,7 @@ end
 // Game object type
 fence
 2019
-50.000000, 100.000000, -150.000000
+100.000000, 100.000000, -1150.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -356,9 +356,9 @@ end
 tut-trigger
 2020
 // AABB
-150.000000, 250.000000, 100.000000, 150.000000, -400.000000, -300.000000
+600.000000, 700.000000, 100.000000, 150.000000, -100.000000, 0.000000
 // Tutorial text
-Hey, mushroom head! Wait up!&You've got the hang of moving around, yeah?&Oh, I'm the Tutorial Bird. Call me TB!
+Wow, I'm impressed! OK, you might see some animals here.&I'm gonna save you some time, and tell you something...&Man, they are stupid!&You can pick 'em up... you look pretty strong...&Don't forget -- stupid!
 end
 
 // Game object type
@@ -374,7 +374,7 @@ end
 // Game object type
 staticfloor
 2022
-2400.000000, 112.500000, -356.250000
+2550.000000, 112.500000, -1906.250000
 // Y rotation
 90.000000
 // Mesh filename
@@ -384,7 +384,7 @@ end
 // Game object type
 staticfloor
 2023
-800.000000, 112.500000, -56.250000
+1000.000000, 112.500000, -56.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -394,7 +394,7 @@ end
 // Game object type
 staticfloor
 2024
-650.000000, 112.500000, -106.250000
+800.000000, 112.500000, -956.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -414,7 +414,7 @@ end
 // Game object type
 staticfloor
 2026
-2800.000000, 114.062500, -56.250000
+2050.000000, -385.937500, -56.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -424,7 +424,7 @@ end
 // Game object type
 floor
 4003
-1450.000000, -300.000000, -50.000000
+1625.000000, -300.000000, -50.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -460,7 +460,7 @@ end
 // Game object type
 exit
 4006
-3400.000000, 120.000000, -50.000000
+2050.000000, -380.000000, -50.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -520,7 +520,7 @@ end
 // Game object type
 fence
 4010
--375.000000, -100.000000, 100.000000
+-775.000000, -100.000000, -550.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -529,7 +529,7 @@ end
 // Game object type
 fence
 4011
--375.000000, -100.000000, 0.000000
+-775.000000, -100.000000, -650.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -538,7 +538,7 @@ end
 // Game object type
 fence
 4012
--375.000000, -100.000000, -100.000000
+-775.000000, -100.000000, -750.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -546,18 +546,8 @@ end
 
 // Game object type
 staticfloor
-4013
--200.000000, -87.500000, -406.250000
-// Y rotation
-0.000000
-// Mesh filename
-windmill1.obj
-end
-
-// Game object type
-staticfloor
 4015
-2400.000000, 112.500000, -356.250000
+2550.000000, 112.500000, -1906.250000
 // Y rotation
 90.000000
 // Mesh filename
@@ -567,9 +557,9 @@ end
 // Game object type
 staticfloor
 4016
-2800.000000, 112.500000, -356.250000
+500.000000, 112.500000, -56.250000
 // Y rotation
-90.000000
+180.000000
 // Mesh filename
 block_rect_2x1.obj
 end
@@ -577,9 +567,9 @@ end
 // Game object type
 staticfloor
 4018
-2800.000000, 112.500000, -356.250000
+500.000000, 112.500000, -56.250000
 // Y rotation
-90.000000
+180.000000
 // Mesh filename
 block_rect_2x1.obj
 end
@@ -587,7 +577,7 @@ end
 // Game object type
 staticfloor
 4019
--200.000000, -87.500000, -456.250000
+-1700.000000, -87.500000, -1606.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -607,7 +597,7 @@ end
 // Game object type
 staticfloor
 4021
-200.000000, -87.500000, 243.750000
+-750.000000, -87.500000, -2006.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -618,7 +608,7 @@ end
 pet
 4022
 // Position
-850.000000, 66.592430, -50.000000
+850.000000, 62.626255, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -630,7 +620,7 @@ end
 // Game object type
 staticfloor
 4023
--200.000000, -87.500000, -56.250000
+-1700.000000, -87.500000, -1206.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -640,7 +630,7 @@ end
 // Game object type
 staticfloor
 4024
--500.000000, -87.500000, 243.750000
+-2000.000000, -87.500000, -906.250000
 // Y rotation
 90.000000
 // Mesh filename
@@ -650,7 +640,7 @@ end
 // Game object type
 staticfloor
 4026
--400.000000, -137.500000, 143.750000
+-1900.000000, -137.500000, -1006.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -660,7 +650,7 @@ end
 // Game object type
 staticfloor
 4027
--850.000000, -87.500000, 343.750000
+-2350.000000, -87.500000, -806.250000
 // Y rotation
 0.000000
 // Mesh filename
@@ -690,7 +680,7 @@ end
 portal
 4030
 // AABB
--25.000000, 25.000000, -87.500000, -37.500000, -81.250000, -31.250000
+-875.000000, -825.000000, 62.500000, 112.500000, -81.250000, -31.250000
 // Dest ID
 4029
 end
@@ -698,7 +688,7 @@ end
 // Game object type
 staticfloor
 4031
--25.000000, -87.500000, -56.250000
+-925.000000, 62.500000, -56.250000
 // Y rotation
 270.000000
 // Mesh filename
@@ -708,19 +698,68 @@ end
 // Game object type
 staticfloor
 4032
--300.000000, -87.500000, 243.750000
+-150.000000, 12.500000, -56.250000
 // Y rotation
 0.000000
 // Mesh filename
 field_1x1.obj
 end
 
+// Game object type
 skybox
 5000
-floor-plane.obj
-// colour
+// Mesh filename
+skybox1.txt
 ff00ff
 end
 
+// Game object type
+bonus
+5001
+506.250000, 175.000000, -62.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1
+// Bonus lives
+0
+end
 
+// Game object type
+tut-trigger
+5002
+// AABB
+-150.000000, -50.000000, 0.000000, 50.000000, -100.000000, 0.000000
+// Tutorial text
+Very smooth, champ! Uh.. now what?
+end
 
+// Game object type
+tut-trigger
+5003
+// AABB
+1300.000000, 1400.000000, -275.000000, -225.000000, -100.000000, 0.000000
+// Tutorial text
+Uh, did anyone talk to you about the dinosaurs yet?&What? No, no dinosaurs! I was just kidding!&Oh, ok then. There are some dinosaurs around here... they love to eat pets!&It's awful!
+end
+
+// Game object type
+tut-trigger
+5004
+// AABB
+-50.000000, 50.000000, 100.000000, 150.000000, -100.000000, 0.000000
+// Tutorial text
+I impore you... do not tap to jump!
+end
+
+// Game object type
+fence
+5005
+1400.000000, -300.000000, 75.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
