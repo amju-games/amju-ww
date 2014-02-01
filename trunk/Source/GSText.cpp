@@ -1,3 +1,4 @@
+#include <iostream>
 #include <DegRad.h>
 #include <AmjuRand.h>
 #include <Timer.h>
@@ -57,7 +58,7 @@ void GSText::Update()
   m_timer += TheTimer::Instance()->GetDt(); 
 
   float b = sin(m_timer * 0.25f) * 0.25f + 0.5f;
-  AmjuGL::SetClearColour(Colour(0, 0, b, 1.0f));
+  AmjuGL::SetClearColour(Colour(0, 0,0, 1)); //b * 0.25f, 1.0f));
 }
 
 void GSText::Draw()
@@ -95,7 +96,7 @@ void GSText::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  m_camera->SetEyePos(Vec3f(0, 10, 6)); 
+  m_camera->SetEyePos(Vec3f(0, 8, 1)); 
   // or e.g. 
   //  Vec3f(cos(a), 10.0f + sin(a), 6.0f)); 
   // for more movement
@@ -103,7 +104,7 @@ void GSText::Draw()
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::DrawLighting(
     AmjuGL::LightColour(0, 0, 0),
-    AmjuGL::LightColour(0.2f, 0.2f, 0.2f), // Ambient light colour
+    AmjuGL::LightColour(0.7f, 0.7f, 0.7f), // Ambient light colour
     AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
     AmjuGL::LightColour(1, 1, 1),
     AmjuGL::Vec3(1, 1, 1)); // Light direction
