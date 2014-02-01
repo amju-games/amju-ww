@@ -112,7 +112,7 @@ void Portal::Update()
     else
     {
       // No intersection - remove this player
-#ifdef WIN32
+#if defined(WIN32) || defined(AMJU_IOS)
       it = m_collidingPlayers.erase(it);
 #else
       m_collidingPlayers.erase(it);
