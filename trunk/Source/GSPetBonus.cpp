@@ -4,6 +4,7 @@
 #include <DegRad.h>
 #include <GuiText.h>
 #include <SoundManager.h>
+#include <ROConfig.h>
 #include "GSPetBonus.h"
 #include "GSLoadLevel.h"
 #include "Hud.h"
@@ -47,10 +48,16 @@ std::cout << "Showing pet " << pet->GetId() << "\n";
 
     SceneNode* sn = pet->GetSceneNode();
     Matrix m;
-    m.SetIdentity();
-    m.Translate(pos);
+    // Undo camera rotation
+    m.ModelView();
+    if (!m.Inverse())
+    {
+      m.SetIdentity();
+    }
+    m.TranslateKeepRotation(pos);
     sn->SetLocalTransform(m);
     sn->SetVisible(true);
+
     GetTextSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
       AddChild(sn);
 
@@ -65,7 +72,7 @@ std::cout << "Showing pet " << pet->GetId() << "\n";
 //    TheScores::Instance()->AddToScore(pn, m_scoreInc); 
     m_bonus = 0; //m_scoreInc;
     // Decide based on bonus size
-    m_bonusPortion = m_scoreInc / 20;
+    m_bonusPortion = m_scoreInc / 4;
     m_scoreInc *= 2;
   }
 }
@@ -112,7 +119,7 @@ void GSPetBonus::Update()
   }
   else if (m_state == WAITING)
   {
-    static const float MAX_PET_TIME = 2.0f; // TDOO CONFIG
+    static const float MAX_PET_TIME = ROConfig()->GetFloat("bonus-wait-time");
     if (m_timer < MAX_PET_TIME)
     {
       return;
