@@ -26,6 +26,8 @@ WWGameObject* Skybox::Clone()
 
 void Skybox::AddPropertiesGui(PropertiesDialog* dlg)
 {
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
+
   std::string colStr = ToHexString(m_colour);
   dlg->AddItem(new PropertiesDialog::TextItem("Colour", colStr, PROP_COLOUR));
 }

@@ -17,6 +17,8 @@
 #include "LevelManager.h"
 #include "GameConsts.h"
 #include "PlayWav.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -71,6 +73,35 @@ void Exit::RemoveFromGame()
   Assert(root);
   root->DelChild(m_text);
   root->DelChild(m_cylinder);
+}
+
+void Exit::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  StaticFloor::AddPropertiesGui(dlg);
+
+  dlg->AddItem(new PropertiesDialog::IntItem("Dest level", m_toLevel, PROP_DEST_ID));
+}
+
+PropertyValue Exit::GetProp(PropertyKey key)
+{
+  switch (key)
+  {
+  case PROP_DEST_ID:
+    return m_toLevel;
+  }
+
+  return StaticFloor::GetProp(key);
+}
+
+void Exit::SetProp(PropertyKey key, PropertyValue value)
+{
+  StaticFloor::SetProp(key, value);
+
+  switch (key)
+  {
+  case PROP_DEST_ID:
+    m_toLevel = value.GetInt();
+  }
 }
 
 void Exit::Reset()
