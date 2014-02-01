@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-65
+66
 
 // Game object type
 camera
@@ -714,3 +714,13 @@ staticfloor
 // Mesh filename
 field_1x1.obj
 end
+
+skybox
+5000
+floor-plane.obj
+// colour
+ff00ff
+end
+
+
+
