@@ -94,8 +94,8 @@ void CamFollowPlayer::Update(Camera* cam)
     }
   }
 
-  // Move in Y - but don't move in y if player is falling
-  if (!player->IsFalling())
+  // Move in Y - but don't move in y if player is falling??
+  //if (!player->IsFalling())
   {
     pos.y = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
   }
@@ -103,6 +103,10 @@ void CamFollowPlayer::Update(Camera* cam)
   // Z is fixed distance from player
   pos.z = v.z + Z_OFFSET + m_petDist * Z_PET_OFFSET;
 
+  // Dampen camera movement so smoother??
+  Vec3f oldPos = cam->GetPos();
+  pos = (pos + oldPos) * 0.5f;
+  
   cam->SetPos(pos);
   cam->SetVel(vel);
   cam->SetAcc(acc);
