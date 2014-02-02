@@ -42,7 +42,6 @@ void Bonus::AddPropertiesGui(PropertiesDialog* dlg)
 //  OnFloor::AddPropertiesGui(dlg);
   dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 
-  // TODO
   dlg->AddItem(new PropertiesDialog::IntItem("Points", m_points, PROP_BONUS_POINTS));
   dlg->AddItem(new PropertiesDialog::IntItem("Lives", m_lives, PROP_BONUS_LIVES));
 }
