@@ -142,7 +142,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
@@ -157,7 +157,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
@@ -172,7 +172,7 @@ fruit2.obj
 shadow.png
 20.000000
 // Bonus points
-1
+3000
 // Bonus lives
 0
 end
@@ -187,7 +187,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
@@ -482,7 +482,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
@@ -497,7 +497,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
@@ -512,7 +512,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
@@ -723,7 +723,7 @@ fruit1.obj
 shadow.png
 20.000000
 // Bonus points
-1
+1000
 // Bonus lives
 0
 end
