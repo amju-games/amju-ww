@@ -2,6 +2,10 @@
 // v 
 1
 
+pick-up-multiplier 100
+pet-score-max-time 0.125
+carrying-multiplier 1
+
 max-speed 50.0
 max-y-vel 200.0
 max-drop  500.0
