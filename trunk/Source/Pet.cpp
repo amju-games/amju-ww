@@ -61,7 +61,7 @@ Pet::Pet()
   m_justDropped= false;
   m_bloodPoolScale = 0;
 
-  AddAI(new AIGoHighGround);
+//  AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
   AddAI(new AIFalling);
   AddAI(new AIFlee);
