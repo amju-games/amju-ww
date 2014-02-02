@@ -79,6 +79,7 @@ private:
   int m_jumpCount; // for double, (triple?) jump
   int m_maxJumpCount; // how many multi-jumps you can do
   float m_jumpVel; 
+  float m_petScoreTimer;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network
