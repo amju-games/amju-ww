@@ -1,0 +1,10 @@
+// skybox 1
+// ver
+1
+
+floor-plane1.obj
+// Transform
+1, 0, 0, 0,    0, 1, 0, 0,   0, 0, 1, 0,  0, -200, 0, 1
+
+// num children
+0
