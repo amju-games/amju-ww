@@ -142,7 +142,7 @@ void StartUpAfterCreateWindow()
   File::SetRoot("/apps/amju_ww/data/", "/");
 #endif
 
-  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
+  //AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
 
   // TODO Other languages - preferences
   if (!Localise::LoadStringTable("english.txt"))

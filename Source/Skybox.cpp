@@ -7,6 +7,7 @@
 #include "MySceneGraph.h"
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
+#include "GSMain.h"
 
 namespace Amju
 {
@@ -109,6 +110,8 @@ void Skybox::AddToGame()
   //GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, GetSceneNode());
 
   WWGameObject::AddToGame();
+
+  TheGSMain::Instance()->SetClearColour(m_colour);
 }
 
 /*

@@ -55,10 +55,10 @@ void GSText::Update()
 {
   GetTextSceneGraph()->Update();
 
-  m_timer += TheTimer::Instance()->GetDt(); 
+  //m_timer += TheTimer::Instance()->GetDt(); 
 
-  float b = sin(m_timer * 0.25f) * 0.25f + 0.5f;
-  AmjuGL::SetClearColour(Colour(0, 0,0, 1)); //b * 0.25f, 1.0f));
+  //float b = sin(m_timer * 0.25f) * 0.25f + 0.5f;
+  //AmjuGL::SetClearColour(Colour(0, 0, 0, 1)); //b * 0.25f, 1.0f));
 }
 
 void GSText::Draw()
@@ -127,6 +127,7 @@ void GSText::OnActive()
   GameState::OnActive();
   m_timer = 0;
   m_starRotVel = 1.0f; // TODO CONFIG
+  AmjuGL::SetClearColour(Colour(0, 0, 0, 1)); 
 }
 
 void GSText::OnDeactive()
