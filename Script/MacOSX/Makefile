@@ -9,7 +9,7 @@ AMJU      	:= 	../../../amjulib/Source
 SOURCES		:=	../../Source 
 
 LIBS	:= \
-	$(AMJULIB_MAC_SCRIPT_PATH)/../../Build/Mac/amjulib.a \
+	$(AMJULIB_MAC_SCRIPT_PATH)/../../Build/amjulib/lib/libamju.a \
 	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib \
 	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/libbassmidi.dylib \
 	-framework OpenGL \
