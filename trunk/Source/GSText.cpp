@@ -55,7 +55,7 @@ void GSText::Update()
 {
   GetTextSceneGraph()->Update();
 
-  //m_timer += TheTimer::Instance()->GetDt(); 
+  m_timer += TheTimer::Instance()->GetDt(); 
 
   //float b = sin(m_timer * 0.25f) * 0.25f + 0.5f;
   //AmjuGL::SetClearColour(Colour(0, 0, 0, 1)); //b * 0.25f, 1.0f));
@@ -96,7 +96,10 @@ void GSText::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  m_camera->SetEyePos(Vec3f(0, 8, 1)); 
+  float s = 0.05f / m_timer;
+  //float c = cos(m_timer * m_timer * m_timer);
+  float t = 100.0f * s;
+  m_camera->SetEyePos(Vec3f(0, 8 + t, 1)); 
   // or e.g. 
   //  Vec3f(cos(a), 10.0f + sin(a), 6.0f)); 
   // for more movement
