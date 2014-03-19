@@ -99,7 +99,7 @@ GuiComposite* PropertiesDialog::TextItem::CreateGui()
   GuiText* label = new GuiText;
   label->SetName("label");
   label->SetFgCol(Colour(1, 1, 1, 1)); // ?
-  label->SetTextSize(1.0f);
+  label->SetFontSize(1.0f);
   label->SetLocalPos(Vec2f(0, -0.05f)); // TODO
   label->SetSize(Vec2f(0.5f, 0.1f));
   label->SetJust(GuiText::AMJU_JUST_LEFT);
@@ -110,7 +110,7 @@ GuiComposite* PropertiesDialog::TextItem::CreateGui()
   m_edit->SetName("value");
   m_edit->SetFgCol(Colour(1, 1, 1, 1)); // ?
   m_edit->SetBgCol(Colour(0, 0, 0, 1)); // ?
-  m_edit->SetTextSize(1.0f);
+  m_edit->SetFontSize(1.0f);
   m_edit->SetLocalPos(Vec2f(0.5f, -0.05f)); // TODO
   m_edit->SetSize(Vec2f(0.5f, 0.1f));
   m_edit->SetText(m_value);
