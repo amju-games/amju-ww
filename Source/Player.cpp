@@ -179,7 +179,7 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
   // Get points
   Amju::PlayWav("cashreg"); // TODO temp - better sound required
 
-  static const int PICK_UP_MULTIPLIER = ROConfig()->GetFloat("pick-up-multiplier");
+  static const int PICK_UP_MULTIPLIER = ROConfig()->GetInt("pick-up-multiplier");
   int bonus = PICK_UP_MULTIPLIER * m_pets.size();
   TheScores::Instance()->AddToScore(static_cast<PlayerNum>(GetPlayerId()), bonus);
 
@@ -766,7 +766,7 @@ void Player::Update()
     if (m_petScoreTimer >= PET_SCORE_MAX_TIME)
     {
       m_petScoreTimer = 0;
-      static const float CARRYING_MULTIPLIER = ROConfig()->GetFloat("carrying-multiplier");
+      static const int CARRYING_MULTIPLIER = ROConfig()->GetInt("carrying-multiplier");
       int bonus = m_pets.size() * CARRYING_MULTIPLIER;
       TheScores::Instance()->AddToScore(static_cast<PlayerNum>(GetPlayerId()), bonus);
     }

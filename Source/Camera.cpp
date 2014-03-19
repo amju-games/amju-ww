@@ -96,12 +96,14 @@ void CamFollowPlayer::Update(Camera* cam)
 
   // Move in Y - but don't move in y if player is falling??
   //if (!player->IsFalling())
-  {
-    pos.y = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
-  }
+  
+  // New game design: camera always moves down
+  float scrollSpeed = 50.0f; // TODO speed up ?
+  pos.y -= dt * scrollSpeed; // = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
+  
 
   // Z is fixed distance from player
-  pos.z = v.z + Z_OFFSET + m_petDist * Z_PET_OFFSET;
+  pos.z = v.z + Z_OFFSET; // + m_petDist * Z_PET_OFFSET;
 
   // Dampen camera movement so smoother??
   Vec3f oldPos = cam->GetPos();
@@ -110,7 +112,7 @@ void CamFollowPlayer::Update(Camera* cam)
   cam->SetPos(pos);
   cam->SetVel(vel);
   cam->SetAcc(acc);
-  cam->SetLookAtPos(Vec3f(pos.x, v.y, v.z));
+  cam->SetLookAtPos(Vec3f(pos.x, pos.y - Y_OFFSET, v.z));
 }
 
 Camera::Camera()
