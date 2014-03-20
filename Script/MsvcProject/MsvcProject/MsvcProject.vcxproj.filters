@@ -293,6 +293,12 @@
     <ClCompile Include="..\..\..\Source\GSSpiral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Source\ProcGen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\GSLoadLayers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\AI.h">
@@ -554,6 +560,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GSSpiral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\ProcGen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\GSLoadLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
