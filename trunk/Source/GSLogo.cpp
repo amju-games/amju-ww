@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Colour.h"
-#include "GSTitle.h"
+#include "GSLoadLayers.h"
 #include "SoundManager.h"
 #include "ResourceManager.h"
 
@@ -13,7 +13,7 @@ const char* GSLogo::NAME = "start";
 
 void Done()
 {
-  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
 }
 
 GSLogo::GSLogo()
