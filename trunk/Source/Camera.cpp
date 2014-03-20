@@ -12,6 +12,7 @@
 #include "Viewport.h"
 #include "Player.h"
 #include "EditModeCamera.h"
+#include "Depth.h"
 
 #ifdef _DEBUG
 // Currently with this we can't have normal camera after edit mode
@@ -98,16 +99,16 @@ void CamFollowPlayer::Update(Camera* cam)
   //if (!player->IsFalling())
   
   // New game design: camera always moves down
-  float scrollSpeed = 50.0f; // TODO speed up ?
-  pos.y -= dt * scrollSpeed; // = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
+  ////float scrollSpeed = 50.0f; // TODO speed up ?
+  pos.y = -GetCurrentDepth(); //-= dt * scrollSpeed; // = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
   
 
   // Z is fixed distance from player
   pos.z = v.z + Z_OFFSET; // + m_petDist * Z_PET_OFFSET;
 
   // Dampen camera movement so smoother??
-  Vec3f oldPos = cam->GetPos();
-  pos = (pos + oldPos) * 0.5f;
+  //Vec3f oldPos = cam->GetPos();
+  //pos = (pos + oldPos) * 0.5f;
   
   cam->SetPos(pos);
   cam->SetVel(vel);
