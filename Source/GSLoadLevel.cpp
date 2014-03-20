@@ -18,6 +18,8 @@
 #include "GameMode.h"
 #include "WWLoadGui.h"
 #include "PlayWav.h"
+#include "Depth.h"
+#include "ProcGen.h"
 
 namespace Amju
 {
@@ -121,6 +123,8 @@ void GSLoadLevel::Update()
     if (m_currentObj == m_numObjects)
     {
       TheLevelManager::Instance()->Close();
+      ResetDepth();
+      TheProcGen::Instance()->PickNextLayer();
 
       if (IsAttractMode())
       {

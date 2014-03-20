@@ -299,6 +299,9 @@
     <ClCompile Include="..\..\..\Source\GSLoadLayers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Source\Depth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\AI.h">
@@ -566,6 +569,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\GSLoadLayers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\Depth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

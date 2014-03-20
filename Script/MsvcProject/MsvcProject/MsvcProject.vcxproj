@@ -306,6 +306,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\CollidePlayerPlayer.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerTrigger.cpp" />
     <ClCompile Include="..\..\..\Source\ContextMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\Depth.cpp" />
     <ClCompile Include="..\..\..\Source\Describe.cpp" />
     <ClCompile Include="..\..\..\Source\Dino.cpp" />
     <ClCompile Include="..\..\..\Source\EditModeCamera.cpp" />
@@ -393,6 +394,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\BonusParticleEffect.h" />
     <ClInclude Include="..\..\..\Source\Camera.h" />
     <ClInclude Include="..\..\..\Source\ContextMenu.h" />
+    <ClInclude Include="..\..\..\Source\Depth.h" />
     <ClInclude Include="..\..\..\Source\Describe.h" />
     <ClInclude Include="..\..\..\Source\Dino.h" />
     <ClInclude Include="..\..\..\Source\EditModeCamera.h" />
