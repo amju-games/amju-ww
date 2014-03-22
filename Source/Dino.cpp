@@ -30,14 +30,6 @@ static const float YOFFSET = 5.0f;
 
 Dino::Dino()
 {
-  AddAI(new AIIdle);
-  AddAI(new AIGoHighGround);
-  AddAI(new AIEatPet);
-  AddAI(new AIChasePet);
-  AddAI(new AIFalling);
-  AddAI(new AITurnToFace);
-  AddAI(new AIStunned);
-
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsYOffset = YSIZE + YOFFSET;
   m_extentsSet = true;
@@ -92,6 +84,14 @@ void Dino::AddToGame()
 {
   Npc::AddToGame();
   
+  AddAI(new AIIdle);
+  AddAI(new AIGoHighGround);
+  AddAI(new AIEatPet);
+  AddAI(new AIChasePet);
+  AddAI(new AIFalling);
+  AddAI(new AITurnToFace);
+  AddAI(new AIStunned);
+
   SetAI(AIIdle::NAME); // can set now that we have created scene node
   // (when AI state is activated, it will set animation)
 }
