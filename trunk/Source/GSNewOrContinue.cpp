@@ -67,14 +67,6 @@ void GSNewOrContinue::OnActive()
 {
   GSText::OnActive();
 
-  // If no continue info, go directly to new game.
-  GameConfigFile* gcf = TheGameConfigFile::Instance();
-  if (!gcf->Exists(CONTINUE_LEVEL_KEY))
-  {
-    OnNew();
-    return;
-  }
-
   CreateText("");
 
   m_gui = WWLoadGui("neworcontinue-gui.txt");
@@ -91,6 +83,14 @@ void GSNewOrContinue::OnActive()
   m_gui->GetElementByName("choose-level-button")->SetCommand(OnChooseLevel);
 
   TheSoundManager::Instance()->PlaySong("sound/piano.it");
+
+  // If no continue info, go directly to new game.
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+  if (!gcf->Exists(CONTINUE_LEVEL_KEY))
+  {
+    OnNew();
+    return;
+  }
 }
 
 } // namespace
