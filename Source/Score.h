@@ -12,7 +12,7 @@ class Scores : public NonCopyable
 {
 private:
   Scores();
-  friend TheScores;
+  friend class Singleton<Scores>;
 
 public:
   ~Scores();

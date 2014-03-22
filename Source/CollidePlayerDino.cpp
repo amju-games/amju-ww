@@ -25,7 +25,7 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   // Get the pets to flee the dino
   PetList pets = player->GetPets();
   player->DropPets();
-  for (auto it = pets.begin(); it != pets.end(); ++it)
+  for (PetList::iterator it = pets.begin(); it != pets.end(); ++it)
   {
     Pet* pet = *it;
     AI* ai = pet->GetAI(AIFlee::NAME);
