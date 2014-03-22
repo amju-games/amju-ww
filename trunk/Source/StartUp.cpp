@@ -59,6 +59,11 @@
 #define MUSIC_GLUE_FILE "music-iOS.glue"
 #endif
 
+#ifdef ANDROID_NDK
+#define GLUE_FILE "data-android.glue"
+#define MUSIC_GLUE_FILE "music-android.glue"
+#endif
+
 namespace Amju
 {
 extern Amju::AmjuGLWindowInfo w;

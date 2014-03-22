@@ -1,3 +1,4 @@
+#include <iostream>
 #include <Directory.h>
 #include <ConfigFile.h>
 #include "Score.h"

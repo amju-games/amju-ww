@@ -26,7 +26,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   bool foundfloor = false;
   int foundwall = 0;
   Vec3f norm;
-  for (auto it = tris.begin(); it != tris.end(); ++it)
+  for (CollisionMesh::Tris::iterator it = tris.begin(); it != tris.end(); ++it)
   {
     const Tri& tri = *it;
     Plane plane(tri);
