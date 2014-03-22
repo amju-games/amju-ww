@@ -5,11 +5,11 @@ endif
 RUNDIR		:=	../../Build/CompiledAssets
 BUILD		:=	../../Build/Mac
 TARGET		:=	$(BUILD)/macgame
-AMJU      	:= 	../../../amjulib/Source
+LIBDIRS   	:= 	../../Libs/amjulib-v.0.1-macosx
 SOURCES		:=	../../Source 
 
 LIBS	:= \
-	$(AMJULIB_MAC_SCRIPT_PATH)/../../Build/amjulib/lib/libamju.a \
+	-lamju \
 	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib \
 	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/libbassmidi.dylib \
 	-framework OpenGL \
