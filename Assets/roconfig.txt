@@ -2,22 +2,34 @@
 // v 
 1
 
+next-layer-height-offset 300
+
+
 pick-up-multiplier 100
 pet-score-max-time 0.125
 carrying-multiplier 1
 
-max-speed 50.0
-max-y-vel 200.0
+max-speed 80.0
+max-y-vel 300.0
 max-drop  1000.0
 jump-vel-initial 100
+
+// Scroll off top of screen, kill object
+max-offscreen-height 500
+
+// Max height = at which player is dead
+max-player-height 400
 
 bonus-wait-time 1.0
 
 hud-max-life-flash  3.0
 hud-expand-scale    0.5
 
-cam-y-offset 50
-cam-z-offset 300
+cam-depth-offset 200
+cam-y-offset 100
+cam-z-offset 500
+
+// TODO no pets now?
 cam-y-pet-offset 40
 cam-z-pet-offset 40
 cam-zoom-vel-scale 0.25
