@@ -124,7 +124,7 @@ void GSLoadLevel::Update()
     {
       TheLevelManager::Instance()->Close();
       ResetDepth();
-      TheProcGen::Instance()->PickNextLayer();
+      TheProcGen::Instance()->Reset();
 
       if (IsAttractMode())
       {

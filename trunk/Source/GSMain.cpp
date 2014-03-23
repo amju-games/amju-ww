@@ -35,6 +35,7 @@
 #include "Bird.h"
 #include "Depth.h"
 #include "ProcGen.h"
+#include "Describe.h"
 
 #ifdef _DEBUG
 #define EDIT_CAM
@@ -155,6 +156,26 @@ void GSMain::ClearLevel()
   m_exitTimer = 0;
 }
 
+void DeleteDeadObjects()
+{
+  static Game* game = TheGame::Instance();
+
+  GameObjects* objs = game->GetGameObjects(); // map
+  for (auto it = objs->begin(); it != objs->end(); )
+  {
+    PGameObject obj = it->second;
+
+    ++it;
+
+    WWGameObject* ww = dynamic_cast<WWGameObject*>(obj.GetPtr());
+    if (ww && ww->IsDead())
+    {
+      std::cout << "Deleting object " << Describe(ww) << "\n";
+      ww->RemoveFromGame();
+    }
+  }
+}
+
 void GSMain::Update()
 {
   static Lurker* lurker = TheLurker::Instance();
@@ -226,6 +247,9 @@ void GSMain::Update()
       TheProcGen::Instance()->AddLayerWhenReady();
 
       game->UpdateGameObjects();
+
+      DeleteDeadObjects();
+
       TheCollisionManager::Instance()->Update();
       scenegraph->Update();
       TheShadowManager::Instance()->Update();

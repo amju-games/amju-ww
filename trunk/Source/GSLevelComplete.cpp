@@ -67,7 +67,7 @@ void GSLevelComplete::Update()
   for (auto it = pets.begin(); it != pets.end(); ++it)
   {
     a += DegToRad(30.0f); // TODO
-    Pet* pet = const_cast<Pet*>(*it);
+    Pet* pet = const_cast<Pet*>(dynamic_cast<const Pet*>((it->GetPtr())));
     SetObjPos(pet, a, m_z + Z_INCREMENT);
     pet->SetAnim("fall");
     pet->SetIsTeleporting(false);
@@ -180,7 +180,7 @@ void GSLevelComplete::OnActive()
   const PetList& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
   {
-    Pet* pet = const_cast<Pet*>(*it);
+    Pet* pet = const_cast<Pet*>(dynamic_cast<const Pet*>(it->GetPtr()));
     AddSceneNode(pet); 
   }   
 

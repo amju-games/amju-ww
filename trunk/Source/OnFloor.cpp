@@ -13,6 +13,7 @@
 #include "GameMode.h"
 #include "GameConsts.h"
 #include "Describe.h"
+#include "Depth.h"
 
 namespace Amju
 {
@@ -354,10 +355,24 @@ void OnFloor::UpdatePhysics()
     m_lastFloorRotation = *(m_floor->GetMatrix());
   }
 
+  // Not for scrolling design
   // Lower than the lowest floor ?
-  static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
-  if (m_pos.y < DEATH_HEIGHT || CalcDropFallen() > MAX_DROP) 
+  //static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
+  //if (m_pos.y < DEATH_HEIGHT || CalcDropFallen() > MAX_DROP) 
+  //{
+  //  SetDead(true);
+  //}
+
+  // If an object goes too far off the top of the screen, mark it as dead, so
+  //  we can delete it.
+  // TODO TEMP TEST
+  static const float MAX_OFFSCREEN_HEIGHT = ROConfig()->GetFloat("max-offscreen-height");
+  float cd = GetCurrentDepth();
+  float h = cd + m_pos.y;
+  if (h > MAX_OFFSCREEN_HEIGHT)
   {
+std::cout << "Object " << Describe(this) << " has scrolled off, is dead: ";
+std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
     SetDead(true);
   }
 }

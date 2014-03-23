@@ -100,9 +100,10 @@ void CamFollowPlayer::Update(Camera* cam)
   
   // New game design: camera always moves down
   ////float scrollSpeed = 50.0f; // TODO speed up ?
-  pos.y = -GetCurrentDepth(); //-= dt * scrollSpeed; // = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
+  static const float depthOffset = ROConfig()->GetFloat("cam-depth-offset");
+  pos.y = depthOffset - GetCurrentDepth();     
+    //-= dt * scrollSpeed; // = v.y + Y_OFFSET + m_petDist * Y_PET_OFFSET;
   
-
   // Z is fixed distance from player
   pos.z = v.z + Z_OFFSET; // + m_petDist * Z_PET_OFFSET;
 
