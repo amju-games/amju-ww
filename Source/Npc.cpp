@@ -3,7 +3,7 @@
 #include "AIFalling.h"
 #include "Describe.h"
 
-#define AI_DEBUG
+//#define AI_DEBUG
 
 namespace Amju
 {

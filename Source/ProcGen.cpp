@@ -1,6 +1,7 @@
 #include <GameObjectFactory.h>
 #include <File.h>
 #include <StringUtils.h>
+#include <ROConfig.h>
 #include "ProcGen.h"
 #include "WWGameObject.h"
 #include "SaveDir.h"
@@ -140,11 +141,17 @@ void ProcGen::Layer::AddToGame(float depth)
     clone->SetId(id);
 
     Vec3f pos = clone->GetPos();
-    pos.y -= depth;
+    pos.y  = - (pos.y + depth);
     clone->SetPos(pos);
 
     clone->AddToGame();
   }
+}
+
+void ProcGen::Reset()
+{
+  m_nextDepth = 0;
+  PickNextLayer();
 }
 
 void ProcGen::PickNextLayer()
@@ -156,15 +163,20 @@ void ProcGen::PickNextLayer()
     i = 0;
   }
   m_nextLayer = i; // TODO Random, but based on which layers are allowed to come after the most recent layer.
-  m_nextDepth = GetCurrentDepth() + 500; // TODO TEMP TEST should be data, depending on layer above
+  float layerHeight = 500; // TODO TEMP TEST should be data, depending on layer above
+
+  m_nextDepth = m_nextDepth + layerHeight; 
 }
 
 void ProcGen::AddLayerWhenReady()
 {
+  static const float nextLayerHeightOffset = ROConfig()->GetFloat("next-layer-height-offset");
+
   float cd = GetCurrentDepth();
-  if (cd > m_nextDepth)
+  if (cd + nextLayerHeightOffset > m_nextDepth)
   {
-    AddLayerToLevel(m_nextLayer, cd);
+std::cout << "Adding new layer NOW! cd = " << cd << "\n";
+    AddLayerToLevel(m_nextLayer, m_nextDepth); // + nextLayerHeightOffset);
     PickNextLayer();
   }
 }

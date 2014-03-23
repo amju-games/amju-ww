@@ -11,7 +11,7 @@ namespace Amju
 class Exit;
 class PlayerController;
 class Pet;
-typedef std::list<Pet*> PetList;
+typedef std::list<RCPtr<Pet> > PetList;
 
 class Player : public OnFloorCharacter
 {

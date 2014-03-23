@@ -91,6 +91,19 @@ void EditViewport::Draw()
   {
     graph->Draw();
   }
+
+  // Draw axes
+  m_cam->Draw();
+
+  AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D | AmjuGL::AMJU_LIGHTING);
+  AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
+
+  AmjuGL::DrawLine(AmjuGL::Vec3(-1000, 0, 0), AmjuGL::Vec3(1000, 0, 0)); 
+  AmjuGL::DrawLine(AmjuGL::Vec3(0, -1000, 0), AmjuGL::Vec3(0, 1000, 0)); 
+  AmjuGL::DrawLine(AmjuGL::Vec3(0, 0, -1000), AmjuGL::Vec3(0, 0, 1000)); 
+
+  AmjuGL::PopAttrib();
 }
 
 void EditViewport::Draw2d()
