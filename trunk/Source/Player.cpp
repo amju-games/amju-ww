@@ -717,7 +717,7 @@ void Player::Update()
     // Move towards centre of teleporter
     Vec3f v = m_exitPos - m_pos;
     SetVel(v); // TODO
-    GameObject::Update(); // calc new pos  
+    WWGameObject::Update(); // calc new pos  
   
     Matrix mat;
     mat.RotateY(DegToRad(m_dirCurrent));

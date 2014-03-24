@@ -36,6 +36,7 @@ const char* StaticFloor::GetTypeName() const
 
 void StaticFloor::Update()
 {
+  CheckIfDead(); // to delete when off screen
 }
 
 bool StaticFloor::Save(File* f)

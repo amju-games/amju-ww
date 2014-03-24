@@ -168,6 +168,8 @@ bool Bonus::CreateSceneNode()
 
 void Bonus::Update()
 {
+  CheckIfDead(); // to delete when off screen
+
   // We don't want Bonuses to move
 //  if (!m_floor)
 //  {

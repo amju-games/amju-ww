@@ -132,6 +132,7 @@ bool Fence::CreateSceneNode()
 
 void Fence::Update()
 {
+  CheckIfDead(); // to delete when off screen
 }
 
 void Fence::Reset()

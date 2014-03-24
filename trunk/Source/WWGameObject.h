@@ -24,6 +24,8 @@ class WWGameObject : public GameObject
 public:
   WWGameObject();
 
+  virtual void Update() override;
+
   // For Edit mode
   virtual WWGameObject* Clone() = 0;
   virtual bool Save(File* f) = 0;
@@ -67,6 +69,8 @@ protected:
   bool SaveMeshResource(File*); // m_meshFilename must be set
   bool LoadShadow(File*);
   bool SaveShadow(File*);
+
+  void CheckIfDead(); // off top or bottom of world?
 
 private:
   RCPtr<SceneNode> m_pSceneNode;

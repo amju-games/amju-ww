@@ -3,12 +3,14 @@
 #include <DegRad.h>
 #include <StringUtils.h>
 #include <LoadScene.h>
+#include <ROConfig.h>
 #include "WWGameObject.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
 #include "Describe.h"
 #include "PropertyKeys.h"
 #include "GameMode.h"
+#include "Depth.h"
 
 namespace Amju
 {
@@ -288,6 +290,34 @@ void WWGameObject::RecalcAABB()
   if (m_pSceneNode)
   {
     m_pSceneNode->SetAABB(m_aabb);
+  }
+}
+
+void WWGameObject::Update() 
+{
+  GameObject::Update();
+  CheckIfDead();
+}
+
+void WWGameObject::CheckIfDead()
+{
+  // If an object goes too far off the top of the screen, mark it as dead, so
+  //  we can delete it.
+  // TODO TEMP TEST
+  static const float MAX_OFFSCREEN_HEIGHT = ROConfig()->GetFloat("max-offscreen-height");
+  float cd = GetCurrentDepth();
+  float h = cd + m_pos.y;
+  if (h > MAX_OFFSCREEN_HEIGHT)
+  {
+std::cout << "Object " << Describe(this) << " has scrolled off, is dead: ";
+std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
+    SetDead(true);
+  }
+  if (h < -1000) // TODO TEMP TEST
+  {
+std::cout << "Object " << Describe(this) << " has fallen off world, is dead: ";
+std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
+    SetDead(true);
   }
 }
 
