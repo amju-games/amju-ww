@@ -705,7 +705,7 @@ void Player::Update()
   static const float MAX_PLAYER_HEIGHT = ROConfig()->GetFloat("max-player-height");
   float cd = GetCurrentDepth();
   float h = cd + m_pos.y;
-std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
+
   if (h > MAX_PLAYER_HEIGHT)
   {
     std::cout << "Player off screen, dead!\n";
