@@ -2,27 +2,7 @@
 11
 
 // Num game objects
-16
-
-// Game object type
-camera
-// ID
-0
-// Viewport ID
-0
-// Target ID
-101
-end
-
-// Game object type
-camera
-// ID
-1
-// Viewport ID
-1
-// Target ID
-102
-end
+14
 
 // Game object type
 dino
