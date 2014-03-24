@@ -22,7 +22,7 @@ void IncreaseDepth(float depth)
   s_depth += depth;
 }
 
-void DepthUpdate()
+void DepthUpdate(float minDepth)
 {
   // New game design: camera always moves down
   float scrollSpeed = 50.0f; // TODO speed up ?
@@ -32,5 +32,10 @@ void DepthUpdate()
   float d = dt * scrollSpeed;
 
   IncreaseDepth(d);
+
+  if (minDepth > s_depth)
+  {
+    s_depth = minDepth;
+  }
 }
 }

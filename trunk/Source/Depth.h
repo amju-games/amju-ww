@@ -9,7 +9,8 @@ void ResetDepth();
 
 float GetCurrentDepth();
 
-void DepthUpdate();
+// Update (increase) depth, but maintain a minimum value
+void DepthUpdate(float minDepth);
 
 // TODO Should we need this?
 void IncreaseDepth(float depth);
