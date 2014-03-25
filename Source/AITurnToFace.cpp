@@ -36,7 +36,10 @@ std::cout << "AI turn to face: target is " << Describe(m_target) << " heading: "
   if (fabs(angleDiff) < 10.0f)
   {
     std::cout << "OK, now we will eat pet!\n";
-    ((Pet*)m_target)->StartBeingEaten((Dino*)m_npc);
+    OnFloorCharacter* ofc = dynamic_cast<OnFloorCharacter*>(m_target);
+    Assert(ofc);
+    Assert(dynamic_cast<Dino*>(m_npc));
+    ofc->StartBeingEaten((Dino*)m_npc);
     m_npc->SetAI(AIEatPet::NAME);
   }
 }
