@@ -4,7 +4,7 @@
 
 namespace Amju
 {
-class Dino;
+class OnFloorCharacter;
 
 class BloodFx : public ParticleEffect2d
 {
@@ -18,10 +18,10 @@ public:
   virtual void HandleDeadParticle(Particle2d* p) override;
   virtual void HandleMinY(Particle2d* p) override;
 
-  void SetDino(Dino* d) { m_dino = d; }
+  void SetDino(OnFloorCharacter* d) { m_dino = d; }
 
 private:
-  Dino* m_dino;
+  OnFloorCharacter* m_dino;
 };
 
 }

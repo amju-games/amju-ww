@@ -15,7 +15,7 @@ max-drop  1000.0
 jump-vel-initial 100
 
 // Scroll off top of screen, kill object
-max-offscreen-height 500
+max-offscreen-height 1000
 
 // Max height = at which player is dead
 max-player-height 400
