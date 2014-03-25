@@ -56,11 +56,11 @@ float AIChasePet::GetRank()
   // Find pets, get dist to each one
   float rank = -500.0f;
   float bestDist = 99999.9f;
-  Pets pets;
-  GetPets(&pets);
+  Characters pets;
+  GetCharacters(&pets);
   for (unsigned int i = 0; i < pets.size(); i++)
   {
-    Pet* pet = pets[i];
+    OnFloorCharacter* pet = pets[i];
     float distSq = (m_npc->GetPos() - pet->GetPos()).SqLen();
 
     static const float MAX_DIST = ROConfig()->GetFloat("dino-chase-dist"); 

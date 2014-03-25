@@ -24,6 +24,7 @@ void AIEatPet::OnActivated()
 {
   AI::OnActivated();
 
+  /*
   // All pets within range flee
   Pets pets;
   GetPets(&pets);
@@ -38,6 +39,7 @@ void AIEatPet::OnActivated()
       pet->SetAI(flee);
     }
   }
+  */
 }
 
 void AIEatPet::Update()
