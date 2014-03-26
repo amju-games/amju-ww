@@ -193,6 +193,13 @@ void OnFloor::PlayWav(OnFloor::Event e)
 
 void OnFloor::UpdateXZ()
 {
+  static const float MIN_Z = ROConfig()->GetFloat("min_z");
+  static const float MAX_Z = ROConfig()->GetFloat("max_z");
+
+  Vec3f pos = GetPos();
+  pos.z = std::min(std::max(pos.z, MIN_Z), MAX_Z);
+  SetPos(pos);
+
   /* no friction..?
 
   // Decelerate in x-z due to friction
