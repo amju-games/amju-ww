@@ -113,12 +113,14 @@ bool GSMain::OnKeyEvent(const KeyEvent& ke)
   }
 #endif
 
+/*
   if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
     (ke.key == 'd' || ke.key == 'D'))
   {
     TheResourceManager::Instance()->Dump();
     return true;
   }
+*/
 
   if (ke.keyType == AMJU_KEY_CHAR && 
       (ke.key == 'r' || ke.key == 'R'))
@@ -133,6 +135,26 @@ bool GSMain::OnKeyEvent(const KeyEvent& ke)
   if (ke.keyType == AMJU_KEY_CHAR && (ke.key == 'c' || ke.key == 'C'))
   {
     GetGameSceneGraph()->SetCamera(new EditModeCamera(AMJU_EDITCAM_PERSP));
+  }
+#endif
+
+#ifdef _DEBUG
+  if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
+      (ke.key == 's' || ke.key == 'S'))
+  {
+    // S = toggle scrolling
+    static float ss = GetScrollSpeed(); 
+    if (GetScrollSpeed() < 1)
+    {
+      std::cout << "Setting scroll speed to " << ss << "\n";
+      SetScrollSpeed(ss);
+    }
+    else 
+    {
+      std::cout << "Setting scroll speed to zero.\n";
+      ss = GetScrollSpeed();
+      SetScrollSpeed(0);
+    }
   }
 #endif
   
