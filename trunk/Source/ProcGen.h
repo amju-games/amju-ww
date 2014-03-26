@@ -45,6 +45,13 @@ private:
   void AddLayerToLevel(int layer, float depth); // ?
 
 private:
+  struct NextLayer
+  {
+    NextLayer(int layer, float depth) : m_layer(layer), m_depth(depth) {}
+    int m_layer;
+    float m_depth;
+  };
+
   struct Layer
   {
     Layer() : m_numObjects(0) {}
@@ -59,6 +66,10 @@ private:
     int m_numObjects;
 
     RCPtr<File> m_file;
+
+    // Possible layers which can go after this one
+    typedef std::vector<NextLayer> NextLayers; 
+    NextLayers m_nextLayers;
   };
 
   typedef std::vector<Layer*> Layers;
