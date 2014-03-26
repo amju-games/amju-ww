@@ -2,6 +2,13 @@
 // v 
 1
 
+// Min and max z for OnFloor objects, so action is almost 2D
+min_z 10
+max_z 90
+
+// Initial scroll speed for level
+scroll-speed 40
+
 next-layer-height-offset 300
 
 
@@ -26,7 +33,7 @@ hud-max-life-flash  3.0
 hud-expand-scale    0.5
 
 cam-depth-offset 200
-cam-y-offset 100
+cam-y-offset 200
 cam-z-offset 500
 
 // TODO no pets now?
