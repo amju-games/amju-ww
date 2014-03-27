@@ -127,8 +127,19 @@ bool ProcGen::Layer::LoadOneObject()
   return true;
 }
 
-void ProcGen::Layer::AddToGame(float depth)
+void ProcGen::Layer::AddToGame(float depth, float x)
 {
+  float xPos = 0;
+/*
+  if (x > 300) // TODO TEMP TEST
+  {
+    xPos = 300.0f;
+  }
+  else if (x < -300)
+  {
+    xPos = -300.0f;
+  }
+*/
   int s = m_objects.size();
   for (int i = 0; i < s; i++)
   {
@@ -141,7 +152,9 @@ void ProcGen::Layer::AddToGame(float depth)
     clone->SetId(id);
 
     Vec3f pos = clone->GetPos();
-    pos.y  = - (pos.y + depth);
+    pos.x += xPos;
+//    pos.y  = - (pos.y + depth);
+    pos.y -= depth; // ?
     clone->SetPos(pos);
 
     clone->AddToGame();
@@ -170,12 +183,12 @@ void ProcGen::PickNextLayer()
   //  the current layer..?
 
   m_nextLayer = i; // TODO Random, but based on which layers are allowed to come after the most recent layer.
-  float layerHeight = 500; // TODO TEMP TEST should be data, depending on layer above
+  float layerHeight = 300; // TODO TEMP TEST should be data, depending on layer above
 
   m_nextDepth = m_nextDepth + layerHeight; 
 }
 
-void ProcGen::AddLayerWhenReady()
+void ProcGen::AddLayerWhenReady(float xPos)
 {
   Assert(m_nextLayer > -1);
 
@@ -185,19 +198,19 @@ void ProcGen::AddLayerWhenReady()
   if (cd + nextLayerHeightOffset > m_nextDepth)
   {
 std::cout << "Adding new layer now! cd = " << cd << "\n";
-    AddLayerToLevel(m_nextLayer, m_nextDepth); // + nextLayerHeightOffset);
+    AddLayerToLevel(m_nextLayer, m_nextDepth, xPos); 
     PickNextLayer();
   }
 }
 
-void ProcGen::AddLayerToLevel(int layerIndex, float depth)
+void ProcGen::AddLayerToLevel(int layerIndex, float depth, float x)
 {
   // Pick out Layer. Add new unique IDs to all objects, then add to Game.
   // Subtract depth from all position y-coords
   Assert(layerIndex >= 0 && layerIndex < (int)m_layers.size());
   Layer* layer = m_layers[layerIndex];
   Assert(layer);
-  layer->AddToGame(depth);
+  layer->AddToGame(depth, x);
 }
 
 }
