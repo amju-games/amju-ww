@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-33
+37
 
 // Game object type
 camera
@@ -28,7 +28,7 @@ end
 bird
 99
 // Position
-127.433784, 195.486740, -49.846569
+677.546814, 145.498856, 10.067179
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -41,7 +41,7 @@ end
 player
 101
 // Position
-200.000000, 153.484680, 50.000000
+750.000000, 102.936058, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -58,7 +58,7 @@ end
 player
 102
 // Position
-100.000000, 209.734695, 0.000000
+650.000000, 159.186081, 10.000000
 // Player ID
 1
 // MD2 mesh name
@@ -75,7 +75,7 @@ end
 pet
 104
 // Position
-650.000000, 10.384259, 50.000000
+3350.000000, 2259.835938, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -88,7 +88,7 @@ end
 pet
 105
 // Position
-400.000000, 260.384430, 50.000000
+3400.000000, 2559.835938, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -101,7 +101,7 @@ end
 pet
 106
 // Position
-450.000000, 110.384277, 50.000000
+3450.000000, 2409.835938, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -114,7 +114,7 @@ end
 dino
 107
 // Position
-1000.000000, 310.384277, 50.000000
+3700.000000, 2559.835938, 50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -126,7 +126,7 @@ end
 // Game object type
 bonus
 110
-425.000000, 75.000000, 75.000000
+3575.000000, 2525.000000, 75.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -141,7 +141,7 @@ end
 // Game object type
 bonus
 111
-1193.750000, 200.000000, 37.500000
+3893.750000, 2450.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -156,7 +156,7 @@ end
 // Game object type
 bonus
 112
-631.250000, 37.500000, 37.500000
+3331.250000, 2287.500000, 37.500000
 // Mesh filename
 fruit2.obj
 // Shadow texture & size
@@ -171,7 +171,7 @@ end
 // Game object type
 bonus
 113
-787.500000, 25.000000, 12.500000
+1637.500000, 1825.000000, 12.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -186,7 +186,7 @@ end
 // Game object type
 fence
 2002
-1037.500000, 151.562500, 53.125000
+3737.500000, 2401.562500, 53.125000
 0.000000
 // Mesh filename
 rock_1x1.obj
@@ -195,7 +195,7 @@ end
 // Game object type
 fence
 2007
-1400.000000, -300.000000, -175.000000
+6.250000, 87.500000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -204,7 +204,7 @@ end
 // Game object type
 fence
 2017
-687.500000, -50.000000, 0.000000
+3387.500000, 2200.000000, 0.000000
 90.000000
 // Mesh filename
 pz-fence.obj
@@ -214,7 +214,7 @@ end
 tut-trigger
 2020
 // AABB
-550.000000, 650.000000, 100.000000, 150.000000, 0.000000, 100.000000
+3250.000000, 3350.000000, 2350.000000, 2400.000000, 0.000000, 100.000000
 // Tutorial text
 Wow, I'm impressed! OK, you might see some animals here.&I'm gonna save you some time, and tell you something...&Man, they are stupid!&You can pick 'em up... you look pretty strong...&Don't forget -- stupid!
 end
@@ -222,17 +222,17 @@ end
 // Game object type
 staticfloor
 2023
-350.000000, 162.500000, 43.750000
+200.000000, 100.000000, 50.000000
 // Y rotation
-0.000000
+180.000000
 // Mesh filename
-block_rect_curved_hill_4x1_small.obj
+a41.obj
 end
 
 // Game object type
 staticfloor
 2024
-687.500000, -37.500000, 43.750000
+3387.500000, 2212.500000, 43.750000
 // Y rotation
 0.000000
 // Mesh filename
@@ -242,7 +242,7 @@ end
 // Game object type
 staticfloor
 2025
-750.000000, -500.000000, 243.750000
+1100.000000, 775.000000, 243.750000
 // Y rotation
 0.000000
 // Mesh filename
@@ -252,7 +252,7 @@ end
 // Game object type
 staticfloor
 2026
-937.500000, 164.062500, 43.750000
+3637.500000, 2414.062500, 43.750000
 // Y rotation
 180.000000
 // Mesh filename
@@ -262,7 +262,7 @@ end
 // Game object type
 floor
 4003
-775.000000, 400.000000, 450.000000
+3475.000000, 2650.000000, 450.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -278,7 +278,7 @@ end
 // Game object type
 exit
 4006
-1287.500000, 170.000000, 50.000000
+3987.500000, 2420.000000, 50.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -293,7 +293,7 @@ end
 // Game object type
 bonus
 4007
-300.000000, 150.000000, 50.000000
+3450.000000, 2600.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -308,7 +308,7 @@ end
 // Game object type
 bonus
 4008
-975.000000, 162.500000, 18.750000
+3675.000000, 2412.500000, 18.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -323,7 +323,7 @@ end
 // Game object type
 bonus
 4009
-887.500000, 100.000000, 62.500000
+3587.500000, 2350.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -338,7 +338,7 @@ end
 // Game object type
 staticfloor
 4019
-1237.500000, 162.500000, 43.750000
+3937.500000, 2412.500000, 43.750000
 // Y rotation
 0.000000
 // Mesh filename
@@ -349,7 +349,7 @@ end
 pet
 4022
 // Position
-550.000000, 60.384319, 50.000000
+3550.000000, 2359.835938, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -359,9 +359,17 @@ shadow.png
 end
 
 // Game object type
+skybox
+5000
+// Mesh filename
+skybox1.txt
+ff00ff
+end
+
+// Game object type
 bonus
 5001
-506.250000, 25.000000, 12.500000
+3656.250000, 2475.000000, 12.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -377,7 +385,7 @@ end
 tut-trigger
 5003
 // AABB
-1300.000000, 1400.000000, -275.000000, -225.000000, -100.000000, 0.000000
+1550.000000, 1650.000000, 200.000000, 250.000000, -100.000000, 0.000000
 // Tutorial text
 Uh, did anyone talk to you about the dinosaurs yet?&What? No, no dinosaurs! I was just kidding!&Oh, ok then. There are some dinosaurs around here... they love to eat pets!&It's awful!
 end
@@ -386,7 +394,7 @@ end
 tut-trigger
 5004
 // AABB
-525.000000, 625.000000, 262.500000, 312.500000, 0.000000, 100.000000
+3225.000000, 3325.000000, 2512.500000, 2562.500000, 0.000000, 100.000000
 // Tutorial text
 Tap to jump!
 end
@@ -394,7 +402,7 @@ end
 // Game object type
 fence
 5006
-837.500000, 26.562500, 40.625000
+3537.500000, 2276.562500, 40.625000
 0.000000
 // Mesh filename
 rock_1x1.obj
@@ -403,8 +411,37 @@ end
 // Game object type
 fence
 5007
-937.500000, 95.312500, 40.625000
+3637.500000, 2345.312500, 40.625000
 0.000000
 // Mesh filename
 rock_1x1.obj
+end
+
+// Game object type
+staticfloor
+5009
+1150.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+a41.obj
+end
+
+// Game object type
+staticfloor
+5010
+675.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+a41.obj
+end
+
+// Game object type
+fence
+5211
+1343.750000, 87.500000, 50.000000
+0.000000
+// Mesh filename
+pz-fence.obj
 end

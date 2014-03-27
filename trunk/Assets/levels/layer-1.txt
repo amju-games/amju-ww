@@ -2,13 +2,13 @@
 11
 
 // Num game objects
-14
+5
 
 // Game object type
 dino
 107
 // Position
-1237.500000, 210.322174, 25.000000
+487.500000, 97.121193, 25.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -18,163 +18,41 @@ shadow.png
 end
 
 // Game object type
-bonus
-110
-425.000000, 75.000000, 75.000000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-111
-1193.750000, 200.000000, 37.500000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-113
-787.500000, 25.000000, 12.500000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-fence
-2002
-1037.500000, 151.562500, 53.125000
-0.000000
-// Mesh filename
-rock_1x1.obj
-end
-
-// Game object type
 staticfloor
 2023
-350.000000, 162.500000, 43.750000
+950.000000, 100.000000, 50.000000
 // Y rotation
 0.000000
 // Mesh filename
-block_rect_curved_hill_4x1_small.obj
+b41.obj
 end
 
 // Game object type
 staticfloor
 2026
-937.500000, 164.062500, 43.750000
+476.562500, 100.000000, 50.000000
 // Y rotation
 180.000000
 // Mesh filename
-block_rect_curved_hill_4x1_small.obj
-end
-
-// Game object type
-bonus
-4007
-300.000000, 150.000000, 50.000000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-4008
-975.000000, 162.500000, 18.750000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-4009
-887.500000, 100.000000, 62.500000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
+a41.obj
 end
 
 // Game object type
 staticfloor
 4032
-1237.500000, 162.500000, 93.750000
+1298.437500, 0.000000, 50.000000
 // Y rotation
 0.000000
 // Mesh filename
-field_1x1.obj
+a11.obj
 end
 
 // Game object type
-bonus
-5001
-506.250000, 25.000000, 12.500000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-fence
-5006
-837.500000, 26.562500, 40.625000
+staticfloor
+5011
+101.562500, 100.000000, 50.000000
+// Y rotation
 0.000000
 // Mesh filename
-rock_1x1.obj
-end
-
-// Game object type
-fence
-5007
-937.500000, 95.312500, 40.625000
-0.000000
-// Mesh filename
-rock_1x1.obj
+a21.obj
 end
