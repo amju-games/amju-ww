@@ -269,7 +269,7 @@ void GSMain::Update()
       Player* player = Player::GetPlayer(AMJU_P1);
       float y = -(player->GetPos().y);
       DepthUpdate(y);
-      TheProcGen::Instance()->AddLayerWhenReady();
+      TheProcGen::Instance()->AddLayerWhenReady(player->GetPos().x);
 
       game->UpdateGameObjects();
 
@@ -315,8 +315,12 @@ void GSMain::Draw2d()
     t.SetSize(Vec2f(1.0f, 0.2f));
     t.SetJust(GuiText::AMJU_JUST_LEFT);
 
+    float playerX = Player::GetPlayer(AMJU_P1)->GetPos().x;
+
     static std::string old;
-    std::string s = "Depth: " + ToString(GetCurrentDepth()) + "\nNum Game Objects: " + 
+    std::string s = "Depth: " + ToString((int)GetCurrentDepth()) +
+      " X: " + ToString((int)playerX) + 
+      "\nNum Game Objects: " + 
       ToString((int)TheGame::Instance()->GetGameObjects()->size());
 
     if (old != s)
