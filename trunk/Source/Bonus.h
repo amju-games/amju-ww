@@ -25,6 +25,9 @@ public:
   virtual PropertyValue GetProp(PropertyKey);
   virtual void SetProp(PropertyKey, PropertyValue);
 
+  virtual bool YesAddToLevel(int levelId, float depth) override; 
+  virtual void Customise(int levelId, float depth) override;
+
   void OnPlayerCollision(Player*);
 
 protected:

@@ -37,7 +37,7 @@
 #include "ResizeHandler.h"
 #include <AmjuFinal.h>
 
-//#define SHOW_FRAME_RATE
+#define SHOW_FRAME_RATE
 
 #ifdef MACOSX
 #define GLUE_FILE "data-Mac.glue"

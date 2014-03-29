@@ -26,7 +26,8 @@ void AIChasePet::Update()
   static const float MAX_DIST = ROConfig()->GetFloat("dino-chase-dist"); 
   static const float MAX_DIST_SQ = MAX_DIST * MAX_DIST;
 
-  if (vel.SqLen() < MAX_DIST_SQ) 
+  float sqlen = vel.SqLen();
+  if (sqlen < MAX_DIST_SQ && sqlen > 1.0f) // TODO but needs to be > 0!!
   {
     vel.Normalise();
 
