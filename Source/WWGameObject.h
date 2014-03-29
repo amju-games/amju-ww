@@ -59,6 +59,10 @@ public:
   void SetSelected(bool selected);
   bool IsSelected() const;
 
+  // Procedural level generation
+  virtual bool YesAddToLevel(int levelId, float depth) { return true; }
+  virtual void Customise(int levelId, float depth) {}
+
 protected:
   // Create appropriate scene node type, load mesh and texture, etc.
   // Override for special scene nodes types like characters.

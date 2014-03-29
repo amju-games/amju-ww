@@ -54,6 +54,8 @@ public:
   // Returns true when we are about to go to next level
   bool IsExiting() const { return m_isExiting; }
 
+  virtual void Customise(int levelId, float depth) override;
+
 protected:
   //std::string m_toLevel;
   int m_toLevel;

@@ -193,7 +193,9 @@ void DeleteDeadObjects()
     WWGameObject* ww = dynamic_cast<WWGameObject*>(obj.GetPtr());
     if (ww && ww->IsDead())
     {
+#ifdef DEBUG_DELETE_DEAD
       std::cout << "Deleting object " << Describe(ww) << "\n";
+#endif
       ww->RemoveFromGame();
     }
   }

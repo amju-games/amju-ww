@@ -27,7 +27,7 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Exit::NAME, &CreateExit)
 
 const char* Exit::NAME = "exit";
 
-static const float XSIZE = 5.0f;
+static const float XSIZE = 20.0f;
 static const float YSIZE = 20.0f;
 
 Exit::Exit()
@@ -40,6 +40,13 @@ Exit::Exit()
   m_rotate = 0;
   m_toLevel = 0;
   m_isExiting = false;
+}
+  
+void Exit::Customise(int levelId, float depth) 
+{
+  // TODO TEMP TEST
+  int d = depth / 1000;
+  m_toLevel = levelId + 1  + d * 2; 
 }
 
 WWGameObject* Exit::Clone() 
