@@ -40,7 +40,7 @@ public:
   void SetIsTeleporting(bool isTeleporting);
   bool IsTeleporting() const  { return m_isTeleporting; }
 
-  void StartBeingEaten(OnFloorCharacter* eater);
+  virtual void StartBeingEaten(OnFloorCharacter* eater);
   bool CanBeEaten() const;
   void ResetEatenState();
 
