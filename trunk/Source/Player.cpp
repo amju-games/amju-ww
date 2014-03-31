@@ -39,7 +39,7 @@ namespace Amju
 static const float MAX_SPEED = 100.0f; // TODO CONFIG
 static const float RUN_SPEED = MAX_SPEED * 0.5f;
 static const float WALK_SPEED = RUN_SPEED * 0.5f; 
-static const float XSIZE = 10.0f; // AABB size
+static const float XSIZE = 15.0f; // AABB size
 static const float YSIZE = 20.0f;
 static const float YOFFSET = 5.0f;
 
