@@ -45,7 +45,7 @@ Exit::Exit()
 void Exit::Customise(int levelId, float depth) 
 {
   // TODO TEMP TEST
-  int d = depth / 1000;
+  int d = (int)depth / 1000;
   m_toLevel = levelId + 1  + d * 2; 
 }
 

@@ -196,6 +196,8 @@ void Dino::Eat(OnFloorCharacter* pet)
   bc->LoadTextures("dino1a-withblood.png", "dino1-withblood.png"); 
   // TODO Load the textures up front as this will hit frame rate on first load.
 
+  pet->StartBeingEaten(this);
+
   // Pause action and zoom camera on Dino??
 }
 

@@ -4,6 +4,7 @@
 #include <DegRad.h>
 #include <ReportError.h>
 #include <Game.h>
+#include <ROConfig.h>
 #include "OnFloorCharacter.h"
 #include "BlinkCharacter.h"
 #include "Floor.h"
@@ -18,6 +19,8 @@
 
 namespace Amju
 {
+static const float MAX_BEING_EATEN_TIME = 6.0f;
+
 // TODO Keep track of Pets with static container
 void GetCharacters(Characters* characters)
 {
@@ -93,6 +96,9 @@ OnFloorCharacter::OnFloorCharacter()
   m_anim = -1;
   m_isTeleporting = false;
   m_teleportScale = 0;
+  m_eatenState = NOT_EATEN_YET;
+  m_eatenTime = 0;
+  m_bloodPoolScale = 0;
 }
 
 void OnFloorCharacter::AddToGame() 
@@ -203,7 +209,8 @@ void OnFloorCharacter::StartBeingEaten(OnFloorCharacter* eater)
 
   m_eatenState = BEING_EATEN;
 
-  SetDead(true); // So physics won't be updated any more
+//  SetDead(true); // So physics won't be updated any more
+  GetSceneNode()->SetVisible(false);
 
   float dir = eater->GetDir();
   Matrix mat;
@@ -393,6 +400,51 @@ void OnFloorCharacter::Update()
     {
       m_dirCurrent += ROT_SPEED * dt * fabs(angleDiff);
     }
+  }
+
+  if (m_eatenState == BEING_EATEN)
+  {
+    m_eatenTime += dt;
+
+    if (m_eatenTime > MAX_BEING_EATEN_TIME)
+    {
+      m_eatenState = HAS_BEEN_EATEN;
+      // TODO Fade 
+      //m_bloodPool->SetVisible(false);
+    }
+  }
+
+  if (m_eatenState == BEING_EATEN || m_eatenState == HAS_BEEN_EATEN)
+  {
+    // Increase blood pool size
+    static const float MAX_BP_SCALE = ROConfig()->GetFloat("pet-bloodpool-max-scale");
+    if (m_bloodPoolScale < MAX_BP_SCALE)
+    {
+      m_bloodPoolScale += dt; 
+    }
+    Vec3f s(m_bloodPoolXZSize.x * m_bloodPoolScale, 
+            1.0f,
+            m_bloodPoolXZSize.y * m_bloodPoolScale);
+
+    // Rotate by floor rotation every frame if on a tilting floor
+    UpdateBloodPoolRotation();
+
+    Matrix mat; 
+    mat.Scale(s.x, 1.0f, s.z);
+    mat *= m_bloodPoolMatrix; // rotation due to floor shape
+    mat.TranslateKeepRotation(m_bloodPoolPos); 
+
+
+    // Only required if floor can tilt
+    // Rotate by rotation of floor, around the floor centre
+    Matrix tr1;
+    tr1.Translate(-m_floor->GetPos());
+    Matrix tr2;
+    tr2.Translate( m_floor->GetPos());
+    Matrix floorRot = tr1 * m_floorRot * tr2;
+    mat *= floorRot;
+
+    m_bloodPool->SetLocalTransform(mat);
   }
 }
 
