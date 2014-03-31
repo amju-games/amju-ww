@@ -46,6 +46,7 @@ public:
   virtual void OnAnimFinished();
   virtual void OnWallCollision(const Vec3f& normal) override;
 
+  virtual void StartBeingEaten(OnFloorCharacter* eater) override;
 
   void Jump();
 

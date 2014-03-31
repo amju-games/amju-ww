@@ -91,6 +91,15 @@ Player::~Player()
 {
   KillController();
 }
+  
+void Player::StartBeingEaten(OnFloorCharacter* eater) 
+{
+  // Stop scrolling - set speed to zero?????
+
+  // Go to zoom camera
+  KillController();
+  OnFloorCharacter::StartBeingEaten(eater);
+}
 
 void Player::AddPropertiesGui(PropertiesDialog* dlg)
 {
