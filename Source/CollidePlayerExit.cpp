@@ -7,6 +7,7 @@
 #include "GSLevelComplete.h"
 #include "GSPetBonus.h"
 #include "GSMain.h"
+#include "Depth.h"
 
 namespace Amju
 {
@@ -21,6 +22,8 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   {
     return; // already processed this collision
   }
+
+  SetScrollSpeed(0); // stop scrolling, right?
 
   exit->OnPlayerCollision();
 
