@@ -91,7 +91,7 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   Shadow* shadow = new Shadow;
   shadow->SetSize(size);
   shadow->SetTexture(tex);
-  shadow->SetHeightRange(1000, 1000);
+  shadow->SetHeightRange(200, 100); // Adjust so shadows not cast on distant floors
 
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   root->AddChild(shadow);
