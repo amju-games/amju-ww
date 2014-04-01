@@ -768,7 +768,7 @@ void Player::Update()
   {
     SetAnim("walk");
   }
-  else
+  else if (m_eatenState == NOT_EATEN_YET)
   {
     SetAnim("stand");
   }
