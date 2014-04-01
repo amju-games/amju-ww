@@ -27,12 +27,13 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Exit::NAME, &CreateExit)
 
 const char* Exit::NAME = "exit";
 
-static const float XSIZE = 20.0f;
+static const float XSIZE = 5.0f;
 static const float YSIZE = 20.0f;
+static const float ZSIZE = 20.0f;
 
 Exit::Exit()
 {
-  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, ZSIZE);
   m_extentsSet = true;
 
   m_isActive = false;
