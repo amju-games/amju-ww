@@ -97,6 +97,9 @@ protected:
 
   bool m_editModeIsSelected;
   RCPtr<SelectedNode> m_selNode;
+
+  // If >0, seconds until we are dead.
+  float m_deathTimer;
 };
 }
 
