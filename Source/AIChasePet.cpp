@@ -33,6 +33,7 @@ void AIChasePet::Update()
 std::cout << "AI chase: " << Describe(m_npc) << " has reached target " <<
   Describe(m_target) << "!\n";
 
+    m_npc->DecideAI();
   }
   else if (sqlen < MAX_DIST_SQ) 
   {

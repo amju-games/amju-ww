@@ -67,7 +67,7 @@ void Bonus::Customise(int levelId, float depth)
   static const int POINTS[] = { 1000, 2000, 4000, 8000 };
 
   // What kind of bonus?
-  if (Rnd(0, 10) > 3) // TODO
+  if (Rnd(0, 10) > 3) // PROCGEN
   {
     // Bonus points
     int r = (int)Rnd(0, 4);
@@ -76,7 +76,7 @@ void Bonus::Customise(int levelId, float depth)
     m_lives = 0;
     return;
   }
-  else if (Rnd(0, 10) > 5)
+  else if (Rnd(0, 10) > 5) // PROCGEN
   {
     // TODO
     m_meshFilename = "bean1.obj";
