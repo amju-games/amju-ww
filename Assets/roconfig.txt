@@ -7,7 +7,12 @@ min_z 20
 max_z 80
 
 // Initial scroll speed for level
-scroll-speed 40
+start-scroll-speed 10
+max-scroll-speed 50
+depth-for-speed-change 200
+scroll-speed-inc 5
+
+
 start-depth -500
 
 // Extra "look-ahead" added to depth at which we create the next layer
@@ -18,7 +23,7 @@ pick-up-multiplier 100
 pet-score-max-time 0.125
 carrying-multiplier 1
 
-max-speed 80.0
+max-speed 100.0
 max-y-vel 300.0
 max-drop  1000.0
 jump-vel-initial 100
@@ -35,7 +40,7 @@ hud-max-life-flash  3.0
 hud-expand-scale    0.5
 
 cam-depth-offset 200
-cam-y-offset 200
+cam-y-offset 100
 cam-z-offset 300
 
 // TODO no pets now?
