@@ -56,7 +56,7 @@ struct BonusKind
 
 void Bonus::Customise(int levelId, float depth) 
 {
-  static BonusKind BK[] = 
+  static const BonusKind FRUITS[] = 
   {
     BonusKind("fruit1.obj", 0),
     BonusKind("fruit2.obj", 1),
@@ -64,6 +64,14 @@ void Bonus::Customise(int levelId, float depth)
     BonusKind("fruit4.obj", 3),
   };
  
+  static const BonusKind BEANS[] = 
+  {
+    BonusKind("bean1.obj", 0),
+    BonusKind("bean1.obj", 1),
+    BonusKind("bean1.obj", 2),
+    BonusKind("bean1.obj", 3),
+  };
+
   static const int POINTS[] = { 1000, 2000, 4000, 8000 };
 
   // What kind of bonus?
@@ -71,15 +79,19 @@ void Bonus::Customise(int levelId, float depth)
   {
     // Bonus points
     int r = (int)Rnd(0, 4);
-    m_meshFilename = BK[r].m_filename;
-    m_points = POINTS[BK[r].m_reward];  
+    m_meshFilename = FRUITS[r].m_filename;
+    m_points = POINTS[FRUITS[r].m_reward];  
     m_lives = 0;
     return;
   }
   else if (Rnd(0, 10) > 5) // PROCGEN
   {
-    // TODO
-    m_meshFilename = "bean1.obj";
+    // Power ups
+    int r = (int)Rnd(0, 4);
+    m_meshFilename = BEANS[r].m_filename;
+    m_points = 0;
+    m_lives = 0;
+    // Select power up effect: use function pointer? Use PowerUp class heirarchy?
   }
   else
   {
