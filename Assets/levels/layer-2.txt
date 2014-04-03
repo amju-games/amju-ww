@@ -2,13 +2,13 @@
 11
 
 // Num game objects
-19
+20
 
 // Game object type
 dino
 107
 // Position
-306.250000, 93.665253, 25.000000
+306.250000, 93.271660, 25.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -35,11 +35,11 @@ end
 // Game object type
 staticfloor
 2023
-200.000000, 100.000000, 50.000000
+750.000000, 50.000000, -200.000000
 // Y rotation
-180.000000
+360.000000
 // Mesh filename
-b41.obj
+wall2.obj
 end
 
 // Game object type
@@ -253,4 +253,14 @@ shadow.png
 1000
 // Bonus lives
 0
+end
+
+// Game object type
+staticfloor
+5787
+200.000000, 100.000000, 50.000000
+// Y rotation
+180.000000
+// Mesh filename
+b41.obj
 end
