@@ -256,7 +256,9 @@ void OnFloor::UpdateY()
   if (isOn)
   {
     // Make sure y value is updated so we are on the surface
-    if (m_pos.y < y)
+    const float MAX_DT = 0.1f; // max set in Timer
+    const float MAX_FALL_DIST = MAX_Y_VEL * MAX_DT;
+    if (m_pos.y < y && m_pos.y > (y - MAX_FALL_DIST)) // TODO TEMP TEST
     {
       // Stop box sinking
       m_pos.y = y;
@@ -294,6 +296,9 @@ std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" <<
   }
   else
   {
+    SetIsFalling(true); // TODO TEMP TEST
+
+/*
     // Check a bit more thoroughly for a floor - we are maybe just on the edge. 
     // If there really is no floor under us, we start to fall down.
     float y = 0;
@@ -317,6 +322,7 @@ std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" <<
         SetIsFalling(true);
       }
     }
+*/
   }
 }
 

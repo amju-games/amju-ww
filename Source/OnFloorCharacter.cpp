@@ -241,10 +241,11 @@ void OnFloorCharacter::StartBloodEffect()
 {
   m_bloodPoolPos = m_pos;
   // Get accurate y
+/* no good!?
   Floor* floor = const_cast<Floor*>(GetFloor());
   CollisionMesh* cm = floor->GetCollisionMesh();
   cm->GetY(Vec2f(m_bloodPoolPos.x, m_bloodPoolPos.z), &m_bloodPoolPos.y);
-
+*/
   Matrix mat;
   mat.Translate(GetPos());
   mat.Scale(0, 1, 0); // start size 0 in (x, z)
@@ -377,7 +378,18 @@ void OnFloorCharacter::UpdateCocoon()
 void OnFloorCharacter::Update()
 {
   OnFloor::Update();
-  
+ 
+#ifdef _DEBUG
+  if (IsFalling())
+  {
+    GetSceneNode()->SetColour(Colour(0, 0, 1, 1));
+  }
+  else
+  {
+    GetSceneNode()->SetColour(Colour(1, 1, 1, 1));
+  }
+#endif
+ 
   if (IsDead())
   {
     return;
