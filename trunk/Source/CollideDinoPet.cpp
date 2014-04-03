@@ -4,34 +4,36 @@
 #include "Player.h"
 #include "AIFlee.h"
 
+//#define COLLIDE_DEBUG
+
 namespace Amju
 {
 void CollideDinoPet(GameObject* go1, GameObject* go2)
 {
   Dino* dino = dynamic_cast<Dino*>(go1);
   Assert(dino);
-  OnFloorCharacter* pet = dynamic_cast<OnFloorCharacter*>(go2);
-  Assert(pet);
+  OnFloorCharacter* ch = dynamic_cast<OnFloorCharacter*>(go2);
+  Assert(ch);
 
 #ifdef COLLIDE_DEBUG
-  std::cout << "***Pet/Dino collision\n";
+  std::cout << "*** Dino/character collision: " <<
+    " dino eating: " << dino->IsEating() << 
+    " dino dead: " << dino->IsDead() <<
+    " ch can be eaten: " << ch->CanBeEaten() <<
+    " Dino falling: " << dino->IsFalling() <<
+    " ch falling: " << ch->IsFalling() <<
+    "\n";
 #endif
+
   if (!dino->IsEating() && 
       !dino->IsDead() &&
-      pet->CanBeEaten() && 
-      !dino->IsFalling() 
+      ch->CanBeEaten() && 
+      !dino->IsFalling() &&
+      !ch->IsFalling()
      )
   {
-    dino->Eat(pet);
+    dino->Eat(ch);
   }
-/*
-  else
-  {
-    AI* ai = pet->GetAI(AIFlee::NAME);
-    ai->SetTarget(dino);
-    pet->SetAI(ai);
-  }
-*/
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
