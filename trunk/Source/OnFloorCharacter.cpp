@@ -15,7 +15,7 @@
 #include "PlayWav.h"
 #include "ShadowManager.h"
 
-#define ANIM_DEBUG
+//#define ANIM_DEBUG
 
 namespace Amju
 {
@@ -99,6 +99,23 @@ OnFloorCharacter::OnFloorCharacter()
   m_eatenState = NOT_EATEN_YET;
   m_eatenTime = 0;
   m_bloodPoolScale = 0;
+  m_isInvincible = false;
+  m_velMult = 1;
+}
+
+void OnFloorCharacter::SetInvincible(bool b)
+{
+  m_isInvincible = b;
+}
+
+bool OnFloorCharacter::IsInvincible() const
+{
+  return m_isInvincible;
+}
+
+void OnFloorCharacter::SetVelMult(float velMult)
+{
+  m_velMult = velMult;
 }
 
 void OnFloorCharacter::AddToGame() 
@@ -262,7 +279,8 @@ void OnFloorCharacter::StartBloodEffect()
 
 bool OnFloorCharacter::CanBeEaten() const
 {
-  bool b = //!m_justDropped && 
+  bool b = 
+    !IsInvincible() && 
     (m_eatenState == NOT_EATEN_YET) && 
     !IsDead() &&
     !IsFalling();
@@ -377,9 +395,15 @@ void OnFloorCharacter::UpdateCocoon()
 
 void OnFloorCharacter::Update()
 {
+  m_vel.x *= m_velMult;
+  m_vel.z *= m_velMult;
+
   OnFloor::Update();
+
+  m_vel.x /= m_velMult; // TODO only if flag set
+  m_vel.z /= m_velMult;
  
-#ifdef _DEBUG
+#ifdef FALLING_DEBUG
   if (IsFalling())
   {
     GetSceneNode()->SetColour(Colour(0, 0, 1, 1));

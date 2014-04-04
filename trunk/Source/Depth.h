@@ -18,4 +18,6 @@ void IncreaseDepth(float depth);
 
 float GetScrollSpeed();
 void SetScrollSpeed(float ss);
+
+void SetScrollSpeedMult(float mult);
 }

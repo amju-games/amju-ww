@@ -12,6 +12,7 @@
 #include <Timer.h>
 #include <DegRad.h>
 #include <EventPoller.h>
+#include "PowerUp.h"
 #include "Floor.h"
 #include "GSGameOver.h"
 #include "GSLoadLevel.h"
@@ -214,6 +215,8 @@ void Player::Reset()
   static const float JUMP_VEL_INITIAL = ROConfig()->GetFloat("jump-vel-initial");
   m_jumpVel = JUMP_VEL_INITIAL;
   m_maxJumpCount = 1; // initially you can jump once
+  m_isInvincible = false;
+  m_velMult = 1;
 }
 
 void Player::DropPets()
@@ -817,5 +820,8 @@ std::cout << "Game over.\n";
 std::cout << "Loading level...\n";
     }
   }
+
+  Colour c = ThePowerUpManager::Instance()->GetPlayerColour(GetPlayerId());
+  GetSceneNode()->SetColour(c);
 }
 }

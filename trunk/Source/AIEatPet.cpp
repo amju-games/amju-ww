@@ -5,7 +5,7 @@
 #include "Pet.h"
 #include "PlayWav.h"
 
-#define AI_DEBUG
+//#define AI_DEBUG
 
 namespace Amju
 {

@@ -7,6 +7,12 @@ namespace Amju
 {
 static float s_depth = 0;
 static float s_scrollSpeed = 1.0f;
+static float s_speedMult = 1.0f;
+
+void SetScrollSpeedMult(float mult)
+{
+  s_speedMult = mult;
+}
 
 float GetScrollSpeed()
 {
@@ -37,19 +43,17 @@ float GetCurrentDepth()
   return s_depth;
 }
 
-void IncreaseDepth(float depth)
-{
-  Assert(depth >= 0); // ?
-  s_depth += depth;
-}
+//void IncreaseDepth(float depth)
+//{
+//  Assert(depth >= 0); // ?
+//  s_depth += depth;
+//}
 
 void DepthUpdate(float minDepth)
 {
-  // New game design: camera always moves down
-
   float dt = TheTimer::Instance()->GetDt();
 
-  float d = dt * s_scrollSpeed;
+  float d = dt * s_scrollSpeed * s_speedMult;
 
   static float depthAtThisSpeed = 0;
   depthAtThisSpeed += d;
@@ -61,7 +65,7 @@ void DepthUpdate(float minDepth)
     SetScrollSpeed(s_scrollSpeed + SCROLL_SPEED_INC);
   }
 
-  IncreaseDepth(d);
+  s_depth += d; //IncreaseDepth(d);
 
   if (minDepth > s_depth)
   {

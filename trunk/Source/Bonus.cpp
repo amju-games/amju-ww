@@ -1,5 +1,6 @@
 #include <AmjuRand.h>
 #include "Bonus.h"
+#include "Describe.h"
 #include "Score.h"
 #include "LoadVec3.h"
 #include "GameObjectFactory.h"
@@ -36,6 +37,7 @@ Bonus::Bonus()
   m_yRot = (float)(rand() % 180);
   m_lives = 0;
   m_points = 0;
+  m_powerUp = POWERUP_NONE;
 }
 
 bool Bonus::YesAddToLevel(int levelId, float depth) 
@@ -63,19 +65,22 @@ void Bonus::Customise(int levelId, float depth)
     BonusKind("fruit3.obj", 2),
     BonusKind("fruit4.obj", 3),
   };
- 
-  static const BonusKind BEANS[] = 
+
+  const int MAX_BEANS = 6; 
+  static const BonusKind BEANS[MAX_BEANS] = 
   {
-    BonusKind("bean1.obj", 0),
     BonusKind("bean1.obj", 1),
-    BonusKind("bean1.obj", 2),
-    BonusKind("bean1.obj", 3),
+    BonusKind("bean2.obj", 2),
+    BonusKind("bean3.obj", 3),
+    BonusKind("bean4.obj", 4),
+    BonusKind("bean5.obj", 5),
+    BonusKind("bean6.obj", 6),
   };
 
   static const int POINTS[] = { 1000, 2000, 4000, 8000 };
 
   // What kind of bonus?
-  if (Rnd(0, 10) > 3) // PROCGEN
+  if (Rnd(0, 10) > 9) // PROCGEN CONFIG
   {
     // Bonus points
     int r = (int)Rnd(0, 4);
@@ -87,11 +92,17 @@ void Bonus::Customise(int levelId, float depth)
   else if (Rnd(0, 10) > 5) // PROCGEN
   {
     // Power ups
-    int r = (int)Rnd(0, 4);
+    int r = (int)Rnd(0, MAX_BEANS);
+    Assert(r < MAX_BEANS);
     m_meshFilename = BEANS[r].m_filename;
     m_points = 0;
     m_lives = 0;
     // Select power up effect: use function pointer? Use PowerUp class heirarchy?
+    m_powerUp = (PowerUp)BEANS[r].m_reward;
+
+#ifdef BONUS_DEBUG
+std::cout << Describe(this) << " has power up " << m_powerUp << "\n";
+#endif
   }
   else
   {
@@ -216,6 +227,7 @@ bool Bonus::CreateSceneNode()
 
   File effectFile; 
   // For nested glue files to work, this should be last or destroyed before further reading
+  // TODO Different effect files
   if (!effectFile.OpenRead("bonus-effect.txt"))
   {
     effectFile.ReportError("Couldn't open bonus effect file");
@@ -286,13 +298,12 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
 
   TheShadowManager::Instance()->RemoveCaster(this);
 
-  Amju::PlayWav("cashreg"); // NB No file ext
-  Amju::PlayWav("bonus_points"); // NB No file ext
-
   PlayerNum pn = (PlayerNum)pPlayer->GetPlayerId();
   if (m_points)
   {
     // Play wav for points
+    Amju::PlayWav("cashreg"); // NB No file ext
+    Amju::PlayWav("bonus_points"); // NB No file ext
    
     TheScores::Instance()->AddToScore(pn, m_points);
   }
@@ -302,6 +313,14 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
     // Wav
 
     TheScores::Instance()->IncLives(pn);
+  }
+
+  if (m_powerUp)
+  {
+#ifdef BONUS_DEBUG
+std::cout << Describe(this) << " activating power up!\n";
+#endif
+    ThePowerUpManager::Instance()->SetPowerUp((int)pn, m_powerUp);
   }
 }
 }

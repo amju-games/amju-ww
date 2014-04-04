@@ -44,6 +44,10 @@ public:
   bool CanBeEaten() const;
   void ResetEatenState();
 
+  void SetInvincible(bool);
+  bool IsInvincible() const;
+  void SetVelMult(float velMult); // for speedup, slowdown power ups etc.
+
 protected:
   void UpdateCocoon();
 
@@ -79,6 +83,9 @@ protected:
   Matrix m_bloodPoolMatrix; // rotation matrix, depends on floor
   Matrix m_invFloorMatrix; // inv of rotation of floor when blood pool created
   Matrix m_floorRot; // rotation due to floor tilt relative to when blood pool created
+
+  bool m_isInvincible;
+  float m_velMult; // applied to x and z vel
 };
 
 typedef std::vector<OnFloorCharacter*> Characters;
