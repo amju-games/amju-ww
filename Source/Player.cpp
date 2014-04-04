@@ -572,8 +572,8 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   }
 #endif
 
-  m_vel.x = x * 100.0f;
-  m_vel.z = y * 100.0f; 
+  m_vel.x = x * 100.0f * m_velMult;
+  m_vel.z = y * 100.0f * m_velMult; 
 
   // Work out direction to face
   SetDir(RadToDeg(atan2((double)cp.x, (double)cp.y)));
