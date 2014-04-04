@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: bean1.ma
-//Last modified: Sat, Mar 29, 2014 07:11:34 AM
+//Last modified: Fri, Apr 04, 2014 01:49:40 PM
 //Codeset: UTF-8
 requires maya "2012";
 requires "stereoCamera" "10.0";
@@ -13,12 +13,12 @@ fileInfo "osv" "Mac OS X 10.8.5";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0.20258370693018324 59.519056169758059 134.39838382712014 ;
-	setAttr ".r" -type "double3" -11.138352729602515 0.20000000000000856 3.1060293541104544e-18 ;
+	setAttr ".t" -type "double3" -19.758670442245915 57.599049684076327 -349.11371277490906 ;
+	setAttr ".r" -type "double3" -4.5383527296047106 -176.59999999999692 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 136.66378938666944;
+	setAttr ".coi" 351.79993080578072;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -66,7 +66,7 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 createNode transform -n "bean:Mesh";
-	setAttr ".s" -type "double3" 2.5 2.5 2.5 ;
+	setAttr ".s" -type "double3" 1.5 1.5 1.5 ;
 createNode mesh -n "bean:MeshShape" -p "bean:Mesh";
 	setAttr -k off ".v";
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
