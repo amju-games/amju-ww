@@ -395,14 +395,8 @@ void OnFloorCharacter::UpdateCocoon()
 
 void OnFloorCharacter::Update()
 {
-  m_vel.x *= m_velMult;
-  m_vel.z *= m_velMult;
-
   OnFloor::Update();
 
-  m_vel.x /= m_velMult; // TODO only if flag set
-  m_vel.z /= m_velMult;
- 
 #ifdef FALLING_DEBUG
   if (IsFalling())
   {
