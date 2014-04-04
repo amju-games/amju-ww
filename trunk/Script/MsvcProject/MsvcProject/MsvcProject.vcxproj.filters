@@ -305,6 +305,9 @@
     <ClCompile Include="..\..\..\Source\Deadly.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Source\PowerUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\AI.h">
@@ -578,6 +581,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\Deadly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\PowerUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
