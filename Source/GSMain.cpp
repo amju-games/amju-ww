@@ -37,6 +37,7 @@
 #include "Depth.h"
 #include "ProcGen.h"
 #include "Describe.h"
+#include "PowerUp.h"
 
 #ifdef _DEBUG
 #define EDIT_CAM
@@ -272,6 +273,8 @@ void GSMain::Update()
       float y = -(player->GetPos().y);
       DepthUpdate(y);
       TheProcGen::Instance()->AddLayerWhenReady(player->GetPos().x);
+
+      ThePowerUpManager::Instance()->Update();  
 
       game->UpdateGameObjects();
 

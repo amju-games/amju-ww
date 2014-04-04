@@ -1,5 +1,8 @@
 #pragma once
 
+#include <Singleton.h>
+#include <Colour.h>
+
 namespace Amju
 {
 // Power up functions:
@@ -15,6 +18,7 @@ enum PowerUp
   POWERUP_FASTER_SCROLLING, // bad power up!
   POWERUP_PLAYER_INVINCIBLE,
   POWERUP_POISON, // reverse controls = bad power up!
+  POWERUP_SCROLL_DOWN, // ??
 };
 
 class PowerUpManager
@@ -26,5 +30,6 @@ public:
   Colour GetPlayerColour(int playerId);
 };
 
+typedef Singleton<PowerUpManager> ThePowerUpManager;
 } // namespace
 
