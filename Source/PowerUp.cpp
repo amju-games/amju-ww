@@ -5,6 +5,7 @@
 #include "PowerUp.h"
 #include "Player.h"
 #include "Depth.h"
+#include "LurkMsg.h"
 
 namespace Amju
 {
@@ -14,6 +15,18 @@ static PowerUp powerUps[MAX_PLAYERS];
 
 // Classes for doing/undoing power up effect, can be GuiCommands.
 static PGuiCommand commands[MAX_PLAYERS];
+
+// Colours match the texture colour - TODO less clunky way of doing it
+static const Colour COLOURS[] = 
+{
+  Colour(1, 1, 1, 1), // NONE
+  Colour(1, 1, 0, 1), // bean1 - yellow
+  Colour(1, 0, 0, 1), // bean2 - red
+  Colour(0, 0, 1, 1), // bean 3 - blue
+  Colour(1, 0, 1, 1), // bean 4 - purple
+  Colour(0, 1, 0, 1), // bean 5 - green
+  Colour(0.2f, 0, 0.2f, 1), // bean 6 - dark purple
+};
 
 class PowerUpInvincible : public GuiCommand
 {
@@ -127,16 +140,6 @@ void PowerUpManager::SetPowerUp(int playerId, PowerUp pu)
   powerUps[playerId] = pu;
   powerUpTime[playerId] = POWER_UP_TIME;
 
-/*
-  POWERUP_NONE,
-  POWERUP_FASTER_PLAYER,
-  POWERUP_SLOWER_SCROLLING,
-  POWERUP_FASTER_SCROLLING, // bad power up!
-  POWERUP_PLAYER_INVINCIBLE,
-  POWERUP_POISON, // reverse controls = bad power up!
-  POWERUP_SCROLL_DOWN, // ??
-*/
-
   switch (pu)
   {
   case POWERUP_NONE:
@@ -164,6 +167,29 @@ void PowerUpManager::SetPowerUp(int playerId, PowerUp pu)
   }
   Assert(commands[playerId]);
   commands[playerId]->Do();
+
+/*
+  POWERUP_NONE,
+  POWERUP_FASTER_PLAYER,
+  POWERUP_SLOWER_SCROLLING,
+  POWERUP_FASTER_SCROLLING, // bad power up!
+  POWERUP_PLAYER_INVINCIBLE,
+  POWERUP_POISON, // reverse controls = bad power up!
+  POWERUP_SCROLL_DOWN, // ??
+*/
+
+  const std::string strs[] = 
+  {
+    "nothing!",
+    "Run Faster!",
+    "Slower!",
+    "Faster!",
+    "Invincible!",
+    "Poison!",
+    "Reverse!",
+  };
+  static const Colour FGCOL(1, 1, 1, 1);
+  TheLurker::Instance()->Queue(LurkMsg(strs[pu], FGCOL, COLOURS[pu], AMJU_TOP)); 
 }
 
 void PowerUpManager::ResetPowerUps()
@@ -182,18 +208,6 @@ void PowerUpManager::ResetPowerUps()
 
 Colour PowerUpManager::GetPlayerColour(int playerId)
 {
-  // Colours match the texture colour - TODO less clunky way of doing it
-  static const Colour COLOURS[] = 
-  {
-    Colour(1, 1, 1, 1), // NONE
-    Colour(1, 1, 0, 1), // bean1 - yellow
-    Colour(1, 0, 0, 1), // bean2 - red
-    Colour(0, 0, 1, 1), // bean 3 - blue
-    Colour(1, 0, 1, 1), // bean 4 - purple
-    Colour(0, 1, 0, 1), // bean 5 - green
-    Colour(0.2f, 0, 0.2f, 1), // bean 6 - dark purple
-  };
-
   // TODO first 0.5 of time, solid colour, then flash for 0.25, then flash
   //  quickly for 0.25.
   return COLOURS[(int)powerUps[playerId]];
