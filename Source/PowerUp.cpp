@@ -182,14 +182,16 @@ void PowerUpManager::ResetPowerUps()
 
 Colour PowerUpManager::GetPlayerColour(int playerId)
 {
+  // Colours match the texture colour - TODO less clunky way of doing it
   static const Colour COLOURS[] = 
   {
     Colour(1, 1, 1, 1), // NONE
-    Colour(1, 1, 0, 1), // 
-    Colour(0, 1, 1, 1), // 
-    Colour(0, 0, 1, 1), // 
-    Colour(0, 1, 0, 1), // 
-    Colour(1, 0, 1, 1), // 
+    Colour(1, 1, 0, 1), // bean1 - yellow
+    Colour(1, 0, 0, 1), // bean2 - red
+    Colour(0, 0, 1, 1), // bean 3 - blue
+    Colour(1, 0, 1, 1), // bean 4 - purple
+    Colour(0, 1, 0, 1), // bean 5 - green
+    Colour(0.2f, 0, 0.2f, 1), // bean 6 - dark purple
   };
 
   // TODO first 0.5 of time, solid colour, then flash for 0.25, then flash
