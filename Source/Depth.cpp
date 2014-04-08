@@ -2,6 +2,8 @@
 #include <Timer.h>
 #include <ROConfig.h>
 #include "Depth.h"
+#include "Hud.h"
+#include "Score.h"
 
 namespace Amju
 {
@@ -36,6 +38,7 @@ void ResetDepth()
   static const float START_DEPTH = ROConfig()->GetFloat("start-depth");
   s_depth = START_DEPTH;
   s_scrollSpeed = ROConfig()->GetFloat("start-scroll-speed");
+  TheHud::Instance()->SetDepth(0);
 }
 
 float GetCurrentDepth()
@@ -70,6 +73,17 @@ void DepthUpdate(float minDepth)
   if (minDepth > s_depth)
   {
     s_depth = minDepth;
+  }
+
+  static float sec = 0;
+  sec += dt;
+  if (sec > 1.0f)
+  {
+    sec -= 1.0f;
+    static const float START_DEPTH = ROConfig()->GetFloat("start-depth");
+    TheHud::Instance()->SetDepth(s_depth - START_DEPTH);
+
+    TheScores::Instance()->AddToScore(AMJU_P1, 10);
   }
 }
 }
