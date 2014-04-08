@@ -27,8 +27,13 @@ void Viewport::Draw()
 
   /////////////////////////
   // TODO TEMP TEST  
-  static SceneNode* stars = CreateStars("star1.png", 0.1f, 50, 99999.9f, -99999.9f);
-  const float aspect = x / y;
+  static SceneNode* stars[2] = 
+  {
+    CreateStars("star1.png", 0.03f, 50, 99999.9f, -99999.9f),
+    CreateStars("flare.png", 0.05f, 50, 99999.9f, -99999.9f)
+  };
+
+  static const float aspect = x / y;
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
@@ -36,8 +41,12 @@ void Viewport::Draw()
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
-  stars->Update();
-  stars->Draw();
+  for (int i = 0; i < 2; i++)
+  {
+    stars[i]->Update();
+    stars[i]->Draw();
+  }
+
   // TEMP TEST
   /////////////////////////
 

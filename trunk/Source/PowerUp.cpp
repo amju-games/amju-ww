@@ -189,7 +189,9 @@ void PowerUpManager::SetPowerUp(int playerId, PowerUp pu)
     "Reverse!",
   };
   static const Colour FGCOL(1, 1, 1, 1);
-  TheLurker::Instance()->Queue(LurkMsg(strs[pu], FGCOL, COLOURS[pu], AMJU_TOP)); 
+  const bool IMMEDIATE = true;
+  TheLurker::Instance()->Queue(
+    LurkMsg(strs[pu], FGCOL, COLOURS[pu], AMJU_TOP), IMMEDIATE); 
 }
 
 void PowerUpManager::ResetPowerUps()

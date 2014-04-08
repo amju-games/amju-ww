@@ -204,8 +204,14 @@ void LurkMsg::Set(const std::string& str, const Colour& fgCol, const Colour& bgC
   {
     text->SetIsMulti(true);
   }
-  text->SetFontSize(1.5f); // TODO CONFIG
-  text->SetSize(Vec2f(1.6f, 0.1f)); // assume single line
+
+  static const float fontX = ROConfig()->GetFloat("lurk-font-x");
+  static const float fontY = ROConfig()->GetFloat("lurk-font-y");
+
+  text->SetFontSize(fontY);
+  text->SetScaleX(fontX);
+
+  text->SetSize(Vec2f(1.6f, 0.1f * fontY)); // assume single line
   text->SetText(str);
   text->SizeToText();
   text->SetFgCol(fgCol);
@@ -404,9 +410,18 @@ void Lurker::Draw()
   }
 }
 
-void Lurker::Queue(const LurkMsg& lm)
+void Lurker::Queue(const LurkMsg& lm, bool immediate)
 {
-  m_qmap[lm.m_lurkPos].push(lm);
+  LurkMsgQ& q = m_qmap[lm.m_lurkPos];
+  if (immediate)
+  {
+    while (!q.empty())
+    {
+      q.pop();
+    }
+  }
+
+  q.push(lm);
 }
 
 void Lurker::ShowYesNo(const std::string& q, const Colour& fgCol, const Colour& bgCol, 

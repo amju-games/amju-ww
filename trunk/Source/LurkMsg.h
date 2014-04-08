@@ -73,7 +73,9 @@ class Lurker : public NonCopyable
 public:
   void Update();
   void Draw();
-  void Queue(const LurkMsg& lm);
+
+  // If immediate, preceding messages in the queue are removed
+  void Queue(const LurkMsg& lm, bool immediate = false);
 
   // TODO
   void QueueMultiPage(const Strings& strs, const Colour& fgCol, const Colour& bgCol);
