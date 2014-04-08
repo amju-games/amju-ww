@@ -12,42 +12,33 @@ gameover-comp
 // Button 1 - start
 // element type
 gui-button
-
 // Element name
 continue-button
-
 // pos (coords are -1..1)
--0.4, -0.5
+-0.6, -0.5
 // size
-0.8, 0.2
-
-// Image - ext is resource type, not necessarily a real file extension
+1.2, 0.2
 gui-button-4.png
-
 // Text
 continue
 // Font name, size
-cheri, 0.8
+cheri, 2.0,sx=1.6 
 
 
 
 // Button 2 - quit
 // element type
 gui-button
-
 // Element name
 mainmenu-button
-
 // pos (coords are -1..1)
--0.4, -0.72
+-0.6, -0.72
 // size
-0.8, 0.2
-
+1.2, 0.2
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
-
 // Text
 main menu
 // Font name, size
-cheri, 0.8
+cheri, 2.0, sx=1.6 
 

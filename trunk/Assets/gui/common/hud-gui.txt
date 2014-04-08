@@ -87,7 +87,7 @@ p1-lives-text
 0.3, 0.2
 // Text
 3
-arial, 1.0, fgcol=ffffff, centre
+berlin, 2.0, fgcol=ffffff, centre
 
 // Element type
 gui-comp

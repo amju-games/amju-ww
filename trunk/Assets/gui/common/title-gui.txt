@@ -23,7 +23,7 @@ start-button
 // Image 
 gui-button-4.png
 // Text
-START
+Start
 // Font name, size
 cheri, 2.0, sx=1.6
 
@@ -42,7 +42,7 @@ quit-button
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
-QUIT
+Quit
 // Font name, size
 cheri, 1.0, sx=1.6
 
