@@ -16,13 +16,13 @@ gui-button
 // Element name
 new-button
 // pos (coords are -1..1)
--0.6, 0.3
+-0.8, 0.4
 // size
-1.2, 0.2
+1.6, 0.3
 // Image 
 gui-button-4.png
 // Text
-New game
+New  game
 // Font name, size
 cheri, 2.0, sx=1.6
 
@@ -34,9 +34,9 @@ gui-button
 // Element name
 continue-button
 // pos (coords are -1..1)
--0.6, 0.0
+-0.8, 0.0
 // size
-1.2, 0.2
+1.6, 0.3
 // Image 
 gui-button-4.png
 // Text
@@ -52,15 +52,15 @@ gui-button
 // Element name
 editor-button
 // pos (coords are -1..1)
--0.6, -0.3
+-0.4, -0.45
 // size
-1.2, 0.2
+0.8, 0.1
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
 Editor
 // Font name, size
-cheri, 2.0, sx=1.6
+cheri, 1.0, sx=1.6
 
 // Choose level (for debugging)
 elastic
@@ -70,13 +70,13 @@ gui-button
 // Element name
 choose-level-button
 // pos (coords are -1..1)
--0.6, -0.6
+-0.4, -0.6
 // size
-1.2, 0.2
+0.8, 0.1
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
 Choose Level
 // Font name, size
-cheri, 2.0, sx=1.6
+cheri, 1.0, sx=1.6
 
