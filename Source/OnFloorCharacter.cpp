@@ -219,6 +219,20 @@ std::cout << "Bah, no tris for blood pool.\n";
   m_invFloorMatrix = Transpose(m_invFloorMatrix); // inverse
 }
 
+void OnFloorCharacter::StartBeingDead()
+{
+  Amju::PlayWav("goopy");
+  SetAnim("eaten"); // TODO
+  m_eatenState = BEING_EATEN; // so we can't get eaten now
+  StartBloodEffect();
+  m_deathTimer = 3.0f;
+
+  Vec3f vel = GetVel();
+  vel.x = 0;
+  vel.z = 0;
+  SetVel(vel);
+}
+
 void OnFloorCharacter::StartBeingEaten(OnFloorCharacter* eater)
 {
   // Is only called once per pet
