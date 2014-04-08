@@ -102,14 +102,15 @@ bool Dino::CreateSceneNode()
 void Dino::AddToGame() 
 {
   Npc::AddToGame();
-  
+ 
+  // Try making dinos stationary. This solves several problems. 
   AddAI(new AIIdle);
 //  AddAI(new AIGoHighGround);
   AddAI(new AIEatPet);
-  AddAI(new AIChasePet);
+//  AddAI(new AIChasePet);
   AddAI(new AIFalling);
   AddAI(new AITurnToFace);
-  AddAI(new AIStunned);
+//  AddAI(new AIStunned);
 
   SetAI(AIIdle::NAME); // can set now that we have created scene node
   // (when AI state is activated, it will set animation)
