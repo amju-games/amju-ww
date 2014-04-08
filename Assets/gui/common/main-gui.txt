@@ -30,7 +30,7 @@ pause-button
 // pos (coords are -1..1)
 -0.95, -0.75
 // size
-0.2, 0.2
+0.3, 0.2
 // Image
 // TODO pause button
 gui-button-1.png
