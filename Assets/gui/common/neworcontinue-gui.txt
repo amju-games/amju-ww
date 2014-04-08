@@ -24,7 +24,7 @@ gui-button-4.png
 // Text
 New game
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 
 elastic
@@ -42,7 +42,7 @@ gui-button-4.png
 // Text
 Continue
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 
 elastic
@@ -60,7 +60,7 @@ gui-button-4.png
 // Text
 Editor
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 // Choose level (for debugging)
 elastic
@@ -76,7 +76,7 @@ choose-level-button
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
-Choose level...
+Choose Level
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 

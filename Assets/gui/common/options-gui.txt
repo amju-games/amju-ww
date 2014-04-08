@@ -17,14 +17,14 @@ gui-button
 // Element name
 back-button
 // pos (coords are -1..1)
--0.4, -0.3
+-0.6, -0.3
 // size
-0.8, 0.2
+1.2, 0.2
 // Image 
 gui-button-4.png
 // Text
 Back
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 
