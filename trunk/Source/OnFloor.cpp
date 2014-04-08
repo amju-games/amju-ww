@@ -282,6 +282,8 @@ std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" <<
 
           PlayWav(AMJU_EVENT_LANDED);
           SetIsFalling(false);
+
+          OnHitFloor();
         }
         static const float DAMP = 0.2f; // TODO ROCONFIG
         m_vel.y = m_vel.y * -DAMP;

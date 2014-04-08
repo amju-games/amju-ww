@@ -41,6 +41,7 @@ public:
   bool IsTeleporting() const  { return m_isTeleporting; }
 
   virtual void StartBeingEaten(OnFloorCharacter* eater);
+  virtual void StartBeingDead();
   bool CanBeEaten() const;
   void ResetEatenState();
 

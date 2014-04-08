@@ -47,6 +47,8 @@ public:
   // Set m_floor to point to floor under us, or 0 if we are lower than any floor
   void FindFloor();
 
+  virtual void OnHitFloor() {}
+
 protected:
   void UpdatePhysics();
   void UpdateShadow();
