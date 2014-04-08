@@ -222,7 +222,7 @@ std::cout << "Bah, no tris for blood pool.\n";
 void OnFloorCharacter::StartBeingDead()
 {
   Amju::PlayWav("goopy");
-  SetAnim("eaten"); // TODO
+  SetAnim("death"); 
   m_eatenState = BEING_EATEN; // so we can't get eaten now
   StartBloodEffect();
   m_deathTimer = 3.0f;
@@ -318,6 +318,11 @@ bool OnFloorCharacter::CreateSceneNode()
   }
 
   Md2Model::Animation anim = model->GetAnimationFromName("eaten");
+  if (anim != -1)
+  {
+    model->SetDoesFreeze(anim, true);
+  }
+  anim = model->GetAnimationFromName("death");
   if (anim != -1)
   {
     model->SetDoesFreeze(anim, true);
