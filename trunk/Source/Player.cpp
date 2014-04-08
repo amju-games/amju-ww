@@ -103,6 +103,21 @@ void Player::OnHitFloor()
   Camera* cam = GetActiveCamera();
   Assert(cam);
   cam->SetEarthquake(1.0f); // TODO CONFIG
+
+  // Check the height we fell from 
+  static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
+  Assert(MAX_DROP > 0);
+  float df = CalcDropFallen();
+#ifdef _DEBUG
+std::cout << Describe(this) << " hit floor, drop=" << df << "\n";
+#endif
+  if (df > MAX_DROP)
+  {
+#ifdef _DEBUG
+std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" << df << "\n";
+#endif
+    StartBeingDead(); // max drop reached, hit floor
+  }
 }
 
 void Player::StartBeingDead() 
