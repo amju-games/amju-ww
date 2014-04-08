@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Depth.h"
 #include "LurkMsg.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -106,6 +107,15 @@ void PowerUpManager::Update()
 #ifdef POWERUP_DEBUG
 std::cout << "Power up for player " << i << " is active! " << powerUpTime[i] << "\n";
 #endif
+
+      static float sec = 0;
+      sec += dt;
+      if (sec > 1.0f)
+      {
+        sec -= 1.0f;
+        PlayWav("tick");
+      }
+
       powerUpTime[i] -= dt;
       if (powerUpTime[i] <= 0)
       {
