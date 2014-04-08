@@ -362,8 +362,9 @@ end
 skybox
 5000
 // Mesh filename
-skybox1.txt
-ff00ff
+$$$empty
+//skybox1.txt
+8080ff
 end
 
 // Game object type
