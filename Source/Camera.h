@@ -50,6 +50,7 @@ public:
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey);
   virtual void SetProp(PropertyKey, PropertyValue);
+  virtual bool YesAddToLevel(int, float) { Assert(0); }
 
   void SetAsSceneGraphCamera();
   void SetLookAtPos(const Vec3f& v) { m_lookAt = v; }
