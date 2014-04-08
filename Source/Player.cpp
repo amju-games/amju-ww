@@ -804,6 +804,7 @@ void Player::Update()
     PlayerNum pn = (PlayerNum)GetPlayerId();
     TheScores::Instance()->DecLives(pn);
     TheHud::Instance()->FlashLives();
+    TheLurker::Instance()->Clear();
  
     int lives = TheScores::Instance()->GetLives(pn);
 

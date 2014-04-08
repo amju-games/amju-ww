@@ -43,6 +43,8 @@
 #define EDIT_CAM
 #endif
 
+//#define SHOW_INFO
+
 namespace Amju
 {
 const char* GSMain::NAME = "main";
@@ -307,6 +309,7 @@ void GSMain::Draw2d()
 
   TheLurker::Instance()->Draw();
 
+#ifdef SHOW_INFO
   // TODO Switch on/off
   if (true)
   {
@@ -335,6 +338,7 @@ void GSMain::Draw2d()
     old = s;
     t.Draw();
   }
+#endif // SHOW_INFO
 }
 
 void GSMain::Draw()
