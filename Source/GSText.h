@@ -24,6 +24,8 @@ public:
   // Calibrate tilt control 
   bool OnBalanceBoardEvent(const BalanceBoardEvent&);
 
+  void GoToNewState(GameState* gs);
+
 protected:
   // Create m_scene from text
   void CreateText(const std::string& text);
@@ -39,6 +41,12 @@ protected:
   SceneNodeCamera* m_camera;
 
   float m_starRotVel;
+
+  float m_yPos;
+  float m_yVel;
+
+  GameState* m_nextState;
+  float m_nextTimer;
 };
 }
 

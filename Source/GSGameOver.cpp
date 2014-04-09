@@ -53,7 +53,9 @@ void GSGameOver::Update()
 
 static void OnContinue()
 {
-  StartGame(1, AMJU_MAIN_GAME_MODE);
+  // Always go back to title
+  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  //StartGame(1, AMJU_MAIN_GAME_MODE);
 }
 
 static void OnMainMenu()
