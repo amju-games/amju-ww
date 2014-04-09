@@ -64,6 +64,10 @@ GSMain::GSMain()
 
 void GSMain::OnDeactive()
 {
+  // Now we DON'T want to go to the Pause state if we are interrupted,
+  //  as we are in a GUI state anyway.
+  TheGame::Instance()->RegisterPauseState(0);
+
   GameState::OnDeactive();
   TheLurker::Instance()->SetAsListener(false);
   TheEventPoller::Instance()->RemoveListener(m_gui);
@@ -102,6 +106,10 @@ void GSMain::OnActive()
   m_pauseButton->SetShowIfFocus(true);
 
   AmjuGL::SetClearColour(m_clearColour);
+
+  // When we are in the play state, we DO want to go to the paused state
+  //  if we are interrupted (e.g. answer phone)
+  TheGame::Instance()->RegisterPauseState(TheGSPaused::Instance());
 }
 
 bool GSMain::OnKeyEvent(const KeyEvent& ke)
