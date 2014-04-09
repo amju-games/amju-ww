@@ -17,5 +17,5 @@ void CollidePlayerDeadly(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Deadly::NAME, CollidePlayerDeadly, AMJU_FIRST_CONTACT_ONLY);
+  Player::NAME, Deadly::NAME, CollidePlayerDeadly, AMJU_EVERY_CONTACT);
 } 
