@@ -4,6 +4,7 @@
 #include "Depth.h"
 #include "Hud.h"
 #include "Score.h"
+#include "Player.h"
 
 namespace Amju
 {
@@ -80,8 +81,8 @@ void DepthUpdate(float minDepth)
   if (sec > 1.0f)
   {
     sec -= 1.0f;
-    static const float START_DEPTH = ROConfig()->GetFloat("start-depth");
-    TheHud::Instance()->SetDepth(s_depth - START_DEPTH);
+    float y = std::max(0.0f, -Player::GetPlayer(AMJU_P1)->GetPos().y);
+    TheHud::Instance()->SetDepth(y);
 
     TheScores::Instance()->AddToScore(AMJU_P1, 10);
   }
