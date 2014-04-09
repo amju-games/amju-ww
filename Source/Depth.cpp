@@ -11,6 +11,7 @@ namespace Amju
 static float s_depth = 0;
 static float s_scrollSpeed = 1.0f;
 static float s_speedMult = 1.0f;
+static float s_oldPlayerY = 0; // for giving points for depth
 
 void SetScrollSpeedMult(float mult)
 {
@@ -40,6 +41,7 @@ void ResetDepth()
   s_depth = START_DEPTH;
   s_scrollSpeed = ROConfig()->GetFloat("start-scroll-speed");
   TheHud::Instance()->SetDepth(0);
+  s_oldPlayerY = 0;
 }
 
 float GetCurrentDepth()
@@ -76,15 +78,21 @@ void DepthUpdate(float minDepth)
     s_depth = minDepth;
   }
 
+  // Display depth
+  float y = std::max(0.0f, -Player::GetPlayer(AMJU_P1)->GetPos().y);
+  TheHud::Instance()->SetDepth((int)y);
   static float sec = 0;
   sec += dt;
+  // Every second, add points for going deeper
   if (sec > 1.0f)
   {
     sec -= 1.0f;
-    float y = std::max(0.0f, -Player::GetPlayer(AMJU_P1)->GetPos().y);
-    TheHud::Instance()->SetDepth(y);
-
-    TheScores::Instance()->AddToScore(AMJU_P1, 10);
+    if (y > s_oldPlayerY)
+    {
+      float diff = y - s_oldPlayerY;
+      s_oldPlayerY = y;
+      TheScores::Instance()->AddToScore(AMJU_P1, (int)diff);
+    }
   }
 }
 }
