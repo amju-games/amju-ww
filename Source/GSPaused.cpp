@@ -1,4 +1,5 @@
 #include <Game.h>
+#include <GuiButton.h>
 #include "GSPaused.h"
 #include "MySceneGraph.h"
 #include "GSMain.h"
@@ -40,7 +41,12 @@ void GSPaused::OnActive()
   // buttons
   m_gui = WWLoadGui("paused-gui.txt");
   Assert(m_gui);
-  m_gui->GetElementByName("resume-button")->SetCommand(OnResume);
+
+  GuiButton* resume = (GuiButton*)GetElementByName(m_gui, "resume-button");
+  resume->SetCommand(OnResume);
+  resume->SetIsFocusButton(true);
+  resume->SetShowIfFocus(true);
+
   m_gui->GetElementByName("quit-button")->SetCommand(OnQuit);
   m_gui->GetElementByName("options-button")->SetCommand(OnOptions);
 }
