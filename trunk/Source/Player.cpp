@@ -123,10 +123,17 @@ std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" <<
 void Player::StartBeingDead() 
 {
   // Stop scrolling - set speed to zero?????
+  if (IsFalling())
+  {
+    return;
+  }
 
-  Amju::PlayWav("gasp");
-  // Go to zoom camera
-  KillController();
+  if (m_deathTimer == 0)
+  {
+    Amju::PlayWav("gasp");
+    // Go to zoom camera
+    KillController();
+  }
   OnFloorCharacter::StartBeingDead();
 }
 

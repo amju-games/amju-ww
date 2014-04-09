@@ -221,11 +221,20 @@ std::cout << "Bah, no tris for blood pool.\n";
 
 void OnFloorCharacter::StartBeingDead()
 {
-  Amju::PlayWav("goopy");
-  SetAnim("death"); 
-  m_eatenState = BEING_EATEN; // so we can't get eaten now
-  StartBloodEffect();
-  m_deathTimer = 3.0f;
+  if (IsFalling())
+  {
+    return;
+  }
+
+  if (m_deathTimer == 0)
+  {
+    Amju::PlayWav("goopy");
+    SetAnim("death"); 
+    m_eatenState = BEING_EATEN; // so we can't get eaten now
+    m_deathTimer = 3.0f;
+
+    StartBloodEffect();
+  }
 
   Vec3f vel = GetVel();
   vel.x = 0;
@@ -270,13 +279,16 @@ std::cout << Describe(this) << " just got eaten, setting death timer.\n";
 
 void OnFloorCharacter::StartBloodEffect()
 {
+  Assert(!IsFalling());
+
   m_bloodPoolPos = m_pos;
-  // Get accurate y
-/* no good!?
-  Floor* floor = const_cast<Floor*>(GetFloor());
-  CollisionMesh* cm = floor->GetCollisionMesh();
-  cm->GetY(Vec2f(m_bloodPoolPos.x, m_bloodPoolPos.z), &m_bloodPoolPos.y);
-*/
+    
+    // Get accurate y
+  /* no good!?
+    Floor* floor = const_cast<Floor*>(GetFloor());
+    CollisionMesh* cm = floor->GetCollisionMesh();
+    cm->GetY(Vec2f(m_bloodPoolPos.x, m_bloodPoolPos.z), &m_bloodPoolPos.y);
+  */
   Matrix mat;
   mat.Translate(GetPos());
   mat.Scale(0, 1, 0); // start size 0 in (x, z)

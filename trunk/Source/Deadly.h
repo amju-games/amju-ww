@@ -1,10 +1,10 @@
 #pragma once
 
-#include "StaticFloor.h"
+#include "Fence.h"
 
 namespace Amju
 {
-class Deadly : public StaticFloor
+class Deadly : public Fence
 {
 public:
   static const char* NAME;
