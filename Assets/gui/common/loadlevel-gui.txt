@@ -42,11 +42,11 @@ gui-image
 // Element name
 bar
 // pos (coords are -1..1)
--0.45, -0.524
+-0.46, -0.52
 // size
-0.9, 0.072
+0.9, 0.076
 // Image - ext is resource name
-wh8.png
+progbar.png
 
 // Element type
 gui-image
