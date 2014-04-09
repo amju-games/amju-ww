@@ -177,8 +177,6 @@ void StartUpAfterCreateWindow()
   // Default intersection test is OK
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
-  game->RegisterPauseState(TheGSPaused::Instance());
-
 #ifndef AMJU_IOS
   TheEventPoller::Instance()->AddListener(new ResizeHandler);
 #endif
