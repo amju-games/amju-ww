@@ -40,7 +40,7 @@ continue-button
 // Image 
 gui-button-4.png
 // Text
-Continue
+Conti n ue
 // Font name, size
 cheri, 2.0, sx=1.6
 
