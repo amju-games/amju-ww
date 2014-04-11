@@ -1,4 +1,5 @@
 #include <GuiButton.h>
+#include <LoadScene.h>
 #include "GSTitle.h"
 #include "Game.h"
 #include "EventPoller.h"
@@ -82,6 +83,15 @@ void GSTitle::OnActive()
   }
 
   // Need special shiny material for "amju" ?
-  CreateText("amju\nrain\n bow\n drop"); // TODO Localise
+  CreateText("\nrain\n bow\n drop"); // TODO Localise
+  PSceneNode node = LoadScene("logo2.obj");
+  Assert(node);
+  node->SetIsLit(true);
+  Matrix m;
+  m.Scale(0.5f, 0.5f, 0.5f);
+  m.TranslateKeepRotation(Vec3f(0, 0, -4)); // TODO TEMP TEST
+  node->SetLocalTransform(m);
+  SceneNode* root = GetTextSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(node);  
 }
 }
