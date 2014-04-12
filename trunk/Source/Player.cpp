@@ -12,6 +12,7 @@
 #include <Timer.h>
 #include <DegRad.h>
 #include <EventPoller.h>
+#include <ConfigFile.h>
 #include "PowerUp.h"
 #include "Floor.h"
 #include "GSGameOver.h"
@@ -34,6 +35,7 @@
 #include "PropertyKeys.h"
 #include "Depth.h"
 #include "Camera.h"
+#include "GameConsts.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -263,6 +265,23 @@ void Player::Reset()
   m_maxJumpCount = 1; // initially you can jump once
   m_isInvincible = false;
   m_velMult = 1;
+
+  static const float DEFAULT_X_SENSITIVITY = ROConfig()->GetFloat("default-x-sensitivity");
+  static const float DEFAULT_Y_SENSITIVITY = ROConfig()->GetFloat("default-y-sensitivity");
+
+  m_xSensitivity = DEFAULT_X_SENSITIVITY;
+  m_ySensitivity = DEFAULT_Y_SENSITIVITY;
+
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+  if (gcf->Exists(X_SENSITIVITY_KEY))
+  {
+    m_xSensitivity = gcf->GetFloat(X_SENSITIVITY_KEY);
+  }
+  
+  if (gcf->Exists(Y_SENSITIVITY_KEY))
+  {
+    m_xSensitivity = gcf->GetFloat(Y_SENSITIVITY_KEY);
+  }
 }
 
 void Player::DropPets()
@@ -565,6 +584,12 @@ bool Player::OnKeyEvent(const KeyEvent& ke)
   return false;
 }
 
+void Player::SetTiltSensitivity(float x, float y)
+{
+  m_xSensitivity = x;
+  m_ySensitivity = y;
+}
+
 bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 {
   // Only player 0 can use BB
@@ -589,32 +614,30 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   
 #ifdef IPHONE
 
-  // TODO Set OFFSET when in non-game mode
-//  const float OFFSET = 0.5f;
-  const float DEAD_ZONE = 0.05f;
-  // TODO Make these 'sensitivity' settings
-  float sensitivity = 4.0f; // TODO Set from config/options
+  const float X_DEAD_ZONE = 0.02f;
+  const float Y_DEAD_ZONE = 0.02f;
+
   const float X_MULT = 4.0f;
-  const float Y_MULT = 3.0f;
+  const float Y_MULT = 4.0f;
   
-  if (x > -DEAD_ZONE && x < DEAD_ZONE)
+  if (x > -X_DEAD_ZONE && x < X_DEAD_ZONE)
   {
     x = 0;
   }
   else 
   {
-    x *= X_MULT * sensitivity;
+    x *= X_MULT * m_xSensitivity;
   }
   
   // y=0 when iphone is horizontal, so compensate for angle at which player is holding iphone
 //  y -= OFFSET;
-  if (y > -DEAD_ZONE && y < DEAD_ZONE)
+  if (y > -Y_DEAD_ZONE && y < Y_DEAD_ZONE)
   {
     y = 0;
   }
   else 
   {
-    y *= Y_MULT * sensitivity;
+    y *= Y_MULT * m_ySensitivity;
   }
 #endif
 
