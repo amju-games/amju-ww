@@ -8,7 +8,7 @@
 dino
 107
 // Position
-306.250000, 93.271660, 25.000000
+306.250000, 92.980484, 25.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -54,18 +54,8 @@ end
 
 // Game object type
 staticfloor
-5010
-875.000000, 101.562500, 50.000000
-// Y rotation
-180.000000
-// Mesh filename
-a41.obj
-end
-
-// Game object type
-staticfloor
 5012
-575.000000, 101.562500, 50.000000
+975.000000, 101.562500, 50.000000
 // Y rotation
 180.000000
 // Mesh filename
@@ -75,7 +65,7 @@ end
 // Game object type
 fence
 5252
-12.500000, -12.500000, 50.000000
+25.000000, -15.625000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -262,5 +252,15 @@ staticfloor
 // Y rotation
 180.000000
 // Mesh filename
-b41.obj
+rd_b41b.obj
+end
+
+// Game object type
+staticfloor
+5788
+575.000000, 101.562500, 50.000000
+// Y rotation
+180.000000
+// Mesh filename
+a21.obj
 end
