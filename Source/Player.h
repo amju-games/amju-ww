@@ -64,6 +64,8 @@ public:
 
   virtual void OnHitFloor();
 
+  void SetTiltSensitivity(float x, float y);
+
 private:
   void UpdatePets();
   void KillController();
@@ -84,6 +86,9 @@ private:
   int m_maxJumpCount; // how many multi-jumps you can do
   float m_jumpVel; 
   float m_petScoreTimer;
+  
+  float m_xSensitivity;
+  float m_ySensitivity;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network
