@@ -5,7 +5,7 @@ endif
 RUNDIR		:=	../../Build/CompiledAssets
 BUILD		:=	../../Build/Mac
 TARGET		:=	$(BUILD)/macgame
-LIBDIRS   	:= 	../../Libs/amjulib-v.0.1-macosx
+LIBDIRS   	:= 	../../Libs/amjulib-v.0.2-macosx
 SOURCES		:=	../../Source 
 
 LIBS	:= \
