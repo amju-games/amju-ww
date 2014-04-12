@@ -14,6 +14,8 @@
 #include "StartGame.h"
 #include "WWLoadGui.h"
 
+//#define FOR_SCREENSHOT
+
 namespace Amju
 {
 const char* GSTitle::NAME = "title";
@@ -76,14 +78,22 @@ void GSTitle::OnActive()
   start->SetIsFocusButton(true);
   start->SetShowIfFocus(true);
 
+#ifdef FOR_SCREENSHOT
+  start->SetVisible(false);
+#endif
+
   GuiElement* quit = m_gui->GetElementByName("quit-button");
   if (quit)
   {
     quit->SetCommand(new CommandQuit);
   }
 
-  // Need special shiny material for "amju" ?
+#ifdef FOR_SCREENSHOT
+  CreateText("\nrainbow\n   drop"); // TODO Localise
+#else
   CreateText("\nrain\n bow\n drop"); // TODO Localise
+#endif
+
   PSceneNode node = LoadScene("logo2.obj");
   Assert(node);
   node->SetIsLit(true);
