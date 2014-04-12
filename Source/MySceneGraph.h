@@ -1,7 +1,7 @@
 #ifndef MY_SCENE_GRAPH_H
 #define MY_SCENE_GRAPH_H
 
-#include "SceneGraph.h"
+#include <SceneGraph.h>
 
 namespace Amju
 {
