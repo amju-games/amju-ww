@@ -15,7 +15,7 @@ elastic
 gui-text
 hi-text
 // pos (coords are -1..1)
--0.95, 0.7
+-0.5, 0.7
 // size
 1.95, 0.1
 // Text 
@@ -27,14 +27,14 @@ elastic
 gui-text
 hi-score-text
 // pos (coords are -1..1)
--0.95, 0.6
+-0.5, 0.6
 // size
 1.95, 0.1
 // Text 
 000000
 berlin, 1.0, fgcol=ffffff, left, sx=1.6
 
-// Level number - underneath Hi score
+// Level number 
 elastic
 0, 0.5
 gui-text
@@ -104,7 +104,7 @@ elastic
 gui-text
 p1-name-text
 // pos (coords are -1..1)
--0.5, 0.95
+-0.95, 0.95
 // size
 0.8, 0.1
 // Text 
@@ -117,9 +117,9 @@ elastic
 gui-text
 p1-score-text
 // pos (coords are -1..1)
--0.5, 0.9
+-0.95, 0.9
 // size
-1.5, 0.2
+2.0, 0.2
 // Text 
 SCORE 1
 berlin, 2.0, fgcol=ffffff, left, sx=1.6
@@ -129,7 +129,7 @@ elastic
 -0.5, 0.0
 gui-image
 heart-img1
--1.0, 1.0
+-1.0, 0.75 
 0.5, 0.3
 heart.png
 
@@ -139,7 +139,7 @@ elastic
 gui-text
 p1-lives-text
 // pos (coords are -1..1)
--1, 1 
+-1, 0.75
 // size
 0.5, 0.3
 // Text
