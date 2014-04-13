@@ -2,13 +2,26 @@
 11
 
 // Num game objects
-28
+37
+
+// Game object type
+pet
+104
+// Position
+3350.000000, 2258.443359, 50.000000
+pz-cat.md2
+pz-pet1a.png
+pz-pet1.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
 
 // Game object type
 pet
 105
 // Position
-3400.000000, 2558.188721, 50.000000
+3400.000000, 2558.443359, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -21,7 +34,7 @@ end
 pet
 106
 // Position
-3450.000000, 2408.188721, 50.000000
+3450.000000, 2408.443359, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -34,7 +47,7 @@ end
 dino
 107
 // Position
-3700.000000, 2558.188721, 50.000000
+3700.000000, 2558.443359, 50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -61,7 +74,7 @@ end
 // Game object type
 bonus
 111
-1168.750000, 175.000000, 37.500000
+3893.750000, 2450.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -69,6 +82,21 @@ shadow.png
 20.000000
 // Bonus points
 1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+112
+3331.250000, 2287.500000, 37.500000
+// Mesh filename
+fruit2.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+3000
 // Bonus lives
 0
 end
@@ -91,7 +119,7 @@ end
 // Game object type
 fence
 2002
-1212.500000, 101.562500, 53.125000
+3737.500000, 2401.562500, 53.125000
 0.000000
 // Mesh filename
 rock_1x1.obj
@@ -107,6 +135,24 @@ pz-fence.obj
 end
 
 // Game object type
+fence
+2017
+3387.500000, 2200.000000, 0.000000
+90.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+tut-trigger
+2020
+// AABB
+3250.000000, 3350.000000, 2350.000000, 2400.000000, 0.000000, 100.000000
+// Tutorial text
+Wow, I'm impressed! OK, you might see some animals here.&I'm gonna save you some time, and tell you something...&Man, they are stupid!&You can pick 'em up... you look pretty strong...&Don't forget -- stupid!
+end
+
+// Game object type
 staticfloor
 2023
 200.000000, 100.000000, 50.000000
@@ -117,9 +163,39 @@ rd_a41a.obj
 end
 
 // Game object type
+staticfloor
+2024
+3387.500000, 2212.500000, 43.750000
+// Y rotation
+0.000000
+// Mesh filename
+cube_1.obj
+end
+
+// Game object type
+staticfloor
+2025
+1100.000000, 775.000000, 243.750000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_2x1_std.obj
+end
+
+// Game object type
+staticfloor
+2026
+3637.500000, 2414.062500, 43.750000
+// Y rotation
+180.000000
+// Mesh filename
+block_rect_curved_hill_4x1_small.obj
+end
+
+// Game object type
 floor
 4003
-1175.000000, 950.000000, 450.000000
+3475.000000, 2650.000000, 450.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -150,7 +226,7 @@ end
 // Game object type
 bonus
 4007
-1000.000000, 150.000000, 50.000000
+3450.000000, 2600.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -165,7 +241,7 @@ end
 // Game object type
 bonus
 4008
-1250.000000, 187.500000, 43.750000
+3675.000000, 2412.500000, 18.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -180,7 +256,7 @@ end
 // Game object type
 bonus
 4009
-912.500000, 225.000000, 62.500000
+3587.500000, 2350.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -193,10 +269,20 @@ shadow.png
 end
 
 // Game object type
+staticfloor
+4019
+3937.500000, 2412.500000, 43.750000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_2x1.obj
+end
+
+// Game object type
 pet
 4022
 // Position
-3550.000000, 2358.188721, 50.000000
+3550.000000, 2358.443359, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -208,7 +294,7 @@ end
 // Game object type
 bonus
 5001
-1081.250000, 150.000000, 62.500000
+3656.250000, 2475.000000, 12.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -221,9 +307,18 @@ shadow.png
 end
 
 // Game object type
+tut-trigger
+5004
+// AABB
+3225.000000, 3325.000000, 2512.500000, 2562.500000, 0.000000, 100.000000
+// Tutorial text
+Tap to jump!
+end
+
+// Game object type
 fence
 5006
-1287.500000, 101.562500, 40.625000
+3537.500000, 2276.562500, 40.625000
 0.000000
 // Mesh filename
 rock_1x1.obj
@@ -232,7 +327,7 @@ end
 // Game object type
 fence
 5007
-1112.500000, 95.312500, 40.625000
+3637.500000, 2345.312500, 40.625000
 0.000000
 // Mesh filename
 rock_1x1.obj
