@@ -39,9 +39,10 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     }
 
     Vec3f n = plane.Normal();
-    if (n.y < 0)
+    if (n.y < -0.4f)
     {
       // Hit a ceiling?
+//      std::cout << "Ceiling!\n";
     }
     else if (n.y < 0.2f) // TODO
     {
