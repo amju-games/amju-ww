@@ -124,7 +124,9 @@ void GSText::Draw2d()
     m_gui->Draw();
   }
 
+#ifdef GEKKO
   TheCursorManager::Instance()->Draw();
+#endif
 }
 
 void GSText::OnActive()
