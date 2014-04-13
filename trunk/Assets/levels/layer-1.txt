@@ -8,7 +8,7 @@
 dino
 107
 // Position
-487.500000, 96.297630, 25.000000
+487.500000, 96.017502, 25.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -45,7 +45,7 @@ end
 // Game object type
 deadly
 2024
-250.000000, 0.000000, 50.000000
+612.500000, 100.000000, 25.000000
 0.000000
 // Mesh filename
 spikes.obj
@@ -84,7 +84,7 @@ end
 // Game object type
 fence
 5252
-1393.750000, -12.500000, 50.000000
+1387.500000, -12.500000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -106,7 +106,7 @@ staticfloor
 // Y rotation
 0.000000
 // Mesh filename
-a11.obj
+rd_a11c.obj
 end
 
 // Game object type
@@ -251,5 +251,5 @@ staticfloor
 // Y rotation
 0.000000
 // Mesh filename
-a21.obj
+rd_a21b.obj
 end
