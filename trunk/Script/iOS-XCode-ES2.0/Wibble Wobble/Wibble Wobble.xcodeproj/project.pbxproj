@@ -35,6 +35,13 @@
 		69335F08184B9DDF00BB69D5 /* GSChooseLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69335F03184B9DDF00BB69D5 /* GSChooseLevel.cpp */; };
 		69335F09184B9DDF00BB69D5 /* GSNewOrContinue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69335F05184B9DDF00BB69D5 /* GSNewOrContinue.cpp */; };
 		696FD0EC189C1D3F0047EE96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696FD0EB189C1D3F0047EE96 /* Images.xcassets */; };
+		69FC7A2618E6D541005228C5 /* Depth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A1F18E6D541005228C5 /* Depth.cpp */; };
+		69FC7A2718E6D541005228C5 /* GSLoadLayers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A2118E6D541005228C5 /* GSLoadLayers.cpp */; };
+		69FC7A2818E6D541005228C5 /* ProcGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A2418E6D541005228C5 /* ProcGen.cpp */; };
+		69FC7A2D18EEF9C2005228C5 /* CollidePlayerDeadly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A2918EEF9C2005228C5 /* CollidePlayerDeadly.cpp */; };
+		69FC7A2E18EEF9C2005228C5 /* Deadly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A2A18EEF9C2005228C5 /* Deadly.cpp */; };
+		69FC7A2F18EEF9C2005228C5 /* PowerUp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A2C18EEF9C2005228C5 /* PowerUp.cpp */; };
+		69FC7A3218F5C249005228C5 /* Stars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69FC7A3018F5C249005228C5 /* Stars.cpp */; };
 		69FEF4481821306800D83578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4471821306800D83578 /* UIKit.framework */; };
 		69FEF44A1821306800D83578 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF4491821306800D83578 /* Foundation.framework */; };
 		69FEF44C1821306800D83578 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FEF44B1821306800D83578 /* CoreGraphics.framework */; };
@@ -207,6 +214,19 @@
 		69B7F086189D624D00EBA28E /* ww-title-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ww-title-144.png"; path = "../../../Assets/iOS/ww-title-144.png"; sourceTree = "<group>"; };
 		69B7F087189D626500EBA28E /* ww-title-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ww-title-76.png"; path = "../../../Assets/iOS/ww-title-76.png"; sourceTree = "<group>"; };
 		69B7F088189D627A00EBA28E /* ww-title-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ww-title-152.png"; path = "../../../Assets/iOS/ww-title-152.png"; sourceTree = "<group>"; };
+		69FC7A1F18E6D541005228C5 /* Depth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depth.cpp; path = ../../../../Source/Depth.cpp; sourceTree = "<group>"; };
+		69FC7A2018E6D541005228C5 /* Depth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depth.h; path = ../../../../Source/Depth.h; sourceTree = "<group>"; };
+		69FC7A2118E6D541005228C5 /* GSLoadLayers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSLoadLayers.cpp; path = ../../../../Source/GSLoadLayers.cpp; sourceTree = "<group>"; };
+		69FC7A2218E6D541005228C5 /* GSLoadLayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSLoadLayers.h; path = ../../../../Source/GSLoadLayers.h; sourceTree = "<group>"; };
+		69FC7A2318E6D541005228C5 /* PowerUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PowerUp.h; path = ../../../../Source/PowerUp.h; sourceTree = "<group>"; };
+		69FC7A2418E6D541005228C5 /* ProcGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProcGen.cpp; path = ../../../../Source/ProcGen.cpp; sourceTree = "<group>"; };
+		69FC7A2518E6D541005228C5 /* ProcGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcGen.h; path = ../../../../Source/ProcGen.h; sourceTree = "<group>"; };
+		69FC7A2918EEF9C2005228C5 /* CollidePlayerDeadly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollidePlayerDeadly.cpp; path = ../../../../Source/CollidePlayerDeadly.cpp; sourceTree = "<group>"; };
+		69FC7A2A18EEF9C2005228C5 /* Deadly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Deadly.cpp; path = ../../../../Source/Deadly.cpp; sourceTree = "<group>"; };
+		69FC7A2B18EEF9C2005228C5 /* Deadly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Deadly.h; path = ../../../../Source/Deadly.h; sourceTree = "<group>"; };
+		69FC7A2C18EEF9C2005228C5 /* PowerUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PowerUp.cpp; path = ../../../../Source/PowerUp.cpp; sourceTree = "<group>"; };
+		69FC7A3018F5C249005228C5 /* Stars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stars.cpp; path = ../../../../Source/Stars.cpp; sourceTree = "<group>"; };
+		69FC7A3118F5C249005228C5 /* Stars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stars.h; path = ../../../../Source/Stars.h; sourceTree = "<group>"; };
 		69FEF4441821306800D83578 /* Wibble Wobble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wibble Wobble.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FEF4471821306800D83578 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69FEF4491821306800D83578 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -472,6 +492,12 @@
 		69FEF47D1821331C00D83578 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				69FC7A3018F5C249005228C5 /* Stars.cpp */,
+				69FC7A3118F5C249005228C5 /* Stars.h */,
+				69FC7A2918EEF9C2005228C5 /* CollidePlayerDeadly.cpp */,
+				69FC7A2A18EEF9C2005228C5 /* Deadly.cpp */,
+				69FC7A2B18EEF9C2005228C5 /* Deadly.h */,
+				69FC7A2C18EEF9C2005228C5 /* PowerUp.cpp */,
 				69FEF47E1821333C00D83578 /* AI.cpp */,
 				69FEF47F1821333C00D83578 /* AI.h */,
 				69FEF4801821333C00D83578 /* AIChasePet.cpp */,
@@ -523,6 +549,8 @@
 				69FEF4A11821333C00D83578 /* CollidePlayerTrigger.cpp */,
 				69FEF4A21821333C00D83578 /* ContextMenu.cpp */,
 				69FEF4A31821333C00D83578 /* ContextMenu.h */,
+				69FC7A1F18E6D541005228C5 /* Depth.cpp */,
+				69FC7A2018E6D541005228C5 /* Depth.h */,
 				69112FFD1840C16000763639 /* Describe.cpp */,
 				69112FFE1840C16000763639 /* Describe.h */,
 				69FEF4A41821333C00D83578 /* Dino.cpp */,
@@ -553,6 +581,8 @@
 				69FEF4B31821333C00D83578 /* GSGameOver.h */,
 				69FEF4B41821333C00D83578 /* GSLevelComplete.cpp */,
 				69FEF4B51821333C00D83578 /* GSLevelComplete.h */,
+				69FC7A2118E6D541005228C5 /* GSLoadLayers.cpp */,
+				69FC7A2218E6D541005228C5 /* GSLoadLayers.h */,
 				69FEF4B61821333C00D83578 /* GSLoadLevel.cpp */,
 				69FEF4B71821333C00D83578 /* GSLoadLevel.h */,
 				69FEF4B81821333C00D83578 /* GSLogo.cpp */,
@@ -613,8 +643,11 @@
 				69FEF4E21821333C00D83578 /* PlayWav.h */,
 				6901A1371894052500D98C04 /* Portal.cpp */,
 				6901A1381894052500D98C04 /* Portal.h */,
+				69FC7A2318E6D541005228C5 /* PowerUp.h */,
 				6908C06A182E4E820067759D /* PreventIntersection.cpp */,
 				6908C06B182E4E820067759D /* PreventIntersection.h */,
+				69FC7A2418E6D541005228C5 /* ProcGen.cpp */,
+				69FC7A2518E6D541005228C5 /* ProcGen.h */,
 				6911D6AA1871998400D4C265 /* PropertiesDialog.cpp */,
 				6911D6AB1871998400D4C265 /* PropertiesDialog.h */,
 				6911D6AC1871998400D4C265 /* PropertyKeys.h */,
@@ -724,6 +757,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69FC7A2F18EEF9C2005228C5 /* PowerUp.cpp in Sources */,
 				69FEF47A182131CA00D83578 /* AppDelegate.mm in Sources */,
 				69FEF47B182131CA00D83578 /* main.m in Sources */,
 				69FEF47C182131CA00D83578 /* ViewController.mm in Sources */,
@@ -737,6 +771,7 @@
 				69FEF4FD1821333C00D83578 /* Animated.cpp in Sources */,
 				69FEF4FE1821333C00D83578 /* BlinkCharacter.cpp in Sources */,
 				69FEF4FF1821333C00D83578 /* Block.cpp in Sources */,
+				69FC7A2718E6D541005228C5 /* GSLoadLayers.cpp in Sources */,
 				69FEF5001821333C00D83578 /* Bonus.cpp in Sources */,
 				69FEF5011821333C00D83578 /* BonusParticleEffect.cpp in Sources */,
 				69FEF5021821333C00D83578 /* Camera.cpp in Sources */,
@@ -761,6 +796,7 @@
 				69FEF5141821333C00D83578 /* Floor.cpp in Sources */,
 				69FEF5151821333C00D83578 /* GSEditMenu.cpp in Sources */,
 				69FEF5161821333C00D83578 /* GSGameOver.cpp in Sources */,
+				69FC7A2818E6D541005228C5 /* ProcGen.cpp in Sources */,
 				69FEF5171821333C00D83578 /* GSLevelComplete.cpp in Sources */,
 				690C452B1885C77F007A505D /* SelectedNode.cpp in Sources */,
 				69FEF5181821333C00D83578 /* GSLoadLevel.cpp in Sources */,
@@ -771,6 +807,7 @@
 				69FEF51D1821333C00D83578 /* GSPaused.cpp in Sources */,
 				69FEF51E1821333C00D83578 /* GSText.cpp in Sources */,
 				69335F09184B9DDF00BB69D5 /* GSNewOrContinue.cpp in Sources */,
+				69FC7A2618E6D541005228C5 /* Depth.cpp in Sources */,
 				69FEF51F1821333C00D83578 /* GSTitle.cpp in Sources */,
 				69FEF5201821333C00D83578 /* Hud.cpp in Sources */,
 				69FEF5211821333C00D83578 /* LevelManager.cpp in Sources */,
@@ -779,12 +816,14 @@
 				69FEF5241821333C00D83578 /* MySceneGraph.cpp in Sources */,
 				69FEF5251821333C00D83578 /* MyTextMaker.cpp in Sources */,
 				6901A13E1894052500D98C04 /* TriggerNode.cpp in Sources */,
+				69FC7A3218F5C249005228C5 /* Stars.cpp in Sources */,
 				69FEF5261821333C00D83578 /* Npc.cpp in Sources */,
 				69FEF5271821333C00D83578 /* Objective.cpp in Sources */,
 				69FEF5281821333C00D83578 /* OnFloor.cpp in Sources */,
 				69FEF5291821333C00D83578 /* OnFloorCharacter.cpp in Sources */,
 				69FEF52A1821333C00D83578 /* Pet.cpp in Sources */,
 				6911D6AD1871998400D4C265 /* PropertiesDialog.cpp in Sources */,
+				69FC7A2D18EEF9C2005228C5 /* CollidePlayerDeadly.cpp in Sources */,
 				69FEF52B1821333C00D83578 /* Player.cpp in Sources */,
 				69FEF52C1821333C00D83578 /* PlayerInfo.cpp in Sources */,
 				69FEF52D1821333C00D83578 /* PlayWav.cpp in Sources */,
@@ -802,6 +841,7 @@
 				6908C06E182E4E820067759D /* CollidePetPet.cpp in Sources */,
 				6908C06F182E4E820067759D /* PreventIntersection.cpp in Sources */,
 				6908C070182E4E820067759D /* Score.cpp in Sources */,
+				69FC7A2E18EEF9C2005228C5 /* Deadly.cpp in Sources */,
 				69335F07184B9DDF00BB69D5 /* GameConsts.cpp in Sources */,
 				690D1BF9182FFED900A92946 /* GSPetBonus.cpp in Sources */,
 				690D1BFC183503A500A92946 /* ShadowManager.cpp in Sources */,
