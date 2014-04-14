@@ -37,7 +37,7 @@ bool LevelManager::SaveLevel(const std::string& filename)
   bool HAS_VERSION_INFO = true;
   bool NOT_BINARY = false;
   bool DONT_USE_ROOT = false;
-  File::Impl impl = File::STD;
+  File::Impl impl = File::STD; // always - saving!
 
   File f(HAS_VERSION_INFO, impl);
 
@@ -125,17 +125,31 @@ bool LevelManager::Open(const std::string& filename)
   bool HAS_VERSION_INFO = true;
   bool NOT_BINARY = false;
   bool useRoot = false;
+  
+  // On Mac and PC, level files are OS files so we can edit them
+#if defined(WIN32) || defined(MACOSX)
   File::Impl impl = File::STD;
+#else
+  File::Impl impl = File::GLUE;
+#endif
+
   if (levelFilename.empty())
   {
-    levelFilename = GetSaveDir() + "levels/level-" +
-      ToString(m_levelId) + ".txt"; 
+#if defined(WIN32) || defined(MACOSX)
+    levelFilename = GetSaveDir();
+#endif
+    levelFilename += "levels/level-" + ToString(m_levelId) + ".txt"; 
     std::cout << "Level file: " << levelFilename << "\n";
 
     if (!FileExists(levelFilename))
     {
       std::cout << "Oh no! Level file does not exist! Using level 1...\n";
-      levelFilename = GetSaveDir() + "levels/level-1.txt";
+#if defined(WIN32) || defined(MACOSX)
+      levelFilename = GetSaveDir();
+#else
+      levelFilename = "";
+#endif
+      levelFilename += "levels/level-1.txt";
     }
 
     // Never glue file -- level files are extracted to OS dir

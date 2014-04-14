@@ -55,7 +55,12 @@ bool ProcGen::OpenLayer(int layerNum) //const std::string& layerFilename)
   Layer* layer = new Layer;
   m_layers.push_back(layer);
 
-  std::string layerFilename = GetSaveDir() + "levels/layer-" + ToString(layerNum) + ".txt";
+  std::string layerFilename;
+#if defined(WIN32) || defined(MACOSX)
+  layerFilename = GetSaveDir();
+#endif
+  
+  layerFilename += "levels/layer-" + ToString(layerNum) + ".txt";
 
   if (!layer->Open(layerFilename))
   {
@@ -90,7 +95,13 @@ bool ProcGen::Layer::Open(const std::string& layerFilename)
   bool HAS_VERSION_INFO = true;
   bool NOT_BINARY = false;
   bool useRoot = false;
+
+  // On Mac and PC, level files are OS files so we can edit them
+#if defined(WIN32) || defined(MACOSX)
   File::Impl impl = File::STD;
+#else
+  File::Impl impl = File::GLUE;
+#endif
 
   m_file = new File(HAS_VERSION_INFO, impl);
 
