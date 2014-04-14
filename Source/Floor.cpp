@@ -23,8 +23,6 @@ const char* Floor::NAME = "floor";
 
 Floor::Floor()
 {
-  OnFloor::AddFloor(this);
-
   m_rotAxis = Vec3f(1.0, 0, 0); 
   // Just needs to be non-zero until a real axis of rotation is found
 
@@ -128,9 +126,24 @@ bool Floor::LoadMesh(File* f)
   return true;
 }
 
+void Floor::RemoveFromGame()
+{
+  // Don't call base class, as floor are not casters
+
+  TheGame::Instance()->EraseGameObject(GetId());
+
+  RemoveSceneNodeFromGraph();
+
+  TheShadowManager::Instance()->RemoveFloor(this);
+
+  OnFloor::RemoveFloor(this);
+}
+
 void Floor::AddToGame()
 {
   TheGame::Instance()->AddGameObject(this);
+
+  OnFloor::AddFloor(this);
 
   CreateSceneNode(); 
 

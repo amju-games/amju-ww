@@ -1,3 +1,4 @@
+#include <sstream>
 #include "ShadowManager.h"
 #include "MySceneGraph.h"
 #include "Describe.h"
@@ -19,6 +20,13 @@ void ShadowManager::Clear()
   m_first = true;
 }
 
+std::string ShadowManager::Report() const
+{
+  std::stringstream s;
+  s << "Casters: " << m_casters.size() << " floors: " << m_floors.size() << " floor2casters: " << m_floorToCasterMap.size();
+  return s.str();
+}
+
 void ShadowManager::SetShadowVisible(WWGameObject* obj, bool vis)
 {
   if (m_casters.find(obj) != m_casters.end())
@@ -26,6 +34,16 @@ void ShadowManager::SetShadowVisible(WWGameObject* obj, bool vis)
     Shadow* shadow = m_casters[obj];
     shadow->SetVisible(vis);
   }
+}
+
+void ShadowManager::RemoveFloor(Floor* floor)
+{
+  for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
+  {
+    Shadow* shadow = it->second; 
+    shadow->EraseCollisionMesh(floor->GetCollisionMesh());
+  }
+  m_floors.erase(floor);
 }
 
 void ShadowManager::AddFloor(Floor* floor)

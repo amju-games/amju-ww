@@ -6,11 +6,10 @@
 #include "Vec2.h"
 #include "AABB.h"
 #include "Shadow.h"
+#include "Floor.h"
 
 namespace Amju
 {
-class Floor;
-
 class OnFloor : public WWGameObject
 {
 public:
@@ -32,6 +31,7 @@ public:
 
   // List of all Floor objects this level
   static void AddFloor(Floor*);
+  static void RemoveFloor(Floor*);
   static void ClearFloors();
 
   // Returns true if character has non-zero vel due to user or AI control
@@ -78,13 +78,13 @@ protected:
   bool m_onFloor;
 
   // The floor/platform we are on
-  Floor* m_floor;
+  RCPtr<Floor> m_floor;
 
   // Mass of this object, for physics
   float m_mass;
 
   // List of all Floor objects this level
-  typedef std::vector<RCPtr<Floor> > Floors;
+  typedef std::set<RCPtr<Floor> > Floors;
   static Floors s_floors;
 
   // True if velocity is non-zero, due to character walking or running.
