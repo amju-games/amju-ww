@@ -618,7 +618,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   const float Y_DEAD_ZONE = 0.02f;
 
   const float X_MULT = 4.0f;
-  const float Y_MULT = 4.0f;
+  const float Y_MULT = 20.0f;
   
   if (x > -X_DEAD_ZONE && x < X_DEAD_ZONE)
   {
@@ -645,7 +645,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   m_vel.z = y * 100.0f * m_velMult; 
 
   // Work out direction to face
-  SetDir(RadToDeg(atan2((double)cp.x, (double)cp.y)));
+  SetDir(RadToDeg(atan2((double)x, (double)y)));
 
   SetIsControlled(true); 
  
