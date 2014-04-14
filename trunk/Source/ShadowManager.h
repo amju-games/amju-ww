@@ -20,6 +20,7 @@ public:
   void Clear();
 
   void AddFloor(Floor*);
+  void RemoveFloor(Floor*);
 
   // Add a shadow casting game object. This creates a shadow scene node.
   void AddCaster(WWGameObject*, float size, const std::string& textureName);
@@ -29,6 +30,9 @@ public:
 
   // Set shadow visible/invisible for the given caster
   void SetShadowVisible(WWGameObject* caster, bool vis);
+
+  // Report num casters, floors, etc 
+  std::string Report() const;
 
 private:
   bool m_first;

@@ -31,6 +31,7 @@ public:
   virtual void Reset();
   virtual bool CreateSceneNode() override;
   virtual void AddToGame();
+  virtual void RemoveFromGame();
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey) override;
   virtual void SetProp(PropertyKey, PropertyValue) override;
