@@ -5,13 +5,67 @@
 25
 
 // Game object type
-dino
-107
+camera
+// ID
+0
+// Viewport ID
+0
+// Target ID
+101
+end
+
+// Game object type
+camera
+// ID
+1
+// Viewport ID
+1
+// Target ID
+102
+end
+
+// Game object type
+bird
+99
 // Position
-825.000000, 99.999115, 50.000000
-dino.md2
-dino1a.png
-dino1.png
+1552.789673, 158.083405, 20.089867
+pz-bird.md2
+bird1a.png
+bird1.png
+// Shadow texture & size
+shadow.png
+10.000000
+end
+
+// Game object type
+player
+101
+// Position
+1362.500000, 126.787354, 50.000000
+// Player ID
+0
+// MD2 mesh name
+amju.md2
+// Texture names
+amju2.png
+amju2a.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+player
+102
+// Position
+75.000000, 145.537415, 57.500000
+// Player ID
+1
+// MD2 mesh name
+marin.md2
+// Texture names
+marin1.png
+marin1a.png
 // Shadow texture & size
 shadow.png
 20.000000
@@ -19,8 +73,8 @@ end
 
 // Game object type
 bonus
-111
-568.750000, 125.000000, 37.500000
+110
+637.500000, 137.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -28,6 +82,21 @@ shadow.png
 20.000000
 // Bonus points
 1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+112
+281.250000, 137.500000, 62.500000
+// Mesh filename
+fruit2.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+3000
 // Bonus lives
 0
 end
@@ -35,7 +104,7 @@ end
 // Game object type
 bonus
 113
-887.500000, 125.000000, 43.750000
+162.500000, 125.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -45,15 +114,6 @@ shadow.png
 1000
 // Bonus lives
 0
-end
-
-// Game object type
-fence
-2002
-912.500000, 101.562500, 53.125000
-0.000000
-// Mesh filename
-grave2.obj
 end
 
 // Game object type
@@ -66,50 +126,28 @@ pz-fence.obj
 end
 
 // Game object type
+tut-trigger
+2020
+// AABB
+-150.000000, -50.000000, 350.000000, 400.000000, 0.000000, 100.000000
+// Tutorial text
+Yeah, you've got it! OK, tap to jump!
+end
+
+// Game object type
 staticfloor
 2023
-200.000000, 100.000000, 50.000000
+100.000000, 100.000000, 50.000000
 // Y rotation
 360.000000
 // Mesh filename
-rd_a41a.obj
-end
-
-// Game object type
-floor
-4003
-575.000000, 100.000000, 50.000000
-// Y rotation
-0.000000
-// Mesh filename
-block_rect_2x1.obj
-// Rotation axis flags
-4
-// Max AABB height
-100.000000
-// Inertia
-50.000000
-end
-
-// Game object type
-exit
-4006
-1175.000000, 104.375000, 50.000000
-// Y rotation
-0.000000
-// Mesh filename
-transporter.obj
-// Next level
-4
-// Shadow texture & size
-flare.png
-20.000000
+rd_a21a.obj
 end
 
 // Game object type
 bonus
 4007
-125.000000, 137.500000, 56.250000
+550.000000, 137.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -124,7 +162,7 @@ end
 // Game object type
 bonus
 4008
-206.250000, 137.500000, 31.250000
+1425.000000, 137.500000, 56.250000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -139,7 +177,7 @@ end
 // Game object type
 bonus
 4009
-993.750000, 168.750000, 62.500000
+750.000000, 137.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -154,7 +192,7 @@ end
 // Game object type
 bonus
 5001
-1093.750000, 143.750000, 50.000000
+431.250000, 162.500000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -167,47 +205,47 @@ shadow.png
 end
 
 // Game object type
-fence
-5006
-850.000000, 101.562500, 15.625000
-0.000000
-// Mesh filename
-grave1.obj
+tut-trigger
+5003
+// AABB
+-175.000000, -75.000000, 250.000000, 300.000000, 0.000000, 100.000000
+// Tutorial text
+Hello! How did you get up here?&Whatever. Tilt to move around! Try it!
 end
 
 // Game object type
-fence
-5007
-287.500000, 95.312500, 40.625000
-0.000000
-// Mesh filename
-rock_1x1.obj
+tut-trigger
+5004
+// AABB
+-175.000000, -75.000000, 437.500000, 487.500000, 0.000000, 100.000000
+// Tutorial text
+You might notice that you're going up and up...&You'd better go DOWN or you'll disappear!
 end
 
 // Game object type
 staticfloor
 5009
-1150.000000, 100.000000, 50.000000
+1400.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a21a.obj
+rd_a21.obj
 end
 
 // Game object type
 staticfloor
 5010
-775.000000, 150.000000, -150.000000
+500.000000, 100.000000, 50.000000
 // Y rotation
-720.000000
+540.000000
 // Mesh filename
-wall2.obj
+rd_a41.obj
 end
 
 // Game object type
 fence
 5211
-1237.500000, 87.500000, 50.000000
+1462.500000, 87.500000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -216,7 +254,7 @@ end
 // Game object type
 bonus
 5212
-250.000000, 125.000000, 56.250000
+968.750000, 137.500000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -231,7 +269,7 @@ end
 // Game object type
 bonus
 5213
-62.500000, 125.000000, 37.500000
+1043.750000, 150.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -246,7 +284,22 @@ end
 // Game object type
 bonus
 5214
-350.000000, 125.000000, 43.750000
+1143.750000, 150.000000, 37.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5215
+868.750000, 175.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -260,68 +313,10 @@ end
 
 // Game object type
 staticfloor
-5788
-850.000000, 100.000000, 50.000000
+5216
+1000.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a21b.obj
-end
-
-// Game object type
-bonus
-5789
-525.000000, 125.000000, 43.750000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-5790
-618.750000, 125.000000, 50.000000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-5791
-806.250000, 125.000000, 43.750000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-dino
-5792
-// Position
-200.000000, 299.999115, 50.000000
-dino.md2
-dino1a.png
-dino1.png
-// Shadow texture & size
-shadow.png
-20.000000
+rd_a41.obj
 end
