@@ -1,3 +1,7 @@
+# This file uses centimeters as units for non-parametric coordinates.
+
+mtllib plat_rect_4x1_std.mtl
+g default
 v -200.000000 0.000000 50.000000
 v 200.000000 0.000000 50.000000
 v -200.000000 12.500000 50.000000
@@ -60,6 +64,9 @@ vn -1.000000 0.000000 0.000000
 vn -1.000000 0.000000 0.000000
 vn -1.000000 0.000000 0.000000
 vn -1.000000 0.000000 0.000000
+s off
+g plat_rect_4x4_std:Mesh
+usemtl lambert2SG
 f 1/1/1 2/2/2 3/3/3
 f 3/3/4 2/2/5 4/4/6
 f 3/3/7 4/4/8 5/5/9
