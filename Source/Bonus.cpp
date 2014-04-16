@@ -90,7 +90,7 @@ void Bonus::Customise(int levelId, float depth)
     m_lives = 0;
     return;
   }
-  else if (Rnd(0, 10) > 5) // PROCGEN
+  else if (Rnd(0, 10) < 9.5f) // PROCGEN - bonus life is super rare
   {
     // Power ups
     int r = (int)Rnd(0, MAX_BEANS);
@@ -107,6 +107,7 @@ std::cout << Describe(this) << " has power up " << m_powerUp << "\n";
   }
   else
   {
+    // Bonus life - should be super rare
     m_meshFilename = "heart.obj";
     m_lives = 1;
     m_points = 0;
