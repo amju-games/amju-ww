@@ -8,7 +8,7 @@
 dino
 107
 // Position
-306.250000, 92.529610, 25.000000
+406.250000, 92.529213, 25.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -65,7 +65,7 @@ end
 // Game object type
 fence
 5252
-25.000000, -15.625000, 50.000000
+125.000000, -15.625000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -83,7 +83,7 @@ end
 // Game object type
 bonus
 5254
-50.000000, 25.000000, 50.000000
+175.000000, 37.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -98,7 +98,7 @@ end
 // Game object type
 bonus
 5255
-125.000000, 50.000000, 50.000000
+250.000000, 62.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -113,7 +113,7 @@ end
 // Game object type
 bonus
 5256
-250.000000, 100.000000, 50.000000
+350.000000, 100.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -128,7 +128,7 @@ end
 // Game object type
 bonus
 5257
-350.000000, 125.000000, 50.000000
+450.000000, 125.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -143,21 +143,6 @@ end
 // Game object type
 bonus
 5258
-525.000000, 125.000000, 50.000000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-5259
 625.000000, 125.000000, 50.000000
 // Mesh filename
 fruit1.obj
@@ -172,23 +157,8 @@ end
 
 // Game object type
 bonus
-5260
-725.000000, 125.000000, 50.000000
-// Mesh filename
-fruit1.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-1000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
-5261
-825.000000, 125.000000, 50.000000
+5259
+525.000000, 162.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -248,7 +218,7 @@ end
 // Game object type
 staticfloor
 5787
-200.000000, 100.000000, 50.000000
+300.000000, 100.000000, 50.000000
 // Y rotation
 180.000000
 // Mesh filename
@@ -258,9 +228,39 @@ end
 // Game object type
 staticfloor
 5788
-575.000000, 101.562500, 50.000000
+675.000000, 101.562500, 50.000000
 // Y rotation
 180.000000
 // Mesh filename
 rd_a21a.obj
+end
+
+// Game object type
+bonus
+5797
+725.000000, 125.000000, 50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5798
+825.000000, 125.000000, 50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
 end

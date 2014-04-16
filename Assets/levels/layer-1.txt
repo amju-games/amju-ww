@@ -8,7 +8,7 @@
 dino
 107
 // Position
-487.500000, 95.990242, 25.000000
+487.500000, 95.989342, 25.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -45,7 +45,7 @@ end
 // Game object type
 deadly
 2024
-1175.000000, 125.000000, 75.000000
+1725.000000, 62.500000, 75.000000
 0.000000
 // Mesh filename
 spikes.obj
@@ -64,7 +64,7 @@ end
 // Game object type
 staticfloor
 4032
-1173.437500, 125.000000, 75.000000
+1723.437500, 62.500000, 75.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -257,7 +257,7 @@ end
 // Game object type
 deadly
 5795
-1125.000000, 175.000000, 25.000000
+1675.000000, 112.500000, 25.000000
 0.000000
 // Mesh filename
 spikes.obj
@@ -266,7 +266,7 @@ end
 // Game object type
 staticfloor
 5796
-1123.437500, 175.000000, 25.000000
+1673.437500, 112.500000, 25.000000
 // Y rotation
 0.000000
 // Mesh filename
