@@ -10,8 +10,8 @@ lurk-comp
 
 gui-button
 ok-button
--0.1, 0
-0.2, 0.2
+-0.15, 0
+0.3, 0.2
 gui-button-1.png
 $$$empty
 cheri, 2.0, sx=1.6
