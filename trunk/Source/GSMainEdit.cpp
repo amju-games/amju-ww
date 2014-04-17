@@ -9,7 +9,7 @@
 #include <Screen.h>
 #include <DrawRect.h>
 #include "GSMainEdit.h"
-#include "GSTitle.h"
+#include "GSLoadLayers.h"
 #include "GSLoadLevel.h"
 #include "Game.h"
 #include "CursorManager.h"
@@ -129,7 +129,7 @@ static void OnQuitSaveChanges(Dialog* dlg)
   {
     std::cout << "Quit->Save NO clicked.\n";
     // Don't save
-    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
+    TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());  
   }
   else if (r == AMJU_CANCEL)
   {
@@ -149,7 +149,7 @@ static void OnQuitEditMode()
   }
   else 
   {
-    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
+    TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());  
   }
 }
 
@@ -654,7 +654,7 @@ void GSMainEdit::OnActive()
   m_selset.clear();
   s_mode = AMJU_MODE_DONOTHING;
 
-  m_clearColour = Colour(.8, .8, 1, 1); // just so not white, so we can see all objects
+  m_clearColour = Colour(0.5f, 0.5f, 1, 1); // just so not white, so we can see all objects
   GSMain::OnActive();
   // Show bounding boxes - TODO don't use this, draw object AABBs
 //  SceneNode::SetGlobalShowAABB(true);
