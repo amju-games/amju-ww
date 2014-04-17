@@ -5,12 +5,6 @@
 #include <Singleton.h>
 #include <GameObject.h>
 
-/*
-TODO
-Each layer needs to say which layers it can follow (go underneath), and at what depth -- i.e. how far underneath.
-AND say what layers can go underneath it? -> we want to be able to add more layer files, which integrate with existing.
-*/
-
 namespace Amju
 {
 class ProcGen;
@@ -28,14 +22,23 @@ private:
   friend TheProcGen;
 
 public:
-  void Init(); // Loads number of layers, filenames
+  void Init(); // Finds number of layers and levels
 
   int GetNumLayers() const;
-  bool OpenLayer(int layerNum); //const std::string& layerFilename);
+  int GetNumLevels() const;
+
+  // layerNum > 0, so 1 => "layer-1.txt" etc
+  bool OpenLayer(int layerNum); 
   bool LoadLayerObject();
   bool IsLayerLoaded() const;
+  void CloseLayer();
 
+  // Called at the start of each level.
+  // So this is the place to decide on the active layers for the current 
+  //  level.
   void Reset();
+
+  // Choose layer number for next time we add a layer to the level.
   void PickNextLayer();
 
   // Checks Depth to see if we should add the next layer 
@@ -66,8 +69,12 @@ private:
   Layers m_layers;
 
   int m_numLayers;
+  int m_numLevels;
 
   int m_nextLayer; 
   float m_nextDepth; // when we reach this depth, we add the above layer
+
+  typedef std::vector<int> Ints;
+  Ints m_activeLayers;
 };
 }

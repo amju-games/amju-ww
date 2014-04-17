@@ -16,13 +16,13 @@ void GSLoadLayers::OnActive()
 {
   GSText::OnActive();
 
-  m_gui = WWLoadGui("loadlevel-gui.txt");
+  m_gui = WWLoadGui("loadlayers-gui.txt");
   Assert(m_gui);
 //  GuiElement* bar = m_gui->GetElementByName("bar");
   // Hide GO button 
-  GuiButton* go = (GuiButton*)m_gui->GetElementByName("go-button");
-  Assert(go);
-  go->SetVisible(false);
+//  GuiButton* go = (GuiButton*)m_gui->GetElementByName("go-button");
+//  Assert(go);
+//  go->SetVisible(false);
 
   TheProcGen::Instance()->Init();
   
@@ -40,6 +40,7 @@ void GSLoadLayers::Update()
   {
     pg->LoadLayerObject();
   }
+  pg->CloseLayer();
   m_numLayersLoaded++;
 
   if (m_numLayersLoaded == pg->GetNumLayers())
