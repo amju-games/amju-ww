@@ -43,6 +43,17 @@ Exit::Exit()
   m_isExiting = false;
 }
   
+bool Exit::YesAddToLevel(int levelId, float depth)
+{
+  if (depth < 1000)
+  {
+    return false;
+  }
+  // PROCGEN
+  bool yes = RDRandom(10) > 4;
+  return yes;
+}
+
 void Exit::Customise(int levelId, float depth) 
 {
   // TODO TEMP TEST
