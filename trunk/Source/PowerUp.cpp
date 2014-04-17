@@ -201,7 +201,7 @@ void PowerUpManager::SetPowerUp(int playerId, PowerUp pu)
   static const Colour FGCOL(1, 1, 1, 1);
   const bool IMMEDIATE = true;
   TheLurker::Instance()->Queue(
-    LurkMsg(strs[pu], FGCOL, COLOURS[pu], AMJU_TOP), IMMEDIATE); 
+    LurkMsg(strs[pu], FGCOL, COLOURS[pu], AMJU_BOTTOM), IMMEDIATE);
 }
 
 void PowerUpManager::ResetPowerUps()
