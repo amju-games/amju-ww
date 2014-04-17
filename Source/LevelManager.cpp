@@ -14,6 +14,8 @@
 #include "GameMode.h"
 #include "Describe.h"
 #include "SaveDir.h"
+#include "ProcGen.h"
+#include "RDRandom.h"
 
 namespace Amju
 {
@@ -138,23 +140,20 @@ bool LevelManager::Open(const std::string& filename)
 #if defined(WIN32) || defined(MACOSX)
     levelFilename = GetSaveDir();
 #endif
-    levelFilename += "levels/level-" + ToString(m_levelId) + ".txt"; 
+    
+    int levelNum = m_levelId;
+    if (levelNum > 1)
+    {
+      // Get random level num between 2 and max value
+      // (1 is reserved for the first level of the game)
+      int maxLevel = TheProcGen::Instance()->GetNumLevels();
+      levelNum = RDRandom(maxLevel - 1) + 2;
+      std::cout << "Loading level file level-" << levelNum << ".txt...\n";
+    }
+    
+    levelFilename += "levels/level-" + ToString(levelNum) + ".txt";
     std::cout << "Level file: " << levelFilename << "\n";
 
-    if (!FileExists(levelFilename))
-    {
-      std::cout << "Oh no! Level file does not exist! Using level 1...\n";
-#if defined(WIN32) || defined(MACOSX)
-      levelFilename = GetSaveDir();
-#else
-      levelFilename = "";
-#endif
-      // Level 1 is tutorial level, so default file is level 2.
-      levelFilename += "levels/level-2.txt";
-    }
-
-    // Never glue file -- level files are extracted to OS dir
-//    impl = File::GLUE;
     useRoot = false;
   }
 
