@@ -24,7 +24,7 @@ public:
   void SetFloor(Floor*); 
   const Floor* GetFloor() const;
 
-  virtual void OnWallCollision(const Vec3f& normal) {}
+  virtual void OnWallCollision(const Vec3f& normal) { m_wallCollide = true; }
 
   // Return true if we are above a floor, i.e. on solid ground.
   bool IsOnFloor() const; 
@@ -106,6 +106,8 @@ protected:
   Matrix m_lastFloorRotation;
 
   float m_heightFallenFrom;
+  
+  bool m_wallCollide;
 };
 }
 
