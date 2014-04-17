@@ -16,6 +16,8 @@ void GSLoadLayers::OnActive()
 {
   GSText::OnActive();
 
+  m_numLayersLoaded = 0;
+
   m_gui = WWLoadGui("loadlayers-gui.txt");
   Assert(m_gui);
 //  GuiElement* bar = m_gui->GetElementByName("bar");
