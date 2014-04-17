@@ -55,7 +55,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
       pos += n * penDepth;
       go1->SetPos(pos); 
       ab.Translate(pos);
-
+      
     }
     else
     {
@@ -85,7 +85,10 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     Assert(onfloor);
     if (onfloor->IsFalling())
     {
-      Vec3f vel = norm * PUSH_AWAY_VEL;
+      Vec3f vel = onfloor->GetVel();
+      norm *= PUSH_AWAY_VEL;
+      vel.x = norm.x;
+      vel.z = norm.z;
       onfloor->SetVel(vel);
     }
   }

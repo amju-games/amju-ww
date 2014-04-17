@@ -535,7 +535,7 @@ bool Player::OnKeyEvent(const KeyEvent& ke)
     switch (ke.keyType)
     {
     case AMJU_KEY_UP:
-      if (!IsFalling())
+////      if (!IsFalling())
       {
         m_vel.z = ke.keyDown ? -MAX_SPEED : 0;
         SetDir(180.0f);
@@ -544,7 +544,7 @@ bool Player::OnKeyEvent(const KeyEvent& ke)
       return true;
 
     case AMJU_KEY_DOWN:
-      if (!IsFalling())
+////      if (!IsFalling())
       {
         m_vel.z = ke.keyDown ? MAX_SPEED : 0;
         SetDir(0.0f);
@@ -553,7 +553,7 @@ bool Player::OnKeyEvent(const KeyEvent& ke)
       return true;
 
     case AMJU_KEY_LEFT:
-      if (!IsFalling())
+////      if (!IsFalling())
       {
         m_vel.x = ke.keyDown ? -MAX_SPEED : 0;
         SetDir(-90.0f);
@@ -562,7 +562,7 @@ bool Player::OnKeyEvent(const KeyEvent& ke)
       return true;
 
     case AMJU_KEY_RIGHT:
-      if (!IsFalling())
+////      if (!IsFalling())
       {
         m_vel.x = ke.keyDown ? MAX_SPEED : 0;
         SetDir(90.0f);
@@ -603,9 +603,11 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
     return false;
   }
 
-  if (IsFalling())
+  if (m_wallCollide) /// not: IsFalling())
   {
     return false;
+    
+    m_wallCollide = false; // ????
   }
 
   Vec2f cp = bbe.GetCalibratedCoord();
@@ -668,10 +670,10 @@ bool Player::OnRotationEvent(const RotationEvent& re)
     return false;
   }
 
-  if (IsFalling())
-  {
-    return false;
-  }
+////  if (IsFalling())
+////  {
+////    return false;
+////  }
 
   float degs = re.degs;
   // Dead zone
@@ -711,10 +713,10 @@ bool Player::OnJoyAxisEvent(const JoyAxisEvent& je)
     return false;
   }
 
-  if (IsFalling())
-  {
-    return false;
-  }
+////  if (IsFalling())
+////  {
+////    return false;
+////  }
 
   float stickX = je.x;
   float stickY = je.y;

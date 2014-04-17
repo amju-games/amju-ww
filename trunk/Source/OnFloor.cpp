@@ -46,6 +46,8 @@ OnFloor::OnFloor()
   Reset();
 
   m_isControlled = false; // TODO in Reset() ?
+  
+  m_wallCollide = false;
 }
 
 bool OnFloor::IsControlled() const
