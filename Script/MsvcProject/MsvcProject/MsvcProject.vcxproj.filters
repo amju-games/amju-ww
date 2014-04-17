@@ -314,6 +314,9 @@
     <ClCompile Include="..\..\..\Source\CollidePlayerDeadly.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Source\RDRandom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\AI.h">
@@ -593,6 +596,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\Stars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\RDRandom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

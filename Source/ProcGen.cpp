@@ -269,7 +269,8 @@ void ProcGen::Reset()
     ints.push_back(i);
   }
   // PROCGEN
-  std::random_shuffle(ints.begin(), ints.end(), RDRandom);
+  // Oh noes, different versions of std::random_shuffle give different shuffled results
+  RDRandomShuffle(ints.begin(), ints.end());
 
   // Add some of the shuffled ints to the active list
   for (int i = 0; i < n; i++)
@@ -283,7 +284,7 @@ void ProcGen::Reset()
   // Finally, shuffle the active layers?
 
 std::cout << "This level (" << levelId << ") is comprised of these layers: ";
-for (int i = 0; i < m_activeLayers.size(); i++)
+for (int i = 0; i < (int)m_activeLayers.size(); i++)
 {
   std::cout << m_activeLayers[i] << " ";
 }
