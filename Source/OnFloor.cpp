@@ -21,6 +21,12 @@ static const float GRAVITY = -200.0f;
 
 OnFloor::Floors OnFloor::s_floors;
 
+void OnFloor::OnWallCollision(const Vec3f& normal) 
+{ 
+  m_wallNormal = normal;
+  m_wallCollide = true; 
+}
+  
 void OnFloor::RemoveFloor(Floor* f)
 {
   s_floors.erase(f);

@@ -44,7 +44,6 @@ public:
   virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe);
 
   virtual void OnAnimFinished();
-  virtual void OnWallCollision(const Vec3f& normal) override;
 
   virtual void StartBeingEaten(OnFloorCharacter* eater) override;
   virtual void StartBeingDead();
