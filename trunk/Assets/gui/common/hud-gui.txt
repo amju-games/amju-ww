@@ -56,7 +56,7 @@ level-num
 // size
 1.95, 0.1
 // Text 
-1
+$$$empty
 berlin, 1.0, fgcol=ffffff, right, sx=1.6
 
 // DEPTH
