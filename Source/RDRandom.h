@@ -15,29 +15,18 @@ int RDRandom(int high);
 
 
 // Cross-platform Random Shuffle
+// From http://en.cppreference.com/w/cpp/algorithm/random_shuffle
 
-// This impl of random_shuffle is from MSVC 2010 - the idea is to get the same shuffle 
-//  across multiple platforms.
-template<class _RanIt,
-	class _Fn1,
-	class _Diff> inline
-	void _Random_shuffle(_RanIt _First, _RanIt _Last, _Fn1& _Func, _Diff *)
-	{	// shuffle nonempty [_First, _Last) using random function _Func
-	_RanIt _Next = _First;
-	for (_Diff _Index = 2; ++_Next != _Last; ++_Index)
-		_STD iter_swap(_Next, _First + _Diff(_Func(_Index) % _Index));
-	}
-
-template<class _RanIt,
-	class _Fn1> inline
-	void random_shuffle(_RanIt _First, _RanIt _Last, _Fn1& _Func)
-	{	// shuffle [_First, _Last) using random function _Func
-//	_DEBUG_RANGE(_First, _Last);
-//	_DEBUG_POINTER(_Func);
-	if (_First != _Last)
-		_Random_shuffle(_Unchecked(_First), _Unchecked(_Last), _Func,
-			_Dist_type(_First));
-	}
+template<class RandomIt, class RandomFunc>
+void random_shuffle(RandomIt first, RandomIt last, RandomFunc&& r)
+{
+    typename std::iterator_traits<RandomIt>::difference_type i, n;
+    n = last - first;
+    for (i = n-1; i > 0; --i) {
+        using std::swap;
+        swap(first[i], first[r(i+1)]);
+    }
+}
 
 template <class ITER>
 void RDRandomShuffle(ITER first, ITER last)
