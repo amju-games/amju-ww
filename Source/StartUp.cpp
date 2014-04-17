@@ -196,7 +196,10 @@ void StartUpAfterCreateWindow()
   //TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
 
   // No need for logo state as we show it as app load image
-  TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
+  //TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
+
+
+  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
 #endif
 }
 }

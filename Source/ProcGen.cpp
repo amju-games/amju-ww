@@ -3,18 +3,23 @@
 #include <StringUtils.h>
 #include <ROConfig.h>
 #include <Directory.h>
+#include <FileImplGlue.h>
 #include "ProcGen.h"
 #include "WWGameObject.h"
 #include "SaveDir.h"
 #include "Depth.h"
 #include "LevelManager.h"
 #include "ShadowManager.h"
+#include "RDRandom.h"
+
+//#define SHADOW_DEBUG
 
 namespace Amju
 {
 ProcGen::ProcGen()
 {
   m_numLayers = 0;
+  m_numLevels = 0;
   m_nextDepth = 0;
   m_nextLayer = -1;
 }
@@ -24,8 +29,14 @@ int ProcGen::GetNumLayers() const
   return m_numLayers;
 }
 
+int ProcGen::GetNumLevels() const
+{
+  return m_numLevels;
+}
+
 void ProcGen::Init()
 {
+#if defined(WIN32) || defined(MACOSX)
   // Get number of files which start "levels/layer"
   // Don't use glue file, as these files are copied to OS files
 
@@ -41,17 +52,47 @@ void ProcGen::Init()
   for (int i = 0; i < (int)dirents.size(); i++)
   {
     DirEnt de = dirents[i];
-std::cout << "Got this dirent: " << de.m_name << "\n";
+//std::cout << "Got this dirent: " << de.m_name << "\n";
     if (de.m_name.size() > 5 && de.m_name.substr(0, 5) == "layer")
     {
-std::cout << " -- it's a layer file!\n";
+//std::cout << " -- it's a layer file!\n";
       m_numLayers++;
     }
+    else if (de.m_name.size() > 5 && de.m_name.substr(0, 5) == "level")
+    {
+      m_numLevels++;
+    }
   }
-  std::cout << "total num layers = " << m_numLayers << "\n";
+#else
+  // iOS/Android/(Wii?) - no editor, always load from glue file
+
+  m_numLayers = 0;
+  // Stat glue file for filenames starting "levels/layer"
+  GlueFile* gf = FileImplGlue::GetGlueFile();
+  Assert(gf);
+  Strings strs;
+  gf->Dir(&strs);
+  int size = strs.size();
+  for (int i = 0; i < size; i++)
+  {
+    const std::string& subfile = strs[i];
+    if (subfile.size() >= 18 && subfile.substr(0, 12) == "levels/layer")
+    {
+      m_numLayers++;
+    }
+    else if (subfile.size() >= 18 && subfile.substr(0, 12) == "levels/level")
+    {
+      m_numLevels++;
+    }
+  }
+
+#endif
+
+  std::cout << "Total num levels = " << m_numLevels << "\n";
+  std::cout << "Total num layers = " << m_numLayers << "\n";
 }
 
-bool ProcGen::OpenLayer(int layerNum) //const std::string& layerFilename)
+bool ProcGen::OpenLayer(int layerNum) 
 {
   Layer* layer = new Layer;
   m_layers.push_back(layer);
@@ -84,11 +125,19 @@ bool ProcGen::IsLayerLoaded() const
   return layer->IsLoaded();
 }
 
+void ProcGen::CloseLayer()
+{
+  Assert(!m_layers.empty());
+  Layer* layer = m_layers.back();
+  layer->m_file = 0;
+}
+
 bool ProcGen::Layer::IsLoaded() const
 {
   Assert(m_numObjects > 0); // ?
   Assert(m_numObjects >= (int)m_objects.size());
-  return (m_numObjects == (int)m_objects.size());
+  bool loaded = (m_numObjects == (int)m_objects.size());
+  return loaded;
 }
 
 bool ProcGen::Layer::Open(const std::string& layerFilename)
@@ -167,17 +216,6 @@ void ProcGen::Layer::AddToGame(float depth, float x)
   static LevelManager* lm = TheLevelManager::Instance();
   int levelId = lm->GetLevelId();
 
-  float xPos = 0;
-/*
-  if (x > 300) // TODO TEMP TEST
-  {
-    xPos = 300.0f;
-  }
-  else if (x < -300)
-  {
-    xPos = -300.0f;
-  }
-*/
   int s = m_objects.size();
   for (int i = 0; i < s; i++)
   {
@@ -195,22 +233,62 @@ void ProcGen::Layer::AddToGame(float depth, float x)
       clone->Customise(levelId, depth); // any other info?
 
       Vec3f pos = clone->GetPos();
-      pos.x += xPos;
-//    pos.y  = - (pos.y + depth);
-      pos.y -= depth; // ?
+      pos.y -= depth; 
       clone->SetPos(pos);
 
       clone->AddToGame();
     }
   }
-
+#ifdef SHADOW_DEBUG
   std::cout << TheShadowManager::Instance()->Report() << "\n";
+#endif
 }
 
 void ProcGen::Reset()
 {
   m_nextLayer = -1;
   m_nextDepth = 0;
+
+  // Decide on set of layers which are active for this level
+  static LevelManager* lm = TheLevelManager::Instance();
+  int levelId = lm->GetLevelId();
+  RDSRand(levelId << 10);
+
+  // Random selection depends on level num
+  // PROCGEN
+  // Choose n (e.g. half) of the total set of layers as active for this level.
+  // TODO +/- some random (level-dependent) value?
+  int n = m_numLayers / 2;
+
+  m_activeLayers.clear();
+  // Pick <n> unique numbers between 0 and m_numLayers
+  Ints ints;
+  // Is there a STL way to do this loop?
+  for (int i = 1; i < m_numLayers; i++) // NB starts at 1
+  {
+    ints.push_back(i);
+  }
+  // PROCGEN
+  std::random_shuffle(ints.begin(), ints.end(), RDRandom);
+
+  // Add some of the shuffled ints to the active list
+  for (int i = 0; i < n; i++)
+  {
+    m_activeLayers.push_back(ints[i]);
+  }
+  // layer 0 ("layer-1.txt") is in every level. This is so we can
+  //  guarantee that there is a teleporter in every level.
+  m_activeLayers.push_back(0);
+
+  // Finally, shuffle the active layers?
+
+std::cout << "This level (" << levelId << ") is comprised of these layers: ";
+for (int i = 0; i < m_activeLayers.size(); i++)
+{
+  std::cout << m_activeLayers[i] << " ";
+}
+std::cout << "\n";
+ 
   PickNextLayer();
 }
 
@@ -221,18 +299,11 @@ void ProcGen::PickNextLayer()
   // Otherwise, pick a layer depending on which ones are allowed to follow
   //  the current layer..?
 
-//  m_nextLayer = rand() % m_numLayers; 
+  int num = m_activeLayers.size();
 
-  // Just in sequence, starting randomly
-  if (m_nextLayer == -1)
-  {
-    m_nextLayer = rand() % m_numLayers; 
-  }
-  m_nextLayer++;
-  if (m_nextLayer >= m_numLayers)
-  {
-    m_nextLayer = 0;
-  }
+  // PROCGEN
+  int r = RDRandom(num); // not: rand() % num; 
+  m_nextLayer = m_activeLayers[r];
 
   float layerHeight = 260;
   // Should be layer height + a gap to get through
