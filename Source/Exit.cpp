@@ -211,10 +211,6 @@ bool Exit::CreateSceneNode()
     return false;
   }
 
-  // Exit is translucent until activated
-  // TODO So should be a Blended node !??
-//  m_pSceneNode->SetColour(Colour(0.5f, 0.5f, 0.5f, 0.5f));
-
   // Rotating cylinder
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("transporter2.obj");
   if (!mesh)
@@ -293,6 +289,8 @@ void Exit::OnPlayerCollision()
   m_cylinder->SetVisible(false);
 
   PlayWav("button112");
+
+  ThePowerUpManager::Instance()->ResetPowerUps();
 }
 
 ExitParticleEffect::ExitParticleEffect()
