@@ -45,7 +45,7 @@ bool Bonus::YesAddToLevel(int levelId, float depth)
 {
   // More bonuses the deeper you go
   // PROCGEN
-  float f = RDRnd(10.0f);
+  float f = RDRnd() * 10.0f;
   float likeliness = 10.0f - depth / 200.0f; // TODO TEMP TEST
   bool b = (f > likeliness); 
   return b;
