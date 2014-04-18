@@ -637,7 +637,8 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   }
 #endif
 
-std::cout << "X: " << x << "\tY: " << y << "\n";
+////
+  std::cout << "X: " << x << "\tY: " << y << "\n";
 
   Vec3f vel(x * 1.0f * m_velMult, 0, y * 1.0f * m_velMult);
 
