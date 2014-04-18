@@ -18,6 +18,8 @@ public:
   virtual bool OnCursorEvent(const CursorEvent&) override; 
   virtual bool OnMouseButtonEvent(const MouseButtonEvent&) override;
   virtual bool OnDoubleClickEvent(const DoubleClickEvent&) override;
+
+  void OnOK();
 };
 typedef Singleton<GSChooseLevel> TheGSChooseLevel;
 }

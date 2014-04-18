@@ -1,24 +1,26 @@
+#include <Game.h>
 #include <SceneMesh.h>
 #include <Timer.h>
 #include <Screen.h>
 #include <GuiButton.h>
+#include <GuiTextEdit.h>
 #include "WWLoadGui.h"
 #include "GSChooseLevel.h"
 #include "MySceneGraph.h"
+#include "StartGame.h"
+#include "LevelManager.h"
 
 namespace Amju
 {
 static void OnOK()
 {
-  // Play the chosen level
+  TheGSChooseLevel::Instance()->OnOK(); 
 }
 
 static void OnCancel()
 {
   TheGSChooseLevel::Instance()->GoBack();
 }
-
-//const char* GSChooseLevel::NAME;
 
 class Rotater : public SceneNode
 {
@@ -75,12 +77,29 @@ void GSChooseLevel::OnActive()
 
   // Set focus element, cancel element, command handlers
   GuiButton* ok = (GuiButton*)m_gui->GetElementByName("ok-button");
-  ok->SetCommand(OnOK);
+  ok->SetCommand(Amju::OnOK);
   ok->SetIsFocusButton(true);
   ok->SetShowIfFocus(true);
 
   ((GuiButton*)m_gui->GetElementByName("cancel-button"))->SetCommand(OnCancel);
  
+}
+
+void GSChooseLevel::OnOK()
+{
+  GuiTextEdit* edit = (GuiTextEdit*)m_gui->GetElementByName("edit-level-number");
+  Assert(edit);
+  int level = ToInt(edit->GetText());
+  if (level <= 0)
+  {
+    GuiText* text = (GuiText*)m_gui->GetElementByName("help-text");
+    Assert(text);
+    text->SetText("Bad number? Try again!");
+    return;
+  }
+
+  TheLevelManager::Instance()->SetLevelId(level);
+  StartGame(1, AMJU_MAIN_GAME_MODE);
 }
 
 bool GSChooseLevel::OnCursorEvent(const CursorEvent& e) 
