@@ -147,7 +147,11 @@ bool LevelManager::Open(const std::string& filename)
       // Get random level num between 2 and max value
       // (1 is reserved for the first level of the game)
       int maxLevel = TheProcGen::Instance()->GetNumLevels();
-      levelNum = RDRandom(maxLevel - 1) + 2;
+
+      // We always want the same level file for this level number
+      RDSRand(levelNum << 5); // PROCGEN
+      levelNum = RDRandom(maxLevel - 1) + 2; // PROCGEN
+
       std::cout << "Loading level file level-" << levelNum << ".txt...\n";
     }
     
