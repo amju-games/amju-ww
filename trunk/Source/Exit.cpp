@@ -19,6 +19,8 @@
 #include "PlayWav.h"
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
+#include "RDRandom.h"
+#include "PowerUp.h"
 
 namespace Amju
 {
