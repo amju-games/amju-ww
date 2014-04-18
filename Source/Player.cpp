@@ -613,8 +613,8 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   const float X_DEAD_ZONE = 0.02f;
   const float Y_DEAD_ZONE = 0.02f;
 
-  const float X_MULT = 4.0f;
-  const float Y_MULT = 200.0f;
+  const float X_MULT = 2.0f;
+  const float Y_MULT = 20.0f;
   
   if (x > -X_DEAD_ZONE && x < X_DEAD_ZONE)
   {
@@ -636,6 +636,8 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
     y *= Y_MULT * m_ySensitivity;
   }
 #endif
+
+std::cout << "X: " << x << "\tY: " << y << "\n";
 
   Vec3f vel(x * 1.0f * m_velMult, 0, y * 1.0f * m_velMult);
 
