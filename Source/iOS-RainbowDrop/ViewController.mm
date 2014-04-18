@@ -146,9 +146,9 @@ void QueueEvent(Amju::Event* e)
 //   be->x = accel[1];
 //   be->y = accel[0];
    
-//   #ifdef ACCELEROM_DEBUG
+#ifdef ACCELEROM_DEBUG
    std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << "\n";
-//   #endif
+#endif
    
    QueueEvent(be);
    
