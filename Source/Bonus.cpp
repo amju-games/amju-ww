@@ -18,6 +18,7 @@
 #include "ShadowManager.h"
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
+#include "RDRandom.h"
 
 namespace Amju
 {
@@ -42,10 +43,11 @@ Bonus::Bonus()
 
 bool Bonus::YesAddToLevel(int levelId, float depth) 
 {
-  // More bonuses the deeper you go??
-  float f = Amju::Rnd(0, 10);
-  float likeliness = 10 - depth / 200.0f; // TODO TEMP TEST
-  bool b = (f > likeliness); // TODO PROCGEN
+  // More bonuses the deeper you go
+  // PROCGEN
+  float f = RDRnd(10.0f);
+  float likeliness = 10.0f - depth / 200.0f; // TODO TEMP TEST
+  bool b = (f > likeliness); 
   return b;
 }
 
@@ -81,19 +83,19 @@ void Bonus::Customise(int levelId, float depth)
   static const int POINTS[] = { 1000, 2000, 4000, 8000 };
 
   // What kind of bonus?
-  if (Rnd(0, 10) > 3) // PROCGEN CONFIG
+  if (RDRnd() > 0.3f) // PROCGEN CONFIG
   {
     // Bonus points
-    int r = (int)Rnd(0, 4);
+    int r = RDRandom(4); // PROCGEN
     m_meshFilename = FRUITS[r].m_filename;
     m_points = POINTS[FRUITS[r].m_reward];  
     m_lives = 0;
     return;
   }
-  else if (Rnd(0, 10) < 9.5f) // PROCGEN - bonus life is super rare
+  else if (RDRnd() < 0.95f) // PROCGEN - bonus life is super rare
   {
     // Power ups
-    int r = (int)Rnd(0, MAX_BEANS);
+    int r = RDRandom(MAX_BEANS); // PROCGEN
     Assert(r < MAX_BEANS);
     m_meshFilename = BEANS[r].m_filename;
     m_points = 0;

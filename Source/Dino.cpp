@@ -41,7 +41,7 @@ bool Dino::YesAddToLevel(int levelId, float depth)
   return true; // TODO TEMP TEST
 
   // More dinos in higher levels
-  float r = Rnd(0, 10); // TODO TEMP TEST
+  float r = RDRandom(10); // PROCGEN
   bool b = levelId > (int)r; 
   // extremely unlikely at low level, to a certainty at a high level.
 
