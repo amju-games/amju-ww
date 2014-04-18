@@ -140,15 +140,15 @@ void QueueEvent(Amju::Event* e)
 //   Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[1], accel[0]);
 
    // This is for PORTRAIT mode
-   Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[0], accel[2]);
+   Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[0], -accel[1]);
 
    // TODO This depends on iphone orientation
 //   be->x = accel[1];
 //   be->y = accel[0];
    
-   #ifdef ACCELEROM_DEBUG
+//   #ifdef ACCELEROM_DEBUG
    std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << "\n";
-   #endif
+//   #endif
    
    QueueEvent(be);
    

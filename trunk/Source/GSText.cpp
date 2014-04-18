@@ -189,6 +189,11 @@ bool GSText::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   // Calibrate balance events
   Vec2f ucpos = bbe.GetUncalibratedCoord();
   BalanceBoardEvent::SetZeroCoords(ucpos.x, ucpos.y);
+
+#ifdef CALIBRATE_DEBUG  
+std::cout << "Calibrating: X: " << ucpos.x << " Y: " << ucpos.y << "\n";
+#endif
+
   return false; // not eaten
 }
 
