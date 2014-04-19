@@ -1,0 +1,13 @@
+// splash screen gui
+// version
+1
+
+// Element name
+splash-image
+// pos (coords are -1..1)
+-0.9, 0.35
+// size
+1.8, 0.6
+
+// Image
+logo.png

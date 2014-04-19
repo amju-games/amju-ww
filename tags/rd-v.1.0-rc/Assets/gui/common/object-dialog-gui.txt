@@ -1,0 +1,98 @@
+// Object Dialog
+// version
+1
+
+gui-dialog
+object_dialog
+
+//  pos, size
+-0.8, 0.5
+1.55, 1.4
+
+// Num children
+6
+// NB Coords for children are relative to top left of dialog, which is (0, 0)
+
+// element type
+gui-button
+// Element name
+ok-button
+// pos 
+0.05, -1.25
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+OK
+// Font name, size
+arial, 1.0, sx=0.7
+
+
+// element type
+gui-button
+// Element name
+cancel-button
+// pos 
+0.5, -1.25
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Cancel
+// Font name, size
+arial, 1.0, sx=0.7
+
+// List box of levels
+gui-list-box
+// Name
+object-list-box
+// Pos, size
+0.05, -0.05
+1.0, 1.0
+ 
+// element type
+gui-button
+// Element name
+properties-button
+// pos 
+1.1, -0.05
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Properties
+// Font name, size
+arial, 1.0, sx=0.7
+
+// element type
+gui-button
+// Element name
+select-button
+// pos 
+1.1, -0.2
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Select
+// Font name, size
+arial, 1.0, sx=0.7
+
+// element type
+gui-button
+// Element name
+delete-button
+// pos 
+1.1, -0.35
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Delete
+// Font name, size
+arial, 1.0, sx=0.7

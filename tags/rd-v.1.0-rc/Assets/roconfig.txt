@@ -1,0 +1,81 @@
+// Read only config
+// v 
+1
+
+lurk-font-x 1.6
+lurk-font-y 2.0
+
+default-x-sensitivity 10
+default-y-sensitivity 10
+
+
+// Min and max z for OnFloor objects, so action is almost 2D
+min_z 20
+max_z 80
+
+// Affects bounciness when we hit a wall
+push-away-speed 1000
+
+// Initial scroll speed for level
+start-scroll-speed 10
+max-scroll-speed 50
+depth-for-speed-change 200
+scroll-speed-inc 5
+
+
+start-depth -500
+
+// Extra "look-ahead" added to depth at which we create the next layer
+next-layer-height-offset 600
+
+
+power-up-time 4.0
+
+pick-up-multiplier 100
+pet-score-max-time 0.125
+carrying-multiplier 1
+
+max-speed 100.0
+max-y-vel 300.0
+max-drop  1000.0
+jump-vel-initial 100
+
+// Scroll off top of screen, kill object
+max-offscreen-height 500
+
+// Max height = at which player is dead
+max-player-height 300
+
+bonus-wait-time 1.0
+
+hud-max-life-flash  3.0
+hud-expand-scale    0.5
+
+cam-depth-offset 200
+cam-y-offset 100
+cam-z-offset 300
+
+// TODO no pets now?
+cam-y-pet-offset 40
+cam-z-pet-offset 40
+cam-zoom-vel-scale 0.25
+
+sound-new-lurkmsg  waterdrop
+sound-tut-trigger  whistlehere
+
+exit-bb-expand 0.05
+exit-delay-1  2.0
+exit-delay-2  0.5
+
+level-complete-max-time 4.05
+level-complete-star-speedup-mult 8.0
+
+pet-max-just-dropped-time 2.0
+pet-collide-radius 25
+pet-min-drop-speed 30
+pet-max-drop-speed 70
+pet-bloodpool-max-scale 0.5
+
+dino-chase-speed 120
+dino-chase-dist 300
+

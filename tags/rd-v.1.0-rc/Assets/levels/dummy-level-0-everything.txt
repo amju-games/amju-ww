@@ -1,0 +1,450 @@
+// File version
+11
+
+// Num game objects
+36
+
+// Game object type
+camera
+// ID
+0
+// Viewport ID
+0
+// Target ID
+101
+end
+
+// Game object type
+camera
+// ID
+1
+// Viewport ID
+1
+// Target ID
+102
+end
+
+// Game object type
+tut-trigger
+10
+// AABB
+-250.000000, -150.000000, 200.000000, 250.000000, -50.000000, 50.000000
+// Tutorial text
+Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!
+end
+
+// Game object type
+bird
+99
+// Position
+-149.999985, 220.000015, 0.000000
+// MD2 mesh name
+pz-bird.md2
+// Texture names
+bird1a.png
+bird1.png
+// Shadow texture & size
+shadow.png
+10.000000
+end
+
+// Game object type
+player
+101
+// Position
+-100.000000, 219.999893, 0.000000
+// Player ID
+0
+// MD2 mesh name
+amju.md2
+// Texture names
+amju2.png
+amju2a.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+player
+102
+// Position
+100.000000, 219.999893, 0.000000
+// Player ID
+1
+// MD2 mesh name
+marin.md2
+// Texture names
+marin1.png
+marin1a.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+pet
+104
+// Position
+150.000000, 219.999893, 150.000000
+// MD2 mesh name
+pz-cat.md2
+// Texture names
+pz-pet1a.png
+pz-pet1.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+pet
+105
+// Position
+-150.000000, 219.999893, 150.000000
+// MD2 mesh name
+pz-cat.md2
+// Texture names
+pz-pet1a.png
+pz-pet1.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+pet
+106
+// Position
+-150.000000, 219.999893, -100.000000
+// MD2 mesh name
+pz-cat.md2
+// Texture names
+pz-pet1a.png
+pz-pet1.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+dino
+107
+// Position
+150.000000, 219.999893, 0.000000
+// MD2 mesh name
+dino.md2
+// Texture names
+dino1a.png
+dino1.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+bonus
+110
+100.000000, 250.000000, -50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+3
+// Bonus lives
+1
+end
+
+// Game object type
+bonus
+111
+150.000000, 250.000000, -50.000000
+// Mesh filename
+fruit2.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+3
+// Bonus lives
+1
+end
+
+// Game object type
+bonus
+112
+200.000000, 250.000000, -50.000000
+// Mesh filename
+fruit3.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+3
+// Bonus lives
+1
+end
+
+// Game object type
+bonus
+113
+250.000000, 250.000000, -50.000000
+// Mesh filename
+fruit4.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+3
+// Bonus lives
+1
+end
+
+// Game object type
+exit
+200
+400.000000, 220.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+transporter.obj
+// Next level
+2
+// Shadow texture & size
+flare.png
+20.000000
+end
+
+// Game object type
+bonus
+413
+-100.000000, 250.000000, 100.000000
+// Mesh filename
+heart.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+0
+// Bonus lives
+1
+end
+
+// Game object type
+staticfloor
+1001
+0.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_1x1.obj
+end
+
+// Game object type
+staticfloor
+1002
+-500.000000, 200.000000, -1050.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_1x1.obj
+end
+
+// Game object type
+staticfloor
+1003
+-800.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_4x4.obj
+end
+
+// Game object type
+staticfloor
+1004
+-600.000000, 200.000000, -700.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_2x2.obj
+end
+
+// Game object type
+staticfloor
+1005
+1300.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_1x1.obj
+end
+
+// Game object type
+staticfloor
+1006
+1600.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_2x2.obj
+end
+
+// Game object type
+staticfloor
+1007
+2000.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_4x2.obj
+end
+
+// Game object type
+staticfloor
+1008
+2500.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_curved_hill_4x4.obj
+end
+
+// Game object type
+staticfloor
+1010
+0.000000, 200.000000, 800.000000
+// Y rotation
+0.000000
+// Mesh filename
+field_4x4.obj
+end
+
+// Game object type
+staticfloor
+1011
+1400.000000, 200.000000, 1200.000000
+// Y rotation
+0.000000
+// Mesh filename
+field_8x8.obj
+end
+
+// Game object type
+fence
+2001
+0.000000, 200.000000, -100.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+staticfloor
+4002
+600.000000, 200.000000, 250.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_3x1_std.obj
+end
+
+// Game object type
+floor
+4003
+1200.000000, 200.000000, -350.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_2x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+staticfloor
+4004
+0.000000, 200.000000, -350.000000
+// Y rotation
+0.000000
+// Mesh filename
+ramp_2x1.obj
+end
+
+// Game object type
+staticfloor
+4005
+0.000000, 200.000000, -600.000000
+// Y rotation
+0.000000
+// Mesh filename
+ramp_3x1.obj
+end
+
+// Game object type
+staticfloor
+4006
+-200.000000, 200.000000, 0.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_1x1.obj
+end
+
+// Game object type
+floor
+4007
+600.000000, 200.000000, -350.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_2x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+floor
+4008
+900.000000, 200.000000, -350.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_2x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+staticfloor
+4009
+0.000000, 200.000000, 250.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_1x1.obj
+end
+
+// Game object type
+staticfloor
+4010
+300.000000, 200.000000, 250.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_1x1_std.obj
+end

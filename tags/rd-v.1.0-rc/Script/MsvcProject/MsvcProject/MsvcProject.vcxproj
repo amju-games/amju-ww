@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugAssetTest|Win32">
+      <Configuration>DebugAssetTest</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAssetTest|Win32">
+      <Configuration>ReleaseAssetTest</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F597D1BE-A373-492A-BEFE-476E8BE17A19}</ProjectGuid>
+    <RootNamespace>MsvcProject</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\Build\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\Build\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'">..\..\..\Build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'">..\..\..\Build\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'">..\..\..\Build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'">..\..\..\Build\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'">true</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Microsoft DirectX SDK %28August 2009%29\Include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\Microsoft DirectX SDK %28August 2009%29\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/I "../../../../amjulib/Source/Events" 
+/I "../../../../amjulib/Source/EventsWin32" 
+/I "../../../../amjulib/Source/EventsSDL" 
+/I "../../../../amjulib/Source/FileUtils" 
+/I "../../../../amjulib/Source/Localise" 
+/I "../../../../amjulib/Source/AmjuGL" 
+/I "../../../../amjulib/Source/AmjuGLOpenGL" 
+/I "../../../../amjulib/Source/AmjuGLDX9" /I "../../../../amjulib/Source/AmjuGLDX11" 
+/I "../../../../amjulib/Source/Mem" 
+/I "../../../../amjulib/Source/Md2" 
+/I "../../../../amjulib/Source/Image" 
+/I "../../../../amjulib/Source/Geom" 
+/I "../../../../amjulib/Source/Strings" 
+/I "../../../../amjulib/Source/TimeUtils" 
+/I "../../../../amjulib/Source/Game" 
+/I "../../../../amjulib/Source/Resource" 
+/I "../../../../amjulib/Source/Scene" 
+/I "../../../../amjulib/Source/Obj"  
+/I "../../../../amjulib/Source/Collision" 
+/I "../../../../amjulib/Source/Gui" 
+/I "../../../../amjulib/Source/Font" 
+/I "../../../../amjulib/Source/Sound" 
+/I "../../../../amjulib/Source/SoundBass" 
+/I "../../../../amjulib/Source/GeomLoad" 
+/I "../../../../amjulib/Source/GeomDraw"
+/I "../../../../amjulib/Source/Utils" 
+/I "../../../../amjulib/Source/Main" 
+ %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);AMJU_USE_SDL;AMJU_USE_BASS</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y  ..\..\..\..\amjulib\Source\GLUT\glut32.dll  ..\..\..\Build\$(Configuration)\
+xcopy /Y /S  ..\..\..\..\amjulib\Source\Network\curl\lib\*.dll  ..\..\..\Build\$(Configuration)\
+xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Build\$(Configuration)\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/I "../../../../amjulib/Source/Events" 
+/I "../../../../amjulib/Source/EventsWin32" 
+/I "../../../../amjulib/Source/EventsSDL" 
+/I "../../../../amjulib/Source/FileUtils" 
+/I "../../../../amjulib/Source/Localise" 
+/I "../../../../amjulib/Source/AmjuGL" 
+/I "../../../../amjulib/Source/AmjuGLOpenGL" 
+/I "../../../../amjulib/Source/AmjuGLDX9"  /I "../../../../amjulib/Source/AmjuGLDX11" 
+/I "../../../../amjulib/Source/Mem" 
+/I "../../../../amjulib/Source/Md2" 
+/I "../../../../amjulib/Source/Image" 
+/I "../../../../amjulib/Source/Geom" 
+/I "../../../../amjulib/Source/Strings" 
+/I "../../../../amjulib/Source/TimeUtils" 
+/I "../../../../amjulib/Source/Game" 
+/I "../../../../amjulib/Source/Resource" 
+/I "../../../../amjulib/Source/Scene" 
+/I "../../../../amjulib/Source/Obj"  
+/I "../../../../amjulib/Source/Collision" 
+/I "../../../../amjulib/Source/Gui" 
+/I "../../../../amjulib/Source/Font" 
+/I "../../../../amjulib/Source/Sound" 
+/I "../../../../amjulib/Source/SoundBass" 
+/I "../../../../amjulib/Source/GeomLoad" 
+/I "../../../../amjulib/Source/GeomDraw"
+/I "../../../../amjulib/Source/Utils" 
+ %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions);AMJU_USE_SDL;AMJU_USE_BASS</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/I "../../../../amjulib/Source/Events" 
+/I "../../../../amjulib/Source/EventsWin32" 
+/I "../../../../amjulib/Source/EventsSDL" 
+/I "../../../../amjulib/Source/FileUtils" 
+/I "../../../../amjulib/Source/Localise" 
+/I "../../../../amjulib/Source/AmjuGL" 
+/I "../../../../amjulib/Source/AmjuGLOpenGL" 
+/I "../../../../amjulib/Source/AmjuGLDX9" 
+/I "../../../../amjulib/Source/Mem" 
+/I "../../../../amjulib/Source/Md2" 
+/I "../../../../amjulib/Source/Image" 
+/I "../../../../amjulib/Source/Geom" 
+/I "../../../../amjulib/Source/Strings" 
+/I "../../../../amjulib/Source/TimeUtils" 
+/I "../../../../amjulib/Source/Game" 
+/I "../../../../amjulib/Source/Resource" 
+/I "../../../../amjulib/Source/Scene" 
+/I "../../../../amjulib/Source/Obj"  
+/I "../../../../amjulib/Source/Collision" 
+/I "../../../../amjulib/Source/Gui" 
+/I "../../../../amjulib/Source/Font" 
+/I "../../../../amjulib/Source/Sound" 
+/I "../../../../amjulib/Source/SoundSDLMixer" 
+/I "../../../../amjulib/Source/GeomLoad" 
+/I "../../../../amjulib/Source/GeomDraw"
+/I "../../../../amjulib/Source/Utils" 
+ %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NO_COMPILED_ASSETS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/I "../../../../amjulib/Source/Events" 
+/I "../../../../amjulib/Source/EventsWin32" 
+/I "../../../../amjulib/Source/EventsSDL" 
+/I "../../../../amjulib/Source/FileUtils" 
+/I "../../../../amjulib/Source/Localise" 
+/I "../../../../amjulib/Source/AmjuGL" 
+/I "../../../../amjulib/Source/AmjuGLOpenGL" 
+/I "../../../../amjulib/Source/AmjuGLDX9" 
+/I "../../../../amjulib/Source/Mem" 
+/I "../../../../amjulib/Source/Md2" 
+/I "../../../../amjulib/Source/Image" 
+/I "../../../../amjulib/Source/Geom" 
+/I "../../../../amjulib/Source/Strings" 
+/I "../../../../amjulib/Source/TimeUtils" 
+/I "../../../../amjulib/Source/Game" 
+/I "../../../../amjulib/Source/Resource" 
+/I "../../../../amjulib/Source/Scene" 
+/I "../../../../amjulib/Source/Obj"  
+/I "../../../../amjulib/Source/Collision" 
+/I "../../../../amjulib/Source/Gui" 
+/I "../../../../amjulib/Source/Font" 
+/I "../../../../amjulib/Source/Sound" 
+/I "../../../../amjulib/Source/SoundSDLMixer" 
+/I "../../../../amjulib/Source/GeomLoad" 
+/I "../../../../amjulib/Source/GeomDraw"
+/I "../../../../amjulib/Source/Utils" 
+ %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NO_COMPILED_ASSETS;%(PreprocessorDefinitions); AMJU_USE_SDL</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Source\AI.cpp" />
+    <ClCompile Include="..\..\..\Source\AIChasePet.cpp" />
+    <ClCompile Include="..\..\..\Source\AIEatPet.cpp" />
+    <ClCompile Include="..\..\..\Source\AIFalling.cpp" />
+    <ClCompile Include="..\..\..\Source\AIFlee.cpp" />
+    <ClCompile Include="..\..\..\Source\AIFly.cpp" />
+    <ClCompile Include="..\..\..\Source\AIGoHighGround.cpp" />
+    <ClCompile Include="..\..\..\Source\AIIdle.cpp" />
+    <ClCompile Include="..\..\..\Source\AIStunned.cpp" />
+    <ClCompile Include="..\..\..\Source\AITurnToFace.cpp" />
+    <ClCompile Include="..\..\..\Source\Animated.cpp" />
+    <ClCompile Include="..\..\..\Source\Bird.cpp" />
+    <ClCompile Include="..\..\..\Source\BlinkCharacter.cpp" />
+    <ClCompile Include="..\..\..\Source\Block.cpp" />
+    <ClCompile Include="..\..\..\Source\BloodFx.cpp" />
+    <ClCompile Include="..\..\..\Source\Bonus.cpp" />
+    <ClCompile Include="..\..\..\Source\BonusParticleEffect.cpp" />
+    <ClCompile Include="..\..\..\Source\Camera.cpp" />
+    <ClCompile Include="..\..\..\Source\CollideDinoDino.cpp" />
+    <ClCompile Include="..\..\..\Source\CollideDinoPet.cpp" />
+    <ClCompile Include="..\..\..\Source\CollideObjectFence.cpp" />
+    <ClCompile Include="..\..\..\Source\CollideObjectFloor.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePetPet.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerBlock.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerBonus.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerDeadly.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerDino.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerExit.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerPet.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerPlayer.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePlayerTrigger.cpp" />
+    <ClCompile Include="..\..\..\Source\ContextMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\Deadly.cpp" />
+    <ClCompile Include="..\..\..\Source\Depth.cpp" />
+    <ClCompile Include="..\..\..\Source\Describe.cpp" />
+    <ClCompile Include="..\..\..\Source\Dino.cpp" />
+    <ClCompile Include="..\..\..\Source\EditModeCamera.cpp" />
+    <ClCompile Include="..\..\..\Source\EditViewport.cpp" />
+    <ClCompile Include="..\..\..\Source\Exit.cpp" />
+    <ClCompile Include="..\..\..\Source\Fence.cpp" />
+    <ClCompile Include="..\..\..\Source\Floor.cpp" />
+    <ClCompile Include="..\..\..\Source\GameConsts.cpp" />
+    <ClCompile Include="..\..\..\Source\GameMode.cpp" />
+    <ClCompile Include="..\..\..\Source\GSAttract.cpp" />
+    <ClCompile Include="..\..\..\Source\GSChooseLevel.cpp" />
+    <ClCompile Include="..\..\..\Source\GSCopyAssets.cpp" />
+    <ClCompile Include="..\..\..\Source\GSEditMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\GSGameOver.cpp" />
+    <ClCompile Include="..\..\..\Source\GSLevelComplete.cpp" />
+    <ClCompile Include="..\..\..\Source\GSLoadLayers.cpp" />
+    <ClCompile Include="..\..\..\Source\GSLoadLevel.cpp" />
+    <ClCompile Include="..\..\..\Source\GSLogo.cpp" />
+    <ClCompile Include="..\..\..\Source\GSMain.cpp" />
+    <ClCompile Include="..\..\..\Source\GSMainEdit.cpp" />
+    <ClCompile Include="..\..\..\Source\GSMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\GSNewOrContinue.cpp" />
+    <ClCompile Include="..\..\..\Source\GSOptions.cpp" />
+    <ClCompile Include="..\..\..\Source\GSPaused.cpp" />
+    <ClCompile Include="..\..\..\Source\GSPetBonus.cpp" />
+    <ClCompile Include="..\..\..\Source\GSSpiral.cpp" />
+    <ClCompile Include="..\..\..\Source\GSText.cpp" />
+    <ClCompile Include="..\..\..\Source\GSTitle.cpp" />
+    <ClCompile Include="..\..\..\Source\Hud.cpp" />
+    <ClCompile Include="..\..\..\Source\LevelManager.cpp" />
+    <ClCompile Include="..\..\..\Source\LoadMeshResource.cpp" />
+    <ClCompile Include="..\..\..\Source\LoadTextureResource.cpp" />
+    <ClCompile Include="..\..\..\Source\LurkMsg.cpp" />
+    <ClCompile Include="..\..\..\Source\main.cpp" />
+    <ClCompile Include="..\..\..\Source\MySceneGraph.cpp" />
+    <ClCompile Include="..\..\..\Source\MyTextMaker.cpp" />
+    <ClCompile Include="..\..\..\Source\Npc.cpp" />
+    <ClCompile Include="..\..\..\Source\ObjectDialog.cpp" />
+    <ClCompile Include="..\..\..\Source\Objective.cpp" />
+    <ClCompile Include="..\..\..\Source\OnFloor.cpp" />
+    <ClCompile Include="..\..\..\Source\OnFloorCharacter.cpp" />
+    <ClCompile Include="..\..\..\Source\Pet.cpp" />
+    <ClCompile Include="..\..\..\Source\Player.cpp" />
+    <ClCompile Include="..\..\..\Source\PlayerInfo.cpp" />
+    <ClCompile Include="..\..\..\Source\PlayWav.cpp" />
+    <ClCompile Include="..\..\..\Source\Portal.cpp" />
+    <ClCompile Include="..\..\..\Source\PowerUp.cpp" />
+    <ClCompile Include="..\..\..\Source\PreventIntersection.cpp" />
+    <ClCompile Include="..\..\..\Source\ProcGen.cpp" />
+    <ClCompile Include="..\..\..\Source\PropertiesDialog.cpp" />
+    <ClCompile Include="..\..\..\Source\RDRandom.cpp" />
+    <ClCompile Include="..\..\..\Source\ResizeHandler.cpp" />
+    <ClCompile Include="..\..\..\Source\SaveDir.cpp" />
+    <ClCompile Include="..\..\..\Source\Score.cpp" />
+    <ClCompile Include="..\..\..\Source\SelectedNode.cpp" />
+    <ClCompile Include="..\..\..\Source\ShadowManager.cpp" />
+    <ClCompile Include="..\..\..\Source\Skybox.cpp" />
+    <ClCompile Include="..\..\..\Source\Stars.cpp" />
+    <ClCompile Include="..\..\..\Source\StartGame.cpp" />
+    <ClCompile Include="..\..\..\Source\StartUp.cpp" />
+    <ClCompile Include="..\..\..\Source\StaticFloor.cpp" />
+    <ClCompile Include="..\..\..\Source\TextMaker.cpp" />
+    <ClCompile Include="..\..\..\Source\Trigger.cpp" />
+    <ClCompile Include="..\..\..\Source\TriggerNode.cpp" />
+    <ClCompile Include="..\..\..\Source\TutorialTrigger.cpp" />
+    <ClCompile Include="..\..\..\Source\Viewport.cpp" />
+    <ClCompile Include="..\..\..\Source\WWGameObject.cpp" />
+    <ClCompile Include="..\..\..\Source\WWLoadGui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Source\AI.h" />
+    <ClInclude Include="..\..\..\Source\AIChasePet.h" />
+    <ClInclude Include="..\..\..\Source\AIEatPet.h" />
+    <ClInclude Include="..\..\..\Source\AIFalling.h" />
+    <ClInclude Include="..\..\..\Source\AIFlee.h" />
+    <ClInclude Include="..\..\..\Source\AIFly.h" />
+    <ClInclude Include="..\..\..\Source\AIGoHighGround.h" />
+    <ClInclude Include="..\..\..\Source\AIIdle.h" />
+    <ClInclude Include="..\..\..\Source\AIStunned.h" />
+    <ClInclude Include="..\..\..\Source\AITurnToFace.h" />
+    <ClInclude Include="..\..\..\Source\AngleVec.h" />
+    <ClInclude Include="..\..\..\Source\Animated.h" />
+    <ClInclude Include="..\..\..\Source\Bird.h" />
+    <ClInclude Include="..\..\..\Source\BlinkCharacter.h" />
+    <ClInclude Include="..\..\..\Source\Block.h" />
+    <ClInclude Include="..\..\..\Source\BloodFx.h" />
+    <ClInclude Include="..\..\..\Source\Bonus.h" />
+    <ClInclude Include="..\..\..\Source\BonusParticleEffect.h" />
+    <ClInclude Include="..\..\..\Source\Camera.h" />
+    <ClInclude Include="..\..\..\Source\ContextMenu.h" />
+    <ClInclude Include="..\..\..\Source\Deadly.h" />
+    <ClInclude Include="..\..\..\Source\Depth.h" />
+    <ClInclude Include="..\..\..\Source\Describe.h" />
+    <ClInclude Include="..\..\..\Source\Dino.h" />
+    <ClInclude Include="..\..\..\Source\EditModeCamera.h" />
+    <ClInclude Include="..\..\..\Source\EditViewport.h" />
+    <ClInclude Include="..\..\..\Source\Exit.h" />
+    <ClInclude Include="..\..\..\Source\Fence.h" />
+    <ClInclude Include="..\..\..\Source\Floor.h" />
+    <ClInclude Include="..\..\..\Source\GameConsts.h" />
+    <ClInclude Include="..\..\..\Source\GameMode.h" />
+    <ClInclude Include="..\..\..\Source\GSAttract.h" />
+    <ClInclude Include="..\..\..\Source\GSChooseLevel.h" />
+    <ClInclude Include="..\..\..\Source\GSCopyAssets.h" />
+    <ClInclude Include="..\..\..\Source\GSEditMenu.h" />
+    <ClInclude Include="..\..\..\Source\GSGameOver.h" />
+    <ClInclude Include="..\..\..\Source\GSLevelComplete.h" />
+    <ClInclude Include="..\..\..\Source\GSLoadLayers.h" />
+    <ClInclude Include="..\..\..\Source\GSLoadLevel.h" />
+    <ClInclude Include="..\..\..\Source\GSLogo.h" />
+    <ClInclude Include="..\..\..\Source\GSMain.h" />
+    <ClInclude Include="..\..\..\Source\GSMainEdit.h" />
+    <ClInclude Include="..\..\..\Source\GSMenu.h" />
+    <ClInclude Include="..\..\..\Source\GSNewOrContinue.h" />
+    <ClInclude Include="..\..\..\Source\GSOptions.h" />
+    <ClInclude Include="..\..\..\Source\GSPaused.h" />
+    <ClInclude Include="..\..\..\Source\GSPetBonus.h" />
+    <ClInclude Include="..\..\..\Source\GSText.h" />
+    <ClInclude Include="..\..\..\Source\GSTitle.h" />
+    <ClInclude Include="..\..\..\Source\Hud.h" />
+    <ClInclude Include="..\..\..\Source\LevelManager.h" />
+    <ClInclude Include="..\..\..\Source\LoadMeshResource.h" />
+    <ClInclude Include="..\..\..\Source\LoadTextureResource.h" />
+    <ClInclude Include="..\..\..\Source\LurkMsg.h" />
+    <ClInclude Include="..\..\..\Source\MySceneGraph.h" />
+    <ClInclude Include="..\..\..\Source\MyTextMaker.h" />
+    <ClInclude Include="..\..\..\Source\Npc.h" />
+    <ClInclude Include="..\..\..\Source\ObjectDialog.h" />
+    <ClInclude Include="..\..\..\Source\Objective.h" />
+    <ClInclude Include="..\..\..\Source\OnFloor.h" />
+    <ClInclude Include="..\..\..\Source\OnFloorCharacter.h" />
+    <ClInclude Include="..\..\..\Source\Pet.h" />
+    <ClInclude Include="..\..\..\Source\Player.h" />
+    <ClInclude Include="..\..\..\Source\PlayerInfo.h" />
+    <ClInclude Include="..\..\..\Source\PlayerInfoKey.h" />
+    <ClInclude Include="..\..\..\Source\PlayerNum.h" />
+    <ClInclude Include="..\..\..\Source\PlayWav.h" />
+    <ClInclude Include="..\..\..\Source\Portal.h" />
+    <ClInclude Include="..\..\..\Source\PowerUp.h" />
+    <ClInclude Include="..\..\..\Source\PreventIntersection.h" />
+    <ClInclude Include="..\..\..\Source\ProcGen.h" />
+    <ClInclude Include="..\..\..\Source\PropertiesDialog.h" />
+    <ClInclude Include="..\..\..\Source\PropertyKeys.h" />
+    <ClInclude Include="..\..\..\Source\RDRandom.h" />
+    <ClInclude Include="..\..\..\Source\ResizeHandler.h" />
+    <ClInclude Include="..\..\..\Source\Rotateable.h" />
+    <ClInclude Include="..\..\..\Source\SaveDir.h" />
+    <ClInclude Include="..\..\..\Source\Score.h" />
+    <ClInclude Include="..\..\..\Source\SelectedNode.h" />
+    <ClInclude Include="..\..\..\Source\ShadowManager.h" />
+    <ClInclude Include="..\..\..\Source\Skybox.h" />
+    <ClInclude Include="..\..\..\Source\Stars.h" />
+    <ClInclude Include="..\..\..\Source\StartGame.h" />
+    <ClInclude Include="..\..\..\Source\StartUp.h" />
+    <ClInclude Include="..\..\..\Source\StaticFloor.h" />
+    <ClInclude Include="..\..\..\Source\TextMaker.h" />
+    <ClInclude Include="..\..\..\Source\Trigger.h" />
+    <ClInclude Include="..\..\..\Source\TriggerNode.h" />
+    <ClInclude Include="..\..\..\Source\TutorialTrigger.h" />
+    <ClInclude Include="..\..\..\Source\Viewport.h" />
+    <ClInclude Include="..\..\..\Source\WWGameObject.h" />
+    <ClInclude Include="..\..\..\Source\WWLoadGui.h" />
+    <ClInclude Include="Bird.h" />
+    <ClInclude Include="GSSpiral.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bass.lib" />
+    <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bassmidi.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\amjulib\Script\AmjuLibMsvc\AmjuLibMsvc\AmjuLibMsvc.vcxproj">
+      <Project>{93920d98-6c4d-43a6-8579-aa7200ec11d0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Source\main_iphone.mm" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
