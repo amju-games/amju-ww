@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6909DCD118FFD004009AC2CB /* RDRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6909DCCF18FFD004009AC2CB /* RDRandom.cpp */; };
 		69D7CC2F18F895BF002432C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CC2E18F895BF002432C0 /* Foundation.framework */; };
 		69D7CC3118F895BF002432C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CC3018F895BF002432C0 /* CoreGraphics.framework */; };
 		69D7CC3318F895BF002432C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CC3218F895BF002432C0 /* UIKit.framework */; };
@@ -161,6 +162,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6909DCCF18FFD004009AC2CB /* RDRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RDRandom.cpp; path = ../../../../Source/RDRandom.cpp; sourceTree = "<group>"; };
+		6909DCD018FFD004009AC2CB /* RDRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RDRandom.h; path = ../../../../Source/RDRandom.h; sourceTree = "<group>"; };
 		69D7CC2B18F895BF002432C0 /* Rainbow Drop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rainbow Drop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D7CC2E18F895BF002432C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		69D7CC3018F895BF002432C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -532,6 +535,8 @@
 		69D7CC9118F9399C002432C0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6909DCCF18FFD004009AC2CB /* RDRandom.cpp */,
+				6909DCD018FFD004009AC2CB /* RDRandom.h */,
 				69D7CC9218F939F9002432C0 /* AI.cpp */,
 				69D7CC9318F939F9002432C0 /* AI.h */,
 				69D7CC9418F939F9002432C0 /* AIChasePet.cpp */,
@@ -870,6 +875,7 @@
 				69D7CD5818F939FA002432C0 /* AIEatPet.cpp in Sources */,
 				69D7CD7418F939FA002432C0 /* CollidePlayerTrigger.cpp in Sources */,
 				69D7CD8118F939FA002432C0 /* GSAttract.cpp in Sources */,
+				6909DCD118FFD004009AC2CB /* RDRandom.cpp in Sources */,
 				69D7CD9218F939FA002432C0 /* GSText.cpp in Sources */,
 				69D7CD9F18F939FA002432C0 /* Npc.cpp in Sources */,
 				69D7CD7818F939FA002432C0 /* Describe.cpp in Sources */,
@@ -1232,6 +1238,7 @@
 				69D7CC6A18F895BF002432C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69D7CC6B18F895BF002432C0 /* Build configuration list for PBXNativeTarget "Rainbow DropTests" */ = {
 			isa = XCConfigurationList;
@@ -1240,6 +1247,7 @@
 				69D7CC6D18F895BF002432C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
