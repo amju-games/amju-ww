@@ -19,7 +19,7 @@ class ProcGen : public NonCopyable
 {
 private:
   ProcGen();
-  friend TheProcGen;
+  friend class Singleton<ProcGen>;
 
 public:
   void Init(); // Finds number of layers and levels
