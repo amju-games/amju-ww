@@ -4,9 +4,9 @@ endif
 
 BUILD		:=	../../Build/Wii
 TARGET		:=	$(BUILD)/boot
-AMJU      	:= 	../../../amjulib/Source
+#AMJU      	:= 	../../../amjulib/Source
+LIBDIRS   	:= 	../../Libs/amjulib-v.0.3-wii
 
-include $(AMJULIB_WII_SCRIPT_PATH)/AmjuLibDirs
 
 SOURCES		:=	../../Source 
 
