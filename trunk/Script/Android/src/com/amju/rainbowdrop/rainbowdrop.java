@@ -43,7 +43,7 @@
  */
 
 // j.c. changed to project name
-package com.amju.simplest;
+package com.amju.rainbowdrop;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -54,7 +54,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
-public class simplest extends Activity {
+public class rainbowdrop extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +77,7 @@ public class simplest extends Activity {
     private GLSurfaceView mGLView;
 
     static {
-        System.loadLibrary("simplest"); // j.c.
+        System.loadLibrary("amju-ww"); // j.c.
     }
 }
 
