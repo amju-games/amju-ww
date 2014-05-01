@@ -92,6 +92,11 @@ void StartUpBeforeCreateWindow()
   File::SetRoot(dataDir, "/");
 #endif
 
+#ifdef GEKKO
+  // TODO Better to put this in library main() if we can get the app's directory
+  File::SetRoot("/apps/amju_rd/data/", "/");
+#endif
+
   SetROConfigFilename(GetSaveDir() + "roconfig.txt");
 
   GameConfigFile* gcf = TheGameConfigFile::Instance();
@@ -102,8 +107,8 @@ void StartUpBeforeCreateWindow()
     std::cout << "Failed to load game config file: " << filename << "\n";
   }
 
-#ifndef AMJU_IOS
-  // Can't resize on iOS!
+#if defined(WIN32) || defined(MACOSX)
+  // Can resize 
   const char* SCREEN_X = "screen-x"; // TODO Must match ResizeHandler - use GameConsts
   const char* SCREEN_Y = "screen-y";
 
@@ -172,9 +177,11 @@ void StartUpAfterCreateWindow()
   rm->AddLoader("mod", BinaryResourceLoader);
   rm->AddLoader("snd", BinaryResourceLoader);
   rm->AddLoader("wav", BinaryResourceLoader);
-	
+
+#ifdef GEKKO	
   TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
-	
+#endif
+
   TheHud::Instance()->Load();
 
   // Set collision system
@@ -198,13 +205,13 @@ void StartUpAfterCreateWindow()
 #else
   // iOS/Android: go to logo state, all assets are in glue file
   //  (no downloadable content [for now?!])
-  //TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
+  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
 
   // No need for logo state as we show it as app load image
   //TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
 
 
-  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
+  //TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
 #endif
 }
 }
