@@ -43,6 +43,7 @@ void MyCharacterDecorator::AfterDraw()
 
 MyTextMaker::MyTextMaker()
 {
+  SetDataDir("obj/font3d/");
   m_theta = 0;
 }
 
@@ -79,6 +80,7 @@ PSceneNode MyTextMaker::Decorate(PSceneNode p)
   // Get next value for theta
   m_theta += 0.2f; 
 
+  p->SetIsLit(true);
   decorator->AddChild(p);
   decorator->UpdateBoundingVol();
 
