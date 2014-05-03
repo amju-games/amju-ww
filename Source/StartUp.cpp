@@ -26,6 +26,10 @@
 #include <BassSoundPlayer.h>
 #endif
 
+#ifdef GEKKO
+#include <SoundWii.h>
+#endif
+
 #include <GuiButton.h>
 #include <EventPoller.h>
 #include "StartUp.h"
@@ -94,7 +98,7 @@ void StartUpBeforeCreateWindow()
 
 #ifdef GEKKO
   // TODO Better to put this in library main() if we can get the app's directory
-  File::SetRoot("/apps/amju_rd/data/", "/");
+  File::SetRoot("/apps/amju_rd-v.1.0-wii/data/", "/");
 #endif
 
   SetROConfigFilename(GetSaveDir() + "roconfig.txt");
@@ -137,6 +141,9 @@ void StartUpBeforeCreateWindow()
 // TODO Why not AMJU_USE_BASS ?
   sm->SetImpl(new BassSoundPlayer);
 #endif
+#ifdef GEKKO
+  sm->SetImpl(new SoundWii);
+#endif
 
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
@@ -154,12 +161,7 @@ void StartUpAfterCreateWindow()
   Game* game = TheGame::Instance();
   game->SetUpdateCopy(true); // if updating game objects can create/destroy objects
 
-#ifdef GEKKO
-  // TODO Better to put this in library main() if we can get the app's directory
-  File::SetRoot("/apps/amju_rd/data/", "/");
-#endif
-
-  //AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
+  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
 
   // TODO Other languages - preferences
   if (!Localise::LoadStringTable("english.txt"))
@@ -178,9 +180,7 @@ void StartUpAfterCreateWindow()
   rm->AddLoader("snd", BinaryResourceLoader);
   rm->AddLoader("wav", BinaryResourceLoader);
 
-#ifdef GEKKO	
   TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
-#endif
 
   TheHud::Instance()->Load();
 
