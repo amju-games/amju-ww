@@ -1,4 +1,4 @@
-#if !defined(IPHONE) && !defined(ANDROID_NDK)
+#if !defined(IPHONE) //&& !defined(ANDROID_NDK)
 
 #ifdef MACOSX
 #define AMJU_USE_OPENGL
@@ -15,10 +15,17 @@
 
 namespace Amju
 {
+#ifdef GEKKO
+AmjuGLWindowInfo w(640, 480, false, "Amju Wibble Wobble");
+#else
 AmjuGLWindowInfo w(480, 640, false, "Amju Wibble Wobble");
+#endif
 }
 
 #include "StartUp.h"
+
+#if !defined(IPHONE) && !defined(ANDROID_NDK)
 #include <main.h>
+#endif
 
 #endif // not IPHONE
