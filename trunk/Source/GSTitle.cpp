@@ -68,7 +68,11 @@ void GSTitle::OnActive()
   GSText::OnActive();
 
   // Start theme music
+#ifdef GEKKO
+  TheSoundManager::Instance()->PlaySong("sound/ww1.mod");
+#else
   TheSoundManager::Instance()->PlaySong("sound/ww1.it");
+#endif
 
   m_gui = WWLoadGui("title-gui.txt");
   Assert(m_gui);

@@ -63,12 +63,16 @@ bool LevelManager::SaveLevel(const std::string& filename)
   {
     GameObject* go = it->second;
 
+#ifdef LM_DEBUG
 std::cout << "Saving: " << go->GetTypeName() << " ID: " << go->GetId() << "\n";
+#endif
 
     WWGameObject* ww = dynamic_cast<WWGameObject*>(go);
     if (!ww)
     {
+#ifdef LM_DEBUG
 std::cout << " - Fail: Can't save this type of object.\n";
+#endif
       return false;
     }
 
@@ -78,12 +82,16 @@ std::cout << " - Fail: Can't save this type of object.\n";
     
     if (!ww->Save(&f))
     {
+#ifdef LM_DEBUG
 std::cout << " - Save Failed at object: " << go->GetTypeName() << " ID: " << go->GetId() << "\n";
+#endif
       return false;
     }  
     f.Write("end");
   }
+#ifdef LM_DEBUG
 std::cout << "Save completed successfully?!\n";
+#endif
   return true;
 }
 
@@ -152,12 +160,15 @@ bool LevelManager::Open(const std::string& filename)
       RDSRand(levelNum << 5); // PROCGEN
       levelNum = RDRandom(maxLevel - 1) + 2; // PROCGEN
 
+#ifdef LM_DEBUG
       std::cout << "Loading level file level-" << levelNum << ".txt...\n";
+#endif
     }
     
     levelFilename += "levels/level-" + ToString(levelNum) + ".txt";
+#ifdef LM_DEBUG
     std::cout << "Level file: " << levelFilename << "\n";
-
+#endif
     useRoot = false;
   }
 
@@ -242,7 +253,9 @@ bool LevelManager::LoadOneObject()
     if (m_numPlayers > TheScores::Instance()->GetNumPlayers() &&
        !IsEditMode())
     {
+#ifdef LM_DEBUG
       std::cout << "Not creating player " << m_numPlayers << "\n";
+#endif
       return true;
     }
   }

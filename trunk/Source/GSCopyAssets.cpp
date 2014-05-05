@@ -17,7 +17,7 @@
 //#define WIN32_TEST_COPY_ASSETS
 #endif
 
-#define FILECOPY_DEBUG
+//#define FILECOPY_DEBUG
 
 namespace Amju
 {
@@ -28,7 +28,9 @@ bool CopyFromGlueFile(const std::string& destDir)
   Assert(gf);
   const std::string& srcGlueFilePath = File::GetRoot() + gf->GetFilename();
 
+#ifdef FILECOPY_DEBUG
 std::cout << "Glue file + path: '" << srcGlueFilePath << "'\n";
+#endif
 
   Time glueTime = GetFileModifiedTime(srcGlueFilePath);
 
@@ -101,7 +103,10 @@ std::cout << "  Don't copy, OS file is more recent than glue file. (Glue file ti
         Assert(0);
         return false;
       }
+#ifdef FILECOPY_DEBUG
 std::cout << "Attempting to open file for writing: '" << outFileName << "'\n";
+#endif
+
       if (!outFile.OpenWrite(outFileName, 
         0, // version
         true, // is binary
@@ -109,13 +114,17 @@ std::cout << "Attempting to open file for writing: '" << outFileName << "'\n";
         true // truncate 
       ))
       {
+#ifdef FILECOPY_DEBUG
         std::cout << "Failed to open file " << outFileName << " for writing.\n";
+#endif
         Assert(0);
         return false;
       }
       if (!outFile.WriteBinary((char*)buf, size))
       {
+#ifdef FILECOPY_DEBUG
         std::cout << "Failed to write binary data to " << outFileName << ", size: " << size << "\n";
+#endif
         Assert(0);
         return false;
       }
@@ -136,11 +145,14 @@ void GSCopyAssets::Update()
   done++;
   if (done == 2)
   {
+#ifdef FILECOPY_DEBUG
     std::cout << "Copying files to Save Dir as required...\n";
-      
+#endif      
     static std::string saveDir = GetSaveDir(); 
 
+#ifdef FILECOPY_DEBUG
 std::cout << "\nSave Dir: " << saveDir << "\n";
+#endif
 
     CopyFromGlueFile(saveDir);
       

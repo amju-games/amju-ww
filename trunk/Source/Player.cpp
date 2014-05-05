@@ -110,12 +110,12 @@ void Player::OnHitFloor()
   static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
   Assert(MAX_DROP > 0);
   float df = CalcDropFallen();
-#ifdef _DEBUG
+#ifdef PLAYER_DEBUG
 std::cout << Describe(this) << " hit floor, drop=" << df << "\n";
 #endif
   if (df > MAX_DROP)
   {
-#ifdef _DEBUG
+#ifdef PLAYER_DEBUG
 std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" << df << "\n";
 #endif
     StartBeingDead(); // max drop reached, hit floor
@@ -172,7 +172,12 @@ void Player::CreateController()
 {
   // TODO depends on whether local or remote
   m_controller = new PlayerController(this);
-  TheEventPoller::Instance()->AddListener(m_controller, 99); // low priority
+#ifdef GEKKO
+  int PRIORITY = -99;
+#else
+  int PRIORITY = 99;
+#endif
+  TheEventPoller::Instance()->AddListener(m_controller, PRIORITY); 
 }
 
 void Player::KillController()
@@ -227,7 +232,9 @@ void Player::PickUpPet(Pet* pet)
     return;
   }
 
+#ifdef PLAYER_DEBUG
 std::cout << "Pick up pet! " << pet->GetId() << "\n";
+#endif
 
   // Existing pets jump up to make room for new pet
   pet->SetCarryingPlayer(this);
@@ -288,8 +295,10 @@ void Player::DropPets()
 {
   if (m_reachedExit)
   {
-    return;
+#ifdef PLAYER_DEBUG
     std::cout << "Not dropping pets because we reached the exit!\n";
+#endif
+    return;
   }
 
   for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
@@ -304,7 +313,9 @@ void Player::DropPets()
     static const float MAX_DROP_SPEED = ROConfig()->GetFloat("pet-max-drop-speed");
     float speed = Rnd(MIN_DROP_SPEED, MAX_DROP_SPEED);
     dir *= speed; 
+#ifdef PLAYER_DEBUG
     std::cout << Describe(pet) << " dir: " << Describe(dir) << "\n";
+#endif
     pet->SetVel(dir);
   }
   m_pets.clear();
@@ -357,7 +368,9 @@ void Player::UpdatePets()
     float sqRad = xz.SqLen();
     if (sqRad > DETACH_RADIUS * DETACH_RADIUS)
     {
+#ifdef PLAYER_DEBUG
 std::cout << "Dropping pet " << pet->GetId() << "\n";
+#endif
       // Remove from stack
       pet->SetCarryingPlayer(0); 
       it = m_pets.erase(it);
@@ -480,7 +493,9 @@ void Player::Jump()
 
   if (m_jumpCount < m_maxJumpCount) 
   {
+#ifdef PLAYER_DEBUG
 std::cout << "JUMP! Count is: " << m_jumpCount << " Vel: " << m_jumpVel << "\n";
+#endif
 
     m_jumpCount++;
 
@@ -638,7 +653,10 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 #endif
 
 ////
+
+#ifdef PLAYER_DEBUG
   std::cout << "X: " << x << "\tY: " << y << "\n";
+#endif
 
   Vec3f vel(x * 1.0f * m_velMult, 0, y * 1.0f * m_velMult);
 
@@ -803,7 +821,9 @@ void Player::Update()
 
   if (h > MAX_PLAYER_HEIGHT)
   {
+#ifdef PLAYER_DEBUG
     std::cout << "Player off screen, dead!\n";
+#endif
     SetDead(true); // Player off screen
   }
 
@@ -891,17 +911,22 @@ void Player::Update()
  
     int lives = TheScores::Instance()->GetLives(pn);
 
+#ifdef PLAYER_DEBUG
 std::cout << "Player is dead! Lives left: " << lives << "\n";
-
+#endif
     if (lives == 0)
     {
       TheGame::Instance()->SetCurrentState(TheGSGameOver::Instance());
+#ifdef PLAYER_DEBUG
 std::cout << "Game over.\n";
+#endif
     }
     else
     {
       TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+#ifdef PLAYER_DEBUG
 std::cout << "Loading level...\n";
+#endif
     }
   }
 
