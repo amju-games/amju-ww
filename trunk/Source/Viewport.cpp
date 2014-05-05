@@ -41,6 +41,10 @@ void Viewport::Draw()
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
+
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_WRITE);
+
   for (int i = 0; i < 2; i++)
   {
     stars[i]->Update();
@@ -50,7 +54,8 @@ void Viewport::Draw()
   // TEMP TEST
   /////////////////////////
 
-
+  AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
+  AmjuGL::Enable(AmjuGL::AMJU_DEPTH_WRITE);
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();

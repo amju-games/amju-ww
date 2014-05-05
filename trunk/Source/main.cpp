@@ -16,9 +16,9 @@
 namespace Amju
 {
 #ifdef GEKKO
-AmjuGLWindowInfo w(640, 480, false, "Amju Wibble Wobble");
+AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
 #else
-AmjuGLWindowInfo w(480, 640, false, "Amju Wibble Wobble");
+AmjuGLWindowInfo w(480, 640, false, "Amju Rainbow Drop");
 #endif
 }
 
