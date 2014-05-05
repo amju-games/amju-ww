@@ -64,6 +64,9 @@ void GSText::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_WRITE);
+ 
   Matrix mat;
   static float a = 0; 
   a += TheTimer::Instance()->GetDt() * m_starRotVel;   
@@ -77,6 +80,9 @@ void GSText::Draw()
       m_stars[i]->Draw();
     }
   }
+
+  AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
+  AmjuGL::Enable(AmjuGL::AMJU_DEPTH_WRITE);
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();

@@ -101,8 +101,14 @@ void StartUpBeforeCreateWindow()
   File::SetRoot("/apps/amju_rd-v.1.0-wii/data/", "/");
 #endif
 
+#if defined(WIN32) || defined(MACOSX) || defined(GEKKO)
   SetROConfigFilename(GetSaveDir() + "roconfig.txt");
+#endif
 
+#if defined(AMJU_IOS) || defined(ANDROID)
+  SetROConfigFilename("roconfig.txt");
+#endif
+  
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   std::string filename = ConfigFilename();
   gcf->SetFilePath(filename);
@@ -205,13 +211,13 @@ void StartUpAfterCreateWindow()
 #else
   // iOS/Android: go to logo state, all assets are in glue file
   //  (no downloadable content [for now?!])
-  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
+  //TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
 
   // No need for logo state as we show it as app load image
   //TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
 
 
-  //TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
+  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
 #endif
 }
 }
