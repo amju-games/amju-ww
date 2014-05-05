@@ -36,7 +36,9 @@ public:
 
   bool Do() override
   {
+#ifdef POWERUP_DEBUG
 std::cout << "Player " << m_playerId << " is invincible!\n";
+#endif
 
     Player::GetPlayer((PlayerNum)m_playerId)->SetInvincible(true);
     return true;
@@ -59,7 +61,9 @@ public:
 
   bool Do() override
   {
+#ifdef POWERUP_DEBUG
 std::cout << "Player " << m_playerId << " speed up: " << m_mult << "!\n";
+#endif
 
     Player::GetPlayer((PlayerNum)m_playerId)->SetVelMult(m_mult);
     return true;
@@ -82,7 +86,9 @@ public:
 
   bool Do() override
   {
+#ifdef POWERUP_DEBUG
 std::cout << "Scroll speed up: " << m_mult << "!\n";
+#endif
 
     SetScrollSpeedMult(m_mult);
     return true;

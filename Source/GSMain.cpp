@@ -315,9 +315,11 @@ void GSMain::Draw2d()
   }
   m_gui->Draw(); // split screen line etc
 
-//  TheCursorManager::Instance()->Draw();
-
   TheLurker::Instance()->Draw();
+
+#ifdef GEKKO
+  TheCursorManager::Instance()->Draw();
+#endif
 
 #ifdef SHOW_INFO
   // TODO Switch on/off
