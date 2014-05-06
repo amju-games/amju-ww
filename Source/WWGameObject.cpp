@@ -309,7 +309,7 @@ void WWGameObject::Update()
     m_deathTimer -= dt;
     if (m_deathTimer <= 0)
     {
-#ifdef _DEBUG
+#ifdef DEAD_DEBUG
 std::cout << "Object " << Describe(this) << " is dead, (timer hit zero)\n ";
 #endif
 
