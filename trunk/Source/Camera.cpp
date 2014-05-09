@@ -22,7 +22,10 @@
 namespace Amju
 {
 GameObject* CreateCamera() { return new Camera; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Camera::NAME, &CreateCamera);
+#endif
 
 const char* Camera::NAME = "camera";
 

@@ -11,7 +11,10 @@
 namespace Amju
 {
 GameObject* CreateDeadly() { return new Deadly; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Deadly::NAME, &CreateDeadly);
+#endif
 
 const char* Deadly::NAME = "deadly";
 

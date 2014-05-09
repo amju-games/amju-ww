@@ -14,7 +14,10 @@ namespace Amju
 const char* Portal::NAME = "portal";
 
 GameObject* CreatePortal() { return new Portal; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Portal::NAME, &CreatePortal);
+#endif
 
 // Default portal size
 static const float SIZE = 25.0f;

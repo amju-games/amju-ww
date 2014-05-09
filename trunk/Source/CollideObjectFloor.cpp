@@ -175,6 +175,7 @@ void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
 }
 #endif
 
+#ifdef GLOBAL_INIT
 #define Fun CollideObjectFloor
 
 static bool contactType = AMJU_EVERY_CONTACT;
@@ -194,4 +195,5 @@ static bool b[] =
 
   TheCollisionManager::Instance()->Add(Pet::NAME, StaticFloor::NAME, &Fun, contactType),
 };
+#endif
 }

@@ -1,3 +1,4 @@
+#include "CollideDinoDino.h"
 #include "CollisionManager.h"
 #include "Dino.h"
 #include "PlayWav.h"
@@ -27,6 +28,8 @@ void CollideDinoDino(GameObject* go1, GameObject* go2)
   go2->SetAcc(-go2->GetVel());
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Dino::NAME, Dino::NAME, &CollideDinoDino, AMJU_EVERY_CONTACT);
+#endif
 } 

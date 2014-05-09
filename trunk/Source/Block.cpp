@@ -16,7 +16,10 @@ namespace Amju
 const char* Block::NAME = "block";
 
 GameObject* CreateBlock() { return new Block; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Block::NAME, &CreateBlock);
+#endif
 
 Block::Block()
 {

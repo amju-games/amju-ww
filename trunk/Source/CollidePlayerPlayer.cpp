@@ -18,6 +18,8 @@ void CollidePlayerPlayer(GameObject* go1, GameObject* go2)
   go2->SetVel(v2 - v1);
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Player::NAME, Player::NAME, &CollidePlayerPlayer, AMJU_EVERY_CONTACT);
+#endif
 }

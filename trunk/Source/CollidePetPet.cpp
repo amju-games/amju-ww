@@ -46,6 +46,9 @@ std::cout << "Moving pets apart: " << Describe(v) << "\n";
   }
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Pet::NAME, Pet::NAME, &CollidePetPet, AMJU_FIRST_CONTACT_ONLY);
+#endif
+
 } 

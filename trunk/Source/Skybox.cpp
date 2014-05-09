@@ -12,7 +12,10 @@
 namespace Amju
 {
 GameObject* CreateSkybox() { return new Skybox; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Skybox::NAME, &CreateSkybox);
+#endif
 
 const char* Skybox::NAME = "skybox";
 

@@ -14,6 +14,8 @@ void CollidePlayerBonus(GameObject* go1, GameObject* go2)
   // TODO Player animation ?
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Player::NAME, Bonus::NAME, &CollidePlayerBonus, AMJU_FIRST_CONTACT_ONLY);
+#endif
 }

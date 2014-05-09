@@ -12,7 +12,10 @@
 namespace Amju
 {
 GameObject* CreateObjective() { return new Objective; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Objective::NAME, &CreateObjective);
+#endif
 
 const char* Objective::NAME = "objective";
 

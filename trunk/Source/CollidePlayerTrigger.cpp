@@ -15,6 +15,7 @@ void CollidePlayerTrigger(GameObject* go1, GameObject* go2)
   tr->OnPlayerCollision(p);
 }
 
+#ifdef GLOBAL_INIT
 static bool b[] = 
 {
   TheCollisionManager::Instance()->Add(
@@ -23,5 +24,6 @@ static bool b[] =
   TheCollisionManager::Instance()->Add(
     Player::NAME, Portal::NAME, CollidePlayerTrigger, AMJU_FIRST_CONTACT_ONLY)
 };
+#endif
 
 } 

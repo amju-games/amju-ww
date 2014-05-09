@@ -43,6 +43,7 @@
 #include "GSPaused.h"
 #include "SaveDir.h"
 #include "ResizeHandler.h"
+#include "Init.h"
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
@@ -90,6 +91,10 @@ std::cout << "Config file: " << filename << "\n";
 
 void StartUpBeforeCreateWindow()
 {
+#ifndef GLOBAL_INIT
+  Init();
+#endif
+
 #if defined(AMJU_IOS)
   std::string dataDir = GetDataDir();
   std::cout << "Data Dir: " << dataDir << "\n";

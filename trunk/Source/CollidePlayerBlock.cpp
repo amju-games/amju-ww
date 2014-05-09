@@ -15,6 +15,9 @@ void CollidePlayerBlock(GameObject* go1, GameObject* go2)
   go1->SetVel(go1->GetVel() + go2->GetVel());
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Player::NAME, Block::NAME, &CollidePlayerBlock, AMJU_FIRST_CONTACT_ONLY);
+#endif
+
 }

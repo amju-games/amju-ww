@@ -25,7 +25,10 @@ namespace Amju
 const char* Bonus::NAME = "bonus";
 
 GameObject* CreateBonus() { return new Bonus; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Bonus::NAME, &CreateBonus);
+#endif
 
 static const float XSIZE = 15.0f;
 static const float YSIZE = 15.0f;
