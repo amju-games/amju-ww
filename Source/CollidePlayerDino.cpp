@@ -47,7 +47,9 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   cam->SetEarthquake(1.0f); // TODO CONFIG
 }
 
+#ifdef GLOBAL_INIT
 // Trying a different design, Dinos can eat Player
 //static bool b = TheCollisionManager::Instance()->Add(
 //  Player::NAME, Dino::NAME, CollidePlayerDino, AMJU_FIRST_CONTACT_ONLY);
+#endif
 } 

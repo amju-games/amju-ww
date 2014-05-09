@@ -14,8 +14,9 @@ namespace Amju
 {
 GameObject* CreateStaticFloor() { return new StaticFloor; }
 
-static bool reg = TheGameObjectFactory::Instance()->Add(
-  StaticFloor::NAME, &CreateStaticFloor);
+#ifdef GLOBAL_INIT
+static bool reg = TheGameObjectFactory::Instance()->Add(StaticFloor::NAME, &CreateStaticFloor);
+#endif
 
 const char* StaticFloor::NAME = "staticfloor";
 

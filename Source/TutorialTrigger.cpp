@@ -15,7 +15,10 @@ namespace Amju
 const char* TutorialTrigger::NAME = "tut-trigger";
 
 GameObject* CreateTT() { return new TutorialTrigger; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(TutorialTrigger::NAME, &CreateTT);
+#endif
 
 TutorialTrigger::TutorialTrigger()
 {

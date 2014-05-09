@@ -23,7 +23,10 @@
 namespace Amju
 {
 GameObject* CreateDino() { return new Dino; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Dino::NAME, &CreateDino);
+#endif
 
 const char* Dino::NAME = "dino";
 static const float XSIZE = 20.0f; // AABB size

@@ -38,6 +38,9 @@ void CollidePlayerPet(GameObject* go1, GameObject* go2)
   // TODO Particle effect etc
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Player::NAME, Pet::NAME, &CollidePlayerPet, AMJU_FIRST_CONTACT_ONLY);
+#endif
+
 }

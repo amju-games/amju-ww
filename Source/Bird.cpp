@@ -10,7 +10,10 @@ namespace Amju
 const char* Bird::NAME = "bird";
 
 GameObject* CreateBird() { return new Bird; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Bird::NAME, &CreateBird);
+#endif
 
 static const float XSIZE = 15.0f;
 static const float YSIZE = 20.0f;

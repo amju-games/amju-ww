@@ -84,6 +84,7 @@ void CollideObjectFence(GameObject* go1, GameObject* go2)
   }
 }
 
+#ifdef GLOBAL_INIT
 static bool b[] = 
 {
   TheCollisionManager::Instance()->Add(
@@ -97,4 +98,6 @@ static bool b[] =
 
   // TODO others, e.g. blocks
 };
+#endif
+
 }

@@ -49,6 +49,9 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
 //  TheGame::Instance()->SetCurrentState(glc);
 }
 
+#ifdef GLOBAL_INIT
 static bool b1 = TheCollisionManager::Instance()->Add(
   Player::NAME, Exit::NAME, CollidePlayerExit, AMJU_FIRST_CONTACT_ONLY);
+#endif
+
 } 
