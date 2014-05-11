@@ -338,6 +338,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSText.cpp" />
     <ClCompile Include="..\..\..\Source\GSTitle.cpp" />
     <ClCompile Include="..\..\..\Source\Hud.cpp" />
+    <ClCompile Include="..\..\..\Source\Init.cpp" />
     <ClCompile Include="..\..\..\Source\LevelManager.cpp" />
     <ClCompile Include="..\..\..\Source\LoadMeshResource.cpp" />
     <ClCompile Include="..\..\..\Source\LoadTextureResource.cpp" />
@@ -370,7 +371,6 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\StartGame.cpp" />
     <ClCompile Include="..\..\..\Source\StartUp.cpp" />
     <ClCompile Include="..\..\..\Source\StaticFloor.cpp" />
-    <ClCompile Include="..\..\..\Source\TextMaker.cpp" />
     <ClCompile Include="..\..\..\Source\Trigger.cpp" />
     <ClCompile Include="..\..\..\Source\TriggerNode.cpp" />
     <ClCompile Include="..\..\..\Source\TutorialTrigger.cpp" />
@@ -429,6 +429,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSText.h" />
     <ClInclude Include="..\..\..\Source\GSTitle.h" />
     <ClInclude Include="..\..\..\Source\Hud.h" />
+    <ClInclude Include="..\..\..\Source\Init.h" />
     <ClInclude Include="..\..\..\Source\LevelManager.h" />
     <ClInclude Include="..\..\..\Source\LoadMeshResource.h" />
     <ClInclude Include="..\..\..\Source\LoadTextureResource.h" />
@@ -464,7 +465,6 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\StartGame.h" />
     <ClInclude Include="..\..\..\Source\StartUp.h" />
     <ClInclude Include="..\..\..\Source\StaticFloor.h" />
-    <ClInclude Include="..\..\..\Source\TextMaker.h" />
     <ClInclude Include="..\..\..\Source\Trigger.h" />
     <ClInclude Include="..\..\..\Source\TriggerNode.h" />
     <ClInclude Include="..\..\..\Source\TutorialTrigger.h" />
