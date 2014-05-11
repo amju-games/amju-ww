@@ -203,9 +203,6 @@
     <ClCompile Include="..\..\..\Source\Fence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\TextMaker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Source\LurkMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -315,6 +312,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\RDRandom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -481,9 +481,6 @@
     <ClInclude Include="..\..\..\Source\Fence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Source\TextMaker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Source\LurkMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -599,6 +596,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\RDRandom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\Init.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
