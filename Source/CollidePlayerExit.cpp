@@ -28,7 +28,7 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   exit->OnPlayerCollision();
 
   // Set new camera
-  Camera* cam = GetActiveCamera();
+  WWCamera* cam = GetActiveCamera();
   Assert(cam);
   cam->SetTarget(exit);
   cam->SetBehaviour(new CamZoomInOnPlayer);

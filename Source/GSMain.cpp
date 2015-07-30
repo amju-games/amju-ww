@@ -50,7 +50,7 @@ namespace Amju
 const char* GSMain::NAME = "main";
 static bool s_showAABBs = false;
 
-static void OnPause()
+static void OnPause(GuiElement*)
 {
   TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
 }

@@ -8,7 +8,7 @@
 namespace Amju
 {
 class SceneNode;
-class Camera;
+class WWCamera;
 
 // Shows viewport for one player - for split screen multiplayer, there would
 // be several viewports. For single player, there is one viewport which 
@@ -22,14 +22,14 @@ public:
   virtual void Draw();
   virtual void Draw2d();
 
-  void SetCamera(Camera*);
-  Camera* GetCamera();
+  void SetCamera(WWCamera*);
+  WWCamera* GetCamera();
 
 protected:
   // Target for camera to look at
   // (Not Game Object ID ?)
   //SceneNode* m_pCameraTarget;
-  Camera* m_pCamera;
+  WWCamera* m_pCamera;
   int m_id;
   float m_x, m_y, m_w, m_h;
   float m_aspect;

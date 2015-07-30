@@ -113,13 +113,13 @@ void Viewport::Draw2d()
 {
 }
 
-void Viewport::SetCamera(Camera* pCam)
+void Viewport::SetCamera(WWCamera* pCam)
 {
   m_pCamera = pCam;
   Assert(m_pCamera);
 }
 
-Camera* Viewport::GetCamera()
+WWCamera* Viewport::GetCamera()
 {
   return m_pCamera;
 }

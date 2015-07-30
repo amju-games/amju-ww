@@ -65,12 +65,12 @@ static EditModeCamera* GetCamera()
   return dynamic_cast<EditModeCamera*>(c);
 }
 
-static void OnStart()
+static void OnStart(GuiElement*)
 {
   TheGSMainEdit::Instance()->OnRunStart();
 }
 
-static void OnStop()
+static void OnStop(GuiElement*)
 {
   TheGSMainEdit::Instance()->OnRunStop();
 }
@@ -109,7 +109,7 @@ std::cout << "File Save cancelled.\n";
   }
 }
 
-static void OnSaveLevel()
+static void OnSaveLevel(GuiElement*)
 {
   s_fileDialog.SetGuiFilename("gui-file-save-dialog.txt");
   s_fileDialog.SetFinishCallback(OnSaveDialogClosed);
@@ -124,7 +124,7 @@ static void OnQuitSaveChanges(Dialog* dlg)
   if (r == AMJU_OK)
   {
     std::cout << "Quit->Save OK clicked.\n";
-    OnSaveLevel();
+    OnSaveLevel(nullptr);
   }
   else if (r == AMJU_NO)
   {
@@ -138,7 +138,7 @@ static void OnQuitSaveChanges(Dialog* dlg)
   }
 }
 
-static void OnQuitEditMode()
+static void OnQuitEditMode(GuiElement*)
 {
   // TODO prompt for save if any unsaved changes
   if (s_unsaved)
@@ -160,7 +160,7 @@ static void OnNewSaveChanges(Dialog* dlg)
   if (r == AMJU_OK)
   {
     std::cout << "New->Save OK clicked.\n";
-    OnSaveLevel();
+    OnSaveLevel(nullptr);
   }
   else if (r == AMJU_NO)
   {
@@ -175,7 +175,7 @@ static void OnNewSaveChanges(Dialog* dlg)
   }
 }
 
-static void OnNewLevel()
+static void OnNewLevel(GuiElement*)
 {
   // If unsaved changes, go to save dialog
   if (s_unsaved)
@@ -236,7 +236,7 @@ static void OnLoadSaveChanges(Dialog* dlg)
   {
     std::cout << "Load->Save OK clicked.\n";
     // Yes/OK - save
-    OnSaveLevel();
+    OnSaveLevel(nullptr);
   }
   else if (dlg->GetResult() == AMJU_NO)
   {
@@ -251,7 +251,7 @@ static void OnLoadSaveChanges(Dialog* dlg)
   }
 }
 
-static void OnLoadLevel()
+static void OnLoadLevel(GuiElement*)
 {
   // If unsaved changes, go to save dialog
   if (s_unsaved)
@@ -267,7 +267,7 @@ static void OnLoadLevel()
   }
 }
 
-static void OnUndo()
+static void OnUndo(GuiElement*)
 {
   GuiCommandHandler* gch = TheGuiCommandHandler::Instance();
 
@@ -283,7 +283,7 @@ std::cout << "Can't undo\n";
   }
 }
 
-void OnRedo()
+void OnRedo(GuiElement*)
 {
   GuiCommandHandler* gch = TheGuiCommandHandler::Instance();
 
@@ -299,48 +299,48 @@ std::cout << "Can't redo\n";
   }
 }
 
-static void OnObjectRotateCW()
+static void OnObjectRotateCW(GuiElement*)
 {
   TheGSMainEdit::Instance()->OnObjectRotate(90.0f);
 }
 
-static void OnObjectRotateCCW()
+static void OnObjectRotateCCW(GuiElement*)
 {
   TheGSMainEdit::Instance()->OnObjectRotate(-90.0f);
 }
 
-static void OnCamRotate()
+static void OnCamRotate(GuiElement*)
 {
   GetCamera()->SetMode(EditModeCamera::AMJU_ROTATE);
 }
 
-static void OnPan()
+static void OnPan(GuiElement*)
 {
   GetCamera()->SetMode(EditModeCamera::AMJU_PAN);
 }
 
-static void OnZoom()
+static void OnZoom(GuiElement*)
 {
   GetCamera()->SetMode(EditModeCamera::AMJU_ZOOM);
 }
 
-static void OnDuplicate()
+static void OnDuplicate(GuiElement*)
 {
   // Clone currently selected object
   TheGSMainEdit::Instance()->OnDuplicate();
 }
 
-static void OnDelete()
+static void OnDelete(GuiElement*)
 {
   TheGSMainEdit::Instance()->OnDelete();
 }
 
-static void OnProperties()
+static void OnProperties(GuiElement*)
 {
   TheGSMainEdit::Instance()->OnProperties();
 }
 
-static void OnObjectViewAll()
+static void OnObjectViewAll(GuiElement*)
 {
   ObjectDialog* dlg = TheObjectDialog::Instance();
   DoModalDialog(dlg);
@@ -1049,7 +1049,7 @@ bool GSMainEdit::OnKeyEvent(const KeyEvent& ke)
   // Keyboard shortcuts
   if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'z')
   {
-    OnUndo();
+    OnUndo(nullptr);
     return true;
   }
 

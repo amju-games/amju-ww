@@ -21,16 +21,16 @@
 
 namespace Amju
 {
-GameObject* CreateCamera() { return new Camera; }
+GameObject* CreateCamera() { return new WWCamera; }
 
 #ifdef GLOBAL_INIT
-static bool reg = TheGameObjectFactory::Instance()->Add(Camera::NAME, &CreateCamera);
+static bool reg = TheGameObjectFactory::Instance()->Add(WWCamera::NAME, &CreateCamera);
 #endif
 
-const char* Camera::NAME = "camera";
+const char* WWCamera::NAME = "camera";
 
-static Camera* s_activeCamera = 0;
-Camera* GetActiveCamera()
+static WWCamera* s_activeCamera = 0;
+WWCamera* GetActiveCamera()
 {
   return s_activeCamera;
 }
@@ -40,7 +40,7 @@ Viewport* GetViewport(int i)
   return TheViewportManager::Instance()->GetViewport(i);
 }
 
-void CamZoomInOnPlayer::Update(Camera* cam)
+void CamZoomInOnPlayer::Update(WWCamera* cam)
 {
   Assert(cam);
   Assert(cam->GetTarget());
@@ -56,7 +56,7 @@ void CamZoomInOnPlayer::Update(Camera* cam)
   cam->SetLookAtPos(v); 
 }
 
-void CamFollowPlayer::Update(Camera* cam)
+void CamFollowPlayer::Update(WWCamera* cam)
 {
   static const float Y_OFFSET = ROConfig()->GetFloat("cam-y-offset"); 
   static const float Z_OFFSET = ROConfig()->GetFloat("cam-z-offset"); 
@@ -120,7 +120,7 @@ void CamFollowPlayer::Update(Camera* cam)
   cam->SetLookAtPos(Vec3f(pos.x, pos.y - Y_OFFSET, v.z));
 }
 
-Camera::Camera()
+WWCamera::WWCamera()
 {
   m_targetId = -1;
   m_target = 0;
@@ -130,14 +130,14 @@ Camera::Camera()
   //m_behaviour = new CamZoomInOnPlayer;
 }
 
-void Camera::AddPropertiesGui(PropertiesDialog* dlg) 
+void WWCamera::AddPropertiesGui(PropertiesDialog* dlg) 
 {
   // TODO
 //  dlg->AddItem(new PropertiesDialog::IntItem("Target ID", m_targetId));
 //  dlg->AddItem(new PropertiesDialog::IntItem("Viewport ID", m_viewportId));
 }
 
-PropertyValue Camera::GetProp(PropertyKey key)
+PropertyValue WWCamera::GetProp(PropertyKey key)
 {
 //  switch (key)
 //  {
@@ -147,7 +147,7 @@ PropertyValue Camera::GetProp(PropertyKey key)
   return WWGameObject::GetProp(key);
 }
 
-void Camera::SetProp(PropertyKey key, PropertyValue value)
+void WWCamera::SetProp(PropertyKey key, PropertyValue value)
 {
   WWGameObject::SetProp(key, value);
 //  switch (key)
@@ -157,27 +157,27 @@ void Camera::SetProp(PropertyKey key, PropertyValue value)
 //  }
 }
 
-WWGameObject* Camera::Clone() 
+WWGameObject* WWCamera::Clone() 
 {
-  return new Camera(*this);
+  return new WWCamera(*this);
 }
 
-const char* Camera::GetTypeName() const
+const char* WWCamera::GetTypeName() const
 {
   return NAME;
 }
 
-void Camera::AddToGame()
+void WWCamera::AddToGame()
 {
   TheGame::Instance()->AddGameObject(this);
 }
 
-void Camera::RemoveFromGame()
+void WWCamera::RemoveFromGame()
 {
   TheGame::Instance()->EraseGameObject(GetId());
 }
 
-void Camera::Reset()
+void WWCamera::Reset()
 {
   static const float Y_OFFSET = ROConfig()->GetFloat("cam-y-offset"); 
   static const float Z_OFFSET = ROConfig()->GetFloat("cam-z-offset"); 
@@ -185,7 +185,7 @@ void Camera::Reset()
   if (!m_target)
   {
 #ifdef CAM_DEBUG
-std::cout << "Camera obj ID: " << GetId() << " target ID: " << m_targetId << "\n";
+std::cout << "WWCamera obj ID: " << GetId() << " target ID: " << m_targetId << "\n";
 #endif
 
     m_target = TheGame::Instance()->GetGameObject(m_targetId);
@@ -196,12 +196,12 @@ std::cout << "Camera obj ID: " << GetId() << " target ID: " << m_targetId << "\n
   m_pos = Vec3f(v.x, v.y + Y_OFFSET, v.z + Z_OFFSET);
 }
 
-void Camera::SetEarthquake(float severity)
+void WWCamera::SetEarthquake(float severity)
 {
   m_earthquakeSeverity = severity;
 }
 
-void Camera::Update()
+void WWCamera::Update()
 {
   if (!GetSceneNode())
   {
@@ -236,7 +236,7 @@ void Camera::Update()
   c->SetUpVec(Vec3f(0, 1, 0)); 
 }
 
-bool Camera::Save(File* f)
+bool WWCamera::Save(File* f)
 {
   f->WriteComment("// ID");
   f->WriteInteger(GetId());
@@ -248,7 +248,7 @@ bool Camera::Save(File* f)
   return true;
 }
 
-bool Camera::Load(File* f)
+bool WWCamera::Load(File* f)
 {
   if (!GameObject::Load(f)) // Load ID
   {
@@ -280,13 +280,13 @@ bool Camera::Load(File* f)
   return true;
 }
 
-void Camera::SetAsSceneGraphCamera()
+void WWCamera::SetAsSceneGraphCamera()
 {
   SceneGraph* graph = GetGameSceneGraph();
 
 #ifdef EDIT_CAM
   // Check for edit mode camera
-  if (dynamic_cast<EditModeCamera*>(graph->GetCamera().GetPtr()))
+  if (dynamic_cast<EditModeWWCamera*>(graph->GetCamera().GetPtr()))
   {
 //    return;
   }

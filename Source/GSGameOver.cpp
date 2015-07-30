@@ -51,14 +51,14 @@ void GSGameOver::Update()
   }
 }
 
-static void OnContinue()
+static void OnContinue(GuiElement*)
 {
   // Always go back to title
   TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
   //StartGame(1, AMJU_MAIN_GAME_MODE);
 }
 
-static void OnMainMenu()
+static void OnMainMenu(GuiElement*)
 {
   TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
 }

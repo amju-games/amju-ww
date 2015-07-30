@@ -5,7 +5,7 @@ namespace Amju
 {
 const char* GSOptions::NAME = "gs-options";
 
-static void OnBack()
+static void OnBack(GuiElement*)
 {
   TheGSOptions::Instance()->GoBack();
 }
