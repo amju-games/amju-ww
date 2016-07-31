@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Exit.h"
 #include "Viewport.h"
-#include "Camera.h"
+#include "WWCamera.h"
 #include "GSLevelComplete.h"
 #include "GSPetBonus.h"
 #include "GSMain.h"

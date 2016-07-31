@@ -1,6 +1,6 @@
 #include <ROConfig.h>
 #include <AmjuRand.h>
-#include "Camera.h"
+#include "WWCamera.h"
 #include "GameObjectFactory.h"
 #include "File.h"
 #include "AmjuGL.h"

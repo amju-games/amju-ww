@@ -5,7 +5,7 @@
 #include "AIStunned.h"
 #include "Pet.h"
 #include "AIFlee.h"
-#include "Camera.h"
+#include "WWCamera.h"
 
 namespace Amju
 {

@@ -22,7 +22,7 @@
 #include "Exit.h"
 #include "MySceneGraph.h"
 #include "CollisionManager.h"
-#include "Camera.h"
+#include "WWCamera.h"
 #include "Hud.h"
 #include "GSPaused.h"
 #include "GSLoadLevel.h"

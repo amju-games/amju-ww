@@ -5,7 +5,7 @@
 #include "MySceneGraph.h"
 #include "AmjuGL.h"
 #include "GuiImage.h"
-#include "Camera.h"
+#include "WWCamera.h"
 #include "GSLoadLevel.h"
 #include "GameMode.h"
 #include "Stars.h"
