@@ -191,8 +191,10 @@ void StartUpAfterCreateWindow()
   rm->AddLoader("snd", BinaryResourceLoader);
   rm->AddLoader("wav", BinaryResourceLoader);
 
-  TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
-
+#if defined(WIN32) || defined(MACOSX)
+    TheCursorManager::Instance()->Load(Vec2f(0.025f, -0.08f)); // hotspot position
+#endif
+    
   TheHud::Instance()->Load();
 
   // Set collision system
