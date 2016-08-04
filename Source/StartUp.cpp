@@ -63,10 +63,10 @@
 #define MUSIC_GLUE_FILE "music-wii.glue"
 #endif
 
-#ifdef IPHONE
+#ifdef AMJU_IOS
 #define GLUE_FILE "data-iOS.glue"
 #define MUSIC_GLUE_FILE "music-iOS.glue"
-#endif
+#endif // AMJU_IOS
 
 #ifdef ANDROID_NDK
 #define GLUE_FILE "data-android.glue"
