@@ -21,8 +21,8 @@ public:
   virtual void AddToGame() override;
   virtual bool CreateSceneNode() override; 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) override;
+  virtual void SetProp(PropertyKey, PropertyValue) override;
 
   virtual bool YesAddToLevel(int levelId, float depth) override; 
   virtual void Customise(int levelId, float depth) override;

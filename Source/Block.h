@@ -20,8 +20,8 @@ public:
   virtual bool Load(File*) override;
   virtual bool Save(File* f) override;
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) override;
+  virtual void SetProp(PropertyKey, PropertyValue) override;
 };
 }
 

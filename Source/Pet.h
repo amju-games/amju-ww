@@ -30,8 +30,8 @@ public:
   Player* GetCarryingPlayer();
 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) override;
+  virtual void SetProp(PropertyKey, PropertyValue) override;
 
 protected:
   float m_justDroppedTime;

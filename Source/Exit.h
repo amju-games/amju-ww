@@ -32,15 +32,15 @@ public:
   static const char* NAME;
 
   Exit();
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
-  virtual void Update();
-  virtual bool Load(File*);
-  virtual bool Save(File*);
-  virtual void Reset();
+  virtual void Update() override;
+  virtual bool Load(File*) override;
+  virtual bool Save(File*) override;
+  virtual void Reset() override;
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) override;
+  virtual void SetProp(PropertyKey, PropertyValue) override;
   virtual void AddToGame() override;
   virtual void RemoveFromGame() override;
   virtual bool CreateSceneNode() override;
@@ -54,7 +54,7 @@ public:
   // Returns true when we are about to go to next level
   bool IsExiting() const { return m_isExiting; }
 
-  virtual bool YesAddToLevel(int levelId, float depth);
+  virtual bool YesAddToLevel(int levelId, float depth) override;
   virtual void Customise(int levelId, float depth) override;
 
 protected:

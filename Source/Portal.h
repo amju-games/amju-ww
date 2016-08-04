@@ -21,7 +21,7 @@ public:
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey) override;
   virtual void SetProp(PropertyKey, PropertyValue) override;
-  virtual void Update();
+  virtual void Update() override;
 
 private:
   // ID of destination object, most likely another portal, so travel

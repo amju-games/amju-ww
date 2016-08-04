@@ -29,11 +29,11 @@ public:
   void SetPlayerId(int);
   int GetPlayerId() const;
 
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
-  virtual void Update();
-  virtual bool Load(File* f);
-  virtual bool Save(File* f);
+  virtual void Update() override;
+  virtual bool Load(File* f) override;
+  virtual bool Save(File* f) override;
   virtual void Reset() override;
 
   virtual bool OnButtonEvent(const ButtonEvent& be);
@@ -43,10 +43,10 @@ public:
   virtual bool OnRotationEvent(const RotationEvent&);
   virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe);
 
-  virtual void OnAnimFinished();
+  virtual void OnAnimFinished() override;
 
   virtual void StartBeingEaten(OnFloorCharacter* eater) override;
-  virtual void StartBeingDead();
+  virtual void StartBeingDead() override;
 
   void Jump();
 
@@ -58,10 +58,10 @@ public:
   void ReachedExit(Exit* exit);
 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) override;
+  virtual void SetProp(PropertyKey, PropertyValue) override;
 
-  virtual void OnHitFloor();
+  virtual void OnHitFloor() override;
 
   void SetTiltSensitivity(float x, float y);
 

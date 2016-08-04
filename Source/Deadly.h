@@ -9,7 +9,7 @@ class Deadly : public Fence
 public:
   static const char* NAME;
   Deadly();
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
 };
 }
