@@ -6,21 +6,22 @@
 #include <Colour.h>
 #include <ROConfig.h>
 #include "Exit.h"
-#include "GSLevelComplete.h"
-#include "LoadMeshResource.h"
-#include "GameObjectFactory.h"
-#include "LoadVec3.h"
-#include "GSMain.h"
-#include "TextMaker.h"
-#include "SceneMesh.h"
-#include "MySceneGraph.h"
-#include "LevelManager.h"
 #include "GameConsts.h"
+#include "GameObjectFactory.h"
+#include "GSLevelComplete.h"
+#include "GSMain.h"
+#include "LevelManager.h"
+#include "LoadMeshResource.h"
+#include "LoadVec3.h"
+#include "MySceneGraph.h"
+#include "NetSend.h"
 #include "PlayWav.h"
+#include "PowerUp.h"
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
 #include "RDRandom.h"
-#include "PowerUp.h"
+#include "SceneMesh.h"
+#include "TextMaker.h"
 
 namespace Amju
 {
@@ -281,6 +282,8 @@ bool Exit::CreateSceneNode()
 
 void Exit::OnPlayerCollision()
 {
+  NetSendPlaySession(NET_SEND_LEVEL_COMPLETE);
+  
   Assert(!m_isExiting); // already called
   m_isExiting = true;
 

@@ -1,17 +1,24 @@
 #include <iostream>
 #include <string>
+#include <AmjuTime.h>
 #include <ConfigFile.h>
 #include <iOSUtils.h>
 #include <UrlUtils.h>
+#include "Depth.h"
+#include "LevelManager.h"
 #include "NetSend.h"
+#include "Nicknames.h"
+#include "Score.h"
 #include "SerialReqManager.h"
 #include "Version.h"
 
 // Consts so never more than one copy of a string
+#define URL_ROOT std::string("http://www.amju.com/cgi-bin/rd/")
 #define DEVICE_ID "device_id"
 #define DEVICE_OS_VERSION "device_os_version"
 #define DEVICE_USER_NAME "device_user_name"
 #define CLIENT_VERSION "client_version"
+#define SESSION_ID "session_id"
 
 namespace Amju
 {
@@ -25,7 +32,9 @@ public:
     HttpResult res = GetResult();
     if (res.GetSuccess())
     {
+//#ifdef LOG_SUCCESSFUL_REQ
       std::cout << "Request '" << GetName() << "' success!\n";
+//#endif
     }
     else
     {
@@ -41,7 +50,8 @@ static bool NetSendDeviceInfo(
   const std::string& deviceModel,
   const std::string& deviceOsVersion)
 {
-  std::string url = "www.amju.com/cgi-bin/rd_log_device.pl?"
+  std::string url = URL_ROOT +
+    "rd_log_device.pl?"
     "device_id='" + deviceId + "'&"
     "device_user_name='" + ToUrlFormat(deviceUserName) + "'&"
     "device_model='" + deviceModel + "'&"
@@ -92,6 +102,7 @@ bool NetSendDeviceInfoFirstRunEver()
   gcf->Set(DEVICE_OS_VERSION, deviceOsVersion);
   gcf->Set(DEVICE_USER_NAME, deviceUserName);
   gcf->Set(CLIENT_VERSION, GetVersionStr());
+  gcf->Save();
   
   return true;
 }
@@ -128,8 +139,60 @@ bool NetSendUpdateDeviceInfo()
   gcf->Set(DEVICE_OS_VERSION, deviceOsVersion);
   gcf->Set(DEVICE_USER_NAME, deviceUserName);
   gcf->Set(CLIENT_VERSION, GetVersionStr());
+  gcf->Save();
 
   return true;
+}
+  
+static std::string s_sessionStart;
+  
+void NetSendMarkSessionStart()
+{
+  s_sessionStart = ToString(Time::Now().ToSeconds());
+}
+  
+bool NetSendPlaySession(int flags)
+{
+  if (s_sessionStart.empty())
+  {
+    // Already sent session
+    return false;
+  }
+  
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+
+  int session = Time::Now().ToSeconds(); // so if we delete and re-install app, we don't restart IDs at zero
+  if (gcf->Exists(SESSION_ID))
+  {
+    session = gcf->GetInt(SESSION_ID);
+  }
+  gcf->SetInt(SESSION_ID, session + 1);
+  
+  std::string now = ToString(Time::Now().ToSeconds());
+  std::string level = ToString(TheLevelManager::Instance()->GetLevelId());
+  // Assuming 1-player game for now, not multiplayer (Wii) - - TODO
+  std::string depth = ToString(static_cast<int>(GetCurrentDepth()));
+  std::string score = ToString(TheScores::Instance()->GetScore(AMJU_P1));
+  std::string flagStr = ToString(flags);
+  std::string nick = GetNick(AMJU_P1);
+  
+  std::string url = URL_ROOT +
+  "rd_log_play_session.pl?"
+  "device_id='" + gcf->GetValue(DEVICE_ID) + "'&"
+  "session_id=" + ToString(session) + "&"
+  "session_start='" + s_sessionStart + "'&"
+  "session_end='" + now + "'&"
+  "session_level='" + level + "'&"
+  "session_depth='" + depth + "'&"
+  "session_score='" + score + "'&"
+  "session_flags='" + flagStr + "'&"
+  "session_user_nick='" + nick + "'";
+  
+  s_sessionStart.clear();
+  
+  auto req = new NetSendReq(url, HttpClient::GET, "send play session");
+  bool b = TheSerialReqManager::Instance()->AddReq(req);
+  return b;
 }
 }
 

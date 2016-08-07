@@ -14,30 +14,31 @@
 #include <ROConfig.h>
 #include <Game.h>
 #include "GSMain.h"
-#include "CursorManager.h"
-#include "Floor.h"
-#include "Player.h"
-#include "Dino.h"
-#include "Pet.h"
-#include "Exit.h"
-#include "MySceneGraph.h"
+#include "Bird.h"
 #include "CollisionManager.h"
-#include "WWCamera.h"
-#include "Hud.h"
+#include "CursorManager.h"
 #include "GSPaused.h"
 #include "GSLoadLevel.h"
 #include "GSLevelComplete.h"
+#include "Depth.h"
+#include "Describe.h"
+#include "Dino.h"
 #include "EditModeCamera.h"
+#include "Exit.h"
+#include "Floor.h"
+#include "Hud.h"
 #include "LurkMsg.h"
+#include "NetSend.h"
+#include "Pet.h"
+#include "Player.h"
+#include "PowerUp.h"
+#include "ProcGen.h"
+#include "MySceneGraph.h"
 #include "Score.h"
 #include "ShadowManager.h"
 #include "Viewport.h"
+#include "WWCamera.h"
 #include "WWLoadGui.h"
-#include "Bird.h"
-#include "Depth.h"
-#include "ProcGen.h"
-#include "Describe.h"
-#include "PowerUp.h"
 
 #ifdef _DEBUG
 #define EDIT_CAM
@@ -79,6 +80,8 @@ void GSMain::OnDeactive()
   GameState::OnDeactive();
   TheLurker::Instance()->SetAsListener(false);
   TheEventPoller::Instance()->RemoveListener(m_gui);
+  
+  NetSendPlaySession(); // e.g. if pause button tapped, OK if already called elsewhere
 }
 
 void GSMain::OnActive()
@@ -118,6 +121,8 @@ void GSMain::OnActive()
   // When we are in the play state, we DO want to go to the paused state
   //  if we are interrupted (e.g. answer phone)
   TheGame::Instance()->RegisterPauseState(TheGSPaused::Instance());
+  
+  NetSendMarkSessionStart();
 }
 
 bool GSMain::OnKeyEvent(const KeyEvent& ke)
