@@ -3,7 +3,7 @@
 1
 
 lurk-font-x 1.6
-lurk-font-y 2.0
+lurk-font-y 1.0
 
 default-x-sensitivity 10
 default-y-sensitivity 10
