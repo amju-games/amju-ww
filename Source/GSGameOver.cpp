@@ -67,7 +67,7 @@ void GSGameOver::OnActive()
 {
   GSText::OnActive();
 
-  m_gui = WWLoadGui("gameover-gui.txt");
+  m_gui = WWLoadGui("gui-gameover.txt");
   Assert(m_gui);
 
   GuiButton* cont = (GuiButton*)m_gui->GetElementByName("continue-button");

@@ -1,29 +1,38 @@
-#include <Game.h>
-#include <SoundManager.h>
-#include <GuiButton.h>
 #include <ConfigFile.h>
-#include "GSNewOrContinue.h"
-#include "GSChooseLevel.h"
-#include "WWLoadGui.h"
-#include "StartGame.h"
+#include <Game.h>
+#include <GuiButton.h>
+#include <SoundManager.h>
 #include "GameConsts.h"
+#include "GSChooseLevel.h"
+#include "GSHiScores.h"
+#include "GSMoreMenu.h"
+#include "GSNewOrContinue.h"
+#include "GSOptions.h"
+#include "GSTitle.h"
 #include "LevelManager.h"
+#include "StartGame.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
-static void OnChooseLevel(GuiElement*)
+static void OnBack(GuiElement*)
 {
-  GSChooseLevel* gcl = TheGSChooseLevel::Instance();
-  gcl->SetPrevState(TheGSNewOrContinue::Instance());
-  TheGame::Instance()->SetCurrentState(gcl);
+  GSTitle* g = TheGSTitle::Instance();
+  TheGame::Instance()->SetCurrentState(g);
 }
 
-static void OnNew(GuiElement*)
+static void OnHiScores(GuiElement*)
 {
-  TheLevelManager::Instance()->SetLevelId(1);
-  GameConfigFile* gcf = TheGameConfigFile::Instance();
-  gcf->SetInt(CONTINUE_LEVEL_KEY, 1);
-  StartGame(1, AMJU_MAIN_GAME_MODE);
+  GSHiScores* g = TheGSHiScores::Instance();
+  g->SetPrevState(TheGSNewOrContinue::Instance());
+  TheGame::Instance()->SetCurrentState(g);
+}
+
+static void OnMore(GuiElement*)
+{
+  GSMoreMenu* g = TheGSMoreMenu::Instance();
+  g->SetPrevState(TheGSNewOrContinue::Instance());
+  TheGame::Instance()->SetCurrentState(g);
 }
 
 static void OnContinue(GuiElement*)
@@ -34,12 +43,6 @@ static void OnContinue(GuiElement*)
   Assert(level > 0);
   TheLevelManager::Instance()->SetLevelId(level);
   StartGame(1, AMJU_MAIN_GAME_MODE);
-}
-
-static void OnEditor(GuiElement*)
-{
-  TheLevelManager::Instance()->SetLevelId(1);
-  StartGame(1, AMJU_EDIT_MODE); // one "player" only for edit mode
 }
 
 GSNewOrContinue::GSNewOrContinue()
@@ -69,7 +72,7 @@ void GSNewOrContinue::OnActive()
 
   CreateText("");
 
-  m_gui = WWLoadGui("neworcontinue-gui.txt");
+  m_gui = WWLoadGui("gui-neworcontinue.txt");
   Assert(m_gui);
 
   // TODO Set focus element, cancel element, command handlers
@@ -78,9 +81,9 @@ void GSNewOrContinue::OnActive()
   cont->SetIsFocusButton(true);
   cont->SetShowIfFocus(true);
 
-  m_gui->GetElementByName("new-button")->SetCommand(OnNew);
-  m_gui->GetElementByName("editor-button")->SetCommand(OnEditor);
-  m_gui->GetElementByName("choose-level-button")->SetCommand(OnChooseLevel);
+  m_gui->GetElementByName("more-button")->SetCommand(OnMore);
+  m_gui->GetElementByName("hiscores-button")->SetCommand(OnHiScores);
+  m_gui->GetElementByName("back-button")->SetCommand(OnBack);
 
   TheSoundManager::Instance()->PlaySong("sound/piano.it");
 
@@ -88,7 +91,12 @@ void GSNewOrContinue::OnActive()
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   if (!gcf->Exists(CONTINUE_LEVEL_KEY))
   {
-    OnNew(nullptr);
+    // New game
+    TheLevelManager::Instance()->SetLevelId(1);
+    GameConfigFile* gcf = TheGameConfigFile::Instance();
+    gcf->SetInt(CONTINUE_LEVEL_KEY, 1);
+    StartGame(1, AMJU_MAIN_GAME_MODE);
+
     return;
   }
 }

@@ -1,0 +1,66 @@
+// Paused gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+title-comp
+// Num children
+3
+
+elastic
+0, -1.0
+// Button 1 - start
+// element type
+gui-button
+// Element name
+resume-button
+// pos (coords are -1..1)
+-0.8, -0.15
+// size
+1.6, 0.3
+// Image 
+gui-button-4.png
+// Text
+resume
+// Font name, size
+cheri, 2.0, sx=1.6
+
+elastic
+0, -1.0
+// Button 2 - Options
+// element type
+gui-button
+// Element name
+options-button
+// pos (coords are -1..1)
+// Hidden for now
+-0.4, -0.55
+// size
+0.8, 0.15
+// Image 
+gui-button-4.png
+// Text
+options
+// Font name, size
+cheri, 1.0, sx=1.6
+
+elastic
+0, -1.0
+// Button 3 - quit
+// element type
+gui-button
+// Element name
+quit-button
+// pos (coords are -1..1)
+-0.4, -0.8
+// size
+0.8, 0.15
+// Image 
+gui-button-4.png
+// Text
+Quit
+// Font name, size
+cheri, 1.0, sx=1.6
+

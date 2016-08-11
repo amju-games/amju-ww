@@ -152,6 +152,8 @@ void GSText::OnActive()
   AmjuGL::SetClearColour(Colour(0.5f, 0.5f, 1, 1)); 
   m_nextState = 0;
   m_nextTimer = 0;
+
+  CreateText("");
 }
 
 void GSText::OnDeactive()

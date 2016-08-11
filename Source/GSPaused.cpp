@@ -1,10 +1,11 @@
 #include <Game.h>
 #include <GuiButton.h>
 #include "GSPaused.h"
-#include "MySceneGraph.h"
+#include "GSYesNoQuitGame.h"
 #include "GSMain.h"
 #include "GSOptions.h"
 #include "GSTitle.h"
+#include "MySceneGraph.h"
 #include "WWLoadGui.h"
 
 namespace Amju
@@ -23,7 +24,9 @@ static void OnOptions(GuiElement*)
 static void OnQuit(GuiElement*)
 {
   // TODO Confirm state, hi score should be saved anyway
-  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  GSYesNoQuitGame* q = TheGSYesNoQuitGame::Instance();
+  q->SetPrevState(TheGSPaused::Instance());
+  TheGame::Instance()->SetCurrentState(q);
 }
 
 static void OnResume(GuiElement*)
@@ -39,7 +42,7 @@ void GSPaused::OnActive()
   m_timer = 0;
 
   // buttons
-  m_gui = WWLoadGui("paused-gui.txt");
+  m_gui = WWLoadGui("gui-paused.txt");
   Assert(m_gui);
 
   GuiButton* resume = (GuiButton*)GetElementByName(m_gui, "resume-button");

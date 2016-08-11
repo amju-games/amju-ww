@@ -1,0 +1,80 @@
+// Menu gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+menu-comp
+// Num children
+4
+
+
+elastic
+0, -1.0
+// element type
+gui-button
+// Element name
+continue-button
+// pos (coords are -1..1)
+-0.8, 0.6
+// size
+1.6, 0.3
+// Image 
+gui-button-4.png
+// Text
+Con ti n ue
+// Font name, size
+cheri, 2.0, sx=1.6
+
+elastic
+0, -1.5
+// element type
+gui-button
+// Element name
+hiscores-button
+// pos (coords are -1..1)
+-0.4, 0.15
+// size
+0.8, 0.15
+// Image 
+gui-button-4.png
+// Text
+hi scores
+// Font name, size
+cheri, 1.0, sx=1.6
+
+elastic
+0, -1.8
+// element type
+gui-button
+// Element name
+more-button
+// pos (coords are -1..1)
+-0.4, -0.1
+// size
+0.8, 0.15
+// Image 
+gui-button-4.png
+// Text
+More
+// Font name, size
+cheri, 1.0, sx=1.6
+
+elastic
+0, -2.7
+// element type
+gui-button
+// Element name
+back-button
+// pos (coords are -1..1)
+-0.4, -0.35
+// size
+0.8, 0.15
+// Image 
+gui-button-4.png
+// Text
+Back
+// Font name, size
+cheri, 1.0, sx=1.6
+

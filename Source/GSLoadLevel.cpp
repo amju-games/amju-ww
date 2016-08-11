@@ -5,6 +5,7 @@
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "GSMainEdit.h"
+#include "GSNewOrContinue.h"
 #include "GSAttract.h"
 #include "PowerUp.h"
 #include "MySceneGraph.h"
@@ -24,6 +25,11 @@
 
 namespace Amju
 {
+static void OnBack(GuiElement*)
+{
+  TheGame::Instance()->SetCurrentState(TheGSNewOrContinue::Instance());
+}
+
 class CommandGo : public GuiCommand
 {
   virtual bool Do()
@@ -37,7 +43,7 @@ class CommandGo : public GuiCommand
       PlayWav("gong");
       TheGSLoadLevel::Instance()->GoToNewState(TheGSMain::Instance());
     }
-    return false; //no undo
+    return false; // no undo
   }
 };
 
@@ -66,17 +72,21 @@ void GSLoadLevel::OnActive()
 
   m_timer = 0;
 
-  m_gui = WWLoadGui("loadlevel-gui.txt");
+  m_gui = WWLoadGui("gui-loadlevel.txt");
   Assert(m_gui);
-  GuiElement* bar = m_gui->GetElementByName("bar");
+  GuiElement* bar = GetElementByName(m_gui, "bar");
   m_maxBarX = bar->GetSize().x;
 
   // Hide GO button until loaded
-  GuiButton* go = (GuiButton*)m_gui->GetElementByName("go-button");
+  GuiButton* go = (GuiButton*)GetElementByName(m_gui, "go-button");
   go->SetIsFocusButton(true);
   go->SetShowIfFocus(true);
   go->SetVisible(false);
   go->SetCommand(new CommandGo);
+  
+  GuiButton* back = (GuiButton*)GetElementByName(m_gui, "back-button");
+  back->SetVisible(false);
+  back->SetCommand(OnBack);
 
   TheShadowManager::Instance()->Clear();
 
@@ -138,13 +148,14 @@ void GSLoadLevel::Update()
       }
       else
       {
-         m_gui->GetElementByName("go-button")->SetVisible(true);
-         m_gui->GetElementByName("progressbar")->SetVisible(false);
+         GetElementByName(m_gui, "back-button")->SetVisible(true);
+         GetElementByName(m_gui, "go-button")->SetVisible(true);
+         GetElementByName(m_gui, "progressbar")->SetVisible(false);
       }
     }
   }
   
-  GuiElement* bar = m_gui->GetElementByName("bar");
+  GuiElement* bar = GetElementByName(m_gui, "bar");
   Vec2f s = bar->GetSize();
   float barSize = (float)m_currentObj / (float)m_numObjects;
   if (barSize > 1.0f)
