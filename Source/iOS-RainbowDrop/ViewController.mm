@@ -14,6 +14,7 @@
 #include <EventPoller.h>
 #include <Game.h>
 #include <StartUp.h>
+#include "iOSKeyboard.h"
 
 // Accelerom poll freq - j.c. - http://www.appcoda.com/ios-maze-game-tutorial-accelerometer/
 // If frequency is too high, frame rate seems to get choppy.
@@ -73,6 +74,9 @@
        [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
      }];
  
+    // j.c. Initialise keyboard
+    UIView* kbView = (UIView*)Amju::InitKeyboard();
+    [self.view addSubview:kbView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,7 +121,7 @@
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
-void QueueEvent(Amju::Event* e)
+static void QueueEvent(Amju::Event* e)
 {
   Amju::TheEventPoller::Instance()->GetImpl()->QueueEvent(e);
 }
