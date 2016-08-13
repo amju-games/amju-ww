@@ -5,7 +5,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerWorkingDirectory>..\..\..\Build\CompiledAssets</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>..\..\..\Build\CompiledAssets\Win\</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
