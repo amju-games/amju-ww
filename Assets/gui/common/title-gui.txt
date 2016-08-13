@@ -7,7 +7,7 @@ gui-comp
 // Name
 title-comp
 // Num children
-1
+2
 
 elastic
 0, -1.0
@@ -34,15 +34,15 @@ elastic
 // element type
 gui-button
 // Element name
-quit-button
+tweet-button
 // pos (coords are -1..1)
--0.3, -0.8
+-0.3, 0.9
 // size
 0.6, 0.1
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
-Quit
+tweet test
 // Font name, size
-cheri, 1.0, sx=1.6
+cheri, 0.7, sx=1.6
 
