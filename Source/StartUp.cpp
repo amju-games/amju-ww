@@ -53,6 +53,7 @@
 
 #ifdef AMJU_IOS
 #define YES_GLUE_FILE
+#define YES_BINARY_OBJ_FILES
 #endif
 
 #ifdef MACOSX
@@ -211,8 +212,11 @@ void StartUpAfterCreateWindow()
   // Add resource loaders
   ResourceManager* rm = TheResourceManager::Instance();
   rm->AddLoader("bmpa", BmpALoader);
+#ifdef YES_BINARY_OBJ_FILES
   rm->AddLoader("obj", BinaryObjLoader);
-  //rm->AddLoader("obj", TextObjLoader);
+#else
+  rm->AddLoader("obj", TextObjLoader);
+#endif
 
   rm->AddLoader("font", FontLoader);
   rm->AddLoader("mod", BinaryResourceLoader);
