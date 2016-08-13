@@ -27,7 +27,7 @@ namespace Amju
 {
 static void OnBack(GuiElement*)
 {
-  TheGame::Instance()->SetCurrentState(TheGSNewOrContinue::Instance());
+  TheGSLoadLevel::Instance()->GoBack();
 }
 
 class CommandGo : public GuiCommand
