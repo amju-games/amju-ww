@@ -92,10 +92,10 @@ void GSText::Draw()
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
-  const float FOVY = 60.0f;
-  const float NEAR = 1.0f;
-  const float FAR = 1000.0f;
-  AmjuGL::SetPerspectiveProjection(FOVY, aspect, NEAR, FAR);
+  const float PERSP_PROJ_FOVY = 60.0f;
+  const float PERSP_PROJ_NEAR = 1.0f;
+  const float PERSP_PROJ_FAR = 1000.0f;
+  AmjuGL::SetPerspectiveProjection(PERSP_PROJ_FOVY, aspect, PERSP_PROJ_NEAR, PERSP_PROJ_FAR);
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
