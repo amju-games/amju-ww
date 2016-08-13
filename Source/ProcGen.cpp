@@ -36,6 +36,14 @@ int ProcGen::GetNumLevels() const
 
 void ProcGen::Init()
 {
+    // Reset vars as we get called again after Edit mode
+    m_layers.clear();
+    m_numLayers = 0;
+    m_numLevels = 0;
+    m_nextLayer = -1;
+    m_nextDepth = 0; 
+    m_activeLayers.clear();
+
 #if defined(WIN32) || defined(MACOSX)
   // Get number of files which start "levels/layer"
   // Don't use glue file, as these files are copied to OS files
