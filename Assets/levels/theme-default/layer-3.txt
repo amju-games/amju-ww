@@ -1,0 +1,304 @@
+// File version
+11
+
+// Num game objects
+23
+
+// Game object type
+dino
+107
+// Position
+675.000000, 49.998413, 50.000000
+dino.md2
+dino1a.png
+dino1.png
+// Shadow texture & size
+shadow.png
+20.000000
+end
+
+// Game object type
+bonus
+111
+1168.750000, 175.000000, 37.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+113
+812.500000, 125.000000, 43.750000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+fence
+2002
+1212.500000, 101.562500, 53.125000
+0.000000
+// Mesh filename
+rock_1x1.obj
+end
+
+// Game object type
+fence
+2007
+18.750000, 87.500000, 50.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+staticfloor
+2023
+200.000000, 100.000000, 50.000000
+// Y rotation
+360.000000
+// Mesh filename
+rd_a41a.obj
+end
+
+// Game object type
+floor
+4003
+675.000000, 37.500000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_4x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+exit
+4006
+75.000000, 104.375000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+transporter.obj
+// Next level
+4
+// Shadow texture & size
+flare.png
+20.000000
+end
+
+// Game object type
+bonus
+4007
+1000.000000, 150.000000, 50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+4008
+1250.000000, 187.500000, 43.750000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+4009
+912.500000, 225.000000, 62.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5001
+1081.250000, 150.000000, 62.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+fence
+5006
+1037.500000, 101.562500, 53.125000
+0.000000
+// Mesh filename
+rock_1x1.obj
+end
+
+// Game object type
+fence
+5007
+1112.500000, 95.312500, 40.625000
+0.000000
+// Mesh filename
+rock_1x1.obj
+end
+
+// Game object type
+staticfloor
+5009
+1150.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41a.obj
+end
+
+// Game object type
+staticfloor
+5010
+625.000000, 150.000000, -175.000000
+// Y rotation
+720.000000
+// Mesh filename
+wall2.obj
+end
+
+// Game object type
+fence
+5211
+1337.500000, 87.500000, 50.000000
+0.000000
+// Mesh filename
+pz-fence.obj
+end
+
+// Game object type
+bonus
+5212
+250.000000, 125.000000, 37.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5213
+162.500000, 125.000000, 37.500000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5214
+350.000000, 125.000000, 43.750000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5789
+525.000000, 125.000000, 43.750000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5790
+618.750000, 125.000000, 50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5791
+731.250000, 125.000000, 43.750000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
