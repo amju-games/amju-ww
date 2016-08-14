@@ -247,10 +247,10 @@ void StartUpAfterCreateWindow()
 
 #if defined(WIN32) || defined(MACOSX)
 #ifdef YES_GLUE_FILE
-  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
+  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());
 #else
   // No glue file, don't try to copy from it!
-  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());	
+  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
 #endif
 #else
   // iOS/Android: go to logo state, all assets are in glue file
@@ -261,7 +261,7 @@ void StartUpAfterCreateWindow()
   //TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
 
 
-  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
+  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());
 #endif
 }
 }
