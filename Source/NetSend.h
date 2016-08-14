@@ -27,5 +27,9 @@ const int NET_SEND_PLAYER_DIED = 1;
 const int NET_SEND_LEVEL_COMPLETE = 2;
 // (More flags as required)
   
+// Send button (or other?) event
+bool NetSendButtonEvent(const std::string& buttonName);
+  
+//bool NetSendHiScore(const std::string& nickname, int score, int level, int depth, int layer, const Vec3& deadPos);
 }
 

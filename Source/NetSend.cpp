@@ -76,6 +76,8 @@ static bool NetSendDeviceInfo(
   "Unknown"
 #endif
     + "'";
+
+std::cout << "Sending device info: " << url << "\n";
   
   auto req = new NetSendReq(url, HttpClient::GET, "send device info");
   bool b = TheSerialReqManager::Instance()->AddReq(req);
@@ -141,13 +143,17 @@ bool NetSendUpdateDeviceInfo()
   {
     // Something has changed, so send update as for a new install.
     NetSendDeviceInfo(deviceId, deviceUserName, deviceModel, deviceOsVersion);
-  }
 
-  // Update config file so next run we don't update the server again unnecessarily.
-  gcf->Set(DEVICE_OS_VERSION, deviceOsVersion);
-  gcf->Set(DEVICE_USER_NAME, deviceUserName);
-  gcf->Set(CLIENT_VERSION, GetVersionStr());
-  gcf->Save();
+    // Update config file so next run we don't update the server again unnecessarily.
+    gcf->Set(DEVICE_OS_VERSION, deviceOsVersion);
+    gcf->Set(DEVICE_USER_NAME, deviceUserName);
+    gcf->Set(CLIENT_VERSION, GetVersionStr());
+    gcf->Save();
+  }
+  else
+  {
+std::cout << "NetSend: Nothing has changed, so not resending device info.\n";
+  }
 
   return true;
 }
@@ -175,30 +181,54 @@ bool NetSendPlaySession(int flags)
     session = gcf->GetInt(SESSION_ID);
   }
   gcf->SetInt(SESSION_ID, session + 1);
+  gcf->Save();
   
   std::string now = ToString(Time::Now().ToSeconds());
   std::string level = ToString(TheLevelManager::Instance()->GetLevelId());
   // Assuming 1-player game for now, not multiplayer (Wii) - - TODO
   std::string depth = ToString(static_cast<int>(GetCurrentDepth()));
-  std::string score = ToString(TheScores::Instance()->GetScore(AMJU_P1));
+  auto scores = TheScores::Instance();
+  std::string score = ToString(scores->GetScore(AMJU_P1));
+  std::string lives = ToString(scores->GetLives(AMJU_P1));
   std::string flagStr = ToString(flags);
   std::string nick = GetNick(AMJU_P1);
   
   std::string url = URL_ROOT +
-  "rd_log_play_session.pl?"
-  "device_id='" + gcf->GetValue(DEVICE_ID) + "'&"
-  "session_id=" + ToString(session) + "&"
-  "session_start='" + s_sessionStart + "'&"
-  "session_end='" + now + "'&"
-  "session_level='" + level + "'&"
-  "session_depth='" + depth + "'&"
-  "session_score='" + score + "'&"
-  "session_flags='" + flagStr + "'&"
-  "session_user_nick='" + nick + "'";
+    "rd_log_play_session.pl?"
+    "device_id='" + gcf->GetValue(DEVICE_ID) + "'&"
+    "session_id=" + ToString(session) + "&"
+    "session_start='" + s_sessionStart + "'&"
+    "session_end='" + now + "'&"
+    "session_level='" + level + "'&"
+    "session_depth='" + depth + "'&"
+    "session_score='" + score + "'&"
+    "session_flags='" + flagStr + "'&"
+    "session_lives='" + lives + "'&"
+    "session_user_nick='" + nick + "'";
   
   s_sessionStart.clear();
+
+std::cout << "Sending play session info: " << url << "\n";
   
   auto req = new NetSendReq(url, HttpClient::GET, "send play session");
+  bool b = TheSerialReqManager::Instance()->AddReq(req);
+  return b;
+}
+  
+// Is this info going to be useful??
+bool NetSendButtonEvent(const std::string buttonName)
+{
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+  
+  std::string now = ToString(Time::Now().ToSeconds());
+ 
+  std::string url = URL_ROOT +
+    "rd_log_button.pl?"
+    "device_id='" + gcf->GetValue(DEVICE_ID) + "'&"
+    "button_name='" + buttonName + "'&"
+    "button_time='" + now + "'";
+
+  auto req = new NetSendReq(url, HttpClient::GET, "send button event");
   bool b = TheSerialReqManager::Instance()->AddReq(req);
   return b;
 }
