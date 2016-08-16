@@ -74,9 +74,8 @@
        [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
      }];
  
-    // j.c. Initialise keyboard
-    UIView* kbView = (UIView*)Amju::InitKeyboard();
-    [self.view addSubview:kbView];
+    // j.c. Initialise iOS-specific text edit boxes and keyboard
+    Amju::GuiTextEditIos::SetViewController(self);
 }
 
 - (void)didReceiveMemoryWarning

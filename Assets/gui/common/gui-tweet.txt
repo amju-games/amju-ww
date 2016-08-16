@@ -6,11 +6,26 @@ gui-comp
 // Name
 hud-comp
 // Num children
-3
+4
 
 // TODO Everything needs to be in the top half of the screen because keyboard.
 
 // TODO "Photo"/Postcard image
+
+// Text edit box to add a comment
+// Element type
+gui-text-edit
+// Element name
+edit-tweet
+// pos (coords are -1..1)
+-0.9, 0.7
+// size
+1.8, 0.3
+// Text
+Hey @AmjuGames, I just died horribly playing Amju Rainbox Drop! amju.com #amju
+// Font name, size
+arial, 1.0, bgcol=ffffff, fgcol=000000
+
 
 elastic
 0, -2.0

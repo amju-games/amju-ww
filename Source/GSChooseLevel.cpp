@@ -53,10 +53,6 @@ void GSChooseLevel::OnActive()
 {
   GSText::OnActive();
 
-#ifdef AMJU_IOS
-  ShowKeyboard(true);
-#endif
-
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("ball.obj");
   Assert(mesh);
 
@@ -88,17 +84,39 @@ void GSChooseLevel::OnActive()
 
   ((GuiButton*)m_gui->GetElementByName("cancel-button"))->SetCommand(OnCancel);
  
+#ifdef AMJU_IOS
+  GuiTextEditIos* textEdit = (GuiTextEditIos*)GetElementByName(m_gui, "edit-level-number");
+  textEdit->ShowKeyboard(true);
+#endif
 }
 
-void GSChooseLevel::OnOK()
+void GSChooseLevel::OnDeactive()
 {
 #ifdef AMJU_IOS
-  ShowKeyboard(false);
+  GuiTextEditIos* textEdit = (GuiTextEditIos*)GetElementByName(m_gui, "edit-level-number");
+  textEdit->ShowKeyboard(false);
 #endif
+
+  GSText::OnDeactive();
+}
+  
+void GSChooseLevel::OnOK()
+{
+  int level = 0;
+  
+#ifdef AMJU_IOS
+  
+  GuiTextEditIos* textEdit = (GuiTextEditIos*)GetElementByName(m_gui, "edit-level-number");
+  level = ToInt(textEdit->GetText());
+  
+#else
 
   GuiTextEdit* edit = (GuiTextEdit*)m_gui->GetElementByName("edit-level-number");
   Assert(edit);
-  int level = ToInt(edit->GetText());
+  level = ToInt(edit->GetText());
+  
+#endif
+
   if (level <= 0)
   {
     GuiText* text = (GuiText*)m_gui->GetElementByName("help-text");
