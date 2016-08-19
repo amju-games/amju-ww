@@ -1,3 +1,5 @@
+#ifdef AMJU_IOS
+
 #include <iostream>
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
@@ -151,4 +153,6 @@ void ShareTwitterImage()
          }
      }];
 }
+
+#endif // AMJU_IOS
 
