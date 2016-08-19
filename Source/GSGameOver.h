@@ -13,7 +13,7 @@ private:
   friend class Singleton<GSGameOver>;
 
 public:
-  static const char* NAME;
+////  static const char* NAME;
 
   // GameState overrides
   virtual void OnActive() override;

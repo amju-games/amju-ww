@@ -3,16 +3,35 @@
 #include "GSGameOver.h"
 #include "GSTitle.h"
 #include "GSLoadLevel.h"
+#include "GSYouGotHiScore.h"
 #include "Game.h"
+#include "HiScoreDb.h"
+#include "Hud.h"
 #include "MySceneGraph.h"
 #include "PlayWav.h"
-#include "Hud.h"
+#include "Score.h"
 #include "StartGame.h"
 #include "WWLoadGui.h"
 
 namespace Amju
 {
-const char* GSGameOver::NAME = "gameover";
+static void OnContinue(GuiElement*)
+{
+  // Always go back to title, but check for hi score
+  const int TOP_N = 10; // TODO
+  // TODO Just checking single player score
+  int score = TheScores::Instance()->GetScore(AMJU_P1);
+  if (TheLocalHiScoreDb::Instance()->IsScoreTopN(score, TOP_N))
+  {
+    TheGame::Instance()->SetCurrentState(TheGSYouGotHiScore::Instance());
+  }
+  else
+  {
+    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+  }
+}
+
+////const char* GSGameOver::NAME = "gameover";
 
 GSGameOver::GSGameOver()
 {
@@ -47,15 +66,9 @@ void GSGameOver::Update()
   GSText::Update();
   if (m_timer > 15.0f) // TODO song length
   {
-    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+    ////TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
+    OnContinue(nullptr);
   }
-}
-
-static void OnContinue(GuiElement*)
-{
-  // Always go back to title
-  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
-  //StartGame(1, AMJU_MAIN_GAME_MODE);
 }
 
 static void OnMainMenu(GuiElement*)
@@ -75,11 +88,12 @@ void GSGameOver::OnActive()
   cont->SetIsFocusButton(true);
   cont->SetShowIfFocus(true);
 
-  GuiElement* quit = m_gui->GetElementByName("mainmenu-button");
-  if (quit)
-  {
-    quit->SetCommand(OnMainMenu);
-  }
+//  GuiElement* quit = m_gui->GetElementByName("mainmenu-button");
+//  if (quit)
+//  {
+//    quit->SetCommand(OnMainMenu);
+//  }
+  
   // TODO No loop
   TheSoundManager::Instance()->PlaySong("sound/gameover.it");
 
