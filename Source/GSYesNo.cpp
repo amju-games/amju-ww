@@ -55,7 +55,7 @@ void GSYesNo::OnActive()
   no->SetCommand(Amju::OnNo);
   no->SetText(m_noText);
   
-  GuiText* q = (GuiText*)GetElementByName(m_gui, "question");
+  IGuiText* q = dynamic_cast<IGuiText*>(GetElementByName(m_gui, "question"));
   q->SetText(m_question);
 
   // Set safe button (blue, pulsing) and non-undoable (red)
