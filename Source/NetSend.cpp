@@ -5,6 +5,7 @@
 #include <iOSUtils.h>
 #include <UrlUtils.h>
 #include "Depth.h"
+#include "HiScoreDb.h"
 #include "LevelManager.h"
 #include "NetSend.h"
 #include "Nicknames.h"
@@ -22,6 +23,19 @@
 
 namespace Amju
 {
+std::string DeviceManufacturer()
+{
+#if defined(AMJU_IOS) || defined(MACOSX)
+  return "Apple";
+#elif defined(WIN32)
+  return "Windows";
+#elif defined(GEKKO)
+  return "Nintendo";
+#else
+  return "Unknown";
+#endif
+}
+  
 class NetSendReq : public OnlineReq
 {
 public:
@@ -49,7 +63,36 @@ public:
       std::cout << "Request '" << GetName() << "' FAILED!\n";
     }
   }
+};
   
+class NetSendHiScoresReq : public OnlineReq
+{
+public:
+#ifdef WIN32
+  // Can't inherit ctor in MSVC 2013 ?
+  NetSendReq(
+    const std::string& url,
+    HttpClient::HttpMethod method,
+    const std::string& name) : OnlineReq(url, method, name) {}
+#else
+  using OnlineReq::OnlineReq;
+#endif
+    
+  virtual void HandleResult()
+  {
+    HttpResult res = GetResult();
+    if (res.GetSuccess())
+    {
+      std::cout << "Request '" << GetName() << "' success!\n";
+      // Parse response, set hi scores in global hi score table.
+      // Clear old hi scores, don't try to update.
+      TheGlobalHiScoreDb::Instance()->HandleResponseFromServer(res.GetString());
+    }
+    else
+    {
+      std::cout << "Request '" << GetName() << "' FAILED!\n";
+    }
+  }
 };
   
 static bool NetSendDeviceInfo(
@@ -60,22 +103,12 @@ static bool NetSendDeviceInfo(
 {
   std::string url = URL_ROOT +
     "rd_log_device.pl?"
-    "device_id='" + deviceId + "'&"
-    "device_user_name='" + ToUrlFormat(deviceUserName) + "'&"
-    "device_model='" + deviceModel + "'&"
-    "device_os_version='" + deviceOsVersion + "'&"
-    "device_client_version='" + GetVersionStr() + "'&"
-    "device_manufacturer='" +
-#if defined(AMJU_IOS) || defined(MACOSX)
-  "Apple"
-#elif defined(WIN32)
-  "Windows"
-#elif defined(GEKKO)
-  "Wii"
-#else
-  "Unknown"
-#endif
-    + "'";
+    "device_id='" + EncodeStr(deviceId) + "'&"
+    "device_user_name='" + EncodeStr(deviceUserName) + "'&"
+    "device_model='" + EncodeStr(deviceModel) + "'&"
+    "device_os_version='" + EncodeStr(deviceOsVersion) + "'&"
+    "device_client_version='" + EncodeStr(GetVersionStr()) + "'&"
+    "device_manufacturer='" + EncodeStr(DeviceManufacturer()) + "'";
 
 std::cout << "Sending device info: " << url << "\n";
   
@@ -93,7 +126,9 @@ bool NetSendDeviceInfoFirstRunEver()
   std::string deviceOsVersion;
   
 #ifdef AMJU_IOS
-  GetDeviceInfo(&deviceId, &deviceUserName, &deviceModel, &deviceOsVersion);
+  int devId;
+  GetDeviceInfo(&devId, &deviceUserName, &deviceModel, &deviceOsVersion);
+  deviceId = ToString(devId);
 #endif // AMJU_IOS
   
 #ifdef _DEBUG
@@ -122,17 +157,20 @@ bool NetSendUpdateDeviceInfo()
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   
   // Check if anything has changed which we should update on the server.
-  std::string deviceId;
   std::string deviceUserName;
   std::string deviceModel;
   std::string deviceOsVersion;
 
 #ifdef AMJU_IOS
   // Device ID and model should never change, but we get them anyway as that's
-  //  what this function gives us.
-  GetDeviceInfo(&deviceId, &deviceUserName, &deviceModel, &deviceOsVersion);
+  //  what this function gives us. But we SEND the device ID we got when we first
+  //  ran the program and saved in the config file. This is just in case the
+  //  device ID is not constant over time.
+  int devId;
+  GetDeviceInfo(&devId, &deviceUserName, &deviceModel, &deviceOsVersion);
 #endif // AMJU_IOS
 
+  std::string deviceId = gcf->GetValue(DEVICE_ID);
   std::string prevDeviceOsVersion = gcf->GetValue(DEVICE_OS_VERSION);
   std::string prevDeviceUserName = gcf->GetValue(DEVICE_USER_NAME);
   std::string prevVersion = gcf->GetValue(CLIENT_VERSION);
@@ -175,14 +213,6 @@ bool NetSendPlaySession(int flags)
   
   GameConfigFile* gcf = TheGameConfigFile::Instance();
 
-  int session = Time::Now().ToSeconds(); // so if we delete and re-install app, we don't restart IDs at zero
-  if (gcf->Exists(SESSION_ID))
-  {
-    session = gcf->GetInt(SESSION_ID);
-  }
-  gcf->SetInt(SESSION_ID, session + 1);
-  gcf->Save();
-  
   std::string now = ToString(Time::Now().ToSeconds());
   std::string level = ToString(TheLevelManager::Instance()->GetLevelId());
   // Assuming 1-player game for now, not multiplayer (Wii) - - TODO
@@ -191,20 +221,17 @@ bool NetSendPlaySession(int flags)
   std::string score = ToString(scores->GetScore(AMJU_P1));
   std::string lives = ToString(scores->GetLives(AMJU_P1));
   std::string flagStr = ToString(flags);
-  std::string nick = GetNick(AMJU_P1);
   
   std::string url = URL_ROOT +
     "rd_log_play_session.pl?"
-    "device_id='" + gcf->GetValue(DEVICE_ID) + "'&"
-    "session_id=" + ToString(session) + "&"
+    "device_id='" + EncodeStr(gcf->GetValue(DEVICE_ID)) + "'&"
     "session_start='" + s_sessionStart + "'&"
     "session_end='" + now + "'&"
     "session_level='" + level + "'&"
-    "session_depth='" + depth + "'&"
-    "session_score='" + score + "'&"
-    "session_flags='" + flagStr + "'&"
-    "session_lives='" + lives + "'&"
-    "session_user_nick='" + nick + "'";
+    "session_depth='" + EncodeStr(depth) + "'&"
+    "session_score='" + EncodeStr(score) + "'&"
+    "session_flags='" + EncodeStr(flagStr) + "'&"
+    "session_lives='" + EncodeStr(lives) + "'";
   
   s_sessionStart.clear();
 
@@ -224,13 +251,44 @@ bool NetSendButtonEvent(const std::string buttonName)
  
   std::string url = URL_ROOT +
     "rd_log_button.pl?"
-    "device_id='" + gcf->GetValue(DEVICE_ID) + "'&"
-    "button_name='" + buttonName + "'&"
+    "device_id='" + EncodeStr(gcf->GetValue(DEVICE_ID)) + "'&"
+    "button_name='" + EncodeStr(buttonName) + "'&"
     "button_time='" + now + "'";
 
   auto req = new NetSendReq(url, HttpClient::GET, "send button event");
   bool b = TheSerialReqManager::Instance()->AddReq(req);
   return b;
+}
+  
+bool NetSendRequestHiScores()
+{
+  // TODO Or even just a static page??
+  std::string url = URL_ROOT + "rd_req_hi_scores.pl";
+  auto req = new NetSendHiScoresReq(url, HttpClient::GET, "request hi scores");
+  bool b = TheSerialReqManager::Instance()->AddReq(req);
+  return b;
+}
+  
+bool NetSendHiScore(const std::string& nickname, int score, int level, int depth, const Vec3f& pos)
+{
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+
+  std::string url = URL_ROOT +
+    "rd_log_hi_score.pl?"
+    "device_id='" + EncodeStr(gcf->GetValue(DEVICE_ID)) + "'&"
+    "score='" + EncodeStr(ToString(score)) + "'&"
+    "level='" + EncodeStr(ToString(level)) + "'&"
+    "depth='" + EncodeStr(ToString(depth)) + "'&"
+    "x='" + EncodeStr(ToString(static_cast<int>(pos.x))) + "'&"
+    "y='" + EncodeStr(ToString(static_cast<int>(pos.y))) + "'&"
+    "z='" + EncodeStr(ToString(static_cast<int>(pos.z))) + "'&"
+    "nick='" + EncodeStr(nickname) + "'";
+
+  auto req = new NetSendReq(url, HttpClient::GET, "log hi score");
+  bool b = TheSerialReqManager::Instance()->AddReq(req);
+  return b;
+
+  return true;
 }
 }
 
