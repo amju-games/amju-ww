@@ -19,6 +19,12 @@ public:
   virtual void Draw2d();
   virtual void OnActive();
   virtual void OnDeactive();
+
+  static void SetDefaultText(const std::string& text);
+
+  void UpdateCharCount();
+  
+  void OnSendTweet();
 };
 typedef Singleton<GSTweet> TheGSTweet;
 } // namespace
