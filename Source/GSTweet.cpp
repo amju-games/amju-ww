@@ -73,10 +73,12 @@ void GSTweet::UpdateCharCount()
   
 void GSTweet::OnSendTweet()
 {
+#ifdef AMJU_IOS
   IGuiTextEdit* textEdit = dynamic_cast<IGuiTextEdit*>(GetElementByName(m_gui, "edit-tweet"));
   Assert(textEdit);
 
   TwitterPostMessage(0, textEdit->GetText());
+#endif
 }
   
 void GSTweet::OnActive()
