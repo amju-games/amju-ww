@@ -38,6 +38,9 @@ Dino::Dino()
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsYOffset = YSIZE + YOFFSET;
   m_extentsSet = true;
+  // Default blood texture names
+  m_bloodTex[0] = "dino1a-withblood.png";
+  m_bloodTex[1] = "dino1-withblood.png";
 }
 
 bool Dino::YesAddToLevel(int levelId, float depth)
@@ -98,7 +101,16 @@ bool Dino::CreateSceneNode()
   Assert(bc);
   Md2Model* md2 = bc->GetMd2();
   Md2Model::Animation anim = md2->GetAnimationFromName("stunned");
-  md2->SetDoesFreeze(anim, true);
+  if (anim != -1)
+  {
+    md2->SetDoesFreeze(anim, true);
+  }
+
+  anim = md2->GetAnimationFromName("eat");
+  if (anim != -1)
+  {
+    md2->SetDoesFreeze(anim, true);
+  }
 
   return true;
 }
@@ -200,7 +212,7 @@ void Dino::Eat(OnFloorCharacter* pet)
   // Change texture to bloody version.
   BlinkCharacter* bc = dynamic_cast<BlinkCharacter*>(GetSceneNode());
   Assert(bc);
-  bc->LoadTextures("dino1a-withblood.png", "dino1-withblood.png"); 
+  bc->LoadTextures(m_bloodTex[0], m_bloodTex[1]); 
   // TODO Load the textures up front as this will hit frame rate on first load.
 
   pet->StartBeingEaten(this);
@@ -231,6 +243,12 @@ bool Dino::Save(File* f)
     return false;
   }
 
+  if (!f->Write(m_bloodTex[0]) || !f->Write(m_bloodTex[1]))
+  {
+    f->ReportError("Failed to write dino blood texture data!");
+    return false;
+  }
+
   return SaveShadow(f);
 }
 
@@ -251,36 +269,27 @@ bool Dino::Load(File* f)
 
   if (!f->GetDataLine(&m_texNames[0]))
   {
-    f->ReportError("Expected pet tex0 filename");
+    f->ReportError("Expected dino tex0 filename");
     return false;
   }
 
   if (!f->GetDataLine(&m_texNames[1]))
   {
-    f->ReportError("Expected pet tex1 filename");
+    f->ReportError("Expected dino tex1 filename");
     return false;
   }
 
-  /*
-  m_md2Name = "dino.md2";
-
-  static const char* TEXTURES[3][2] = 
+  if (!f->GetDataLine(&m_bloodTex[0]))
   {
-    { "dino1a.png", "dino1.png" },
-    { "dino2a.png", "dino2.png" },
-    { "dino3a.png", "dino3.png" },
-  };
-
-  if (!f->GetInteger((int*)&m_dinoType))
-  {
-    f->ReportError("Expected dino type");
+    f->ReportError("Expected blood tex0 filename");
     return false;
   }
-  Assert(m_dinoType >= 0 && m_dinoType <= 2);
 
-  m_texNames[0] = TEXTURES[m_dinoType][0];
-  m_texNames[1] = TEXTURES[m_dinoType][1];
-  */
+  if (!f->GetDataLine(&m_bloodTex[1]))
+  {
+    f->ReportError("Expected blood tex1 filename");
+    return false;
+  }
 
   if (!LoadShadow(f))
   {
