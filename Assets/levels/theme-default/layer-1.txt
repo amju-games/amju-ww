@@ -12,6 +12,8 @@ dino
 dino.md2
 dino1a.png
 dino1.png
+dino1a-withblood.png
+dino1-withblood.png
 // Shadow texture & size
 shadow.png
 20.000000
