@@ -9,9 +9,11 @@ dino
 107
 // Position
 406.250000, 92.529213, 25.000000
-dino.md2
-dino1a.png
-dino1.png
+snowman.md2
+snowman.png
+snowman.png
+snowman-blood.png
+snowman-blood.png
 // Shadow texture & size
 shadow.png
 20.000000
