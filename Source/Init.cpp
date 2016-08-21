@@ -9,6 +9,7 @@
 #include "Dino.h"
 #include "Exit.h"
 #include "Fence.h"
+#include "Floaters.h"
 #include "Floor.h"
 #include "Objective.h"
 #include "Pet.h"
@@ -49,6 +50,7 @@ void Init()
   gof->Add(Dino::NAME, &Create<Dino>);
   gof->Add(Exit::NAME, &Create<Exit>);
   gof->Add(Fence::NAME, &Create<Fence>);
+  gof->Add(Floaters::NAME, &Create<Floaters>);
   gof->Add(Floor::NAME, &Create<Floor>);
   gof->Add(Objective::NAME, &Create<Objective>);
   gof->Add(Pet::NAME, &Create<Pet>);
