@@ -225,9 +225,9 @@ bool NetSendPlaySession(int flags)
   std::string url = URL_ROOT +
     "rd_log_play_session.pl?"
     "device_id='" + EncodeStr(gcf->GetValue(DEVICE_ID)) + "'&"
-    "session_start='" + s_sessionStart + "'&"
-    "session_end='" + now + "'&"
-    "session_level='" + level + "'&"
+    "session_start='" + EncodeStr(s_sessionStart) + "'&"
+    "session_end='" + EncodeStr(now) + "'&"
+    "session_level='" + EncodeStr(level) + "'&"
     "session_depth='" + EncodeStr(depth) + "'&"
     "session_score='" + EncodeStr(score) + "'&"
     "session_flags='" + EncodeStr(flagStr) + "'&"
@@ -253,7 +253,7 @@ bool NetSendButtonEvent(const std::string buttonName)
     "rd_log_button.pl?"
     "device_id='" + EncodeStr(gcf->GetValue(DEVICE_ID)) + "'&"
     "button_name='" + EncodeStr(buttonName) + "'&"
-    "button_time='" + now + "'";
+    "button_time='" + EncodeStr(now) + "'";
 
   auto req = new NetSendReq(url, HttpClient::GET, "send button event");
   bool b = TheSerialReqManager::Instance()->AddReq(req);
