@@ -144,6 +144,7 @@
 		69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDC918F95068002432C0 /* CFNetwork.framework */; };
 		69D7CDD318F976FA002432C0 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDCF18F976FA002432C0 /* ViewController_iPad.xib */; };
 		69D7CDD418F976FA002432C0 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDD118F976FA002432C0 /* ViewController_iPhone.xib */; };
+		715ACD9C1D6773FF00CC2C68 /* Floaters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 715ACD9B1D6773FF00CC2C68 /* Floaters.cpp */; };
 		71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B641D4F2E0600012DB8 /* libbass.a */; };
 		71D22B921D4F3A2D00012DB8 /* Init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B8D1D4F3A2D00012DB8 /* Init.cpp */; };
 		71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B901D4F3A2D00012DB8 /* WWCamera.cpp */; };
@@ -166,6 +167,9 @@
 		71D22BDA1D5D198600012DB8 /* GSYesNoQuitGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BD21D5D198500012DB8 /* GSYesNoQuitGame.cpp */; };
 		71D22BDD1D5D9BF700012DB8 /* Screenshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */; };
 		71D22BE01D5E497600012DB8 /* GSTweet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BDE1D5E497600012DB8 /* GSTweet.cpp */; };
+		71D22BF01D63890000012DB8 /* libAmjulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BEF1D63890000012DB8 /* libAmjulib.a */; };
+		71D22BF31D63B7F500012DB8 /* GSYouGotHiScore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BF11D63B7F500012DB8 /* GSYouGotHiScore.cpp */; };
+		71D22BF61D64327A00012DB8 /* HiScoreDb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BF41D64327A00012DB8 /* HiScoreDb.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -419,6 +423,8 @@
 		69D7CDC918F95068002432C0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		69D7CDD018F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		69D7CDD218F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		715ACD991D6773CA00CC2C68 /* Floaters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Floaters.h; path = ../../../../Source/Floaters.h; sourceTree = "<group>"; };
+		715ACD9B1D6773FF00CC2C68 /* Floaters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Floaters.cpp; path = ../../../../Source/Floaters.cpp; sourceTree = "<group>"; };
 		71D22B641D4F2E0600012DB8 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../Libs/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = "<group>"; };
 		71D22B801D4F3A0600012DB8 /* CollideDinoDino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideDinoDino.h; path = ../../../../Source/CollideDinoDino.h; sourceTree = "<group>"; };
 		71D22B811D4F3A0600012DB8 /* CollideDinoPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideDinoPet.h; path = ../../../../Source/CollideDinoPet.h; sourceTree = "<group>"; };
@@ -472,6 +478,11 @@
 		71D22BDC1D5D9BF700012DB8 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screenshot.h; path = ../../../../Source/Screenshot.h; sourceTree = "<group>"; };
 		71D22BDE1D5E497600012DB8 /* GSTweet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSTweet.cpp; path = ../../../../Source/GSTweet.cpp; sourceTree = "<group>"; };
 		71D22BDF1D5E497600012DB8 /* GSTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSTweet.h; path = ../../../../Source/GSTweet.h; sourceTree = "<group>"; };
+		71D22BEF1D63890000012DB8 /* libAmjulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAmjulib.a; path = "../../../../amjulib/Build/ioS/build/Debug/Debug-iphonesimulator/libAmjulib.a"; sourceTree = "<group>"; };
+		71D22BF11D63B7F500012DB8 /* GSYouGotHiScore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSYouGotHiScore.cpp; path = ../../../../Source/GSYouGotHiScore.cpp; sourceTree = "<group>"; };
+		71D22BF21D63B7F500012DB8 /* GSYouGotHiScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSYouGotHiScore.h; path = ../../../../Source/GSYouGotHiScore.h; sourceTree = "<group>"; };
+		71D22BF41D64327A00012DB8 /* HiScoreDb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HiScoreDb.cpp; path = ../../../../Source/HiScoreDb.cpp; sourceTree = "<group>"; };
+		71D22BF51D64327A00012DB8 /* HiScoreDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiScoreDb.h; path = ../../../../Source/HiScoreDb.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,6 +490,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71D22BF01D63890000012DB8 /* libAmjulib.a in Frameworks */,
 				71D22BA21D4F906400012DB8 /* libAmjulib.a in Frameworks */,
 				71D22BA01D4F8EAD00012DB8 /* Amjulib.xcodeproj in Frameworks */,
 				71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */,
@@ -546,6 +558,7 @@
 		69D7CC2D18F895BF002432C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71D22BEF1D63890000012DB8 /* libAmjulib.a */,
 				71D22BB51D57569600012DB8 /* Social.framework */,
 				71D22BB31D57025800012DB8 /* Accounts.framework */,
 				71D22BB11D57023B00012DB8 /* Twitter.framework */,
@@ -613,6 +626,12 @@
 		69D7CC9118F9399C002432C0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				715ACD9B1D6773FF00CC2C68 /* Floaters.cpp */,
+				715ACD991D6773CA00CC2C68 /* Floaters.h */,
+				71D22BF41D64327A00012DB8 /* HiScoreDb.cpp */,
+				71D22BF51D64327A00012DB8 /* HiScoreDb.h */,
+				71D22BF11D63B7F500012DB8 /* GSYouGotHiScore.cpp */,
+				71D22BF21D63B7F500012DB8 /* GSYouGotHiScore.h */,
 				71D22BDE1D5E497600012DB8 /* GSTweet.cpp */,
 				71D22BDF1D5E497600012DB8 /* GSTweet.h */,
 				71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */,
@@ -1098,9 +1117,11 @@
 				69D7CDBC18F939FA002432C0 /* WWLoadGui.cpp in Sources */,
 				69D7CD9118F939FA002432C0 /* GSSpiral.cpp in Sources */,
 				71D22BD71D5D198600012DB8 /* GSMoreMenu.cpp in Sources */,
+				71D22BF61D64327A00012DB8 /* HiScoreDb.cpp in Sources */,
 				69D7CDAF18F939FA002432C0 /* SelectedNode.cpp in Sources */,
 				69D7CD7C18F939FA002432C0 /* Exit.cpp in Sources */,
 				69D7CDA718F939FA002432C0 /* PlayWav.cpp in Sources */,
+				71D22BF31D63B7F500012DB8 /* GSYouGotHiScore.cpp in Sources */,
 				69D7CD7A18F939FA002432C0 /* EditModeCamera.cpp in Sources */,
 				71D22BD61D5D198600012DB8 /* GSHiScores.cpp in Sources */,
 				69D7CD5F18F939FA002432C0 /* AITurnToFace.cpp in Sources */,
@@ -1125,6 +1146,7 @@
 				69D7CD5618F939FA002432C0 /* AI.cpp in Sources */,
 				71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */,
 				69D7CD9918F939FA002432C0 /* LoadMeshResource.cpp in Sources */,
+				715ACD9C1D6773FF00CC2C68 /* Floaters.cpp in Sources */,
 				69D7CD6218F939FA002432C0 /* BlinkCharacter.cpp in Sources */,
 				71D22BD91D5D198600012DB8 /* GSYesNoNewGame.cpp in Sources */,
 			);
@@ -1307,13 +1329,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../../../../amjulib/Releases/amjulib-v.0.5-ios/include",
+					"../../../../amjulib/Source/**",
 				);
 				INFOPLIST_FILE = "Rainbow Drop/Rainbow Drop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../../../Libs/Bass2.4/iPhone/mp3-free/",
+					"../../../../amjulib/Build/ioS/build/Debug/Debug-iphonesimulator/",
 					"../../../../amjulib/Build/ioS/build/Debug/Debug-iphoneos/",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -1340,7 +1363,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../../../../amjulib/Releases/amjulib-v.0.5-ios/include",
+					"../../../../amjulib/Source/**",
 				);
 				INFOPLIST_FILE = "Rainbow Drop/Rainbow Drop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
