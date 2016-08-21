@@ -237,7 +237,8 @@ void GlobalHiScoreDb::HandleResponseFromServer(const std::string& response)
                   if (!xx.isEmpty() && !xy.isEmpty() && !xz.isEmpty())
                   {
                     Vec3f pos(ToFloat(xx.getText()), ToFloat(xy.getText()), ToFloat(xz.getText()));
-                    Hi hi(score, level, depth, nick, pos);
+                    // Nickname is stored encoded in server DB
+                    Hi hi(score, level, depth, DecodeStr(nick), pos);
                     vec.push_back(hi);
                     continue;
                   }
