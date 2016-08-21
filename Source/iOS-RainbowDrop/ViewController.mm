@@ -16,6 +16,10 @@
 #include <StartUp.h>
 #include "iOSKeyboard.h"
 
+using namespace Amju;
+
+static float s_aspectRatioScaleFactor = 1.0f;
+
 // Accelerom poll freq - j.c. - http://www.appcoda.com/ios-maze-game-tutorial-accelerometer/
 // If frequency is too high, frame rate seems to get choppy.
 // TODO Make this a setting.
@@ -48,34 +52,39 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
-
-    if (!self.context) {
-        NSLog(@"Failed to create ES context");
-    }
-    
-    GLKView *view = (GLKView *)self.view;
-    view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    
-    [self setupGL];
+  [super viewDidLoad];
   
-    // j.c. accelerometer - http://www.appcoda.com/ios-maze-game-tutorial-accelerometer/
-    self.motionManager = [[CMMotionManager alloc]  init];
-    self.queue         = [[NSOperationQueue alloc] init];
-  
-    self.motionManager.accelerometerUpdateInterval = kUpdateInterval;
+  self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
 
-    [self.motionManager startAccelerometerUpdatesToQueue:self.queue withHandler:
-     ^(CMAccelerometerData *accelerometerData, NSError *error) {
-       [(id) self setAcceleration:accelerometerData.acceleration];
-       [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-     }];
- 
-    // j.c. Initialise iOS-specific text edit boxes and keyboard
-    Amju::GuiTextEditIos::SetViewController(self);
+  if (!self.context) {
+      NSLog(@"Failed to create ES context");
+  }
+  
+  GLKView *view = (GLKView *)self.view;
+  view.context = self.context;
+  view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+  
+  [self setupGL];
+
+  // j.c. accelerometer - http://www.appcoda.com/ios-maze-game-tutorial-accelerometer/
+  self.motionManager = [[CMMotionManager alloc]  init];
+  self.queue         = [[NSOperationQueue alloc] init];
+
+  self.motionManager.accelerometerUpdateInterval = kUpdateInterval;
+
+  [self.motionManager startAccelerometerUpdatesToQueue:self.queue withHandler:
+   ^(CMAccelerometerData *accelerometerData, NSError *error) {
+     [(id) self setAcceleration:accelerometerData.acceleration];
+     [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
+   }];
+
+  // j.c. Initialise iOS-specific text edit boxes and keyboard
+  Amju::iOSTextSetViewController(self);
+
+  // Set aspect ratio correction - TODO Not respected by buttons
+  float ar = view.bounds.size.width / view.bounds.size.height;
+  ar = ar / (2./3.);
+  s_aspectRatioScaleFactor = ar;
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,32 +138,32 @@ static void QueueEvent(Amju::Event* e)
 {
   // j.c. send accelerom events but TODO only if changed
 
-   const float kFilteringFactor = 0.1;
-   static float accel[3] = { 0, 0, 0 };
-   
-   accel[0] = self.acceleration.x * kFilteringFactor + accel[0] * (1.0 - kFilteringFactor);
-   accel[1] = self.acceleration.y * kFilteringFactor + accel[1] * (1.0 - kFilteringFactor);
-   accel[2] = self.acceleration.z * kFilteringFactor + accel[2] * (1.0 - kFilteringFactor);
-   
-   // accel[0] corresponds to tilting forward/back, i.e. rotation about x-axis when in landscape mode
-   // accel[1] corresponds to z-rotation, like twisting a Wii remote
-  
-   // This is for LANDSCAPE mode
-//   Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[1], accel[0]);
+  const float kFilteringFactor = 0.1;
+  static float accel[3] = { 0, 0, 0 };
 
-   // This is for PORTRAIT mode
-   Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[0], -accel[1]);
+  accel[0] = self.acceleration.x * kFilteringFactor + accel[0] * (1.0 - kFilteringFactor);
+  accel[1] = self.acceleration.y * kFilteringFactor + accel[1] * (1.0 - kFilteringFactor);
+  accel[2] = self.acceleration.z * kFilteringFactor + accel[2] * (1.0 - kFilteringFactor);
 
-   // TODO This depends on iphone orientation
-//   be->x = accel[1];
-//   be->y = accel[0];
-   
-#ifdef ACCELEROM_DEBUG
-   std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << "\n";
-#endif
-   
-   QueueEvent(be);
-   
+  // accel[0] corresponds to tilting forward/back, i.e. rotation about x-axis when in landscape mode
+  // accel[1] corresponds to z-rotation, like twisting a Wii remote
+
+  // This is for LANDSCAPE mode
+  //   Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[1], accel[0]);
+
+  // This is for PORTRAIT mode
+  Amju::BalanceBoardEvent* be = new Amju::BalanceBoardEvent(accel[0], -accel[1]);
+
+  // TODO This depends on iphone orientation
+  //   be->x = accel[1];
+  //   be->y = accel[0];
+
+  #ifdef ACCELEROM_DEBUG
+  std::cout << "ACCEL: X: " << accel[0] << " Y: " << accel[1] << " Z: " << accel[2] << "\n";
+  #endif
+
+  QueueEvent(be);
+
   Amju::TheGame::Instance()->Update();
 }
 
@@ -167,7 +176,40 @@ static void QueueEvent(Amju::Event* e)
   Amju::Screen::SetSize(w * s, h * s);
   Amju::AmjuGL::Viewport(0, 0, w * s, h * s);
   
-  Amju::TheGame::Instance()->Draw();
+  //Amju::TheGame::Instance()->Draw();
+  
+  auto game = Amju::TheGame::Instance();
+  AmjuGL::InitFrame();
+  
+  AmjuGL::BeginScene();
+  
+  // TODO Fix DX9 so we can have multple viewports
+  AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
+  
+  // Draw 3D Scene
+  AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
+  game->GetState()->Draw();
+  
+  // Draw 2D Elements
+  
+  // Set matrices to identity
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+  
+  // NB Make sure we use MV matrix to transform cursor..?
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+  AmjuGL::SetIdentity();
+  // Scale GUI so aspect ratio of elements is correct
+  AmjuGL::Scale(1.f, s_aspectRatioScaleFactor, 1.f);
+  
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
+  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
+  AmjuGL::Enable(AmjuGL::AMJU_BLEND);
+  
+  game->GetState()->Draw2d();
+  
+  AmjuGL::EndScene();
+  
   Amju::AmjuGL::Flip();
 }
 
@@ -177,7 +219,7 @@ void PopulateMBEvent(Amju::MouseButtonEvent* mbe, int x, int y)
   float scrY2 = float(Amju::Screen::Y() / 2);
 
   mbe->x = (float)x / scrX2 - 1.0f;
-  mbe->y = 1.0f - (float)y / scrY2;
+  mbe->y = (1.0f - (float)y / scrY2) / s_aspectRatioScaleFactor;
 }
 
 void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
@@ -197,7 +239,7 @@ void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
 	for (UITouch* touch in touches)
 	{
 		CGPoint touchPoint = [touch locationInView:self.view];
-		
+	
 		Amju::CursorEvent* ce = new Amju::CursorEvent;
 		PopulateCursorEvent(ce, touchPoint.x * s, touchPoint.y * s);
 		QueueEvent(ce);
