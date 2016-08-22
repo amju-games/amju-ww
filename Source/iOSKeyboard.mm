@@ -245,7 +245,10 @@ bool GuiTextEditIos::Load(File* f)
   [myView setFrame:CGRectMake(x, y, w, h)];
 
   // Padding between edge and text
-  myView.textContainer.lineFragmentPadding = BORDER_WIDTH * 2;
+  if ([myView respondsToSelector:@selector(textContainer)])
+  {
+    myView.textContainer.lineFragmentPadding = BORDER_WIDTH * 2;
+  }
   
   std::string text;
   if (!f->GetLocalisedString(&text))
