@@ -12,6 +12,8 @@
 #include "Pet.h"
 #include "Hud.h"
 
+#define YES_DRAW_ROTATING_2D_SPIRAL_BACKGROUND
+
 namespace Amju
 {
 GSLevelComplete::GSLevelComplete()
@@ -31,8 +33,10 @@ void SetObjPos(WWGameObject* obj, float angle, float z)
   obj->SetPos(pos);  
   obj->RecalcAABB();
 
+  // Tumble player
   Matrix mat;
-  mat.RotateY(DegToRad(angle)); // TODO
+  mat.RotateX(angle * 3.0f);
+  
   mat.TranslateKeepRotation(pos);
   obj->GetSceneNode()->SetLocalTransform(mat);
   obj->GetSceneNode()->SetVisible(true);
@@ -100,7 +104,8 @@ void GSLevelComplete::Draw()
 {
   GSText::Draw();
 
-/*
+#ifdef YES_DRAW_ROTATING_2D_SPIRAL_BACKGROUND
+  
   // Draw rotating background
   AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
   AmjuGL::Disable(AmjuGL::AMJU_DEPTH_WRITE);
@@ -108,11 +113,16 @@ void GSLevelComplete::Draw()
   // Rotate background
   static float a = 0;
   float dt = TheTimer::Instance()->GetDt();
-  a -= 90.0f * dt;
+  a -= 700.0f * dt; // degs/sec
 
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+  AmjuGL::SetIdentity();
+  
   AmjuGL::PushMatrix();
   AmjuGL::RotateZ(a);
-//  m_bg.Draw(); 
+  m_bg.Draw(); 
   AmjuGL::PopMatrix();
 
   AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
@@ -125,14 +135,13 @@ void GSLevelComplete::Draw()
   const float FAR = 3000.0f;
   float aspect = (float)Screen::X() / (float)Screen::Y();
   AmjuGL::SetPerspectiveProjection(FOVY, aspect, NEAR, FAR);
-*/
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  // Draw player and any pets carried
-  // Spiral motion?
-  //GetTextSceneGraph()->Draw();
+#endif // YES_DRAW_ROTATING_2D_SPIRAL_BACKGROUND
+  
+  // Draw player
   GetGameSceneGraph()->Draw();
 }
 
