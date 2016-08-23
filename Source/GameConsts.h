@@ -16,5 +16,12 @@ extern const char* Y_SENSITIVITY_KEY;
 
 const int MUSIC_INITIAL_VAL = 1;
 const int SOUND_INITIAL_VAL = 1;
+  
+#define DEVICE_ID "device_id"
+#define DEVICE_OS_VERSION "device_os_version"
+#define DEVICE_USER_NAME "device_user_name"
+#define CLIENT_VERSION "client_version"
+#define SESSION_ID "session_id"
+
 }
 
