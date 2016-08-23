@@ -5,6 +5,7 @@
 #include <iOSUtils.h>
 #include <UrlUtils.h>
 #include "Depth.h"
+#include "GameConsts.h"
 #include "HiScoreDb.h"
 #include "LevelManager.h"
 #include "NetSend.h"
@@ -15,11 +16,6 @@
 
 // Consts so never more than one copy of a string
 #define URL_ROOT std::string("http://www.amju.com/cgi-bin/rd/")
-#define DEVICE_ID "device_id"
-#define DEVICE_OS_VERSION "device_os_version"
-#define DEVICE_USER_NAME "device_user_name"
-#define CLIENT_VERSION "client_version"
-#define SESSION_ID "session_id"
 
 namespace Amju
 {
@@ -39,15 +35,19 @@ std::string DeviceManufacturer()
 class NetSendDeviceInfoReq : public OnlineReq
 {
 public:
-#ifdef WIN32
-  // Can't inherit ctor in MSVC 2013 ?
   NetSendDeviceInfoReq(
     const std::string& url,
     HttpClient::HttpMethod method,
-    const std::string& name) : OnlineReq(url, method, name) {}
-#else
-  using OnlineReq::OnlineReq;
-#endif
+    const std::string& name,
+    const std::string& deviceId_,
+    const std::string& deviceUserName_,
+    const std::string& deviceModel_,
+    const std::string& deviceOsVersion_) :
+    OnlineReq(url, method, name),
+    m_deviceId(deviceId_),
+    m_deviceUserName(deviceUserName_),
+    m_deviceModel(deviceModel_),
+    m_deviceOsVersion(deviceOsVersion_) {}
   
   virtual void HandleResult()
   {
@@ -59,6 +59,15 @@ public:
       //#ifdef LOG_SUCCESSFUL_REQ
       std::cout << "Request '" << GetName() << "' success!\n";
       //#endif
+      
+      // Now we have successfully logged this on the server, it's OK to cache it locally so we don't send it
+      //  again. If this request fails, we won't cache the info and will attempt to resend next time.
+      GameConfigFile* gcf = TheGameConfigFile::Instance();
+      gcf->Set(DEVICE_ID, m_deviceId);
+      gcf->Set(DEVICE_OS_VERSION, m_deviceOsVersion);
+      gcf->Set(DEVICE_USER_NAME, m_deviceUserName);
+      gcf->Set(CLIENT_VERSION, GetVersionStr());
+      gcf->Save();
     }
     else
     {
@@ -66,6 +75,11 @@ public:
     }
   }
 
+private:
+  std::string m_deviceId;
+  std::string m_deviceUserName;
+  std::string m_deviceModel;
+  std::string m_deviceOsVersion;
 };
   
 class NetSendReq : public OnlineReq
@@ -143,7 +157,8 @@ static bool NetSendDeviceInfo(
 
 std::cout << "Sending device info: " << url << "\n";
   
-  auto req = new NetSendDeviceInfoReq(url, HttpClient::GET, "send device info");
+  auto req = new NetSendDeviceInfoReq(url, HttpClient::GET, "send device info",
+    deviceId, deviceUserName, deviceModel, deviceOsVersion);
   bool b = TheSerialReqManager::Instance()->AddReq(req);
   return b;
 }
@@ -171,14 +186,6 @@ bool NetSendDeviceInfoFirstRunEver()
 #endif // _DEBUG
   
   NetSendDeviceInfo(deviceId, deviceUserName, deviceModel, deviceOsVersion);
-  
-  // Store device ID for all subsequent runs
-  GameConfigFile* gcf = TheGameConfigFile::Instance();
-  gcf->Set(DEVICE_ID, deviceId);
-  gcf->Set(DEVICE_OS_VERSION, deviceOsVersion);
-  gcf->Set(DEVICE_USER_NAME, deviceUserName);
-  gcf->Set(CLIENT_VERSION, GetVersionStr());
-  gcf->Save();
   
   return true;
 }
@@ -220,12 +227,6 @@ bool NetSendUpdateDeviceInfo()
   {
     // Something has changed, so send update as for a new install.
     NetSendDeviceInfo(deviceId, deviceUserName, deviceModel, deviceOsVersion);
-
-    // Update config file so next run we don't update the server again unnecessarily.
-    gcf->Set(DEVICE_OS_VERSION, deviceOsVersion);
-    gcf->Set(DEVICE_USER_NAME, deviceUserName);
-    gcf->Set(CLIENT_VERSION, GetVersionStr());
-    gcf->Save();
   }
   else
   {
