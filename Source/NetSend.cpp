@@ -36,6 +36,38 @@ std::string DeviceManufacturer()
 #endif
 }
   
+class NetSendDeviceInfoReq : public OnlineReq
+{
+public:
+#ifdef WIN32
+  // Can't inherit ctor in MSVC 2013 ?
+  NetSendDeviceInfoReq(
+    const std::string& url,
+    HttpClient::HttpMethod method,
+    const std::string& name) : OnlineReq(url, method, name) {}
+#else
+  using OnlineReq::OnlineReq;
+#endif
+  
+  virtual void HandleResult()
+  {
+    HttpResult res = GetResult();
+    if (res.GetSuccess())
+    {
+      // We can save device info to config file, which means we won't send again
+      //  (unless we need to update, e.g. OS version changes)
+      //#ifdef LOG_SUCCESSFUL_REQ
+      std::cout << "Request '" << GetName() << "' success!\n";
+      //#endif
+    }
+    else
+    {
+      std::cout << "Request '" << GetName() << "' FAILED!\n";
+    }
+  }
+
+};
+  
 class NetSendReq : public OnlineReq
 {
 public:
@@ -85,7 +117,6 @@ public:
     {
       std::cout << "Request '" << GetName() << "' success!\n";
       // Parse response, set hi scores in global hi score table.
-      // Clear old hi scores, don't try to update.
       TheGlobalHiScoreDb::Instance()->HandleResponseFromServer(res.GetString());
     }
     else
@@ -112,7 +143,7 @@ static bool NetSendDeviceInfo(
 
 std::cout << "Sending device info: " << url << "\n";
   
-  auto req = new NetSendReq(url, HttpClient::GET, "send device info");
+  auto req = new NetSendDeviceInfoReq(url, HttpClient::GET, "send device info");
   bool b = TheSerialReqManager::Instance()->AddReq(req);
   return b;
 }
@@ -292,11 +323,14 @@ bool NetSendHiScore(const std::string& nickname, int score, int level, int depth
     "z='" + EncodeStr(ToString(static_cast<int>(pos.z))) + "'&"
     "nick='" + EncodeStr(nickname) + "'";
 
-  auto req = new NetSendReq(url, HttpClient::GET, "log hi score");
-  bool b = TheSerialReqManager::Instance()->AddReq(req);
+  // Use NetSendHiScoresReq, i.e. response to adding a hi score is to get the new table in response.
+  // Then we can update our local outstanding hi scores.
+  auto req = new NetSendHiScoresReq(url, HttpClient::GET, "log hi score");
+  
+  // Allow 2 of this kind of req: the one we are processing, and a new request to upload one
+  //  locally stored hi score.
+  bool b = TheSerialReqManager::Instance()->AddReq(req, 2);
   return b;
-
-  return true;
 }
 }
 
