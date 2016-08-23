@@ -17,13 +17,18 @@ public:
   
   void SetText(const std::string& text) override;
   std::string GetText() const override;
-  virtual void Draw() override {}
+  virtual void Draw() override;
   virtual bool Load(File*) override;
+  virtual void SetVisible(bool isVis) override;
   
 private:
+  Colour m_bgCol;
+  Colour m_fgCol;
+  
   void* m_view; // The iOS UIView
 };
 
+// TODO Inherit from GuiTextIos!!!!!
 class GuiTextEditIos : public GuiElement, public IGuiTextEdit
 {
 public:

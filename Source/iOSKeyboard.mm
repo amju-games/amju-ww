@@ -81,17 +81,47 @@ GuiTextIos::GuiTextIos()
 GuiTextIos::~GuiTextIos()
 {
   // Dealloc, remove from VC
-  MyKeyboardView* myView = (MyKeyboardView*)m_view;
+  UITextView* myView = (UITextView*)m_view;
   [myView removeFromSuperview];
 ////  [myView dealloc];
   m_view = nullptr;
+}
+
+void GuiTextIos::SetVisible(bool isVis)
+{
+  GuiElement::SetVisible(isVis);
+  UITextView* myView = (UITextView*)m_view;
+  myView.hidden = !IsVisible();
+}
+
+void GuiTextIos::Draw()
+{
+  // TODO get this once
+  float scale = 1.f;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+  {
+    scale = [[UIScreen mainScreen] scale];
+  }
+
+  // TODO Use aspect ratio scale factor for y-coord
+  float scrX = Screen::X() / scale;
+  float scrY = Screen::Y() / scale;
+  
+  float w = m_size.x * 0.5f * scrX;
+  float h = m_size.y * 0.5f * scrY;
+  
+  Vec2f pos = GetCombinedPos();
+  float x = (pos.x + 1.0f) * 0.5f * scrX;
+  float y = (1.0f - (pos.y + 1.0f) * 0.5f) * scrY;
+  
+  UITextView* myView = (UITextView*)m_view;
+  [myView setFrame:CGRectMake(x, y, w, h)];
 }
 
 void GuiTextIos::SetText(const std::string& text)
 {
   UITextView* myView = (UITextView*)m_view;
   myView.text = [[NSString alloc] initWithUTF8String:text.c_str()];
-
 }
 
 std::string GuiTextIos::GetText() const
@@ -159,15 +189,32 @@ bool GuiTextIos::Load(File* f)
   }
 
   // Parse options string
-  if (!StringContains(options, "multi"))
+  Strings strs = Split(options, ',');
+  for (const auto& s : strs)
   {
-    // Single line
-    myView.textContainer.maximumNumberOfLines = 1;
-    // Truncate, add ellipsis - make this another option?
-    myView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
-  }
-  // TODO other options
+    if (!StringContains(s, "multi"))
+    {
+      // Single line
+      myView.textContainer.maximumNumberOfLines = 1;
+      // Truncate, add ellipsis - make this another option?
+      myView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+    }
+    if (StringContains(s, "bgcol="))
+    {
+      std::string c = s.substr(6); // colour code should start at 6th char
+      m_bgCol = FromHexString(c);
+      myView.backgroundColor = [[UIColor alloc]initWithRed:m_bgCol.m_r green:m_bgCol.m_g blue:m_bgCol.m_b alpha:m_bgCol.m_a];
+    }
+    if (StringContains(s, "fgcol="))
+    {
+      std::string c = s.substr(6); // colour code should start at 6th char
+      m_fgCol = FromHexString(c);
+      // Must be AFTER setting text?
+      myView.textColor = [[UIColor alloc]initWithRed:m_fgCol.m_r green:m_fgCol.m_g blue:m_fgCol.m_b alpha:m_fgCol.m_a];
+    }
   
+    // TODO other options
+  }
   return true;
 }
   

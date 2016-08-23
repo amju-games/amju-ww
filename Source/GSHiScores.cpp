@@ -125,7 +125,7 @@ void GSHiScores::OnActive()
     // TODO Could load special versions for top 10, top 3, etc., which change font size,
     //  colours, etc.
     // TODO And rainbow colours for all the other lines
-    GuiElement* line = WWLoadGui("gui-hiscore-line.txt");
+    RCPtr<GuiElement> line = WWLoadGui("gui-hiscore-line.txt", false);
     
     line->SetLocalPos(Vec2f(0, y));
     line->SetVisible(false); // we unhide it later in Update()
