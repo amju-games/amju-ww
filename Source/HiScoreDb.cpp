@@ -6,7 +6,11 @@
 #include <SafeUtils.h>
 #include <StringUtils.h>
 #include <UrlUtils.h>
+#ifdef MACOSX
+#include <XmlNodeInterface.h>
+#else
 #include <XML/XmlNodeInterface.h>
+#endif
 #include "HiScoreDb.h"
 #include "NetSend.h"
 #include "SaveDir.h"
