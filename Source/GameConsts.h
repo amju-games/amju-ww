@@ -25,7 +25,11 @@ const int SOUND_INITIAL_VAL = 1;
 
 #define SHARE_MAX_BUF_LEN 500
   
-#define SCREENSHOT_W 300
-#define SCREENSHOT_H 300
+#define SCREENSHOT_W 600
+#define SCREENSHOT_H 600
+  
+// Score must be within the top N to be considered a hi score.
+const int HI_SCORE_TOP_N = 100;
+  
 }
 

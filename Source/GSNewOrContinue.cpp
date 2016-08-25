@@ -25,6 +25,7 @@ static void OnHiScores(GuiElement*)
 {
   GSHiScores* g = TheGSHiScores::Instance();
   g->SetPrevState(TheGSNewOrContinue::Instance());
+  g->SetTarget(-1); // meaning no target, just smooth scroll
   TheGame::Instance()->SetCurrentState(g);
 }
 
