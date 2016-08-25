@@ -13,7 +13,8 @@ static int hiScore = 0;
 static std::string hiScoreName;
 static const char* HI_SCORE_KEY = "hiscore";
 static const char* HI_SCORE_NAME_KEY = "hiscorename";
-
+static Vec3f s_pos[2];
+  
 void UpdateHud()
 {
   static Hud* h = TheHud::Instance();
@@ -105,6 +106,16 @@ void Scores::DecLives(PlayerNum pn)
 {
   s_lives[ (int)pn ]--;
   UpdateHud();
+}
+
+void Scores::SetPos(PlayerNum pn, const Vec3f& pos)
+{
+  s_pos[(int)pn] = pos;
+}
+  
+const Vec3f& Scores::GetPos(PlayerNum pn)
+{
+  return s_pos[(int)pn];
 }
 
 }
