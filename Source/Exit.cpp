@@ -21,6 +21,7 @@
 #include "PropertyKeys.h"
 #include "RDRandom.h"
 #include "SceneMesh.h"
+#include "ShareManager.h"
 #include "TextMaker.h"
 
 namespace Amju
@@ -170,6 +171,11 @@ void Exit::Update()
     // Set next level
     TheLevelManager::Instance()->SetLevelId(m_toLevel);
     TheGSMain::Instance()->SetExitState(GSMain::FINISHED_EXITING);
+    // Set share text so when we get to load level state, we can "share" the new level
+    char buf[SHARE_MAX_BUF_LEN];
+    // TODO Safe version with max buffer length
+    sprintf(buf, "I just got to level %d on Amju Rainbow Drop! amju.com #amju", m_toLevel);
+    TheShareManager::Instance()->SetShareText(buf);
   }
 }
 

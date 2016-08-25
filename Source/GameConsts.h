@@ -23,5 +23,9 @@ const int SOUND_INITIAL_VAL = 1;
 #define CLIENT_VERSION "client_version"
 #define SESSION_ID "session_id"
 
+#define SHARE_MAX_BUF_LEN 500
+  
+#define SCREENSHOT_W 300
+#define SCREENSHOT_H 300
 }
 

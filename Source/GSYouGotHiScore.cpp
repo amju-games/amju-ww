@@ -4,18 +4,23 @@
 #include "Depth.h"
 #include "GSHiScores.h"
 #include "GSTitle.h"
-#include "GSTweet.h"
 #include "GSYouGotHiScore.h"
 #include "HiScoreDb.h"
 #include "iOSKeyboard.h"
 #include "LevelManager.h"
 #include "NetSend.h"
 #include "Score.h"
+#include "ShareManager.h"
 #include "WWLoadGui.h"
 
 namespace Amju
 {
 static const std::string LAST_NAME_KEY = "last_name_entered";
+
+static void OnShare(GuiElement*)
+{
+  TheShareManager::Instance()->ShareTextAndScreenshot();
+}
   
 static void OnOk(GuiElement*)
 {
@@ -39,7 +44,7 @@ void GSYouGotHiScore::OnOk()
   int depth = static_cast<int>(GetCurrentDepth());
   auto scores = TheScores::Instance();
   int score = scores->GetScore(AMJU_P1);
-  Vec3f pos(3, 4, 5); // ** TODO **
+  const Vec3f& pos = scores->GetPos(AMJU_P1);
 
   TheGlobalHiScoreDb::Instance()->AddHiScore(Hi(score, level, depth, name, pos));
   
@@ -74,10 +79,13 @@ void GSYouGotHiScore::OnActive()
   Assert(m_gui);
 
   m_gui->GetElementByName("ok-button")->SetCommand(Amju::OnOk);
-  m_gui->GetElementByName("tweet-button")->SetCommand(OnTweet);
+  m_gui->GetElementByName("share-button")->SetCommand(OnShare);
   
   // TODO LOCALISE
-  GSTweet::SetDefaultText("Hey @AmjuGames! I just got a high score on Amju Rainbow Drop! amju.com #amju");
+  // TODO Put score in there? But that complicates localisation? Not much, just use printf
+  auto sm = TheShareManager::Instance();
+  sm->ClearScreenshotData(); // no screenshot for this, right?
+  sm->SetShareText("I just got a high score on Amju Rainbow Drop! amju.com #amju");
 
   // Show score
   int score = TheScores::Instance()->GetScore(AMJU_P1);
