@@ -22,7 +22,7 @@ unsigned char* SaveScreenshotToArrayOnHeap(const Vec2f& picCentre, const Vec2f& 
   y = std::min(y, Screen::Y() - h / 2);
   
   unsigned char* mem = new unsigned char[BYTES_PER_PIXEL * w * h];
-  AmjuGL::GetScreenshot(mem, x - w/2, y + h/2, w, h);
+  AmjuGL::GetScreenshot(mem, x - w/2, y - h/2, w, h);
   
   return mem;
 }

@@ -145,7 +145,7 @@ void Player::StartBeingDead()
   
   // TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE
   auto sm = TheShareManager::Instance();
-  sm->SetTakeScreenshot(m_pos);
+  sm->SetTakeScreenshot(m_pos, 0);
   sm->SetShareText("I just died horribly in Amju Rainbow Drop! amju.com #amju");
 }
 
@@ -161,7 +161,7 @@ void Player::StartBeingEaten(OnFloorCharacter* eater)
   
   // TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE
   auto sm = TheShareManager::Instance();
-  sm->SetTakeScreenshot(m_pos);
+  sm->SetTakeScreenshot(m_pos, 0.6f); // time delay
   sm->SetShareText("I just died horribly in Amju Rainbow Drop! amju.com #amju");
 }
 

@@ -15,7 +15,7 @@ namespace Amju
     // Set position on which to centre screenshot, which we will take later when TakeScreenshot
     //  is called.
     // TODO Countdown number of frames
-    void SetTakeScreenshot(const Vec3f& pos3d);
+    void SetTakeScreenshot(const Vec3f& pos3d, float timeDelay);
     
     // Call from Draw() - take screenshot if set above
     void TakeScreenshot();
@@ -39,6 +39,8 @@ namespace Amju
     int m_w = 0;
     int m_h = 0;
     unsigned char* m_data = nullptr;
+    
+    float m_timer = 0;
   };
 
   typedef Singleton<ShareManager> TheShareManager;
