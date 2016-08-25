@@ -7,7 +7,22 @@ gui-comp
 // Name
 loadlevel-comp
 // Num children
-3
+4
+
+// element type
+gui-button
+// Element name
+share-button
+// pos (coords are -1..1)
+-0.4, 0.6 
+// size
+0.8, 0.15
+// Image 
+gui-button-4.png
+// Text
+share!
+// Font name, size
+cheri, 1.0, sx=1.6
 
 
 // element type

@@ -1,0 +1,53 @@
+// version
+1
+
+// Element type
+gui-comp
+// Name
+hi-score-line-comp
+// Num children
+3
+
+
+// Element type
+gui-text-ios
+// Element name
+score-num
+// pos (coords are -1..1)
+-0.8, 0.0
+// size
+0.2, 1.0
+// Text
+1
+// Font name, size
+arial, 1.0, left, sx=1.6, fgcol=ffffff
+
+
+// Element type
+gui-text-ios
+// Element name
+score-score
+// pos (coords are -1..1)
+0.3, 0.0
+// size
+0.5, 1.0
+// Text
+12345
+// Font name, size
+berlin, 1.0, right, sx=1.6, fgcol=ffffff
+
+
+// Element type
+gui-text-ios
+// Element name
+score-name
+// pos (coords are -1..1)
+-0.55, 0.0
+// size
+0.8, 1.0
+// Text
+name
+// Font name, size
+arial, 1.0, left, sx=1.6, fgcol=ffffff
+
+
