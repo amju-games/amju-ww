@@ -145,6 +145,8 @@
 		69D7CDD318F976FA002432C0 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDCF18F976FA002432C0 /* ViewController_iPad.xib */; };
 		69D7CDD418F976FA002432C0 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDD118F976FA002432C0 /* ViewController_iPhone.xib */; };
 		715ACD9C1D6773FF00CC2C68 /* Floaters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 715ACD9B1D6773FF00CC2C68 /* Floaters.cpp */; };
+		715ACDA11D6D784600CC2C68 /* iOSShare.mm in Sources */ = {isa = PBXBuildFile; fileRef = 715ACDA01D6D784600CC2C68 /* iOSShare.mm */; };
+		71AB94311D6ED80700B7478B /* ShareManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71AB942F1D6ED80700B7478B /* ShareManager.cpp */; };
 		71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B641D4F2E0600012DB8 /* libbass.a */; };
 		71D22B921D4F3A2D00012DB8 /* Init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B8D1D4F3A2D00012DB8 /* Init.cpp */; };
 		71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B901D4F3A2D00012DB8 /* WWCamera.cpp */; };
@@ -425,6 +427,10 @@
 		69D7CDD218F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		715ACD991D6773CA00CC2C68 /* Floaters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Floaters.h; path = ../../../../Source/Floaters.h; sourceTree = "<group>"; };
 		715ACD9B1D6773FF00CC2C68 /* Floaters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Floaters.cpp; path = ../../../../Source/Floaters.cpp; sourceTree = "<group>"; };
+		715ACD9F1D6D784600CC2C68 /* iOSShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSShare.h; path = ../../../../Source/iOSShare.h; sourceTree = "<group>"; };
+		715ACDA01D6D784600CC2C68 /* iOSShare.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iOSShare.mm; path = ../../../../Source/iOSShare.mm; sourceTree = "<group>"; };
+		71AB942F1D6ED80700B7478B /* ShareManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShareManager.cpp; path = ../../../../Source/ShareManager.cpp; sourceTree = "<group>"; };
+		71AB94301D6ED80700B7478B /* ShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShareManager.h; path = ../../../../Source/ShareManager.h; sourceTree = "<group>"; };
 		71D22B641D4F2E0600012DB8 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../Libs/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = "<group>"; };
 		71D22B801D4F3A0600012DB8 /* CollideDinoDino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideDinoDino.h; path = ../../../../Source/CollideDinoDino.h; sourceTree = "<group>"; };
 		71D22B811D4F3A0600012DB8 /* CollideDinoPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideDinoPet.h; path = ../../../../Source/CollideDinoPet.h; sourceTree = "<group>"; };
@@ -626,6 +632,10 @@
 		69D7CC9118F9399C002432C0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				71AB942F1D6ED80700B7478B /* ShareManager.cpp */,
+				71AB94301D6ED80700B7478B /* ShareManager.h */,
+				715ACD9F1D6D784600CC2C68 /* iOSShare.h */,
+				715ACDA01D6D784600CC2C68 /* iOSShare.mm */,
 				715ACD9B1D6773FF00CC2C68 /* Floaters.cpp */,
 				715ACD991D6773CA00CC2C68 /* Floaters.h */,
 				71D22BF41D64327A00012DB8 /* HiScoreDb.cpp */,
@@ -1107,6 +1117,7 @@
 				69D7CD8F18F939FA002432C0 /* GSPaused.cpp in Sources */,
 				69D7CDA318F939FA002432C0 /* OnFloorCharacter.cpp in Sources */,
 				69D7CD8D18F939FA002432C0 /* GSNewOrContinue.cpp in Sources */,
+				715ACDA11D6D784600CC2C68 /* iOSShare.mm in Sources */,
 				69D7CD9D18F939FA002432C0 /* MyTextMaker.cpp in Sources */,
 				69D7CDAC18F939FA002432C0 /* PropertiesDialog.cpp in Sources */,
 				69D7CD7018F939FA002432C0 /* CollidePlayerDino.cpp in Sources */,
@@ -1141,6 +1152,7 @@
 				69D7CD6018F939FA002432C0 /* Animated.cpp in Sources */,
 				69D7CDAB18F939FA002432C0 /* ProcGen.cpp in Sources */,
 				69D7CDB318F939FA002432C0 /* StartGame.cpp in Sources */,
+				71AB94311D6ED80700B7478B /* ShareManager.cpp in Sources */,
 				71D22BAA1D55B13900012DB8 /* SerialReqManager.cpp in Sources */,
 				69D7CD5A18F939FA002432C0 /* AIFlee.cpp in Sources */,
 				69D7CD5618F939FA002432C0 /* AI.cpp in Sources */,
