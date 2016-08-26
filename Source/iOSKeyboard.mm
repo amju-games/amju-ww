@@ -87,6 +87,13 @@ GuiTextIos::~GuiTextIos()
   m_view = nullptr;
 }
 
+void GuiTextIos::SetAncestorsVisible(bool ancestorVis)
+{
+  m_ancestorsAreVisible = ancestorVis;
+  UITextView* myView = (UITextView*)m_view;
+  myView.hidden = !IsVisible();
+}
+
 void GuiTextIos::SetVisible(bool isVis)
 {
   GuiElement::SetVisible(isVis);

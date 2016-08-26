@@ -20,7 +20,8 @@ public:
   virtual void Draw() override;
   virtual bool Load(File*) override;
   virtual void SetVisible(bool isVis) override;
-  
+  virtual void SetAncestorsVisible(bool ancestorVis) override;
+
 private:
   Colour m_bgCol;
   Colour m_fgCol;
