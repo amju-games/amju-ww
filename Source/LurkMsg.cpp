@@ -405,6 +405,7 @@ void Lurker::Draw()
 
       // Hide buttons with no command
 
+      m_gui->SetVisible(true);
       m_gui->Draw();
     }
   }
