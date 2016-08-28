@@ -15,7 +15,7 @@ back-button
 -0.4, -0.7
 0.8, 0.15
 gui-button-4.png
-Back
+ok
 cheri, 1.0, sx=1.6
 
 // Music check box

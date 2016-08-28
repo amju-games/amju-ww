@@ -56,7 +56,7 @@ about-button
 // Image 
 gui-button-4.png
 // Text
-About
+about
 // Font name, size
 cheri, 1.0, sx=1.6
 
@@ -73,7 +73,7 @@ back-button
 // Image 
 gui-button-4.png
 // Text
-Back
+back
 // Font name, size
 cheri, 1.0, sx=1.6
 
