@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-23
+27
 
 // Game object type
 dino
@@ -42,7 +42,17 @@ staticfloor
 // Y rotation
 0.000000
 // Mesh filename
-rd_b41a.obj
+rd_b41a_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+20231
+1000.000000, 100.000000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+rd_b41_top_snow.txt
 end
 
 // Game object type
@@ -61,7 +71,17 @@ staticfloor
 // Y rotation
 180.000000
 // Mesh filename
-rd_a41b.obj
+rd_a41b_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+20261
+501.562500, 100.000000, 50.000000
+// Y rotation
+180.000000
+// Mesh filename
+rd_a41_top_snow.txt
 end
 
 // Game object type
@@ -109,7 +129,17 @@ staticfloor
 // Y rotation
 0.000000
 // Mesh filename
-rd_a11c.obj
+rd_a11c_notop_ice.txt
+end
+
+// Game object type
+staticfloor
+52541
+1348.437500, 0.000000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+rd_a11_top_snow.txt
 end
 
 // Game object type
@@ -254,7 +284,17 @@ staticfloor
 // Y rotation
 0.000000
 // Mesh filename
-rd_a21b.obj
+rd_a21b_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+57941
+101.562500, 100.000000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+rd_a21_top_snow.txt
 end
 
 // Game object type

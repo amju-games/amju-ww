@@ -1,6 +1,5 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib rd_a41b_notop.mtl
 g default
 v -184.908813 -105.727379 50.000000
 v -152.284302 -89.158829 50.000000
@@ -212,7 +211,6 @@ vn -0.855495 -0.062068 0.514078
 vn -0.963917 -0.069883 0.256867
 s 1
 g rd_a41b:polySurface7
-usemtl rd_a41b:lambert2SG
 f 9/1/1 62/2/2 18/3/3
 f 18/3/3 62/2/2 20/4/4
 f 2/5/5 11/6/6 1/7/7

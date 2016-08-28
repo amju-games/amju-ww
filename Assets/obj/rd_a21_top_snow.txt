@@ -1,0 +1,10 @@
+// Mix and match obj meshes (with one group and no material) and a separate material 
+// Version
+1
+// Scene node type name
+scene-mesh-material
+// Obj
+rd_a21_top.obj
+// Material 
+rd_snow.mtl.txt
+
