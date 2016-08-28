@@ -2,6 +2,7 @@
 #include <File.h>
 #include <Game.h>
 #include <GameObjectFactory.h>
+#include <LoadScene.h>
 #include <ResourceManager.h>
 #include <Timer.h>
 #include "Floor.h"
@@ -166,29 +167,29 @@ void Floor::AddToGame()
 
 bool Floor::CreateSceneNode()
 {
-  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
-  if (!mesh)
+  PSceneNode node = LoadScene(m_meshFilename);
+  if (!node)
   {
+    std::cout << "Floor: Failed to load scene from file: " << m_meshFilename << "\n";
     return false;
   }
 
   m_collMesh = new CollisionMesh;
-
-  mesh->CalcCollisionMesh(m_collMesh);
+  
+  node->CalcCollisionMesh(m_collMesh);
+  
   Matrix m;
   m.RotateY(DegToRad(m_yRot));
   m.TranslateKeepRotation(m_pos);
   m_collMesh->Transform(m);
 
-  SceneMesh* fm = new SceneMesh;
-  fm->SetMesh(mesh);
-  SetSceneNode(fm);
-  fm->SetLocalTransform(m);
+  SetSceneNode(node);
+  node->SetLocalTransform(m);
 
   m_collMesh->CalcAABB(&m_aabb);
-  fm->SetAABB(m_aabb);
+  node->SetAABB(m_aabb);
 
-  fm->SetIsLit(true);
+  node->SetIsLit(true);
 
   return true;
 }
