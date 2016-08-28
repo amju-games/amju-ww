@@ -2,6 +2,7 @@
 #include <GuiText.h>
 #include <StringUtils.h>
 #include <Timer.h>
+#include "GameConsts.h"
 #include "GSHiScores.h"
 #include "GSMoreMenu.h"
 #include "HiScoreDb.h"
@@ -78,9 +79,7 @@ void GSHiScores::Update()
     Vec2f pos = line->GetCombinedPos();
     
     // Make lines above the bottom of the screen visible
-    bool vis = pos.y > -0.1f;
-    // Hmm, not sure why this is so high, it's the middle of the screen!
-    // It's because of the aspect ratio scale factor
+    bool vis = pos.y > -0.6f;
     
     if (vis & !line->IsVisible())
     {
@@ -94,7 +93,7 @@ void GSHiScores::Update()
     if (pos.y > 1.0f)
     {
       line->SetVisible(false);
-      if (i == (m_numScores - 1) && m_mode == HISCORE_MODE_SMOOTH_SCROLL)
+      if (i == (m_numScores - 1) && (m_mode == HISCORE_MODE_SMOOTH_SCROLL || m_mode == HISCORE_MODE_SCROLL_TO_TARGET))
       {
         // The last score just went off the top of the screen
         GoBack();
@@ -130,8 +129,7 @@ void GSHiScores::OnActive()
   
   // GLOBAL scores
   HiScoreVec scores;
-  const int MAX_SCORES = 10; // TODO CONFIG
-  TheGlobalHiScoreDb::Instance()->GetTopN(MAX_SCORES, &scores);
+  TheGlobalHiScoreDb::Instance()->GetTopN(HI_SCORE_TOP_N, &scores);
   m_numScores = static_cast<int>(scores.size());
   float y = 0;
   const float LINE_SPACING = 0.15; // TODO CONFIG
