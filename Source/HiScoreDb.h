@@ -55,6 +55,9 @@ public:
   // This is sp we send outstanding local hi scores when we regain connectivity.
   void SendFirst();
   
+  // On successful completion of SendFirst(), call this to erase the sent item
+  void Erase(const Hi& hi);
+  
 private:
   HiScoreVec m_hsVec;
 };
@@ -69,6 +72,12 @@ public:
   // Parse response hi score table (XML) from server
   void HandleResponseFromServer(const std::string& response);
 
+  // Called when we get successful response from sending first local stored hi score
+  void EraseLocal(const Hi& hi);
+  
+  // Send a local hi score batched up
+  void SendLocal();
+  
   // Add score achieved on local client. Send to server. Add to results until we know it was
   //  successfully recvd at the server.
   void AddHiScore(const Hi& hi);
