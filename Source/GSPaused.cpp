@@ -6,6 +6,7 @@
 #include "GSOptions.h"
 #include "GSTitle.h"
 #include "MySceneGraph.h"
+#include "Viewport.h" 
 #include "WWLoadGui.h"
 
 namespace Amju
@@ -38,7 +39,6 @@ void GSPaused::OnActive()
 {
   GSText::OnActive();
 
-  CreateText("paused"); // TODO localise
   m_timer = 0;
 
   // buttons
@@ -52,5 +52,14 @@ void GSPaused::OnActive()
 
   m_gui->GetElementByName("quit-button")->SetCommand(OnQuit);
   m_gui->GetElementByName("options-button")->SetCommand(OnOptions);
+}
+  
+void GSPaused::Draw()
+{
+  int numVps = TheViewportManager::Instance()->GetNumViewports();
+  for (int i = 0; i < numVps; i++)
+  {
+    TheViewportManager::Instance()->GetViewport(i)->Draw();
+  }
 }
 }
