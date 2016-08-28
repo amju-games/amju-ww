@@ -10,6 +10,8 @@
 #include "GameMode.h"
 #include "Stars.h"
 
+#define DRAW_AABB_DEBUG
+
 namespace Amju
 {
 Viewport::Viewport(int id, float x, float y, float w, float h) : 
@@ -26,7 +28,7 @@ void Viewport::Draw()
   AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
   /////////////////////////
-  // TODO TEMP TEST  
+  // STARS BACKGROUND
   static SceneNode* stars[2] = 
   {
     CreateStars("star1.png", 0.03f, 50, 99999.9f, -99999.9f),
@@ -50,8 +52,6 @@ void Viewport::Draw()
     stars[i]->Update();
     stars[i]->Draw();
   }
-
-  // TEMP TEST
   /////////////////////////
 
   AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
