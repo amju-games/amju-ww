@@ -1,7 +1,9 @@
 #include <ConfigFile.h>
 #include <Game.h>
 #include <GuiTextEdit.h>
+#include <StringUtils.h>
 #include "Depth.h"
+#include "GameConsts.h"
 #include "GSHiScores.h"
 #include "GSTitle.h"
 #include "GSYouGotHiScore.h"
@@ -38,6 +40,9 @@ void GSYouGotHiScore::OnOk()
   IGuiTextEdit* textEdit = dynamic_cast<IGuiTextEdit*>(GetElementByName(m_gui, "edit-name"));
   Assert(textEdit);
   std::string name = textEdit->GetText();
+  
+  // Correctly truncate string, taking multi-byte utf-8 glyphs into account.
+  name = TruncateUtf8String(name, MAX_HI_SCORE_NAME_BYTE_LEN);
   
   // Store hi score
   int level = TheLevelManager::Instance()->GetLevelId();
