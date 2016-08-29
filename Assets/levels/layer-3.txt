@@ -203,7 +203,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41a_notop_underground.obj
+rd_a41a_notop_underground.txt
 end
 
 // Game object type
@@ -213,7 +213,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_snow.obj
+rd_a41_top_snow.txt
 end
 
 // Game object type
