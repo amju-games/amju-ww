@@ -17,6 +17,7 @@ REM Copy other files to compiled dir
 REM /Y when we would get overwrite confirm prompt
 
 xcopy /Y /S %SRC_DIR%\*.txt %DEST_DIR%
+xcopy /Y /S %SRC_DIR%\obj\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\gui\common\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_DIR%\gui\win\*.txt %DEST_DIR%
 xcopy /Y /S %SRC_FONT2D%\* %DEST_DIR%\font2d\

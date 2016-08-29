@@ -31,11 +31,12 @@ REM del wh8.png
 cd %SRC_DIR%\obj\
 
 REM No conversion, just copy
-REM for %%f in (*.obj) do %RESTORE_DIR%\obj2bin %%f %DEST_DIR%\%%f
 DEL %DEST_DIR%\*.obj
 DEL %DEST_DIR%\*.mtl
+REM DEL %DEST_DIR%\*.txt
 COPY *.obj %DEST_DIR%\
 COPY *.mtl %DEST_DIR%\
+COPY *.txt %DEST_DIR%\
 
 
 cd %RESTORE_DIR%
