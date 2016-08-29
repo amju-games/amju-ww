@@ -7,7 +7,14 @@ gui-comp
 // Name
 title-comp
 // Num children
-3
+4
+
+gui-image
+pause-filter
+-1.0, 1 
+2, 2
+pause-filter.png
+
 
 elastic
 0, -1.0
