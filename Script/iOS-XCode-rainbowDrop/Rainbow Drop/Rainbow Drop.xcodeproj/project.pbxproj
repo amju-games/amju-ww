@@ -156,9 +156,6 @@
 		71D22BA71D55AAFA00012DB8 /* NetSend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BA51D55AAFA00012DB8 /* NetSend.cpp */; };
 		71D22BAA1D55B13900012DB8 /* SerialReqManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BA81D55B13900012DB8 /* SerialReqManager.cpp */; };
 		71D22BAD1D55D7DB00012DB8 /* Nicknames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BAB1D55D7DB00012DB8 /* Nicknames.cpp */; };
-		71D22BB01D56F7FB00012DB8 /* iOSTweet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BAF1D56F7FB00012DB8 /* iOSTweet.mm */; };
-		71D22BB41D57025800012DB8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BB31D57025800012DB8 /* Accounts.framework */; };
-		71D22BB61D57569600012DB8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BB51D57569600012DB8 /* Social.framework */; };
 		71D22BB91D5770C100012DB8 /* iOSKeyboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BB81D5770C100012DB8 /* iOSKeyboard.mm */; };
 		71D22BD41D5D198500012DB8 /* GSAbout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BC61D5D198500012DB8 /* GSAbout.cpp */; };
 		71D22BD51D5D198600012DB8 /* GSDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BC81D5D198500012DB8 /* GSDebug.cpp */; };
@@ -168,7 +165,6 @@
 		71D22BD91D5D198600012DB8 /* GSYesNoNewGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BD01D5D198500012DB8 /* GSYesNoNewGame.cpp */; };
 		71D22BDA1D5D198600012DB8 /* GSYesNoQuitGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BD21D5D198500012DB8 /* GSYesNoQuitGame.cpp */; };
 		71D22BDD1D5D9BF700012DB8 /* Screenshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */; };
-		71D22BE01D5E497600012DB8 /* GSTweet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BDE1D5E497600012DB8 /* GSTweet.cpp */; };
 		71D22BF01D63890000012DB8 /* libAmjulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BEF1D63890000012DB8 /* libAmjulib.a */; };
 		71D22BF31D63B7F500012DB8 /* GSYouGotHiScore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BF11D63B7F500012DB8 /* GSYouGotHiScore.cpp */; };
 		71D22BF61D64327A00012DB8 /* HiScoreDb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BF41D64327A00012DB8 /* HiScoreDb.cpp */; };
@@ -459,8 +455,6 @@
 		71D22BA91D55B13900012DB8 /* SerialReqManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SerialReqManager.h; path = ../../../../Source/SerialReqManager.h; sourceTree = "<group>"; };
 		71D22BAB1D55D7DB00012DB8 /* Nicknames.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Nicknames.cpp; path = ../../../../Source/Nicknames.cpp; sourceTree = "<group>"; };
 		71D22BAC1D55D7DB00012DB8 /* Nicknames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nicknames.h; path = ../../../../Source/Nicknames.h; sourceTree = "<group>"; };
-		71D22BAE1D56F7FA00012DB8 /* iOSTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSTweet.h; path = ../../../../Source/iOSTweet.h; sourceTree = "<group>"; };
-		71D22BAF1D56F7FB00012DB8 /* iOSTweet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iOSTweet.mm; path = ../../../../Source/iOSTweet.mm; sourceTree = "<group>"; };
 		71D22BB11D57023B00012DB8 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		71D22BB31D57025800012DB8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		71D22BB51D57569600012DB8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -482,8 +476,6 @@
 		71D22BD31D5D198500012DB8 /* GSYesNoQuitGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSYesNoQuitGame.h; path = ../../../../Source/GSYesNoQuitGame.h; sourceTree = "<group>"; };
 		71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Screenshot.cpp; path = ../../../../Source/Screenshot.cpp; sourceTree = "<group>"; };
 		71D22BDC1D5D9BF700012DB8 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screenshot.h; path = ../../../../Source/Screenshot.h; sourceTree = "<group>"; };
-		71D22BDE1D5E497600012DB8 /* GSTweet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSTweet.cpp; path = ../../../../Source/GSTweet.cpp; sourceTree = "<group>"; };
-		71D22BDF1D5E497600012DB8 /* GSTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSTweet.h; path = ../../../../Source/GSTweet.h; sourceTree = "<group>"; };
 		71D22BEF1D63890000012DB8 /* libAmjulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAmjulib.a; path = "../../../../amjulib/Build/ioS/build/Debug/Debug-iphonesimulator/libAmjulib.a"; sourceTree = "<group>"; };
 		71D22BF11D63B7F500012DB8 /* GSYouGotHiScore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSYouGotHiScore.cpp; path = ../../../../Source/GSYouGotHiScore.cpp; sourceTree = "<group>"; };
 		71D22BF21D63B7F500012DB8 /* GSYouGotHiScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSYouGotHiScore.h; path = ../../../../Source/GSYouGotHiScore.h; sourceTree = "<group>"; };
@@ -500,8 +492,6 @@
 				71D22BA21D4F906400012DB8 /* libAmjulib.a in Frameworks */,
 				71D22BA01D4F8EAD00012DB8 /* Amjulib.xcodeproj in Frameworks */,
 				71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */,
-				71D22BB61D57569600012DB8 /* Social.framework in Frameworks */,
-				71D22BB41D57025800012DB8 /* Accounts.framework in Frameworks */,
 				69D7CC3718F895BF002432C0 /* OpenGLES.framework in Frameworks */,
 				69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */,
 				69D7CDC818F95058002432C0 /* SystemConfiguration.framework in Frameworks */,
@@ -642,8 +632,6 @@
 				71D22BF51D64327A00012DB8 /* HiScoreDb.h */,
 				71D22BF11D63B7F500012DB8 /* GSYouGotHiScore.cpp */,
 				71D22BF21D63B7F500012DB8 /* GSYouGotHiScore.h */,
-				71D22BDE1D5E497600012DB8 /* GSTweet.cpp */,
-				71D22BDF1D5E497600012DB8 /* GSTweet.h */,
 				71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */,
 				71D22BDC1D5D9BF700012DB8 /* Screenshot.h */,
 				71D22BC61D5D198500012DB8 /* GSAbout.cpp */,
@@ -662,8 +650,6 @@
 				71D22BD31D5D198500012DB8 /* GSYesNoQuitGame.h */,
 				71D22BB71D5770C100012DB8 /* iOSKeyboard.h */,
 				71D22BB81D5770C100012DB8 /* iOSKeyboard.mm */,
-				71D22BAE1D56F7FA00012DB8 /* iOSTweet.h */,
-				71D22BAF1D56F7FB00012DB8 /* iOSTweet.mm */,
 				71D22BAB1D55D7DB00012DB8 /* Nicknames.cpp */,
 				71D22BAC1D55D7DB00012DB8 /* Nicknames.h */,
 				71D22BA81D55B13900012DB8 /* SerialReqManager.cpp */,
@@ -1051,7 +1037,6 @@
 				6909DCD118FFD004009AC2CB /* RDRandom.cpp in Sources */,
 				69D7CD9218F939FA002432C0 /* GSText.cpp in Sources */,
 				69D7CD9F18F939FA002432C0 /* Npc.cpp in Sources */,
-				71D22BE01D5E497600012DB8 /* GSTweet.cpp in Sources */,
 				69D7CD7818F939FA002432C0 /* Describe.cpp in Sources */,
 				69D7CDA018F939FA002432C0 /* ObjectDialog.cpp in Sources */,
 				69D7CD6518F939FA002432C0 /* Bonus.cpp in Sources */,
@@ -1097,7 +1082,6 @@
 				69D7CDA418F939FA002432C0 /* Pet.cpp in Sources */,
 				69D7CD7718F939FA002432C0 /* Depth.cpp in Sources */,
 				69D7CD6B18F939FA002432C0 /* CollideObjectFloor.cpp in Sources */,
-				71D22BB01D56F7FB00012DB8 /* iOSTweet.mm in Sources */,
 				69D7CD9B18F939FA002432C0 /* LurkMsg.cpp in Sources */,
 				71D22BD81D5D198600012DB8 /* GSYesNo.cpp in Sources */,
 				69D7CD7118F939FA002432C0 /* CollidePlayerExit.cpp in Sources */,
