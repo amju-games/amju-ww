@@ -28,15 +28,13 @@ Start
 cheri, 2.0, sx=1.6
 
 
-elastic
-0, -1.5
 // Button 2 - quit
 // element type
 gui-button
 // Element name
 tweet-button
 // pos (coords are -1..1)
--0.3, 0.9
+-0.3, 1.9
 // size
 0.6, 0.1
 // Image - ext is resource type, not necessarily a real file extension

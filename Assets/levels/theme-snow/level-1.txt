@@ -152,7 +152,7 @@ staticfloor
 // Mesh filename
 //rd_a41_snow.obj
 // Test mix and match
-rd_a41_top_grass.txt
+rd_a41_top_snow.txt
 end
 
 
@@ -250,7 +250,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_grass.txt
+rd_a41_top_snow.txt
 end
 
 // Game object type
@@ -269,7 +269,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_grass.txt
+rd_a41_top_snow.txt
 end
 
 // Game object type

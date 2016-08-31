@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-25
+29
 
 // Game object type
 camera
@@ -141,7 +141,17 @@ staticfloor
 // Y rotation
 360.000000
 // Mesh filename
-rd_a21a.obj
+rd_a21a_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+20231
+100.000000, 100.000000, 50.000000
+// Y rotation
+360.000000
+// Mesh filename
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -229,7 +239,17 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a21.obj
+rd_a21_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+50091
+1400.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -239,7 +259,17 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41.obj
+rd_a41_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+50101
+500.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41_top_grass.txt
 end
 
 // Game object type
@@ -318,5 +348,16 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41.obj
+rd_a41_notop_underground.txt
 end
+
+// Game object type
+staticfloor
+52161
+1000.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41_top_grass.txt
+end
+
