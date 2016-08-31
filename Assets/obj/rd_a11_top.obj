@@ -1,6 +1,5 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib rd_a11_top.mtl
 g default
 v -43.401324 -5.300001 52.500000
 v -22.226660 -5.300001 55.228669
@@ -204,7 +203,6 @@ vn -0.963400 -0.112926 0.243123
 vn -0.873365 0.380231 0.304398
 s 1
 g rd_a11_top:polySurface11
-usemtl initialShadingGroup
 f 1/1/1 7/2/2 6/3/3
 f 7/2/2 1/1/1 8/4/4
 f 8/4/4 1/1/1 2/5/5
