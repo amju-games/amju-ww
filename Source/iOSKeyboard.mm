@@ -219,6 +219,10 @@ bool GuiTextIos::Load(File* f)
       // Must be AFTER setting text?
       myView.textColor = [[UIColor alloc]initWithRed:m_fgCol.m_r green:m_fgCol.m_g blue:m_fgCol.m_b alpha:m_fgCol.m_a];
     }
+    if (StringContains(s, "right"))
+    {
+      myView.textAlignment = NSTextAlignmentRight;
+    }
   
     // TODO other options
   }
