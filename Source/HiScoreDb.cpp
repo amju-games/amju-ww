@@ -353,13 +353,17 @@ void GlobalHiScoreDb::HandleResponseFromServer(const std::string& response)
           }
         }
       }
+#ifdef _DEBUG
       std::cout << "ERROR (1) parsing hi scores XML from server!\n";
+#endif
       return;
     }
   }
   else
   {
+#ifdef _DEBUG
     std::cout << "ERROR (2) parsing hi scores XML from server!\n";
+#endif
     return;
   }
   
