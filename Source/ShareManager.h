@@ -8,10 +8,12 @@ namespace Amju
 {
   class ShareManager : public NonCopyable
   {
-    ShareManager() = default;
+    ShareManager();
     friend Singleton<ShareManager>;
     
   public:
+    ~ShareManager();
+
     // Set position on which to centre screenshot, which we will take later when TakeScreenshot
     //  is called.
     // TODO Countdown number of frames
@@ -25,6 +27,10 @@ namespace Amju
     void ShareTextAndScreenshot();
     
     void ClearScreenshotData();
+    
+    // Call when we deactivate a state that has a share button, so we will use the default
+    //  text next time, (unless set to something better)
+    void SetShareTextToDefault();
     
     // Set the text which will be used when we next Share
     void SetShareText(const std::string& text);

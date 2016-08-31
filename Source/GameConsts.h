@@ -34,5 +34,8 @@ const int HI_SCORE_TOP_N = 100;
 // DB field is 40 varchar(40), and comprised of pairs of characters, where each pair is the
 //  hex value for one char.
 const int MAX_HI_SCORE_NAME_BYTE_LEN = 20;
+
+#define DEFAULT_SHARE_TEXT_KEY "default_share_text"
+#define DEFAULT_SHARE_TEXT "I'm playing Amju Rainbow Drop! amju.com #amju"
 }
 
