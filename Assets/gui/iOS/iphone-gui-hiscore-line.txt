@@ -14,9 +14,9 @@ gui-text-ios
 // Element name
 score-num
 // pos (coords are -1..1)
--0.8, 0.0
+-0.9, 0.0
 // size
-0.2, 1.0
+0.4, 1.0
 // Text
 1
 // Font name, size
@@ -28,9 +28,9 @@ gui-text-ios
 // Element name
 score-score
 // pos (coords are -1..1)
-0.3, 0.0
+0.25, 0.0
 // size
-0.5, 1.0
+0.65, 1.0
 // Text
 12345
 // Font name, size
