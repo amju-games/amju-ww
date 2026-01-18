@@ -16,6 +16,11 @@ static bool reg = TheGameObjectFactory::Instance()->Add(
 
 const char* StaticFloor::NAME = "staticfloor";
 
+const char* StaticFloor::GetTypeName() const
+{
+  return NAME;
+}
+
 void StaticFloor::Update()
 {
 }
