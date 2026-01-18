@@ -25,6 +25,7 @@ public:
   virtual void Update();
 
   void SetGameMode(GameMode);
+  GameMode GetGameMode() const { return m_mode; }
 
 private:
   void LoadOneObject();
