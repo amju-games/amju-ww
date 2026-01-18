@@ -25,6 +25,7 @@
 #include "GSLevelComplete.h"
 #include "EditModeCamera.h"
 #include "LurkMsg.h"
+#include "Score.h"
 
 #define EDIT_CAM
 
@@ -34,6 +35,8 @@ const char* GSMain::NAME = "main";
 
 GSMain::GSMain()
 {
+  m_gui = LoadGui("main-gui.txt");
+  Assert(m_gui);
 }
 
 void GSMain::OnActive()
@@ -53,6 +56,10 @@ void GSMain::OnActive()
 
   m_exitReached = false;
   m_exitTimer = 0;
+
+  GuiElement* splitLine = m_gui->GetElementByName("split-screen-line");
+  Assert(splitLine);
+  splitLine->SetVisible(Score::GetNumPlayers() == 2);
 }
 
 bool GSMainEventListener::OnKeyEvent(const KeyEvent& ke)
@@ -126,7 +133,6 @@ void GSMain::Update()
       TheCollisionManager::Instance()->Update();
       GetGameSceneGraph()->Update();
     }
-
   }
 }
 
@@ -144,6 +150,7 @@ void GSMain::Draw2d()
 
     TheViewportManager::Instance()->GetViewport(i)->Draw2d();
   }
+  m_gui->Draw(); // split screen line etc
 
 //  TheCursorManager::Instance()->Draw();
 

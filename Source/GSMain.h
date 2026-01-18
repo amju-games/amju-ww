@@ -2,10 +2,11 @@
 #define BALANCE_GAME_STATE_H
 
 #include <vector>
-#include "GameState.h"
-#include <EventListener.h>
-#include "Viewport.h"
 #include <Singleton.h>
+#include <EventListener.h>
+#include <GuiElement.h>
+#include "GameState.h"
+#include "Viewport.h"
 
 namespace Amju
 {
@@ -40,6 +41,7 @@ public:
 protected:
   bool m_exitReached;
   float m_exitTimer;
+  PGuiElement m_gui; // GUI elements (extra on HUD)
 };
 typedef Singleton<GSMain> TheGSMain;
 }
