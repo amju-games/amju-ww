@@ -577,6 +577,8 @@ void GSMainEdit::OnProperties()
     m_propsDialog.SetTitle("Properties for " + Describe(m_selectedObj));
     m_propsDialog.SetFinishCallback(OnPropertiesDialogClosed);
 
+    m_propsDialog.SetObj(m_selectedObj);
+
     // Populate properties
     m_selectedObj->AddPropertiesGui(&m_propsDialog);
 
