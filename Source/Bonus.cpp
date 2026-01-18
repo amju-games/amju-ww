@@ -93,8 +93,8 @@ bool Bonus::Load(File* f)
   // Set bounding box 
   RecalcAABB();
 
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+//    AddChild(m_pSceneNode);
 
   if (!LoadShadow(f))
   {

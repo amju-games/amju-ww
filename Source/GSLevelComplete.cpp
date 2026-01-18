@@ -121,6 +121,17 @@ void GSLevelComplete::OnDeactive()
 //  TheLevelManager::Instance()->Clear();
 }
 
+// Convenience function
+static void AddSceneNode(WWGameObject* ww)
+{
+  SceneNode* sn = ww->GetSceneNode();
+  if (sn)
+  {
+    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+    root->AddChild(sn); 
+  }  
+}
+
 void GSLevelComplete::OnActive()
 {
   GameState::OnActive();
@@ -136,14 +147,14 @@ void GSLevelComplete::OnActive()
 
   // Add scene nodes for player and carried pets
   Assert(m_player);
-  m_player->AddSceneNode();
+  AddSceneNode(m_player);
   m_player->SetPos(Vec3f());
 
   const Pets& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
   {
     Pet* pet = const_cast<Pet*>(*it);
-    pet->AddSceneNode(); 
+    AddSceneNode(pet); 
   }   
 
   // Set up camera

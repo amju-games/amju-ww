@@ -35,10 +35,13 @@ public:
 
   Camera();
   virtual const char* GetTypeName() const;
-  virtual void Reset();
+  virtual void Reset() override;
   virtual void Update();
   virtual bool Load(File*);
   virtual bool Save(File*);
+
+  virtual void AddToGame();
+  virtual void RemoveFromGame();
 
   void SetAsSceneGraphCamera();
   void SetLookAtPos(const Vec3f& v) { m_lookAt = v; }
