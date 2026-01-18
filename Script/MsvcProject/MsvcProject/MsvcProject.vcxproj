@@ -350,6 +350,8 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSYesNo.cpp" />
     <ClCompile Include="..\..\..\Source\GSYesNoNewGame.cpp" />
     <ClCompile Include="..\..\..\Source\GSYesNoQuitGame.cpp" />
+    <ClCompile Include="..\..\..\Source\GSYouGotHiScore.cpp" />
+    <ClCompile Include="..\..\..\Source\HiScoreDb.cpp" />
     <ClCompile Include="..\..\..\Source\Hud.cpp" />
     <ClCompile Include="..\..\..\Source\Init.cpp" />
     <ClCompile Include="..\..\..\Source\LevelManager.cpp" />
@@ -455,6 +457,8 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSYesNo.h" />
     <ClInclude Include="..\..\..\Source\GSYesNoNewGame.h" />
     <ClInclude Include="..\..\..\Source\GSYesNoQuitGame.h" />
+    <ClInclude Include="..\..\..\Source\GSYouGotHiScore.h" />
+    <ClInclude Include="..\..\..\Source\HiScoreDb.h" />
     <ClInclude Include="..\..\..\Source\Hud.h" />
     <ClInclude Include="..\..\..\Source\Init.h" />
     <ClInclude Include="..\..\..\Source\LevelManager.h" />
