@@ -2,26 +2,46 @@
 
 #ifdef AMJU_IOS
 
-#include <GuiElement.h>
+#include <GuiTextEdit.h>
 
 namespace Amju
 {
-class GuiTextEditIos : public GuiElement
+// Call from view controller, passing self.
+void iOSTextSetViewController(void*);
+  
+class GuiTextIos : public GuiElement, public IGuiText
+{
+public:
+  GuiTextIos();
+  ~GuiTextIos();
+  
+  void SetText(const std::string& text) override;
+  std::string GetText() const override;
+  virtual void Draw() override {}
+  virtual bool Load(File*) override;
+  
+private:
+  void* m_view; // The iOS UIView
+};
+
+class GuiTextEditIos : public GuiElement, public IGuiTextEdit
 {
 public:
   GuiTextEditIos();
   ~GuiTextEditIos();
   
-  static void SetViewController(void*);
-  
   void ShowKeyboard(bool showNotHide);
-  void SetText(const std::string& text);
-  std::string GetText() const;
+  
+  void SetText(const std::string& text) override;
+  std::string GetText() const override;
   
   virtual void Draw() override {}
   virtual bool Load(File*) override;
   
+  void OnTextChanged();
+
 private:
+  void* m_view; // The iOS UIView
 };
 }
 

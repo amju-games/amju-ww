@@ -14,19 +14,23 @@ static const float CORNER_RADIUS = 10.f;
 // http://stackoverflow.com/questions/7253477/how-to-display-the-iphone-ipad-keyboard-over-a-full-screen-opengl-es-app
 
 @interface MyKeyboardView : UITextView <UIKeyInput>
+@property (assign, nonatomic) Amju::GuiTextEditIos* m_guiElement;
 @end
 
 @implementation MyKeyboardView
 
 // TODO Override behaviour ?
-//- (void) insertText:(NSString *)text
-//{
-//  // Do something with the typed character
-//}
-//
-//- (void) deleteBackward
-//{
-//}
+- (void) insertText:(NSString *)text
+{
+  [super insertText:text];  
+  _m_guiElement->OnTextChanged();
+}
+
+- (void) deleteBackward
+{
+  [super deleteBackward];
+  _m_guiElement->OnTextChanged();
+}
 
 - (BOOL) hasText
 {
@@ -43,28 +47,156 @@ static const float CORNER_RADIUS = 10.f;
 
 namespace Amju
 {
-static GuiElement* CreateTextEdit()
+static GuiElement* CreateTextEditiOS()
 {
   return new GuiTextEditIos;
 }
 
+static GuiElement* CreateTextiOS()
+{
+  return new GuiTextIos;
+}
+
 static  ViewController* vc = nullptr;
   
-void GuiTextEditIos::SetViewController(void* vvc)
+void iOSTextSetViewController(void* vvc)
 {
   vc = (ViewController*)vvc;
   
-  // Replace regular type (GuiTextEdit) associated with name
-  TheGuiFactory::Instance()->Add(GuiTextEdit::NAME, CreateTextEdit);
+  // Register these iOS-specific types with GuiFactory
+  
+  // TODO
+  // For text field, usually we use the standard GuiText, but in ios-only gui*.txt fies, we
+  //  can choose to use the custom iOS text, to show emoticons etc.
+  // TODO
+  TheGuiFactory::Instance()->Add(GuiText::NAME, CreateTextiOS);
+  
+  // Always use iOS-specific text edit, never Amju GuiTextEdit
+  TheGuiFactory::Instance()->Add(GuiTextEdit::NAME, CreateTextEditiOS);
 }
   
-// TODO
-// This is only OK so long as we only have one text edit box per screen...
-static MyKeyboardView* myView = nullptr;
+GuiTextIos::GuiTextIos()
+{
+  m_view = nullptr;
+}
+
+GuiTextIos::~GuiTextIos()
+{
+  // Dealloc, remove from VC
+  MyKeyboardView* myView = (MyKeyboardView*)m_view;
+  [myView removeFromSuperview];
+////  [myView dealloc];
+  m_view = nullptr;
+}
+
+void GuiTextIos::SetText(const std::string& text)
+{
+  UITextView* myView = (UITextView*)m_view;
+  myView.text = [[NSString alloc] initWithUTF8String:text.c_str()];
+
+}
+
+std::string GuiTextIos::GetText() const
+{
+  UITextView* myView = (UITextView*)m_view;
+  return std::string([myView.text UTF8String]);
+}
+
+bool GuiTextIos::Load(File* f)
+{
+  if (!GuiElement::Load(f))
+  {
+    return false;
+  }
+  
+  UITextView* myView = [UITextView new];
+  m_view = myView;
+  
+  //myView.hidden = YES;
+  
+  float fontSize = 14.0f; // TODO TEMP TEST - depends on screen size??
+  
+  // Set font
+  myView.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:fontSize];
+  
+  // Non-editable
+  [myView setUserInteractionEnabled:NO];
+
+  // TODO Respect fgcol/bgcol in options
+  myView.backgroundColor = [UIColor clearColor];
+  
+  [vc.view addSubview:myView];
+  
+  float scale = 1.f;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+  {
+    scale = [[UIScreen mainScreen] scale];
+  }
+  
+  float scrX = Screen::X() / scale;
+  float scrY = Screen::Y() / scale;
+  
+  float w = m_size.x * 0.5f * scrX;
+  float h = m_size.y * 0.5f * scrY;
+  
+  Vec2f pos = GetCombinedPos();
+  float x = (pos.x + 1.0f) * 0.5f * scrX;
+  float y = (1.0f - (pos.y + 1.0f) * 0.5f) * scrY;
+  
+  [myView setFrame:CGRectMake(x, y, w, h)];
+  
+  std::string text;
+  if (!f->GetLocalisedString(&text))
+  {
+    f->ReportError("GUI Text: Expected localised string");
+    return false;
+  }
+  SetText(text);
+  
+  std::string options;
+  if (!f->GetDataLine(&options))
+  {
+    f->ReportError("GUI Text: Expected options string");
+    return false;
+  }
+  // TODO use options string
+  
+  return true;
+}
   
 GuiTextEditIos::GuiTextEditIos()
 {
-  myView = [MyKeyboardView new];
+  m_view = nullptr;
+}
+
+GuiTextEditIos::~GuiTextEditIos()
+{
+  // Dealloc, remove from VC
+  MyKeyboardView* myView = (MyKeyboardView*)m_view;
+  [myView removeFromSuperview];
+////  [myView dealloc];
+  m_view = nullptr;
+}
+  
+void GuiTextEditIos::OnTextChanged()
+{
+  if (m_onChangeFunc)
+  {
+    m_onChangeFunc(this);
+  }
+}
+
+bool GuiTextEditIos::Load(File* f)
+{
+  if (!GuiElement::Load(f))
+  {
+    return false;
+  }
+  
+  MyKeyboardView* myView = [MyKeyboardView new];
+  myView.m_guiElement = this;
+  m_view = myView;
+  
   myView.hidden = YES;
   
   float fontSize = 14.0f; // TODO TEMP TEST - depends on screen size??
@@ -80,20 +212,7 @@ GuiTextEditIos::GuiTextEditIos()
   myView.layer.borderWidth = BORDER_WIDTH;
   
   [vc.view addSubview:myView];
-}
 
-GuiTextEditIos::~GuiTextEditIos()
-{
-  myView = nullptr;
-}
-  
-bool GuiTextEditIos::Load(File* f)
-{
-  if (!GuiElement::Load(f))
-  {
-    return false;
-  }
-  
   float scale = 1.f;
   if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
   {
@@ -142,16 +261,20 @@ bool GuiTextEditIos::Load(File* f)
 
 void GuiTextEditIos::SetText(const std::string& text)
 {
+  MyKeyboardView* myView = (MyKeyboardView*)m_view;
   myView.text = [[NSString alloc] initWithUTF8String:text.c_str()];
 }
     
 std::string GuiTextEditIos::GetText() const
 {
+  MyKeyboardView* myView = (MyKeyboardView*)m_view;
   return std::string([myView.text UTF8String]);
 }
     
 void GuiTextEditIos::ShowKeyboard(bool showNotHide)
 {
+  MyKeyboardView* myView = (MyKeyboardView*)m_view;
+
   if (showNotHide)
   {
     myView.hidden = NO;
