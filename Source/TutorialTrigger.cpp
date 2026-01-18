@@ -1,9 +1,11 @@
 #include <File.h>
 #include <GameObjectFactory.h>
 #include <Localise.h>
+#include <ROConfig.h>
 #include "TutorialTrigger.h"
 #include "LurkMsg.h"
 #include "GameMode.h"
+#include "PlayWav.h"
 
 namespace Amju
 {
@@ -29,12 +31,13 @@ const char* TutorialTrigger::GetTypeName() const
 
 void TutorialTrigger::OnPlayerCollision(Player*)
 {
-std::cout << "Collision with tutorial trigger!\n";
-  
   if (!m_hasShownText)
   {
     if (!IsEditMode()) // Edit mode "fix" - TODO
     {
+      static std::string sound = ROConfig()->GetValue("sound-tut-trigger");
+      PlayWav(sound);
+
       Strings strs = Split(m_text, '&'); 
       for (auto it = strs.begin(); it != strs.end(); ++it)
       {

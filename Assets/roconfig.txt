@@ -8,7 +8,8 @@ cam-stop 10
 cam-y-offset 100
 cam-z-offset 150
 
-sound-new-lurkmsg sound/gasp.wav
+sound-new-lurkmsg  waterdrop
+sound-tut-trigger  whistlehere
 
 
 
