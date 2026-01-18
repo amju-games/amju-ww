@@ -1,5 +1,6 @@
 #include <Screen.h>
 #include <DegRad.h>
+#include <ROConfig.h>
 #include "GSLevelComplete.h"
 #include "MySceneGraph.h"
 #include "Game.h"
@@ -68,7 +69,8 @@ void GSLevelComplete::Update()
 
   // Inc timer, go to next state
   m_timer += TheTimer::Instance()->GetDt();
-  if (m_timer > 10.0f) // TODO CONFIG
+  static const float MAX_TIME = ROConfig()->GetFloat("level-complete-max-time");
+  if (m_timer > MAX_TIME) 
   {
     // New level number is set by "Exit" object
     TheGame::Instance()->SetCurrentState(TheGSPetBonus::Instance());
