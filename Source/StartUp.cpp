@@ -21,7 +21,11 @@
 #include <Directory.h>
 #include <ConfigFile.h>
 #include <ROConfig.h>
+
+#ifdef AMJU_USE_BASS
 #include <BassSoundPlayer.h>
+#endif
+
 #include <GuiButton.h>
 #include <EventPoller.h>
 #include "StartUp.h"
@@ -125,6 +129,7 @@ void StartUpBeforeCreateWindow()
   // Set up music glue file
   SoundManager* sm = TheSoundManager::Instance();  
 #if defined (MACOSX) || defined(WIN32) || defined(AMJU_IOS)
+// TODO Why not AMJU_USE_BASS ?
   sm->SetImpl(new BassSoundPlayer);
 #endif
 
@@ -146,7 +151,7 @@ void StartUpAfterCreateWindow()
 
 #ifdef GEKKO
   // TODO Better to put this in library main() if we can get the app's directory
-  File::SetRoot("/apps/amju_ww/data/", "/");
+  File::SetRoot("/apps/amju_rd/data/", "/");
 #endif
 
   //AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
