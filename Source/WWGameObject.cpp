@@ -48,16 +48,6 @@ void WWGameObject::AddToGame()
   {
     AddSceneNodeToGraph();
   }
-
-  /*
-  SceneNode* sn = GetSceneNode();
-  if (sn)
-  {
-    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-    Assert(root);
-    root->AddChild(sn);
-  }
-  */
 }
 
 void WWGameObject::RemoveFromGame()
@@ -71,15 +61,6 @@ void WWGameObject::RemoveFromGame()
 
   // TODO Fix for edit mode
   RemoveSceneNodeFromGraph();
-  /*
-  SceneNode* sn = GetSceneNode();
-  if (sn)
-  {
-    SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-    Assert(root);
-    root->DelChild(sn);
-  }
-  */
 }
 
 void WWGameObject::Reset() 
@@ -278,11 +259,6 @@ void WWGameObject::AddSceneNodeToGraph()
     root->AddChild(m_pSceneNode);
   }
 }
-
-//void WWGameObject::SetTransform(const Matrix& mat)
-//{
-//  m_mat = mat;
-//}
 
 void WWGameObject::SetDead(bool dead)
 {
