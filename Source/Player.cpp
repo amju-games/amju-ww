@@ -207,8 +207,41 @@ void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
     return;
   }
 
-  m_vel.x = bbe.x * 100.0f; 
-  m_vel.z = bbe.y * 100.0f; 
+  float x = bbe.x;
+  float y = bbe.y;
+  
+#ifdef IPHONE
+
+  // TODO Set OFFSET when in non-game mode
+  const float OFFSET = 0.5f;
+  const float DEAD_ZONE = 0.1f;
+  // TODO Make these 'sensitivity' settings
+  const float X_MULT = 4.0f;
+  const float Y_MULT = 3.0f;
+  
+  if (x > -DEAD_ZONE && x < DEAD_ZONE)
+  {
+    x = 0;
+  }
+  else 
+  {
+    x *= X_MULT;
+  }
+  
+  // y=0 when iphone is horizontal, so compensate for angle at which player is holding iphone
+  y -= OFFSET;
+  if (y > -DEAD_ZONE && y < DEAD_ZONE)
+  {
+    y = 0;
+  }
+  else 
+  {
+    y *= Y_MULT;
+  }
+#endif
+
+  m_vel.x = x * 100.0f; 
+  m_vel.z = y * 100.0f; 
 
   // Work out direction to face
   SetDir(RadToDeg(atan2((double)bbe.x, (double)bbe.y)));
