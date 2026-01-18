@@ -81,7 +81,7 @@ void CamFollowPlayer::Update(Camera* cam)
     m_petDist += dt * PET_DIST_SPEED;
     if (m_petDist > numPets)
     {
-      m_petDist = numPets;
+      m_petDist = (float)numPets;
     }
   }
   else if (numPets < m_petDist)
@@ -89,7 +89,7 @@ void CamFollowPlayer::Update(Camera* cam)
     m_petDist -= dt * PET_DIST_SPEED;
     if (m_petDist < numPets)
     {
-      m_petDist = numPets;
+      m_petDist = (float)numPets;
     }
   }
 
