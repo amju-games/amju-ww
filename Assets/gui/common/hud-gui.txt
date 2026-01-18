@@ -7,15 +7,55 @@ gui-comp
 // Name
 hud-comp
 // Num children
-4
+8
+
+gui-text
+hi-text
+// pos (coords are -1..1)
+-1, 1 
+// size
+2.0, 0.1
+// Text 
+HI
+arial, 1.0, fgcol=ffffff, centre
+
+gui-text
+hi-score-text
+// pos (coords are -1..1)
+-1, 0.9
+// size
+2.0, 0.1
+// Text 
+HI SCORE
+arial, 1.0, fgcol=ffffff, centre
+
+gui-text
+hi-name-text
+// pos (coords are -1..1)
+-1, 0.8
+// size
+2.0, 0.1
+// Text 
+HI SCORE
+arial, 0.7, fgcol=ffffff, centre
+
+gui-text
+p1-name-text
+// pos (coords are -1..1)
+-0.8, 1 
+// size
+0.8, 0.1
+// Text 
+Player 1
+arial, 0.7, fgcol=ffffff, left
 
 gui-text
 p1-score-text
 // pos (coords are -1..1)
--0.8, 1 
+-0.8, 0.9
 // size
-0.8, 0.2
-// Text (temp - overwritten by each level objective)
+0.8, 0.1
+// Text 
 SCORE 1
 arial, 1.0, fgcol=ffffff, left
 
@@ -31,7 +71,7 @@ p1-lives-text
 -1, 1 
 // size
 0.17, 0.2
-// Text (temp - overwritten by each level objective)
+// Text
 3
 arial, 1.0, fgcol=ffffff
 
@@ -40,15 +80,25 @@ gui-comp
 // Name
 p2-comp
 // Num children
-3
+4
+
+gui-text
+p2-name-text
+// pos (coords are -1..1)
+0, 1
+// size
+0.8, 0.1
+// Text
+Player 2
+arial, 0.7, fgcol=ffffff, right
 
 gui-text
 p2-score-text
 // pos (coords are -1..1)
-0, 1
+0, 0.9 
 // size
-0.8, 0.2
-// Text (temp - overwritten by each level objective)
+0.8, 0.1
+// Text
 SCORE 2
 arial, 1.0, fgcol=ffffff, right
 
@@ -64,7 +114,7 @@ p2-lives-text
 0.8, 1 
 // size
 0.17, 0.2
-// Text (temp - overwritten by each level objective)
+// Text
 33
 arial, 1.0, fgcol=ffffff
 
