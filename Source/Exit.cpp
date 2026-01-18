@@ -92,10 +92,10 @@ bool Exit::Load(File* f)
 
   // Set AABB 
   static const float XSIZE = 20.0f;
-  static const float YSIZE = 60.0f;
+  static const float YSIZE = 20.0f;
   m_pSceneNode->GetAABB()->Set(
     -XSIZE, XSIZE, 
-    0, YSIZE, 
+    -YSIZE, YSIZE, 
     -XSIZE, XSIZE);
   GetAABB()->Translate(m_pos);  
 
@@ -151,8 +151,17 @@ bool Exit::Load(File* f)
     f->ReportError("Failed to load exit effect");
     return false;
   }
-  m_effect->SetVisible(false);
+  m_effect->SetVisible(true);
   m_pSceneNode->AddChild(m_effect);
+
+  // Set nice big AABB for text, billboard and effect, so they are not culled
+  static const float X2 = 40.0f;
+  static const float Y2 = 40.0f;
+  AABB aabb(-X2, X2, -Y2, Y2, -X2, X2);
+  aabb.Translate(m_pos);
+  m_text->RecursivelyTransformAABB(mat);
+  *(m_billboard->GetAABB()) = aabb;
+  *(m_effect->GetAABB()) = aabb;
 
   if (!LoadShadow(f))
   {
@@ -201,7 +210,7 @@ Vec3f ExitParticleEffect::NewVel() const
 
 float ExitParticleEffect::NewTime() const
 {
-  return (float)rand() / (float)RAND_MAX * 2.0f;
+  return (float)rand() / (float)RAND_MAX * 1.0f;
 }
 
 void ExitParticleEffect::HandleDeadParticle(Particle2d* p)
