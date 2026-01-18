@@ -9,7 +9,7 @@
 #include "GSMenu.h"
 #include "StartGame.h"
 
-#define NO_MAIN_MENU
+//#define NO_MAIN_MENU
 
 namespace Amju
 {
@@ -29,7 +29,7 @@ class CommandStart : public GuiCommand
     StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
 #else
     // If menu state, do this INSTEAD of the above
-    TheGame::Instance()->SetCurrentState(GSMenu::NAME);
+    TheGame::Instance()->SetCurrentState(TheGSMenu::Instance());
 #endif
 
     return false; //no undo
