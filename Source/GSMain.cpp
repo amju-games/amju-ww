@@ -57,71 +57,6 @@ void GSMain::ClearLevel()
   OnFloor::ClearFloors();
 }
 
-/*
-// TODO Level load state
-bool GSMain::LoadLevel()
-{
-  TheGame::Instance()->ClearGameObjects();
-  OnFloor::ClearFloors();
-
-  std::string levelfilename = "level-1.txt";
-
-  File f;
-  if (!f.OpenRead(levelfilename))
-  {
-    ReportError("Failed to open level file");
-    return false;
-  }
-
-  int numObjects = 0;
-  f.GetInteger(&numObjects);
-
-  SceneNode* opaque = new SceneNode;
-  TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_OPAQUE, opaque);
-
-  for (int i = 0; i < numObjects; i++)
-  {
-    std::string s;
-    f.GetDataLine(&s);
-    PGameObject pgo = TheGameObjectFactory::Instance()->Create(s);
-    Assert(pgo);
-
-    if (!pgo->Load(&f))
-    {
-      f.ReportError("Error loading object; type:" + s);
-      return false;
-    }
-
-    std::string end;
-    if (!f.GetDataLine(&end) || end != "end")
-    {
-      f.ReportError("Expected \"end\" after object; type: " + s);
-      return false;
-    }
-
-////    pgo->AddToSceneGraph(); // ?????
-    TheGame::Instance()->AddGameObject(pgo);
-
-    SceneGameObjectOpaque* node = new SceneGameObjectOpaque(pgo);
-    opaque->AddChild(node);
-    // If camera, tell SceneGraph that this node is the camera
-    Camera* camera = dynamic_cast<Camera*>(pgo.GetPtr());
-    if (camera)
-    {
-      node->SetIsCamera(true);
-      TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_CAMERA, node);
-    }
-    else
-    {
-      PSceneNode shadow = new SceneGameObjectBlended(pgo);
-      node->AddChild(shadow);
-    }
-  }
-
-  return true;
-}
-*/
-
 void Collisions()
 {
   // TODO Not cool
@@ -153,13 +88,12 @@ void GSMain::Update()
 
 void GSMain::Draw2d()
 {
+  /*
   static Font* font = 
     (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
 
-  static float t = 0;
-  t += TheTimer::Instance()->GetDt();
-
-  font->Print(-1, 1,  ToString(t, 2).c_str()); //"R to reset");
+  font->Print(-1, 1,  "some text");
+  */
 
   TheCursorManager::Instance()->Draw();
 }
