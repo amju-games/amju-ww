@@ -78,6 +78,7 @@ bool Block::Load(File* f)
     f->ReportError("Expected exit position");
     return false;
   }
+  m_pos = m_pos * m_mat;
 
   ObjMesh* mesh = LoadMeshResource(f);
   if (!mesh)

@@ -44,6 +44,7 @@ bool Bonus::Load(File* f)
     f->ReportError("Expected bonus position");
     return false;
   }
+  m_pos = m_pos * m_mat;
  
   ObjMesh* mesh = LoadMeshResource(f);
   if (!mesh)
