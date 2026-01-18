@@ -1,6 +1,7 @@
 #include "CollisionManager.h"
 #include "Dino.h"
 #include "Pet.h"
+#include "AIFlee.h"
 
 namespace Amju
 {
@@ -17,11 +18,16 @@ void CollideDinoPet(GameObject* go1, GameObject* go2)
   if (!dino->IsEating() && 
       !dino->IsDead() &&
       pet->CanBeEaten() && 
-      !pet->IsFalling() &&
-      !dino->IsFalling() &&
-      !pet->GetCarryingPlayer())
+      !dino->IsFalling() 
+     )
   {
     dino->Eat(pet);
+  }
+  else
+  {
+    AI* ai = pet->GetAI(AIFlee::NAME);
+    ai->SetTarget(dino);
+    pet->SetAI(ai);
   }
 }
 
