@@ -52,6 +52,7 @@ public:
   void SetResult(int);
 
   void SetButtonText(const std::string& buttonName, const std::string& text);
+  void SetTitle(const std::string& title);
 
   virtual void GetDataFromGui() = 0;
   virtual void SetDataToGui() = 0;
@@ -73,6 +74,7 @@ protected:
   DialogFinishCallback m_onOK;
   DialogFinishCallback m_onCancel;
   int m_result;
+  std::string m_title;
 };
 
 class MessageBox : public Dialog
@@ -82,11 +84,10 @@ public:
   virtual void GetDataFromGui() override;
   virtual void SetDataToGui() override;
 
-  void SetMessage(const std::string& message, const std::string& title);
+  void SetMessage(const std::string& message);
 
 protected:
   std::string m_message;
-  std::string m_title;
 };
 
 class FileDialog : public Dialog
