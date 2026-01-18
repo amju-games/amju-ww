@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-18
+19
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -39,6 +39,13 @@ amju2a.png
 // Shadow
 shadow.png
 20
+end
+
+bird
+99
+-150, 220, 0
+shadow.png
+10
 end
 
 // Player 2
