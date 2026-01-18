@@ -76,6 +76,8 @@ PSceneNode MyTextMaker::Decorate(PSceneNode p)
   m_theta += 0.2f; 
 
   decorator->AddChild(p);
+  decorator->UpdateBoundingVol();
+
   return decorator;
 }
 }
