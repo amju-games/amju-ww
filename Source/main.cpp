@@ -1,3 +1,5 @@
+#ifndef IPHONE
+
 // Create global variable window info 
 #include <AmjuGLWindowInfo.h>
 
@@ -9,4 +11,4 @@ AmjuGLWindowInfo w(640, 480, false);
 #include "StartUp.h"
 #include <main.h>
 
-
+#endif // not IPHONE
