@@ -184,7 +184,6 @@ void OnFloor::UpdateY()
     {
       // Stop box sinking
       m_pos.y = y;
-      RecalcAABB();
 
       if (m_vel.y < 0)
       {
@@ -233,6 +232,7 @@ void OnFloor::Update()
   }
 
   UpdatePhysics();
+  RecalcAABB();
 }
 
 const Vec3f& OnFloor::GetOldPos() const
