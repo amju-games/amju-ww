@@ -85,10 +85,8 @@ protected:
 
   bool m_isFalling; // falling or jumping
 
-  // All objects which are on a floor have a node in the Scene Graph
-  SceneNode* m_pSceneNode;
-
   // All objects which are on a floor can cast a shadow onto it
+  // TODO Move to WWGameObject ?
   Shadow* m_shadow;
 
   // Keep track of pos last frame

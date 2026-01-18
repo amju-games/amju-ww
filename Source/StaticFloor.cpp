@@ -59,10 +59,10 @@ bool StaticFloor::Load(File* f)
   // Load texture
   Texture* pTex = LoadTextureResource(f); 
 
-  m_pSceneNode = new FloorMesh(this);
-  m_pSceneNode->SetMesh(mesh);
-  m_pSceneNode->SetTexture(pTex);
-
+  FloorMesh* fm = new FloorMesh(this);
+  fm->SetMesh(mesh);
+  fm->SetTexture(pTex);
+  m_pSceneNode = fm;
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_pSceneNode);
 

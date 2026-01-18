@@ -5,6 +5,12 @@ namespace Amju
 WWGameObject::WWGameObject()
 {
   m_isDead = false;
+  m_pSceneNode = 0;
+}
+
+SceneNode* WWGameObject::GetSceneNode()
+{
+  return m_pSceneNode;
 }
 
 void WWGameObject::SetTransform(const Matrix& mat)

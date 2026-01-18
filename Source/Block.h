@@ -17,11 +17,9 @@ public:
   virtual const char* GetTypeName() const;
   virtual void Update();
   virtual bool Load(File*);
-//  virtual AABB* GetAABB(); 
 
 protected:
-  Matrix m_matrix;
-  //SceneMesh* m_pSceneNode;
+//  Matrix m_matrix;
 };
 }
 

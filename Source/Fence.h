@@ -25,7 +25,6 @@ public:
   virtual AABB* GetAABB(); 
 
 public:
-  SceneNode* m_pSceneNode;
   float m_yRot;
 };
 }
