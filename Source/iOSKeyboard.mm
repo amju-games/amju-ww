@@ -11,39 +11,39 @@ static void QueueEvent(Amju::Event* e)
   Amju::TheEventPoller::Instance()->GetImpl()->QueueEvent(e);
 }
 
-@interface MyKeyboardView : UIView <UIKeyInput>
+@interface MyKeyboardView : UITextView <UIKeyInput>
 @end
 
 @implementation MyKeyboardView
 
-- (void) insertText:(NSString *)text
-{
-  // Do something with the typed character
-  
-  Amju::KeyEvent ke;
-  // Printable char
-  ke.keyType = Amju::AMJU_KEY_CHAR;
-  ke.key = [text characterAtIndex:0]; //CHARS[i];
-  
-  // TODO Space is special case
-  
-  ke.modifier = Amju::AMJU_KEY_MOD_NONE;
-  ke.keyDown = true;
-  QueueEvent(new Amju::KeyEvent(ke)); // must be on heap
-  ke.keyDown = false;
-  QueueEvent(new Amju::KeyEvent(ke));
-}
-
-- (void) deleteBackward
-{
-  // Handle the delete key
-  Amju::KeyEvent ke;
-  ke.keyType = Amju::AMJU_KEY_BACKSPACE;
-  ke.keyDown = true;
-  QueueEvent(new Amju::KeyEvent(ke));
-  ke.keyDown = false;
-  QueueEvent(new Amju::KeyEvent(ke));
-}
+//- (void) insertText:(NSString *)text
+//{
+//  // Do something with the typed character
+//  
+//  Amju::KeyEvent ke;
+//  // Printable char
+//  ke.keyType = Amju::AMJU_KEY_CHAR;
+//  ke.key = [text characterAtIndex:0]; //CHARS[i];
+//  
+//  // TODO Space is special case
+//  
+//  ke.modifier = Amju::AMJU_KEY_MOD_NONE;
+//  ke.keyDown = true;
+//  QueueEvent(new Amju::KeyEvent(ke)); // must be on heap
+//  ke.keyDown = false;
+//  QueueEvent(new Amju::KeyEvent(ke));
+//}
+//
+//- (void) deleteBackward
+//{
+//  // Handle the delete key
+//  Amju::KeyEvent ke;
+//  ke.keyType = Amju::AMJU_KEY_BACKSPACE;
+//  ke.keyDown = true;
+//  QueueEvent(new Amju::KeyEvent(ke));
+//  ke.keyDown = false;
+//  QueueEvent(new Amju::KeyEvent(ke));
+//}
 
 - (BOOL) hasText
 {
@@ -72,10 +72,16 @@ void ShowKeyboard(bool showNotHide)
 {
   if (showNotHide)
   {
+    // Set initial string, pos, size, font, with pulsing border
+    // TODO
+    myView.text = @"Hi string here";
+    myView.frame = CGRectMake(100, 100, 150, 50);
+    myView.hidden = NO;
     [myView becomeFirstResponder];
   }
   else
   {
+    myView.hidden = YES;
     [myView resignFirstResponder];
   }
 }

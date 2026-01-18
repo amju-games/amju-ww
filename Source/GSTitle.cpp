@@ -1,16 +1,23 @@
+#include <unistd.h> // TODO TEMP
+
 #include <GuiButton.h>
 #include <LoadScene.h>
-#include "GSTitle.h"
-#include "Game.h"
 #include "EventPoller.h"
+#include "Game.h"
+#include "GSChooseLevel.h"
+#include "GSMenu.h"
+#include "GSNewOrContinue.h"
+#include "GSTitle.h"
+#include "GSTweet.h"
+#include "iOSKeyboard.h"
+#include "iOSTweet.h"
 #include "LevelManager.h"
-#include "SceneMesh.h"
 #include "MySceneGraph.h"
 #include "ResourceManager.h"
+#include "SaveDir.h"
+#include "Screenshot.h"
 #include "SoundManager.h"
-#include "GSMenu.h"
-#include "GSChooseLevel.h"
-#include "GSNewOrContinue.h"
+#include "SceneMesh.h"
 #include "StartGame.h"
 #include "WWLoadGui.h"
 
@@ -67,6 +74,44 @@ void GSTitle::OnActive()
 {
   GSText::OnActive();
 
+  // TODO Add timestamp to filename to make it unique
+  SaveScreenshot(GetSaveDir() + "/screenshot.png");
+ 
+#if defined(AMJU_IOS) && defined(YES_TEST_TWITTER) 
+  // Twitter test
+  TwitterInit();
+  while (!TwitterIsOk())
+  {
+    // Just for testing
+    usleep(100000);
+    std::cout << ".";
+    
+    // TODO Not implemented on all platforms
+    // Amju::SleepMs(100);
+  }
+  std::cout << "\nTwitter is OK\n";
+  std::vector<std::string> accountNames;
+  TwitterGetAccounts(&accountNames);
+  
+  if (TwitterPostMessage(2, "Wow, I'm a post"))
+  {
+    std::cout << "Posted OK\n";
+  }
+  else
+  {
+    std::cout << "Post failed\n";
+  }
+  
+  // TODO
+  // bool TwitterPostMessageWithImage(int account, const std::string& message, const std::string* imagePathAndFilename);
+
+  //ShareTwitterImage(); // TODO TEMP TEST
+#endif  
+
+
+////  ShowKeyboard(true); // TODO TEMP TEST
+  
+ 
   // Start theme music
 #ifdef GEKKO
   TheSoundManager::Instance()->PlaySong("sound/ww1.mod");
@@ -77,10 +122,12 @@ void GSTitle::OnActive()
   m_gui = WWLoadGui("title-gui.txt");
   Assert(m_gui);
 
-  GuiButton* start = (GuiButton*)m_gui->GetElementByName("start-button");
+  GuiButton* start = (GuiButton*)GetElementByName(m_gui, "start-button");
   start->SetCommand(new CommandStart);
   start->SetIsFocusButton(true);
   start->SetShowIfFocus(true);
+
+  GetElementByName(m_gui, "tweet-button")->SetCommand(OnTweet);
 
 #ifdef FOR_SCREENSHOT
   start->SetVisible(false);
