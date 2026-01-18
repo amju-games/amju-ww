@@ -9,7 +9,9 @@ max_z 80
 // Initial scroll speed for level
 scroll-speed 40
 start-depth -500
-next-layer-height-offset 300
+
+// Extra "look-ahead" added to depth at which we create the next layer
+next-layer-height-offset 600
 
 
 pick-up-multiplier 100
@@ -22,10 +24,10 @@ max-drop  1000.0
 jump-vel-initial 100
 
 // Scroll off top of screen, kill object
-max-offscreen-height 1000
+max-offscreen-height 500
 
 // Max height = at which player is dead
-max-player-height 400
+max-player-height 300
 
 bonus-wait-time 1.0
 
@@ -34,7 +36,7 @@ hud-expand-scale    0.5
 
 cam-depth-offset 200
 cam-y-offset 200
-cam-z-offset 500
+cam-z-offset 300
 
 // TODO no pets now?
 cam-y-pet-offset 40
