@@ -26,6 +26,7 @@ public:
   virtual void Reset() override;
   virtual bool CreateSceneNode() override;
   virtual void RotateY(float angleDegs);
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 
 private:
   float m_yRot; // TODO Move to base class?

@@ -11,8 +11,8 @@
 #include "MySceneGraph.h"
 #include "SceneMesh.h"
 #include "ShadowManager.h"
-
-//#include "LoadTextureResource.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -34,6 +34,11 @@ Floor::Floor()
   m_inertia = 1.0f;
 
   m_yRot = 0;
+}
+
+void Floor::AddPropertiesGui(PropertiesDialog* dlg)
+{
+  dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
 WWGameObject* Floor::Clone()
@@ -88,7 +93,7 @@ bool Floor::LoadMesh(File* f)
     return false;
   }
   m_startPos = m_pos;
-  m_pos = m_pos * m_mat;
+//  m_pos = m_pos * m_mat;
 
   // Load rotation around y axis
   if (!f->GetFloat(&m_yRot))

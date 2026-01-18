@@ -6,6 +6,8 @@
 #include "LurkMsg.h"
 #include "GameMode.h"
 #include "PlayWav.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -27,6 +29,11 @@ WWGameObject* TutorialTrigger::Clone()
 const char* TutorialTrigger::GetTypeName() const
 {
   return NAME;
+}
+
+void TutorialTrigger::AddPropertiesGui(PropertiesDialog* dlg)
+{
+  dlg->AddItem(new PropertiesDialog::TextItem("Text", m_text, PROP_TEXT));
 }
 
 void TutorialTrigger::OnPlayerCollision(Player*)

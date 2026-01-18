@@ -54,6 +54,8 @@ public:
   // Call when we collide with exit
   void ReachedExit(Exit* exit);
 
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+
 private:
   void UpdatePets();
   void KillController();

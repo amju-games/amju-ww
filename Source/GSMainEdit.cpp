@@ -38,7 +38,7 @@ static const char* LAST_PATH = "last_path";
 static std::string s_lastPath = TheGameConfigFile::Instance()->
   GetValue(LAST_PATH, GetSaveDir()); 
 
-static int s_unsaved = 0; // number of commands away from save
+int s_unsaved = 0; // number of commands away from save
 
 static bool s_drag = false;
 
@@ -555,33 +555,6 @@ void GSMainEdit::OnObjectRotate(float degs)
   }
 }
 
-class PropertyChangeCommand : public GuiCommand
-{
-public:
-  PropertyChangeCommand(WWGameObject* obj, PropertyKey propKey, Value value);
-
-  virtual bool Do() override
-  {
-    PropertyKey m_old = obj->GetProp(propKey);
-    obj->SetProp(propKey, value);
-    // TODO Reload
-
-    s_unsaved++;
-    return true;
-  }
-
-  virtual void Undo() override
-  {
-    obj->SetProp(propKey, m_old);
-    // TODO Reload
-
-    s_unsaved--;
-  }
-
-private:
-  RCPtr<WWGameObject> m_obj;
-};
-
 static void OnPropertiesDialogClosed(Dialog* dlg)
 {
   if (dlg->GetResult() == AMJU_OK)
@@ -605,12 +578,9 @@ void GSMainEdit::OnProperties()
     m_propsDialog.SetFinishCallback(OnPropertiesDialogClosed);
 
     // Populate properties
-    m_propsDialog.AddItem(new PropertiesDialog::TextItem("Name", "Value"));
-    m_propsDialog.AddItem(new PropertiesDialog::FilenameItem("Filename", "what.txt"));
+    m_selectedObj->AddPropertiesGui(&m_propsDialog);
 
     DoModalDialog(&m_propsDialog);
-
-
   }
   else
   {

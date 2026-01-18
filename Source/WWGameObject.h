@@ -4,10 +4,19 @@
 #include <GameObject.h>
 #include <Matrix.h>
 #include <SceneNode.h>
+#include <Variable.h>
 
 namespace Amju
 {
 class ObjMesh;
+
+class PropertiesDialog;
+
+// Properties, so levels can be edited in game
+// For each type, Property Keys are unique IDs specifying each property.
+typedef int PropertyKey; 
+// Values for properties
+typedef Variable PropertyValue;
 
 class WWGameObject : public GameObject
 {
@@ -24,7 +33,7 @@ public:
   // The blocks are transformed, so the positions of the objects are
   // given relative to the local block origin. This matrix determines
   // the world coords of the object.
-  void SetTransform(const Matrix& mat);
+////  void SetTransform(const Matrix& mat);
 
   void SetDead(bool dead);
   bool IsDead() const;
@@ -41,6 +50,11 @@ public:
 
   virtual void RotateY(float angleDegs);
 
+  // Properties
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) = 0;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
+
 protected:
   // Create appropriate scene node type, load mesh and texture, etc.
   // Override for special scene nodes types like characters.
@@ -53,7 +67,7 @@ protected:
   bool SaveShadow(File*);
 
 protected:
-  Matrix m_mat;
+////  Matrix m_mat;
   bool m_isDead;
 
   RCPtr<SceneNode> m_pSceneNode;

@@ -118,6 +118,13 @@ Camera::Camera()
   //m_behaviour = new CamZoomInOnPlayer;
 }
 
+void Camera::AddPropertiesGui(PropertiesDialog* dlg) 
+{
+  // TODO
+//  dlg->AddItem(new PropertiesDialog::IntItem("Target ID", m_targetId));
+//  dlg->AddItem(new PropertiesDialog::IntItem("Viewport ID", m_viewportId));
+}
+
 WWGameObject* Camera::Clone() 
 {
   return new Camera(*this);
