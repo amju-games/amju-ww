@@ -1,3 +1,4 @@
+#include <SoundManager.h>
 #include "GSGameOver.h"
 #include "GSTitle.h"
 #include "GSLoadLevel.h"
@@ -32,8 +33,7 @@ void GSGameOver::Update()
 void GSGameOver::OnActive()
 {
   GSText::OnActive();
-
-  PlayWav("churchbell"); 
+  TheSoundManager::Instance()->PlaySong("gameover.it");
 
   CreateText("game over");
 }
