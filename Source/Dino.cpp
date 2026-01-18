@@ -163,11 +163,9 @@ void Dino::Update()
 
   if (IsDead())
   {
+    GetSceneNode()->SetVisible(false);
     return;
   }
-
-  // Asymmetric AABB not great for eating pets
-//  UpdateAabb(); // updates shape of AABB, DOES change its position
 }
 
 bool Dino::Save(File* f)
