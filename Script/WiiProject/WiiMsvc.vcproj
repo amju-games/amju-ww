@@ -166,6 +166,54 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\..\Source\AI.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AI.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIChasePet.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIChasePet.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIEatPet.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIEatPet.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIFalling.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIFalling.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIGoHighGround.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIGoHighGround.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIIdle.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\AIIdle.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\AmjuMain.cpp"
 				>
 			</File>
@@ -226,6 +274,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\CollideDinoPet.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\CollideObjectFloor.cpp"
 				>
 			</File>
@@ -246,7 +298,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\CollidePlayerPet.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\CollidePlayerPlayer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\CollidePlayerTrigger.cpp"
 				>
 			</File>
 			<File
@@ -598,6 +658,30 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Source\Trigger.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Trigger.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Tutorial.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\Tutorial.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\TutorialTrigger.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Source\TutorialTrigger.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Source\Viewport.cpp"
 				>
 			</File>
@@ -733,6 +817,110 @@
 				RelativePath="..\..\..\amjulib\Source\Utils\Variable.h"
 				>
 			</File>
+			<Filter
+				Name="Zlib"
+				>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\adler32.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\compress.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\crc32.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\crc32.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\deflate.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\deflate.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\example.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\gzio.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\infback.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inffast.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inffast.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inffixed.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inflate.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inflate.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inftrees.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\inftrees.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\minigzip.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\trees.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\trees.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\uncompr.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\zconf.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\zconf.in.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\zlib.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\zutil.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Utils\Zlib\zutil.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="AmjuGL"
@@ -1121,6 +1309,114 @@
 				RelativePath="..\..\..\amjulib\Source\Image\TextureUtils.h"
 				>
 			</File>
+			<Filter
+				Name="Png"
+				>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\config.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\example.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\LoadPng.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\LoadPng.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\png.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\png.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngconf.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngerror.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pnggccrd.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngget.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngmem.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngpread.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngread.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngrio.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngrtran.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngrutil.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngset.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngtest.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngtrans.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngvcrd.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngwio.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngwrite.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngwtran.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\pngwutil.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\SavePng.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\amjulib\Source\Image\Png\SavePng.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Localise"
