@@ -83,6 +83,6 @@ void GSGameOver::OnActive()
   // TODO No loop
   TheSoundManager::Instance()->PlaySong("sound/gameover.it");
 
-  CreateText("game\nover");
+  CreateText("game\n over");
 }
 }
