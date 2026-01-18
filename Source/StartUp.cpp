@@ -88,7 +88,7 @@ void StartUpBeforeCreateWindow()
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   std::string filename = ConfigFilename();
   gcf->SetFilePath(filename);
-  if (!gcf->Load())
+  if (FileExists(filename) && !gcf->Load())
   {
     std::cout << "Failed to load game config file: " << filename << "\n";
   }
