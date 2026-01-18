@@ -62,6 +62,11 @@ void OnFloor::SetIsFalling(bool b)
 
 void OnFloor::SetFloor(Floor* floor)
 {
+  // TODO remember last good floor, and try this one first when looking
+  //  for a floor in FindFloor
+  // e.g.
+  // if (m_floor) { m_lastGoodFloor = m_floor; } // && !floor ??
+
   m_floor = floor;
 }
 
@@ -255,7 +260,7 @@ void OnFloor::UpdatePhysics()
   // If we don't know which floor we are on, try to find the closest floor
   //  underneath us
 
-  // Called in ColllideObjectFloor as well
+  // Called in CollideObjectFloor as well
   if (!m_floor)
   {
     FindFloor();
@@ -272,6 +277,8 @@ void OnFloor::UpdatePhysics()
     Assert(m_floor);
     // So floor will tilt due to combined moments of all objects in contact with it
     m_floor->SetObjMassPos(m_mass, m_pos);
+
+    m_lastFloorRotation = *(m_floor->GetMatrix());
   }
 
   // Lower than the lowest floor ?
