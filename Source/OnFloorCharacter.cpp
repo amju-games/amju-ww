@@ -45,12 +45,11 @@ bool OnFloorCharacter::CreateSceneNode()
   bc->SetGameObj(this);
 
   m_cocoon = new SceneMesh;
-  ////bc->AddChild(m_cocoon.GetPtr());
   ObjMesh* cocoonMesh = (ObjMesh*)rm->GetRes("ball.obj");
   m_cocoon->SetMesh(cocoonMesh);
   // Or Add to scene later?
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->AddChild(m_cocoon.GetPtr());
-//  m_cocoon->SetVisible(false);
+  m_cocoon->SetVisible(false);
 
   return true;
 }
