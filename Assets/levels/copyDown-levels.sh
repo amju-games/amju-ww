@@ -1,3 +1,3 @@
-cp /Users/Shared/amju-ww/levels/level*.txt .
+cp /Users/Shared/amju-ww/levels/*.txt .
 
 
