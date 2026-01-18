@@ -12,6 +12,7 @@
 #include <Screen.h>
 #include <SoundManager.h>
 #include <ROConfig.h>
+#include <Game.h>
 #include "GSMain.h"
 #include "CursorManager.h"
 #include "Floor.h"
@@ -278,6 +279,31 @@ void GSMain::Draw2d()
 //  TheCursorManager::Instance()->Draw();
 
   TheLurker::Instance()->Draw();
+
+  // TODO Switch on/off
+  if (true)
+  {
+    static GuiText t;
+    t.SetFgCol(Colour(1, 1, 1, 1));
+    t.SetBgCol(Colour(0, 0, 0, 1));
+    t.SetDrawBg(true);
+    t.SetFontSize(0.8f); // TODO CONFIG
+    t.SetIsMulti(true);
+    t.SetLocalPos(Vec2f(-1.0f, -0.8f));
+    t.SetSize(Vec2f(1.0f, 0.2f));
+    t.SetJust(GuiText::AMJU_JUST_LEFT);
+
+    static std::string old;
+    std::string s = "Depth: " + ToString(GetCurrentDepth()) + "\nNum Game Objects: " + 
+      ToString(TheGame::Instance()->GetGameObjects()->size());
+
+    if (old != s)
+    {
+      t.SetText(s);
+    }
+    old = s;
+    t.Draw();
+  }
 }
 
 void GSMain::Draw()

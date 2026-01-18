@@ -362,19 +362,6 @@ void OnFloor::UpdatePhysics()
   //{
   //  SetDead(true);
   //}
-
-  // If an object goes too far off the top of the screen, mark it as dead, so
-  //  we can delete it.
-  // TODO TEMP TEST
-  static const float MAX_OFFSCREEN_HEIGHT = ROConfig()->GetFloat("max-offscreen-height");
-  float cd = GetCurrentDepth();
-  float h = cd + m_pos.y;
-  if (h > MAX_OFFSCREEN_HEIGHT)
-  {
-std::cout << "Object " << Describe(this) << " has scrolled off, is dead: ";
-std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
-    SetDead(true);
-  }
 }
 
 void OnFloor::SetTilt()

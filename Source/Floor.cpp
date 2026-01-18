@@ -280,6 +280,8 @@ void Floor::ResetMoments()
 
 void Floor::Update()
 {
+  WWGameObject::Update();
+
   m_highPoint = m_pos - m_moments;
 
   // Remember old values, in case we need to restore them
