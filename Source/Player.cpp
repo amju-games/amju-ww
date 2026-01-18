@@ -524,8 +524,9 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 
   // TODO Set OFFSET when in non-game mode
 //  const float OFFSET = 0.5f;
-  const float DEAD_ZONE = 0.1f;
+  const float DEAD_ZONE = 0.05f;
   // TODO Make these 'sensitivity' settings
+  float sensitivity = 4.0f; // TODO Set from config/options
   const float X_MULT = 4.0f;
   const float Y_MULT = 3.0f;
   
@@ -535,7 +536,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   }
   else 
   {
-    x *= X_MULT;
+    x *= X_MULT * sensitivity;
   }
   
   // y=0 when iphone is horizontal, so compensate for angle at which player is holding iphone
@@ -546,11 +547,11 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   }
   else 
   {
-    y *= Y_MULT;
+    y *= Y_MULT * sensitivity;
   }
 #endif
 
-  m_vel.x = x * 100.0f; 
+  m_vel.x = x * 100.0f;
   m_vel.z = y * 100.0f; 
 
   // Work out direction to face
@@ -669,6 +670,27 @@ bool Player::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 
 void Player::Update()
 {
+  const float MAX_VEL = ROConfig()->GetFloat("max-speed");
+  if (m_vel.x > MAX_VEL)
+  {
+    m_vel.x = MAX_VEL;
+  }
+  
+  if (m_vel.x < -MAX_VEL)
+  {
+    m_vel.x = -MAX_VEL;
+  }
+  
+  if (m_vel.z > MAX_VEL)
+  {
+    m_vel.z = MAX_VEL;
+  }
+  
+  if (m_vel.z < -MAX_VEL)
+  {
+    m_vel.z = -MAX_VEL;
+  }
+    
   if (m_reachedExit)
   {
     // Move towards centre of teleporter
