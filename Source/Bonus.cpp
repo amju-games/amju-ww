@@ -25,7 +25,7 @@ GameObject* CreateBonus() { return new Bonus; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Bonus::NAME, &CreateBonus);
 
 static const float XSIZE = 15.0f;
-static const float YSIZE = 50.0f;
+static const float YSIZE = 15.0f;
 
 Bonus::Bonus()
 {

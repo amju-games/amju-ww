@@ -25,6 +25,9 @@ public:
   void SetFloor(Floor*); 
   const Floor* GetFloor() const;
 
+  // Return true if we are above a floor, i.e. on solid ground.
+  bool IsOnFloor() const; 
+
   // List of all Floor objects this level
   static void AddFloor(Floor*);
   static void ClearFloors();

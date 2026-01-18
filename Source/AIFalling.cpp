@@ -17,9 +17,10 @@ const char* AIFalling::GetName() const
 
 void AIFalling::Update()
 {
+  AI::Update();
   m_npc->SetAnim("stand"); // TODO fall
   // Check for floor
-  if (m_npc->GetFloor())
+  if (m_npc->IsOnFloor())
   {
     // Landed!
     m_npc->DecideAI();

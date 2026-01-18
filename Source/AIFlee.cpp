@@ -24,7 +24,7 @@ void AIFlee::Update()
 {
   AI::Update();
   Assert(m_npc);
-  if (!m_npc->GetFloor())
+  if (!m_npc->IsOnFloor())
   {
     return;
   }

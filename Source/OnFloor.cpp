@@ -10,6 +10,7 @@
 #include "Sign.h"
 #include "ShadowManager.h"
 #include "GameMode.h"
+#include "GameConsts.h"
 
 namespace Amju
 {
@@ -72,6 +73,13 @@ void OnFloor::SetFloor(Floor* floor)
 const Floor* OnFloor::GetFloor() const
 {
   return m_floor;
+}
+
+bool OnFloor::IsOnFloor() const
+{
+  return m_floor != 0; 
+  // TODO multiple floors: 
+  // return !m_floors.empty();
 }
 
 bool OnFloor::Save(File* f)
@@ -281,7 +289,7 @@ void OnFloor::UpdatePhysics()
   }
 
   // Lower than the lowest floor ?
-  if (m_pos.y < -500.0f) // TODO TEMP TEST
+  if (m_pos.y < DEATH_HEIGHT) // TODO TEMP TEST
   {
     SetDead(true);
   }
