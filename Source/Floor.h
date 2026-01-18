@@ -58,6 +58,9 @@ public:
 
   void DrawCollisionMesh();
 
+protected:
+  bool LoadMesh(File* f);
+
 private:
   // Called at start of update to reset all moments
   void ResetMoments();
@@ -83,7 +86,7 @@ protected:
   Matrix m_matrix;
 
   // Used to calc height at (x, z), and for shadows
-  CollisionMesh m_collMesh;
+  RCPtr<CollisionMesh> m_collMesh;
 
   // Possible rotation axes
   static const unsigned int AMJU_NONE = 0;

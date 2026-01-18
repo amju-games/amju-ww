@@ -34,7 +34,7 @@ private:
 
   // For each floor, the set of casters which cast on to it
   typedef std::set<RCPtr<WWGameObject> > Casters;
-  typedef std::map<Floor*, Casters> FloorToCasterMap;
+  typedef std::map<RCPtr<Floor>, Casters> FloorToCasterMap;
 
   Floors m_floors;
   CasterMap m_casters;
