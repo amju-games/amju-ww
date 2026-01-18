@@ -2,7 +2,7 @@
 #include "StartGame.h"
 #include "Game.h"
 #include "GSEditMenu.h"
-#include "GSLoadLevel.h"
+#include "LevelManager.h"
 
 namespace Amju
 {
@@ -16,7 +16,7 @@ class CommandStartGame1p : public GuiCommand
   {
     // New game: start at level 1
     // TODO Load last level ?
-    SetLevel("1");
+    TheLevelManager::Instance()->SetLevelId(1);
     StartGame(1, AMJU_MAIN_GAME_MODE); 
     return false; //no undo
   }
@@ -28,7 +28,7 @@ class CommandStartGame2p : public GuiCommand
   {
     // New game: start at level 1
     // TODO Load last level ?
-    SetLevel("1");
+    TheLevelManager::Instance()->SetLevelId(1);
     StartGame(2, AMJU_MAIN_GAME_MODE); 
     return false; //no undo
   }
@@ -41,7 +41,7 @@ class CommandEditor : public GuiCommand
 //    TheGame::Instance()->SetCurrentState(GSEditMenu::NAME);
 
     // TODO Move this to Edit Menu command
-    SetLevel("1");
+    TheLevelManager::Instance()->SetLevelId(1);
     StartGame(1, AMJU_EDIT_MODE); // one "player" only for edit mode
     return false; //no undo
   }
