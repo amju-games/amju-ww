@@ -5,6 +5,7 @@
 #include "ContextMenu.h"
 #include "WWGameObject.h"
 #include <Singleton.h>
+#include <SceneNode.h>
 
 namespace Amju
 {
@@ -27,6 +28,21 @@ namespace Amju
 // - Skybox properties
 // - Level name/number
 // - Help ?
+
+// Scene Node type for selected object
+// Decorates the scene node for the selected object
+class SelectedNode : public SceneNode
+{
+public:
+  SelectedNode() : m_selNode(0) {}
+  virtual void Draw();
+  void SetSelNode(SceneNode* s) { m_selNode = s; }
+
+private:
+  SceneNode* m_selNode;
+};
+
+
 class GSMainEdit : public GSMain
 {
 private:
@@ -34,7 +50,7 @@ private:
   friend class Singleton<GSMainEdit>;
 
 public:
-  static const char* NAME;
+//  static const char* NAME;
 
   // GameState overrides
   virtual void Update();
@@ -59,6 +75,9 @@ protected:
   Vec2f m_mouseScreen;
   Vec3f m_mouseWorld;
   bool m_isSelecting;
+
+  // Scene Graph node for selected game object
+  RCPtr<SelectedNode> m_selNode;
 };
 typedef Singleton<GSMainEdit> TheGSMainEdit;
 }
