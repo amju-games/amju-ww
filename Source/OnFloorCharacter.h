@@ -49,6 +49,7 @@ protected:
 
   void CalcBloodPoolMatrix();
   void UpdateBloodPoolRotation();
+  void StartBloodEffect();
 
 protected:
   float m_dir; // Direction of movement - DEGREES

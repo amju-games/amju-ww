@@ -269,9 +269,13 @@ void OnFloor::UpdateY()
           // Check the height we fell from 
           static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
           Assert(MAX_DROP > 0);
-          if (CalcDropFallen() > MAX_DROP)
+          float df = CalcDropFallen();
+          if (df > MAX_DROP)
           {
-            SetDead(true);
+#ifdef _DEBUG
+std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" << df << "\n";
+#endif
+            SetDead(true); // max drop reached, hit floor
           }
 
           PlayWav(AMJU_EVENT_LANDED);
@@ -362,13 +366,17 @@ void OnFloor::UpdatePhysics()
     m_lastFloorRotation = *(m_floor->GetMatrix());
   }
 
-  // Not for scrolling design
-  // Lower than the lowest floor ?
-  //static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
-  //if (m_pos.y < DEATH_HEIGHT || CalcDropFallen() > MAX_DROP) 
-  //{
-  //  SetDead(true);
-  //}
+  // Have fallen too far, maybe off world ?
+  static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
+  float df = CalcDropFallen();
+  if (df > MAX_DROP) 
+  {
+#ifdef _DEBUG
+std::cout << Describe(this) << " dead, max drop reached, drop=" << df <<
+  " is falling: " << IsFalling() << "\n";
+#endif
+    SetDead(true); // max drop reached, still falling?
+  }
 }
 
 void OnFloor::SetTilt()

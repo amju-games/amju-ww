@@ -4,6 +4,7 @@
 #include <StringUtils.h>
 #include <LoadScene.h>
 #include <ROConfig.h>
+#include <Timer.h>
 #include "WWGameObject.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
@@ -24,6 +25,7 @@ WWGameObject::WWGameObject()
   m_extentsYOffset = 0;
   m_shadowSize = 0;
   m_yRot = 0;
+  m_deathTimer = 0;
 }
  
 void WWGameObject::SetSelected(bool selected)
@@ -70,6 +72,7 @@ void WWGameObject::RemoveFromGame()
 
 void WWGameObject::Reset() 
 {
+  m_deathTimer = 0;
   SetDead(false);
   SetPos(m_startPos);
   SetVel(Vec3f());
@@ -299,6 +302,21 @@ void WWGameObject::Update()
 {
   GameObject::Update();
   CheckIfDead();
+
+  // TODO Death timer, so we don't have to wait if scrolling takes too long
+  if (m_deathTimer > 0)
+  {
+    float dt = TheTimer::Instance()->GetDt();
+    m_deathTimer -= dt;
+    if (m_deathTimer <= 0)
+    {
+#ifdef _DEBUG
+std::cout << "Object " << Describe(this) << " is dead, (timer hit zero)\n ";
+#endif
+
+      SetDead(true); // timer hit zero
+    }
+  }
 }
 
 void WWGameObject::CheckIfDead()
@@ -315,7 +333,7 @@ void WWGameObject::CheckIfDead()
 std::cout << "Object " << Describe(this) << " has scrolled off, is dead: ";
 std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
 #endif
-    SetDead(true);
+    SetDead(true); // off top of screen
   }
   if (h < -1000) // TODO TEMP TEST
   {
@@ -323,7 +341,7 @@ std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
 std::cout << "Object " << Describe(this) << " has fallen off world, is dead: ";
 std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
 #endif
-    SetDead(true);
+    SetDead(true); // off bottom of screen
   }
 }
 

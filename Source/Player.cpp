@@ -718,7 +718,7 @@ void Player::Update()
   if (h > MAX_PLAYER_HEIGHT)
   {
     std::cout << "Player off screen, dead!\n";
-    SetDead(true);
+    SetDead(true); // Player off screen
   }
 
   if (m_reachedExit)

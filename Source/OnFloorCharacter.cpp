@@ -15,7 +15,7 @@
 #include "PlayWav.h"
 #include "ShadowManager.h"
 
-//#define ANIM_DEBUG
+#define ANIM_DEBUG
 
 namespace Amju
 {
@@ -207,10 +207,8 @@ void OnFloorCharacter::StartBeingEaten(OnFloorCharacter* eater)
 
   Amju::PlayWav("goopy");
 
+  SetAnim("eaten"); // once state is BEING_EATEN, we can't change anim
   m_eatenState = BEING_EATEN;
-
-//  SetDead(true); // So physics won't be updated any more
-  //GetSceneNode()->SetVisible(false);
 
   float dir = eater->GetDir();
   Matrix mat;
@@ -219,12 +217,33 @@ void OnFloorCharacter::StartBeingEaten(OnFloorCharacter* eater)
   mat.TranslateKeepRotation(pos);
   GetSceneNode()->SetLocalTransform(mat);
 
+  m_bloodFx->SetMinY(GetPos().y);
+  m_bloodFx->SetDino(eater);
+  m_bloodFx->Start();
+
+  // Make sure it's not culled
+  m_bloodFx->SetAABB(*GetSceneNode()->GetAABB());
+
+  StartBloodEffect();
+
+  // We will be dead after 3 secs
+#ifdef _DEBUG
+std::cout << Describe(this) << " just got eaten, setting death timer.\n";
+#endif
+
+  m_deathTimer = 3.0f;
+}
+
+void OnFloorCharacter::StartBloodEffect()
+{
   m_bloodPoolPos = m_pos;
   // Get accurate y
   Floor* floor = const_cast<Floor*>(GetFloor());
   CollisionMesh* cm = floor->GetCollisionMesh();
   cm->GetY(Vec2f(m_bloodPoolPos.x, m_bloodPoolPos.z), &m_bloodPoolPos.y);
 
+  Matrix mat;
+  mat.Translate(GetPos());
   mat.Scale(0, 1, 0); // start size 0 in (x, z)
   m_bloodPool->SetLocalTransform(mat);
   m_bloodPool->SetAABB(*(GetSceneNode()->GetAABB()));
@@ -233,17 +252,8 @@ void OnFloorCharacter::StartBeingEaten(OnFloorCharacter* eater)
 
   CalcBloodPoolMatrix();
 
-  SetAnim("eaten");
-
   // Remove from ShadowManager
   TheShadowManager::Instance()->RemoveCaster(this);
-
-  m_bloodFx->SetMinY(GetPos().y);
-  m_bloodFx->SetDino(eater);
-  m_bloodFx->Start();
-
-  // Make sure it's not culled
-  m_bloodFx->SetAABB(*GetSceneNode()->GetAABB());
 }
 
 bool OnFloorCharacter::CanBeEaten() const
@@ -316,6 +326,13 @@ float OnFloorCharacter::GetDir() const
 
 void OnFloorCharacter::SetAnim(const std::string& animName)
 {
+  if (m_eatenState != NOT_EATEN_YET)
+  {
+std::cout << "Anim: " << Describe(this) << " anim " << animName <<
+  " ignored as we are eaten!\n";
+    return;
+  }
+
   Animated* a = dynamic_cast<Animated*>(GetSceneNode());
   Assert(a);
   int anim = a->GetMd2()->GetAnimationFromName(animName);
