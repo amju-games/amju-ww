@@ -32,8 +32,10 @@ cd %SRC_DIR%\obj\
 
 REM No conversion, just copy
 REM for %%f in (*.obj) do %RESTORE_DIR%\obj2bin %%f %DEST_DIR%\%%f
-COPY *.obj %DEST_DIR%\
-COPY *.mtl %DEST_DIR%\
+DEL %DEST_DIR%\*.obj
+DEL %DEST_DIR%\*.mtl
+COPY used\*.obj %DEST_DIR%\
+COPY used\*.mtl %DEST_DIR%\
 
 
 cd %RESTORE_DIR%
