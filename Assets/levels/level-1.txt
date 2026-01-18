@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-24
+27
 
 // Game object type
 camera
@@ -122,7 +122,7 @@ fence
 18.750000, 87.500000, 50.000000
 0.000000
 // Mesh filename
-pz-fence.obj
+snow_post_1.obj
 end
 
 // Game object type
@@ -143,6 +143,16 @@ staticfloor
 // Mesh filename
 rd_a41a.obj
 end
+
+staticfloor
+5023
+200.000000, 100.000000, 50.000000
+// Y rotation
+360.000000
+// Mesh filename
+rd_a41_snow.obj
+end
+
 
 // Game object type
 bonus
@@ -232,6 +242,15 @@ staticfloor
 rd_a41.obj
 end
 
+staticfloor
+5021
+1150.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41_snow.obj
+end
+
 // Game object type
 staticfloor
 5010
@@ -242,13 +261,22 @@ staticfloor
 rd_a41.obj
 end
 
+staticfloor
+5022
+675.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41_snow.obj
+end
+
 // Game object type
 fence
 5211
 1337.500000, 87.500000, 50.000000
 0.000000
 // Mesh filename
-pz-fence.obj
+snow_post_1.obj
 end
 
 // Game object type
