@@ -14,7 +14,7 @@ min_z 20
 max_z 80
 
 // Affects bounciness when we hit a wall
-push-away-speed 30
+push-away-speed 1000
 
 // Initial scroll speed for level
 start-scroll-speed 10
