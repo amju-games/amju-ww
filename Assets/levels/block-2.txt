@@ -56,6 +56,15 @@ dino
 // Shadow
 shadow.png
 20
+// Blood Effect
+// image 
+gore.png
+// size
+2.0
+// number
+50
+// max time
+2.0
 end
 
 exit
