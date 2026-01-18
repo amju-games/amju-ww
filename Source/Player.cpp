@@ -162,41 +162,44 @@ void Player::Jump()
   }
 }
 
-void Player::OnButtonEvent(const ButtonEvent& be)
+bool Player::OnButtonEvent(const ButtonEvent& be)
 {
   if (be.controller != m_playerId)
   {
-    return;
+    return false;
   }
 
   if (!m_floor)
   {
-    return;
+    return false;
   }
 
   if (IsFalling())
   {
-    return;
+    return false;;
   }
 
   if (be.button == AMJU_BUTTON_A)
   {
     Jump();
+    return true;
   }
 
   // TODO Home > Pause
+
+  return false;
 }
 
-void Player::OnKeyEvent(const KeyEvent& ke)
+bool Player::OnKeyEvent(const KeyEvent& ke)
 {
   if (!m_floor)
   {
-    return;
+    return false;
   }
 
   if (IsFalling())
   {
-    return;
+    return false;
   }
 
   if (m_playerId == 0)
@@ -207,47 +210,53 @@ void Player::OnKeyEvent(const KeyEvent& ke)
       m_vel.z = ke.keyDown ? -MAX_SPEED : 0;
       SetDir(180.0f);
       SetIsControlled(true); 
-      break;
+      return true;
+
     case AMJU_KEY_DOWN:
       m_vel.z = ke.keyDown ? MAX_SPEED : 0;
       SetDir(0.0f);
       SetIsControlled(true); 
-      break;
+      return true;
+
     case AMJU_KEY_LEFT:
       m_vel.x = ke.keyDown ? -MAX_SPEED : 0;
       SetDir(-90.0f);
       SetIsControlled(true); 
-      break;
+      return true;
+
     case AMJU_KEY_RIGHT:
       m_vel.x = ke.keyDown ? MAX_SPEED : 0;
       SetDir(90.0f);
       SetIsControlled(true); 
-      break;
+      return true;
+
     case AMJU_KEY_SPACE:
       Jump();
-      break;
+      return true;
+
     default:
       break;
     }
   }
+  return false;
 }
 
-void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
+bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
 {
   // Only player 0 can use BB
   if (0 != GetPlayerId()) 
   {
-    return;
+    return false;
   }
 
   if (!m_floor)
   {
-    return;
+    return false;
   }
 
   if (IsFalling())
   {
-    return;
+    return false;
   }
 
   float x = bbe.x;
@@ -290,27 +299,29 @@ void Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   SetDir(RadToDeg(atan2((double)bbe.x, (double)bbe.y)));
 
   SetIsControlled(true); 
+ 
+  return true;
 }
 
-void Player::OnRotationEvent(const RotationEvent& re)
+bool Player::OnRotationEvent(const RotationEvent& re)
 {
 #ifdef GEKKO
-  return; // use nunchuck
+  return false; // use nunchuck
 #endif
 
   if (re.controller != GetPlayerId()) 
   {
-    return;
+    return false;
   }
 
   if (!m_floor)
   {
-    return;
+    return false;
   }
 
   if (IsFalling())
   {
-    return;
+    return false;
   }
 
   float degs = re.degs;
@@ -336,23 +347,24 @@ void Player::OnRotationEvent(const RotationEvent& re)
   SetDir(RadToDeg(atan2((double)m_vel.x, (double)m_vel.z)));
 
   SetIsControlled(true); 
+  return true;
 }
 
-void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
+bool Player::OnJoyAxisEvent(const JoyAxisEvent& je)
 {
   if (je.controller != GetPlayerId()) 
   {
-    return;
+    return false;
   }
 
   if (!m_floor)
   {
-    return;
+    return false;
   }
 
   if (IsFalling())
   {
-    return;
+    return false;
   }
 
   float stickX = je.x;
@@ -376,6 +388,7 @@ void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
   m_vel.z = (float) stickY * speed;  
 
   SetIsControlled(true); 
+  return true;
 }
 
 void Player::Update()
@@ -418,13 +431,17 @@ void Player::Update()
     lives--;
     pInfo->Set(PlayerInfoKey::LIVES, lives);
 
+std::cout << "Player is dead! Lives left: " << lives << "\n";
+
     if (lives == 0)
     {
       TheGame::Instance()->SetCurrentState(TheGSGameOver::Instance());
+std::cout << "Game over.\n";
     }
     else
     {
       TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+std::cout << "Loading level...\n";
     }
   }
 }

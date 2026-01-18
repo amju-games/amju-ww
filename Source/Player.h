@@ -20,11 +20,11 @@ public:
   virtual void Update();
   virtual bool Load(File* f);
 
-  virtual void OnButtonEvent(const ButtonEvent& be);
-  virtual void OnJoyAxisEvent(const JoyAxisEvent& je);
-  virtual void OnKeyEvent(const KeyEvent& ke);
-  virtual void OnBalanceBoardEvent(const BalanceBoardEvent& bbe);
-  virtual void OnRotationEvent(const RotationEvent&);
+  virtual bool OnButtonEvent(const ButtonEvent& be);
+  virtual bool OnJoyAxisEvent(const JoyAxisEvent& je);
+  virtual bool OnKeyEvent(const KeyEvent& ke);
+  virtual bool OnBalanceBoardEvent(const BalanceBoardEvent& bbe);
+  virtual bool OnRotationEvent(const RotationEvent&);
 
   void Jump();
 
