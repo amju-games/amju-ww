@@ -20,10 +20,16 @@
 		3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A3E120AF14800DFECB9 /* PlayWav.cpp */; };
 		3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A40120AF14800DFECB9 /* StaticFloor.cpp */; };
 		3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */; };
-		3F6D8AEC120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */; };
-		3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */; };
 		3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C3E120B17C00080D0FC /* EAGLView.mm */; };
 		3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3F906C40120B17C00080D0FC /* ES1Renderer.mm */; };
+		694625E4138AE65F00DEFA37 /* BassSoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694625E2138AE65F00DEFA37 /* BassSoundPlayer.cpp */; };
+		694625EF138AE69100DEFA37 /* EventPollerImplGeneric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694625ED138AE69100DEFA37 /* EventPollerImplGeneric.cpp */; };
+		694625FF138AE8AB00DEFA37 /* libbassmidi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 694625FE138AE8AA00DEFA37 /* libbassmidi.a */; };
+		69462601138AE8C600DEFA37 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69462600138AE8C600DEFA37 /* libbass.a */; };
+		69462615138AEA9200DEFA37 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69462614138AEA9200DEFA37 /* AudioToolbox.framework */; };
+		69462617138AEA9200DEFA37 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69462616138AEA9200DEFA37 /* CFNetwork.framework */; };
+		69462619138AEA9200DEFA37 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69462618138AEA9200DEFA37 /* SystemConfiguration.framework */; };
+		6946262D138AFA1E00DEFA37 /* music-iphone.glue in Resources */ = {isa = PBXBuildFile; fileRef = 6946262C138AFA1E00DEFA37 /* music-iphone.glue */; };
 		69577A18135C9C4600DBC6C5 /* CollideObjectFence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */; };
 		69577A19135C9C4600DBC6C5 /* Fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0C135C9C4600DBC6C5 /* Fence.cpp */; };
 		69577A1A135C9C4600DBC6C5 /* RBBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A0E135C9C4600DBC6C5 /* RBBox.cpp */; };
@@ -416,14 +422,20 @@
 		3F6D8A41120AF14800DFECB9 /* StaticFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticFloor.h; path = ../../Source/StaticFloor.h; sourceTree = SOURCE_ROOT; };
 		3F6D8A42120AF14800DFECB9 /* WWGameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWGameObject.cpp; path = ../../Source/WWGameObject.cpp; sourceTree = SOURCE_ROOT; };
 		3F6D8A43120AF14800DFECB9 /* WWGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWGameObject.h; path = ../../Source/WWGameObject.h; sourceTree = SOURCE_ROOT; };
-		3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventPollerImplIPhone.cpp; sourceTree = "<group>"; };
-		3F6D8AEB120AFD2A00DFECB9 /* EventPollerImplIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPollerImplIPhone.h; sourceTree = "<group>"; };
-		3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundIPhone.cpp; sourceTree = "<group>"; };
-		3F6D8AEF120AFD6500DFECB9 /* SoundIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundIPhone.h; sourceTree = "<group>"; };
 		3F906C3E120B17C00080D0FC /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EAGLView.mm; path = ../../Source/iPhone/Classes/EAGLView.mm; sourceTree = SOURCE_ROOT; };
 		3F906C3F120B17C00080D0FC /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ES1Renderer.h; path = ../../Source/iPhone/Classes/ES1Renderer.h; sourceTree = SOURCE_ROOT; };
 		3F906C40120B17C00080D0FC /* ES1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ES1Renderer.mm; path = ../../Source/iPhone/Classes/ES1Renderer.mm; sourceTree = SOURCE_ROOT; };
 		3F906C43120B17C00080D0FC /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESRenderer.h; path = ../../Source/iPhone/Classes/ESRenderer.h; sourceTree = SOURCE_ROOT; };
+		694625E2138AE65F00DEFA37 /* BassSoundPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BassSoundPlayer.cpp; path = ../../../amjulib/Source/SoundBass/BassSoundPlayer.cpp; sourceTree = SOURCE_ROOT; };
+		694625E3138AE65F00DEFA37 /* BassSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BassSoundPlayer.h; path = ../../../amjulib/Source/SoundBass/BassSoundPlayer.h; sourceTree = SOURCE_ROOT; };
+		694625ED138AE69100DEFA37 /* EventPollerImplGeneric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventPollerImplGeneric.cpp; sourceTree = "<group>"; };
+		694625EE138AE69100DEFA37 /* EventPollerImplGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPollerImplGeneric.h; sourceTree = "<group>"; };
+		694625FE138AE8AA00DEFA37 /* libbassmidi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbassmidi.a; path = ../../../amjulib/Source/SoundBass/Bass2.4/iPhone/libbassmidi.a; sourceTree = SOURCE_ROOT; };
+		69462600138AE8C600DEFA37 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../amjulib/Source/SoundBass/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = SOURCE_ROOT; };
+		69462614138AEA9200DEFA37 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		69462616138AEA9200DEFA37 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		69462618138AEA9200DEFA37 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6946262C138AFA1E00DEFA37 /* music-iphone.glue */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music-iphone.glue"; path = "../../Build/CompiledAssets/music-iphone.glue"; sourceTree = SOURCE_ROOT; };
 		69577A0A135C9C4600DBC6C5 /* AngleVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AngleVec.h; path = ../../Source/AngleVec.h; sourceTree = SOURCE_ROOT; };
 		69577A0B135C9C4600DBC6C5 /* CollideObjectFence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideObjectFence.cpp; path = ../../Source/CollideObjectFence.cpp; sourceTree = SOURCE_ROOT; };
 		69577A0C135C9C4600DBC6C5 /* Fence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fence.cpp; path = ../../Source/Fence.cpp; sourceTree = SOURCE_ROOT; };
@@ -882,6 +894,11 @@
 				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
 				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
 				6DFDFEDA124B68AB00FD3E49 /* libAmjuLib.a in Frameworks */,
+				694625FF138AE8AB00DEFA37 /* libbassmidi.a in Frameworks */,
+				69462601138AE8C600DEFA37 /* libbass.a in Frameworks */,
+				69462615138AEA9200DEFA37 /* AudioToolbox.framework in Frameworks */,
+				69462617138AEA9200DEFA37 /* CFNetwork.framework in Frameworks */,
+				69462619138AEA9200DEFA37 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,8 +1089,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3F6D8AED120AFD6500DFECB9 /* SoundIPhone */,
-				3F6D8AE9120AFD2A00DFECB9 /* EventsIPhone */,
+				69462600138AE8C600DEFA37 /* libbass.a */,
+				694625FE138AE8AA00DEFA37 /* libbassmidi.a */,
+				3F6D8AED120AFD6500DFECB9 /* SoundBass */,
 				6DCE67CC11ECC81800074997 /* AmjuGLOpenGL */,
 				6D5E0F7611EB9C2200931FDB /* AmjuGL */,
 				6D5E0FA011EB9C2200931FDB /* Clip */,
@@ -1103,6 +1121,9 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				69462614138AEA9200DEFA37 /* AudioToolbox.framework */,
+				69462616138AEA9200DEFA37 /* CFNetwork.framework */,
+				69462618138AEA9200DEFA37 /* SystemConfiguration.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1119,6 +1140,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6946262C138AFA1E00DEFA37 /* music-iphone.glue */,
 				6DCA38CD1265D84E00691BC1 /* data-iphone.glue */,
 				6D84167D1254D8A100689B68 /* icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -1138,23 +1160,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F6D8AE9120AFD2A00DFECB9 /* EventsIPhone */ = {
+		3F6D8AED120AFD6500DFECB9 /* SoundBass */ = {
 			isa = PBXGroup;
 			children = (
-				3F6D8AEA120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp */,
-				3F6D8AEB120AFD2A00DFECB9 /* EventPollerImplIPhone.h */,
+				694625E2138AE65F00DEFA37 /* BassSoundPlayer.cpp */,
+				694625E3138AE65F00DEFA37 /* BassSoundPlayer.h */,
 			);
-			name = EventsIPhone;
-			path = ../../../amjulib/Source/EventsIPhone;
-			sourceTree = SOURCE_ROOT;
-		};
-		3F6D8AED120AFD6500DFECB9 /* SoundIPhone */ = {
-			isa = PBXGroup;
-			children = (
-				3F6D8AEE120AFD6500DFECB9 /* SoundIPhone.cpp */,
-				3F6D8AEF120AFD6500DFECB9 /* SoundIPhone.h */,
-			);
-			name = SoundIPhone;
+			name = SoundBass;
 			path = ../../../amjulib/Source/SoundIPhone;
 			sourceTree = SOURCE_ROOT;
 		};
@@ -1204,6 +1216,8 @@
 		6D5E0FA811EB9C2200931FDB /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				694625ED138AE69100DEFA37 /* EventPollerImplGeneric.cpp */,
+				694625EE138AE69100DEFA37 /* EventPollerImplGeneric.h */,
 				6D5B7B3B121049DD00CD925B /* EventTypes.cpp */,
 				6D5B7B3C121049DD00CD925B /* EventTypes.h */,
 				6D5E0FA911EB9C2200931FDB /* EventListener.cpp */,
@@ -1899,6 +1913,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				6D84167E1254D8A100689B68 /* icon.png in Resources */,
 				6DCA38CE1265D84E00691BC1 /* data-iphone.glue in Resources */,
+				6946262D138AFA1E00DEFA37 /* music-iphone.glue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1987,8 +2002,6 @@
 				3F6D8A49120AF14800DFECB9 /* PlayWav.cpp in Sources */,
 				3F6D8A4A120AF14800DFECB9 /* StaticFloor.cpp in Sources */,
 				3F6D8A4B120AF14800DFECB9 /* WWGameObject.cpp in Sources */,
-				3F6D8AEC120AFD2A00DFECB9 /* EventPollerImplIPhone.cpp in Sources */,
-				3F6D8AF0120AFD6500DFECB9 /* SoundIPhone.cpp in Sources */,
 				3F906C44120B17C00080D0FC /* EAGLView.mm in Sources */,
 				3F906C45120B17C00080D0FC /* ES1Renderer.mm in Sources */,
 				6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */,
@@ -2038,6 +2051,8 @@
 				69577A2B135C9C7C00DBC6C5 /* OBB3.cpp in Sources */,
 				69577A34135C9CB000DBC6C5 /* DrawOBB2.cpp in Sources */,
 				69577A35135C9CB000DBC6C5 /* DrawOBB3.cpp in Sources */,
+				694625E4138AE65F00DEFA37 /* BassSoundPlayer.cpp in Sources */,
+				694625EF138AE69100DEFA37 /* EventPollerImplGeneric.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2185,6 +2200,11 @@
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "iPhone-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone\"",
+					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone/mp3-free\"",
+				);
 				PRODUCT_NAME = "Amju WW";
 			};
 			name = Debug;
@@ -2198,6 +2218,11 @@
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "iPhone-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone\"",
+					"\"$(SRCROOT)/../../../amjulib/Source/SoundBass/Bass2.4/iPhone/mp3-free\"",
+				);
 				PRODUCT_NAME = iPhone;
 				VALIDATE_PRODUCT = YES;
 			};
