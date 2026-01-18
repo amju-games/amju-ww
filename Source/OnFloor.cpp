@@ -115,10 +115,12 @@ void OnFloor::Reset()
 
 void OnFloor::FindFloor()
 {
+/*
   if (m_shadow)
   {
     m_shadow->ClearCollisionMeshes();
   }
+*/
 
   for (unsigned int i = 0; i < s_floors.size(); i++)
   {
@@ -126,6 +128,7 @@ void OnFloor::FindFloor()
     Floor* f = s_floors[i];
     const AABB& floorAABB = *(f->GetAABB());
 
+/*
     AABB aabb = *GetAABB();
     // Extend downwards to check for casting a shadow
     aabb.SetMin(1, aabb.GetMin(1) - 100.0f);
@@ -140,6 +143,7 @@ void OnFloor::FindFloor()
     {
       continue;
     }
+*/
 
     // Touching surface ?
     float y = 0;

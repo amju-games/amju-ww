@@ -49,7 +49,7 @@ public:
 protected:
   int m_targetId;
   int m_viewportId;
-  PGameObject m_target;
+  GameObject* m_target;
   PCamBehaviour m_behaviour;
   Vec3f m_lookAt;
 };
