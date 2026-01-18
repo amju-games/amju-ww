@@ -30,8 +30,10 @@ public:
   void SetHeightRange(float up, float down);
 
   void SetSize(float size);
-  // Set CollisionMesh which the shadow is cast on
-  void SetCollisionMesh(CollisionMesh*);
+
+  // Add a CollisionMesh onto which the shadow is cast
+  void AddCollisionMesh(CollisionMesh*);
+  void ClearCollisionMeshes();
 
 protected:
   void MyDraw(
@@ -90,8 +92,7 @@ protected:
   // TODO Get all meshes from the rest of the scene graph ??
   // Allow multiple meshes, so we can continue to cast on a mesh as we leave it and
   //  land on another mesh
-  enum { MAX_MESHES = 2 };
-  CollisionMesh* m_mesh[MAX_MESHES];
+  std::vector<CollisionMesh*> m_mesh;
 
   // Shadow texture - Resource
   PTexture m_texture;
