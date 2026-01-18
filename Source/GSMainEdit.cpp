@@ -72,6 +72,7 @@ void OnProperties()
 
 GSMainEdit::GSMainEdit()
 {
+  m_playTestMode = false;
   m_controller = new EditModeController(this);
 
   m_isSelecting = false;
@@ -116,10 +117,10 @@ void GSMainEdit::OnDeactive()
 
 void GSMainEdit::OnActive()
 {
+  GSMain::OnActive();
   // Show bounding boxes
   SceneNode::SetGlobalShowAABB(true);
 
-  GSMain::OnActive();
   GetGameSceneGraph()->SetCamera(new EditModeCamera);
   
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
@@ -154,14 +155,33 @@ void GSMainEdit::OnActive()
 
   TheEventPoller::Instance()->AddListener(m_contextMenu);
   m_contextMenu->SetVisible(false);
+
+  // Update once to transfer position info to scene nodes etc.
+  GSMain::Update();
 }
 
 void GSMainEdit::Update()
 {
-  GSMain::Update();
-
-  // Don't update game objects; don't check collisions
-//  GetGameSceneGraph()->Update();
+  if (m_playTestMode)
+  {
+    GSMain::Update();
+  }
+  else
+  {
+    // Don't update game objects; don't check collisions
+    // Do Update all bounding boxes
+    GameObjects* gos = TheGame::Instance()->GetGameObjects();
+    for (GameObjects::iterator it = gos->begin(); it != gos->end(); ++it)
+    {
+      GameObject* go = it->second;
+      WWGameObject* w = dynamic_cast<WWGameObject*>(go);
+      if (w)
+      {
+        w->RecalcAABB();
+      }
+    }
+    //GetGameSceneGraph()->Update();
+  }
 }
 
 void GSMainEdit::Draw()
@@ -270,6 +290,12 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       m_contextMenu->SetLocalPos(Vec2f(mbe.x, mbe.y));
       m_contextMenu->SetVisible(true);
     }
+    else
+    {
+      // Hide menu
+      m_contextMenu->SetVisible(false);
+    }
+    break;
 
   default:
     break;
