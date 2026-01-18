@@ -27,7 +27,7 @@ void AIEatPet::OnActivated()
   // All pets within range flee
   Pets pets;
   GetPets(&pets);
-  for (auto it = pets.begin(); it != pets.end(); ++it)
+  for (Pets::iterator it = pets.begin(); it != pets.end(); ++it)
   {
     Pet* pet = *it;
     if (!pet->IsDead())

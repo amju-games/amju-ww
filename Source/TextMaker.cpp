@@ -4,6 +4,10 @@
 #include "CollisionMesh.h"
 #include "AABB.h"
 
+#ifdef ANDROID_NDK
+#include <ctype.h>
+#endif
+
 namespace Amju
 {
 SceneNode* MakeChar(char k, float* width)

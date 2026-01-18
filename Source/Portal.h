@@ -29,7 +29,7 @@ private:
   int m_destId;
   // If a player is in this set, collisions are ignored. 
   // Each update, we check to see if each player is still intersecting.
-  std::set<RCPtr<Player>> m_collidingPlayers;
+  std::set<RCPtr<Player> > m_collidingPlayers;
 };
 }
 

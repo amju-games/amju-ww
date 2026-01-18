@@ -1,4 +1,4 @@
-#ifndef IPHONE
+#if !defined(IPHONE) && !defined(ANDROID_NDK)
 
 #ifdef MACOSX
 #define AMJU_USE_OPENGL
