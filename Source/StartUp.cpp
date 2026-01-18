@@ -38,8 +38,10 @@
 #include "GSLoadLayers.h" 
 #include "GSCopyAssets.h"
 #include "GSPaused.h"
+#include "HiScoreDb.h"
 #include "Hud.h"
 #include "Init.h"
+#include "iOSTweet.h"
 #include "LevelManager.h"
 #include "NetSend.h"
 #include "ResizeHandler.h"
@@ -127,7 +129,13 @@ void StartUpBeforeCreateWindow()
     {
       std::cout << "Loaded game config file OK: " << filename << "\n";
       // Send updated device info if anything has changed since we last sent.
+      
+#ifdef SEND_FIRST_TIME_DEVICE_INFO
+      NetSendDeviceInfoFirstRunEver();
+#else
       NetSendUpdateDeviceInfo();
+#endif
+      
       // Set sound/music from config
       auto sm = TheSoundManager::Instance();
       sm->SetSongMaxVolume(gcf->GetInt(MUSIC_KEY)? 1.0f : 0.0f);
@@ -194,6 +202,9 @@ void StartUpBeforeCreateWindow()
     ReportError("Failed to open music glue file");
   }
 #endif
+  
+  // Start request for hi scores from server, etc
+  HiScoreStartUp();
 }
 
 void StartUpAfterCreateWindow()
