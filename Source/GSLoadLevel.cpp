@@ -11,7 +11,7 @@
 #include "Timer.h"
 #include "OnFloor.h"
 #include "GameObjectFactory.h"
-#include "Camera.h"
+#include "WWCamera.h"
 #include "ResourceManager.h"
 #include "LevelManager.h"
 #include "Hud.h"

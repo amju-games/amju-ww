@@ -34,7 +34,7 @@
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
 #include "Depth.h"
-#include "Camera.h"
+#include "WWCamera.h"
 #include "GameConsts.h"
 #include <AmjuFinal.h>
 

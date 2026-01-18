@@ -4,7 +4,7 @@
 #include "Bird.h"
 #include "Block.h"
 #include "Bonus.h"
-#include "Camera.h"
+#include "WWCamera.h"
 #include "Deadly.h"
 #include "Dino.h"
 #include "Exit.h"

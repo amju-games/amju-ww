@@ -19,6 +19,7 @@ LIBS	:= \
 	-lstdc++ -lm 
 
 include $(AMJULIB_MAC_SCRIPT_PATH)/GenMakefile
+CFLAGS += -DAMJU_USE_BASS
 
 run:
 	cp $(TARGET) $(RUNDIR); \
