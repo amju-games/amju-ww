@@ -10,6 +10,7 @@
 #include "MySceneGraph.h"
 #include "OnFloor.h"
 #include "Viewport.h"
+#include "Player.h"
 
 namespace Amju
 {
@@ -48,6 +49,8 @@ void CamFollowPlayer::Update(Camera* cam)
 {
   static const float Y_OFFSET = ROConfig()->GetFloat("cam-y-offset"); 
   static const float Z_OFFSET = ROConfig()->GetFloat("cam-z-offset"); 
+  static const float Y_PET_OFFSET = ROConfig()->GetFloat("cam-y-pet-offset"); 
+  static const float Z_PET_OFFSET = ROConfig()->GetFloat("cam-z-pet-offset"); 
 
   Assert(cam);
   Assert(cam->GetTarget());
@@ -86,14 +89,18 @@ void CamFollowPlayer::Update(Camera* cam)
   // x-axis
   pos.x = v.x; 
 
+  Player* player = dynamic_cast<Player*>(cam->GetTarget());
+  Assert(player); // can point to other things??
+  int numPets = player->GetPets().size();
+
   // Move in Y - but don't move in y if player is falling
-  if (!((OnFloor*)cam->GetTarget())->IsFalling())
+  if (!player->IsFalling())
   {
-    pos.y = v.y + Y_OFFSET;
+    pos.y = v.y + Y_OFFSET + numPets * Y_PET_OFFSET;
   }
 
   // Z is fixed distance from player
-  pos.z = v.z + Z_OFFSET;
+  pos.z = v.z + Z_OFFSET + numPets * Y_PET_OFFSET;
 
   cam->SetPos(pos);
   cam->SetVel(vel);
