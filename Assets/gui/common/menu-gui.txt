@@ -11,60 +11,48 @@ menu-comp
 
 // element type
 gui-button
-
 // Element name
 start-button-1p
-
 // pos (coords are -1..1)
 -0.4, 0.3
 // size
 0.8, 0.2
-
-// Image - ext is resource type, not necessarily a real file extension
+// Image 
 gui-button-4.png
-
 // Text
 1 player start
 // Font name, size
-cheri, 1.0
+arial, 2.0, sx=0.7
 
 
 // element type
 gui-button
-
 // Element name
 start-button-2p
-
 // pos (coords are -1..1)
--0.4, 0.1
+-0.4, 0.0
 // size
 0.8, 0.2
-
-// Image - ext is resource type, not necessarily a real file extension
+// Image 
 gui-button-4.png
-
 // Text
 2 player start
 // Font name, size
-cheri, 1.0
+arial, 2.0, sx=0.7
 
 
 // element type
 gui-button
-
 // Element name
 editor-button
-
 // pos (coords are -1..1)
--0.4, -0.1
+-0.4, -0.3
 // size
 0.8, 0.2
-
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
-
 // Text
-editor
+Editor
 // Font name, size
-cheri, 1.0
+arial, 2.0, sx=0.7
 
