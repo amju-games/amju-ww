@@ -33,6 +33,8 @@ public:
   void ResetEatenState();
 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
 
 protected:
   void CalcBloodPoolMatrix();

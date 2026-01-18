@@ -28,6 +28,26 @@ void Fence::AddPropertiesGui(PropertiesDialog* dlg)
   dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
+PropertyValue Fence::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return WWGameObject::GetProp(key);
+}
+
+void Fence::SetProp(PropertyKey key, PropertyValue value)
+{
+  WWGameObject::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 WWGameObject* Fence::Clone() 
 {
   return new Fence(*this);

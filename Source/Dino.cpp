@@ -47,6 +47,26 @@ void Dino::AddPropertiesGui(PropertiesDialog* dlg)
 //  dlg->AddItem(new PropertiesDialog::IntItem("Type", m_dinoType));
 }
 
+PropertyValue Dino::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return Npc::GetProp(key);
+}
+
+void Dino::SetProp(PropertyKey key, PropertyValue value)
+{
+  Npc::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 WWGameObject* Dino::Clone() 
 {
   return new Dino(*this);

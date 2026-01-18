@@ -41,6 +41,26 @@ void Floor::AddPropertiesGui(PropertiesDialog* dlg)
   dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 }
 
+PropertyValue Floor::GetProp(PropertyKey key)
+{
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    return m_text;
+//  }
+  return WWGameObject::GetProp(key);
+}
+
+void Floor::SetProp(PropertyKey key, PropertyValue value)
+{
+  WWGameObject::SetProp(key, value);
+//  switch (key)
+//  {
+//  case PROP_TEXT:
+//    m_text = value.GetString();
+//  }
+}
+
 WWGameObject* Floor::Clone()
 {
   return new Floor(*this);
