@@ -13,6 +13,7 @@ public:
   virtual void OnPlayerCollision(Player*) = 0;
 
   virtual bool Load(File*); 
+  virtual bool Save(File*); 
 
 protected:
 };

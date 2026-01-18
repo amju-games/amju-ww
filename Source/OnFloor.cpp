@@ -69,6 +69,13 @@ const Floor* OnFloor::GetFloor() const
   return m_floor;
 }
 
+bool OnFloor::Save(File* f)
+{
+  f->WriteInteger(GetId());
+  f->WriteComment("// Position");
+  return SaveVec3(f, m_pos);
+}
+
 bool OnFloor::Load(File* f)
 {
   if (!WWGameObject::Load(f))
@@ -81,29 +88,6 @@ bool OnFloor::Load(File* f)
     return false;
   }
   m_pos = m_pos * m_mat;
-
-  return true;
-}
-
-bool OnFloor::LoadShadow(File* f)
-{
-  Assert(m_pSceneNode);
-
-  std::string texName;
-  if (!f->GetDataLine(&texName))
-  {
-    f->ReportError("Expected shadow texture resource name");
-    return false;
-  }
-
-  float size = 0;
-  if (!f->GetFloat(&size))
-  {
-    f->ReportError("Expected shadow size");
-    return false;
-  }
-
-  TheShadowManager::Instance()->AddCaster(this, size, texName);
 
   return true;
 }

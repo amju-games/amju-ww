@@ -21,6 +21,7 @@
 #include "Pet.h"
 #include "Score.h"
 #include "PlayWav.h"
+#include "Describe.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -193,8 +194,24 @@ int Player::GetPlayerId() const
 
 bool Player::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!OnFloorCharacter::Save(f))
+  {
+    return false;
+  }
+  f->WriteComment("// Player ID");
+  f->WriteInteger(m_playerId);
+  f->WriteComment("// MD2 mesh name");
+  if (m_meshName.empty())
+  {
+    f->ReportError("Player: empty MD2 mesh name! For " + Describe(this));
+    return false;
+  }
+
+  f->Write(m_meshName);
+  f->WriteComment("// Texture names");
+  f->Write(m_tex1Name);
+  f->Write(m_tex2Name);
+  return SaveShadow(f);
 }
 
 bool Player::Load(File* f)
@@ -214,27 +231,25 @@ bool Player::Load(File* f)
   BlinkCharacter* bc = new BlinkCharacter;
   m_pSceneNode = bc;
 
-  std::string meshName;
-  if (!f->GetDataLine(&meshName))
+  if (!f->GetDataLine(&m_meshName))
   {
     f->ReportError("No mesh name for player");
     return false;
   }
 
   // Load mesh and textures from file
-  if (!bc->LoadMd2(meshName))
+  if (!bc->LoadMd2(m_meshName))
   {
     return false;
   }
 
-  std::string tex1Name, tex2Name;
-  if (!f->GetDataLine(&tex1Name) || !f->GetDataLine(&tex2Name))
+  if (!f->GetDataLine(&m_tex1Name) || !f->GetDataLine(&m_tex2Name))
   {
     f->ReportError("Failed to get 2 textures for player");
     return false;
   }
 
-  if (!bc->LoadTextures(tex1Name, tex2Name))
+  if (!bc->LoadTextures(m_tex1Name, m_tex2Name))
   {
     return false;
   }

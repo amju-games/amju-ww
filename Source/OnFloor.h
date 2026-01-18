@@ -18,6 +18,7 @@ public:
 
   // Overrides
   virtual bool Load(File*);
+  virtual bool Save(File*);
   virtual void Reset(); 
   virtual void Update();
 
@@ -41,7 +42,6 @@ public:
 protected:
   void UpdatePhysics();
   void UpdateShadow();
-  bool LoadShadow(File* f);
 
   // Set m_floor to point to floor under us, or 0 if we are lower than any floor
   void FindFloor();

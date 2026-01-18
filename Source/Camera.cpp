@@ -139,8 +139,14 @@ void Camera::Update()
 
 bool Camera::Save(File* f)
 {
-  // TODO
-  return false;
+  f->WriteComment("// ID");
+  f->WriteInteger(GetId());
+  f->WriteComment("// Viewport ID");
+  f->WriteInteger(m_viewportId);
+  f->WriteComment("// Target ID");
+  f->WriteInteger(m_targetId);
+  
+  return true;
 }
 
 bool Camera::Load(File* f)

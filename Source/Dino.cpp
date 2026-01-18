@@ -173,8 +173,13 @@ void Dino::Update()
 
 bool Dino::Save(File* f)
 {
-  // TODO
-  return false;
+  if (!Npc::Save(f))
+  {
+    return false;
+  }
+  f->WriteComment("// Dino type");
+  f->WriteInteger(m_dinoType);
+  return SaveShadow(f);
 }
 
 bool Dino::Load(File* f)

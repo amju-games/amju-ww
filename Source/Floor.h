@@ -61,6 +61,7 @@ public:
 
 protected:
   bool LoadMesh(File* f);
+  bool SaveMesh(File* f);
 
 private:
   // Called at start of update to reset all moments
