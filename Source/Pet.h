@@ -5,6 +5,8 @@
 
 namespace Amju
 {
+class Player;
+
 class Pet : public Npc
 {
 public:
@@ -17,8 +19,13 @@ public:
 
   void OnEaten();
 
+  void SetCarryingPlayer(Player* player);
+  Player* GetCarryingPlayer();
+
 protected:
   Shadow* m_bloodPool;
+
+  Player* m_carryingPlayer;
 };
 }
 
