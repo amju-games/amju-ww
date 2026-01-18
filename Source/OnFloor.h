@@ -50,6 +50,8 @@ public:
 protected:
   void UpdatePhysics();
   void UpdateShadow();
+  // Calc positive distance fallen
+  float CalcDropFallen();
 
 private:
   void SetTilt();
@@ -100,6 +102,8 @@ protected:
   // Use this to rotate object when we are falling and no longer have
   //  a current floor.
   Matrix m_lastFloorRotation;
+
+  float m_heightFallenFrom;
 };
 }
 

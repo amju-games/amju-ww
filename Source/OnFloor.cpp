@@ -2,7 +2,8 @@
 #define _USE_MATH_DEFINES // ffs
 #endif // WIN32
 #include <math.h>
-#include "DegRad.h"
+#include <DegRad.h>
+#include <ROConfig.h>
 #include "OnFloor.h"
 #include "Floor.h"
 #include "File.h"
@@ -11,6 +12,7 @@
 #include "ShadowManager.h"
 #include "GameMode.h"
 #include "GameConsts.h"
+#include "Describe.h"
 
 namespace Amju
 {
@@ -58,6 +60,10 @@ bool OnFloor::IsFalling() const
 void OnFloor::SetIsFalling(bool b)
 {
   m_isFalling = b;
+  if (b)
+  {
+    m_heightFallenFrom = m_pos.y;
+  }
 }
 
 void OnFloor::SetFloor(Floor* floor)
@@ -125,6 +131,22 @@ void OnFloor::Reset()
   m_isDead = false;
   SetFloor(0);
   m_onFloor = false;
+  m_heightFallenFrom = -9999.9f;
+}
+
+float OnFloor::CalcDropFallen()
+{
+  if (!IsFalling())
+  {
+    return 0;
+  }
+  if (m_pos.y > m_heightFallenFrom)
+  {
+    return 0;
+  }
+  float h = m_heightFallenFrom - m_pos.y;
+std::cout << Describe(this) << ": Drop: " << h << "\n";
+  return h;
 }
 
 //void OnFloor::FindFloor()
@@ -204,6 +226,13 @@ void OnFloor::UpdateY()
   // Make sure setting acceleration doesn't stop gravity working
   m_acc.y = GRAVITY;
 
+  static const float MAX_Y_VEL = ROConfig()->GetFloat("max-y-vel");
+  Assert(MAX_Y_VEL > 0);
+  if (m_vel.y < -MAX_Y_VEL)
+  {
+    m_vel.y = -MAX_Y_VEL;
+  }
+
   // Fallen off ?
   float y = 0;
   bool isOn = false;
@@ -225,6 +254,14 @@ void OnFloor::UpdateY()
         // We were falling - reverse y vel
         if (IsFalling())
         {
+          // Check the height we fell from 
+          static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
+          Assert(MAX_DROP > 0);
+          if (CalcDropFallen() > MAX_DROP)
+          {
+            SetDead(true);
+          }
+
           PlayWav(AMJU_EVENT_LANDED);
           SetIsFalling(false);
         }
@@ -314,7 +351,8 @@ void OnFloor::UpdatePhysics()
   }
 
   // Lower than the lowest floor ?
-  if (m_pos.y < DEATH_HEIGHT) // TODO TEMP TEST
+  static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
+  if (m_pos.y < DEATH_HEIGHT || CalcDropFallen() > MAX_DROP) 
   {
     SetDead(true);
   }
