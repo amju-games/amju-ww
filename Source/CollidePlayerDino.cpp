@@ -17,6 +17,11 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   Dino* dino = dynamic_cast<Dino*>(go2);
   Assert(dino);
 
+  if (dino->IsDead())
+  {
+    return; // this actually happened!
+  }
+
   // Get the pets to flee the dino
   PetList pets = player->GetPets();
   player->DropPets();

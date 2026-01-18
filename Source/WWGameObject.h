@@ -75,6 +75,7 @@ protected:
   bool m_isDead;
 
   Vec3f m_aabbExtents;
+  float m_extentsYOffset; // added to y coords of AABB 
   bool m_extentsSet; // if set, use extents and recalc AABB
 
   std::string m_meshFilename;

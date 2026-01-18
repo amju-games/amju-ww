@@ -67,6 +67,19 @@ void OnFloor::SetFloor(Floor* floor)
   // e.g.
   // if (m_floor) { m_lastGoodFloor = m_floor; } // && !floor ??
 
+  if (floor && m_floor)
+  {
+    // Check if we should switch. If we are currently on m_floor, and floor is lower, we
+    //  should not switch, right?
+    const Vec3f& pos = GetPos();
+    float y = 0;
+    if (floor->GetY(Vec2f(pos.x, pos.z), & y) && y < pos.y)
+    {
+      // New floor is lower
+      return;
+    }
+  }
+
   m_floor = floor;
 }
 
@@ -114,37 +127,37 @@ void OnFloor::Reset()
   m_onFloor = false;
 }
 
-void OnFloor::FindFloor()
-{
-  Floor* bestFloor = 0;
-  float bestY = -99999;
-  for (unsigned int i = 0; i < s_floors.size(); i++)
-  {
-    // In general area ? - i.e. do our bounding boxes intersect ?
-    Floor* f = s_floors[i];
-
-    // Touching surface ?
-    float y = 0;
-    if (f->GetY(Vec2f(m_pos.x, m_pos.z), &y))
-    {
-      // Are we above surface, but not too high, 
-      //  or below surface, but not too low..?
-      if (m_pos.y < (y + 100.0f) && m_pos.y > (y - 10.0f))
-      {
-        if (y > bestY)
-        {
-          bestY = y;
-          bestFloor = f;
-        }
-      }
-    }
-  }
-
-  if (bestFloor)
-  {
-    SetFloor(bestFloor);
-  }
-}
+//void OnFloor::FindFloor()
+//{
+//  Floor* bestFloor = 0;
+//  float bestY = -99999;
+//  for (unsigned int i = 0; i < s_floors.size(); i++)
+//  {
+//    // In general area ? - i.e. do our bounding boxes intersect ?
+//    Floor* f = s_floors[i];
+//
+//    // Touching surface ?
+//    float y = 0;
+//    if (f->GetY(Vec2f(m_pos.x, m_pos.z), &y))
+//    {
+//      // Are we above surface, but not too high, 
+//      //  or below surface, but not too low..?
+//      if (m_pos.y < (y + 100.0f) && m_pos.y > (y - 10.0f))
+//      {
+//        if (y > bestY)
+//        {
+//          bestY = y;
+//          bestFloor = f;
+//        }
+//      }
+//    }
+//  }
+//
+//  if (bestFloor)
+//  {
+//    SetFloor(bestFloor);
+//  }
+//}
 
 void OnFloor::PlayWav(OnFloor::Event e)
 {
@@ -228,16 +241,28 @@ void OnFloor::UpdateY()
   }
   else
   {
-    SetIsControlled(false);
+    // Check a bit more thoroughly for a floor - we are maybe just on the edge. 
+    // If there really is no floor under us, we start to fall down.
+    float y = 0;
+    bool isOn = m_floor && (
+      m_floor->GetY(Vec2f(m_aabb.GetMin(0), m_aabb.GetMin(2)), &y) ||
+      m_floor->GetY(Vec2f(m_aabb.GetMax(0), m_aabb.GetMin(2)), &y) ||
+      m_floor->GetY(Vec2f(m_aabb.GetMax(0), m_aabb.GetMax(2)), &y) ||
+      m_floor->GetY(Vec2f(m_aabb.GetMin(0), m_aabb.GetMax(2)), &y));
 
-    // We are not on the platform - just fall.
-    SetFloor(0);
-    m_onFloor = false;
-
-    if (!IsFalling())
+    if (!isOn)
     {
-      PlayWav(AMJU_EVENT_FALL);
-      SetIsFalling(true);
+      SetIsControlled(false);
+
+      // We are not on the platform - just fall.
+      SetFloor(0);
+      m_onFloor = false;
+
+      if (!IsFalling())
+      {
+        PlayWav(AMJU_EVENT_FALL);
+        SetIsFalling(true);
+      }
     }
   }
 }
@@ -268,10 +293,10 @@ void OnFloor::UpdatePhysics()
   //  underneath us
 
   // Called in CollideObjectFloor as well
-  if (!m_floor)
-  {
-    FindFloor();
-  }
+//  if (!m_floor)
+//  {
+//    FindFloor();
+//  }
 
   // Slide in direction of floor tilt
   SetTilt();

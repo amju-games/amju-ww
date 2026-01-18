@@ -16,6 +16,7 @@ WWGameObject::WWGameObject()
   m_isDead = false;
   m_pSceneNode = 0;
   m_extentsSet = false;
+  m_extentsYOffset = 0;
   m_shadowSize = 0;
   m_yRot = 0;
 }
@@ -299,7 +300,7 @@ void WWGameObject::RecalcAABB()
   {
     m_aabb = AABB(
       m_pos.x - m_aabbExtents.x, m_pos.x + m_aabbExtents.x,
-      m_pos.y - m_aabbExtents.y, m_pos.y + m_aabbExtents.y,
+      m_pos.y - m_aabbExtents.y + m_extentsYOffset, m_pos.y + m_aabbExtents.y + m_extentsYOffset,
       m_pos.z - m_aabbExtents.z, m_pos.z + m_aabbExtents.z);
   }
 
