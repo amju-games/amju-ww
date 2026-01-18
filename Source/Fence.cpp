@@ -6,8 +6,8 @@
 #include "LoadMeshResource.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
-//#include "Floor.h"
 #include "ObjMesh.h"
+#include "DegRad.h"
 
 namespace Amju
 {
@@ -18,6 +18,7 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Fence::NAME, &CreateFenc
 
 Fence::Fence()
 {
+  m_yRot = 0;
 }
 
 const char* Fence::GetTypeName() const
@@ -38,7 +39,13 @@ bool Fence::Load(File* f)
     f->ReportError("Expected fence position");
     return false;
   }
-  // TODO y rot
+  // Load rotation around y axis
+  if (!f->GetFloat(&m_yRot))
+  {
+    f->ReportError("Expected fence y rot");
+    return false;
+  }
+
   m_pos = m_pos * m_mat;
 
   ObjMesh* mesh = LoadMeshResource(f);
@@ -54,26 +61,25 @@ bool Fence::Load(File* f)
   // Calc bounding box from mesh
   CollisionMesh cm;
   mesh->CalcCollisionMesh(&cm);
+
+  Matrix m;
+  m.RotateY(DegToRad(m_yRot));
+  m.TranslateKeepRotation(m_pos);
+  cm.Transform(m);
+
   cm.CalcAABB(m_pSceneNode->GetAABB());
-  m_pSceneNode->GetAABB()->Translate(m_pos);  
+
+  m_pSceneNode->SetLocalTransform(m);
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_pSceneNode);
  
-  //if (!LoadShadow(f))
-  //{
-  //  return false;
-  //}
-
   return true;
 }
 
 void Fence::Update()
 {
-  Matrix mat;
-  //? TODO mat.RotateY(m_yRot);
-  mat.TranslateKeepRotation(m_pos);
-  m_pSceneNode->SetLocalTransform(mat);
+
 }
 
 void Fence::Reset()
