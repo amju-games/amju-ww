@@ -612,6 +612,11 @@ bool Player::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 
 void Player::Update()
 {
+  if (m_reachedExit)
+  {
+    return;
+  }
+
   OnFloorCharacter::Update();
 
   Vec3f v = m_vel;
