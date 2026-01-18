@@ -171,11 +171,11 @@ bool WWGameObject::LoadMeshResource(File* f)
   }
  
   std::string ext = GetFileExt(m_meshFilename);
-  if (ext != "obj")
-  {
-    f->ReportError("Not an .obj file?!\n");
-    return false;
-  }
+  //if (ext != "obj")
+  //{
+  //  f->ReportError("Not an .obj file?!\n");
+  //  return false;
+  //}
   // TODO verify file exists?
 
   return true;
