@@ -12,8 +12,20 @@ namespace Amju
 {
 void CreateEditViewport()
 {
-  TheViewportManager::Instance()->
-    AddViewport(new EditViewport(0, 0, 0, Screen::X(), Screen::Y()));
+  int x = Screen::X();
+  int y = Screen::Y();
+  int x2 = x / 2;
+  int y2 = y / 2;
+
+  // 4 viewports
+  TheViewportManager::Instance()->AddViewport(new EditViewport(0, 0, 0, x2, y2)); 
+  //   id, x, y, w, h
+
+  TheViewportManager::Instance()->AddViewport(new EditViewport(1, x2, 0, x2, y2)); 
+
+  TheViewportManager::Instance()->AddViewport(new EditViewport(1, 0,  y2, x2, y2)); 
+
+  TheViewportManager::Instance()->AddViewport(new EditViewport(1, x2,  y2, x2, y2)); 
 }
 
 void CreateViewports(int numPlayers)
