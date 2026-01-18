@@ -48,6 +48,12 @@ void GSTitle::OnActive()
   // Start theme music
   TheSoundManager::Instance()->PlaySong("ww1.mod");
 
+  // Gui and 3D Text resources - keep in mem, so don't trash in OnDeactive
+  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
+  TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
+  TheResourceManager::Instance()->LoadResourceGroup("gui-group");
+  TheResourceManager::Instance()->LoadResourceGroup("skybox-group");
+
   m_gui = LoadGui("title-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("start-button")->SetCommand(new CommandStart);
