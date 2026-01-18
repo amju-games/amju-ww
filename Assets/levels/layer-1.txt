@@ -9,12 +9,15 @@ dino
 107
 // Position
 487.500000, 95.988045, 25.000000
-dino.md2
-dino1a.png
-dino1.png
+snowman.md2
+snowman.png
+snowman.png
+snowman-blood.png
+snowman-blood.png
 // Shadow texture & size
+// Could be blue
 shadow.png
-20.000000
+0.0
 end
 
 // Game object type
