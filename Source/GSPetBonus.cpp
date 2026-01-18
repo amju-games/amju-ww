@@ -63,9 +63,9 @@ std::cout << "Showing pet " << pet->GetId() << "\n";
     PlayWav("cashreg");
 //    PlayerNum pn = (PlayerNum)m_player->GetPlayerId();
 //    TheScores::Instance()->AddToScore(pn, m_scoreInc); 
-    m_bonus = m_scoreInc;
+    m_bonus = 0; //m_scoreInc;
     // Decide based on bonus size
-    m_bonusPortion = m_bonus / 20;
+    m_bonusPortion = m_scoreInc / 20;
     m_scoreInc *= 2;
   }
 }
@@ -130,7 +130,7 @@ void GSPetBonus::Update()
     if (m_timer > MAX_PORTION_TIME)
     {
       m_timer = 0;
-      if (m_bonus == 0)
+      if (m_bonus == m_scoreInc)
       {
         if (m_petNum >= (int)m_pets.size())
         {
@@ -143,8 +143,8 @@ void GSPetBonus::Update()
       }
       else
       {
-        Assert(m_bonus > 0);
-        m_bonus -= m_bonusPortion;
+//        Assert(m_bonus > 0);
+        m_bonus += m_bonusPortion;
         PlayerNum pn = (PlayerNum)m_player->GetPlayerId();
         TheScores::Instance()->AddToScore(pn, m_bonusPortion); 
 //      TheHud::Instance()->UpdateScores();
