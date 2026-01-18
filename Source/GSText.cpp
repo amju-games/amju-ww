@@ -7,13 +7,14 @@
 #include <Game.h>
 #include <EventPoller.h>
 #include <Billboard.h>
-#include "GSText.h"
-#include "CursorManager.h"
-#include "SceneMesh.h"
-#include "MySceneGraph.h"
-#include "CollisionMesh.h"
 #include "AABB.h"
+#include "GSText.h"
+#include "CollisionMesh.h"
+#include "CursorManager.h"
+#include "MySceneGraph.h"
 #include "MyTextMaker.h"
+#include "SceneMesh.h"
+#include "SerialReqManager.h"
 #include "Stars.h"
 
 namespace Amju
@@ -36,6 +37,10 @@ void GSText::GoToNewState(GameState* gs)
 
 void GSText::Update()
 {
+  // In GUI screens, update the HTTP reqest manager.
+  // (Don't do it in the Play state for smoothness, right?)
+  TheSerialReqManager::Instance()->Update();
+  
   GetTextSceneGraph()->Update();
 
   float dt = TheTimer::Instance()->GetDt(); 

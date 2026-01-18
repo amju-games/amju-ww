@@ -32,18 +32,20 @@
 
 #include <GuiButton.h>
 #include <EventPoller.h>
-#include "StartUp.h"
+#include "CursorManager.h"
 #include "GSLogo.h"
 #include "GSLoadLayers.h" 
 #include "GSCopyAssets.h"
-#include "CursorManager.h"
-#include "Hud.h"
-#include "LevelManager.h"
-#include "StartGame.h"
 #include "GSPaused.h"
-#include "SaveDir.h"
-#include "ResizeHandler.h"
+#include "Hud.h"
 #include "Init.h"
+#include "LevelManager.h"
+#include "NetSend.h"
+#include "ResizeHandler.h"
+#include "SaveDir.h"
+#include "StartGame.h"
+#include "StartUp.h"
+#include "Version.h"
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
@@ -118,15 +120,19 @@ void StartUpBeforeCreateWindow()
     if (gcf->Load())
     {
       std::cout << "Loaded game config file OK: " << filename << "\n";
+      // Send updated device info if anything has changed since we last sent.
+      NetSendUpdateDeviceInfo();
     }
     else
     {
       std::cout << "Failed to load game config file: " << filename << "\n";
+      // TODO This is serious, what to do?
     }
   }
   else
   {
     std::cout << "No game config file exists: " << filename << "\n";
+    NetSendDeviceInfoFirstRunEver();
   }
 
 #if defined(WIN32) || defined(MACOSX)
