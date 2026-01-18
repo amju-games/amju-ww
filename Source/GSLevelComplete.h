@@ -3,6 +3,7 @@
 
 #include <GameState.h>
 #include <Singleton.h>
+#include <GuiImage.h>
 #include "Player.h"
 
 namespace Amju
@@ -28,6 +29,8 @@ public:
 protected:
   float m_timer;
   RCPtr<Player> m_player;
+  GuiImage m_bg;
+  float m_z; // z-distance for effect
 };
 typedef Singleton<GSLevelComplete> TheGSLevelComplete;
 }
