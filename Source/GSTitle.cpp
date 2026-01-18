@@ -1,22 +1,25 @@
 #include <GuiButton.h>
 #include <LoadScene.h>
+#include <StringUtils.h>
 #include "EventPoller.h"
 #include "Game.h"
+#include "GameConsts.h"
 #include "GSChooseLevel.h"
 #include "GSMenu.h"
 #include "GSNewOrContinue.h"
 #include "GSTitle.h"
-#include "GSTweet.h"
 #include "GSYouGotHiScore.h"
 #include "iOSKeyboard.h"
+#include "iOSShare.h"
 #include "iOSTweet.h"
 #include "LevelManager.h"
 #include "MySceneGraph.h"
 #include "ResourceManager.h"
 #include "SaveDir.h"
-#include "Screenshot.h"
-#include "SoundManager.h"
 #include "SceneMesh.h"
+#include "Screenshot.h"
+#include "iOSShare.h" // TODO filename
+#include "SoundManager.h"
 #include "StartGame.h"
 #include "WWLoadGui.h"
 
@@ -28,7 +31,41 @@ const char* GSTitle::NAME = "title";
 
 static void Test(GuiElement*)
 {
+#ifdef TEST_TRUNCATE
+
+  // TEST: new hi score
+  int MAX_LEN = 10;
+  std::string test1 = "123😍😘";
+  std::string truncated1 =  TruncateUtf8String(test1, MAX_LEN);
+
+  std::string test2 = "abcd😍😘😗😡😇";
+  std::string truncated2 =  TruncateUtf8String(test2, MAX_LEN);
+
+  std::string test3 = "abcde😍😘😗😡😇";
+  std::string truncated3 =  TruncateUtf8String(test3, MAX_LEN);
+
+  std::string test4 = "ab😍😘😗😡😇";
+  std::string truncated4 =  TruncateUtf8String(test4, MAX_LEN);
+
+  std::string test5 = "a😍😘😗😡😇";
+  std::string truncated5 =  TruncateUtf8String(test5, MAX_LEN);
+
+  std::string test6 = "😍😘abcd😗😡😇";
+  std::string truncated6 =  TruncateUtf8String(test6, MAX_LEN);
+
+#endif // TEST_TRUNCATE
+  
   TheGame::Instance()->SetCurrentState(TheGSYouGotHiScore::Instance());
+
+  
+  // TEST: save portion of screen ok?
+//  SaveScreenshot("screenshot3.png", Vec2f(200, 200), Vec2f(500, 500));
+  
+  // TEST: share screenshot image and text
+  //
+  //TheShareManager::Instance()->ShareScreenshotWithMessage("Wow");
+  //unsigned char* data = SaveScreenshotToArrayOnHeap(Vec2f(200, 200), Vec2f(500, 500));
+  //iOSShareTextAndScreenshot("wow!", data, 500, 500);
 }
 
 GSTitle::GSTitle()
