@@ -12,8 +12,8 @@ class Cursor : public EventListener
 public:
   Cursor();
   
-  virtual void OnCursorEvent(const CursorEvent& ce);  
-  virtual void OnRotationEvent(const RotationEvent&);
+  virtual bool OnCursorEvent(const CursorEvent& ce);  
+  virtual bool OnRotationEvent(const RotationEvent&);
   
   bool Load(int id);
   void Draw();

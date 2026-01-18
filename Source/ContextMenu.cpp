@@ -17,11 +17,13 @@ void ContextMenu::Draw()
   }
 }
 
-void ContextMenu::OnButtonEvent(const ButtonEvent& be)
+bool ContextMenu::OnButtonEvent(const ButtonEvent& be)
 {
+  // TODO
+  return false;
 }
 
-void ContextMenu::OnMouseButtonEvent(const MouseButtonEvent& mbe)
+bool ContextMenu::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
   // Do regular processing but reposition on R button
   GuiMenu::OnMouseButtonEvent(mbe);
@@ -34,7 +36,9 @@ void ContextMenu::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       Cursor* c = TheCursorManager::Instance()->GetCursor(0);
       SetPos(c->GetPos());
       SetVisible(true);
+      return true;
     }
   }
+  return false;
 }
 }

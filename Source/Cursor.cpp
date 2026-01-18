@@ -6,15 +6,17 @@
 
 namespace Amju
 {
+static const int CURSOR_PRIORITY = -2; // highest, so always responds
+
 Cursor::Cursor() : m_id(-1)
 {
   m_isActive = false;
-  TheEventPoller::Instance()->AddListener(this);
+  TheEventPoller::Instance()->AddListener(this, CURSOR_PRIORITY);
 
   m_rot= 0;
 
-	static const float W = 0.1f;
-	static const float H = 0.1f;
+  static const float W = 0.1f;
+  static const float H = 0.1f;
 
   AmjuGL::Vert verts[4] = 
   {
@@ -24,17 +26,17 @@ Cursor::Cursor() : m_id(-1)
     AmjuGL::Vert(-W, -H, 0,   0, 0,   0, 1, 0)
   };
 
-	m_tris.reserve(2);
-	AmjuGL::Tri tri;
-	tri.m_verts[0] = verts[0];
-	tri.m_verts[1] = verts[1];
-	tri.m_verts[2] = verts[2];
-	m_tris.push_back(tri);
+  m_tris.reserve(2);
+  AmjuGL::Tri tri;
+  tri.m_verts[0] = verts[0];
+  tri.m_verts[1] = verts[1];
+  tri.m_verts[2] = verts[2];
+  m_tris.push_back(tri);
 
-	tri.m_verts[0] = verts[0];
-	tri.m_verts[1] = verts[2];
-	tri.m_verts[2] = verts[3];
-	m_tris.push_back(tri);
+  tri.m_verts[0] = verts[0];
+  tri.m_verts[1] = verts[2];
+  tri.m_verts[2] = verts[3];
+  m_tris.push_back(tri);
 }
 
 const Vec2f& Cursor::GetPos() const
@@ -51,7 +53,7 @@ bool Cursor::Load(int id)
   return true;
 }
 
-void Cursor::OnCursorEvent(const CursorEvent& ce)
+bool Cursor::OnCursorEvent(const CursorEvent& ce)
 {
   Assert(m_id > -1);
   
@@ -61,9 +63,10 @@ void Cursor::OnCursorEvent(const CursorEvent& ce)
     m_pos.x = ce.x;
     m_pos.y = ce.y;
   }
+  return false;  // never treat as handled
 }
 
-void Cursor::OnRotationEvent(const RotationEvent& re)
+bool Cursor::OnRotationEvent(const RotationEvent& re)
 {
   Assert(m_id > -1);
   
@@ -74,6 +77,7 @@ void Cursor::OnRotationEvent(const RotationEvent& re)
       m_rot = re.degs;
     }
   }
+  return false;
 }
 
 void Cursor::Draw()
