@@ -145,7 +145,11 @@ float OnFloor::CalcDropFallen()
     return 0;
   }
   float h = m_heightFallenFrom - m_pos.y;
+
+#ifdef SHOW_DROP_FALLEN_DEBUG
 std::cout << Describe(this) << ": Drop: " << h << "\n";
+#endif
+
   return h;
 }
 
