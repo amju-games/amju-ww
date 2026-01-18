@@ -1,3 +1,4 @@
+#include <GuiButton.h>
 #include "GSTitle.h"
 #include "Game.h"
 #include "EventPoller.h"
@@ -70,7 +71,12 @@ void GSTitle::OnActive()
 
   m_gui = WWLoadGui("title-gui.txt");
   Assert(m_gui);
-  m_gui->GetElementByName("start-button")->SetCommand(new CommandStart);
+
+  GuiButton* start = (GuiButton*)m_gui->GetElementByName("start-button");
+  start->SetCommand(new CommandStart);
+  start->SetIsFocusButton(true);
+  start->SetShowIfFocus(true);
+
   GuiElement* quit = m_gui->GetElementByName("quit-button");
   if (quit)
   {
