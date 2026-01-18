@@ -1,25 +1,31 @@
 #include "ShadowManager.h"
 #include "MySceneGraph.h"
 
+#define SHADOW_MGR_DEBUG
+
 namespace Amju
 {
+ShadowManager::ShadowManager()
+{
+  m_first = true;
+}
+
 void ShadowManager::Clear()
 {
   m_floors.clear();
   m_casters.clear();
   m_floorToCasterMap.clear();
+  m_first = true;
 }
 
 void ShadowManager::AddFloor(Floor* floor)
 {
   m_floors.insert(floor);
 
-  // TEMP TEST - add floor collision mesh for all shadow casters
-  for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
-  {
-    Shadow* shadow = it->second;
-    shadow->AddCollisionMesh(floor->GetCollisionMesh());
-  }
+#ifdef SHADOW_MGR_DEBUG
+std::cout << "Shadow mgr: added floor " << floor->GetTypeName()
+  << " ID: " << floor->GetId() << "\n";
+#endif
 }
 
 void ShadowManager::RemoveCaster(WWGameObject* obj)
@@ -50,11 +56,47 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   root->AddChild(shadow);
   m_casters.insert(std::make_pair(obj, shadow));
+
+#ifdef SHADOW_MGR_DEBUG
+std::cout << "Shadow mgr: added caster " << obj->GetTypeName()
+  << " ID: " << obj->GetId() << "\n";
+#endif
 }
 
 void ShadowManager::Update()
 {
   // On first update, find all casters for each floor
+  if (m_first)
+  {
+    m_first = false;
+  
+    // For each floor, add its collision mesh to all casters which overlap
+    for (auto ft = m_floors.begin(); ft != m_floors.end(); ++ft)
+    {
+      Floor* floor = *ft;
+      for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
+      {
+        // TODO Check if caster overlaps floor
+        WWGameObject* go = it->first;
+        Shadow* shadow = it->second;
+
+#ifdef SHADOW_MGR_DEBUG
+std::cout << "Shadow mgr: caster ID: " << go->GetId() 
+  << " casts onto floor ID: " << floor->GetId() << "\n";
+#endif
+        Matrix mat;
+        Vec3f p = go->GetPos();
+        mat.Translate(p);
+        shadow->SetLocalTransform(mat);
+
+        static const float S = 10.0f;
+        AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
+        shadow->SetAABB(aabb);
+
+        shadow->AddCollisionMesh(floor->GetCollisionMesh());
+      }
+    }
+  }
 
   // If a shadow caster moves, update its shadow transform matrix,
   //  and for each floor, check if it casts a shadow onto it.
@@ -64,8 +106,13 @@ void ShadowManager::Update()
     WWGameObject* go = it->first;
     Shadow* shadow = it->second;
     Matrix mat;
-    mat.Translate(go->GetPos());
+    Vec3f p = go->GetPos();
+    mat.Translate(p);
     shadow->SetLocalTransform(mat);
+
+    static const float S = 10.0f;
+    AABB aabb(p.x - S, p.x + S, p.y - S, p.y + S, p.z - S, p.z + S);
+    shadow->SetAABB(aabb);
   }
 
   // If a floor moves, recalc all the shadows which are casting on to it
