@@ -22,7 +22,7 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Exit::NAME, &CreateExit)
 
 const char* Exit::NAME = "exit";
 
-static const float XSIZE = 20.0f;
+static const float XSIZE = 5.0f;
 static const float YSIZE = 20.0f;
 
 Exit::Exit()
@@ -222,6 +222,8 @@ void Exit::OnPlayerCollision()
 {
   Assert(!m_isExiting); // already called
   m_isExiting = true;
+
+  m_text->SetVisible(false);
 
   // Do this if we go directly to GSLevelCompleted state, with no time delay
   TheLevelManager::Instance()->SetLevelId(m_toLevel);
