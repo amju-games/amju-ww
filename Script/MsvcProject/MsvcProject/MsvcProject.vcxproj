@@ -346,6 +346,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSSpiral.cpp" />
     <ClCompile Include="..\..\..\Source\GSText.cpp" />
     <ClCompile Include="..\..\..\Source\GSTitle.cpp" />
+    <ClCompile Include="..\..\..\Source\GSTweet.cpp" />
     <ClCompile Include="..\..\..\Source\GSYesNo.cpp" />
     <ClCompile Include="..\..\..\Source\GSYesNoNewGame.cpp" />
     <ClCompile Include="..\..\..\Source\GSYesNoQuitGame.cpp" />
@@ -378,6 +379,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\ResizeHandler.cpp" />
     <ClCompile Include="..\..\..\Source\SaveDir.cpp" />
     <ClCompile Include="..\..\..\Source\Score.cpp" />
+    <ClCompile Include="..\..\..\Source\Screenshot.cpp" />
     <ClCompile Include="..\..\..\Source\SelectedNode.cpp" />
     <ClCompile Include="..\..\..\Source\SerialReqManager.cpp" />
     <ClCompile Include="..\..\..\Source\ShadowManager.cpp" />
@@ -449,6 +451,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSPetBonus.h" />
     <ClInclude Include="..\..\..\Source\GSText.h" />
     <ClInclude Include="..\..\..\Source\GSTitle.h" />
+    <ClInclude Include="..\..\..\Source\GSTweet.h" />
     <ClInclude Include="..\..\..\Source\GSYesNo.h" />
     <ClInclude Include="..\..\..\Source\GSYesNoNewGame.h" />
     <ClInclude Include="..\..\..\Source\GSYesNoQuitGame.h" />
@@ -484,6 +487,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\Rotateable.h" />
     <ClInclude Include="..\..\..\Source\SaveDir.h" />
     <ClInclude Include="..\..\..\Source\Score.h" />
+    <ClInclude Include="..\..\..\Source\Screenshot.h" />
     <ClInclude Include="..\..\..\Source\SelectedNode.h" />
     <ClInclude Include="..\..\..\Source\SerialReqManager.h" />
     <ClInclude Include="..\..\..\Source\ShadowManager.h" />
