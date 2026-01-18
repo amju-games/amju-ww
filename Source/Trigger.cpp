@@ -15,8 +15,10 @@ static const float SIZE = 50.0f;
 
 Trigger::Trigger()
 {
-  m_aabbExtents = Vec3f(SIZE, SIZE, SIZE);
-  m_extentsSet = true;
+//  m_aabbExtents = Vec3f(SIZE, SIZE, SIZE);
+//  m_extentsSet = true;
+  // Default..?
+  m_aabb.Set(-SIZE, SIZE, -SIZE, SIZE, -SIZE, SIZE);
 }
 
 bool Trigger::Save(File* f)
@@ -44,6 +46,7 @@ bool Trigger::Load(File* f)
     f->ReportError("Failed to load trigger AABB");
     return false;
   }
+  m_pos = m_aabb.CalcCentre();
 
   return true;
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <set>
 #include "Trigger.h"
 
 namespace Amju
@@ -20,11 +21,15 @@ public:
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey) override;
   virtual void SetProp(PropertyKey, PropertyValue) override;
+  virtual void Update();
 
 private:
   // ID of destination object, most likely another portal, so travel
   //  is 2 way.
   int m_destId;
+  // If a player is in this set, collisions are ignored. 
+  // Each update, we check to see if each player is still intersecting.
+  std::set<RCPtr<Player>> m_collidingPlayers;
 };
 }
 
