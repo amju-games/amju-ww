@@ -24,7 +24,7 @@ void Npc::DecideAI()
       best.second = it->second;
     }
   }
-#ifdef _DEBUG
+#ifdef AI_DEBUG
   std::cout << GetTypeName() << " choosing AI: " << best.second->GetName() 
     << " rank: " << best.first << "\n";
 #endif
@@ -49,7 +49,7 @@ void Npc::SetAI(AI* ai)
     m_ai->OnDeactivated();
   }
   m_ai = ai;
-#ifdef _DEBUG
+#ifdef AI_DEBUG
   std::cout << GetTypeName() << " changing AI to " << m_ai->GetName() << "\n";
 #endif
   m_ai->OnActivated();
@@ -96,5 +96,4 @@ void Npc::OnAnimRepeat()
 {
   m_ai->OnAnimRepeat();
 }
-
 }
