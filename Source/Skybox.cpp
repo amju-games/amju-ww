@@ -6,8 +6,7 @@
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
 #include "PropertiesDialog.h"
-
-//#define MOUSE_MOVE_SKYBOX
+#include "PropertyKeys.h"
 
 namespace Amju
 {
@@ -18,12 +17,6 @@ const char* Skybox::NAME = "skybox";
 
 Skybox::Skybox()
 {
-  m_xRot = 0;
-  m_yRot = 0;
-
-#ifdef MOUSE_MOVE_SKYBOX
-  TheEventPoller::Instance()->AddListener(this);
-#endif
 }
 
 WWGameObject* Skybox::Clone()
@@ -33,7 +26,8 @@ WWGameObject* Skybox::Clone()
 
 void Skybox::AddPropertiesGui(PropertiesDialog* dlg)
 {
-  // TODO
+  std::string colStr = ToHexString(m_colour);
+  dlg->AddItem(new PropertiesDialog::TextItem("Colour", colStr, PROP_COLOUR));
 }
 
 PropertyValue Skybox::GetProp(PropertyKey key)
@@ -89,6 +83,7 @@ void Skybox::AddToGame()
   GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_SKYBOX, GetSceneNode());
 }
 
+/*
 bool Skybox::CreateSceneNode()
 {
   // TODO Why is mesh stored as m_mesh in skybox? May not be needed.
@@ -105,17 +100,9 @@ bool Skybox::CreateSceneNode()
 
   return true;
 }
+*/
 
 void Skybox::Update()
 {
-//  static const float ROT_VEL = 2.0f; // degs/dec
-//  m_yRot += ROT_VEL * TheTimer::Instance()->GetDt();
-
-  Matrix mat;
-  mat.RotateX(m_xRot);
-  Matrix mat2;
-  mat.RotateY(m_yRot);
-  GetSceneNode()->SetLocalTransform(mat);
-  GetSceneNode()->MultLocalTransform(mat2);
 }
 }
