@@ -16,7 +16,7 @@ static void OnOptions()
   GSPaused* paused = TheGSPaused::Instance();
 
   options->SetPrevState(paused);
-  TheGame::Instance()->SetCurrentState(options);
+  paused->GoToNewState(options);
 }
 
 static void OnQuit()

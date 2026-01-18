@@ -35,7 +35,7 @@ class CommandGo : public GuiCommand
     else
     {
       PlayWav("gong");
-      TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
+      TheGSLoadLevel::Instance()->GoToNewState(TheGSMain::Instance());
     }
     return false; //no undo
   }
@@ -115,7 +115,7 @@ void GSLoadLevel::Update()
   GSText::Update();
 
   // Wait for graphics to stop moving -- loading ruins the effect
-  static const float WAIT_TIME = 2.0f; // TODO
+  static const float WAIT_TIME = 1.0f; // TODO
 
   if (m_timer > WAIT_TIME && m_currentObj < m_numObjects)
   {
