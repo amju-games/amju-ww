@@ -59,7 +59,7 @@ void StartUp()
   TheSoundManager::Instance()->SetImpl(new BassSoundPlayer);
 #endif
 
-  TheGame::Instance()->SetClearColour(Colour(0, 0, 0, 1.0f));
+  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
 
   if (!FileImplGlue::OpenGlueFile(GLUE_FILE))
   {

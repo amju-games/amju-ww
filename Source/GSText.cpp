@@ -69,7 +69,7 @@ void GSText::OnActive()
   GameState::OnActive();
   m_timer = 0;
 
-  TheGame::Instance()->SetClearColour(Colour(0, 0, 0, 1.0f));
+  AmjuGL::SetClearColour(Colour(0, 0, 0, 1.0f));
 }
 
 void GSText::OnDeactive()
