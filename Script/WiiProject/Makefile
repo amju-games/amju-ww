@@ -76,7 +76,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 #LIBS	:=	-lwiiuse -lbte -lfat -logc -lm
 # j.c. extra for SoundGekko
-LIBS	:=	-lfat -lwiiuse -lbte -lasnd -logc -lmodplay -lm 
+LIBS	:=	-lfat -lwiiuse -lbte -logc -lmodplay -laesnd -lm 
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
