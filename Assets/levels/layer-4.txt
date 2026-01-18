@@ -2,13 +2,13 @@
 11
 
 // Num game objects
-28
+29
 
 // Game object type
 pet
 105
 // Position
-3400.000000, 2558.188721, 50.000000
+3400.000000, 2556.996094, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -21,7 +21,7 @@ end
 pet
 106
 // Position
-3450.000000, 2408.188721, 50.000000
+3450.000000, 2406.996094, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -34,7 +34,7 @@ end
 dino
 107
 // Position
-3700.000000, 2558.188721, 50.000000
+3700.000000, 2556.996094, 50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -61,7 +61,7 @@ end
 // Game object type
 bonus
 111
-1168.750000, 175.000000, 37.500000
+568.750000, 125.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -76,7 +76,7 @@ end
 // Game object type
 bonus
 113
-812.500000, 125.000000, 43.750000
+887.500000, 125.000000, 43.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -91,10 +91,10 @@ end
 // Game object type
 fence
 2002
-1212.500000, 101.562500, 53.125000
+912.500000, 101.562500, 53.125000
 0.000000
 // Mesh filename
-rock_1x1.obj
+grave2.obj
 end
 
 // Game object type
@@ -117,13 +117,23 @@ rd_a41a.obj
 end
 
 // Game object type
-floor
-4003
-1175.000000, 950.000000, 450.000000
+staticfloor
+2025
+1050.000000, 100.000000, 50.000000
 // Y rotation
 0.000000
 // Mesh filename
-plat_rect_4x1_std.obj
+block_rect_1x1.obj
+end
+
+// Game object type
+floor
+4003
+575.000000, 100.000000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+block_rect_2x1.obj
 // Rotation axis flags
 4
 // Max AABB height
@@ -150,7 +160,7 @@ end
 // Game object type
 bonus
 4007
-1000.000000, 150.000000, 50.000000
+1275.000000, 125.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -165,7 +175,7 @@ end
 // Game object type
 bonus
 4008
-1250.000000, 187.500000, 43.750000
+1087.500000, 162.500000, 31.250000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -180,7 +190,7 @@ end
 // Game object type
 bonus
 4009
-912.500000, 225.000000, 62.500000
+1012.500000, 175.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -196,7 +206,7 @@ end
 pet
 4022
 // Position
-3550.000000, 2358.188721, 50.000000
+3550.000000, 2356.996094, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -208,7 +218,7 @@ end
 // Game object type
 bonus
 5001
-1081.250000, 150.000000, 62.500000
+1206.250000, 150.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -223,16 +233,16 @@ end
 // Game object type
 fence
 5006
-1287.500000, 101.562500, 40.625000
+850.000000, 101.562500, 15.625000
 0.000000
 // Mesh filename
-rock_1x1.obj
+grave1.obj
 end
 
 // Game object type
 fence
 5007
-1112.500000, 95.312500, 40.625000
+1237.500000, 95.312500, 40.625000
 0.000000
 // Mesh filename
 rock_1x1.obj
@@ -241,17 +251,17 @@ end
 // Game object type
 staticfloor
 5009
-1150.000000, 100.000000, 50.000000
+1250.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41a.obj
+rd_a21a.obj
 end
 
 // Game object type
 staticfloor
 5010
-625.000000, 150.000000, -175.000000
+775.000000, 150.000000, -150.000000
 // Y rotation
 720.000000
 // Mesh filename
@@ -315,11 +325,11 @@ end
 // Game object type
 staticfloor
 5788
-675.000000, 100.000000, 50.000000
+850.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41.obj
+rd_a21b.obj
 end
 
 // Game object type
@@ -355,7 +365,7 @@ end
 // Game object type
 bonus
 5791
-731.250000, 125.000000, 43.750000
+806.250000, 125.000000, 43.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
