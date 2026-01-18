@@ -29,6 +29,7 @@ void Viewport::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
+  GetCamera()->SetAsSceneGraphCamera();
   GetGameSceneGraph()->Draw();
 }
 
