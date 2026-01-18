@@ -113,10 +113,10 @@ void GSText::Draw()
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::DrawLighting(
     AmjuGL::LightColour(0, 0, 0),
-    AmjuGL::LightColour(0.7f, 0.7f, 0.7f), // Ambient light colour
+    AmjuGL::LightColour(0.9f, 0.9f, 0.9f), // Ambient light colour
     AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
     AmjuGL::LightColour(1, 1, 1),
-    AmjuGL::Vec3(1, 1, 1)); // Light direction
+    AmjuGL::Vec3(0, 1, 1)); // Light direction
 
   AmjuGL::Translate(0, m_yPos, 0);
 
@@ -131,7 +131,9 @@ void GSText::Draw2d()
   }
 
 #ifdef GEKKO
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
   TheCursorManager::Instance()->Draw();
+  AmjuGL::Disable(AmjuGL::AMJU_DEPTH_WRITE);
 #endif
 }
 

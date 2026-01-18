@@ -88,8 +88,10 @@ void ProcGen::Init()
 
 #endif
 
+#ifdef PROCGEN_DEBUG
   std::cout << "Total num levels = " << m_numLevels << "\n";
   std::cout << "Total num layers = " << m_numLayers << "\n";
+#endif
 }
 
 bool ProcGen::OpenLayer(int layerNum) 
@@ -283,12 +285,14 @@ void ProcGen::Reset()
 
   // Finally, shuffle the active layers?
 
+#ifdef PROCGEN_DEBUG
 std::cout << "This level (" << levelId << ") is comprised of these layers: ";
 for (int i = 0; i < (int)m_activeLayers.size(); i++)
 {
   std::cout << m_activeLayers[i] << " ";
 }
 std::cout << "\n";
+#endif
  
   PickNextLayer();
 }

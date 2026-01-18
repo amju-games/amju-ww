@@ -67,7 +67,9 @@ void TutorialTrigger::OnPlayerCollision(Player*)
   if (idSet.insert(unique).second == false)
   {
     // Not inserted - already in set
+#ifdef TT_DEBUG
 std::cout << "Already triggered tutorial trigger " << GetId() << "\n";
+#endif
     return;
   }
 
