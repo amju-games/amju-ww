@@ -5,7 +5,7 @@
 
 namespace Amju
 {
-void CollidePlayerDino(GameObject* go1, GameObject* go2)
+void CollidePlayerDino(Player* go1, Dino* go2)
 {
   // Sound effect
   // TODO Make sure not played more than once in successive frames
@@ -14,20 +14,27 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
 
   // Push both objects away from each other
 
-  static const float RESPONSE = 10.0f; // TODO CONFIG
+  static const float RESPONSE = 100.0f; // TODO CONFIG
 
   // Line between centres
   Vec3f line = go1->GetPos() - go2->GetPos();
+  line.y = 0;
   line.Normalise();
   line *= RESPONSE;
 
-  go1->SetVel(go1->GetVel() + line);
-  go1->SetAcc(-go1->GetVel());
+  Vec3f v1 = go1->GetVel() + line;
+  v1.y = 0;
+  go1->SetVel(v1);
+  //go1->SetAcc(-v1);
+  //go1->StopRotating();
 
-  go2->SetVel(go2->GetVel() - line);
-  go2->SetAcc(-go2->GetVel());
+  Vec3f v2 = go2->GetVel() - line;
+  v2.y = 0;
+  go2->SetVel(v2);
+  //go2->SetAcc(-v2);
+  //go2->StopRotating();
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Dino::NAME, &CollidePlayerDino);
+  Player::NAME, Dino::NAME, (CollisionManager::CollisionHandler)CollidePlayerDino);
 } 
