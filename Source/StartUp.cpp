@@ -65,7 +65,7 @@ void StartUpAfterCreateWindow()
   File::SetRoot("/apps/amju_ww/data/", "/");
 #endif
 
-#if defined (MACOSX)
+#if defined (MACOSX) || defined(WIN32) || defined(AMJU_IOS)
   sm->SetImpl(new BassSoundPlayer);
 #endif
 
