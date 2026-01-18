@@ -15,6 +15,7 @@
 #include "AIChasePet.h"
 #include "AIFalling.h"
 #include "AITurnToFace.h"
+#include "AIStunned.h"
 
 namespace Amju
 {
@@ -33,6 +34,7 @@ Dino::Dino()
   AddAI(new AIChasePet);
   AddAI(new AIFalling);
   AddAI(new AITurnToFace);
+  AddAI(new AIStunned);
 
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsSet = true;
