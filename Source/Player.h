@@ -47,6 +47,7 @@ public:
   virtual void OnWallCollision(const Vec3f& normal) override;
 
   virtual void StartBeingEaten(OnFloorCharacter* eater) override;
+  virtual void StartBeingDead();
 
   void Jump();
 
@@ -60,6 +61,8 @@ public:
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey);
   virtual void SetProp(PropertyKey, PropertyValue);
+
+  virtual void OnHitFloor();
 
 private:
   void UpdatePets();

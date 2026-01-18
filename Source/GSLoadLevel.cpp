@@ -114,7 +114,10 @@ void GSLoadLevel::Update()
 {
   GSText::Update();
 
-  if (m_currentObj < m_numObjects)
+  // Wait for graphics to stop moving -- loading ruins the effect
+  static const float WAIT_TIME = 2.0f; // TODO
+
+  if (m_timer > WAIT_TIME && m_currentObj < m_numObjects)
   {
     LoadOneObject();
     ++m_currentObj;

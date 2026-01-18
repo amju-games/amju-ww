@@ -90,6 +90,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   }
 }
 
+#if 0
 void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
 {
   OnFloorCharacter* ofc = (dynamic_cast<OnFloorCharacter*>(go1));
@@ -167,6 +168,7 @@ void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
     }
   }
 }
+#endif
 
 #define Fun CollideObjectFloor
 

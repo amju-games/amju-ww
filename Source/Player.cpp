@@ -33,6 +33,7 @@
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
 #include "Depth.h"
+#include "Camera.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -92,11 +93,34 @@ Player::~Player()
 {
   KillController();
 }
-  
+
+void Player::OnHitFloor()
+{
+  // TODO Player-floor only
+  // TEST
+  // TODO 'ow!' wavs
+  Amju::PlayWav("bouncefloor"); //hammer_anvil3"); // NB No file ext
+  Camera* cam = GetActiveCamera();
+  Assert(cam);
+  cam->SetEarthquake(1.0f); // TODO CONFIG
+}
+
+void Player::StartBeingDead() 
+{
+  // Stop scrolling - set speed to zero?????
+
+  Amju::PlayWav("gasp");
+  // Go to zoom camera
+  KillController();
+  OnFloorCharacter::StartBeingDead();
+}
+
 void Player::StartBeingEaten(OnFloorCharacter* eater) 
 {
   // Stop scrolling - set speed to zero?????
 
+  // TODO being eaten sound??
+//   Amju::PlayWav("gasp");
   // Go to zoom camera
   KillController();
   OnFloorCharacter::StartBeingEaten(eater);
