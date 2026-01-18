@@ -72,6 +72,7 @@ Player::Player()
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsSet = true;
   m_playerId = 0;
+  m_reachedExit = false;
 }
 
 Player::~Player()
@@ -108,6 +109,8 @@ const char* Player::GetTypeName() const
 
 void Player::ReachedExit()
 {
+  m_reachedExit = true;
+
   KillController();
 
   ShadowManager* shm = TheShadowManager::Instance();
@@ -160,6 +163,12 @@ void Player::Reset()
 
 void Player::DropPets()
 {
+  if (m_reachedExit)
+  {
+    return;
+    std::cout << "Not dropping pets because we reached the exit!\n";
+  }
+
   for (PetList::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
   {
     Pet* pet = *it;
@@ -581,6 +590,11 @@ bool Player::OnJoyAxisEvent(const JoyAxisEvent& je)
 
 bool Player::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
+  if (IsEditMode())
+  {
+    return false;
+  }
+
   // Tap to jump
   if (mbe.isDown && mbe.button == AMJU_BUTTON_MOUSE_LEFT)
   {
