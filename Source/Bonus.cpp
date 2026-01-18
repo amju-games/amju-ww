@@ -151,7 +151,7 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
 
   m_pSceneNode->SetVisible(false);
   m_effect->SetVisible(true);
-  m_shadow->SetVisible(false);
+  ////m_shadow->SetVisible(false);
 
   Amju::PlayWav("cashreg"); // NB No file ext
   Amju::PlayWav("bonus_points"); // NB No file ext
