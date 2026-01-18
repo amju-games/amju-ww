@@ -29,9 +29,12 @@ void ContextMenu::OnMouseButtonEvent(const MouseButtonEvent& mbe)
   if (mbe.button == AMJU_BUTTON_MOUSE_RIGHT &&
       mbe.isDown)
   {
-    Cursor* c = TheCursorManager::Instance()->GetCursor(0);
-    SetPos(c->GetPos());
-    SetVisible(true);
+    if (!IsVisible())
+    {
+      Cursor* c = TheCursorManager::Instance()->GetCursor(0);
+      SetPos(c->GetPos());
+      SetVisible(true);
+    }
   }
 }
 }
