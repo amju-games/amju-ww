@@ -18,6 +18,7 @@
 #include "AITurnToFace.h"
 #include "AIStunned.h"
 #include "PropertiesDialog.h"
+#include "RDRandom.h"
 
 namespace Amju
 {
