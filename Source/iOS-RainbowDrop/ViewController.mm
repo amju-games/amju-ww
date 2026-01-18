@@ -194,6 +194,11 @@ void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
 	for (UITouch* touch in touches)
 	{
 		CGPoint touchPoint = [touch locationInView:self.view];
+		
+		Amju::CursorEvent* ce = new Amju::CursorEvent;
+		PopulateCursorEvent(ce, touchPoint.x * s, touchPoint.y * s);
+		QueueEvent(ce);
+
 		if (i++ == 0)
 		{
 			Amju::MouseButtonEvent* mbe = new Amju::MouseButtonEvent;
@@ -202,10 +207,6 @@ void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)
 			PopulateMBEvent(mbe, touchPoint.x * s, touchPoint.y * s);
 			QueueEvent(mbe);
 		}
-		
-		Amju::CursorEvent* ce = new Amju::CursorEvent;
-		PopulateCursorEvent(ce, touchPoint.x * s, touchPoint.y * s);
-		QueueEvent(ce);
 	}
 }
 
