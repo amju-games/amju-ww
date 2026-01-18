@@ -11,7 +11,7 @@ mkdir %DEST_DIR%\sound
 
 
 xcopy /S /Y %SRC_DIR%\windows\*.wav %DEST_DIR%\sound
-xcopy /S /Y %SRC_DIR%\*.mod %DEST_DIR%\sound
+xcopy /S /Y %SRC_DIR%\*.it %DEST_DIR%\sound
 
 
 cd %DEST_DIR%
@@ -25,7 +25,7 @@ REM Add files in sound dir
 
 for %%f in (sound\*.wav) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
-for %%f in (sound\*.mod) do %GLUE_EXE% -a %GLUE_FILE% %%f
+for %%f in (sound\*.it) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 
 REM Verify contents
