@@ -28,7 +28,7 @@ end
 bird
 99
 // Position
--22.227829, 145.568161, 20.085575
+-22.227736, 145.568237, 20.085598
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -41,7 +41,7 @@ end
 player
 101
 // Position
-100.000000, 201.881866, 50.000000
+100.000000, 201.881363, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -58,7 +58,7 @@ end
 player
 102
 // Position
-1250.000000, 208.131912, 20.000000
+1262.500000, 208.131409, 57.500000
 // Player ID
 1
 // MD2 mesh name
@@ -71,11 +71,10 @@ shadow.png
 20.000000
 end
 
-
 // Game object type
 bonus
 110
-625.000000, 137.500000, 75.000000
+625.000000, 137.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -105,7 +104,7 @@ end
 // Game object type
 bonus
 113
-212.500000, 125.000000, 12.500000
+187.500000, 125.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -163,7 +162,7 @@ end
 // Game object type
 bonus
 4008
-800.000000, 137.500000, 18.750000
+800.000000, 137.500000, 31.250000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -190,11 +189,10 @@ shadow.png
 0
 end
 
-
 // Game object type
 bonus
 5001
-431.250000, 162.500000, 12.500000
+443.750000, 162.500000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -256,7 +254,7 @@ end
 // Game object type
 bonus
 5212
-1006.250000, 137.500000, 12.500000
+993.750000, 137.500000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -271,7 +269,7 @@ end
 // Game object type
 bonus
 5213
-1081.250000, 150.000000, 12.500000
+1093.750000, 150.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -286,7 +284,7 @@ end
 // Game object type
 bonus
 5214
-1156.250000, 150.000000, 12.500000
+1168.750000, 150.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -301,7 +299,7 @@ end
 // Game object type
 bonus
 5215
-906.250000, 175.000000, 12.500000
+906.250000, 175.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
