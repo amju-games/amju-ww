@@ -129,11 +129,20 @@ void StartUpBeforeCreateWindow()
     {
       std::cout << "Loaded game config file OK: " << filename << "\n";
       // Send updated device info if anything has changed since we last sent.
-      
+     
 #ifdef SEND_FIRST_TIME_DEVICE_INFO
       NetSendDeviceInfoFirstRunEver();
 #else
-      NetSendUpdateDeviceInfo();
+      if (gcf->Exists(DEVICE_ID))
+      {
+        // We already successfully sent info to the server, so check if we should update.
+        NetSendUpdateDeviceInfo();
+      }
+      else
+      {
+        // Confog file exists but no record we successfully sent info to the server.
+        NetSendDeviceInfoFirstRunEver();
+      }
 #endif
       
       // Set sound/music from config
