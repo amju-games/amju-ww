@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: windmill.ma
-//Last modified: Sun, Jan 19, 2014 10:47:13 AM
+//Last modified: Sun, Jan 19, 2014 11:17:31 AM
 //Codeset: UTF-8
 requires maya "2012";
 currentUnit -l centimeter -a degree -t film;
@@ -12,14 +12,14 @@ fileInfo "osv" "Mac OS X 10.8.5";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 230.99921556913012 260.37045656997202 -765.91437302907786 ;
-	setAttr ".r" -type "double3" 2.399999999999876 164.39999999999938 0 ;
+	setAttr ".t" -type "double3" 308.66461243932736 318.36417039497076 -155.66021727634899 ;
+	setAttr ".r" -type "double3" -37.800000000005689 108.79999999999991 0 ;
 	setAttr ".rp" -type "double3" -7.1054273576010019e-15 -5.6843418860808015e-14 0 ;
 	setAttr ".rpt" -type "double3" 2.9796779201484203e-14 -2.254710539528003e-14 -1.1471433419166778e-14 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v";
 	setAttr ".fl" 6.5041486200503043;
-	setAttr ".coi" 750.51917934065409;
+	setAttr ".coi" 432.2539978687397;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -41,12 +41,12 @@ createNode camera -s -n "topShape" -p "top";
 	setAttr ".o" yes;
 createNode transform -s -n "front";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 29.346771240234375 291.79893784116348 301.68653776522723 ;
+	setAttr ".t" -type "double3" -0.49684690848543767 9.9425442143652845 301.68653776522723 ;
 createNode camera -s -n "frontShape" -p "front";
 	setAttr -k off ".v";
 	setAttr ".rnd" no;
 	setAttr ".coi" 9.8932432452175991;
-	setAttr ".ow" 1783.9851737790284;
+	setAttr ".ow" 412.48539879903427;
 	setAttr ".imn" -type "string" "front";
 	setAttr ".den" -type "string" "front_depth";
 	setAttr ".man" -type "string" "front_mask";
@@ -1988,6 +1988,10 @@ createNode polyTweak -n "polyTweak1";
 createNode transformGeometry -n "transformGeometry1";
 	setAttr ".txf" -type "matrix" 25.851781298576281 0 0 0 0 24.836833591977424 0 0
 		 0 0 24.836833591977424 0 0 186.40079460362347 10.199607691222241 1;
+createNode deleteComponent -n "deleteComponent1";
+	setAttr ".dc" -type "componentList" 2 "f[310:315]" "f[318:321]";
+createNode deleteComponent -n "deleteComponent2";
+	setAttr ".dc" -type "componentList" 1 "f[310:311]";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -2055,7 +2059,7 @@ connectAttr "wm_floor_comp:groupId1.id" "wm_floor_comp:wm_floor_objShape.iog.og[
 		;
 connectAttr "wm_floor_comp:wm_floor.mwc" "wm_floor_comp:wm_floor_objShape.iog.og[0].gco"
 		;
-connectAttr "transformGeometry1.og" "polySurfaceShape3.i";
+connectAttr "deleteComponent2.og" "polySurfaceShape3.i";
 connectAttr "groupId20.id" "polySurfaceShape3.iog.og[0].gid";
 connectAttr "lambert2SG.mwc" "polySurfaceShape3.iog.og[0].gco";
 connectAttr "groupId21.id" "polySurfaceShape3.iog.og[1].gid";
@@ -2389,6 +2393,8 @@ connectAttr "groupParts6.og" "groupParts7.ig";
 connectAttr "groupId25.id" "groupParts7.gi";
 connectAttr "groupParts7.og" "polyTweak1.ip";
 connectAttr "polyTweak1.out" "transformGeometry1.ig";
+connectAttr "transformGeometry1.og" "deleteComponent1.ig";
+connectAttr "deleteComponent1.og" "deleteComponent2.ig";
 connectAttr "wm_comp:pz_doorpost.pa" ":renderPartition.st" -na;
 connectAttr "wm_comp:pz_doortop.pa" ":renderPartition.st" -na;
 connectAttr "wm_comp:wm1.pa" ":renderPartition.st" -na;
