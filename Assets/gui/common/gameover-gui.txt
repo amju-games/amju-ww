@@ -15,12 +15,12 @@ gui-button
 // Element name
 continue-button
 // pos (coords are -1..1)
--0.6, -0.5
+-0.8, -0.4
 // size
-1.2, 0.2
+1.6, 0.3
 gui-button-4.png
 // Text
-continue
+ok
 // Font name, size
 cheri, 2.0,sx=1.6 
 
@@ -32,9 +32,9 @@ gui-button
 // Element name
 mainmenu-button
 // pos (coords are -1..1)
--0.6, -0.72
+-0.8, -1.72
 // size
-1.2, 0.2
+1.6, 0.3
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
