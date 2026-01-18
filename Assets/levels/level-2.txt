@@ -1,0 +1,246 @@
+// Version 
+1
+
+// Num Objects
+16
+
+// Camera: for a specific viewport, pointing at a specific player
+camera
+// Game Object ID
+0
+// Viewport ID
+0
+// Player ID
+101
+end
+
+//camera
+//// Game Object ID
+//1
+//// Viewport ID
+//1
+//// Player ID
+//102
+//end
+
+//floor
+//1
+//// Centre/pivot point
+//400, 150, 0
+//// Floor mesh
+//box2.obj
+//// Rotation axes flags: x=1, y=2, z=4
+//4
+//// max AABB height
+//100
+//end
+
+
+staticfloor
+2
+// Centre/pivot point
+0, 200, 0
+// Rot
+0
+// Floor mesh + texture
+block_rect_1x1.obj
+plat_wood1.bmp
+end
+
+floor
+3
+// Centre/pivot point
+200, 200, 0
+// Rot
+0
+// Floor mesh
+plat_rect_2x1_std.obj
+plat_wood2.bmp
+// Rotation axes flags: x=1, y=2, z=4
+4
+// max AABB height
+100
+// Moment of inertia
+50.0
+end
+
+staticfloor
+4
+// Centre/pivot point
+400, 200, 0
+// Rot
+0
+// Floor mesh
+block_rect_1x1.obj
+plat_wood1.bmp
+end
+
+staticfloor
+5
+// Centre/pivot point
+600, 200, 0
+// Rot
+0
+// Floor mesh
+ramp_3x1.obj
+ramp1.bmp
+end
+
+staticfloor
+6
+// Centre/pivot point
+700, 250, -200
+// Rot
+90
+// Floor mesh
+ramp_3x1.obj
+ramp1.bmp
+end
+
+staticfloor
+7
+// Centre/pivot point
+500, 300, -300
+// Rot
+180
+// Floor mesh
+ramp_3x1.obj
+ramp1.bmp
+end
+
+
+
+// Player: needs mesh, texture, Player ID (So not created if player 2 in a 1-player game etc)
+player
+101
+// Start pos
+0, 220, 0
+// Player ID
+0
+// Mesh
+amju.md2
+// 2 Textures
+amju2.bmp
+amju2a.bmp
+// Shadow
+shadow.bmpa
+20
+end
+
+//// Player 2
+//player
+//102
+//// Start pos
+//-200, 220, 0
+//// Player ID
+//1
+//// Mesh
+//marin.md2
+//// 2 Textures
+//marin1.bmp
+//marin1a.bmp
+//// Shadow
+//shadow.bmpa
+//20
+//end
+
+dino
+103
+// Start pos
+400, 220, 0
+// Shadow
+shadow.bmpa
+20
+end
+
+
+//block
+//150
+//// Start pos
+//200, 250, 0
+//crate2.obj
+//// Shadow - TODO
+//shadow.bmpa
+//20
+//end
+
+
+bonus
+110
+// Pos
+100, 250, -100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+bonus
+111
+// Pos
+100, 250, 100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+bonus
+112
+// Pos
+-100, 250, -100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+bonus
+113
+// Pos
+-100, 250, 100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+exit
+200
+// Pos
+0, 250, 0
+// Mesh
+star.obj
+// Next level
+1
+// Billboard
+flare.bmpa
+// size
+100
+// Effect
+// image - TODO TEMP TEST
+sparkle1.bmpa
+// size
+20.0
+// number
+50
+// max time
+2.0
+// Shadow
+// TODO White "shadow" as exits emit light ?
+shadow.bmpa
+20
+end
+
+
+objective
+10000
+// Text
+Get rid of the dinosaur!
+end
+
+skybox
+9999
+skybox2.obj
+end
+

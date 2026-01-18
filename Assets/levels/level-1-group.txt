@@ -12,12 +12,8 @@ skybox2.bmp
 skybox2.obj
 shadow.bmpa
 floor.bmp
-box2.obj
 crate2.bmp
-crate.bmp
 crate2.obj
-disc1.obj
-disc2.obj
 floor3.obj
 plat_rect_1x1_std.obj
 plat_rect_2x1_std.obj

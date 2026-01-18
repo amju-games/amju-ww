@@ -4,7 +4,7 @@
 1
 
 // Num Objects
-9
+17
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -16,7 +16,14 @@ camera
 101
 end
 
-
+camera
+// Game Object ID
+1
+// Viewport ID
+1
+// Player ID
+102
+end
 
 //floor
 //1
@@ -125,8 +132,110 @@ shadow.bmpa
 20
 end
 
+// Player 2
+player
+102
+// Start pos
+-200, 220, 0
+// Player ID
+1
+// Mesh
+marin.md2
+// 2 Textures
+marin1.bmp
+marin1a.bmp
+// Shadow
+shadow.bmpa
+20
+end
+
+dino
+103
+// Start pos
+400, 220, 0
+// Shadow
+shadow.bmpa
+20
+end
 
 
+//block
+//150
+//// Start pos
+//200, 250, 0
+//crate2.obj
+//// Shadow - TODO
+//shadow.bmpa
+//20
+//end
+
+
+bonus
+110
+// Pos
+100, 250, -100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+bonus
+111
+// Pos
+100, 250, 100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+bonus
+112
+// Pos
+-100, 250, -100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+bonus
+113
+// Pos
+-100, 250, 100
+heart.obj
+// Shadow
+shadow.bmpa
+20
+end
+
+exit
+200
+// Pos
+0, 250, 0
+// Mesh
+star.obj
+// Next level
+1
+// Billboard
+flare.bmpa
+// size
+100
+// Effect
+// image - TODO TEMP TEST
+sparkle1.bmpa
+// size
+20.0
+// number
+50
+// max time
+2.0
+// Shadow
+// TODO White "shadow" as exits emit light ?
+shadow.bmpa
+20
+end
 
 
 objective
