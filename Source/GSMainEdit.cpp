@@ -338,6 +338,12 @@ static void OnProperties()
   TheGSMainEdit::Instance()->OnProperties();
 }
 
+static void OnObjectViewAll()
+{
+
+  DoModalDialog(dlg);
+}
+
 // This type of command is executed from the main menu. There is one
 //  instance of this class per game object type. This command is not
 //  itself undoable, as we would not know which object to remove. But
@@ -384,6 +390,7 @@ GSMainEdit::GSMainEdit()
   }
 
   GuiMenu* objectSubmenu = new GuiMenu;
+  objectSubmenu->AddChild(new GuiMenuItem("View all...", Amju::OnObjectViewAll));
   objectSubmenu->AddChild(new GuiMenuItem("Properties", Amju::OnProperties));
   objectSubmenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
   objectSubmenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
@@ -467,6 +474,8 @@ bool NewObjectCommand::Do()
 {
   RCPtr<WWGameObject> newObj = dynamic_cast<WWGameObject*>(
     TheGameObjectFactory::Instance()->Create(m_typeName));
+  
+  Assert(newObj);
 
   AddNewCommand* c = new AddNewCommand(newObj);
   TheGuiCommandHandler::Instance()->DoNewCommand(c);
