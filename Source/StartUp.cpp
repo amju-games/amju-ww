@@ -1,12 +1,7 @@
 #include <AmjuFirst.h>
-#include "StartUp.h"
 #include <Game.h>
 #include <BruteForce.h>
 #include <ResourceManager.h>
-#include "GSLogo.h"
-#include "GSLoadLevel.h" // TEMP; so we start immediately in game
-#include "CursorManager.h"
-#include "Hud.h"
 #include <File.h>
 #include <AlphaBmpLoader.h>
 #include <ObjMesh.h>
@@ -22,10 +17,16 @@
 #include <ReportError.h>
 #include <File.h>
 #include <Screen.h>
+#include <Directory.h>
+#include <ConfigFile.h>
+#include <BassSoundPlayer.h>
+#include "StartUp.h"
+#include "GSLogo.h"
+#include "GSLoadLevel.h" // TEMP; so we start immediately in game
+#include "CursorManager.h"
+#include "Hud.h"
 #include "LevelManager.h"
 #include "StartGame.h"
-#include <Directory.h>
-#include <BassSoundPlayer.h>
 #include "GSPaused.h"
 #include <AmjuFinal.h>
 
@@ -53,6 +54,19 @@
 
 namespace Amju
 {
+static const char* APPNAME = "amju-ww";
+
+static std::string ConfigFilename()
+{
+  std::string filename = GetSaveDir(APPNAME) + "config.txt";
+
+#ifdef _DEBUG
+std::cout << "Config file: " << filename << "\n";
+#endif
+
+  return filename;
+}
+
 void StartUpBeforeCreateWindow()
 {
 #if defined(AMJU_IOS)
@@ -60,6 +74,14 @@ void StartUpBeforeCreateWindow()
   std::cout << "Data Dir: " << dataDir << "\n";
   File::SetRoot(dataDir, "/");
 #endif
+
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+  std::string filename = ConfigFilename();
+  gcf->SetFilePath(filename);
+  if (!gcf->Load())
+  {
+    std::cout << "Failed to load game config file: " << filename << "\n";
+  }
 
   GlueFileMem* gfm = new GlueFileMem;  
   if (FileImplGlue::OpenGlueFile(GLUE_FILE, gfm))

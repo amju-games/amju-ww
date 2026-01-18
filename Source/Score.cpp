@@ -1,4 +1,5 @@
 #include <Directory.h>
+#include <ConfigFile.h>
 #include "Score.h"
 #include "Hud.h"
 
@@ -9,8 +10,8 @@ static int s_lives[2] = { 3, 3 };
 static int s_numPlayers = 0;
 static int hiScore = 0;
 static std::string hiScoreName;
-
-static const char* APPNAME = "amju-ww";
+static const char* HI_SCORE_KEY = "hiscore";
+static const char* HI_SCORE_NAME_KEY = "hiscorename";
 
 void UpdateHud()
 {
@@ -18,49 +19,17 @@ void UpdateHud()
   h->UpdateScores();
 }
 
-static std::string Filename()
-{
-  std::string filename = GetSaveDir(APPNAME) + "hiscores.txt";
-std::cout << "Hi scores file: " << filename << "\n";
-  return filename;
-}
-
 Scores::Scores()
 {
-  // Load hi score(s)
-  // File has version and is standard type, (i.e. not glue file)
-  File f(true, File::STD);
-  if (!f.OpenRead(Filename(), File::BINARY, false))
-  {
-    return;
-  }
-  if (!f.GetDataLine(&hiScoreName))
-  {
-std::cout << "Failed to read name from hi score file\n";
-    return;
-  }  
-  if (!f.GetInteger(&hiScore))
-  {
-std::cout << "Failed to read score from hi score file\n";
-    return;
-  }
-  // TODO Read checksum??
+  GameConfigFile* gcf = TheGameConfigFile::Instance();
+  hiScore = gcf->GetInt(HI_SCORE_KEY);
+  hiScoreName = gcf->GetValue(HI_SCORE_NAME_KEY);
 
 std::cout << "Hi score: " << hiScore << " player: '" << hiScoreName << "'\n"; 
 }
 
 Scores::~Scores()
 {
-  // Save hi score(s)
-std::cout << "Saving hi scores...\n";
-  File f(true, File::STD);
-  if (!f.OpenWrite(Filename(), 1, true, false, true))
-  {
-std::cout << "FAILED to open hi scores file for writing!\n";
-    return;
-  }
-  f.Write(hiScoreName.empty() ? "$$$empty" : hiScoreName);
-  f.WriteInteger(hiScore);
 }
 
 int Scores::GetHiScore() const
@@ -109,6 +78,8 @@ void Scores::AddToScore(PlayerNum pn, int toAdd)
   if (s_scores[ (int)pn ] > hiScore)
   {
     hiScore = s_scores[ (int)pn ];
+    static GameConfigFile* gcf = TheGameConfigFile::Instance();
+    gcf->SetInt(HI_SCORE_KEY, hiScore);
   }
 
   UpdateHud();
