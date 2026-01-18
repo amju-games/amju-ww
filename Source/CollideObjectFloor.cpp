@@ -78,7 +78,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     norm *= f; // Normalise
 
     onfloor->OnWallCollision(norm);
-
+/*
     // If falling, also push away from wall
     static const float PUSH_AWAY_VEL = ROConfig()->GetFloat("push-away-speed");
     OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
@@ -91,6 +91,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
       vel.z = norm.z;
       onfloor->SetVel(vel);
     }
+*/
   }
 }
 

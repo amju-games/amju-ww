@@ -465,11 +465,6 @@ bool Player::Load(File* f)
   */
 }
 
-void Player::OnWallCollision(const Vec3f& normal) 
-{
-  //DropPets(); //?
-}
-
 void Player::OnAnimFinished()
 {
   if (IsFalling())
@@ -603,12 +598,11 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
     return false;
   }
 
-  if (m_wallCollide) /// not: IsFalling())
-  {
-    return false;
-    
-    m_wallCollide = false; // ????
-  }
+//  if (m_wallCollide) /// not: IsFalling())
+//  {
+//    return false;
+//    
+//  }
 
   Vec2f cp = bbe.GetCalibratedCoord();
   float x = cp.x;
@@ -643,9 +637,24 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   }
 #endif
 
-  m_vel.x = x * 100.0f * m_velMult;
-  m_vel.z = y * 100.0f * m_velMult; 
+  Vec3f vel(x * 1.0f * m_velMult, 0, y * 1.0f * m_velMult);
 
+  if (m_wallCollide)
+  {
+    static const float PUSH_AWAY_VEL = ROConfig()->GetFloat("push-away-speed");
+    m_wallCollide = false;
+    if (m_wallNormal.x < 0 && vel.x > 0)
+    {
+      vel.x = -PUSH_AWAY_VEL;
+    }
+    if (m_wallNormal.x > 0 && vel.x < 0)
+    {
+      vel.x = PUSH_AWAY_VEL;
+    }
+  }
+  // Not: SetVel(vel);
+  m_vel += vel;
+  
   // Work out direction to face
   SetDir(RadToDeg(atan2((double)x, (double)y)));
 
