@@ -3,6 +3,8 @@
 #include <File.h>
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
+#include "AIGoHighGround.h"
+#include "AIIdle.h"
 
 namespace Amju
 {
@@ -13,6 +15,10 @@ const char* Pet::NAME = "pet";
 
 Pet::Pet()
 {
+  AddAI(new AIGoHighGround);
+  AddAI(new AIIdle);
+
+  SetAI(AIIdle::NAME);
 }
 
 const char* Pet::GetTypeName() const
@@ -24,13 +30,17 @@ void Pet::Update()
 {
   Npc::Update();
 
+  if (IsDead())
+  {
+    return;
+  }
+
   static const float XSIZE = 15.0f;
   static const float YSIZE = 60.0f;
   GetAABB()->Set(
     m_pos.x - XSIZE, m_pos.x + XSIZE, 
     m_pos.y, m_pos.y + YSIZE, 
     m_pos.z - XSIZE, m_pos.z + XSIZE);
-
 }
 
 bool Pet::Load(File* f)
