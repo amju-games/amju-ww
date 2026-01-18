@@ -151,6 +151,7 @@ bool Exit::Load(File* f)
 
   m_billboard = new Billboard;
   m_billboard->SetVisible(false);
+  m_billboard->SetIsZReadEnabled(false);
   if (!m_billboard->Load(f))
   {
     f->ReportError("Failed to load exit billboard");
