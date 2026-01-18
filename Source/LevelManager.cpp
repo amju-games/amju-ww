@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Score.h"
 #include "ShadowManager.h"
+#include "GameMode.h"
 
 namespace Amju
 {
@@ -190,9 +191,15 @@ bool LevelManager::LoadOneObject()
   if (p)
   {
     m_numPlayers++;
+    // Only need to check in one-player game
+//    bool addP2 = true;
+
     // If this is a one-player game, don't create player 2
-    if (m_numPlayers > TheScores::Instance()->GetNumPlayers())
+    if (m_numPlayers > TheScores::Instance()->GetNumPlayers() &&
+       !IsEditMode())
     {
+//      addP2 = false;
+
       std::cout << "Not creating player " << m_numPlayers << "\n";
       TheShadowManager::Instance()->RemoveCaster(p);
       return true;

@@ -14,7 +14,9 @@ class WWGameObject : public GameObject
 public:
   WWGameObject();
 
+  // For Edit mode
   virtual bool Save(File* f) = 0;
+  virtual void Move(const Vec3f& deltaPos);
 
   // For this game, GameObjects for a level are created in "blocks".
   // The blocks are transformed, so the positions of the objects are

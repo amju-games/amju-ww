@@ -13,15 +13,31 @@ void DoModalDialog(Dialog* dlg);
 // Type of function called when dialog is finished
 typedef void (*DialogFinishCallback)(Dialog*);
 
-enum { AMJU_RESULT_NOT_SET, AMJU_OK, AMJU_CANCEL };
+enum 
+{ 
+  AMJU_RESULT_NOT_SET = -1, 
+  AMJU_OK = 0, 
+  AMJU_YES = 0,
+  AMJU_NO = 1,
+  AMJU_CANCEL = 2 
+};
 
 class Dialog : public GameState
 {
 public:
   Dialog();
 
+  void SetGuiFilename(const std::string&);
+
   void SetPrevState(GameState*);
+
+  // Set one callback which is called whatever button closes the dialog
   void SetFinishCallback(DialogFinishCallback);
+
+  // For dialogs with only OK and cancel, you can set two callbacks so 
+  //  different functions are called - could be more convenient
+//  void SetOkCancelCallbacks(
+//    DialogFinishCallback onOk, DialogFinishCallback onCancel);
 
   virtual void Draw() override;
   virtual void Draw2d() override;
@@ -52,8 +68,23 @@ protected:
   GameState* m_prevState;
   PGuiElement m_gui;
   std::string m_guiFilename;
-  DialogFinishCallback m_finishCallback;
+  DialogFinishCallback m_onOK;
+  DialogFinishCallback m_onCancel;
   int m_result;
+};
+
+class MessageBox : public Dialog
+{
+public:
+  MessageBox();
+  virtual void GetDataFromGui() override;
+  virtual void SetDataToGui() override;
+
+  void SetMessage(const std::string& message, const std::string& title);
+
+protected:
+  std::string m_message;
+  std::string m_title;
 };
 
 class FileDialog : public Dialog

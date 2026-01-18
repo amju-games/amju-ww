@@ -3,6 +3,7 @@
 #include <Localise.h>
 #include "TutorialTrigger.h"
 #include "LurkMsg.h"
+#include "GameMode.h"
 
 namespace Amju
 {
@@ -24,11 +25,15 @@ const char* TutorialTrigger::GetTypeName() const
 void TutorialTrigger::OnPlayerCollision(Player*)
 {
 std::cout << "Collision with tutorial trigger!\n";
-
+  
   if (!m_hasShownText)
   {
-    LurkMsg lm(Lookup(m_text), Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), AMJU_CENTRE);
-    TheLurker::Instance()->Queue(lm);
+    if (!IsEditMode()) // Edit mode "fix" - TODO
+    {
+      LurkMsg lm(Lookup(m_text), Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), 
+        AMJU_CENTRE);
+      TheLurker::Instance()->Queue(lm);
+    }
     m_hasShownText = true;
   }
 }

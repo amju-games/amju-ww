@@ -2,6 +2,7 @@
 #define START_GAME_H
 
 #include "GSLoadLevel.h"
+#include "GameMode.h"
 
 namespace Amju
 {

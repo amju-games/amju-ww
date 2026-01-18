@@ -71,12 +71,15 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 
     case AMJU_ROTATE:
       {
-        float angle = dx; // TODO TEMP TEST
-        float s = sin(angle);
-        float c = cos(angle);
+        float angleX = dx; // TODO TEMP TEST
+        float angleY = dy * 1000.0f;
+
+        float sx = sin(angleX);
+        float cx = cos(angleX);
         // Rotate m_eye (x, z) around m_lookat
-        m_eye.x = c * (m_eye.x - m_lookat.x) - s * (m_eye.z - m_lookat.z) + m_lookat.x;
-        m_eye.z = s * (m_eye.x - m_lookat.x) + c * (m_eye.z - m_lookat.z) + m_lookat.z;
+        m_eye.x = cx * (m_eye.x - m_lookat.x) - sx * (m_eye.z - m_lookat.z) + m_lookat.x;
+        m_eye.y += angleY;
+        m_eye.z = sx * (m_eye.x - m_lookat.x) + cx * (m_eye.z - m_lookat.z) + m_lookat.z;
       }
       break;
 

@@ -18,7 +18,16 @@
 
 namespace Amju
 {
-static FileDialog fileDialog; // ?
+static FileDialog s_fileDialog; 
+
+static MessageBox s_messageBox;
+
+static const char* LAST_PATH = "last_path";
+
+static std::string s_lastPath = TheGameConfigFile::Instance()->
+  GetValue(LAST_PATH, "/Users/jay/projects/amju-ww/Assets/levels/"); // TODO
+
+static int s_unsaved = 0; // number of commands away from save
 
 void SelectedNode::Draw()
 {
@@ -45,25 +54,119 @@ void SelectedNode::Draw()
 }
 
 // Menu item handlers
-static void OnMove()
+//static void OnMove()
+//{
+//  TheGSMainEdit::Instance()->OnMove();
+//}
+
+static void OnStart()
 {
-  TheGSMainEdit::Instance()->OnMove();
+  TheGSMainEdit::Instance()->OnRunStart();
+}
+
+static void OnStop()
+{
+  TheGSMainEdit::Instance()->OnRunStop();
+}
+    
+static void OnSaveDialogClosed(Dialog* dlg)
+{
+  FileDialog* fd = dynamic_cast<FileDialog*>(dlg);
+  Assert(fd);
+  if (fd->GetResult() == (int)AMJU_OK)
+  {
+    std::string filename = fd->GetFilePath();
+    s_lastPath = GetFilePath(filename); // strip filename from end
+    TheGameConfigFile::Instance()->Set(LAST_PATH, s_lastPath);
+
+    // File exists? If so, confirm overwrite
+    if (FileExists(filename))
+    {
+std::cout << "Overwrite file check\n";
+    }
+
+    // Try to save
+std::cout << "File Save: filename/path: " << filename << "\n";    
+    if (TheLevelManager::Instance()->SaveLevel(filename))
+    {
+std::cout << "Saved level OK!\n";
+      s_unsaved = 0;
+    }
+    else
+    {
+std::cout << "FAILED TO SAVE LEVEL!\n";
+    }
+  }
+  else
+  {
+std::cout << "File Save cancelled.\n";
+  }
+}
+
+static void OnSaveLevel()
+{
+  s_fileDialog.SetGuiFilename("gui-file-save-dialog.txt");
+  s_fileDialog.SetFinishCallback(OnSaveDialogClosed);
+  s_fileDialog.SetPath(s_lastPath);
+  DoModalDialog(&s_fileDialog);
+}
+
+static void OnQuitSaveChanges(Dialog* dlg)
+{
+  if (dlg->GetResult() == AMJU_OK)
+  {
+    OnSaveLevel();
+  }
+  else
+  {
+    // Don't save
+    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
+  }
 }
 
 static void OnQuitEditMode()
 {
   // TODO prompt for save if any unsaved changes
+  if (s_unsaved)
+  {
+    s_messageBox.SetFinishCallback(OnQuitSaveChanges);
+    s_messageBox.SetMessage("Unsaved changes! Do you want to save?",
+      "Quit edit mode");
+    DoModalDialog(&s_messageBox); 
+  }
+  else 
+  {
+    TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
+  }
+}
 
-  TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
+static void OnNewSaveChanges(Dialog* dlg)
+{
+  if (dlg->GetResult() == AMJU_OK)
+  {
+    OnSaveLevel();
+  }
+  else
+  {
+    // Don't save - load boilerplate new level
+    // TODO
+  }
 }
 
 static void OnNewLevel()
 {
-}
+  // If unsaved changes, go to save dialog
+  if (s_unsaved)
+  {
+    s_messageBox.SetFinishCallback(OnNewSaveChanges);
+    s_messageBox.SetMessage("Unsaved changes! Do you want to save?",
+      "New level");
+    DoModalDialog(&s_messageBox); 
+  }
 
-static const char* LAST_PATH = "last_path";
-static std::string s_lastPath = TheGameConfigFile::Instance()->
-  GetValue(LAST_PATH, "/Users/jay/projects/amju-ww/Assets/levels/"); // TODO
+  // Load basic level from glue file
+  // TODO
+}
 
 static void OnLoadDialogClosed(Dialog* dlg)
 {
@@ -96,61 +199,78 @@ std::cout << "File Load cancelled.\n";
   }
 }
 
-static void OnLoadLevel()
+static void DoLoadDialog()
 {
-std::cout << "Starting file modal dialog...\n";
-  // Confirm if unsaved changes
-  // TODO
-
-  fileDialog.SetFinishCallback(OnLoadDialogClosed);
-  fileDialog.SetPath(s_lastPath);
-  DoModalDialog(&fileDialog);
+  s_fileDialog.SetGuiFilename("gui-file-load-dialog.txt");
+  s_fileDialog.SetFinishCallback(OnLoadDialogClosed);
+  s_fileDialog.SetPath(s_lastPath);
+  DoModalDialog(&s_fileDialog);
 }
 
-static void OnSaveDialogClosed(Dialog* dlg)
+static void OnLoadSaveChanges(Dialog* dlg)
 {
-  FileDialog* fd = dynamic_cast<FileDialog*>(dlg);
-  Assert(fd);
-  if (fd->GetResult() == (int)AMJU_OK)
+  if (dlg->GetResult() == AMJU_OK)
   {
-    std::string filename = fd->GetFilePath();
-    s_lastPath = GetFilePath(filename); // strip filename from end
-    TheGameConfigFile::Instance()->Set(LAST_PATH, s_lastPath);
-
-    // Try to save
-std::cout << "File Save: filename/path: " << filename << "\n";    
-    if (TheLevelManager::Instance()->SaveLevel(filename))
-    {
-std::cout << "Saved level OK!\n";
-    }
-    else
-    {
-std::cout << "FAILED TO SAVE LEVEL!\n";
-    }
+    // Yes/OK - save
+    OnSaveLevel();
+  }
+  else if (dlg->GetResult() == AMJU_NO)
+  {
+    // Don't save, go to Load dialog
+    DoLoadDialog();
   }
   else
   {
-std::cout << "File Save cancelled.\n";
+    // Cancel: do nothing
   }
 }
 
-static void OnSaveLevel()
+static void OnLoadLevel()
 {
-  fileDialog.SetFinishCallback(OnSaveDialogClosed);
-  fileDialog.SetPath(s_lastPath);
-  DoModalDialog(&fileDialog);
+  // If unsaved changes, go to save dialog
+  if (s_unsaved)
+  {
+    s_messageBox.SetFinishCallback(OnLoadSaveChanges);
+    s_messageBox.SetMessage("Unsaved changes! Do you want to save?",
+      "Load level");
+    DoModalDialog(&s_messageBox); 
+  }
+  else
+  {
+    DoLoadDialog();
+  }
 }
 
 void OnUndo()
 {
-std::cout << "UNDO\n";
-  TheGuiCommandHandler::Instance()->Undo();
+  GuiCommandHandler* gch = TheGuiCommandHandler::Instance();
+
+  if (gch->CanUndo())
+  {
+    gch->Undo();
+    // Not here, this will cause double decrement 
+    //m_unsaved--;
+  }
+  else
+  {
+std::cout << "Can't undo\n";
+  }
 }
 
 void OnRedo()
 {
-std::cout << "REDO\n";
-  TheGuiCommandHandler::Instance()->Redo();
+  GuiCommandHandler* gch = TheGuiCommandHandler::Instance();
+
+  if (gch->CanRedo())
+  {
+    gch->Redo();
+    // Not here, in the actual commands
+    //m_unsaved++;
+  }
+  else
+  {
+std::cout << "Can't redo\n";
+  }
 }
 
 void OnRotate()
@@ -159,6 +279,8 @@ void OnRotate()
 
 void OnDuplicate()
 {
+  // Clone currently selected object
+  TheGSMainEdit::Instance()->OnDuplicate();
 }
 
 void OnDelete()
@@ -201,12 +323,44 @@ GSMainEdit::GSMainEdit()
     newObjSubmenu->AddChild(new GuiMenuItem(names[i]));
   }
 
+  GuiMenu* runSubmenu = new GuiMenu;
+  runSubmenu->AddChild(new GuiMenuItem("Start     ", OnStart));
+  runSubmenu->AddChild(new GuiMenuItem("Stop    ", OnStop));
+
   m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Edit    ", editSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("New Object    ", newObjSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("Run    ", runSubmenu));
 
   m_infoText.SetLocalPos(Vec2f(-1, -0.9f));
   m_infoText.SetSize(Vec2f(2, 0.1f));
+}
+
+void GSMainEdit::OnRunStart()
+{
+  m_playTestMode = true;
+}
+
+void GSMainEdit::OnRunStop()
+{
+  m_playTestMode = false;
+
+  // Reset objects to initial state
+  GameObjects* objs = TheGame::Instance()->GetGameObjects();
+  for (auto it = objs->begin(); it != objs->end(); ++it)
+  {
+    GameObject* go = it->second;
+    WWGameObject* ww = dynamic_cast<WWGameObject*>(go);
+    Assert(ww);
+    ww->Reset();
+  }
+}
+
+void GSMainEdit::OnDuplicate()
+{
+  if (m_selectedObj)
+  {
+  }
 }
 
 void GSMainEdit::OnMove()
@@ -231,7 +385,7 @@ void GSMainEdit::OnActive()
   m_isSelecting = false;
 
   GSMain::OnActive();
-  // Show bounding boxes
+  // Show bounding boxes - TODO don't use this, draw object AABBs
   SceneNode::SetGlobalShowAABB(true);
 
   GetGameSceneGraph()->SetCamera(new EditModeCamera);
@@ -360,9 +514,9 @@ void GSMainEdit::Draw()
 
       // TODO
       m_contextMenu->Clear();
-      m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
-      m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnRotate));
-      m_contextMenu->AddChild(new GuiMenuItem("Duplicate", OnDuplicate));
+      //m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
+      //m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnRotate));
+      m_contextMenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
       m_contextMenu->AddChild(new GuiMenuItem("Delete", OnDelete));
       m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
     }
@@ -439,7 +593,9 @@ public:
   virtual bool Do() override
   {
 //std::cout << "Doing move\n";
-
+    m_obj->Move(m_move);
+    s_unsaved++;
+/*
     Vec3f p = m_obj->GetPos();
     p += m_move;
     m_obj->SetPos(p);
@@ -450,12 +606,14 @@ public:
     Matrix mat;
     mat.Translate(m_move);
     sn->MultLocalTransform(mat);
+*/
     return true;
   }
 
   virtual void Undo() override
   {
 //std::cout << "Undoing move\n";
+    s_unsaved--;
     m_move = -m_move;
     Do();
     m_move = -m_move;
