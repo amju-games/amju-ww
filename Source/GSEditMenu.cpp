@@ -5,8 +5,6 @@ namespace Amju
 {
 const char* GSEditMenu::NAME = "gs-edit-menu";
 
-static bool b = TheGame::Instance()->AddState(GSEditMenu::NAME, new GSEditMenu);
-
 void GSEditMenu::OnActive()
 {
   GSText::OnActive();

@@ -15,19 +15,17 @@ namespace Amju
 {
 const char* GSLoadLevel::NAME = "load-level";
 
-static bool b = TheGame::Instance()->AddState(GSLoadLevel::NAME, new GSLoadLevel);
-
 void SetGameMode(GameMode mode)
 {
-  ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
-    SetGameMode(mode);
+  ////((GSLoadLevel*)TheGame::Instance()->GetState(TheGSLoadLevel::Instance()))->
+  TheGSLoadLevel::Instance()->SetGameMode(mode);
 }
 
 class CommandGo : public GuiCommand
 {
   virtual bool Do()
   {
-    TheGame::Instance()->SetCurrentState(GSMain::NAME);
+    TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
     return false; //no undo
   }
 };

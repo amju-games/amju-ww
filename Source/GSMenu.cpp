@@ -8,8 +8,6 @@ namespace Amju
 {
 const char* GSMenu::NAME = "gs-menu";
 
-static bool b = TheGame::Instance()->AddState(GSMenu::NAME, new GSMenu);
-
 class CommandStartGame1p : public GuiCommand
 {
   virtual bool Do()

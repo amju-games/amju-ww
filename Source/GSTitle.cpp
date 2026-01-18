@@ -15,9 +15,6 @@ namespace Amju
 {
 const char* GSTitle::NAME = "title";
 
-static bool b = TheGame::Instance()->AddState(
-  GSTitle::NAME, new GSTitle);
-
 GSTitle::GSTitle()
 {
 }

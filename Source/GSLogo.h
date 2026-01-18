@@ -3,16 +3,19 @@
 
 #include "GameState.h"
 #include "GuiImage.h"
+#include <Singleton.h>
 
 namespace Amju
 {
 // Initial Game State - show Logo
-class GSLogo : public GameState
+class GSLogo : public GameState, public NonCopyable
 {
+private:
+  GSLogo();
+  friend class Singleton<GSLogo>;
+
 public:
   static const char* NAME;
-
-  GSLogo();
 
   // GameState overrides
   virtual void Update();
@@ -30,6 +33,7 @@ private:
   // Logo image - TODO list of images ?
   GuiImage m_image;
 };
+typedef Singleton<GSLogo> TheGSLogo;
 }
 
 #endif
