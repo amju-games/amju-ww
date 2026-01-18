@@ -56,9 +56,9 @@ LevelManager::LevelManager()
   for (int i = 0; i < numBlocks; i++)
   {
     // Get ID of block
-    int blockId = 0;
-    f.GetInteger(&blockId);
-    BlockIds& blockIds = m_followingBlocks[blockId];
+    std::string blockId;
+    f.GetDataLine(&blockId);
+    BlockNames& blockNames = m_followingBlocks[blockId];
 
     // Comma-separated list of IDs which may follow 
     std::string s;
@@ -66,7 +66,7 @@ LevelManager::LevelManager()
     Strings strs = Split(s, ',');
     for (unsigned int i = 0; i < strs.size(); i++)
     {
-      blockIds.push_back(ToInt(strs[i]));
+      blockNames.push_back(strs[i]);
     }
   }
 }
@@ -95,16 +95,23 @@ bool LevelManager::Open()
 
   // TODO TEMP TEST
   // Decide on first block. Should be random, but depending on level ID too..?
-  int blockId = 1; // TODO m_levelId % 10; // so first block changes every 10 level IDs
+  //int blockId = 1; // TODO m_levelId % 10; // so first block changes every 10 level IDs
+  std::string blockId = "1";
 
   int numBlocks = 0;
-  BlockIds allIds; // just for reporting
+
+#ifdef REPORT_BLOCKS
+  BlockNames allIds; // just for reporting
+#endif
+
   while (true)
   {
+#ifdef REPORT_BLOCKS
     allIds.push_back(blockId);
+#endif
 
     // Keep adding  blocks
-    std::string strLevel = ToString(blockId);
+    std::string strLevel = blockId;
 
     std::string groupname = "levels/block-" + strLevel + "-group";
     std::string levelfilename = "levels/block-" + strLevel + ".txt";
@@ -125,12 +132,12 @@ bool LevelManager::Open()
 
     // Find the block number which should follow, or stop if no more blocks
     // Get vec of all permissible blocks
-    BlockIds& blockIds = m_followingBlocks[blockId]; 
-    Assert(!blockIds.empty());
+    BlockNames& blockNames = m_followingBlocks[blockId]; 
+    Assert(!blockNames.empty());
     // Choose one - random and using level ID
-    int r = (m_levelId + rand()) % blockIds.size();
-    blockId = blockIds[r]; // ID of next block
-    if (blockId == -1)
+    int r = (m_levelId + rand()) % blockNames.size();
+    blockId = blockNames[r]; // ID of next block
+    if (blockId == "end")
     {
       // This means no block follows
       break;

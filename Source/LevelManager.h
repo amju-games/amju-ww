@@ -54,9 +54,10 @@ private:
   Blocks m_blocks;
   int m_currentBlock;
 
-  // TODO Tree of Blocks, showing which Blocks can be joined to this one
-  typedef std::vector<int> BlockIds;
-  typedef std::map<int, BlockIds> BlockMap;
+  // Map of Blocks, showing which Blocks can be joined to this one
+  // use names, not ints, so we can have "hills", "ropebridge" etc as block names
+  typedef std::vector<std::string> BlockNames; 
+  typedef std::map<std::string, BlockNames> BlockMap;
   BlockMap m_followingBlocks;
 };
 
