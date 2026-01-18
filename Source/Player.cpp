@@ -19,6 +19,7 @@
 #include "MySceneGraph.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoKey.h"
+#include "ParticleEffect2d.h"
 #include "AmjuFinal.h"
 
 namespace Amju
@@ -31,6 +32,32 @@ GameObject* CreatePlayer() { return new Player; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Player::NAME, &CreatePlayer);
 
 const char* Player::NAME = "player";
+
+class PlayerTrail : public ParticleEffect2d
+{
+public:
+  PlayerTrail(Player* player) : m_player(player)
+  {
+  }
+
+  virtual float NewTime() const
+  {
+    return 0;
+  }
+
+  virtual Vec3f NewPos() const
+  {
+    return m_player->GetPos() + Vec3f(0, 20.0f, 0); // TODO CONFIG
+  }
+
+  virtual void HandleDeadParticle(Particle2d* p)
+  {
+    Recycle(p);
+  }
+
+private:
+  Player* m_player;
+};
 
 Player::Player()
 {
@@ -96,14 +123,25 @@ bool Player::Load(File* f)
   }
 
   bc->SetGameObj(this);
-  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(bc);
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
   {
     return false;
   }
+
+  // TODO
+  PlayerTrail* trail = new PlayerTrail(this);
+  if (!trail->Load(f))
+  {
+    f->ReportError("Failed to load player trail");
+    return false;
+  }
+
+  trail->Start();
+  root->AddChild(trail);
 
   return true;
 
