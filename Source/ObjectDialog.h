@@ -8,5 +8,8 @@ class ObjectDialog : public Dialog
 {
 public:
   virtual void OnActive() override;
+  virtual void GetDataFromGui() override;
+  virtual void SetDataToGui() override;
+
 };
 }

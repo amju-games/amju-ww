@@ -24,6 +24,7 @@
 #include "Viewport.h"
 #include "EditViewport.h"
 #include "PropertiesDialog.h"
+#include "ObjectDialog.h"
 
 namespace Amju
 {
@@ -340,8 +341,8 @@ static void OnProperties()
 
 static void OnObjectViewAll()
 {
-
-  DoModalDialog(dlg);
+  ObjectDialog dlg;
+  DoModalDialog(&dlg);
 }
 
 // This type of command is executed from the main menu. There is one
