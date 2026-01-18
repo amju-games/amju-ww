@@ -40,12 +40,13 @@ void Viewport::Draw()
 
   AmjuGL::PushMatrix();
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
+  AmjuGL::LightColour ambient(0.6f, 0.6f, 0.6f);
   AmjuGL::DrawLighting(
     AmjuGL::LightColour(0, 0, 0),
-    AmjuGL::LightColour(0.2f, 0.2f, 0.2f), // Ambient light colour
+    ambient, // Ambient light colour
     AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
     AmjuGL::LightColour(1, 1, 1),
-    AmjuGL::Vec3(1, 1, 1)); // Light direction
+    AmjuGL::Vec3(1, 1, -1)); // Light direction
 
   if (!IsEditMode())
   {
