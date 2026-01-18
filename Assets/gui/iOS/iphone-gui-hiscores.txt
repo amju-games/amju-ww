@@ -1,0 +1,28 @@
+// version
+1
+
+// Element type
+gui-comp
+// Name
+hi-score-comp
+// Num children
+2
+
+elastic
+0, -2.0
+gui-button
+back-button
+-0.4, -0.7
+0.8, 0.15
+gui-button-4.png
+ok
+cheri, 1.0, sx=1.6
+
+// Element type
+gui-comp
+// Name
+hi-scores-list-comp
+// Num children
+0
+
+

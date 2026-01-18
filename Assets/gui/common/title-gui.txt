@@ -42,7 +42,7 @@ tweet-button
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
-tweet test
+share test
 // Font name, size
 cheri, 0.7, sx=1.6
 

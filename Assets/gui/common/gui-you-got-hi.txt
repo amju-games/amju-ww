@@ -67,7 +67,7 @@ cheri, 1.0, sx=1.6
 // element type
 gui-button
 // Element name
-tweet-button
+share-button
 // pos (coords are -1..1)
 -0.85, 0.1
 // size
@@ -75,7 +75,7 @@ tweet-button
 // Image 
 gui-button-4.png
 // Text
-`   tweet it!
+share!
 // Font name, size
 cheri, 0.9, sx=1.6
 
