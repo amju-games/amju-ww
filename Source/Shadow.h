@@ -88,7 +88,10 @@ protected:
 
   // Mesh on which the shadow is cast
   // TODO Get all meshes from the rest of the scene graph ??
-  CollisionMesh* m_mesh;
+  // Allow multiple meshes, so we can continue to cast on a mesh as we leave it and
+  //  land on another mesh
+  enum { MAX_MESHES = 2 };
+  CollisionMesh* m_mesh[MAX_MESHES];
 
   // Shadow texture - Resource
   PTexture m_texture;

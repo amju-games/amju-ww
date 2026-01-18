@@ -58,8 +58,11 @@ void Block::Draw()
 
 void Block::Update()
 {
-  GameObject::Update();
-  UpdatePhysics();
+  OnFloor::Update();
+
+  Matrix mat;
+  mat.Translate(m_pos);
+  m_pSceneNode->SetLocalTransform(mat);
 }
 
 bool Block::Load(File* f)

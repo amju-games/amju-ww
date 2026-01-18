@@ -11,6 +11,7 @@
 #include "TextMaker.h"
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
+#include <DegRad.h>
 
 namespace Amju
 {
@@ -35,48 +36,6 @@ void Exit::Reset()
 {
   m_isActive = false;
 }
-
-/*
-void Exit::Draw()
-{
-  if (!m_isActive)
-  {
-    // Exits are translucent until activated
-    PushColour();
-    MultColour(Colour(1.0f, 1.0f, 1.0f, 0.25f));
-  }
-
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-  AmjuGL::PushMatrix();
-  AmjuGL::Translate(m_pos.x, m_pos.y, m_pos.z);
-
-  AmjuGL::PushMatrix();
-  AmjuGL::RotateY(RadToDeg(m_rotate));
-
-  m_mesh->Draw();
-  AmjuGL::PopMatrix(); // dont rotate the next level number
-
-  // Draw exit number - TODO centred in X
-  AmjuGL::Translate(0, 30.0f, 0);
-  AmjuGL::RotateX(90.0f);
-  AmjuGL::Scale(20, 20, 20);
-//  m_text->DrawChildren();
-  AmjuGL::PopMatrix();
-
-  if (!m_isActive)
-  {
-    PopColour();
-  }
-
-  if (m_isActive)
-  {
-    m_billboard.Draw();
-    m_effect.Draw();
-  }
-
-  m_aabb.Draw();
-}
-*/
 
 void Exit::Update()
 {
@@ -152,18 +111,20 @@ bool Exit::Load(File* f)
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_text);
+  // If you add as child of exit node, numbers spin and are translucent... 
   //m_pSceneNode->AddChild(m_text);
+
   // Transformation for text
   Matrix mat;
-  // TODO Something strange here. We want to rotate the text 90 degs about x.
-  mat.RotateX(90.0f);
-  mat.TranslateKeepRotation(m_pos * 0.05f + Vec3f(0, 2.0f, 0));
   Matrix mat2;
+  // Rotate the text 90 degs about x, so it's vertical
+  mat.RotateX(DegToRad(90.0f));
   mat2.Scale(20, 20, 20);
   mat *= mat2;
+  mat.TranslateKeepRotation(m_pos + Vec3f(0, 40.0f, 0));
   m_text->SetLocalTransform(mat);
   // Text is black
-  m_text->SetColour(Colour(0, 0, 0, 1));
+  m_text->SetColour(Colour(0.2f, 0.2f, 0.2f, 1));
 
   m_billboard = new Billboard;
   m_billboard->SetVisible(false);
@@ -199,7 +160,7 @@ void Exit::OnPlayerCollision()
     // TODO Sound effect, explosion etc
 
     // Set next level
-    ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME).GetPtr())->
+    ((GSLoadLevel*)TheGame::Instance()->GetState(GSLoadLevel::NAME))->
       SetLevel(m_toLevel);
 
     TheGame::Instance()->SetCurrentState(GSLevelComplete::NAME);
