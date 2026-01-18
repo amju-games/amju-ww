@@ -1,9 +1,12 @@
 #ifndef IPHONE
 
+#ifdef MACOSX
+#define AMJU_USE_OPENGL
+#define AMJU_USE_GLUT
+#endif
+
 // Create global variable window info 
 #include <AmjuGLWindowInfo.h>
-
-#define AMJU_USE_DX9
 
 namespace Amju
 {
