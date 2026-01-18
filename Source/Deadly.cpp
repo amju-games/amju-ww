@@ -1,5 +1,12 @@
 #include <GameObjectFactory.h>
+//#include <LoadVec3.h>
+//#include <CollisionMesh.h>
+//#include <File.h>
+//#include <SceneMesh.h>
+//#include <ObjMesh.h>
 #include "Deadly.h"
+#include "PropertiesDialog.h"
+#include "PropertyKeys.h"
 
 namespace Amju
 {

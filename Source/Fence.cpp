@@ -20,7 +20,6 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Fence::NAME, &CreateFenc
 
 Fence::Fence()
 {
-  m_yRot = 0;
 }
 
 void Fence::AddPropertiesGui(PropertiesDialog* dlg)
