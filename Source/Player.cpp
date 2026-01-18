@@ -5,17 +5,17 @@
 #endif // WIN32
 #include <math.h>
 #include <AmjuRand.h>
-#include "File.h"
-#include "ReportError.h"
-#include "ResourceManager.h"
-#include "Timer.h"
-#include "DegRad.h"
-#include "EventPoller.h"
+#include <ROConfig.h>
+#include <Game.h>
+#include <File.h>
+#include <ResourceManager.h>
+#include <Timer.h>
+#include <DegRad.h>
+#include <EventPoller.h>
 #include "Floor.h"
 #include "GSGameOver.h"
 #include "GSLoadLevel.h"
 #include "GameObjectFactory.h"
-#include "Game.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
 #include "ParticleEffect2d.h"
@@ -177,7 +177,9 @@ void Player::DropPets()
     // Random (x, z) dir
     float rad = Rnd(0, 7.0);  // TODO 2*pi
     Vec3f dir(cos(rad), 0, sin(rad));
-    float speed = 50.0f; // TODO
+    static const float MIN_DROP_SPEED = ROConfig()->GetFloat("pet-min-drop-speed");
+    static const float MAX_DROP_SPEED = ROConfig()->GetFloat("pet-max-drop-speed");
+    float speed = Rnd(MIN_DROP_SPEED, MAX_DROP_SPEED);
     dir *= speed; 
     std::cout << Describe(pet) << " dir: " << Describe(dir) << "\n";
     pet->SetVel(dir);
