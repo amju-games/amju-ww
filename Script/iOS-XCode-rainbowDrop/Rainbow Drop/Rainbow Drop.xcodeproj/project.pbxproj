@@ -53,7 +53,6 @@
 		69D7CD6418F939FA002432C0 /* BloodFx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCAF18F939F9002432C0 /* BloodFx.cpp */; };
 		69D7CD6518F939FA002432C0 /* Bonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCB118F939F9002432C0 /* Bonus.cpp */; };
 		69D7CD6618F939FA002432C0 /* BonusParticleEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCB318F939F9002432C0 /* BonusParticleEffect.cpp */; };
-		69D7CD6718F939FA002432C0 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCB518F939F9002432C0 /* Camera.cpp */; };
 		69D7CD6818F939FA002432C0 /* CollideDinoDino.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCB718F939F9002432C0 /* CollideDinoDino.cpp */; };
 		69D7CD6918F939FA002432C0 /* CollideDinoPet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCB818F939F9002432C0 /* CollideDinoPet.cpp */; };
 		69D7CD6A18F939FA002432C0 /* CollideObjectFence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CCB918F939F9002432C0 /* CollideObjectFence.cpp */; };
@@ -132,7 +131,6 @@
 		69D7CDB318F939FA002432C0 /* StartGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4318F939FA002432C0 /* StartGame.cpp */; };
 		69D7CDB418F939FA002432C0 /* StartUp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4518F939FA002432C0 /* StartUp.cpp */; };
 		69D7CDB518F939FA002432C0 /* StaticFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4618F939FA002432C0 /* StaticFloor.cpp */; };
-		69D7CDB618F939FA002432C0 /* TextMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4818F939FA002432C0 /* TextMaker.cpp */; };
 		69D7CDB718F939FA002432C0 /* Trigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4A18F939FA002432C0 /* Trigger.cpp */; };
 		69D7CDB818F939FA002432C0 /* TriggerNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4C18F939FA002432C0 /* TriggerNode.cpp */; };
 		69D7CDB918F939FA002432C0 /* TutorialTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD4E18F939FA002432C0 /* TutorialTrigger.cpp */; };
@@ -146,9 +144,9 @@
 		69D7CDC818F95058002432C0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDC718F95058002432C0 /* SystemConfiguration.framework */; };
 		69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDC918F95068002432C0 /* CFNetwork.framework */; };
 		69D7CDCC18F9510B002432C0 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDCB18F9510B002432C0 /* libbass.a */; };
-		69D7CDCE18F9512A002432C0 /* libamju.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDCD18F9512A002432C0 /* libamju.a */; };
 		69D7CDD318F976FA002432C0 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDCF18F976FA002432C0 /* ViewController_iPad.xib */; };
 		69D7CDD418F976FA002432C0 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDD118F976FA002432C0 /* ViewController_iPhone.xib */; };
+		71D22B611D4E507300012DB8 /* libamju.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B601D4E507300012DB8 /* libamju.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,8 +228,6 @@
 		69D7CCB218F939F9002432C0 /* Bonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bonus.h; path = ../../../../Source/Bonus.h; sourceTree = "<group>"; };
 		69D7CCB318F939F9002432C0 /* BonusParticleEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BonusParticleEffect.cpp; path = ../../../../Source/BonusParticleEffect.cpp; sourceTree = "<group>"; };
 		69D7CCB418F939F9002432C0 /* BonusParticleEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BonusParticleEffect.h; path = ../../../../Source/BonusParticleEffect.h; sourceTree = "<group>"; };
-		69D7CCB518F939F9002432C0 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = ../../../../Source/Camera.cpp; sourceTree = "<group>"; };
-		69D7CCB618F939F9002432C0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../../../../Source/Camera.h; sourceTree = "<group>"; };
 		69D7CCB718F939F9002432C0 /* CollideDinoDino.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideDinoDino.cpp; path = ../../../../Source/CollideDinoDino.cpp; sourceTree = "<group>"; };
 		69D7CCB818F939F9002432C0 /* CollideDinoPet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideDinoPet.cpp; path = ../../../../Source/CollideDinoPet.cpp; sourceTree = "<group>"; };
 		69D7CCB918F939F9002432C0 /* CollideObjectFence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollideObjectFence.cpp; path = ../../../../Source/CollideObjectFence.cpp; sourceTree = "<group>"; };
@@ -376,8 +372,6 @@
 		69D7CD4518F939FA002432C0 /* StartUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartUp.cpp; path = ../../../../Source/StartUp.cpp; sourceTree = "<group>"; };
 		69D7CD4618F939FA002432C0 /* StaticFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StaticFloor.cpp; path = ../../../../Source/StaticFloor.cpp; sourceTree = "<group>"; };
 		69D7CD4718F939FA002432C0 /* StaticFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticFloor.h; path = ../../../../Source/StaticFloor.h; sourceTree = "<group>"; };
-		69D7CD4818F939FA002432C0 /* TextMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextMaker.cpp; path = ../../../../Source/TextMaker.cpp; sourceTree = "<group>"; };
-		69D7CD4918F939FA002432C0 /* TextMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextMaker.h; path = ../../../../Source/TextMaker.h; sourceTree = "<group>"; };
 		69D7CD4A18F939FA002432C0 /* Trigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Trigger.cpp; path = ../../../../Source/Trigger.cpp; sourceTree = "<group>"; };
 		69D7CD4B18F939FA002432C0 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trigger.h; path = ../../../../Source/Trigger.h; sourceTree = "<group>"; };
 		69D7CD4C18F939FA002432C0 /* TriggerNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriggerNode.cpp; path = ../../../../Source/TriggerNode.cpp; sourceTree = "<group>"; };
@@ -398,9 +392,9 @@
 		69D7CDC718F95058002432C0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		69D7CDC918F95068002432C0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		69D7CDCB18F9510B002432C0 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../Libs/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = "<group>"; };
-		69D7CDCD18F9512A002432C0 /* libamju.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libamju.a; path = "../../../Libs/amjulib-v.0.2-ios/lib/libamju.a"; sourceTree = "<group>"; };
 		69D7CDD018F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		69D7CDD218F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		71D22B601D4E507300012DB8 /* libamju.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libamju.a; path = "../../../../amjulib/Releases/amjulib-v.0.5-ios/lib/libamju.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,7 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D7CDCE18F9512A002432C0 /* libamju.a in Frameworks */,
+				71D22B611D4E507300012DB8 /* libamju.a in Frameworks */,
 				69D7CDCC18F9510B002432C0 /* libbass.a in Frameworks */,
 				69D7CC3718F895BF002432C0 /* OpenGLES.framework in Frameworks */,
 				69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */,
@@ -471,7 +465,7 @@
 		69D7CC2D18F895BF002432C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				69D7CDCD18F9512A002432C0 /* libamju.a */,
+				71D22B601D4E507300012DB8 /* libamju.a */,
 				69D7CDCB18F9510B002432C0 /* libbass.a */,
 				69D7CDC918F95068002432C0 /* CFNetwork.framework */,
 				69D7CDC718F95058002432C0 /* SystemConfiguration.framework */,
@@ -535,8 +529,6 @@
 		69D7CC9118F9399C002432C0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6909DCCF18FFD004009AC2CB /* RDRandom.cpp */,
-				6909DCD018FFD004009AC2CB /* RDRandom.h */,
 				69D7CC9218F939F9002432C0 /* AI.cpp */,
 				69D7CC9318F939F9002432C0 /* AI.h */,
 				69D7CC9418F939F9002432C0 /* AIChasePet.cpp */,
@@ -572,8 +564,6 @@
 				69D7CCB218F939F9002432C0 /* Bonus.h */,
 				69D7CCB318F939F9002432C0 /* BonusParticleEffect.cpp */,
 				69D7CCB418F939F9002432C0 /* BonusParticleEffect.h */,
-				69D7CCB518F939F9002432C0 /* Camera.cpp */,
-				69D7CCB618F939F9002432C0 /* Camera.h */,
 				69D7CCB718F939F9002432C0 /* CollideDinoDino.cpp */,
 				69D7CCB818F939F9002432C0 /* CollideDinoPet.cpp */,
 				69D7CCB918F939F9002432C0 /* CollideObjectFence.cpp */,
@@ -696,6 +686,8 @@
 				69D7CD3318F939FA002432C0 /* PropertiesDialog.cpp */,
 				69D7CD3418F939FA002432C0 /* PropertiesDialog.h */,
 				69D7CD3518F939FA002432C0 /* PropertyKeys.h */,
+				6909DCCF18FFD004009AC2CB /* RDRandom.cpp */,
+				6909DCD018FFD004009AC2CB /* RDRandom.h */,
 				69D7CD3618F939FA002432C0 /* Rotateable.h */,
 				69D7CD3718F939FA002432C0 /* SaveDir.cpp */,
 				69D7CD3818F939FA002432C0 /* SaveDir.h */,
@@ -714,8 +706,6 @@
 				69D7CD4518F939FA002432C0 /* StartUp.cpp */,
 				69D7CD4618F939FA002432C0 /* StaticFloor.cpp */,
 				69D7CD4718F939FA002432C0 /* StaticFloor.h */,
-				69D7CD4818F939FA002432C0 /* TextMaker.cpp */,
-				69D7CD4918F939FA002432C0 /* TextMaker.h */,
 				69D7CD4A18F939FA002432C0 /* Trigger.cpp */,
 				69D7CD4B18F939FA002432C0 /* Trigger.h */,
 				69D7CD4C18F939FA002432C0 /* TriggerNode.cpp */,
@@ -893,7 +883,6 @@
 				69D7CDB718F939FA002432C0 /* Trigger.cpp in Sources */,
 				69D7CD5C18F939FA002432C0 /* AIGoHighGround.cpp in Sources */,
 				69D7CD7B18F939FA002432C0 /* EditViewport.cpp in Sources */,
-				69D7CD6718F939FA002432C0 /* Camera.cpp in Sources */,
 				69D7CDBB18F939FA002432C0 /* WWGameObject.cpp in Sources */,
 				69D7CD6C18F939FA002432C0 /* CollidePetPet.cpp in Sources */,
 				69D7CD9518F939FA002432C0 /* AppDelegate.mm in Sources */,
@@ -920,7 +909,6 @@
 				69D7CDA518F939FA002432C0 /* Player.cpp in Sources */,
 				69D7CDA418F939FA002432C0 /* Pet.cpp in Sources */,
 				69D7CD7718F939FA002432C0 /* Depth.cpp in Sources */,
-				69D7CDB618F939FA002432C0 /* TextMaker.cpp in Sources */,
 				69D7CD6B18F939FA002432C0 /* CollideObjectFloor.cpp in Sources */,
 				69D7CD9B18F939FA002432C0 /* LurkMsg.cpp in Sources */,
 				69D7CD7118F939FA002432C0 /* CollidePlayerExit.cpp in Sources */,
@@ -1057,7 +1045,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1065,6 +1054,11 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					IPHONE,
+					AMJU_USE_BASS,
+					_DEBUG,
+					AMJU_IOS,
+					AMJU_USE_ES2,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1096,10 +1090,17 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE,
+					AMJU_USE_BASS,
+					AMJU_IOS,
+					AMJU_USE_ES2,
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1128,11 +1129,12 @@
 					IPHONE,
 					AMJU_IOS,
 					AMJU_USE_BASS,
+					AMJU_USE_ES2,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../../../Libs/amjulib-v.0.2-ios/include",
+					"../../../Libs/amjulib-v.0.5-ios/include",
 				);
 				INFOPLIST_FILE = "Rainbow Drop/Rainbow Drop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1159,11 +1161,12 @@
 					AMJU_IOS,
 					IPHONE,
 					AMJU_USE_BASS,
+					AMJU_USE_ES2,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../../../Libs/amjulib-v.0.2-ios/include",
+					"../../../Libs/amjulib-v.0.5-ios/include",
 				);
 				INFOPLIST_FILE = "Rainbow Drop/Rainbow Drop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
