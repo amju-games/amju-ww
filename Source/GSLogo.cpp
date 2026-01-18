@@ -59,8 +59,9 @@ void GSLogo::Draw2d()
   PopColour();
 }
 
-void GSLogo::OnKeyEvent(const KeyEvent& ke)
+bool GSLogo::OnKeyEvent(const KeyEvent& ke)
 {
   Done();
+  return true;
 }
 }
