@@ -8,7 +8,7 @@ max_z 90
 
 // Initial scroll speed for level
 scroll-speed 40
-
+start-depth -500
 next-layer-height-offset 300
 
 
