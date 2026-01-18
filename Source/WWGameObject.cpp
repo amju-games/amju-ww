@@ -1,6 +1,7 @@
 #include <File.h>
 #include <Game.h>
 #include <DegRad.h>
+#include <StringUtils.h>
 #include "WWGameObject.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
@@ -129,7 +130,13 @@ bool WWGameObject::LoadMeshResource(File* f)
     f->ReportError("Expected mesh file name");
     return false;
   }
-  
+ 
+  std::string ext = GetFileExt(m_meshFilename);
+  if (ext != "obj")
+  {
+    f->ReportError("Not an .obj file?!\n");
+    return false;
+  }
   // TODO verify file exists?
 
   return true;
