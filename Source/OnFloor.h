@@ -1,15 +1,17 @@
 #ifndef ON_FLOOR_H
 #define ON_FLOOR_H
 
-#include "BlinkCharacter.h"
+#include <vector>
+#include "GameObject.h"
 #include "Vec2.h"
 #include "AABB.h"
+#include "Shadow.h"
 
 namespace Amju
 {
 class Floor;
 
-class OnFloor : public BlinkCharacter
+class OnFloor : public GameObject
 {
 public:
   OnFloor();
@@ -18,8 +20,7 @@ public:
   virtual bool Load(File*);
   virtual void Reset(); 
   virtual void Update();
-  virtual void Draw();
-  virtual void DrawBlended();
+  virtual AABB* GetAABB();
 
   void SetFloor(Floor*); 
 
@@ -29,18 +30,24 @@ public:
   static void AddFloor(Floor*);
   static void ClearFloors();
 
-  void DrawShadow();
+  // Returns true if character has non-zero vel due to user or AI control
+  bool IsControlled() const;
+  void SetIsControlled(bool);
+
+  // Returns true if character is falling or jumping, i.e. in the air
+  bool IsFalling() const;
+  void SetIsFalling(bool);
 
 protected:
-    void UpdatePhysics();
-
-private:
-  void SetTilt();
+  void UpdatePhysics();
+  void UpdateShadow();
+  bool LoadShadow(File* f);
 
   // Set m_floor to point to floor under us, or 0 if we are lower than any floor
   void FindFloor();
 
-  void UpdateAnim();
+private:
+  void SetTilt();
   void UpdateXZ();
   void UpdateY();
 
@@ -70,11 +77,21 @@ protected:
   // True when we have fallen below all Floors
   bool m_isDead;
 
-  float m_shadowSize;
-
   // List of all Floor objects this level
   typedef std::vector<RCPtr<Floor> > Floors;
   static Floors s_floors;
+
+  // True if velocity is non-zero, due to character walking or running.
+  // False if due to falling, sliding or being pushed.
+  bool m_isControlled;
+
+  bool m_isFalling; // falling or jumping
+
+  // All objects which are on a floor have a node in the Scene Graph
+  SceneNode* m_pSceneNode;
+
+  // All objects which are on a floor can cast a shadow onto it
+  Shadow* m_shadow;
 };
 }
 

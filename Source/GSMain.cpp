@@ -9,15 +9,15 @@
 #include "ReportError.h"
 #include "GameObjectFactory.h"
 #include "EventPoller.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "SceneGameObject.h"
-#include "SceneComposite.h"
 #include "CollisionManager.h"
 #include "Font.h"
 #include "SceneNodeCamera.h"
 #include "Camera.h"
 #include "Timer.h"
 #include "StringUtils.h"
+#include "Pause.h"
 
 namespace Amju
 {
@@ -34,8 +34,12 @@ void GSMain::OnActive()
 {
   GameState::OnActive();
 
+  // Clear Text scene graph
+  GetTextSceneGraph()->Clear();
+
+  // was:
   // Remove sybox added for previous states
-  TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_SKYBOX, 0);
+  //TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_SKYBOX, 0);
 }
 
 void GSMain::OnKeyEvent(const KeyEvent& ke)
@@ -70,10 +74,14 @@ void Collisions()
     {
       PGameObject go1 = it->second;
       PGameObject go2 = jt->second;
-      if (go1->GetAABB().Intersects(go2->GetAABB()))
+      
+      AABB* aabb1 = go1->GetAABB();
+      AABB* aabb2 = go2->GetAABB();
+
+      if (aabb1 && aabb2 && aabb1->Intersects(*aabb2))
       {
         TheCollisionManager::Instance()->HandleCollision(go1, go2);
-      }
+      }      
     }
   }
 }
@@ -82,27 +90,58 @@ void GSMain::Update()
 {
   TheGame::Instance()->UpdateGameObjects();
 
+  GetGameSceneGraph()->Update();
+
   // Perform game-specific collision det & response here
   Collisions();
 }
 
+static Vec3f rot;
+void GSMain::OnRotationEvent(const RotationEvent& re)
+{
+  if (re.controller != 0)
+  {
+    return;
+  }
+
+  switch (re.axis)
+  {
+  case AMJU_AXIS_X:
+    rot.x = re.degs;
+    break;
+  case AMJU_AXIS_Y:
+    rot.y = re.degs;
+    break;
+  case AMJU_AXIS_Z:
+    rot.z = re.degs;
+    break;  
+  }
+}
+
 void GSMain::Draw2d()
 {
-  /*
+  // TODO Split screen -- draw all screens
+
   static Font* font = 
     (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
 
-  font->Print(-1, 1,  "some text");
-  */
+  /*
+  std::string s = "Rotation x: " + ToString(rot.x, 2) + 
+    " y: " + ToString(rot.y, 2) + 
+    " z: " + ToString(rot.z, 2);
 
+  font->Print(-1, 1, s.c_str());
+  */
   TheCursorManager::Instance()->Draw();
 }
 
 void GSMain::Draw()
 {
+  // TODO Split screen -- draw all screens
+
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  TheSceneGraph::Instance()->Draw();
+  GetGameSceneGraph()->Draw();
 }
 }

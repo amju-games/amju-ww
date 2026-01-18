@@ -9,6 +9,7 @@ Amju Games source code (c) Copyright Jason Colman 2009
 #include "Vec2.h"
 #include "Vec3.h"
 #include "Texture.h"
+#include "SceneNode.h"
 
 namespace Amju
 {
@@ -16,21 +17,28 @@ class CollisionMesh;
 struct Tri;
 
 // Implement a simple kind of shadow: a dark circle on the ground.
-class Shadow 
+class Shadow : public SceneNode
 {
 public:
   Shadow();
 
-  bool Load();
+  // SceneNode overrides
+  virtual bool Load(File*);
+  virtual void Draw();
+  virtual void Update();
 
-  void Draw(
+  void SetHeightRange(float up, float down);
+
+  void SetSize(float size);
+  // Set CollisionMesh which the shadow is cast on
+  void SetCollisionMesh(CollisionMesh*);
+
+protected:
+  void MyDraw(
     const Vec3f& v,
     float size,
     const CollisionMesh& collMesh);
 
-  void SetHeightRange(float up, float down);
-
-protected:
   virtual void BindTexture();
 
   virtual void RecalculateVerts();
@@ -76,11 +84,17 @@ protected:
   float GetShadowZ(int index);
 
 protected:
+  float m_size;
+
+  // Mesh on which the shadow is cast
+  // TODO Get all meshes from the rest of the scene graph ??
+  CollisionMesh* m_mesh;
+
   // Shadow texture - Resource
   PTexture m_texture;
 
   // Unknown number of verts, as we clip the shadow to the ground poly.
-  // But shadow is quad, ground polys are tris, so max verts is 6
+  // But shadow is quad, ground polys are tris, so max verts is 6?
   struct Polygon
   {
     void Draw();

@@ -6,6 +6,8 @@
 #include "Floor.h"
 #include "GameObjectFactory.h"
 #include "DegRad.h"
+#include "BlinkCharacter.h"
+#include "MySceneGraph.h"
 
 namespace Amju
 {
@@ -16,7 +18,6 @@ const char* Dino::NAME = "dino";
 
 Dino::Dino()
 {
-  UpdateAabb();
   m_decideTime = 0;
 }
 
@@ -31,6 +32,7 @@ void Dino::UpdateAabb()
   float maxx = 0;
   float maxz = 0;
 
+  float m_dir = ((BlinkCharacter*)m_pSceneNode)->GetDir();
   while (m_dir > 180.0f)
   {
     m_dir -= 360.0f;
@@ -71,7 +73,7 @@ void Dino::UpdateAabb()
   float miny = m_pos.y;
   float maxy = m_pos.y + YSIZE;
 
-  m_aabb.Set(minx, maxx, miny, maxy, minz, maxz);
+  GetAABB()->Set(minx, maxx, miny, maxy, minz, maxz);
 }
 
 const char* Dino::GetTypeName() const
@@ -79,20 +81,23 @@ const char* Dino::GetTypeName() const
   return NAME;
 }
 
+/*
 void Dino::Draw()
 {
   OnFloor::Draw();
   DrawShadow(); // TODO temp hack
 }
+*/
 
 void Dino::Update()
 {
-  UpdateAabb(); // updates shape of AABB, doesn't change its position
+  OnFloorCharacter::Update();
 
-  OnFloor::Update();
+  UpdateAabb(); // updates shape of AABB, DOES change its position
 
   // TODO TEMP TEST 
   // Walk towards highest place on Floor ?
+
   // TODO Behaviours - chase animals, etc
   m_decideTime += TheTimer::Instance()->GetDt();
   if (m_floor && m_decideTime > 2.0f) // TODO TEMP TEST 
@@ -124,11 +129,36 @@ void Dino::Update()
 
 bool Dino::Load(File* f)
 {
-  if (!OnFloor::Load(f))
+  if (!OnFloorCharacter::Load(f))
   {
     return false;
   }
 
+  m_pSceneNode = new BlinkCharacter;
+
+  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2("dino.md2"))
+  {
+    return false;
+  }
+
+  // TODO different colours
+  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures("dino1a.bmp", "dino1.bmp"))
+  {
+    return false;
+  }
+
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
+
+  // Create Shadow Scene Node
+  if (!LoadShadow(f))
+  {
+    return false;
+  }
+
+  return true;
+
+  /*
   m_pModel = (Md2Model*)TheResourceManager::Instance()->GetRes("dino.md2");
   if (!m_pModel)
   {
@@ -141,9 +171,8 @@ bool Dino::Load(File* f)
 
   m_pTex[1] = (Texture*)TheResourceManager::Instance()->GetRes("dino1.bmp");
   Assert(m_pTex[1]);
+  */
 
-  m_shadow.Load();
-
-  return true;
+//  m_shadow.Load();
 }
 }

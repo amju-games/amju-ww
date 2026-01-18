@@ -4,7 +4,10 @@
 #include "CollisionMesh.h"
 #include "File.h"
 #include "LoadMeshResource.h"
+#include "SceneMesh.h"
+#include "MySceneGraph.h"
 #include "Floor.h"
+#include "ObjMesh.h"
 
 namespace Amju
 {
@@ -22,6 +25,13 @@ const char* Block::GetTypeName() const
   return NAME;
 }
 
+//AABB* Block::GetAABB()
+//{
+//  Assert(m_pSceneNode);
+//  return m_pSceneNode->GetAABB();
+//}
+
+/*
 void Block::Draw()
 {
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
@@ -44,6 +54,7 @@ void Block::Draw()
 
   // TODO Shadow
 }
+*/
 
 void Block::Update()
 {
@@ -65,19 +76,33 @@ bool Block::Load(File* f)
     return false;
   }
 
-  m_mesh = LoadMeshResource(f);
-  if (!m_mesh)
+  ObjMesh* mesh = LoadMeshResource(f);
+  if (!mesh)
   {
-    f->ReportError("Failed to load exit mesh");
+    f->ReportError("Failed to load block mesh");
     return false;
   }
+
+  // Separate SceneNode
+//  m_shadow.Load();
+
+  // We can just use a Mesh scene node type, right ?
+  m_pSceneNode = new SceneMesh;
+  ((SceneMesh*)m_pSceneNode)->SetMesh(mesh);
+
   // Calc bounding box from mesh
   CollisionMesh cm;
-  m_mesh->CalcCollisionMesh(&cm);
-  cm.CalcAABB(&m_aabb);
-  m_aabb.Translate(m_pos);  // ?
+  mesh->CalcCollisionMesh(&cm);
+  cm.CalcAABB(m_pSceneNode->GetAABB());
+  m_pSceneNode->GetAABB()->Translate(m_pos);  // ?
 
-  m_shadow.Load();
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
+    AddChild(m_pSceneNode);
+ 
+  if (!LoadShadow(f))
+  {
+    return false;
+  }
 
   return true;
 }

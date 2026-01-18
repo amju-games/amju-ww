@@ -1,5 +1,4 @@
 #include "TextMaker.h"
-#include "SceneComposite.h"
 #include "SceneMesh.h"
 #include "CollisionMesh.h"
 #include "AABB.h"
@@ -35,7 +34,7 @@ SceneNode* MakeChar(char k, float* width)
   return meshNode;
 }
 
-PSceneNode TextMaker::MakeText(const std::string& text)
+SceneNode* TextMaker::MakeText(const std::string& text)
 {
   SceneNode* comp = new SceneNode;
   float xmax = 0;
@@ -54,7 +53,6 @@ PSceneNode TextMaker::MakeText(const std::string& text)
     SceneNode* node = MakeChar(c, &w);
     if (node)
     {
-      //node->SetParent(comp);
       Matrix m;
       m.Translate(Vec3f(x, 0, y));
       node->SetLocalTransform(m);
@@ -73,10 +71,6 @@ PSceneNode TextMaker::MakeText(const std::string& text)
   m.Translate(Vec3f(xmax * -0.5f, 0, y * -0.5f));
   comp->SetLocalTransform(m);
 
-  comp->CombineTransform();
-
   return comp;
 }
-
-
 }

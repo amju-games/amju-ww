@@ -7,6 +7,8 @@
 
 namespace Amju
 {
+class SceneMesh;
+
 class Skybox : public GameObject, public EventListener
 {
 public:
@@ -17,7 +19,6 @@ public:
   // GameObject overrides
   virtual const char* GetTypeName() const;
   virtual bool Load(File*);
-  virtual void Draw();
   virtual void Update();
 
   virtual void OnCursorEvent(const CursorEvent&);
@@ -27,6 +28,7 @@ private:
   PObjMesh m_mesh;
   float m_xRot;
   float m_yRot;
+  SceneMesh* m_pSceneNode;
 };
 }
 

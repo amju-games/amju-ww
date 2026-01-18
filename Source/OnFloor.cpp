@@ -28,12 +28,41 @@ void OnFloor::ClearFloors()
 OnFloor::OnFloor()
 {
   m_mass = 1.0f; // Default value, change in subclass ctor 
-  m_shadowSize = 20.0f; // Default value, change in subclass ctor 
+  m_shadow = 0;
+  m_pSceneNode = 0;
 
   // Everything should accelerate down at the same rate
   m_acc = Vec3f(0, GRAVITY, 0); 
 
   Reset();
+
+  m_isControlled = false; // TODO in Reset() ?
+}
+
+AABB* OnFloor::GetAABB()
+{
+  Assert(m_pSceneNode);
+  return m_pSceneNode->GetAABB();
+}
+
+bool OnFloor::IsControlled() const
+{
+  return m_isControlled;
+}
+
+void OnFloor::SetIsControlled(bool b)
+{
+  m_isControlled = b;
+}
+
+bool OnFloor::IsFalling() const
+{
+  return m_isFalling;
+}
+
+void OnFloor::SetIsFalling(bool b)
+{
+  m_isFalling = b;
 }
 
 bool OnFloor::IsDead() const
@@ -48,7 +77,7 @@ void OnFloor::SetFloor(Floor* floor)
 
 bool OnFloor::Load(File* f)
 {
-  if (!BlinkCharacter::Load(f))
+  if (!GameObject::Load(f))
   {
     return false;
   }
@@ -57,32 +86,23 @@ bool OnFloor::Load(File* f)
     f->ReportError("Expected position");
     return false;
   }
-  m_aabb.Translate(m_pos);
 
   return true;
 }
 
-void OnFloor::Draw()
+bool OnFloor::LoadShadow(File* f)
 {
-  BlinkCharacter::Draw();
+  Assert(m_pSceneNode);
 
-//  if (m_floor)
+  m_shadow = new Shadow;
+
+  if (!m_shadow->Load(f))
   {
-    m_aabb.Draw();
+    return false;
   }
-}
+  m_pSceneNode->AddChild(m_shadow);
 
-void OnFloor::DrawBlended()
-{
-  DrawShadow();
-}
-
-void OnFloor::DrawShadow()
-{
-  if (m_floor)
-  {
-    m_shadow.Draw(m_pos, m_shadowSize, m_floor->GetCollisionMesh());
-  }
+  return true;
 }
 
 void OnFloor::Reset()
@@ -98,7 +118,7 @@ void OnFloor::FindFloor()
   {
     // In general area ? - i.e. do our bounding boxes intersect ?
     Floor* f = s_floors[i];
-    if (!m_aabb.Intersects(f->GetAABB()))
+    if (!GetAABB()->Intersects(*(f->GetAABB())))
     {
       continue;
     }
@@ -120,36 +140,6 @@ void OnFloor::FindFloor()
 void OnFloor::PlayWav(OnFloor::Event e)
 {
   // TODO
-}
-
-void OnFloor::UpdateAnim()
-{
-  Vec3f vel = GetVel();
-  vel.y = 0; // Only consider x-z speed
-  float speed = vel.SqLen(); 
-  static const float RUN_SPEED = 20.0f;
-  static const float RUN_SPEED_2 = RUN_SPEED * RUN_SPEED;
-
-  static const float STAND_SPEED = 10.0f;
-  static const float STAND_SPEED_2 = STAND_SPEED * STAND_SPEED;
-
-  if (IsFalling())
-  {
-    int jump = m_pModel->GetAnimationFromName("jump");
-    SetAnim(jump);
-  }
-  else if (speed > RUN_SPEED_2) // && IsControlled())
-  {
-    int run = m_pModel->GetAnimationFromName("run");
-    SetAnim(run);
-  }
-  else if (speed < STAND_SPEED_2) // NB Hysteresis to prevent anim flicker
-  {
-    int stand = m_pModel->GetAnimationFromName("stand");
-    SetAnim(stand);
-  }
-
-  BlinkCharacter::Update();
 }
 
 void OnFloor::UpdateXZ()
@@ -206,7 +196,7 @@ void OnFloor::UpdateY()
     if (m_pos.y < y)
     {
       // Stop box sinking
-      m_aabb.Translate(Vec3f(0, y - m_pos.y, 0));
+      GetAABB()->Translate(Vec3f(0, y - m_pos.y, 0));
 
       m_pos.y = y;
       if (m_vel.y < 0)
@@ -243,9 +233,24 @@ void OnFloor::UpdateY()
   }
 }
 
+void OnFloor::UpdateShadow()
+{
+  Assert(m_shadow);
+  if (m_floor)
+  {
+    m_shadow->SetCollisionMesh(const_cast<CollisionMesh*>(&(m_floor->GetCollisionMesh())));
+  }
+  else
+  {
+    m_shadow->SetCollisionMesh(0);
+  }
+}
+
 void OnFloor::Update()
 {
-  UpdateAnim();
+  GameObject::Update();
+
+  UpdateShadow();
 
   UpdatePhysics();
 }

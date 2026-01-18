@@ -3,7 +3,7 @@
 #include "EventPoller.h"
 #include "GSLoadLevel.h"
 #include "SceneMesh.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "ResourceManager.h"
 #include "SoundManager.h"
 
@@ -45,10 +45,19 @@ void GSTitle::OnActive()
 {
   GSText::OnActive();
 
+  TheResourceManager::Instance()->LoadResourceGroup("music-group");
   // Start theme music
   TheSoundManager::Instance()->PlaySong("ww1.mod");
 
+#ifdef GEKKO
+  TheResourceManager::Instance()->LoadResourceGroup("wii-sound-group");
+#else
+  // Etc
+  TheResourceManager::Instance()->LoadResourceGroup("windows-sound-group");
+#endif
+
   // Gui and 3D Text resources - keep in mem, so don't trash in OnDeactive
+  // TODO Load while logos are displayed ?
   TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
   TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
   TheResourceManager::Instance()->LoadResourceGroup("gui-group");
@@ -63,7 +72,7 @@ void GSTitle::OnActive()
 
   // Load background skybox
   // TODO We could have movement decorator etc 
-  TheSceneGraph::Instance()->SetRootNode(
+  GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("title-scene.txt"));
 }
 }

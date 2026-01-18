@@ -8,8 +8,9 @@
 #include "StringUtils.h"
 #include "CursorManager.h"
 #include "Font.h"
-#include "SceneGraph.h"
+#include "MySceneGraph.h"
 #include "SceneMesh.h"
+#include "BonusParticleEffect.h"
 #include "File.h"
 
 namespace Amju
@@ -43,6 +44,32 @@ void TestState::OnActive()
 */
 
   GameState::OnActive();
+  
+  TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
+  TheResourceManager::Instance()->LoadResourceGroup("level-1-group");
+
+  /*
+  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("heart.obj");
+  SceneMesh* node = new SceneMesh;
+  node->SetMesh(mesh);
+  node->SetBlended(true);
+  */
+
+  BonusParticleEffect* node = new BonusParticleEffect;
+  File effectFile;
+  if (!effectFile.OpenRead("bonus-effect.txt"))
+  {
+    effectFile.ReportError("Couldn't open bonus effect file");
+    Assert(0);
+  }
+  node->Load(&effectFile);
+
+  GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, new SceneNode);
+  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->AddChild(node);
+  Matrix mat;
+  mat.Translate(Vec3f(50, 0, 0));
+  node->SetLocalTransform(mat);
+  node->Start();
 
   /*
   TheSceneGraph::Instance(); // make sure we have registered with factory
@@ -67,13 +94,14 @@ void TestState::OnActive()
 
 void TestState::Draw()
 {
-  /*
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
-  AmjuGL::LookAt(0, 10, 10,   0, 0, 0.0f,  0, 1.0f, 0);
+  AmjuGL::LookAt(0, 100, 100,   0, 0, 0.0f,  0, 1.0f, 0);
 
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
+  GetGameSceneGraph()->Update();
+  GetGameSceneGraph()->Draw();
 
+  /*
   AmjuGL::DrawLighting(
     AmjuGL::LightColour(0, 0, 0),
     AmjuGL::LightColour(0.2f, 0.2f, 0.2f), // Ambient light colour
@@ -101,13 +129,6 @@ void TestState::Draw()
 
 void TestState::Draw2d()
 {
-  float s = 0;
-  AmjuGL::DrawLine(AmjuGL::Vec3(-1, s, 0), 
-    AmjuGL::Vec3(1, s, 0));
-
-  std::cout << "Hello\n";
-
-  /*
 //  Font* font = (Font*)TheResourceManager::Instance()->GetRes("font2d/cheri-font.font");
   Font* font = (Font*)TheResourceManager::Instance()->GetRes("font2d/arial-font.font");
 
@@ -117,6 +138,5 @@ void TestState::Draw2d()
   
 
   TheCursorManager::Instance()->Draw();
-  */
 }
 }
