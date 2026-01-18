@@ -80,7 +80,6 @@ void OnProperties()
 GSMainEdit::GSMainEdit()
 {
   m_playTestMode = false;
-  m_controller = new EditModeController(this);
 
   m_isSelecting = false;
   m_selectedObj = 0;
@@ -120,7 +119,6 @@ void GSMainEdit::OnMove()
 void GSMainEdit::OnDeactive()
 {
   TheEventPoller::Instance()->RemoveListener(m_topMenu);
-  TheEventPoller::Instance()->RemoveListener(m_controller);
 }
 
 static EditModeCamera* GetCamera()
@@ -142,7 +140,6 @@ void GSMainEdit::OnActive()
 //  root->AddChild(m_selNode.GetPtr()); // TODO how to ensure we only add it once ?
 
   TheEventPoller::Instance()->AddListener(m_topMenu);
-  TheEventPoller::Instance()->AddListener(m_controller);
 
   // Initial option is to load a block
 
@@ -303,7 +300,6 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       m_mouseScreen.x = mbe.x;
       m_mouseScreen.y = mbe.y;
       m_isSelecting = true;
-      return true;
     }
     else
     {
