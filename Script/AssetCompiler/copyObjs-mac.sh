@@ -38,6 +38,7 @@ cp ../tex/common/*.png .
 
 cp *.obj $DEST_DIR/
 cp *.mtl $DEST_DIR/
+cp *.txt $DEST_DIR/
 
 #for f in *.obj
 #do

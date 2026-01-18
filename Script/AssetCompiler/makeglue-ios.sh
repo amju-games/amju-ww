@@ -16,6 +16,7 @@ mkdir $DEST_DIR/font2d
 mkdir $DEST_DIR/levels
 
 cp $SRC_DIR/*.txt $DEST_DIR
+cp $SRC_DIR/obj/*.txt $DEST_DIR
 cp $SRC_DIR/levels/*.txt $DEST_DIR/levels
 cp $SRC_DIR/gui/common/*.txt $DEST_DIR
 cp $SRC_DIR/gui/$PLATFORM/*.txt $DEST_DIR
