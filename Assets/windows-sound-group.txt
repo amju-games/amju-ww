@@ -1,6 +1,0 @@
-// Resource group
-// version
-1
-// Sound FX for Windows
-// e.g. sound/bonus_points.wav etc
-

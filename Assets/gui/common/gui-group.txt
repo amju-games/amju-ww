@@ -1,6 +1,0 @@
-// Resource group
-// version
-1
-// resources
-gui-button-4.png
-progress.png
