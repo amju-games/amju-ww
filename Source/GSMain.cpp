@@ -33,6 +33,9 @@ GSMain::GSMain()
 void GSMain::OnActive()
 {
   GameState::OnActive();
+
+  // Remove sybox added for previous states
+  TheSceneGraph::Instance()->SetRootNode(SceneGraph::AMJU_SKYBOX, 0);
 }
 
 void GSMain::OnKeyEvent(const KeyEvent& ke)

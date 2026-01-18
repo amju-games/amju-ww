@@ -25,7 +25,7 @@ void GSLoadLevel::OnActive()
 {
   GSText::OnActive();
 
-  CreateText("level " + m_level);
+  CreateText("level  " + m_level);
   m_timer = 0;
 
   m_gui = LoadGui("loadlevel-gui.txt");
@@ -128,13 +128,9 @@ void GSLoadLevel::Update()
     ++m_currentObj;
   }
 
-  // Inc timer, go to next state when we have paused long enough
-  m_timer += TheTimer::Instance()->GetDt();
-  //if (m_timer > 3.0f) // TODO CONFIG
-  //{
-  //  TheGame::Instance()->SetCurrentState(GSMain::NAME);
-  //}
-
+  // Go to next state when we have paused long enough ?
+  // Or progress bar turns into button..?
+  
   GuiElement* bar = m_gui->GetElementByName("bar");
   Vec2f s = bar->GetSize();
   float barSize = (float)m_currentObj / (float)m_numObjects;
@@ -145,7 +141,7 @@ void GSLoadLevel::Update()
   s.x = barSize * m_maxBarX;
   bar->SetSize(s);
 
-  if (m_currentObj == m_numObjects && m_timer > 5.0f)
+  if (m_currentObj == m_numObjects && m_timer > 3.0f)
   {
     m_file = 0; // delete, we no longer need it
     TheGame::Instance()->SetCurrentState(GSMain::NAME);
