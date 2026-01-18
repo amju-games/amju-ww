@@ -34,11 +34,6 @@ public:
   // Set one callback which is called whatever button closes the dialog
   void SetFinishCallback(DialogFinishCallback);
 
-  // For dialogs with only OK and cancel, you can set two callbacks so 
-  //  different functions are called - could be more convenient
-//  void SetOkCancelCallbacks(
-//    DialogFinishCallback onOk, DialogFinishCallback onCancel);
-
   virtual void Draw() override;
   virtual void Draw2d() override;
   virtual void Update() override;
@@ -71,10 +66,10 @@ protected:
   GameState* m_prevState;
   PGuiElement m_gui;
   std::string m_guiFilename;
-  DialogFinishCallback m_onOK;
-  DialogFinishCallback m_onCancel;
+  DialogFinishCallback m_onFinished;
   int m_result;
   std::string m_title;
+  bool m_drag;
 };
 
 class MessageBox : public Dialog

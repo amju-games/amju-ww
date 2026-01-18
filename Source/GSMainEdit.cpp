@@ -23,12 +23,15 @@
 #include "SaveDir.h"
 #include "Viewport.h"
 #include "EditViewport.h"
+#include "PropertiesDialog.h"
 
 namespace Amju
 {
 static FileDialog s_fileDialog; 
 
 static MessageBox s_messageBox;
+
+static PropertiesDialog m_propsDialog;
 
 static const char* LAST_PATH = "last_path";
 
@@ -342,6 +345,7 @@ static void OnDelete()
 
 static void OnProperties()
 {
+  TheGSMainEdit::Instance()->OnProperties();
 }
 
 
@@ -378,6 +382,7 @@ GSMainEdit::GSMainEdit()
   }
 
   GuiMenu* objectSubmenu = new GuiMenu;
+  objectSubmenu->AddChild(new GuiMenuItem("Properties", Amju::OnProperties));
   objectSubmenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
   objectSubmenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
   objectSubmenu->AddChild(new GuiMenuItem("Rotate +90", Amju::OnObjectRotateCW));
@@ -543,6 +548,73 @@ void GSMainEdit::OnObjectRotate(float degs)
   {
     RotateCommand* c = new RotateCommand(m_selectedObj, degs);
     TheGuiCommandHandler::Instance()->DoNewCommand(c);
+  }
+  else
+  {
+    std::cout << "No object selected to rotate!\n";
+  }
+}
+
+class PropertyChangeCommand : public GuiCommand
+{
+public:
+  PropertyChangeCommand(WWGameObject* obj, PropertyKey propKey, Value value);
+
+  virtual bool Do() override
+  {
+    PropertyKey m_old = obj->GetProp(propKey);
+    obj->SetProp(propKey, value);
+    // TODO Reload
+
+    s_unsaved++;
+    return true;
+  }
+
+  virtual void Undo() override
+  {
+    obj->SetProp(propKey, m_old);
+    // TODO Reload
+
+    s_unsaved--;
+  }
+
+private:
+  RCPtr<WWGameObject> m_obj;
+};
+
+static void OnPropertiesDialogClosed(Dialog* dlg)
+{
+  if (dlg->GetResult() == AMJU_OK)
+  {
+    // Create command for the changes
+    // TODO Only if anything changed
+
+    PropertiesDialog* pdlg = dynamic_cast<PropertiesDialog*>(dlg);
+    Assert(pdlg);
+  }
+}
+
+void GSMainEdit::OnProperties()
+{
+  if (m_selectedObj)
+  {
+    m_propsDialog.Clear();
+
+    // Properties dialog - TODO something along the lines of AntTweakBar
+    m_propsDialog.SetTitle("Properties for " + Describe(m_selectedObj));
+    m_propsDialog.SetFinishCallback(OnPropertiesDialogClosed);
+
+    // Populate properties
+    m_propsDialog.AddItem(new PropertiesDialog::TextItem("Name", "Value"));
+    m_propsDialog.AddItem(new PropertiesDialog::FilenameItem("Filename", "what.txt"));
+
+    DoModalDialog(&m_propsDialog);
+
+
+  }
+  else
+  {
+    std::cout << "No object selected to get/set properties!\n";
   }
 }
 

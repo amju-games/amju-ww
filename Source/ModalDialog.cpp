@@ -49,9 +49,9 @@ static void DialogOnCancel()
 Dialog::Dialog()
 {
   m_prevState = nullptr;
-  m_onOK = nullptr;
-  m_onCancel = nullptr;
+  m_onFinished = nullptr;
   m_result = (int)AMJU_RESULT_NOT_SET;
+  m_drag = false;
 }
  
 void Dialog::SetTitle(const std::string& title)
@@ -79,19 +79,9 @@ void Dialog::SetPrevState(GameState* s)
   m_prevState = s;
 }
 
-/*
-void Dialog::SetOkCancelCallbacks(
-  DialogFinishCallback onOK, DialogFinishCallback onCancel)
-{
-  m_onOK = onOK;
-  m_onCancel = onCancel;
-}
-*/
-
 void Dialog::SetFinishCallback(DialogFinishCallback cb)
 {
-  m_onOK = cb;
-  m_onCancel = nullptr;
+  m_onFinished = cb;
 }
 
 void Dialog::Draw()
@@ -167,15 +157,8 @@ void Dialog::Close()
   TheGame::Instance()->SetCurrentState(m_prevState);
 
   // Call the callback function to say this dialog has finished
-  if (m_onCancel && m_result == AMJU_CANCEL)
-  {
-    m_onCancel(this);
-  }
-  else
-  {
-    Assert(m_onOK);
-    m_onOK(this);
-  }
+  Assert(m_onFinished);
+  m_onFinished(this);
 }
 
 void Dialog::SetButtonText(const std::string& buttonName, const std::string& text)
@@ -201,6 +184,14 @@ bool Dialog::OnKeyEvent(const KeyEvent& e)
 bool Dialog::OnCursorEvent(const CursorEvent& e) 
 { 
   Assert(m_gui);
+
+  if (m_drag)
+  {
+    Vec2f pos = m_gui->GetLocalPos();
+    pos += Vec2f(e.dx, e.dy);
+    m_gui->SetLocalPos(pos);
+  }
+
   m_gui->OnCursorEvent(e);
   return true; 
 }
@@ -229,6 +220,19 @@ bool Dialog::OnButtonEvent(const ButtonEvent& e)
 bool Dialog::OnMouseButtonEvent(const MouseButtonEvent& e) 
 { 
   Assert(m_gui);
+
+  // Check if title bar clicked
+  m_drag = false;
+  GuiDialog* dlg = dynamic_cast<GuiDialog*>(m_gui.GetPtr());
+  if (dlg->HasTitleBar() && e.isDown)
+  {
+    if (GetRect(dlg->GetTitleBar()).IsPointIn(Vec2f(e.x, e.y)))
+    {
+      std::cout << "Title bar clicked!\n";
+      m_drag = true;
+    }
+  }
+
   m_gui->OnMouseButtonEvent(e);
   return true; 
 }
