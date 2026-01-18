@@ -40,7 +40,7 @@ setup:
 	mkdir -p "$(APP_DIR)"; \
 	cp $(TARGET) "$(APP_DIR)/$(NICE_NAME)"; \
 	cp ../../Assets/iphone/Info.plist "$(APP_DIR)"; \
-	cp $(AMJULIB_IPHONE_SCRIPT_PATH)/../../Assets/iPhone/MainWindow.nib "$(APP_DIR)"
+	cp $(AMJULIB_IPHONE_SCRIPT_PATH)/../../Assets/iPhone/MainWindow.nib "$(APP_DIR)"; \
 	cp $(AMJULIB_IPHONE_SCRIPT_PATH)/../../Assets/iPhone/PkgInfo "$(APP_DIR)"; \
 	cp ../../Assets/iphone/icon.png "$(APP_DIR)"; \
 	cp ../../Build/CompiledAssets/data-iphone.glue "$(APP_DIR)"; \
