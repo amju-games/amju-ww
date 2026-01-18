@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>59DD9CC1-B1B7-4708-A179-1A6D872005B1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Rainbow Drop</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>77B23167-55C1-4F75-BFFB-F5661ED961DB</key>
+		<string>https://amju-ww.googlecode.com/svn/trunk</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Script/iOS-XCode-rainbowDrop/Rainbow Drop/Rainbow Drop.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>77B23167-55C1-4F75-BFFB-F5661ED961DB</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>77B23167-55C1-4F75-BFFB-F5661ED961DB</key>
+		<string>https://amju-ww.googlecode.com/svn</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://amju-ww.googlecode.com/svn/trunk/Script/iOS-XCode-rainbowDrop/Rainbow%20Drop/Rainbow%20Drop.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>77B23167-55C1-4F75-BFFB-F5661ED961DB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>77B23167-55C1-4F75-BFFB-F5661ED961DB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>amju-ww</string>
+		</dict>
+	</array>
+</dict>
+</plist>
