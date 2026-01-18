@@ -24,7 +24,7 @@ int ProcGen::GetNumLayers() const
 
 void ProcGen::Init()
 {
-  m_numLayers = 2; // TODO
+  m_numLayers = 3; // TODO
 }
 
 bool ProcGen::OpenLayer(int layerNum) //const std::string& layerFilename)
@@ -170,19 +170,14 @@ void ProcGen::Reset()
 
 void ProcGen::PickNextLayer()
 {
-  static int i = 0;
-  i++;
-  if (i > 1)
-  {
-    i = 0;
-  }
-
   // If m_nextLayer is -1, this is the first choice.
 
   // Otherwise, pick a layer depending on which ones are allowed to follow
   //  the current layer..?
 
-  m_nextLayer = i; // TODO Random, but based on which layers are allowed to come after the most recent layer.
+  m_nextLayer = rand() % m_numLayers; 
+  // TODO Random, but based on which layers are allowed to come after the most recent layer.
+
   float layerHeight = 300; // TODO TEMP TEST should be data, depending on layer above
 
   m_nextDepth = m_nextDepth + layerHeight; 
