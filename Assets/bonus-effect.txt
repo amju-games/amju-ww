@@ -1,0 +1,12 @@
+// bonus effect
+// v
+1
+// image - TODO TEMP TEST
+sparkle1.bmpa
+// size
+10.0
+// number
+20
+// particle max time
+3.0
+
