@@ -14,7 +14,7 @@ ok-button
 0.2, 0.2
 gui-button-1.png
 $$$empty
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 gui-button
 yes-button
@@ -22,7 +22,7 @@ yes-button
 0.8, 0.2
 gui-button-4.png
 yes
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 gui-button
 no-button
@@ -30,7 +30,7 @@ no-button
 0.8,0.2
 gui-button-4.png
 no
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 
 

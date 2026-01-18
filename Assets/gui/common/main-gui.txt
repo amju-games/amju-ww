@@ -19,7 +19,7 @@ objective-text
 2.0, 0.1
 // Text (temp - overwritten by each level objective)
 $$$empty
-arial, 1.0, fgcol=ffffff
+arial, 1.0, fgcol=ffffff, sx=1.6
 
 elastic
 0, -0.5
@@ -32,9 +32,10 @@ pause-button
 // size
 0.4, 0.1
 // Image
-gui-button-4.png
+// TODO pause button
+gui-button-1.png
 // Text
-pause
+$$$empty
 // Font name, size
 arial, 1.0
 

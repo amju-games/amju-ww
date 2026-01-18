@@ -23,7 +23,7 @@ gui-button-4.png
 // Text
 Go!
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 
 
