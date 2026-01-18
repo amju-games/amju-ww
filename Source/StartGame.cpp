@@ -29,10 +29,22 @@ void CreateViewports(int numPlayers)
     break;
   case 2:
     {
+#ifdef VERTICAL_SPLIT
       int x = Screen::X() / 2;
       int BORDER = 2;
       TheViewportManager::Instance()->AddViewport(new Viewport(0,  0, yMin, x - BORDER, yMax));
       TheViewportManager::Instance()->AddViewport(new Viewport(1,  x + BORDER, yMin, x - BORDER, yMax));
+
+#else
+      // Horizontal split
+      int xMax = Screen::X();
+      int yMid = Screen::Y() / 2;
+      TheViewportManager::Instance()->AddViewport(new Viewport(
+        0,  0, yMid, xMax, yMid));
+
+      TheViewportManager::Instance()->AddViewport(new Viewport(
+        1,  0, 0,    xMax, yMid));
+#endif
     }
     break;
   default:
