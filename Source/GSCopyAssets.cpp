@@ -42,7 +42,13 @@ std::cout << "Glue file + path: '" << srcGlueFilePath << "'\n";
     std::cout << "Found file " << subfile << " from glue file...\n";
 #endif
 
-    if (subfile == "roconfig.txt" || subfile.substr(0, 6) == "levels")
+    bool doCopy = (subfile == "roconfig.txt");
+
+#if defined(WIN32) || defined(MACOSX)
+   doCopy |= (subfile.size() > 5 && subfile.substr(0, 6) == "levels");
+#endif
+
+    if (doCopy)
     {
 #ifdef FILECOPY_DEBUG_2
 std::cout << "We DO want to copy this file!\n";
@@ -56,7 +62,6 @@ std::cout << "We DO want to copy this file!\n";
     std::string outFileName = destDir + subfile;
     // Check if we should copy file - we should if it does not exist, or
     //  timestamp of glue file is more recent than the file.
-    bool doCopy = true;
 
     if (FileExists(outFileName))
     {
