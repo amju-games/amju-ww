@@ -314,6 +314,10 @@ void GSMain::Draw2d()
 {
   AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
   TheHud::Instance()->Draw();
+  
+  // Store scaled modelview matrix
+  float mat[16];
+  AmjuGL::GetMatrix(AmjuGL::AMJU_MODELVIEW_MATRIX, mat);
 
   // Split screen -- draw all screens
   int numVps = TheViewportManager::Instance()->GetNumViewports();
@@ -321,6 +325,8 @@ void GSMain::Draw2d()
   {
     AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
     AmjuGL::SetIdentity();
+    // Restore scaled mv matrix
+    AmjuGL::MultMatrix(mat);
 
     TheViewportManager::Instance()->GetViewport(i)->Draw2d();
   }
