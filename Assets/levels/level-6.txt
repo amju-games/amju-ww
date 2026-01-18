@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-67
+53
 
 // Game object type
 camera
@@ -37,7 +37,7 @@ end
 bird
 99
 // Position
-127.428795, 195.486191, -49.853432
+127.522743, 195.496368, -49.724163
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -50,7 +50,7 @@ end
 player
 101
 // Position
-200.000000, 153.518692, 50.000000
+200.000000, 152.878189, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -67,7 +67,7 @@ end
 player
 102
 // Position
-100.000000, 209.768707, 0.000000
+100.000000, 209.128204, 0.000000
 // Player ID
 1
 // MD2 mesh name
@@ -84,7 +84,7 @@ end
 pet
 104
 // Position
-950.000000, 10.418259, -50.000000
+950.000000, 9.777759, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -97,7 +97,7 @@ end
 pet
 105
 // Position
--150.000000, 260.418427, -50.000000
+-150.000000, 259.777924, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -110,7 +110,7 @@ end
 pet
 106
 // Position
-750.000000, 110.418274, -50.000000
+750.000000, 109.777771, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -123,7 +123,7 @@ end
 dino
 107
 // Position
-1550.000000, -139.581726, -50.000000
+1550.000000, -140.222229, -50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -208,16 +208,6 @@ flare.png
 end
 
 // Game object type
-staticfloor
-1003
-2900.000000, 112.500000, -1906.250000
-// Y rotation
-180.000000
-// Mesh filename
-block_rect_curved_hill_4x2.obj
-end
-
-// Game object type
 fence
 2001
 100.000000, 100.000000, -950.000000
@@ -248,15 +238,6 @@ end
 fence
 2004
 400.000000, 100.000000, -1100.000000
-0.000000
-// Mesh filename
-pz-fence.obj
-end
-
-// Game object type
-fence
-2005
--775.000000, -100.000000, -450.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -336,15 +317,6 @@ end
 
 // Game object type
 fence
-2018
--242.187500, -450.000000, 50.000000
-0.000000
-// Mesh filename
-pz-fence.obj
-end
-
-// Game object type
-fence
 2019
 100.000000, 100.000000, -1150.000000
 0.000000
@@ -359,26 +331,6 @@ tut-trigger
 550.000000, 650.000000, 100.000000, 150.000000, 0.000000, 100.000000
 // Tutorial text
 Wow, I'm impressed! OK, you might see some animals here.&I'm gonna save you some time, and tell you something...&Man, they are stupid!&You can pick 'em up... you look pretty strong...&Don't forget -- stupid!
-end
-
-// Game object type
-staticfloor
-2021
-3700.000000, -412.500000, -56.250000
-// Y rotation
-0.000000
-// Mesh filename
-field_2x2.obj
-end
-
-// Game object type
-staticfloor
-2023
-350.000000, 162.500000, 43.750000
-// Y rotation
-0.000000
-// Mesh filename
-block_rect_curved_hill_4x1_small.obj
 end
 
 // Game object type
@@ -402,19 +354,9 @@ plat_rect_2x1_std.obj
 end
 
 // Game object type
-staticfloor
-2026
-937.500000, 164.062500, 43.750000
-// Y rotation
-180.000000
-// Mesh filename
-block_rect_curved_hill_4x1_small.obj
-end
-
-// Game object type
 floor
 4003
-775.000000, 400.000000, 450.000000
+225.000000, -50.000000, 50.000000
 // Y rotation
 0.000000
 // Mesh filename
@@ -425,26 +367,6 @@ plat_rect_4x1_std.obj
 100.000000
 // Inertia
 50.000000
-end
-
-// Game object type
-staticfloor
-4004
--1750.000000, 112.500000, 593.750000
-// Y rotation
-0.000000
-// Mesh filename
-field_2x2.obj
-end
-
-// Game object type
-staticfloor
-4005
-3300.000000, 112.500000, -56.250000
-// Y rotation
-0.000000
-// Mesh filename
-field_2x2.obj
 end
 
 // Game object type
@@ -518,15 +440,6 @@ end
 
 // Game object type
 fence
-4011
--775.000000, -100.000000, -650.000000
-0.000000
-// Mesh filename
-pz-fence.obj
-end
-
-// Game object type
-fence
 4012
 -775.000000, -100.000000, -750.000000
 0.000000
@@ -537,9 +450,9 @@ end
 // Game object type
 staticfloor
 4019
-1237.500000, 162.500000, 43.750000
+537.500000, 62.500000, 43.750000
 // Y rotation
-0.000000
+180.000000
 // Mesh filename
 block_rect_2x1.obj
 end
@@ -555,76 +468,16 @@ arch.obj
 end
 
 // Game object type
-staticfloor
-4021
--50.000000, -237.500000, 43.750000
-// Y rotation
-180.000000
-// Mesh filename
-block_rect_curved_hill_4x1_small.obj
-end
-
-// Game object type
 pet
 4022
 // Position
-850.000000, 60.418320, -50.000000
+850.000000, 59.777821, -50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
 // Shadow texture & size
 shadow.png
 20.000000
-end
-
-// Game object type
-staticfloor
-4023
--1700.000000, -87.500000, -1206.250000
-// Y rotation
-0.000000
-// Mesh filename
-field_2x2.obj
-end
-
-// Game object type
-staticfloor
-4024
--2000.000000, -87.500000, -906.250000
-// Y rotation
-90.000000
-// Mesh filename
-log_1x2.obj
-end
-
-// Game object type
-staticfloor
-4026
--1900.000000, -137.500000, -1006.250000
-// Y rotation
-0.000000
-// Mesh filename
-quarter_pipe_sloping_2.obj
-end
-
-// Game object type
-staticfloor
-4027
--2350.000000, -87.500000, -806.250000
-// Y rotation
-0.000000
-// Mesh filename
-log_2x1.obj
-end
-
-// Game object type
-staticfloor
-4028
--650.000000, -87.500000, 243.750000
-// Y rotation
-0.000000
-// Mesh filename
-log_1x1.obj
 end
 
 // Game object type
@@ -640,7 +493,7 @@ end
 portal
 4030
 // AABB
-125.000000, 175.000000, -237.500000, -187.500000, 18.750000, 68.750000
+-325.000000, -275.000000, -237.500000, -187.500000, 18.750000, 68.750000
 // Dest ID
 4029
 end
@@ -648,21 +501,11 @@ end
 // Game object type
 staticfloor
 4031
-125.000000, -237.500000, 43.750000
+-325.000000, -237.500000, 43.750000
 // Y rotation
 270.000000
 // Mesh filename
 arch.obj
-end
-
-// Game object type
-staticfloor
-4032
--1350.000000, -887.500000, -56.250000
-// Y rotation
-0.000000
-// Mesh filename
-field_1x1.obj
 end
 
 // Game object type
@@ -732,4 +575,31 @@ fence
 0.000000
 // Mesh filename
 rock_1x1.obj
+end
+
+// Game object type
+floor
+5008
+225.000000, 100.000000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_4x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+block
+5009
+0.000000, -0.302500, 0.000000
+// Mesh filename
+crate2.obj
+// Shadow texture & size
+shadow.png
+10.000000
 end

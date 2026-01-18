@@ -35,9 +35,9 @@ void Hud::Draw()
 
   static const float origSize[3] = 
   {
-    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[0]))->GetTextSize(),
-    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[1]))->GetTextSize(),
-    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[2]))->GetTextSize()
+    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[0]))->GetFontSize(),
+    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[1]))->GetFontSize(),
+    dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[2]))->GetFontSize()
   };
 
   for (int i = 0; i < 3; i++)
@@ -52,7 +52,7 @@ void Hud::Draw()
       GuiText* text = dynamic_cast<GuiText*>(m_gui->GetElementByName(SCORE_NAME[i]));
       Assert(text);
       static const float EXPAND_SCALE = ROConfig()->GetFloat("hud-expand-scale");
-      text->SetTextSize(origSize[i] * (s_scoreExpandTimer[i] * EXPAND_SCALE + 1.0f));
+      text->SetFontSize(origSize[i] * (s_scoreExpandTimer[i] * EXPAND_SCALE + 1.0f));
       std::string s = text->GetText();
       text->SetText("");
       text->SetText(s); // force tri list rebuild

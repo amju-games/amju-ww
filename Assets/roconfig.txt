@@ -8,7 +8,7 @@ carrying-multiplier 1
 
 max-speed 50.0
 max-y-vel 200.0
-max-drop  500.0
+max-drop  1000.0
 jump-vel-initial 100
 
 bonus-wait-time 1.0
@@ -16,8 +16,8 @@ bonus-wait-time 1.0
 hud-max-life-flash  3.0
 hud-expand-scale    0.5
 
-cam-y-offset 100
-cam-z-offset 150
+cam-y-offset 50
+cam-z-offset 300
 cam-y-pet-offset 40
 cam-z-pet-offset 40
 cam-zoom-vel-scale 0.25

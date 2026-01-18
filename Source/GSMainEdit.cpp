@@ -654,6 +654,7 @@ void GSMainEdit::OnActive()
   m_selset.clear();
   s_mode = AMJU_MODE_DONOTHING;
 
+  m_clearColour = Colour(1, 0, 1, 1); // just so not white, so we can see all objects
   GSMain::OnActive();
   // Show bounding boxes - TODO don't use this, draw object AABBs
 //  SceneNode::SetGlobalShowAABB(true);

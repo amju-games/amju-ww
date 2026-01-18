@@ -30,7 +30,7 @@ void Viewport::Draw()
   const float NEAR = 1.0f; 
   const float FAR = 3000.0f;
 
-  const float ASPECT = 1.5f; // Always show the same amount of the world,
+  const float ASPECT = 0.666f; // Always show the same amount of the world,
     // but distorted if viewport does not have this aspect ratio
 
   AmjuGL::SetPerspectiveProjection(FOVY, ASPECT, NEAR, FAR);

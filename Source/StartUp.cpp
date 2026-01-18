@@ -98,11 +98,13 @@ void StartUpBeforeCreateWindow()
   const char* SCREEN_X = "screen-x"; // TODO Must match ResizeHandler - use GameConsts
   const char* SCREEN_Y = "screen-y";
 
+  /*
   if (gcf->Exists(SCREEN_X) && gcf->Exists(SCREEN_Y))
   {
     w.SetWidth(gcf->GetInt(SCREEN_X));
     w.SetHeight(gcf->GetInt(SCREEN_Y));
   }
+  */
 #endif
 
   GlueFileMem* gfm = new GlueFileMem;  
