@@ -1,8 +1,8 @@
 #ifndef MY_TEXT_MAKER_H
 #define MY_TEXT_MAKER_H
 
-#include "TextMaker.h"
-#include "Colour.h"
+#include <TextMaker.h>
+#include <Colour.h>
 
 namespace Amju
 {
