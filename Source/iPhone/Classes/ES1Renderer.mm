@@ -43,7 +43,6 @@
                 
         Amju::AmjuGL::SetImpl(new Amju::AmjuGLOpenGLES);
         Amju::AmjuGL::Init();
-        Amju::AmjuGL::SetScreenRotation(90.0f);
 		
 		// Get path to data files
 		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"glue"];
@@ -57,7 +56,6 @@
 		
 		Amju::TheSoundManager::Instance()->SetImpl(new Amju::SoundIPhone);
 		Amju::TheEventPoller::Instance()->SetImpl(new Amju::EventPollerImplIPhone);
-		Amju::Screen::SetSize(320, 480);
 				
         Amju::StartUp();
         
@@ -75,11 +73,22 @@
     // This application only creates a single default framebuffer which is already bound at this point.
     // This call is redundant, but needed if dealing with multiple framebuffers.
     glBindFramebufferOES(GL_FRAMEBUFFER_OES, defaultFramebuffer);
-    glViewport(0, 0, backingWidth, backingHeight);
-       
+	
+	// Temporarily disable, confusing mouse coords! 
+	// Landscape mode
+#ifdef LANDSCAPE
+	Amju::Screen::SetSize(backingHeight, backingWidth);
+	Amju::AmjuGL::SetScreenRotation(90.0f);
+#else
+	Amju::Screen::SetSize(backingWidth, backingHeight);		
+#endif
+	
+    //glViewport(0, 0, backingWidth, backingHeight);
+
+	// TODO swap, may speed up ?
     Amju::TheGame::Instance()->Update();
-	  Amju::TheGame::Instance()->Draw();
-	  Amju::AmjuGL::Flip();     
+    Amju::TheGame::Instance()->Draw();
+    Amju::AmjuGL::Flip();     
 
     // This application only creates a single color renderbuffer which is already bound at this point.
     // This call is redundant, but needed if dealing with multiple renderbuffers.
