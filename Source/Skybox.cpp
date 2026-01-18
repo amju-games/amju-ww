@@ -52,7 +52,7 @@ void Skybox::SetProp(PropertyKey key, PropertyValue value)
   switch (key)
   {
   case PROP_COLOUR:
-    m_colour = FromHexString(value.GetString());
+    m_colour = FromHexString(value.GetString()).value();
   }
 }
 
@@ -101,7 +101,7 @@ bool Skybox::Load(File* f)
     f->ReportError("Expected skybox colour");
     return false;
   }
-  m_colour = FromHexString(s);
+  m_colour = FromHexString(s).value();
 
   return true;
 }

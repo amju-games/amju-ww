@@ -374,40 +374,40 @@ GSMainEdit::GSMainEdit()
   m_topMenu->SetLocalPos(Vec2f(-1.0f, 1.0f));
 
   GuiMenu* fileSubmenu = new GuiMenu;
-  fileSubmenu->AddChild(new GuiMenuItem("Quit", OnQuitEditMode));
-  fileSubmenu->AddChild(new GuiMenuItem("New level", OnNewLevel));
-  fileSubmenu->AddChild(new GuiMenuItem("Load level", OnLoadLevel));
-  fileSubmenu->AddChild(new GuiMenuItem("Save level", OnSaveLevel));
+  fileSubmenu->AddChild(new GuiTextMenuItem("Quit", OnQuitEditMode));
+  fileSubmenu->AddChild(new GuiTextMenuItem("New level", OnNewLevel));
+  fileSubmenu->AddChild(new GuiTextMenuItem("Load level", OnLoadLevel));
+  fileSubmenu->AddChild(new GuiTextMenuItem("Save level", OnSaveLevel));
 
   GuiMenu* editSubmenu = new GuiMenu;
-  editSubmenu->AddChild(new GuiMenuItem("Undo", OnUndo));
-  editSubmenu->AddChild(new GuiMenuItem("Redo", OnRedo));
+  editSubmenu->AddChild(new GuiTextMenuItem("Undo", OnUndo));
+  editSubmenu->AddChild(new GuiTextMenuItem("Redo", OnRedo));
 
   GuiMenu* newObjSubmenu = new GuiMenu;
   // Get types from Game Obj factory
   std::vector<std::string> names = TheGameObjectFactory::Instance()->GetTypeNames();
   for (unsigned int i = 0; i < names.size(); i++)
   {
-    newObjSubmenu->AddChild(new GuiMenuItem(names[i], new NewObjectCommand(names[i])));
+    newObjSubmenu->AddChild(new GuiTextMenuItem(names[i], new NewObjectCommand(names[i])));
   }
 
   GuiMenu* objectSubmenu = new GuiMenu;
-  objectSubmenu->AddChild(new GuiMenuItem("View all...", Amju::OnObjectViewAll));
-  objectSubmenu->AddChild(new GuiMenuItem("Properties", Amju::OnProperties));
-  objectSubmenu->AddChild(new GuiMenuItem("Delete", Amju::OnDelete));
-  objectSubmenu->AddChild(new GuiMenuItem("Duplicate", Amju::OnDuplicate));
-  objectSubmenu->AddChild(new GuiMenuItem("Rotate +90", Amju::OnObjectRotateCW));
-  objectSubmenu->AddChild(new GuiMenuItem("Rotate -90", Amju::OnObjectRotateCCW));
+  objectSubmenu->AddChild(new GuiTextMenuItem("View all...", Amju::OnObjectViewAll));
+  objectSubmenu->AddChild(new GuiTextMenuItem("Properties", Amju::OnProperties));
+  objectSubmenu->AddChild(new GuiTextMenuItem("Delete", Amju::OnDelete));
+  objectSubmenu->AddChild(new GuiTextMenuItem("Duplicate", Amju::OnDuplicate));
+  objectSubmenu->AddChild(new GuiTextMenuItem("Rotate +90", Amju::OnObjectRotateCW));
+  objectSubmenu->AddChild(new GuiTextMenuItem("Rotate -90", Amju::OnObjectRotateCCW));
   objectSubmenu->AddChild(new GuiNestMenuItem("New > ", newObjSubmenu));
 
   GuiMenu* runSubmenu = new GuiMenu;
-  runSubmenu->AddChild(new GuiMenuItem("Start     ", OnStart));
-  runSubmenu->AddChild(new GuiMenuItem("Stop    ", OnStop));
+  runSubmenu->AddChild(new GuiTextMenuItem("Start     ", OnStart));
+  runSubmenu->AddChild(new GuiTextMenuItem("Stop    ", OnStop));
 
   GuiMenu* cameraSubmenu = new GuiMenu;
-  cameraSubmenu->AddChild(new GuiMenuItem("Rotate     ", OnCamRotate));
-  cameraSubmenu->AddChild(new GuiMenuItem("Pan     ", OnPan));
-  cameraSubmenu->AddChild(new GuiMenuItem("Zoom     ", OnZoom));
+  cameraSubmenu->AddChild(new GuiTextMenuItem("Rotate     ", OnCamRotate));
+  cameraSubmenu->AddChild(new GuiTextMenuItem("Pan     ", OnPan));
+  cameraSubmenu->AddChild(new GuiTextMenuItem("Zoom     ", OnZoom));
 
   m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
   m_topMenu->AddChild(new GuiNestMenuItem("Edit    ", editSubmenu));
@@ -671,19 +671,19 @@ void GSMainEdit::OnActive()
   /*
   GuiMenu* childMenu = new GuiMenu;
   childMenu->SetName("Child menu");
-  childMenu->AddChild(new GuiMenuItem("good"));
-  childMenu->AddChild(new GuiMenuItem("Lord"));
-  childMenu->AddChild(new GuiMenuItem("this"));
-  childMenu->AddChild(new GuiMenuItem("seems"));
-  childMenu->AddChild(new GuiMenuItem("to"));
-  childMenu->AddChild(new GuiMenuItem("work"));
+  childMenu->AddChild(new GuiTextMenuItem("good"));
+  childMenu->AddChild(new GuiTextMenuItem("Lord"));
+  childMenu->AddChild(new GuiTextMenuItem("this"));
+  childMenu->AddChild(new GuiTextMenuItem("seems"));
+  childMenu->AddChild(new GuiTextMenuItem("to"));
+  childMenu->AddChild(new GuiTextMenuItem("work"));
  
 
-  m_contextMenu->AddChild(new GuiMenuItem("New block"));
-  m_contextMenu->AddChild(new GuiMenuItem("Load block..."));
+  m_contextMenu->AddChild(new GuiTextMenuItem("New block"));
+  m_contextMenu->AddChild(new GuiTextMenuItem("Load block..."));
 
-  m_contextMenu->AddChild(new GuiMenuItem("I am"));
-  m_contextMenu->AddChild(new GuiMenuItem("some text"));
+  m_contextMenu->AddChild(new GuiTextMenuItem("I am"));
+  m_contextMenu->AddChild(new GuiTextMenuItem("some text"));
   m_contextMenu->AddChild(new GuiNestMenuItem("I R Nested!", childMenu));
 
   m_contextMenu->SetName("Parent menu");

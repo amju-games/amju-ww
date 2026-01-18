@@ -1,4 +1,6 @@
-#include "iOSTweet.h"
+#include <string>
+#include <vector>
+//#include "iOSTweet.h"
 
 namespace Amju
 {

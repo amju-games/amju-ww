@@ -70,7 +70,7 @@ PSceneNode MyTextMaker::Decorate(PSceneNode p)
 
   // Choose colour
   static int c = 0;
-  m_colour = FromHexString(strings[c]);
+  m_colour = FromHexString(strings[c]).value(); // deref optional
   c++;
   if (c == strings.size())
   {

@@ -7,7 +7,7 @@ BUILD		:=	../../Build/Mac
 TARGET		:=	$(BUILD)/macgame
 LIBDIRS   	:= 	../../../amjulib/Releases/amjulib-v.0.5-macosx
 SOURCES		:=	../../Source 
-BASSPATH	:=	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx
+BASSPATH        :=      $(AMJULIB)/3rdPartyLibs/Bass/Bass2.4.16.7/Macosx
 
 LIBS	:= \
 	-lamju \
