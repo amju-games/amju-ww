@@ -2,6 +2,9 @@
 // v 
 1
 
+lurk-font-x 1.6
+lurk-font-y 2.0
+
 // Min and max z for OnFloor objects, so action is almost 2D
 min_z 20
 max_z 80
