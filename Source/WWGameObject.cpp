@@ -149,17 +149,8 @@ void WWGameObject::SetSceneNode(RCPtr<SceneNode> node)
 
 bool WWGameObject::CreateSceneNode()
 {
+  // We expect meshFilename to be an .obj file, or a text file containing a scene etc.
   PSceneNode sn = LoadScene(m_meshFilename);
-/*
-  ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
-  if (!mesh) 
-  {
-    return false;
-  }
-
-  SceneMesh* sm  = new SceneMesh;
-  sm->SetMesh(mesh);
-*/
 
   SetSceneNode(sn);
 
@@ -177,14 +168,6 @@ bool WWGameObject::LoadMeshResource(File* f)
     return false;
   }
  
-  std::string ext = GetFileExt(m_meshFilename);
-  //if (ext != "obj")
-  //{
-  //  f->ReportError("Not an .obj file?!\n");
-  //  return false;
-  //}
-  // TODO verify file exists?
-
   return true;
 }
 
