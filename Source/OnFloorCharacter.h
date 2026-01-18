@@ -39,6 +39,7 @@ protected:
   // File names for animated character + 2 textures
   std::string m_md2Name;
   std::string m_texNames[2];  
+  int m_anim;
 };
 }
 
