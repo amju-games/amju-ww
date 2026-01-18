@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-9
+10
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -106,6 +106,16 @@ ew
 2
 pz-fence.obj
 end
+
+tut-trigger
+// ID
+10
+// AABB xmin, xmax, ymin, ymax zmin, zmax
+-250, -150, 200, 250, -50, 50 
+// Text
+@@@Hello, I am some text, triggered when you entered my bounding box!&Hmm, let's see...&Nope, I don't know what to say!*
+end
+
 
 dino
 103
