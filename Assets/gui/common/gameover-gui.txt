@@ -9,7 +9,8 @@ gameover-comp
 // Num children
 2
 
-// Button 1 - start
+elastic
+0, -1.0
 // element type
 gui-button
 // Element name
