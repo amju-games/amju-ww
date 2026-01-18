@@ -9,6 +9,8 @@ title-comp
 // Num children
 3
 
+elastic
+0, -1.0
 // Button 1 - start
 // element type
 gui-button
@@ -25,8 +27,8 @@ Resume
 // Font name, size
 arial, 2.0
 
-
-
+elastic
+0, -1.0
 // Button 2 - Options
 // element type
 gui-button
@@ -43,6 +45,8 @@ Options
 // Font name, size
 arial, 2.0
 
+elastic
+0, -1.0
 // Button 3 - quit
 // element type
 gui-button

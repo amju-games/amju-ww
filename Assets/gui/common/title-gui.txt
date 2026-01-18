@@ -10,7 +10,7 @@ title-comp
 2
 
 elastic
-0, -4.0
+0, -1.0
 // Button 1 - start
 // element type
 gui-button
@@ -28,6 +28,8 @@ Start
 arial, 2.0
 
 
+elastic
+0, -1.5
 // Button 2 - quit
 // element type
 gui-button
@@ -37,10 +39,8 @@ quit-button
 -0.2, -0.8
 // size
 0.4, 0.1
-
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
-
 // Text
 Quit
 // Font name, size
