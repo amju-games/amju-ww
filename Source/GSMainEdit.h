@@ -1,11 +1,12 @@
 #ifndef GS_MAIN_EDIT_H
 #define GS_MAIN_EDIT_H
 
+#include <Singleton.h>
+#include <SceneNode.h>
+#include <GuiText.h>
 #include "GSMain.h"
 #include "ContextMenu.h"
 #include "WWGameObject.h"
-#include <Singleton.h>
-#include <SceneNode.h>
 
 namespace Amju
 {
@@ -81,6 +82,8 @@ protected:
 
   PGuiMenu m_topMenu; // horiz menu across top
   RCPtr<EditModeController> m_controller; 
+
+  GuiText m_infoText;
 };
 
 typedef Singleton<GSMainEdit> TheGSMainEdit;
