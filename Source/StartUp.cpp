@@ -20,12 +20,24 @@
 #include <GlueFileMem.h>
 #include <Localise.h>
 #include <ReportError.h>
+#include <File.h>
+#include <SoundIPhone.h>
+#include <EventPollerImplIPhone.h>
+#include <Screen.h>
 #include <AmjuFinal.h>
 
-using namespace Amju;
-
+namespace Amju
+{
 void StartUp()
 {
+#ifdef IPHONE
+  // TODO Simulator only
+  File::SetRoot("/Users/student/Desktop/jc/amju-ww/Script/iPhone", "/");
+  TheSoundManager::Instance()->SetImpl(new SoundIPhone);
+  TheEventPoller::Instance()->SetImpl(new EventPollerImplIPhone);
+  Screen::SetSize(320, 480);
+#endif
+  
 #ifndef NO_COMPILED_ASSETS
   // Use glue file -- or comment out to use individual files
   FileImplGlue::OpenGlueFile("test.glue");
@@ -80,3 +92,5 @@ void StartUp()
     TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
 	//  TheGame::Instance()->SetCurrentState(TestState::NAME);	
 }
+}
+

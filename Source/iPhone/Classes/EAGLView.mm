@@ -38,7 +38,25 @@ using namespace Amju;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 
-		AmjuGL::SetImpl(new AmjuGLOpenGLES);
+
+        context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+        
+        if (!context || ![EAGLContext setCurrentContext:context])
+        {
+          [self release];
+          return nil;
+        }
+        
+        // Create default framebuffer object. The backing will be allocated for the current layer in -resizeFromLayer
+        glGenFramebuffersOES(1, &defaultFramebuffer);
+        glGenRenderbuffersOES(1, &colorRenderbuffer);
+        glBindFramebufferOES(GL_FRAMEBUFFER_OES, defaultFramebuffer);
+        glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
+        glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, colorRenderbuffer);
+      
+      AmjuGL::SetImpl(new AmjuGLOpenGLES);
+    Amju::AmjuGL::Init();
+      
 		StartUp(); // j.c.
 		
 		/*   j.c.
@@ -81,6 +99,8 @@ using namespace Amju;
 	TheGame::Instance()->Update();
 	TheGame::Instance()->Draw();
 	AmjuGL::Flip(); 
+  
+    [context presentRenderbuffer:GL_RENDERBUFFER_OES];  
 }
 
 - (void)layoutSubviews
