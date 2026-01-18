@@ -48,9 +48,9 @@ Vec3f BloodFx::NewVel() const
     z = -z;
   }
   return Vec3f(
-    x * (PARTICLE_SPEED + rnd(PARTICLE_SPEED) * 0.75),
+    x * (PARTICLE_SPEED + rnd(PARTICLE_SPEED) * 0.75f),
     0,
-    z * (PARTICLE_SPEED + rnd(PARTICLE_SPEED) * 0.75) );
+    z * (PARTICLE_SPEED + rnd(PARTICLE_SPEED) * 0.75f) );
 }
 
 float BloodFx::NewTime() const
