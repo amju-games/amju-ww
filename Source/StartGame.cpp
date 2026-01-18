@@ -66,8 +66,8 @@ void StartGame(int numPlayers, GameMode mode)
   }
 
   // Simpler way of keeping track of simple score/lives info
-  Score::Reset();
-  Score::SetNumPlayers(numPlayers);
+  TheScores::Instance()->Reset();
+  TheScores::Instance()->SetNumPlayers(numPlayers);
   TheHud::Instance()->SetNumPlayers(numPlayers);
 
   // TODO Hide unused player game objects ?

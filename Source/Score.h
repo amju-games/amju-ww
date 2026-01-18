@@ -1,26 +1,40 @@
 #pragma once
 
+#include <Singleton.h>
+
 namespace Amju
 {
-class Score
+class Scores;
+typedef Singleton<Scores> TheScores;
+
+enum PlayerNum
 {
+  AMJU_P1,
+  AMJU_P2
+};
+
+class Scores : public NonCopyable
+{
+private:
+  Scores();
+  friend TheScores;
+
 public:
-  enum PlayerNum
-  {
-    AMJU_P1,
-    AMJU_P2
-  };
+  ~Scores();
 
-  static void SetNumPlayers(int n);
-  static int GetNumPlayers();
+  void SetNumPlayers(int n);
+  int GetNumPlayers() const;
 
-  static void Reset();
-  static int GetScore(PlayerNum pn);
-  static void AddToScore(PlayerNum pn, int toAdd);
+  void Reset();
+  int GetScore(PlayerNum pn) const;
+  void AddToScore(PlayerNum pn, int toAdd);
 
-  static int GetLives(PlayerNum pn);
-  static void IncLives(PlayerNum pn);
-  static void DecLives(PlayerNum pn);
+  int GetLives(PlayerNum pn) const;
+  void IncLives(PlayerNum pn);
+  void DecLives(PlayerNum pn);
+
+  int GetHiScore() const;
+  const std::string& GetHiScoreName() const;
 };
 }
 

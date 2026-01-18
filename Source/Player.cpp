@@ -537,10 +537,10 @@ void Player::Update()
   {
     Amju::PlayWav("churchbell"); 
 
-    Score::PlayerNum pn = (Score::PlayerNum)GetPlayerId();
-    Score::DecLives(pn);
+    PlayerNum pn = (PlayerNum)GetPlayerId();
+    TheScores::Instance()->DecLives(pn);
    
-    int lives = Score::GetLives(pn);
+    int lives = TheScores::Instance()->GetLives(pn);
 
 std::cout << "Player is dead! Lives left: " << lives << "\n";
 

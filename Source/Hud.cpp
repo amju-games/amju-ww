@@ -34,16 +34,24 @@ void Hud::UpdateScores()
 
   for (int i = 0; i < 2; i++)
   {
-    Score::PlayerNum pn = (Score::PlayerNum)i;
-    int score = Score::GetScore(pn);
+    PlayerNum pn = (PlayerNum)i;
+    int score = TheScores::Instance()->GetScore(pn);
     GuiText* t = (GuiText*)m_gui->GetElementByName(GUI_NAME[i][0]);
     Assert(t);
     t->SetText(ToString(score));
-    int lives = Score::GetLives(pn); 
+    int lives = TheScores::Instance()->GetLives(pn); 
     t = (GuiText*)m_gui->GetElementByName(GUI_NAME[i][1]);
     Assert(t);
     t->SetText(ToString(lives));
   }
+
+  int hiScore = TheScores::Instance()->GetHiScore();
+  GuiText* t = (GuiText*)m_gui->GetElementByName("hi-score-text");
+  Assert(t);
+  t->SetText(ToString(hiScore));
+  t = (GuiText*)m_gui->GetElementByName("hi-name-text");
+  Assert(t);
+  t->SetText(TheScores::Instance()->GetHiScoreName()); 
 }
 
 void Hud::SetNumPlayers(int num)
