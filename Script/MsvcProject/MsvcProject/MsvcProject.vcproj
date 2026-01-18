@@ -136,7 +136,7 @@
 				Name="VCLinkerTool"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
-				SubSystem="2"
+				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
@@ -286,6 +286,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\GSMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\GSPaused.cpp"
 				>
 			</File>
 			<File
@@ -472,6 +476,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\GSMenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\GSPaused.h"
 				>
 			</File>
 			<File
