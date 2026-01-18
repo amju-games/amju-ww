@@ -9,13 +9,18 @@ SelectedNode::SelectedNode() : m_isSelected(false)
 
 void SelectedNode::BeforeDraw() 
 {
-  PushColour();
-  MultColour(m_isSelected ? Colour(1, 0, 0, 1) : Colour(1, 1, 1, 1));
+  if (m_isSelected)
+  {
+    SetColour(Colour(1, 0, 0, 1));
+  }
+  else
+  {
+    SetColour(Colour(1, 1, 1, 1));
+  }
 }
 
 void SelectedNode::AfterDraw() 
 {
-  PopColour();
 }
 
 void SelectedNode::SetSel(bool sel)
