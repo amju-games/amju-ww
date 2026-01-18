@@ -13,6 +13,7 @@ public:
   void Draw();
   void SetObjectiveText(const std::string&);
   void UpdateScores();
+  void SetNumPlayers(int num);
 
 private:
   PGuiElement m_gui;
