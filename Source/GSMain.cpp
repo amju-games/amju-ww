@@ -66,9 +66,15 @@ GSMain::GSMain()
 
 void GSMain::OnDeactive()
 {
+#if defined(MACOSX) || defined(WIN32)
+  // Save score, level, etc.
+  // (iOS calls this when app delegate gets messages)
+  TheGameConfigFile::Instance()->Save();
+#endif
+
   // Now we DON'T want to go to the Pause state if we are interrupted,
   //  as we are in a GUI state anyway.
-  TheGame::Instance()->RegisterPauseState(0);
+  TheGame::Instance()->RegisterPauseState(nullptr);
 
   GameState::OnDeactive();
   TheLurker::Instance()->SetAsListener(false);
