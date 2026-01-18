@@ -37,7 +37,7 @@ void GSLevelComplete::OnActive()
 {
   GSText::OnActive();
 
-  CreateText("you did it"); // TODO "!"
+  CreateText("you did it!"); // localisation is handled in CreateText
   m_timer = 0;
 
   // Load background skybox
