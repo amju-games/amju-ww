@@ -8,6 +8,8 @@
 #include "DegRad.h"
 #include "Timer.h"
 #include <Localise.h>
+#include <Screen.h>
+#include <Game.h>
 
 namespace Amju
 {
@@ -25,9 +27,14 @@ void GSText::Update()
 
 void GSText::Draw()
 {
-  // Background ? -- Scene Skybox
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+  const float FOVY = 60.0f;
+  const float NEAR = 1.0f; 
+  const float FAR = 3000.0f;
+  static const float aspect = (float)Screen::X() / (float)Screen::Y();
+  AmjuGL::SetPerspectiveProjection(FOVY, aspect, NEAR, FAR);
 
-  // TODO Camera node
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
   static float a = 0; 
@@ -61,6 +68,8 @@ void GSText::OnActive()
 {
   GameState::OnActive();
   m_timer = 0;
+
+  TheGame::Instance()->SetClearColour(Colour(0, 0, 0, 1.0f));
 }
 
 void GSText::OnDeactive()
