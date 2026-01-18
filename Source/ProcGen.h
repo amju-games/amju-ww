@@ -35,6 +35,7 @@ public:
   bool LoadLayerObject();
   bool IsLayerLoaded() const;
 
+  void Reset();
   void PickNextLayer();
 
   // Checks Depth to see if we should add the next layer 
