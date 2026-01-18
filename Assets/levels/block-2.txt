@@ -79,8 +79,7 @@ star.obj
 flare.png
 // size
 100
-// Effect
-// image - TODO TEMP TEST
+// Effect img
 sparkle1.png
 // size
 20.0
