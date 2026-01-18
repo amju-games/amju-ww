@@ -109,7 +109,7 @@ void WWGameObject::Move(const Vec3f& move)
 
 void WWGameObject::RotateY(float angleDegs)
 {
-  m_yRot = angleDegs;
+  m_yRot += angleDegs;
   float rads = DegToRad(angleDegs);
   Matrix mat;
   mat.RotateY(rads);
