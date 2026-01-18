@@ -17,17 +17,36 @@
 #include <SceneMesh.h>
 #include <BinaryResource.h>
 #include <FileImplGlue.h>
+#include <GlueFileMem.h>
+#include <Localise.h>
+#include <ReportError.h>
 #include <AmjuFinal.h>
 
 using namespace Amju;
 
 void StartUp()
 {
-  //GlueF//ile* gf = new GlueFile;
-  //gf->OpenGlueFile("test.glue");
-
+#ifndef NO_COMPILED_ASSETS
   // Use glue file -- or comment out to use individual files
   FileImplGlue::OpenGlueFile("test.glue");
+
+  // Set up music glue file
+  GlueFile* pMusicGlueFile = new GlueFileMem;
+  if (pMusicGlueFile->OpenGlueFile("music.glue", true /* read only */))
+  {
+    TheSoundManager::Instance()->SetGlueFile(pMusicGlueFile);
+  }
+  else
+  {
+    std::cout << "Failed to open music glue file.\n";
+  }
+#endif // NO_COMPILED_ASSETS
+
+  // TODO Other languages - preferences
+  if (!Localise::LoadStringTable("english.txt"))
+  {
+    ReportError("No localise string table.");
+  }
 
 	// Add resource loaders
 	TheResourceManager::Instance()->AddLoader("bmpa", BmpALoader);
