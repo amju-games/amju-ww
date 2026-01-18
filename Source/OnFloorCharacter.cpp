@@ -83,4 +83,17 @@ void OnFloorCharacter::Update()
     }
   }
 }
+
+void OnFloorCharacter::OnAnimFinished()
+{
+}
+
+void OnFloorCharacter::OnAnimFreeze()
+{
+}
+
+void OnFloorCharacter::OnAnimRepeat()
+{
+}
+
 }
