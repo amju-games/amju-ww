@@ -64,12 +64,14 @@ void LurkMsg::Update()
   switch (m_state)
   {
   case LURK_NEW:
+    {
     static std::string soundfx = ROConfig()->GetValue("sound-new-lurkmsg");
     TheSoundManager::Instance()->PlayWav(soundfx);
 
     m_state = LURK_SHOWING;
     m_rect->SetVisible(true);
     m_text->SetVisible(true);
+    }
     break;
 
   case LURK_SHOWN:
