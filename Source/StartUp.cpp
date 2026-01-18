@@ -211,7 +211,7 @@ void StartUpAfterCreateWindow()
 
   // Add resource loaders
   ResourceManager* rm = TheResourceManager::Instance();
-  rm->AddLoader("bmpa", BmpALoader);
+
 #ifdef YES_BINARY_OBJ_FILES
   rm->AddLoader("obj", BinaryObjLoader);
 #else
