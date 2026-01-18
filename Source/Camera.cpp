@@ -181,7 +181,9 @@ void Camera::Reset()
 
   if (!m_target)
   {
+#ifdef CAM_DEBUG
 std::cout << "Camera obj ID: " << GetId() << " target ID: " << m_targetId << "\n";
+#endif
 
     m_target = TheGame::Instance()->GetGameObject(m_targetId);
     Assert(m_target);

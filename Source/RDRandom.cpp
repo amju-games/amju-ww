@@ -15,28 +15,35 @@ unsigned long genrand_int32(void);
 double genrand_real2(void);
 }
 
+//#define RAND_DEBUG
 
 namespace Amju
 {
 void RDSRand(int seed)
 {
   init_genrand(seed);
-  
+ 
+#ifdef RAND_DEBUG 
   std::cout << "==RDSRand " << seed << "\n";
+#endif
 }
 
 // Returns value [0..1)
 float RDRnd()
 {
   float f = (float)genrand_real2();
+#ifdef RAND_DEBUG 
   std::cout << "==RDSRnd: " << f << "\n";
+#endif
   return f;
 }
 
 int RDRandom(int high)
 {
   int i = genrand_int32() % high;
+#ifdef RAND_DEBUG 
   std::cout << "==RDSRandom: " << i << "\n";
+#endif
   return i;
 }
 
