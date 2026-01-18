@@ -25,7 +25,7 @@ cp $SRC_FONT2D/*.txt $DEST_DIR/font2d
 cp $SRC_DIR/tex/common/*.png $DEST_DIR
 cp $SRC_DIR/tex/$PLATFORM/*.png $DEST_DIR
 cp $SRC_DIR/md2/*.md2 $DEST_DIR
-cp $DEST_DIR/obj/* $DEST_DIR
+cp $SRC_DIR/obj/*.txt $DEST_DIR
 
 
 cd $DEST_DIR

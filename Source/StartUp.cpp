@@ -51,6 +51,8 @@
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
+#define YES_GLUE_FILE
+#define YES_BINARY_OBJ_FILES
 
 #ifdef AMJU_IOS
 #define YES_GLUE_FILE
