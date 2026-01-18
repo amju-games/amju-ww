@@ -13,9 +13,37 @@
 #include "CollisionMesh.h"
 #include "AABB.h"
 #include "MyTextMaker.h"
+#include "ParticleEffect2d.h"
 
 namespace Amju
 {
+class StarEffect : public ParticleEffect2d
+{
+public:
+  virtual Vec3f NewPos() const override
+  {
+    int i = Rnd(10, 110);
+    float r = (float)i * 20.0f;
+    float angle = (float)i * 0.6f;
+    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-800, 200) - 400);
+    return tr;
+  }
+/*
+  virtual Vec3f NewVel() const override
+  {
+  }
+
+  virtual Vec3f NewAcc() const override
+  {
+  }
+
+  virtual float NewTime() const override
+  {
+    return 99999.9f;
+  }
+*/
+};
+
 class StarMesh : public SceneMesh
 {
 public:
@@ -85,6 +113,8 @@ void GSText::Draw()
   m2.RotateX(DegToRad(-60.0f));
   m_stars->SetLocalTransform(mat * m2);
   m_stars->CombineTransform();
+
+  m_stars->Draw();
 
   // TODO Lighting node
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
@@ -174,12 +204,20 @@ void GSText::CreateText(const std::string& text)
   g->SetCamera(m_camera);
   g->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 
-  m_stars = new SceneNode;
+  StarEffect* stars = new StarEffect;
+  m_stars = stars;
+  stars->Set("wh8.png", 10.0f, 100, 99999.9f, -99999.9f);
+  stars->Start();
+  AABB aabb(-1000, 1000, -1000, 1000, -1000, 1000);
+  stars->SetAABB(aabb);
+
+//SceneNode;
   // TODO shouldn't this apply to all children??
-  m_stars->SetIsZWriteEnabled(false);
-  parent->AddChild(m_stars);
+//  m_stars->SetIsZWriteEnabled(false);
+//  parent->AddChild(m_stars);
  
   // Add stars
+/*
   ResourceManager* rm = TheResourceManager::Instance();
   ObjMesh* mesh = (ObjMesh*)rm->GetRes("star.obj");
   Texture* tex = (Texture*)rm->GetRes("flare.png");
@@ -215,6 +253,7 @@ void GSText::CreateText(const std::string& text)
     sm->AddChild(bb);
     m_stars->AddChild(sm);
   }
+*/
 }
 
 bool GSText::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
