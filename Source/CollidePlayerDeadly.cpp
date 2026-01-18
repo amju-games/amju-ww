@@ -16,6 +16,9 @@ void CollidePlayerDeadly(GameObject* go1, GameObject* go2)
   player->StartBeingDead();
 }
 
+#ifdef GLOBAL_INIT
 static bool b = TheCollisionManager::Instance()->Add(
   Player::NAME, Deadly::NAME, CollidePlayerDeadly, AMJU_EVERY_CONTACT);
+#endif
+
 } 

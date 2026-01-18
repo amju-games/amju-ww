@@ -16,7 +16,10 @@ namespace Amju
 const char* Fence::NAME = "fence";
 
 GameObject* CreateFence() { return new Fence; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Fence::NAME, &CreateFence);
+#endif
 
 Fence::Fence()
 {

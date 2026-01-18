@@ -23,7 +23,10 @@
 namespace Amju
 {
 GameObject* CreatePet() { return new Pet; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Pet::NAME, &CreatePet);
+#endif
 
 const char* Pet::NAME = "pet";
 

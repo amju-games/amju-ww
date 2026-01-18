@@ -18,7 +18,9 @@ namespace Amju
 #ifdef GEKKO
 AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
 #else
-AmjuGLWindowInfo w(480, 640, false, "Amju Rainbow Drop");
+// WII TEST
+AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
+//AmjuGLWindowInfo w(480, 640, false, "Amju Rainbow Drop");
 #endif
 }
 

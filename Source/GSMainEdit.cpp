@@ -36,8 +36,9 @@ static PropertiesDialog m_propsDialog;
 
 static const char* LAST_PATH = "last_path";
 
-static std::string s_lastPath = TheGameConfigFile::Instance()->
-  GetValue(LAST_PATH, GetSaveDir()); 
+// GLOBAL_INIT
+static std::string s_lastPath;
+  //= TheGameConfigFile::Instance()->GetValue(LAST_PATH, GetSaveDir()); 
 
 int s_unsaved = 0; // number of commands away from save
 

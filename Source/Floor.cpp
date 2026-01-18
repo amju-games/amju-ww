@@ -17,7 +17,10 @@
 namespace Amju
 {
 GameObject* CreateFloor() { return new Floor; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Floor::NAME, &CreateFloor);
+#endif
 
 const char* Floor::NAME = "floor";
 

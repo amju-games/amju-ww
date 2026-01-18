@@ -25,7 +25,10 @@
 namespace Amju
 {
 GameObject* CreateExit() { return new Exit; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Exit::NAME, &CreateExit);
+#endif
 
 const char* Exit::NAME = "exit";
 
@@ -230,6 +233,7 @@ bool Exit::CreateSceneNode()
   m_cylinder = sm;
 
   TextMaker tm;
+  tm.SetDataDir("obj/font3d/");
   m_text = tm.MakeText(ToString(m_toLevel));
 
   // Transformation for text

@@ -48,7 +48,10 @@ static const float YSIZE = 20.0f;
 static const float YOFFSET = 5.0f;
 
 GameObject* CreatePlayer() { return new Player; }
+
+#ifdef GLOBAL_INIT
 static bool reg = TheGameObjectFactory::Instance()->Add(Player::NAME, &CreatePlayer);
+#endif
 
 const char* Player::NAME = "player";
 
