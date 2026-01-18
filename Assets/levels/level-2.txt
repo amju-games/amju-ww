@@ -151,7 +151,7 @@ staticfloor
 // Y rotation
 360.000000
 // Mesh filename
-rd_a21_top_snow.txt
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -249,7 +249,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a21_top_snow.txt
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -269,7 +269,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_snow.txt
+rd_a41_top_grass.txt
 end
 
 // Game object type
@@ -358,6 +358,6 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_snow.txt
+rd_a41_top_grass.txt
 end
 

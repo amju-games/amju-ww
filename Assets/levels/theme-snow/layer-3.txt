@@ -2,70 +2,18 @@
 11
 
 // Num game objects
-27
+25
 
 // Game object type
-camera
-// ID
-0
-// Viewport ID
-0
-// Target ID
-101
-end
-
-// Game object type
-camera
-// ID
-1
-// Viewport ID
-1
-// Target ID
-102
-end
-
-// Game object type
-bird
-99
+dino
+107
 // Position
--22.227736, 145.568237, 20.085598
-pz-bird.md2
-bird1a.png
-bird1.png
-// Shadow texture & size
-shadow.png
-10.000000
-end
-
-// Game object type
-player
-101
-// Position
-100.000000, 201.881363, 50.000000
-// Player ID
-0
-// MD2 mesh name
-amju.md2
-// Texture names
-amju2.png
-amju2a.png
-// Shadow texture & size
-shadow.png
-20.000000
-end
-
-// Game object type
-player
-102
-// Position
-1262.500000, 208.131409, 57.500000
-// Player ID
-1
-// MD2 mesh name
-marin.md2
-// Texture names
-marin1.png
-marin1a.png
+675.000000, 49.998413, 50.000000
+peng.md2
+peng.png
+peng.png
+snowman-blood.png
+snowman-blood.png
 // Shadow texture & size
 shadow.png
 20.000000
@@ -73,8 +21,8 @@ end
 
 // Game object type
 bonus
-110
-625.000000, 137.500000, 50.000000
+111
+1168.750000, 175.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -88,23 +36,8 @@ end
 
 // Game object type
 bonus
-112
-281.250000, 137.500000, 62.500000
-// Mesh filename
-fruit2.obj
-// Shadow texture & size
-shadow.png
-20.000000
-// Bonus points
-3000
-// Bonus lives
-0
-end
-
-// Game object type
-bonus
 113
-187.500000, 125.000000, 50.000000
+812.500000, 125.000000, 43.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -118,20 +51,20 @@ end
 
 // Game object type
 fence
+2002
+1212.500000, 101.562500, 53.125000
+0.000000
+// Mesh filename
+rock_1x1.obj
+end
+
+// Game object type
+fence
 2007
 18.750000, 87.500000, 50.000000
 0.000000
 // Mesh filename
-snow_post_1.obj
-end
-
-// Game object type
-tut-trigger
-2020
-// AABB
-350.000000, 450.000000, 100.000000, 150.000000, 0.000000, 100.000000
-// Tutorial text
-Yeah, you've got it! OK, tap to jump!
+pz-fence.obj
 end
 
 // Game object type
@@ -140,26 +73,55 @@ staticfloor
 200.000000, 100.000000, 50.000000
 // Y rotation
 360.000000
-// Mesh filename: mix and match
-rd_a41_notop_underground.txt
+// Mesh filename
+rd_a41a_notop_underground.txt
 end
 
+// Game object type
 staticfloor
-5023
+20231
 200.000000, 100.000000, 50.000000
 // Y rotation
 360.000000
 // Mesh filename
-//rd_a41_snow.obj
-// Test mix and match
-rd_a41_top_grass.txt
+rd_a41_top_snow.txt
 end
 
+// Game object type
+floor
+4003
+675.000000, 37.500000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+plat_rect_4x1_std.obj
+// Rotation axis flags
+4
+// Max AABB height
+100.000000
+// Inertia
+50.000000
+end
+
+// Game object type
+exit
+4006
+75.000000, 104.375000, 50.000000
+// Y rotation
+0.000000
+// Mesh filename
+transporter.obj
+// Next level
+4
+// Shadow texture & size
+flare.png
+20.000000
+end
 
 // Game object type
 bonus
 4007
-550.000000, 137.500000, 50.000000
+1000.000000, 150.000000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -174,7 +136,7 @@ end
 // Game object type
 bonus
 4008
-800.000000, 137.500000, 31.250000
+1250.000000, 187.500000, 43.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -189,7 +151,7 @@ end
 // Game object type
 bonus
 4009
-712.500000, 137.500000, 62.500000
+912.500000, 225.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -204,7 +166,7 @@ end
 // Game object type
 bonus
 5001
-443.750000, 162.500000, 37.500000
+1081.250000, 150.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -217,21 +179,21 @@ shadow.png
 end
 
 // Game object type
-tut-trigger
-5003
-// AABB
-125.000000, 225.000000, 100.000000, 150.000000, 0.000000, 100.000000
-// Tutorial text
-Hello! How did you get up here?&Whatever. Tilt to move around! Try it!
+fence
+5006
+1037.500000, 101.562500, 53.125000
+0.000000
+// Mesh filename
+rock_1x1.obj
 end
 
 // Game object type
-tut-trigger
-5004
-// AABB
-1025.000000, 1125.000000, 87.500000, 137.500000, 0.000000, 100.000000
-// Tutorial text
-You might notice that you're going up and up...&You'd better go DOWN or you'll disappear!
+fence
+5007
+1112.500000, 95.312500, 40.625000
+0.000000
+// Mesh filename
+rock_1x1.obj
 end
 
 // Game object type
@@ -241,35 +203,27 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_notop_underground.txt
+rd_a41a_notop_underground.txt
 end
 
+// Game object type
 staticfloor
-5021
+50091
 1150.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_grass.txt
+rd_a41_top_snow.txt
 end
 
 // Game object type
 staticfloor
 5010
-675.000000, 100.000000, 50.000000
+625.000000, 150.000000, -175.000000
 // Y rotation
-540.000000
+720.000000
 // Mesh filename
-rd_a41_notop_underground.txt
-end
-
-staticfloor
-5022
-675.000000, 100.000000, 50.000000
-// Y rotation
-540.000000
-// Mesh filename
-rd_a41_top_grass.txt
+wall2.obj
 end
 
 // Game object type
@@ -278,13 +232,13 @@ fence
 1337.500000, 87.500000, 50.000000
 0.000000
 // Mesh filename
-snow_post_1.obj
+pz-fence.obj
 end
 
 // Game object type
 bonus
 5212
-993.750000, 137.500000, 37.500000
+250.000000, 125.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -299,7 +253,7 @@ end
 // Game object type
 bonus
 5213
-1093.750000, 150.000000, 50.000000
+162.500000, 125.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -314,7 +268,7 @@ end
 // Game object type
 bonus
 5214
-1168.750000, 150.000000, 50.000000
+350.000000, 125.000000, 43.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -328,8 +282,38 @@ end
 
 // Game object type
 bonus
-5215
-906.250000, 175.000000, 50.000000
+5789
+525.000000, 125.000000, 43.750000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5790
+618.750000, 125.000000, 50.000000
+// Mesh filename
+fruit1.obj
+// Shadow texture & size
+shadow.png
+20.000000
+// Bonus points
+1000
+// Bonus lives
+0
+end
+
+// Game object type
+bonus
+5791
+731.250000, 125.000000, 43.750000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size

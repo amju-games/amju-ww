@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-27
+29
 
 // Game object type
 camera
@@ -28,7 +28,7 @@ end
 bird
 99
 // Position
--22.227736, 145.568237, 20.085598
+-22.212894, 145.581146, 20.089231
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -41,7 +41,7 @@ end
 player
 101
 // Position
-100.000000, 201.881363, 50.000000
+100.000000, 201.801376, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -58,7 +58,7 @@ end
 player
 102
 // Position
-1262.500000, 208.131409, 57.500000
+1350.000000, 208.051422, 57.500000
 // Player ID
 1
 // MD2 mesh name
@@ -74,7 +74,7 @@ end
 // Game object type
 bonus
 110
-625.000000, 137.500000, 50.000000
+637.500000, 137.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -104,7 +104,7 @@ end
 // Game object type
 bonus
 113
-187.500000, 125.000000, 50.000000
+162.500000, 125.000000, 62.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -122,14 +122,14 @@ fence
 18.750000, 87.500000, 50.000000
 0.000000
 // Mesh filename
-snow_post_1.obj
+pz-fence.obj
 end
 
 // Game object type
 tut-trigger
 2020
 // AABB
-350.000000, 450.000000, 100.000000, 150.000000, 0.000000, 100.000000
+-150.000000, -50.000000, 350.000000, 400.000000, 0.000000, 100.000000
 // Tutorial text
 Yeah, you've got it! OK, tap to jump!
 end
@@ -137,24 +137,22 @@ end
 // Game object type
 staticfloor
 2023
-200.000000, 100.000000, 50.000000
-// Y rotation
-360.000000
-// Mesh filename: mix and match
-rd_a41_notop_underground.txt
-end
-
-staticfloor
-5023
-200.000000, 100.000000, 50.000000
+100.000000, 100.000000, 50.000000
 // Y rotation
 360.000000
 // Mesh filename
-//rd_a41_snow.obj
-// Test mix and match
-rd_a41_top_grass.txt
+rd_a21a_notop_underground.txt
 end
 
+// Game object type
+staticfloor
+20231
+100.000000, 100.000000, 50.000000
+// Y rotation
+360.000000
+// Mesh filename
+rd_a21_top_snow.txt
+end
 
 // Game object type
 bonus
@@ -174,7 +172,7 @@ end
 // Game object type
 bonus
 4008
-800.000000, 137.500000, 31.250000
+1425.000000, 137.500000, 56.250000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -189,7 +187,7 @@ end
 // Game object type
 bonus
 4009
-712.500000, 137.500000, 62.500000
+750.000000, 137.500000, 50.000000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -204,7 +202,7 @@ end
 // Game object type
 bonus
 5001
-443.750000, 162.500000, 37.500000
+431.250000, 162.500000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -220,7 +218,7 @@ end
 tut-trigger
 5003
 // AABB
-125.000000, 225.000000, 100.000000, 150.000000, 0.000000, 100.000000
+-175.000000, -75.000000, 250.000000, 300.000000, 0.000000, 100.000000
 // Tutorial text
 Hello! How did you get up here?&Whatever. Tilt to move around! Try it!
 end
@@ -229,7 +227,7 @@ end
 tut-trigger
 5004
 // AABB
-1025.000000, 1125.000000, 87.500000, 137.500000, 0.000000, 100.000000
+-175.000000, -75.000000, 437.500000, 487.500000, 0.000000, 100.000000
 // Tutorial text
 You might notice that you're going up and up...&You'd better go DOWN or you'll disappear!
 end
@@ -237,54 +235,56 @@ end
 // Game object type
 staticfloor
 5009
-1150.000000, 100.000000, 50.000000
+1400.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_notop_underground.txt
+rd_a21_notop_underground.txt
 end
 
+// Game object type
 staticfloor
-5021
-1150.000000, 100.000000, 50.000000
+50091
+1400.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_grass.txt
+rd_a21_top_snow.txt
 end
 
 // Game object type
 staticfloor
 5010
-675.000000, 100.000000, 50.000000
+500.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
 rd_a41_notop_underground.txt
 end
 
+// Game object type
 staticfloor
-5022
-675.000000, 100.000000, 50.000000
+50101
+500.000000, 100.000000, 50.000000
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top_grass.txt
+rd_a41_top_snow.txt
 end
 
 // Game object type
 fence
 5211
-1337.500000, 87.500000, 50.000000
+1462.500000, 87.500000, 50.000000
 0.000000
 // Mesh filename
-snow_post_1.obj
+pz-fence.obj
 end
 
 // Game object type
 bonus
 5212
-993.750000, 137.500000, 37.500000
+968.750000, 137.500000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -299,7 +299,7 @@ end
 // Game object type
 bonus
 5213
-1093.750000, 150.000000, 50.000000
+1043.750000, 150.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -314,7 +314,7 @@ end
 // Game object type
 bonus
 5214
-1168.750000, 150.000000, 50.000000
+1143.750000, 150.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -329,7 +329,7 @@ end
 // Game object type
 bonus
 5215
-906.250000, 175.000000, 50.000000
+868.750000, 175.000000, 37.500000
 // Mesh filename
 fruit1.obj
 // Shadow texture & size
@@ -340,3 +340,24 @@ shadow.png
 // Bonus lives
 0
 end
+
+// Game object type
+staticfloor
+5216
+1000.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+52161
+1000.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a41_top_snow.txt
+end
+

@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-25
+28
 
 // Game object type
 dino
@@ -74,7 +74,17 @@ staticfloor
 // Y rotation
 360.000000
 // Mesh filename
-rd_a41a.obj
+rd_a41a_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+20231
+200.000000, 100.000000, 50.000000
+// Y rotation
+360.000000
+// Mesh filename
+rd_a41_top_grass.txt
 end
 
 // Game object type
@@ -193,7 +203,17 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a21a.obj
+rd_a21a_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+50091
+1150.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -267,7 +287,17 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a21b.obj
+rd_a21b_notop_underground.txt
+end
+
+// Game object type
+staticfloor
+57881
+850.000000, 100.000000, 50.000000
+// Y rotation
+540.000000
+// Mesh filename
+rd_a21_top_grass.txt
 end
 
 // Game object type

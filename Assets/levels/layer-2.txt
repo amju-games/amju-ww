@@ -9,11 +9,11 @@ dino
 107
 // Position
 406.250000, 92.529213, 25.000000
-peng.md2
-peng.png
-peng.png
-snowman-blood.png
-snowman-blood.png
+dino.md2
+dino1a.png
+dino1.png
+dino1a-withblood.png
+dino1-withblood.png
 // Shadow texture & size
 shadow.png
 20.000000
@@ -61,7 +61,7 @@ staticfloor
 // Y rotation
 360.000000
 // Mesh filename
-rd_a21_top_snow.txt
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -81,7 +81,7 @@ staticfloor
 // Y rotation
 180.000000
 // Mesh filename
-rd_a21_top_snow.txt
+rd_a21_top_grass.txt
 end
 
 // Game object type
@@ -254,7 +254,7 @@ staticfloor
 // Y rotation
 180.000000
 // Mesh filename
-rd_b41_top_snow.txt
+rd_b41_top_grass.txt
 end
 
 // Game object type
@@ -274,7 +274,7 @@ staticfloor
 // Y rotation
 180.000000
 // Mesh filename
-rd_a21_top_snow.txt
+rd_a21_top_grass.txt
 end
 
 // Game object type
