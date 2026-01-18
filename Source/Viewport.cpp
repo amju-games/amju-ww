@@ -5,6 +5,7 @@
 #include "PlayerInfo.h"
 #include "PlayerInfoKey.h"
 #include "Camera.h"
+#include "GSLoadLevel.h"
 
 namespace Amju
 {
@@ -29,7 +30,10 @@ void Viewport::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  GetCamera()->SetAsSceneGraphCamera();
+  if (TheGSLoadLevel::Instance()->GetGameMode() != AMJU_EDIT_MODE)
+  {
+    GetCamera()->SetAsSceneGraphCamera();
+  }
   GetGameSceneGraph()->Draw();
 }
 
@@ -69,7 +73,6 @@ void Viewport::SetCamera(Camera* pCam)
 {
   m_pCamera = pCam;
   Assert(m_pCamera);
-  m_pCamera->SetAsSceneGraphCamera();
 }
 
 Camera* Viewport::GetCamera()

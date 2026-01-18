@@ -6,7 +6,9 @@
 
 namespace Amju
 {
-class EditModeCamera : public SceneNodeCamera, public EventListener
+class EditModeCameraController;
+
+class EditModeCamera : public SceneNodeCamera
 {
 public:
   EditModeCamera();
@@ -21,6 +23,20 @@ private:
   bool m_drag;
   enum Mode { AMJU_PAN, AMJU_ROTATE, AMJU_ZOOM };
   Mode m_mode;
+  RCPtr<EditModeCameraController> m_controller;
+};
+
+class EditModeCameraController : public EventListener
+{
+public:
+  EditModeCameraController(EditModeCamera* cam);
+  ~EditModeCameraController();
+
+  virtual bool OnCursorEvent(const CursorEvent& ce) override { return m_cam->OnCursorEvent(ce); }
+  virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_cam->OnMouseButtonEvent(mbe); }
+
+private:
+  EditModeCamera* m_cam;
 };
 }
 
