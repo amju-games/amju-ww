@@ -78,7 +78,7 @@ bool Pet::Load(File* f)
   {
     return false;
   }
-
+/*
   // Create blood pool scene node
   m_bloodPool = new Shadow;
   if (!m_bloodPool->Load(f))
@@ -88,7 +88,7 @@ bool Pet::Load(File* f)
   }
   root->AddChild(m_bloodPool);
   m_bloodPool->SetVisible(false); // TODO
-
+*/
   return true;
 }
 
