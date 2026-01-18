@@ -84,7 +84,7 @@ gui-button
 // Element name
 debug-button
 // pos (coords are -1..1)
--0.9, 1.0
+-0.4, 0.95
 // size
 0.8, 0.15
 // Image - ext is resource type, not necessarily a real file extension

@@ -1,0 +1,48 @@
+// version
+1
+
+// Element type
+gui-comp
+// Name
+hud-comp
+// Num children
+3
+
+// TODO Everything needs to be in the top half of the screen because keyboard.
+
+// TODO "Photo"/Postcard image
+
+elastic
+0, -2.0
+gui-button
+tweet-button
+-0.5, 0.3 
+1.0, 0.18
+gui-button-4.png
+tw eet!
+cheri, 1.2, sx=1.6
+
+
+
+elastic
+0, -2.0
+gui-button
+account-button
+0.05, 0.05
+0.8, 0.15
+gui-button-4.png
+account>
+cheri, 1.0, sx=1.6
+
+elastic
+0, -2.0
+gui-button
+back-button
+-0.85, 0.05 
+0.8, 0.15
+gui-button-4.png
+back
+cheri, 1.0, sx=1.6
+
+
+
