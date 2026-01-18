@@ -76,11 +76,17 @@ void Collisions()
   Game::GameObjects* gos = TheGame::Instance()->GetGameObjects();  
   for (Game::GameObjects::iterator it = gos->begin(); it != gos->end(); ++it)
   {
+    PGameObject go1 = it->second;
+
+    if (((WWGameObject*)go1.GetPtr())->IsDead())
+    {
+      continue;
+    }
+
     Game::GameObjects::iterator jt = it;
     ++jt;
     for ( ; jt != gos->end(); ++jt)
     {
-      PGameObject go1 = it->second;
       PGameObject go2 = jt->second;
       
       AABB* aabb1 = go1->GetAABB();
