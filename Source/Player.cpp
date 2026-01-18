@@ -24,6 +24,8 @@
 namespace Amju
 {
 static const float MAX_SPEED = 100.0f; // TODO CONFIG
+static const float RUN_SPEED = MAX_SPEED * 0.5f;
+static const float WALK_SPEED = RUN_SPEED * 0.5f; 
 
 GameObject* CreatePlayer() { return new Player; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Player::NAME, &CreatePlayer);
@@ -65,7 +67,8 @@ bool Player::Load(File* f)
     return false;
   }
 
-  m_pSceneNode = new BlinkCharacter;
+  BlinkCharacter* bc = new BlinkCharacter;
+  m_pSceneNode = bc;
 
   std::string meshName;
   if (!f->GetDataLine(&meshName))
@@ -75,7 +78,7 @@ bool Player::Load(File* f)
   }
 
   // Load mesh and textures from file
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadMd2(meshName))
+  if (!bc->LoadMd2(meshName))
   {
     return false;
   }
@@ -87,13 +90,14 @@ bool Player::Load(File* f)
     return false;
   }
 
-  if (!((BlinkCharacter*)m_pSceneNode)->LoadTextures(tex1Name, tex2Name))
+  if (!bc->LoadTextures(tex1Name, tex2Name))
   {
     return false;
   }
 
+  bc->SetGameObj(this);
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-    AddChild(m_pSceneNode);
+    AddChild(bc);
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
@@ -116,6 +120,7 @@ void Player::Jump()
   {
     m_vel.y = 100.0f; // TODO CONFIG -- power up ?
     SetIsFalling(true);
+    SetAnim("jump");
   }
 }
 
@@ -334,6 +339,20 @@ void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
 void Player::Update()
 {
   OnFloorCharacter::Update();
+
+  float speed = m_vel.SqLen();
+  if (speed > RUN_SPEED)
+  {
+    SetAnim("run");
+  }
+  else if (speed > WALK_SPEED)
+  {
+    SetAnim("walk");
+  }
+  else
+  {
+    SetAnim("stand");
+  }
 
   // Set AABB 
   static const float XSIZE = 15.0f;
