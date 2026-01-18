@@ -29,6 +29,7 @@
 #include "ShadowManager.h"
 #include "Viewport.h"
 #include "WWLoadGui.h"
+#include "Bird.h"
 
 #define EDIT_CAM
 
@@ -132,6 +133,9 @@ void GSMain::ClearLevel()
 void GSMain::Update()
 {
   static Lurker* lurker = TheLurker::Instance();
+  static Game* game = TheGame::Instance();
+  SceneGraph* scenegraph = GetGameSceneGraph();
+
   lurker->Update();
 
   // Disable pause button if Lurk msg showing
@@ -140,6 +144,17 @@ void GSMain::Update()
   if (lurker->IsDisplayingMsg())
   {
     m_pauseButton->SetVisible(false);
+    scenegraph->Update(); // DO still update the scene graph?
+    // TODO Also still update Bird?
+    GameObjects* objs = game->GetGameObjects();
+    for (auto it = objs->begin(); it != objs->end(); ++it)
+    {
+      GameObject* obj = it->second;
+      if (dynamic_cast<Bird*>(obj))
+      {
+        obj->Update();
+      }
+    }
   }
   else
   {
@@ -149,14 +164,14 @@ void GSMain::Update()
       m_exitTimer += TheTimer::Instance()->GetDt();
       if (m_exitTimer > 1.0f) // TODO CONFIG
       {
-        TheGame::Instance()->SetCurrentState(TheGSLevelComplete::Instance());
+        game->SetCurrentState(TheGSLevelComplete::Instance());
       }
     }
     else
     {
-      TheGame::Instance()->UpdateGameObjects();
+      game->UpdateGameObjects();
       TheCollisionManager::Instance()->Update();
-      GetGameSceneGraph()->Update();
+      scenegraph->Update();
       TheShadowManager::Instance()->Update();
     }
   }
