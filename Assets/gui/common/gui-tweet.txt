@@ -6,7 +6,7 @@ gui-comp
 // Name
 hud-comp
 // Num children
-4
+5
 
 // TODO Everything needs to be in the top half of the screen because keyboard.
 
@@ -26,6 +26,18 @@ Hey @AmjuGames, I just died horribly playing Amju Rainbox Drop! amju.com #amju
 // Font name, size
 arial, 1.0, bgcol=ffffff, fgcol=000000
 
+// Element type
+gui-text
+// Element name
+char-count
+// pos (coords are -1..1)
+-0.9, 0.6
+// size
+0.2, 0.5
+// Text
+160
+// Font name, size
+arial, 0.5, sx=1.6, fgcol=ffffff
 
 elastic
 0, -2.0
@@ -43,7 +55,7 @@ elastic
 0, -2.0
 gui-button
 account-button
-0.05, 0.05
+0.05, 0.075
 0.8, 0.15
 gui-button-4.png
 account>
@@ -53,7 +65,7 @@ elastic
 0, -2.0
 gui-button
 back-button
--0.85, 0.05 
+-0.85, 0.075 
 0.8, 0.15
 gui-button-4.png
 back
