@@ -3,13 +3,21 @@
 1
 // size
 0.5
+
 // bitmap + alpha
-font2d/arial_512_16pt.bmpa
+//font2d/arial_512_16pt.bmpa
+font2d/arial_round_1024_36pt.bmpa
+
 // no of chars in x
 16
 // no of chars in y
-16
+//16
+8
+
 // start char
-0
+//0
+32
+
 // widths
-font2d/arial_512_16pt_widths.txt
+//font2d/arial_512_16pt_widths.txt
+font2d/arial_round_1024_36pt_widths.txt
