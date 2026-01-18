@@ -25,7 +25,6 @@ public:
   virtual void Update() override;
   virtual void Reset() override;
   virtual bool CreateSceneNode() override;
-  virtual void RotateY(float angleDegs);
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey);
   virtual void SetProp(PropertyKey, PropertyValue);
