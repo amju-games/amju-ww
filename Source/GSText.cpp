@@ -11,6 +11,7 @@
 #include "GSText.h"
 #include "CollisionMesh.h"
 #include "CursorManager.h"
+#include "iOSKeyboard.h"
 #include "MySceneGraph.h"
 #include "MyTextMaker.h"
 #include "SceneMesh.h"
@@ -158,6 +159,10 @@ void GSText::OnActive()
 
 void GSText::OnDeactive()
 {
+#ifdef AMJU_IOS
+  ShowKeyboard(false);
+#endif
+  
   GameState::OnDeactive();
 
   // DON'T unload scene - why??
