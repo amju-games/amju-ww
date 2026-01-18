@@ -20,8 +20,6 @@ void CollidePetPet(GameObject* go1, GameObject* go2)
     return;
   }
 
-  return; // Has this broken the stack of player's pets?
-
 //std::cout << "Push away  pet " << pet1->GetId() << " and pet " << pet2->GetId() << "\n";
 
   Vec3f vel = pet1->GetVel();
