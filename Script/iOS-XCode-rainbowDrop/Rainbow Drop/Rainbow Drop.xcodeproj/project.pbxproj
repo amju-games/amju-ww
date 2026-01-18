@@ -149,6 +149,23 @@
 		71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B901D4F3A2D00012DB8 /* WWCamera.cpp */; };
 		71D22BA01D4F8EAD00012DB8 /* Amjulib.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */; };
 		71D22BA21D4F906400012DB8 /* libAmjulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BA11D4F906400012DB8 /* libAmjulib.a */; };
+		71D22BA41D55A74400012DB8 /* Version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BA31D55A74400012DB8 /* Version.cpp */; };
+		71D22BA71D55AAFA00012DB8 /* NetSend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BA51D55AAFA00012DB8 /* NetSend.cpp */; };
+		71D22BAA1D55B13900012DB8 /* SerialReqManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BA81D55B13900012DB8 /* SerialReqManager.cpp */; };
+		71D22BAD1D55D7DB00012DB8 /* Nicknames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BAB1D55D7DB00012DB8 /* Nicknames.cpp */; };
+		71D22BB01D56F7FB00012DB8 /* iOSTweet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BAF1D56F7FB00012DB8 /* iOSTweet.mm */; };
+		71D22BB41D57025800012DB8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BB31D57025800012DB8 /* Accounts.framework */; };
+		71D22BB61D57569600012DB8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BB51D57569600012DB8 /* Social.framework */; };
+		71D22BB91D5770C100012DB8 /* iOSKeyboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BB81D5770C100012DB8 /* iOSKeyboard.mm */; };
+		71D22BD41D5D198500012DB8 /* GSAbout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BC61D5D198500012DB8 /* GSAbout.cpp */; };
+		71D22BD51D5D198600012DB8 /* GSDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BC81D5D198500012DB8 /* GSDebug.cpp */; };
+		71D22BD61D5D198600012DB8 /* GSHiScores.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BCA1D5D198500012DB8 /* GSHiScores.cpp */; };
+		71D22BD71D5D198600012DB8 /* GSMoreMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BCC1D5D198500012DB8 /* GSMoreMenu.cpp */; };
+		71D22BD81D5D198600012DB8 /* GSYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BCE1D5D198500012DB8 /* GSYesNo.cpp */; };
+		71D22BD91D5D198600012DB8 /* GSYesNoNewGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BD01D5D198500012DB8 /* GSYesNoNewGame.cpp */; };
+		71D22BDA1D5D198600012DB8 /* GSYesNoQuitGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BD21D5D198500012DB8 /* GSYesNoQuitGame.cpp */; };
+		71D22BDD1D5D9BF700012DB8 /* Screenshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */; };
+		71D22BE01D5E497600012DB8 /* GSTweet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22BDE1D5E497600012DB8 /* GSTweet.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -423,6 +440,38 @@
 		71D22B911D4F3A2D00012DB8 /* WWCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWCamera.h; path = ../../../../Source/WWCamera.h; sourceTree = "<group>"; };
 		71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amjulib.xcodeproj; path = ../../../../amjulib/Script/iOSAmjulibXCode/Amjulib/Amjulib.xcodeproj; sourceTree = "<group>"; };
 		71D22BA11D4F906400012DB8 /* libAmjulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAmjulib.a; path = "../../../../amjulib/Build/ioS/build/Debug/Debug-iphoneos/libAmjulib.a"; sourceTree = "<group>"; };
+		71D22BA31D55A74400012DB8 /* Version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Version.cpp; path = ../../../../Source/Version.cpp; sourceTree = "<group>"; };
+		71D22BA51D55AAFA00012DB8 /* NetSend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetSend.cpp; path = ../../../../Source/NetSend.cpp; sourceTree = "<group>"; };
+		71D22BA61D55AAFA00012DB8 /* NetSend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetSend.h; path = ../../../../Source/NetSend.h; sourceTree = "<group>"; };
+		71D22BA81D55B13900012DB8 /* SerialReqManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SerialReqManager.cpp; path = ../../../../Source/SerialReqManager.cpp; sourceTree = "<group>"; };
+		71D22BA91D55B13900012DB8 /* SerialReqManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SerialReqManager.h; path = ../../../../Source/SerialReqManager.h; sourceTree = "<group>"; };
+		71D22BAB1D55D7DB00012DB8 /* Nicknames.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Nicknames.cpp; path = ../../../../Source/Nicknames.cpp; sourceTree = "<group>"; };
+		71D22BAC1D55D7DB00012DB8 /* Nicknames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nicknames.h; path = ../../../../Source/Nicknames.h; sourceTree = "<group>"; };
+		71D22BAE1D56F7FA00012DB8 /* iOSTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSTweet.h; path = ../../../../Source/iOSTweet.h; sourceTree = "<group>"; };
+		71D22BAF1D56F7FB00012DB8 /* iOSTweet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iOSTweet.mm; path = ../../../../Source/iOSTweet.mm; sourceTree = "<group>"; };
+		71D22BB11D57023B00012DB8 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		71D22BB31D57025800012DB8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		71D22BB51D57569600012DB8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		71D22BB71D5770C100012DB8 /* iOSKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSKeyboard.h; path = ../../../../Source/iOSKeyboard.h; sourceTree = "<group>"; };
+		71D22BB81D5770C100012DB8 /* iOSKeyboard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iOSKeyboard.mm; path = ../../../../Source/iOSKeyboard.mm; sourceTree = "<group>"; };
+		71D22BC61D5D198500012DB8 /* GSAbout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSAbout.cpp; path = ../../../../Source/GSAbout.cpp; sourceTree = "<group>"; };
+		71D22BC71D5D198500012DB8 /* GSAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSAbout.h; path = ../../../../Source/GSAbout.h; sourceTree = "<group>"; };
+		71D22BC81D5D198500012DB8 /* GSDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSDebug.cpp; path = ../../../../Source/GSDebug.cpp; sourceTree = "<group>"; };
+		71D22BC91D5D198500012DB8 /* GSDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSDebug.h; path = ../../../../Source/GSDebug.h; sourceTree = "<group>"; };
+		71D22BCA1D5D198500012DB8 /* GSHiScores.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSHiScores.cpp; path = ../../../../Source/GSHiScores.cpp; sourceTree = "<group>"; };
+		71D22BCB1D5D198500012DB8 /* GSHiScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSHiScores.h; path = ../../../../Source/GSHiScores.h; sourceTree = "<group>"; };
+		71D22BCC1D5D198500012DB8 /* GSMoreMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSMoreMenu.cpp; path = ../../../../Source/GSMoreMenu.cpp; sourceTree = "<group>"; };
+		71D22BCD1D5D198500012DB8 /* GSMoreMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSMoreMenu.h; path = ../../../../Source/GSMoreMenu.h; sourceTree = "<group>"; };
+		71D22BCE1D5D198500012DB8 /* GSYesNo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSYesNo.cpp; path = ../../../../Source/GSYesNo.cpp; sourceTree = "<group>"; };
+		71D22BCF1D5D198500012DB8 /* GSYesNo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSYesNo.h; path = ../../../../Source/GSYesNo.h; sourceTree = "<group>"; };
+		71D22BD01D5D198500012DB8 /* GSYesNoNewGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSYesNoNewGame.cpp; path = ../../../../Source/GSYesNoNewGame.cpp; sourceTree = "<group>"; };
+		71D22BD11D5D198500012DB8 /* GSYesNoNewGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSYesNoNewGame.h; path = ../../../../Source/GSYesNoNewGame.h; sourceTree = "<group>"; };
+		71D22BD21D5D198500012DB8 /* GSYesNoQuitGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSYesNoQuitGame.cpp; path = ../../../../Source/GSYesNoQuitGame.cpp; sourceTree = "<group>"; };
+		71D22BD31D5D198500012DB8 /* GSYesNoQuitGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSYesNoQuitGame.h; path = ../../../../Source/GSYesNoQuitGame.h; sourceTree = "<group>"; };
+		71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Screenshot.cpp; path = ../../../../Source/Screenshot.cpp; sourceTree = "<group>"; };
+		71D22BDC1D5D9BF700012DB8 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screenshot.h; path = ../../../../Source/Screenshot.h; sourceTree = "<group>"; };
+		71D22BDE1D5E497600012DB8 /* GSTweet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSTweet.cpp; path = ../../../../Source/GSTweet.cpp; sourceTree = "<group>"; };
+		71D22BDF1D5E497600012DB8 /* GSTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSTweet.h; path = ../../../../Source/GSTweet.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,6 +482,8 @@
 				71D22BA21D4F906400012DB8 /* libAmjulib.a in Frameworks */,
 				71D22BA01D4F8EAD00012DB8 /* Amjulib.xcodeproj in Frameworks */,
 				71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */,
+				71D22BB61D57569600012DB8 /* Social.framework in Frameworks */,
+				71D22BB41D57025800012DB8 /* Accounts.framework in Frameworks */,
 				69D7CC3718F895BF002432C0 /* OpenGLES.framework in Frameworks */,
 				69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */,
 				69D7CDC818F95058002432C0 /* SystemConfiguration.framework in Frameworks */,
@@ -495,6 +546,9 @@
 		69D7CC2D18F895BF002432C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71D22BB51D57569600012DB8 /* Social.framework */,
+				71D22BB31D57025800012DB8 /* Accounts.framework */,
+				71D22BB11D57023B00012DB8 /* Twitter.framework */,
 				71D22BA11D4F906400012DB8 /* libAmjulib.a */,
 				71D22B641D4F2E0600012DB8 /* libbass.a */,
 				69D7CDC918F95068002432C0 /* CFNetwork.framework */,
@@ -559,6 +613,34 @@
 		69D7CC9118F9399C002432C0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				71D22BDE1D5E497600012DB8 /* GSTweet.cpp */,
+				71D22BDF1D5E497600012DB8 /* GSTweet.h */,
+				71D22BDB1D5D9BF700012DB8 /* Screenshot.cpp */,
+				71D22BDC1D5D9BF700012DB8 /* Screenshot.h */,
+				71D22BC61D5D198500012DB8 /* GSAbout.cpp */,
+				71D22BC71D5D198500012DB8 /* GSAbout.h */,
+				71D22BC81D5D198500012DB8 /* GSDebug.cpp */,
+				71D22BC91D5D198500012DB8 /* GSDebug.h */,
+				71D22BCA1D5D198500012DB8 /* GSHiScores.cpp */,
+				71D22BCB1D5D198500012DB8 /* GSHiScores.h */,
+				71D22BCC1D5D198500012DB8 /* GSMoreMenu.cpp */,
+				71D22BCD1D5D198500012DB8 /* GSMoreMenu.h */,
+				71D22BCE1D5D198500012DB8 /* GSYesNo.cpp */,
+				71D22BCF1D5D198500012DB8 /* GSYesNo.h */,
+				71D22BD01D5D198500012DB8 /* GSYesNoNewGame.cpp */,
+				71D22BD11D5D198500012DB8 /* GSYesNoNewGame.h */,
+				71D22BD21D5D198500012DB8 /* GSYesNoQuitGame.cpp */,
+				71D22BD31D5D198500012DB8 /* GSYesNoQuitGame.h */,
+				71D22BB71D5770C100012DB8 /* iOSKeyboard.h */,
+				71D22BB81D5770C100012DB8 /* iOSKeyboard.mm */,
+				71D22BAE1D56F7FA00012DB8 /* iOSTweet.h */,
+				71D22BAF1D56F7FB00012DB8 /* iOSTweet.mm */,
+				71D22BAB1D55D7DB00012DB8 /* Nicknames.cpp */,
+				71D22BAC1D55D7DB00012DB8 /* Nicknames.h */,
+				71D22BA81D55B13900012DB8 /* SerialReqManager.cpp */,
+				71D22BA91D55B13900012DB8 /* SerialReqManager.h */,
+				71D22BA51D55AAFA00012DB8 /* NetSend.cpp */,
+				71D22BA61D55AAFA00012DB8 /* NetSend.h */,
 				69D7CC9218F939F9002432C0 /* AI.cpp */,
 				69D7CC9318F939F9002432C0 /* AI.h */,
 				69D7CC9418F939F9002432C0 /* AIChasePet.cpp */,
@@ -757,6 +839,7 @@
 				69D7CD4D18F939FA002432C0 /* TriggerNode.h */,
 				69D7CD4E18F939FA002432C0 /* TutorialTrigger.cpp */,
 				69D7CD4F18F939FA002432C0 /* TutorialTrigger.h */,
+				71D22BA31D55A74400012DB8 /* Version.cpp */,
 				71D22B8F1D4F3A2D00012DB8 /* Version.h */,
 				69D7CD5018F939FA002432C0 /* Viewport.cpp */,
 				69D7CD5118F939FA002432C0 /* Viewport.h */,
@@ -939,6 +1022,7 @@
 				6909DCD118FFD004009AC2CB /* RDRandom.cpp in Sources */,
 				69D7CD9218F939FA002432C0 /* GSText.cpp in Sources */,
 				69D7CD9F18F939FA002432C0 /* Npc.cpp in Sources */,
+				71D22BE01D5E497600012DB8 /* GSTweet.cpp in Sources */,
 				69D7CD7818F939FA002432C0 /* Describe.cpp in Sources */,
 				69D7CDA018F939FA002432C0 /* ObjectDialog.cpp in Sources */,
 				69D7CD6518F939FA002432C0 /* Bonus.cpp in Sources */,
@@ -954,6 +1038,7 @@
 				69D7CDB718F939FA002432C0 /* Trigger.cpp in Sources */,
 				69D7CD5C18F939FA002432C0 /* AIGoHighGround.cpp in Sources */,
 				69D7CD7B18F939FA002432C0 /* EditViewport.cpp in Sources */,
+				71D22BD51D5D198600012DB8 /* GSDebug.cpp in Sources */,
 				69D7CDBB18F939FA002432C0 /* WWGameObject.cpp in Sources */,
 				69D7CD6C18F939FA002432C0 /* CollidePetPet.cpp in Sources */,
 				69D7CD9518F939FA002432C0 /* AppDelegate.mm in Sources */,
@@ -971,6 +1056,7 @@
 				69D7CD7318F939FA002432C0 /* CollidePlayerPlayer.cpp in Sources */,
 				69D7CDB918F939FA002432C0 /* TutorialTrigger.cpp in Sources */,
 				69D7CD5718F939FA002432C0 /* AIChasePet.cpp in Sources */,
+				71D22BB91D5770C100012DB8 /* iOSKeyboard.mm in Sources */,
 				69D7CD7D18F939FA002432C0 /* Fence.cpp in Sources */,
 				69D7CDB218F939FA002432C0 /* Stars.cpp in Sources */,
 				69D7CD6118F939FA002432C0 /* Bird.cpp in Sources */,
@@ -978,17 +1064,22 @@
 				69D7CDB518F939FA002432C0 /* StaticFloor.cpp in Sources */,
 				69D7CDA918F939FA002432C0 /* PowerUp.cpp in Sources */,
 				69D7CDA518F939FA002432C0 /* Player.cpp in Sources */,
+				71D22BD41D5D198500012DB8 /* GSAbout.cpp in Sources */,
 				69D7CDA418F939FA002432C0 /* Pet.cpp in Sources */,
 				69D7CD7718F939FA002432C0 /* Depth.cpp in Sources */,
 				69D7CD6B18F939FA002432C0 /* CollideObjectFloor.cpp in Sources */,
+				71D22BB01D56F7FB00012DB8 /* iOSTweet.mm in Sources */,
 				69D7CD9B18F939FA002432C0 /* LurkMsg.cpp in Sources */,
+				71D22BD81D5D198600012DB8 /* GSYesNo.cpp in Sources */,
 				69D7CD7118F939FA002432C0 /* CollidePlayerExit.cpp in Sources */,
+				71D22BDD1D5D9BF700012DB8 /* Screenshot.cpp in Sources */,
 				69D7CD8C18F939FA002432C0 /* GSMenu.cpp in Sources */,
 				69D7CD7218F939FA002432C0 /* CollidePlayerPet.cpp in Sources */,
 				69D7CD8718F939FA002432C0 /* GSLoadLayers.cpp in Sources */,
 				69D7CD6A18F939FA002432C0 /* CollideObjectFence.cpp in Sources */,
 				69D7CDB818F939FA002432C0 /* TriggerNode.cpp in Sources */,
 				69D7CD9318F939FA002432C0 /* GSTitle.cpp in Sources */,
+				71D22BA71D55AAFA00012DB8 /* NetSend.cpp in Sources */,
 				69D7CD8218F939FA002432C0 /* GSChooseLevel.cpp in Sources */,
 				69D7CD6618F939FA002432C0 /* BonusParticleEffect.cpp in Sources */,
 				69D7CD9A18F939FA002432C0 /* LoadTextureResource.cpp in Sources */,
@@ -1006,29 +1097,36 @@
 				69D7CD6418F939FA002432C0 /* BloodFx.cpp in Sources */,
 				69D7CDBC18F939FA002432C0 /* WWLoadGui.cpp in Sources */,
 				69D7CD9118F939FA002432C0 /* GSSpiral.cpp in Sources */,
+				71D22BD71D5D198600012DB8 /* GSMoreMenu.cpp in Sources */,
 				69D7CDAF18F939FA002432C0 /* SelectedNode.cpp in Sources */,
 				69D7CD7C18F939FA002432C0 /* Exit.cpp in Sources */,
 				69D7CDA718F939FA002432C0 /* PlayWav.cpp in Sources */,
 				69D7CD7A18F939FA002432C0 /* EditModeCamera.cpp in Sources */,
+				71D22BD61D5D198600012DB8 /* GSHiScores.cpp in Sources */,
 				69D7CD5F18F939FA002432C0 /* AITurnToFace.cpp in Sources */,
 				69D7CDB418F939FA002432C0 /* StartUp.cpp in Sources */,
 				69D7CDBA18F939FA002432C0 /* Viewport.cpp in Sources */,
 				69D7CD8618F939FA002432C0 /* GSLevelComplete.cpp in Sources */,
 				69D7CD7F18F939FA002432C0 /* GameConsts.cpp in Sources */,
 				69D7CD9018F939FA002432C0 /* GSPetBonus.cpp in Sources */,
+				71D22BA41D55A74400012DB8 /* Version.cpp in Sources */,
 				69D7CD8818F939FA002432C0 /* GSLoadLevel.cpp in Sources */,
 				69D7CDA618F939FA002432C0 /* PlayerInfo.cpp in Sources */,
+				71D22BDA1D5D198600012DB8 /* GSYesNoQuitGame.cpp in Sources */,
 				69D7CD7518F939FA002432C0 /* ContextMenu.cpp in Sources */,
+				71D22BAD1D55D7DB00012DB8 /* Nicknames.cpp in Sources */,
 				71D22B921D4F3A2D00012DB8 /* Init.cpp in Sources */,
 				69D7CD5E18F939FA002432C0 /* AIStunned.cpp in Sources */,
 				69D7CD6018F939FA002432C0 /* Animated.cpp in Sources */,
 				69D7CDAB18F939FA002432C0 /* ProcGen.cpp in Sources */,
 				69D7CDB318F939FA002432C0 /* StartGame.cpp in Sources */,
+				71D22BAA1D55B13900012DB8 /* SerialReqManager.cpp in Sources */,
 				69D7CD5A18F939FA002432C0 /* AIFlee.cpp in Sources */,
 				69D7CD5618F939FA002432C0 /* AI.cpp in Sources */,
 				71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */,
 				69D7CD9918F939FA002432C0 /* LoadMeshResource.cpp in Sources */,
 				69D7CD6218F939FA002432C0 /* BlinkCharacter.cpp in Sources */,
+				71D22BD91D5D198600012DB8 /* GSYesNoNewGame.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,7 +1307,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../../../Libs/amjulib-v.0.5-ios/include",
+					"../../../../amjulib/Releases/amjulib-v.0.5-ios/include",
 				);
 				INFOPLIST_FILE = "Rainbow Drop/Rainbow Drop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1242,7 +1340,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../../../Libs/amjulib-v.0.5-ios/include",
+					"../../../../amjulib/Releases/amjulib-v.0.5-ios/include",
 				);
 				INFOPLIST_FILE = "Rainbow Drop/Rainbow Drop-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
