@@ -7,7 +7,7 @@ gui-comp
 // Name
 menu-comp
 // Num children
-3
+4
 
 elastic
 0, -1.0
@@ -60,6 +60,24 @@ editor-button
 gui-button-4.png
 // Text
 Editor
+// Font name, size
+arial, 2.0, sx=0.7
+
+// Choose level (for debugging)
+elastic
+0, -1.0
+// element type
+gui-button
+// Element name
+choose-level-button
+// pos (coords are -1..1)
+-0.4, -0.6
+// size
+0.8, 0.2
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.png
+// Text
+Choose level...
 // Font name, size
 arial, 2.0, sx=0.7
 
