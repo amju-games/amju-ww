@@ -2,9 +2,10 @@
 // v 
 1
 
-cam-speed 400
-cam-too-far 50
-cam-stop 10
+//cam-speed 400
+//cam-too-far 50
+//cam-stop 10
+
 cam-y-offset 100
 cam-z-offset 150
 cam-y-pet-offset 40
@@ -16,5 +17,8 @@ sound-tut-trigger  whistlehere
 
 level-complete-max-time 4.0
 
-bloodpool-max-scale 0.5
+pet-collide-radius 25
+pet-min-drop-speed 30
+pet-max-drop-speed 70
+pet-bloodpool-max-scale 0.5
 
