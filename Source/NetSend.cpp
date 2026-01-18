@@ -140,6 +140,42 @@ public:
   }
 };
   
+class NetSendLocalHiScoreReq : public OnlineReq
+{
+public:
+  NetSendLocalHiScoreReq(
+    const std::string& url,
+    HttpClient::HttpMethod method,
+    const std::string& name,
+    const Hi& hi) : OnlineReq(url, method, name), m_hi(hi) {}
+  
+  virtual void HandleResult()
+  {
+    HttpResult res = GetResult();
+    if (res.GetSuccess())
+    {
+      std::cout << "Request '" << GetName() << "' success!\n";
+      
+      // Remove from local cache
+      auto hidb = TheGlobalHiScoreDb::Instance();
+      hidb->EraseLocal(m_hi);
+      
+      // Send another if we have local scores batched up
+      hidb->SendLocal();
+      
+      // Parse response, set hi scores in global hi score table.
+      hidb->HandleResponseFromServer(res.GetString());
+    }
+    else
+    {
+      std::cout << "Request '" << GetName() << "' FAILED!\n";
+    }
+  }
+  
+private:
+  Hi m_hi; // the hi score we sent
+};
+
 static bool NetSendDeviceInfo(
   const std::string& deviceId,
   const std::string& deviceUserName,
@@ -309,10 +345,10 @@ bool NetSendRequestHiScores()
   return b;
 }
   
-bool NetSendHiScore(const std::string& nickname, int score, int level, int depth, const Vec3f& pos)
+static std::string MakeHiScoreUrl(const std::string& nickname, int score, int level, int depth, const Vec3f& pos)
 {
   GameConfigFile* gcf = TheGameConfigFile::Instance();
-
+  
   std::string url = URL_ROOT +
     "rd_log_hi_score.pl?"
     "device_id='" + EncodeStr(gcf->GetValue(DEVICE_ID)) + "'&"
@@ -323,13 +359,22 @@ bool NetSendHiScore(const std::string& nickname, int score, int level, int depth
     "y='" + EncodeStr(ToString(static_cast<int>(pos.y))) + "'&"
     "z='" + EncodeStr(ToString(static_cast<int>(pos.z))) + "'&"
     "nick='" + EncodeStr(nickname) + "'";
-
+  
+  return url;
+}
+  
+bool NetSendLocalHiScore(const std::string& nickname, int score, int level, int depth, const Vec3f& pos)
+{
+  std::string url = MakeHiScoreUrl(nickname, score, level, depth, pos);
+  
+  Hi hi(score, level, depth, nickname, pos);
+  
   // Use NetSendHiScoresReq, i.e. response to adding a hi score is to get the new table in response.
   // Then we can update our local outstanding hi scores.
-  auto req = new NetSendHiScoresReq(url, HttpClient::GET, "log hi score");
+  auto req = new NetSendLocalHiScoreReq(url, HttpClient::GET, "log local hi score", hi);
   
   // Allow 2 of this kind of req: the one we are processing, and a new request to upload one
-  //  locally stored hi score.
+  //  more locally stored hi score.
   bool b = TheSerialReqManager::Instance()->AddReq(req, 2);
   return b;
 }

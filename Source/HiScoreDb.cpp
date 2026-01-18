@@ -194,10 +194,34 @@ void HiScoreDb::SendFirst()
   if (!m_hsVec.empty())
   {
     const Hi& hi = m_hsVec[0];
-    NetSendHiScore(hi.m_nick, hi.m_score, hi.m_level, hi.m_depth, hi.m_pos);
+    NetSendLocalHiScore(hi.m_nick, hi.m_score, hi.m_level, hi.m_depth, hi.m_pos);
   }
 }
 
+void HiScoreDb::Erase(const Hi& hi)
+{
+  int hash = MakeHash(hi);
+  for (auto it = m_hsVec.begin(); it != m_hsVec.end(); ++it)
+  {
+    if (it->m_hash == hash)
+    {
+      m_hsVec.erase(it);
+      return;
+    }
+  }
+}
+
+void GlobalHiScoreDb::EraseLocal(const Hi& hi)
+{
+  m_local.Erase(hi);
+  m_local.Save(FILENAME_LOCAL);
+}
+
+void GlobalHiScoreDb::SendLocal()
+{
+  m_local.SendFirst();
+}
+  
 void GlobalHiScoreDb::AddHiScore(const Hi& hi)
 {
   m_local.AddHiScore(hi);
@@ -205,7 +229,7 @@ void GlobalHiScoreDb::AddHiScore(const Hi& hi)
   
   // NetSendHiScore: here or at call site?
   // Send hi score to server
-  NetSendHiScore(hi.m_nick, hi.m_score, hi.m_level, hi.m_depth, hi.m_pos);
+  NetSendLocalHiScore(hi.m_nick, hi.m_score, hi.m_level, hi.m_depth, hi.m_pos);
   // -- response to this should be the latest global high scores, duh!
 }
  
@@ -351,10 +375,6 @@ void GlobalHiScoreDb::HandleResponseFromServer(const std::string& response)
   }
   
   m_local.Save(FILENAME_LOCAL);
-  
-  // Send any remaining local hi scores to the server. We send the scores one at a time.
-  //  Each successful addition will come back to this function.
-  m_local.SendFirst();
 }
 
 }
