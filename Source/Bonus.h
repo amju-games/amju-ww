@@ -3,6 +3,7 @@
 
 #include "OnFloor.h"
 #include "BonusParticleEffect.h"
+#include "PowerUp.h"
 
 namespace Amju
 {
@@ -35,6 +36,7 @@ protected:
   BonusParticleEffect* m_effect; 
   int m_points;
   int m_lives;
+  PowerUp m_powerUp;
 };
 }
 

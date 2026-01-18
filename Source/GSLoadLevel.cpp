@@ -1,3 +1,4 @@
+#include <Game.h>
 #include <StringUtils.h>
 #include <GuiButton.h>
 #include <SoundManager.h>
@@ -5,7 +6,7 @@
 #include "GSMain.h"
 #include "GSMainEdit.h"
 #include "GSAttract.h"
-#include "Game.h"
+#include "PowerUp.h"
 #include "MySceneGraph.h"
 #include "Timer.h"
 #include "OnFloor.h"
@@ -125,6 +126,7 @@ void GSLoadLevel::Update()
       TheLevelManager::Instance()->Close();
       ResetDepth();
       TheProcGen::Instance()->Reset();
+      ThePowerUpManager::Instance()->ResetPowerUps();
 
       if (IsAttractMode())
       {

@@ -236,7 +236,10 @@ void ProcGen::AddLayerWhenReady(float xPos)
   float cd = GetCurrentDepth();
   if (cd + nextLayerHeightOffset > m_nextDepth)
   {
+#ifdef PROC_GEN_DEBUG
 std::cout << "Adding new layer now! cd = " << cd << "\n";
+#endif
+
     AddLayerToLevel(m_nextLayer, m_nextDepth, xPos); 
     PickNextLayer();
   }

@@ -1,5 +1,6 @@
 #include <IntAABBPlane.h>
 #include <Plane.h>
+#include <ROConfig.h>
 #include "CollisionManager.h"
 #include "Player.h"
 #include "Dino.h"
@@ -78,7 +79,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
     onfloor->OnWallCollision(norm);
 
     // If falling, also push away from wall
-    const float PUSH_AWAY_VEL = 100.0f; // TODO
+    static const float PUSH_AWAY_VEL = ROConfig()->GetFloat("push-away-speed");
     OnFloor* onfloor = dynamic_cast<OnFloor*>(go1);
     Assert(onfloor);
     if (onfloor->IsFalling())
