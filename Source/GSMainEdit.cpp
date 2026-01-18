@@ -148,7 +148,7 @@ void GSMainEdit::OnActive()
   TheEventPoller::Instance()->AddListener(m_topMenu);
 
   // Initial option is to load a block
-
+  /*
   GuiMenu* childMenu = new GuiMenu;
   childMenu->SetName("Child menu");
   childMenu->AddChild(new GuiMenuItem("good"));
@@ -159,7 +159,6 @@ void GSMainEdit::OnActive()
   childMenu->AddChild(new GuiMenuItem("work"));
  
 
-  m_contextMenu = new ContextMenu;
   m_contextMenu->AddChild(new GuiMenuItem("New block"));
   m_contextMenu->AddChild(new GuiMenuItem("Load block..."));
 
@@ -167,14 +166,16 @@ void GSMainEdit::OnActive()
   m_contextMenu->AddChild(new GuiMenuItem("some text"));
   m_contextMenu->AddChild(new GuiNestMenuItem("I R Nested!", childMenu));
 
-
   m_contextMenu->SetName("Parent menu");
-
-  TheEventPoller::Instance()->AddListener(m_contextMenu);
+  
+  */
+  m_contextMenu = new ContextMenu;
   m_contextMenu->SetVisible(false);
+  TheEventPoller::Instance()->AddListener(m_contextMenu);
 
   // Update once to transfer position info to scene nodes etc.
-  GSMain::Update();
+//  GSMain::Update();
+  TheGame::Instance()->UpdateGameObjects();
 }
 
 void GSMainEdit::Update()
@@ -197,7 +198,6 @@ void GSMainEdit::Update()
         w->RecalcAABB();
       }
     }
-    //GetGameSceneGraph()->Update();
   }
 }
 
@@ -343,7 +343,7 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
   // TODO
   if (m_selectedObj && s_drag)
   {
-std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
+//std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
     // Decide which direction to move - i.e. is diff more closely aligned 
     //  with +x, -1, +y, -1, +z or -z 
     Vec3f dir(diff.x, diff.y, 0);
@@ -387,7 +387,7 @@ std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
       // Z axis
       move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
     }
-/*
+
     Vec3f p = m_selectedObj->GetPos();
     move *= 10.0f;
     p += move;
@@ -399,7 +399,6 @@ std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
     Matrix mat;
     mat.Translate(move);
     sn->MultLocalTransform(mat);
-*/
   }
 
   oldPos = pos;
