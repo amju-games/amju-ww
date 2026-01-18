@@ -324,6 +324,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\LoadTextureResource.cpp" />
     <ClCompile Include="..\..\..\Source\LurkMsg.cpp" />
     <ClCompile Include="..\..\..\Source\main.cpp" />
+    <ClCompile Include="..\..\..\Source\ModalDialog.cpp" />
     <ClCompile Include="..\..\..\Source\MySceneGraph.cpp" />
     <ClCompile Include="..\..\..\Source\MyTextMaker.cpp" />
     <ClCompile Include="..\..\..\Source\Npc.cpp" />
@@ -384,6 +385,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\LoadMeshResource.h" />
     <ClInclude Include="..\..\..\Source\LoadTextureResource.h" />
     <ClInclude Include="..\..\..\Source\LurkMsg.h" />
+    <ClInclude Include="..\..\..\Source\ModalDialog.h" />
     <ClInclude Include="..\..\..\Source\MySceneGraph.h" />
     <ClInclude Include="..\..\..\Source\MyTextMaker.h" />
     <ClInclude Include="..\..\..\Source\Npc.h" />
