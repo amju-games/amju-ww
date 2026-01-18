@@ -33,7 +33,7 @@ public:
 
   // Load does not add Game Object to Game immediately - call this to do so
   virtual void AddToGame();
-  // For Edit Mode, remove an object
+  // For Edit Mode, to remove an object
   virtual void RemoveFromGame();
 
 // Replacing:
@@ -42,9 +42,15 @@ public:
   // Set AABB around m_pos with extents xsize, ysize, zsize
   void RecalcAABB(); 
 
+  virtual void RotateY(float angleDegs) {}
+
 protected:
+  // Create appropriate scene node type, load mesh and texture, etc.
+  // Override for special scene nodes types like characters.
+  virtual bool CreateSceneNode();
+
   // Convenience functions for Load/Save
-  ObjMesh* LoadMeshResource(File*);
+  bool LoadMeshResource(File*);
   bool SaveMeshResource(File*); // m_meshFilename must be set
   bool LoadShadow(File*);
   bool SaveShadow(File*);

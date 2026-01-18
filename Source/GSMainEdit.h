@@ -68,6 +68,9 @@ public:
   void OnDelete();
   void OnRunStart();
   void OnRunStop();
+  void OnObjectRotate(float degs); // rotate around y axis
+
+  void SetSelectedObject(GameObject* obj);
 
 protected:
   // Box where new item can go, or item in box can be edited..?
@@ -88,6 +91,10 @@ protected:
 
   // If true, Game Objects update and you can play
   bool m_playTestMode;
+
+  // Add movement vector to this. Actually move the selected object
+  //  when we exceed some limit in one axis.
+  Vec3f m_accumulatedDragMove;
 };
 
 typedef Singleton<GSMainEdit> TheGSMainEdit;

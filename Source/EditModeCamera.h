@@ -21,9 +21,12 @@ public:
 
   void SetControllable(bool controllable);
 
+  enum Mode { AMJU_PAN, AMJU_ROTATE, AMJU_ZOOM };
+  void SetMode(Mode mode);
+  Mode GetMode() const;
+
 private:
   bool m_drag;
-  enum Mode { AMJU_PAN, AMJU_ROTATE, AMJU_ZOOM };
   Mode m_mode;
   RCPtr<EditModeCameraController> m_controller;
   bool m_controllable;

@@ -80,26 +80,12 @@ bool Block::Load(File* f)
   }
   m_pos = m_pos * m_mat;
 
-  ObjMesh* mesh = LoadMeshResource(f);
-  if (!mesh)
+  if (!LoadMeshResource(f))
   {
     f->ReportError("Failed to load block mesh");
     return false;
   }
 
-  SceneMesh* sm = new SceneMesh;
-  sm->SetMesh(mesh);
-  m_pSceneNode = sm;
-
-  // Calc bounding box from mesh
-  CollisionMesh cm;
-  mesh->CalcCollisionMesh(&cm);
-//  cm.CalcAABB(m_pSceneNode->GetAABB());
-//  m_pSceneNode->GetAABB()->Translate(m_pos);  // ?
-
-//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-//    AddChild(m_pSceneNode);
- 
   if (!LoadShadow(f))
   {
     return false;

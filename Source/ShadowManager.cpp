@@ -69,10 +69,10 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   root->AddChild(shadow);
   m_casters.insert(std::make_pair(obj, shadow));
 
-//#ifdef SHADOW_MGR_DEBUG
+#ifdef SHADOW_MGR_DEBUG
 std::cout << "Shadow mgr: added caster (" << obj->GetTypeName()
   << ") ID: " << obj->GetId() << "\n";
-//#endif
+#endif
 }
 
 void ShadowManager::Update()
