@@ -12,7 +12,7 @@ Npc::Npc()
 void Npc::DecideAI()
 {
   typedef std::pair<float, AI*> RankAI;
-  RankAI best(0, 0);
+  RankAI best(0.0f, (AI*)0);
 
   // Rank each behaviour, choose best
   for (AIs::iterator it = m_ais.begin(); it != m_ais.end(); ++it)
