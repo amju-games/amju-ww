@@ -5,6 +5,11 @@
 #define AMJU_USE_GLUT
 #endif
 
+#ifdef WIN32
+#define AMJU_USE_OPENGL
+#define AMJU_USE_GLUT
+#endif
+
 // Create global variable window info 
 #include <AmjuGLWindowInfo.h>
 
