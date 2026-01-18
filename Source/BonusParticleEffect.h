@@ -8,8 +8,8 @@ namespace Amju
 class BonusParticleEffect : public ParticleEffect2d
 {
 public:
-  virtual Vec3f NewVel();
-  virtual Vec3f NewAcc();
+  virtual Vec3f NewVel() const override;
+  virtual Vec3f NewAcc() const override;
 };
 }
 
