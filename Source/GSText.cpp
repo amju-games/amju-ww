@@ -14,37 +14,10 @@
 #include "CollisionMesh.h"
 #include "AABB.h"
 #include "MyTextMaker.h"
-#include "ParticleEffect2d.h"
+#include "Stars.h"
 
 namespace Amju
 {
-static int s_starId = 0;
-
-class StarEffect : public ParticleEffect2d
-{
-public:
-  virtual Vec3f NewPos() const override
-  {
-    int i = s_starId + 10;
-    s_starId++;
-
-    float r = (float)i * 0.02f; // radius
-    float angle = (float)i * 0.6f;
-    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-2.0f, -1.0f));
-    return tr;
-  }
-
-  virtual float NewRot() const
-  {
-    return Rnd(-6.0f, 6.0f);
-  }
-
-  virtual float NewRotVel() const
-  {
-    return Rnd(-2.0f, 2.0f);
-  }
-};
-
 GSText::GSText()
 {
   m_timer = 0;
@@ -172,18 +145,8 @@ void GSText::CreateText(const std::string& text)
   g->SetCamera(m_camera);
   g->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 
-  srand(0); // 2 particle effects which we want to overlap - so set seed the same twice
-  s_starId = 0;
-  StarEffect* stars = new StarEffect;
-  stars->Set("star1.png", 0.05f, 50, 99999.9f, -99999.9f);
-  stars->Start();
-  srand(0);
-  s_starId = 0;
-  StarEffect* stars2 = new StarEffect;
-  stars2->Set("flare.png", 0.07f, 50, 99999.9f, -99999.9f);
-  stars2->Start();
-  m_stars[0] = stars;
-  m_stars[1] = stars2;
+  m_stars[0] = CreateStars("star1.png", 0.05f, 50, 99999.9f, -99999.9f);
+  m_stars[1] = CreateStars("flare.png", 0.07f, 50, 99999.9f, -99999.9f);
 }
 
 bool GSText::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
