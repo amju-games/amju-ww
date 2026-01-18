@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include "GSLoadLevel.h"
 #include "GameMode.h"
+#include "Stars.h"
 
 namespace Amju
 {
@@ -23,6 +24,24 @@ void Viewport::Draw()
   float x = (float)Screen::X();
   float y = (float)Screen::Y();
   AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
+
+  /////////////////////////
+  // TODO TEMP TEST  
+  static SceneNode* stars = CreateStars("star1.png", 0.1f, 50, 99999.9f, -99999.9f);
+  const float aspect = x / y;
+
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
+  AmjuGL::SetPerspectiveProjection(45.0f, aspect, 1.0f, 2.0f);
+
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+  AmjuGL::SetIdentity();
+  stars->Update();
+  stars->Draw();
+  // TEMP TEST
+  /////////////////////////
+
+
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
