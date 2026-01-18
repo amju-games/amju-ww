@@ -163,14 +163,18 @@ void Pet::OnWallCollision(const Vec3f& normal)
 
 void Pet::SetCarryingPlayer(Player* player)
 {
+  ShadowManager* sm = TheShadowManager::Instance();
+
 //  Assert(!IsDead()); // this can assert in edit mode
   if (player)
   {
     Assert(!m_carryingPlayer); // already carried!
+    sm->SetShadowVisible(this, false);
   }
   else
   {
     m_justDropped = true;
+    sm->SetShadowVisible(this, true);
   }
   m_carryingPlayer = player;
 }

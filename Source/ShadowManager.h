@@ -27,6 +27,9 @@ public:
 
   void Update();
 
+  // Set shadow visible/invisible for the given caster
+  void SetShadowVisible(WWGameObject* caster, bool vis);
+
 private:
   bool m_first;
 

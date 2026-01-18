@@ -19,6 +19,13 @@ void ShadowManager::Clear()
   m_first = true;
 }
 
+void ShadowManager::SetShadowVisible(WWGameObject* obj, bool vis)
+{
+  Assert(m_casters.find(obj) != m_casters.end());
+  Shadow* shadow = m_casters[obj];
+  shadow->SetVisible(vis);
+}
+
 void ShadowManager::AddFloor(Floor* floor)
 {
   m_floors.insert(floor);
