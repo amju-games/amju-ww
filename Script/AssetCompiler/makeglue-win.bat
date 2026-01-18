@@ -39,8 +39,8 @@ for %%f in (*.txt, *.md2) do %GLUE_EXE% -a %GLUE_FILE% %%f
 REM texture files
 for %%f in (*.bmp, *.png) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
-REM obj files are in sub dir
-for %%f in (obj\*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
+REM obj files are NOT in sub dir
+for %%f in (*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
 
 REM Add files in font3d dir
 for %%f in (obj\font3d\*.obj) do %GLUE_EXE% -a %GLUE_FILE% %%f
