@@ -626,7 +626,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   float x = cp.x;
   float y = cp.y;
   
-#ifdef IPHONE
+#ifdef AMJU_IOS
 
   const float X_DEAD_ZONE = 0.02f;
   const float Y_DEAD_ZONE = 0.02f;
@@ -653,7 +653,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   {
     y *= Y_MULT * m_ySensitivity;
   }
-#endif
+#endif // AMJU_IOS
 
 ////
 

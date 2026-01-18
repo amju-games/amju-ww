@@ -1,4 +1,4 @@
-#if !defined(IPHONE) //&& !defined(ANDROID_NDK)
+#if !defined(AMJU_IOS) //&& !defined(ANDROID_NDK)
 
 #ifdef MACOSX
 #define AMJU_USE_OPENGL
@@ -17,17 +17,23 @@ namespace Amju
 {
 #ifdef GEKKO
 AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
-#else
-// WII TEST
-AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
-//AmjuGLWindowInfo w(480, 640, false, "Amju Rainbow Drop");
+#endif
+
+#ifdef WIN32
+//AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
+AmjuGLWindowInfo w(480, 640, false, "Amju Rainbow Drop");
+#endif
+
+#ifdef MACOSX
+//AmjuGLWindowInfo w(640, 480, false, "Amju Rainbow Drop");
+AmjuGLWindowInfo w(480, 640, false, "Amju Rainbow Drop");
 #endif
 }
 
 #include "StartUp.h"
 
-#if !defined(IPHONE) && !defined(ANDROID_NDK)
+#if !defined(AMJU_IOS) && !defined(ANDROID_NDK)
 #include <main.h>
 #endif
 
-#endif // not IPHONE
+#endif // not AMJU_IOS
