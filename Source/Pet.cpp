@@ -87,7 +87,7 @@ bool Pet::Load(File* f)
     return false;
   }
   root->AddChild(m_bloodPool);
-  m_bloodPool->SetVisible(true); // TODO
+  m_bloodPool->SetVisible(false); // TODO
 
   return true;
 }
@@ -98,7 +98,7 @@ void Pet::OnEaten()
 
   m_bloodPool->SetLocalTransform(m_pSceneNode->GetLocalTransform());
   *(m_bloodPool->GetAABB()) = *(m_pSceneNode->GetAABB());
-  m_bloodPool->SetVisible(true); 
+  m_bloodPool->SetVisible(false); 
   // TODO Timer ?
 
   SetDead(true);
