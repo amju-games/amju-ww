@@ -210,7 +210,7 @@ void OnFloorCharacter::StartBeingEaten(OnFloorCharacter* eater)
   m_eatenState = BEING_EATEN;
 
 //  SetDead(true); // So physics won't be updated any more
-  GetSceneNode()->SetVisible(false);
+  //GetSceneNode()->SetVisible(false);
 
   float dir = eater->GetDir();
   Matrix mat;
@@ -269,6 +269,12 @@ bool OnFloorCharacter::CreateSceneNode()
   {
     ReportError("Failed to load MD2: " + m_md2Name);
     return false;
+  }
+
+  Md2Model::Animation anim = model->GetAnimationFromName("eaten");
+  if (anim != -1)
+  {
+    model->SetDoesFreeze(anim, true);
   }
 
   bc->SetMd2(model);
