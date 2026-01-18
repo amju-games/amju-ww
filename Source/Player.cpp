@@ -81,6 +81,7 @@ Player::Player()
   m_playerId = 0;
   m_reachedExit = false;
   m_jumpCount = 0;
+  m_petScoreTimer = 0;
 
   Reset();
 }
@@ -174,6 +175,13 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
   Vec3f pos = GetPos();
   pet->SetPos(pos);
   m_pets.push_front(pet);
+
+  // Get points
+  Amju::PlayWav("cashreg"); // TODO temp - better sound required
+
+  static const int PICK_UP_MULTIPLIER = ROConfig()->GetFloat("pick-up-multiplier");
+  int bonus = PICK_UP_MULTIPLIER * m_pets.size();
+  TheScores::Instance()->AddToScore(static_cast<PlayerNum>(GetPlayerId()), bonus);
 
 /*
   for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
@@ -670,6 +678,8 @@ bool Player::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 
 void Player::Update()
 {
+  float dt = TheTimer::Instance()->GetDt();
+
   const float MAX_VEL = ROConfig()->GetFloat("max-speed");
   if (m_vel.x > MAX_VEL)
   {
@@ -747,7 +757,21 @@ void Player::Update()
   RecalcAABB();
 
   UpdatePets();
-   
+
+  // Inc score every nth of a second for each carried pet
+  if (!m_pets.empty())
+  {
+    m_petScoreTimer += dt;
+    static const float PET_SCORE_MAX_TIME = ROConfig()->GetFloat("pet-score-max-time");
+    if (m_petScoreTimer >= PET_SCORE_MAX_TIME)
+    {
+      m_petScoreTimer = 0;
+      static const float CARRYING_MULTIPLIER = ROConfig()->GetFloat("carrying-multiplier");
+      int bonus = m_pets.size() * CARRYING_MULTIPLIER;
+      TheScores::Instance()->AddToScore(static_cast<PlayerNum>(GetPlayerId()), bonus);
+    }
+  }
+ 
   // If we have fallen, go to life lost state
   if (IsDead() && !IsEditMode())
   {
