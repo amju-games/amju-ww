@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="DebugAssetTest|Win32">
       <Configuration>DebugAssetTest</Configuration>
@@ -27,19 +27,23 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAssetTest|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -115,7 +119,7 @@
 /I "../../../../amjulib/Source/GeomDraw"
 /I "../../../../amjulib/Source/Utils" 
 /I "../../../../amjulib/Source/Main" 
- %(AdditionalOptions)</AdditionalOptions>
+/I "../../../../amjulib/Source/Network"  /I "../../../../amjulib/Source/Thread"  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);AMJU_USE_SDL;AMJU_USE_BASS</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
@@ -130,6 +134,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y  ..\..\..\..\amjulib\Source\GLUT\glut32.dll  ..\..\..\Build\$(Configuration)\
@@ -165,7 +170,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
 /I "../../../../amjulib/Source/GeomLoad" 
 /I "../../../../amjulib/Source/GeomDraw"
 /I "../../../../amjulib/Source/Utils" 
- %(AdditionalOptions)</AdditionalOptions>
+/I "../../../../amjulib/Source/Network"    /I "../../../../amjulib/Source/Thread" %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions);AMJU_USE_SDL;AMJU_USE_BASS</PreprocessorDefinitions>
@@ -182,6 +187,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugAssetTest|Win32'">
@@ -292,7 +298,6 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\BloodFx.cpp" />
     <ClCompile Include="..\..\..\Source\Bonus.cpp" />
     <ClCompile Include="..\..\..\Source\BonusParticleEffect.cpp" />
-    <ClCompile Include="..\..\..\Source\Camera.cpp" />
     <ClCompile Include="..\..\..\Source\CollideDinoDino.cpp" />
     <ClCompile Include="..\..\..\Source\CollideDinoPet.cpp" />
     <ClCompile Include="..\..\..\Source\CollideObjectFence.cpp" />
@@ -318,11 +323,14 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\Floor.cpp" />
     <ClCompile Include="..\..\..\Source\GameConsts.cpp" />
     <ClCompile Include="..\..\..\Source\GameMode.cpp" />
+    <ClCompile Include="..\..\..\Source\GSAbout.cpp" />
     <ClCompile Include="..\..\..\Source\GSAttract.cpp" />
     <ClCompile Include="..\..\..\Source\GSChooseLevel.cpp" />
     <ClCompile Include="..\..\..\Source\GSCopyAssets.cpp" />
+    <ClCompile Include="..\..\..\Source\GSDebug.cpp" />
     <ClCompile Include="..\..\..\Source\GSEditMenu.cpp" />
     <ClCompile Include="..\..\..\Source\GSGameOver.cpp" />
+    <ClCompile Include="..\..\..\Source\GSHiScores.cpp" />
     <ClCompile Include="..\..\..\Source\GSLevelComplete.cpp" />
     <ClCompile Include="..\..\..\Source\GSLoadLayers.cpp" />
     <ClCompile Include="..\..\..\Source\GSLoadLevel.cpp" />
@@ -330,6 +338,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSMain.cpp" />
     <ClCompile Include="..\..\..\Source\GSMainEdit.cpp" />
     <ClCompile Include="..\..\..\Source\GSMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\GSMoreMenu.cpp" />
     <ClCompile Include="..\..\..\Source\GSNewOrContinue.cpp" />
     <ClCompile Include="..\..\..\Source\GSOptions.cpp" />
     <ClCompile Include="..\..\..\Source\GSPaused.cpp" />
@@ -337,6 +346,9 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSSpiral.cpp" />
     <ClCompile Include="..\..\..\Source\GSText.cpp" />
     <ClCompile Include="..\..\..\Source\GSTitle.cpp" />
+    <ClCompile Include="..\..\..\Source\GSYesNo.cpp" />
+    <ClCompile Include="..\..\..\Source\GSYesNoNewGame.cpp" />
+    <ClCompile Include="..\..\..\Source\GSYesNoQuitGame.cpp" />
     <ClCompile Include="..\..\..\Source\Hud.cpp" />
     <ClCompile Include="..\..\..\Source\Init.cpp" />
     <ClCompile Include="..\..\..\Source\LevelManager.cpp" />
@@ -346,6 +358,8 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\main.cpp" />
     <ClCompile Include="..\..\..\Source\MySceneGraph.cpp" />
     <ClCompile Include="..\..\..\Source\MyTextMaker.cpp" />
+    <ClCompile Include="..\..\..\Source\NetSend.cpp" />
+    <ClCompile Include="..\..\..\Source\Nicknames.cpp" />
     <ClCompile Include="..\..\..\Source\Npc.cpp" />
     <ClCompile Include="..\..\..\Source\ObjectDialog.cpp" />
     <ClCompile Include="..\..\..\Source\Objective.cpp" />
@@ -365,6 +379,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\SaveDir.cpp" />
     <ClCompile Include="..\..\..\Source\Score.cpp" />
     <ClCompile Include="..\..\..\Source\SelectedNode.cpp" />
+    <ClCompile Include="..\..\..\Source\SerialReqManager.cpp" />
     <ClCompile Include="..\..\..\Source\ShadowManager.cpp" />
     <ClCompile Include="..\..\..\Source\Skybox.cpp" />
     <ClCompile Include="..\..\..\Source\Stars.cpp" />
@@ -374,7 +389,9 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\Trigger.cpp" />
     <ClCompile Include="..\..\..\Source\TriggerNode.cpp" />
     <ClCompile Include="..\..\..\Source\TutorialTrigger.cpp" />
+    <ClCompile Include="..\..\..\Source\Version.cpp" />
     <ClCompile Include="..\..\..\Source\Viewport.cpp" />
+    <ClCompile Include="..\..\..\Source\WWCamera.cpp" />
     <ClCompile Include="..\..\..\Source\WWGameObject.cpp" />
     <ClCompile Include="..\..\..\Source\WWLoadGui.cpp" />
   </ItemGroup>
@@ -410,11 +427,14 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\Floor.h" />
     <ClInclude Include="..\..\..\Source\GameConsts.h" />
     <ClInclude Include="..\..\..\Source\GameMode.h" />
+    <ClInclude Include="..\..\..\Source\GSAbout.h" />
     <ClInclude Include="..\..\..\Source\GSAttract.h" />
     <ClInclude Include="..\..\..\Source\GSChooseLevel.h" />
     <ClInclude Include="..\..\..\Source\GSCopyAssets.h" />
+    <ClInclude Include="..\..\..\Source\GSDebug.h" />
     <ClInclude Include="..\..\..\Source\GSEditMenu.h" />
     <ClInclude Include="..\..\..\Source\GSGameOver.h" />
+    <ClInclude Include="..\..\..\Source\GSHiScores.h" />
     <ClInclude Include="..\..\..\Source\GSLevelComplete.h" />
     <ClInclude Include="..\..\..\Source\GSLoadLayers.h" />
     <ClInclude Include="..\..\..\Source\GSLoadLevel.h" />
@@ -422,12 +442,16 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSMain.h" />
     <ClInclude Include="..\..\..\Source\GSMainEdit.h" />
     <ClInclude Include="..\..\..\Source\GSMenu.h" />
+    <ClInclude Include="..\..\..\Source\GSMoreMenu.h" />
     <ClInclude Include="..\..\..\Source\GSNewOrContinue.h" />
     <ClInclude Include="..\..\..\Source\GSOptions.h" />
     <ClInclude Include="..\..\..\Source\GSPaused.h" />
     <ClInclude Include="..\..\..\Source\GSPetBonus.h" />
     <ClInclude Include="..\..\..\Source\GSText.h" />
     <ClInclude Include="..\..\..\Source\GSTitle.h" />
+    <ClInclude Include="..\..\..\Source\GSYesNo.h" />
+    <ClInclude Include="..\..\..\Source\GSYesNoNewGame.h" />
+    <ClInclude Include="..\..\..\Source\GSYesNoQuitGame.h" />
     <ClInclude Include="..\..\..\Source\Hud.h" />
     <ClInclude Include="..\..\..\Source\Init.h" />
     <ClInclude Include="..\..\..\Source\LevelManager.h" />
@@ -436,6 +460,8 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\LurkMsg.h" />
     <ClInclude Include="..\..\..\Source\MySceneGraph.h" />
     <ClInclude Include="..\..\..\Source\MyTextMaker.h" />
+    <ClInclude Include="..\..\..\Source\NetSend.h" />
+    <ClInclude Include="..\..\..\Source\Nicknames.h" />
     <ClInclude Include="..\..\..\Source\Npc.h" />
     <ClInclude Include="..\..\..\Source\ObjectDialog.h" />
     <ClInclude Include="..\..\..\Source\Objective.h" />
@@ -459,6 +485,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\SaveDir.h" />
     <ClInclude Include="..\..\..\Source\Score.h" />
     <ClInclude Include="..\..\..\Source\SelectedNode.h" />
+    <ClInclude Include="..\..\..\Source\SerialReqManager.h" />
     <ClInclude Include="..\..\..\Source\ShadowManager.h" />
     <ClInclude Include="..\..\..\Source\Skybox.h" />
     <ClInclude Include="..\..\..\Source\Stars.h" />
@@ -469,12 +496,14 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\TriggerNode.h" />
     <ClInclude Include="..\..\..\Source\TutorialTrigger.h" />
     <ClInclude Include="..\..\..\Source\Viewport.h" />
+    <ClInclude Include="..\..\..\Source\WWCamera.h" />
     <ClInclude Include="..\..\..\Source\WWGameObject.h" />
     <ClInclude Include="..\..\..\Source\WWLoadGui.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="GSSpiral.h" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="..\..\..\..\amjulib\3rdPartyLibs\Curl\Win32\lib\libcurl.lib" />
     <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bass.lib" />
     <Library Include="..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\bassmidi.lib" />
   </ItemGroup>
