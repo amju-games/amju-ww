@@ -4,36 +4,12 @@
 #include <SceneNode.h>
 #include <DrawAABB.h>
 #include "Trigger.h"
+#include "TriggerNode.h"
 #include "MySceneGraph.h"
 #include "GameMode.h"
 
 namespace Amju
 {
-class TriggerNode : public SceneNode
-{
-public:
-  TriggerNode()
-  {
-    SetBlended(true);
-    SetIsLit(true);
-  }
-
-  virtual void Draw() override
-  {
-#ifdef AMJU_IOS
-    // Can't draw Tri Lists directly in ES - TODO change DrawSolidAABB etc
-#else
-    AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
-    AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-    PushColour();
-    MultColour(Colour(0, 0, 1, 0.5f));
-    DrawSolidAABB(m_aabb);
-    PopColour();
-    AmjuGL::PopAttrib();
-#endif
-  }
-};
-
 bool Trigger::Save(File* f)
 {
   if (!f->WriteInteger(GetId()))
