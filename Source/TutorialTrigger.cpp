@@ -35,9 +35,14 @@ std::cout << "Collision with tutorial trigger!\n";
   {
     if (!IsEditMode()) // Edit mode "fix" - TODO
     {
-      LurkMsg lm(Lookup(m_text), Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), 
-        AMJU_CENTRE);
-      TheLurker::Instance()->Queue(lm);
+      Strings strs = Split(m_text, '&'); 
+      for (auto it = strs.begin(); it != strs.end(); ++it)
+      {
+        const std::string& s = *it;
+        LurkMsg lm(Lookup(s), Colour(1, 1, 1, 1), Colour(0, 0, 0, 1), 
+          AMJU_CENTRE);
+        TheLurker::Instance()->Queue(lm);
+      }
     }
     m_hasShownText = true;
   }
