@@ -37,6 +37,9 @@ protected:
 protected:
   enum DinoType { AMJU_DINO_GREEN, AMJU_DINO_BLUE, AMJU_DINO_RED };
   DinoType m_dinoType;
+
+  // 2 more texture filenames, for when we are covered in blood from eating the player.
+  std::string m_bloodTex[2];
 };
 }
 
