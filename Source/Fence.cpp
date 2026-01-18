@@ -99,6 +99,23 @@ bool Fence::CreateSceneNode()
   return true;
 }
 
+void Fence::Move(const Vec3f& move)
+{
+  Vec3f p = GetPos();
+  p += move;
+  m_startPos = p;
+  SetPos(p);
+
+  m_aabb.Translate(move);
+
+  SceneNode* sn = GetSceneNode();
+  Assert(sn);
+  sn->SetAABB(m_aabb);
+  Matrix mat;
+  mat.Translate(move);
+  sn->MultLocalTransform(mat);
+}
+
 void Fence::Update()
 {
 }
