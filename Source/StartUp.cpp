@@ -28,7 +28,7 @@
 
 #ifdef MACOSX
 // TODO
-#define GLUE_FILE "data-win.glue"
+#define GLUE_FILE "data-Mac.glue"
 #define MUSIC_GLUE_FILE "music-win.glue"
 #endif
 
