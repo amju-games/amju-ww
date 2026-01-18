@@ -137,10 +137,10 @@ void OnFloor::Reset()
 
 float OnFloor::CalcDropFallen()
 {
-  if (!IsFalling())
-  {
-    return 0;
-  }
+  //if (!IsFalling())
+  //{
+  //  return 0;
+  //}
   if (m_pos.y > m_heightFallenFrom)
   {
     return 0;
@@ -268,18 +268,6 @@ void OnFloor::UpdateY()
         // We were falling - reverse y vel
         if (IsFalling())
         {
-          // Check the height we fell from 
-          static const float MAX_DROP = ROConfig()->GetFloat("max-drop");
-          Assert(MAX_DROP > 0);
-          float df = CalcDropFallen();
-          if (df > MAX_DROP)
-          {
-#ifdef _DEBUG
-std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" << df << "\n";
-#endif
-            SetDead(true); // max drop reached, hit floor
-          }
-
           PlayWav(AMJU_EVENT_LANDED);
           SetIsFalling(false);
 
@@ -298,7 +286,10 @@ std::cout << Describe(this) << " dead, hit floor but max drop reached, drop=" <<
   }
   else
   {
-    SetIsFalling(true); // TODO TEMP TEST
+    if (!IsFalling())
+    {
+      SetIsFalling(true); // TODO TEMP TEST
+    }
 
 /*
     // Check a bit more thoroughly for a floor - we are maybe just on the edge. 
