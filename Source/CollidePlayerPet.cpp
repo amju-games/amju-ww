@@ -21,5 +21,5 @@ void CollidePlayerPet(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Pet::NAME, &CollidePlayerPet);
+  Player::NAME, Pet::NAME, &CollidePlayerPet, AMJU_FIRST_CONTACT_ONLY);
 }

@@ -39,7 +39,7 @@ void CollideObjectFence(GameObject* go1, GameObject* go2)
     ir.GetMax(0) - ir.GetMin(0), 
     ir.GetMax(1) - ir.GetMin(1),
     ir.GetMax(2) - ir.GetMin(2));
-  penDist *= 1.1f; // move away a bit more to be sure of clearing the collision
+  penDist *= 1.01f; // move away a bit more to be sure of clearing the collision
 
   Vec3f vel = go->GetVel();
 
@@ -83,19 +83,19 @@ void CollideObjectFence(GameObject* go1, GameObject* go2)
     AABB ir = fence->GetAABB().Intersection(go->GetAABB());
   }
 
-  go->SetVel(vel);
+//  go->SetVel(vel);
 }
 
 static bool b[] = 
 {
   TheCollisionManager::Instance()->Add(
-    Player::NAME, Fence::NAME, &CollideObjectFence),
+    Player::NAME, Fence::NAME, &CollideObjectFence, AMJU_EVERY_CONTACT),
 
   TheCollisionManager::Instance()->Add(
-    Dino::NAME, Fence::NAME, &CollideObjectFence),
+    Dino::NAME, Fence::NAME, &CollideObjectFence, AMJU_EVERY_CONTACT),
 
   TheCollisionManager::Instance()->Add(
-    Pet::NAME, Fence::NAME, &CollideObjectFence)
+    Pet::NAME, Fence::NAME, &CollideObjectFence, AMJU_EVERY_CONTACT)
 
   // TODO others, e.g. blocks
 };

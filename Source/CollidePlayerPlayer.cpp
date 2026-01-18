@@ -19,5 +19,5 @@ void CollidePlayerPlayer(GameObject* go1, GameObject* go2)
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
-  Player::NAME, Player::NAME, &CollidePlayerPlayer);
+  Player::NAME, Player::NAME, &CollidePlayerPlayer, AMJU_EVERY_CONTACT);
 }
