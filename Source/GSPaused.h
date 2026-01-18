@@ -16,9 +16,10 @@ public:
   static const char* NAME;
 
   // GameState overrides
-  virtual void OnActive();
+  virtual void OnActive() override;
   //virtual void OnDeactive();
   //virtual void Update();
+  virtual void Draw() override;
 };
 typedef Singleton<GSPaused> TheGSPaused;
 }
