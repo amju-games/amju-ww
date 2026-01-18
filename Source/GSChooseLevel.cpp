@@ -4,11 +4,12 @@
 #include <Screen.h>
 #include <GuiButton.h>
 #include <GuiTextEdit.h>
-#include "WWLoadGui.h"
 #include "GSChooseLevel.h"
+#include "iOSKeyboard.h"
+#include "LevelManager.h"
 #include "MySceneGraph.h"
 #include "StartGame.h"
-#include "LevelManager.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
@@ -52,6 +53,10 @@ void GSChooseLevel::OnActive()
 {
   GSText::OnActive();
 
+#ifdef AMJU_IOS
+  ShowKeyboard(true);
+#endif
+
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes("ball.obj");
   Assert(mesh);
 
@@ -72,7 +77,7 @@ void GSChooseLevel::OnActive()
   parent->UpdateBoundingVol(); //SetAABB(aabb);
   GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 
-  m_gui = WWLoadGui("chooselevel-gui.txt");
+  m_gui = WWLoadGui("gui-chooselevel.txt");
   Assert(m_gui);
 
   // Set focus element, cancel element, command handlers
@@ -87,6 +92,10 @@ void GSChooseLevel::OnActive()
 
 void GSChooseLevel::OnOK()
 {
+#ifdef AMJU_IOS
+  ShowKeyboard(false);
+#endif
+
   GuiTextEdit* edit = (GuiTextEdit*)m_gui->GetElementByName("edit-level-number");
   Assert(edit);
   int level = ToInt(edit->GetText());
