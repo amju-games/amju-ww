@@ -9,6 +9,7 @@
 #include <Pause.h>
 #include <CursorManager.h>
 #include "GSCopyAssets.h"
+#include "GSLoadLayers.h"
 #include "GSLogo.h"
 #include "SaveDir.h"
 #include <AmjuFinal.h>
@@ -155,9 +156,14 @@ std::cout << "\nSave Dir: " << saveDir << "\n";
 #endif
 
     CopyFromGlueFile(saveDir);
-      
-    // All copied - go to next state 
-    TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
+
+  // All copied - go to next state 
+#ifdef AMJU_IOS
+  // Don't show logo - we saw it for ages when loading up app
+  TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
+#else      
+  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
+#endif
   }
 }
 
