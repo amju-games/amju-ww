@@ -291,6 +291,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\CollideDinoPet.cpp" />
     <ClCompile Include="..\..\..\Source\CollideObjectFence.cpp" />
     <ClCompile Include="..\..\..\Source\CollideObjectFloor.cpp" />
+    <ClCompile Include="..\..\..\Source\CollidePetPet.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerBlock.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerBonus.cpp" />
     <ClCompile Include="..\..\..\Source\CollidePlayerDino.cpp" />
@@ -314,6 +315,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSMainEdit.cpp" />
     <ClCompile Include="..\..\..\Source\GSMenu.cpp" />
     <ClCompile Include="..\..\..\Source\GSPaused.cpp" />
+    <ClCompile Include="..\..\..\Source\GSPetBonus.cpp" />
     <ClCompile Include="..\..\..\Source\GSText.cpp" />
     <ClCompile Include="..\..\..\Source\GSTitle.cpp" />
     <ClCompile Include="..\..\..\Source\Hud.cpp" />
@@ -332,6 +334,8 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\Player.cpp" />
     <ClCompile Include="..\..\..\Source\PlayerInfo.cpp" />
     <ClCompile Include="..\..\..\Source\PlayWav.cpp" />
+    <ClCompile Include="..\..\..\Source\PreventIntersection.cpp" />
+    <ClCompile Include="..\..\..\Source\Score.cpp" />
     <ClCompile Include="..\..\..\Source\Skybox.cpp" />
     <ClCompile Include="..\..\..\Source\StartGame.cpp" />
     <ClCompile Include="..\..\..\Source\StartUp.cpp" />
@@ -371,6 +375,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSMainEdit.h" />
     <ClInclude Include="..\..\..\Source\GSMenu.h" />
     <ClInclude Include="..\..\..\Source\GSPaused.h" />
+    <ClInclude Include="..\..\..\Source\GSPetBonus.h" />
     <ClInclude Include="..\..\..\Source\GSText.h" />
     <ClInclude Include="..\..\..\Source\GSTitle.h" />
     <ClInclude Include="..\..\..\Source\Hud.h" />
@@ -389,7 +394,9 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\PlayerInfo.h" />
     <ClInclude Include="..\..\..\Source\PlayerInfoKey.h" />
     <ClInclude Include="..\..\..\Source\PlayWav.h" />
+    <ClInclude Include="..\..\..\Source\PreventIntersection.h" />
     <ClInclude Include="..\..\..\Source\Rotateable.h" />
+    <ClInclude Include="..\..\..\Source\Score.h" />
     <ClInclude Include="..\..\..\Source\Skybox.h" />
     <ClInclude Include="..\..\..\Source\StartGame.h" />
     <ClInclude Include="..\..\..\Source\StartUp.h" />

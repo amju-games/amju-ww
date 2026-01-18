@@ -1,3 +1,4 @@
+#include <SoundManager.h>
 #include "GSMenu.h"
 #include "StartGame.h"
 #include "Game.h"
@@ -56,6 +57,8 @@ void GSMenu::OnActive()
   m_gui->GetElementByName("start-button-1p")->SetCommand(new CommandStartGame1p);
   m_gui->GetElementByName("start-button-2p")->SetCommand(new CommandStartGame2p);
   m_gui->GetElementByName("editor-button")->SetCommand(new CommandEditor);
+
+  TheSoundManager::Instance()->PlaySong("sound/piano.mod");
 }
 }
 

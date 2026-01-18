@@ -90,7 +90,7 @@ void GSPetBonus::Update()
   {
     m_timer = 0;
 
-    if (m_petNum >= m_pets.size())
+    if (m_petNum >= (int)m_pets.size())
     {
       // Go to load level state (or level map state???)
       TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
