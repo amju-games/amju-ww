@@ -21,8 +21,6 @@
 
 namespace Amju
 {
-const char* GSLoadLevel::NAME = "load-level";
-
 class CommandGo : public GuiCommand
 {
   virtual bool Do()
@@ -124,10 +122,6 @@ void GSLoadLevel::Update()
     {
       TheLevelManager::Instance()->Close();
 
-      // TODO for attract mode, or BYPASS_TITLE
-#ifdef BYPASS_TITLE
-      TheGame::Instance()->SetCurrentState(GSMain::NAME);
-#else
       if (IsAttractMode())
       {
         TheGame::Instance()->SetCurrentState(TheGSAttract::Instance());
@@ -137,7 +131,6 @@ void GSLoadLevel::Update()
           m_gui->GetElementByName("go-button")->SetVisible(true);
          m_gui->GetElementByName("progressbar")->SetVisible(false);
       }
-#endif
     }
   }
   

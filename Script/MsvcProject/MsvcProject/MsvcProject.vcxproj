@@ -321,6 +321,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSEditMenu.cpp" />
     <ClCompile Include="..\..\..\Source\GSGameOver.cpp" />
     <ClCompile Include="..\..\..\Source\GSLevelComplete.cpp" />
+    <ClCompile Include="..\..\..\Source\GSLoadLayers.cpp" />
     <ClCompile Include="..\..\..\Source\GSLoadLevel.cpp" />
     <ClCompile Include="..\..\..\Source\GSLogo.cpp" />
     <ClCompile Include="..\..\..\Source\GSMain.cpp" />
@@ -352,6 +353,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\PlayWav.cpp" />
     <ClCompile Include="..\..\..\Source\Portal.cpp" />
     <ClCompile Include="..\..\..\Source\PreventIntersection.cpp" />
+    <ClCompile Include="..\..\..\Source\ProcGen.cpp" />
     <ClCompile Include="..\..\..\Source\PropertiesDialog.cpp" />
     <ClCompile Include="..\..\..\Source\ResizeHandler.cpp" />
     <ClCompile Include="..\..\..\Source\SaveDir.cpp" />
@@ -406,6 +408,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSEditMenu.h" />
     <ClInclude Include="..\..\..\Source\GSGameOver.h" />
     <ClInclude Include="..\..\..\Source\GSLevelComplete.h" />
+    <ClInclude Include="..\..\..\Source\GSLoadLayers.h" />
     <ClInclude Include="..\..\..\Source\GSLoadLevel.h" />
     <ClInclude Include="..\..\..\Source\GSLogo.h" />
     <ClInclude Include="..\..\..\Source\GSMain.h" />
@@ -437,6 +440,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\PlayWav.h" />
     <ClInclude Include="..\..\..\Source\Portal.h" />
     <ClInclude Include="..\..\..\Source\PreventIntersection.h" />
+    <ClInclude Include="..\..\..\Source\ProcGen.h" />
     <ClInclude Include="..\..\..\Source\PropertiesDialog.h" />
     <ClInclude Include="..\..\..\Source\PropertyKeys.h" />
     <ClInclude Include="..\..\..\Source\ResizeHandler.h" />
