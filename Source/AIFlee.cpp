@@ -31,7 +31,8 @@ void AIFlee::Update()
 
   Vec3f vel = m_npc->GetPos() - m_target->GetPos();
   vel.y = 0;
-  if (vel.SqLen() > 10.0f)
+  static const float MAX_FLEE_DIST = 200.0f; // TODO CONFIG
+  if (vel.SqLen() < MAX_FLEE_DIST * MAX_FLEE_DIST)
   {
     vel.Normalise();
     static const float SPEED = 50.0f; // TODO CONFIG
