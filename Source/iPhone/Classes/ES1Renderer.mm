@@ -11,6 +11,13 @@
 #include <Game.h>
 #include <AmjuGL.h>
 #include <AmjuGL-OpenGLES.h>
+#include <File.h>
+#include <SoundManager.h>
+#include <EventPoller.h>
+#include <Screen.h>
+#include <SoundIPhone.h>
+#include <EventPollerImplIPhone.h>
+#include <StringUtils.h>
 
 @implementation ES1Renderer
 
@@ -37,6 +44,21 @@
         Amju::AmjuGL::SetImpl(new Amju::AmjuGLOpenGLES);
         Amju::AmjuGL::Init();
         Amju::AmjuGL::SetScreenRotation(90.0f);
+		
+		// Get path to data files
+		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"glue"];
+		
+		// From http://forums.macrumors.com/showthread.php?t=494103
+		//NSString *foo = @"your text here";
+		//const char *bar = [foo UTF8String];
+		
+		const char* cFilePath = [filePath UTF8String];
+		Amju::File::SetRoot(Amju::GetFilePath(cFilePath), "/");    
+		
+		Amju::TheSoundManager::Instance()->SetImpl(new Amju::SoundIPhone);
+		Amju::TheEventPoller::Instance()->SetImpl(new Amju::EventPollerImplIPhone);
+		Amju::Screen::SetSize(320, 480);
+				
         Amju::StartUp();
         
     }
