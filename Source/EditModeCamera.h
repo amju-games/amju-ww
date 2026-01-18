@@ -19,11 +19,14 @@ public:
   virtual bool OnCursorEvent(const CursorEvent&); 
   virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
 
+  void SetControllable(bool controllable);
+
 private:
   bool m_drag;
   enum Mode { AMJU_PAN, AMJU_ROTATE, AMJU_ZOOM };
   Mode m_mode;
   RCPtr<EditModeCameraController> m_controller;
+  bool m_controllable;
 };
 
 class EditModeCameraController : public EventListener
