@@ -50,7 +50,7 @@ class CommandQuit : public GuiCommand
 void GSTitle::Update()
 {
   GSText::Update();
-  if (m_timer > 3.0f) // TODO
+  if (m_timer > 3000.0f) // TODO 
   {
     // Go to attract mode
     TheLevelManager::Instance()->SetLevelId(1);
