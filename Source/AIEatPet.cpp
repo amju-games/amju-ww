@@ -35,14 +35,20 @@ void AIEatPet::Update()
   m_npc->SetAnim("eat");
   // TODO Eaten anim for pet, make dead after delay
   m_target->SetVel(Vec3f(0, 0, 0)); // Stop pet moving
+  m_npc->SetVel(Vec3f(0, 0, 0)); // Stop this dino moving
   
-  if (m_time > 0.25f) // TODO CONFIG
+  if (m_time > 0.25f) // TODO when angle reached
   {
     ((Pet*)m_target)->SetDead(true);
-  }
-  if (m_time > 4.0f) // TODO CONFIG
-  {
-    m_npc->DecideAI();
+    // TODO if anims done
+    //((Pet*)m_target)->SetAnim("eaten");
   }
 }
+
+void AIEatPet::OnAnimFinished()
+{
+  ((Pet*)m_target)->SetDead(true);
+  m_npc->DecideAI();
+}
+
 }

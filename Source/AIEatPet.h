@@ -16,6 +16,8 @@ public:
   virtual void Update();
   virtual const char* GetName() const;
 
+  virtual void OnAnimFinished();
+
 private:
 };
 }
