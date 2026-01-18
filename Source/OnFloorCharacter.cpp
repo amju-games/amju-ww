@@ -137,9 +137,12 @@ void OnFloorCharacter::ResetEatenState()
 void OnFloorCharacter::UpdateBloodPoolRotation()
 {
   Floor* floor = const_cast<Floor*>(GetFloor());
-  m_floorRot = *(floor->GetMatrix()); 
-  m_floorRot.TranslateKeepRotation(Vec3f()); // just the rotation
-  m_floorRot = m_invFloorMatrix * m_floorRot; // rotation relative to when blood pool created
+  if (floor)
+  {
+    m_floorRot = *(floor->GetMatrix()); 
+    m_floorRot.TranslateKeepRotation(Vec3f()); // just the rotation
+    m_floorRot = m_invFloorMatrix * m_floorRot; // rotation relative to when blood pool created
+  }
 }
 
 void OnFloorCharacter::CalcBloodPoolMatrix()
