@@ -13,6 +13,7 @@
 #include "AIGoHighGround.h"
 #include "AIIdle.h"
 #include "AIChasePet.h"
+#include "AIFalling.h"
 
 namespace Amju
 {
@@ -27,6 +28,7 @@ Dino::Dino()
   AddAI(new AIGoHighGround);
   AddAI(new AIEatPet);
   AddAI(new AIChasePet);
+  AddAI(new AIFalling);
 }
 
 void Dino::UpdateAabb()

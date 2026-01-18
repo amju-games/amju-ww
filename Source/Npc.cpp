@@ -1,5 +1,6 @@
 #include "Npc.h"
 #include "AmjuAssert.h"
+#include "AIFalling.h"
 
 namespace Amju
 {
@@ -63,6 +64,13 @@ void Npc::SetAI(const char* aiName)
 void Npc::Update()
 {
   OnFloorCharacter::Update();
+
+  if (!GetFloor())
+  {
+    // Falling
+    SetAI(AIFalling::NAME); 
+  }
+
   if (m_ai)
   {
     m_ai->Update();
