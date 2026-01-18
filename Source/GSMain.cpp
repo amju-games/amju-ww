@@ -1,39 +1,39 @@
-#include <Game.h>
 #include <AmjuGL.h>
-#include <File.h>
-#include <ReportError.h>
-#include <GameObjectFactory.h>
 #include <EventPoller.h>
+#include <File.h>
 #include <Font.h>
-#include <SceneNodeCamera.h>
-#include <Timer.h>
-#include <StringUtils.h>
+#include <ReportError.h>
+#include <Game.h>
+#include <GameObjectFactory.h>
 #include <Pause.h>
+#include <ROConfig.h>
+#include <SceneNodeCamera.h>
 #include <Screen.h>
 #include <SoundManager.h>
-#include <ROConfig.h>
-#include <Game.h>
-#include "GSMain.h"
+#include <StringUtils.h>
+#include <Timer.h>
 #include "Bird.h"
 #include "CollisionManager.h"
 #include "CursorManager.h"
-#include "GSPaused.h"
-#include "GSLoadLevel.h"
-#include "GSLevelComplete.h"
 #include "Depth.h"
 #include "Describe.h"
 #include "Dino.h"
 #include "EditModeCamera.h"
 #include "Exit.h"
 #include "Floor.h"
+#include "GSMain.h"
+#include "GSPaused.h"
+#include "GSLoadLevel.h"
+#include "GSLevelComplete.h"
+#include "GSSpiral.h"
 #include "Hud.h"
 #include "LurkMsg.h"
+#include "MySceneGraph.h"
 #include "NetSend.h"
 #include "Pet.h"
 #include "Player.h"
 #include "PowerUp.h"
 #include "ProcGen.h"
-#include "MySceneGraph.h"
 #include "Score.h"
 #include "ShadowManager.h"
 #include "Viewport.h"
@@ -53,7 +53,17 @@ static bool s_showAABBs = false;
 
 static void OnPause(GuiElement*)
 {
+#ifdef YES_TEST_LEVEL_COMPLETE
+  
+  Player* player = Player::GetPlayer(AMJU_P1);
+  TheGSLevelComplete::Instance()->SetPlayer(player);
+  TheGame::Instance()->SetCurrentState(TheGSLevelComplete::Instance());
+  
+#else
+  
   TheGame::Instance()->SetCurrentState(TheGSPaused::Instance());
+
+#endif
 }
 
 GSMain::GSMain()

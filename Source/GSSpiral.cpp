@@ -16,7 +16,7 @@ void GSSpiral::Update()
 {
   static Timer* timer = TheTimer::Instance();
   m_timer += timer->GetDt();
-  if (m_timer > 0.5f)
+  if (m_timer > 10.5f)
   {
     GoBack();
   }
