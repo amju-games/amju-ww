@@ -16,6 +16,7 @@ public:
   virtual bool Save(File*); 
 
 protected:
+  virtual bool CreateSceneNode();
 };
 }
 
