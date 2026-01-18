@@ -10,24 +10,20 @@ hud-comp
 12
 
 // HI SCORE - under player 1 score at top left
-elastic
--0.5, 0
 gui-text
 hi-text
 // pos (coords are -1..1)
--0.5, 0.7
+-0.5, 1.7
 // size
 1.95, 0.1
 // Text 
 HI
 cheri, 1.0, fgcol=ffffff, left, sx=1.6
 
-elastic
--0.5, 0
 gui-text
 hi-score-text
 // pos (coords are -1..1)
--0.5, 0.6
+-0.5, 1.6
 // size
 1.95, 0.1
 // Text 
