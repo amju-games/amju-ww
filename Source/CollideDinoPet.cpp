@@ -1,6 +1,7 @@
 #include "CollisionManager.h"
 #include "Dino.h"
 #include "Pet.h"
+#include "Player.h"
 #include "AIFlee.h"
 
 namespace Amju
@@ -35,4 +36,7 @@ void CollideDinoPet(GameObject* go1, GameObject* go2)
 
 static bool b = TheCollisionManager::Instance()->Add(
   Dino::NAME, Pet::NAME, CollideDinoPet, AMJU_EVERY_CONTACT);
+
+static bool b2 = TheCollisionManager::Instance()->Add(
+  Dino::NAME, Player::NAME, CollideDinoPet, AMJU_EVERY_CONTACT);
 }

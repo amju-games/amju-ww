@@ -104,7 +104,7 @@ void Dino::AddToGame()
   Npc::AddToGame();
   
   AddAI(new AIIdle);
-  AddAI(new AIGoHighGround);
+//  AddAI(new AIGoHighGround);
   AddAI(new AIEatPet);
   AddAI(new AIChasePet);
   AddAI(new AIFalling);

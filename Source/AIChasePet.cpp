@@ -4,6 +4,8 @@
 #include "Pet.h"
 #include "AIChasePet.h"
 #include "AIIdle.h"
+#include "Describe.h"
+#include "Dino.h"
 
 namespace Amju
 {
@@ -18,16 +20,21 @@ void AIChasePet::Update()
 {
   AI::Update();
   Assert(m_npc);
-  // Head towards pet
+  // Head towards target
   Vec3f aim = m_target->GetPos();
   Vec3f vel = aim - m_npc->GetPos();
-  vel.y = 0;
 
   static const float MAX_DIST = ROConfig()->GetFloat("dino-chase-dist"); 
   static const float MAX_DIST_SQ = MAX_DIST * MAX_DIST;
 
   float sqlen = vel.SqLen();
-  if (sqlen < MAX_DIST_SQ && sqlen > 1.0f) // TODO but needs to be > 0!!
+  if (sqlen < 1.0f)
+  {
+std::cout << "AI chase: " << Describe(m_npc) << " has reached target " <<
+  Describe(m_target) << "!\n";
+
+  }
+  else if (sqlen < MAX_DIST_SQ) 
   {
     vel.Normalise();
 
@@ -62,6 +69,11 @@ float AIChasePet::GetRank()
   for (unsigned int i = 0; i < pets.size(); i++)
   {
     OnFloorCharacter* pet = pets[i];
+    if (dynamic_cast<Dino*>(pet))
+    {
+      continue;
+    }
+
     float distSq = (m_npc->GetPos() - pet->GetPos()).SqLen();
 
     static const float MAX_DIST = ROConfig()->GetFloat("dino-chase-dist"); 
