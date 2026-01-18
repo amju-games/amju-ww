@@ -13,6 +13,7 @@ public:
   TutorialTrigger();
   virtual const char* GetTypeName() const;
   virtual bool Load(File*); 
+  virtual bool Save(File*); 
   virtual void OnPlayerCollision(Player*);
 
 private:

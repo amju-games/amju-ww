@@ -61,6 +61,7 @@ public:
   //virtual void OnButtonEvent(const ButtonEvent&);
   virtual bool OnMouseButtonEvent(const MouseButtonEvent&);
   virtual bool OnCursorEvent(const CursorEvent&);  
+  virtual bool OnKeyEvent(const KeyEvent&);
 
   // Menu item handlers
   void OnMove();

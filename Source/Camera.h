@@ -38,6 +38,7 @@ public:
   virtual void Reset();
   virtual void Update();
   virtual bool Load(File*);
+  virtual bool Save(File*);
 
   void SetAsSceneGraphCamera();
   void SetLookAtPos(const Vec3f& v) { m_lookAt = v; }

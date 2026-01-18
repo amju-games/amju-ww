@@ -5,6 +5,7 @@
 #include <GameObjectFactory.h>
 #include <ConfigFile.h>
 #include <Directory.h>
+#include <GuiCommandHandler.h>
 #include "GSMainEdit.h"
 #include "GSTitle.h"
 #include "GSLoadLevel.h"
@@ -134,10 +135,14 @@ static void OnSaveLevel()
 
 void OnUndo()
 {
+std::cout << "UNDO\n";
+  TheGuiCommandHandler::Instance()->Undo();
 }
 
 void OnRedo()
 {
+std::cout << "REDO\n";
+  TheGuiCommandHandler::Instance()->Redo();
 }
 
 void OnRotate()
@@ -416,6 +421,44 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
   return false;
 }
 
+class MoveCommand : public GuiCommand
+{
+public:
+  MoveCommand(WWGameObject* obj, const Vec3f& move) : m_obj(obj), m_move(move)
+  {
+  }
+
+  virtual bool Do() override
+  {
+//std::cout << "Doing move\n";
+
+    Vec3f p = m_obj->GetPos();
+    p += m_move;
+    m_obj->SetPos(p);
+    m_obj->RecalcAABB();
+
+    SceneNode* sn = m_obj->GetSceneNode();
+    Assert(sn);
+    Matrix mat;
+    mat.Translate(m_move);
+    sn->MultLocalTransform(mat);
+    return true;
+  }
+
+  virtual void Undo() override
+  {
+//std::cout << "Undoing move\n";
+    m_move = -m_move;
+    Do();
+    m_move = -m_move;
+  }
+
+private:
+  RCPtr<WWGameObject> m_obj;
+  Vec3f m_move;
+};
+
+
 bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
 {
   static Vec2f oldPos(ce.x, ce.y);
@@ -470,22 +513,24 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
       move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
     }
 
-    Vec3f p = m_selectedObj->GetPos();
-    move *= 10.0f;
-    p += move;
-    m_selectedObj->SetPos(p);
-    m_selectedObj->RecalcAABB();
-
-    SceneNode* sn = m_selectedObj->GetSceneNode();
-    Assert(sn);
-    Matrix mat;
-    mat.Translate(move);
-    sn->MultLocalTransform(mat);
+    move *= 50.0f;
+    MoveCommand* mc = new MoveCommand(m_selectedObj, move);
+    TheGuiCommandHandler::Instance()->DoNewCommand(mc);
   }
 
   oldPos = pos;
   return false;
 }
 
+bool GSMainEdit::OnKeyEvent(const KeyEvent& ke)
+{
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'z')
+  {
+    OnUndo();
+    return true;
+  }
+
+  return false;
+}
 }
 

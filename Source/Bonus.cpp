@@ -40,6 +40,12 @@ const char* Bonus::GetTypeName() const
   return NAME;
 }
 
+bool Bonus::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Bonus::Load(File* f)
 {
   if (!GameObject::Load(f)) // Get ID

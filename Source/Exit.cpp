@@ -85,6 +85,12 @@ void Exit::Update()
   }
 }
 
+bool Exit::Save(File* f)
+{
+  // TODO
+  return false;
+}
+
 bool Exit::Load(File* f)
 {
   if (!GameObject::Load(f)) // Get ID
