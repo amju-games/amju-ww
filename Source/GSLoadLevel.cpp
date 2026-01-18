@@ -107,8 +107,13 @@ void GSLoadLevel::Update()
     // TODO Don't do this for attract mode - go directly to level
     if (m_currentObj == m_numObjects)
     {
+      // TODO for attract mode, or BYPASS_TITLE
+#ifdef BYPASS_TITLE
+      TheGame::Instance()->SetCurrentState(GSMain::NAME);
+#else
       m_gui->GetElementByName("go-button")->SetVisible(true);
       m_gui->GetElementByName("progressbar")->SetVisible(false);
+#endif
     }
   }
   
