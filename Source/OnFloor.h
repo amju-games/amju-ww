@@ -25,8 +25,6 @@ public:
   void SetFloor(Floor*); 
   const Floor* GetFloor() const;
 
-  bool IsDead() const;
-
   // List of all Floor objects this level
   static void AddFloor(Floor*);
   static void ClearFloors();
@@ -74,9 +72,6 @@ protected:
 
   // Mass of this object, for physics
   float m_mass;
-
-  // True when we have fallen below all Floors
-  bool m_isDead;
 
   // List of all Floor objects this level
   typedef std::vector<RCPtr<Floor> > Floors;
