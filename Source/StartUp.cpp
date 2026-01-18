@@ -106,14 +106,10 @@ void StartUpBeforeCreateWindow()
   File::SetRoot("/apps/amju_rd-v.1.0-wii/data/", "/");
 #endif
 
-#if defined(WIN32) || defined(MACOSX) || defined(GEKKO)
+#if defined(WIN32) || defined(MACOSX) || defined(GEKKO) || defined(AMJU_IOS)
   SetROConfigFilename(GetSaveDir() + "roconfig.txt");
 #endif
 
-#if defined(AMJU_IOS) || defined(ANDROID)
-  SetROConfigFilename("roconfig.txt");
-#endif
-  
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   std::string filename = ConfigFilename();
   gcf->SetFilePath(filename);
