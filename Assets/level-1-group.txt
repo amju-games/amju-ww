@@ -2,11 +2,27 @@
 // version
 1
 // resources
+ramp1.bmp
+ramp_3x1.obj
+block_rect_1x1.obj
+plat_wood1.bmp
+plat_wood2.bmp
+heart.bmpa
 skybox2.bmp
 skybox2.obj
 shadow.bmpa
 floor.bmp
 box2.obj
+crate2.bmp
+crate.bmp
+crate2.obj
+disc1.obj
+disc2.obj
+floor3.obj
+plat_rect_1x1_std.obj
+plat_rect_2x1_std.obj
+plat_rect_3x1_std.obj
+plat_rect_4x1_std.obj
 red.bmp
 //wh8.bmp
 heart.obj
@@ -16,6 +32,9 @@ sparkle1.bmpa
 amju.md2
 amju2.bmp
 amju2a.bmp
+marin.md2
+marin1.bmp
+marin1a.bmp
 dino.md2
 dino1.bmp
 dino1a.bmp

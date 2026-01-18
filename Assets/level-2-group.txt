@@ -2,6 +2,8 @@
 // version
 1
 // resources
+
+heart.bmpa
 skybox2.bmp
 skybox2.obj
 shadow.bmpa

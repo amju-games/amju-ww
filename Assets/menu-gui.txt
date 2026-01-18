@@ -5,17 +5,16 @@
 // element type
 gui-comp
 // Num children
-2
+3
 
-// Button 1 - start
 // element type
 gui-button
 
 // Element name
-start-button
+start-button-1p
 
 // pos (coords are -1..1)
--0.4, 0.7
+-0.4, 0.3
 // size
 0.8, 0.2
 
@@ -23,13 +22,31 @@ start-button
 gui-button-4.bmpa
 
 // Text
-start game
+1 player start
 // Font name, size
 cheri, 1.0
 
 
+// element type
+gui-button
 
-// Button 2 - quit
+// Element name
+start-button-2p
+
+// pos (coords are -1..1)
+-0.4, 0.1
+// size
+0.8, 0.2
+
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.bmpa
+
+// Text
+2 player start
+// Font name, size
+cheri, 1.0
+
+
 // element type
 gui-button
 
@@ -37,7 +54,7 @@ gui-button
 editor-button
 
 // pos (coords are -1..1)
--0.4, 0.5
+-0.4, -0.1
 // size
 0.8, 0.2
 
