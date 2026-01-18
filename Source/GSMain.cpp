@@ -126,9 +126,18 @@ void GSMain::Update()
   static Lurker* lurker = TheLurker::Instance();
   lurker->Update();
 
+  // Disable pause button if Lurk msg showing
+  // Make member to avoid constant lookup TODO
+  GuiButton* pauseButton = (GuiButton*)m_gui->GetElementByName("pause-button");
+
   // Freeze if displaying tutorial text
-  if (!lurker->IsDisplayingMsg())
+  if (lurker->IsDisplayingMsg())
   {
+    pauseButton->SetIsEnabled(false);
+  }
+  else
+  {
+    pauseButton->SetIsEnabled(true);
     if (m_exitReached)
     {
       m_exitTimer += TheTimer::Instance()->GetDt();
