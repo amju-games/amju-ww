@@ -124,21 +124,26 @@ void OnFloor::PlayWav(OnFloor::Event e)
 
 void OnFloor::UpdateAnim()
 {
-  float speed = m_vel.SqLen(); 
-  static const float MIN_SPEED = 10.0f;
-  static const float MIN_SPEED_2 = MIN_SPEED * MIN_SPEED;
+  Vec3f vel = GetVel();
+  vel.y = 0; // Only consider x-z speed
+  float speed = vel.SqLen(); 
+  static const float RUN_SPEED = 20.0f;
+  static const float RUN_SPEED_2 = RUN_SPEED * RUN_SPEED;
+
+  static const float STAND_SPEED = 10.0f;
+  static const float STAND_SPEED_2 = STAND_SPEED * STAND_SPEED;
 
   if (IsFalling())
   {
     int jump = m_pModel->GetAnimationFromName("jump");
     SetAnim(jump);
   }
-  else if (speed > MIN_SPEED_2 && IsControlled())
+  else if (speed > RUN_SPEED_2) // && IsControlled())
   {
     int run = m_pModel->GetAnimationFromName("run");
     SetAnim(run);
   }
-  else
+  else if (speed < STAND_SPEED_2) // NB Hysteresis to prevent anim flicker
   {
     int stand = m_pModel->GetAnimationFromName("stand");
     SetAnim(stand);
