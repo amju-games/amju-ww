@@ -1,9 +1,10 @@
-#include "GSPaused.h"
 #include <Game.h>
+#include "GSPaused.h"
 #include "MySceneGraph.h"
 #include "GSMain.h"
 #include "GSOptions.h"
 #include "GSTitle.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
@@ -37,7 +38,7 @@ void GSPaused::OnActive()
   m_timer = 0;
 
   // buttons
-  m_gui = LoadGui("paused-gui.txt");
+  m_gui = WWLoadGui("paused-gui.txt");
   Assert(m_gui);
   m_gui->GetElementByName("resume-button")->SetCommand(OnResume);
   m_gui->GetElementByName("quit-button")->SetCommand(OnQuit);
