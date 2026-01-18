@@ -603,7 +603,7 @@ void GSMainEdit::OnActive()
 
   GSMain::OnActive();
   // Show bounding boxes - TODO don't use this, draw object AABBs
-  SceneNode::SetGlobalShowAABB(true);
+//  SceneNode::SetGlobalShowAABB(true);
 
   //GetGameSceneGraph()->SetCamera(new EditModeCamera);
   
@@ -849,6 +849,10 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
       }
     }
     EditViewport::SetActiveId(active);
+
+    Viewport* vp = TheViewportManager::Instance()->GetViewport(active);
+    m_activeViewport = dynamic_cast<EditViewport*>(vp);
+    Assert(m_activeViewport);
   }
 
   switch (mbe.button)
@@ -930,7 +934,7 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
   Vec2f pos(ce.x, ce.y);
   m_mouseScreen = pos;
 
-  Vec2f diff = pos - oldPos;
+  Vec2f diff = pos - oldPos; // TODO can now use dx/dy in CursorEvent
 
   // TODO
   if (m_selectedObj && s_drag)
@@ -938,47 +942,10 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
 //std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
     // Decide which direction to move - i.e. is diff more closely aligned 
     //  with +x, -1, +y, -1, +z or -z 
-    Vec3f dir(diff.x, diff.y, 0);
-    dir.Normalise();
 
-    // Get camera rotation matrix
-    SceneNodeCamera* camera = GetGameSceneGraph()->GetCamera();
-    Matrix mv = camera->GetMatrix();
-
-    Vec3f axes[3] = 
-    {
-      Vec3f(mv[0], mv[4], mv[8]),
-      Vec3f(mv[1], mv[5], mv[9]),
-      Vec3f(mv[2], mv[6], mv[10])
-    };
-    float dots[3] =
-    {
-      DotProduct(dir, axes[0]),
-      DotProduct(dir, axes[1]),
-      DotProduct(dir, axes[2])
-    };
-    float fabs[3] = 
-    {
-      (float)::fabs(dots[0]), 
-      (float)::fabs(dots[1]), 
-      (float)::fabs(dots[2]) 
-    };
-
-//std::cout << "X dot: " << dots[0] << "\n";
-//std::cout << "Y dot: " << dots[1] << "\n";
-//std::cout << "Z dot: " << dots[2] << "\n";
-
-    Vec3f move = dots[0] < 0 ? Vec3f(-1, 0, 0) : Vec3f(1, 0, 0);
-    if (fabs[1] > fabs[0] && fabs[1] > fabs[2])
-    {
-      // Y axis
-      move = dots[1] < 0 ? Vec3f(0, -1, 0) : Vec3f(0, 1, 0);
-    }
-    else if (fabs[2] > fabs[0] && fabs[2] > fabs[1])
-    {
-      // Z axis
-      move = dots[2] < 0 ? Vec3f(0, 0, -1) : Vec3f(0, 0, 1);
-    }
+    // Get axes from camera of active viewport
+    Vec2f dir(diff.x, diff.y);
+    Vec3f move = m_activeViewport->GetMoveAxis(dir);
 
     EditModeCamera* cam = GetCamera();
     float zoomDist = sqrt((cam->GetEyePos() - cam->GetLookAtPos()).SqLen());

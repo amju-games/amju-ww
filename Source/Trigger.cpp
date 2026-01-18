@@ -69,7 +69,7 @@ bool Trigger::CreateSceneNode()
   {
     TriggerNode* tn = new TriggerNode;
     tn->SetAABB(m_aabb);
-    m_pSceneNode = tn;
+    SetSceneNode(tn);
   }
   return true;
 }

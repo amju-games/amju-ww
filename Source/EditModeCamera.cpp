@@ -28,7 +28,8 @@ EditModeCamera::EditModeCamera(EditCamType camType)
 
   m_controller = new EditModeCameraController(this);
   
-  TheEventPoller::Instance()->AddListener(m_controller, 90); // low pri 
+  TheEventPoller::Instance()->AddListener(m_controller, -1); 
+  // Hi pri, so we don't select something while dragging??
 
   // TODO TEMP TEST
   Vec3f eye(0, 0, 300);

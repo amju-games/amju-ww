@@ -90,42 +90,20 @@ Player::~Player()
 
 void Player::AddPropertiesGui(PropertiesDialog* dlg)
 {
-  dlg->AddItem(new PropertiesDialog::FilenameItem("Md2", m_md2Name, PROP_MD2));
-  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture", m_texNames[0], PROP_TEXTURE_1));
-  dlg->AddItem(new PropertiesDialog::FilenameItem("Texture2", m_texNames[1], PROP_TEXTURE_2));
-  // TODO
-//  dlg->AddItem(new PropertiesDialog::IntItem("Player ID", m_playerId));
+  OnFloorCharacter::AddPropertiesGui(dlg);
+
+  // TODO IntItem
+  dlg->AddItem(new PropertiesDialog::IntItem("Player ID", m_playerId, PROP_PLAYER_ID));
 }
 
 PropertyValue Player::GetProp(PropertyKey key)
 {
-  switch (key)
-  {
-  case PROP_MD2:
-    return m_md2Name;
-  case PROP_TEXTURE_1:
-    return m_texNames[0];
-  case PROP_TEXTURE_2:
-    return m_texNames[1];
-  }
   return OnFloorCharacter::GetProp(key);
 }
 
 void Player::SetProp(PropertyKey key, PropertyValue value)
 {
   OnFloorCharacter::SetProp(key, value);
-  switch (key)
-  {
-  case PROP_MD2:
-    m_md2Name = value.GetString();
-    break;
-  case PROP_TEXTURE_1:
-    m_texNames[0] = value.GetString();
-    break;
-  case PROP_TEXTURE_2:
-    m_texNames[1] = value.GetString();
-    break;
-  }
 }
 
 void Player::CreateController()
@@ -691,7 +669,7 @@ void Player::Update()
     Matrix mat;
     mat.RotateY(DegToRad(m_dirCurrent));
     mat.TranslateKeepRotation(m_pos);
-    m_pSceneNode->SetLocalTransform(mat);
+    GetSceneNode()->SetLocalTransform(mat);
 
     UpdateCocoon();
     return;

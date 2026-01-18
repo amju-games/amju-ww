@@ -39,11 +39,12 @@ Bonus::Bonus()
 
 void Bonus::AddPropertiesGui(PropertiesDialog* dlg) 
 {
+//  OnFloor::AddPropertiesGui(dlg);
   dlg->AddItem(new PropertiesDialog::FilenameItem("Mesh", m_meshFilename, PROP_MESH));
 
   // TODO
-//  dlg->AddItem(new PropertiesDialog::IntItem("Points", m_points));
-//  dlg->AddItem(new PropertiesDialog::IntItem("Lives", m_lives));
+  dlg->AddItem(new PropertiesDialog::IntItem("Points", m_points, PROP_BONUS_POINTS));
+  dlg->AddItem(new PropertiesDialog::IntItem("Lives", m_lives, PROP_BONUS_LIVES));
 }
 
 PropertyValue Bonus::GetProp(PropertyKey key)
@@ -163,7 +164,7 @@ bool Bonus::CreateSceneNode()
     return false;
   }
 
-  return false;
+  return true;
 }
 
 void Bonus::Update()
@@ -194,7 +195,7 @@ void Bonus::Update()
   mat.RotateY(m_yRot);
   mat.TranslateKeepRotation(m_pos);
 
-  m_pSceneNode->SetLocalTransform(mat);
+  GetSceneNode()->SetLocalTransform(mat);
 }
 
 void Bonus::OnPlayerCollision(Player* pPlayer)
@@ -208,10 +209,10 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
 
   m_effect->Start(); 
 
-  m_pSceneNode->SetVisible(false);
+  GetSceneNode()->SetVisible(false);
 
-  m_effect->SetLocalTransform(m_pSceneNode->GetLocalTransform());
-  m_effect->SetAABB(*(m_pSceneNode->GetAABB()));
+  m_effect->SetLocalTransform(GetSceneNode()->GetLocalTransform());
+  m_effect->SetAABB(*(GetSceneNode()->GetAABB()));
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
   root->AddChild(m_effect);

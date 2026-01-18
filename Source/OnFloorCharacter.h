@@ -13,6 +13,10 @@ public:
   virtual void Update();
   virtual bool CreateSceneNode(); // Load MD2 and textures
 
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
+
   void SetAnim(const std::string& animName);
 
   // Set direction which character should face - we rotate to face this

@@ -7,6 +7,7 @@
 #include "GSMain.h"
 #include "ContextMenu.h"
 #include "WWGameObject.h"
+#include "EditViewport.h"
 
 namespace Amju
 {
@@ -99,6 +100,8 @@ protected:
   //  when we exceed some limit in one axis.
   Vec3f m_accumulatedDragMove;
   float m_gridSize; // this is the limit - effectively the size of cubes in a notional grid
+
+  RCPtr<EditViewport> m_activeViewport;
 };
 
 typedef Singleton<GSMainEdit> TheGSMainEdit;
