@@ -25,7 +25,7 @@
 player
 101
 // Start pos
-0, 20, 0
+0, 200, 0
 // Player ID
 0
 // Mesh
@@ -62,11 +62,13 @@ staticfloor
 // Centre/pivot point
 0, 0, 0
 // Rot
-0
+90
 // Floor mesh + texture
-block_rect_1x1.obj
+//block_rect_1x1.obj
 //plat_rect_4x4_std.obj
-plat_wood1.png
+block_rect_curved_1x1.obj
+//plat_wood1.png
+curvedFloorUV2.png
 end
 
 staticfloor
