@@ -63,7 +63,7 @@ void TutorialTrigger::OnPlayerCollision(Player*)
   typedef std::set<int> IdSet;
   static IdSet idSet;
   // Make unique ID for this object in the current level
-  int unique = GetId() | TheLevelManager::Instance()->GetLevelId() << 24;
+  int unique = GetId() | TheLevelManager::Instance()->GetLevelId() << 20;
   if (idSet.insert(unique).second == false)
   {
     // Not inserted - already in set

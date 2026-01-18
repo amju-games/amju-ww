@@ -149,7 +149,8 @@ bool LevelManager::Open(const std::string& filename)
 #else
       levelFilename = "";
 #endif
-      levelFilename += "levels/level-1.txt";
+      // Level 1 is tutorial level, so default file is level 2.
+      levelFilename += "levels/level-2.txt";
     }
 
     // Never glue file -- level files are extracted to OS dir
