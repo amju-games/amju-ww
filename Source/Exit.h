@@ -38,7 +38,9 @@ public:
   virtual bool Load(File*);
   virtual bool Save(File*);
   virtual void Reset();
-
+  virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
+  virtual PropertyValue GetProp(PropertyKey);
+  virtual void SetProp(PropertyKey, PropertyValue);
   virtual void AddToGame() override;
   virtual void RemoveFromGame() override;
   virtual bool CreateSceneNode() override;

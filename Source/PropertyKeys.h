@@ -17,7 +17,7 @@ enum PropertyKeys
   PROP_BONUS_POINTS,
   PROP_BONUS_LIVES,
   PROP_COLOUR,
-  PROP_DEST_ID,
+  PROP_DEST_ID, // for portal and exit
   PROP_BOX_SIZE
 };
 }
