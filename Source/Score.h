@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Singleton.h>
+#include <Vec3.h>
 #include "PlayerNum.h"
 
 namespace Amju
@@ -30,6 +31,10 @@ public:
 
   int GetHiScore() const;
   const std::string& GetHiScoreName() const;
+  
+  // Get/Set last known position of player
+  void SetPos(PlayerNum pn, const Vec3f& pos);
+  const Vec3f& GetPos(PlayerNum pn);
 };
 }
 
