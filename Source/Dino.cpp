@@ -185,6 +185,8 @@ void Dino::Eat(OnFloorCharacter* pet)
   Assert(!pet->IsDead());
   Assert(pet->CanBeEaten());
 
+  SetAnim("eat");
+
   // Change to eating behaviour
   SetAI(AITurnToFace::NAME);
   m_ai->SetTarget(pet);

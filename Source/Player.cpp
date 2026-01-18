@@ -422,7 +422,7 @@ std::cout << "JUMP! Count is: " << m_jumpCount << " Vel: " << m_jumpVel << "\n";
     m_jumpCount++;
 
     m_vel.y = m_jumpVel; 
-    SetIsFalling(true);
+    SetIsFalling(true); // jumping == falling
     SetAnim("jump");
   }
 }

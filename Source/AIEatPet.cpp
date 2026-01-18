@@ -5,6 +5,8 @@
 #include "Pet.h"
 #include "PlayWav.h"
 
+#define AI_DEBUG
+
 namespace Amju
 {
 const char* AIEatPet::NAME = "aieatpet";
@@ -50,9 +52,15 @@ void AIEatPet::Update()
   std::cout << "Dino eating pet!\n";
 #endif
 
-  m_npc->SetAnim("eat");
-  // TODO Eaten anim for pet, make dead after delay
-  m_target->SetVel(Vec3f(0, 0, 0)); // Stop pet moving
+  //m_npc->SetAnim("eat");
+  // Done in collision handler function
+ 
+  // Stop target moving in x,z but allow to fall if already falling
+  Vec3f vel = m_target->GetVel();
+  vel.x = 0;
+  vel.z = 0; 
+  m_target->SetVel(vel);
+
   m_npc->SetVel(Vec3f(0, 0, 0)); // Stop this dino moving
 }
 
