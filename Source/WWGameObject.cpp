@@ -43,7 +43,11 @@ void WWGameObject::AddToGame()
   TheGame::Instance()->AddGameObject(this);
 
   CreateSceneNode(); 
-  AddSceneNodeToGraph();
+  if (GetSceneNode())
+  {
+    AddSceneNodeToGraph();
+  }
+
   /*
   SceneNode* sn = GetSceneNode();
   if (sn)
