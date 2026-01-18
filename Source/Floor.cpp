@@ -21,24 +21,6 @@ static bool reg = TheGameObjectFactory::Instance()->Add(Floor::NAME, &CreateFloo
 
 const char* Floor::NAME = "floor";
 
-/*
-FloorMesh::FloorMesh(Floor* floor) : m_floor(floor)
-{
-  SetIsLit(true);
-}
-
-void FloorMesh::Draw()
-{
-  AmjuGL::PushAttrib(AmjuGL::AMJU_LIGHTING);
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-//  m_pTex->UseThisTexture();
-  SceneMesh::Draw();
-  AmjuGL::PopAttrib();
-
-  //m_floor->DrawCollisionMesh();
-}
-*/
-
 Floor::Floor()
 {
   OnFloor::AddFloor(this);
