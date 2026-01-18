@@ -35,8 +35,8 @@ Pet::Pet()
   m_eatenTime = 0;
   m_justDroppedTime = 0;
   m_justDropped= false;
-
   m_bloodPoolScale = 0;
+
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
   AddAI(new AIFalling);
