@@ -47,6 +47,9 @@ protected:
 
   Player* m_carryingPlayer;
 };
+
+typedef std::vector<Pet*> Pets;
+void GetPets(Pets* pets);
 }
 
 #endif

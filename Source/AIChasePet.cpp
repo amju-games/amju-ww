@@ -53,20 +53,6 @@ void AIChasePet::Update()
   }
 }
 
-typedef std::vector<Pet*> Pets;
-void GetPets(Pets* pets)
-{
-  GameObjects* objs = TheGame::Instance()->GetGameObjects();
-  for (GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
-  {
-    GameObject* go = it->second;
-    Pet* p = dynamic_cast<Pet*>(go);
-    if (p && !p->IsDead())
-    {
-      pets->push_back(p);
-    }
-  }
-}
 
 float AIChasePet::GetRank()
 {
