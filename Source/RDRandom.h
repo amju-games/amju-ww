@@ -18,7 +18,7 @@ int RDRandom(int high);
 // From http://en.cppreference.com/w/cpp/algorithm/random_shuffle
 
 template<class RandomIt, class RandomFunc>
-void random_shuffle(RandomIt first, RandomIt last, RandomFunc&& r)
+void random_shuffle(RandomIt first, RandomIt last, RandomFunc r)
 {
     typename std::iterator_traits<RandomIt>::difference_type i, n;
     n = last - first;
