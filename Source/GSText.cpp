@@ -56,6 +56,9 @@ void GSText::Update()
   GetTextSceneGraph()->Update();
 
   m_timer += TheTimer::Instance()->GetDt(); 
+
+  float b = sin(m_timer * 0.25f) * 0.25f + 0.75f;
+  AmjuGL::SetClearColour(Colour(0, 0, b, 1.0f));
 }
 
 void GSText::Draw()
@@ -109,8 +112,6 @@ void GSText::OnActive()
 {
   GameState::OnActive();
   m_timer = 0;
-
-  AmjuGL::SetClearColour(Colour(0, 0, 1, 1.0f));
 }
 
 void GSText::OnDeactive()
@@ -192,7 +193,7 @@ void GSText::CreateText(const std::string& text)
     Matrix mat;
     float r = (float)i * 20.0f;
     float angle = (float)i * 0.6f;
-    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-80, 80) - 400);
+    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-800, 200) - 400);
     mat.Translate(tr);
 
     float sc = Rnd(0.005f, 0.015f);

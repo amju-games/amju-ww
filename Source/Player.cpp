@@ -304,6 +304,14 @@ bool Player::Load(File* f)
   */
 }
 
+void Player::OnAnimFinished()
+{
+  if (IsFalling())
+  {
+    SetAnim("fall");
+  }
+}
+
 void Player::Jump()
 {
   // Jump if we are on ground
@@ -549,7 +557,9 @@ void Player::Update()
 {
   OnFloorCharacter::Update();
 
-  float speed = m_vel.SqLen();
+  Vec3f v = m_vel;
+  v.y = 0;
+  float speed = v.SqLen();
   if (IsFalling())
   {
     // TODO fall/jump should be different

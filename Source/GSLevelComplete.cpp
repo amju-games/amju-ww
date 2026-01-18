@@ -39,6 +39,8 @@ void SetObjPos(WWGameObject* obj, float angle, float z)
 
 void GSLevelComplete::Update()
 {
+  GSText::Update();
+
   GetGameSceneGraph()->Update();
 
   float dt = TheTimer::Instance()->GetDt();
@@ -54,6 +56,7 @@ void GSLevelComplete::Update()
 
   float a = angle;
   SetObjPos(m_player, a, m_z);
+  m_player->SetAnim("fall");
 
   const Pets& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
@@ -80,6 +83,9 @@ void GSLevelComplete::Draw2d()
 
 void GSLevelComplete::Draw()
 {
+  GSText::Draw();
+
+/*
   // Draw rotating background
   AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
   AmjuGL::Disable(AmjuGL::AMJU_DEPTH_WRITE);
@@ -91,7 +97,7 @@ void GSLevelComplete::Draw()
 
   AmjuGL::PushMatrix();
   AmjuGL::RotateZ(a);
-  m_bg.Draw(); 
+//  m_bg.Draw(); 
   AmjuGL::PopMatrix();
 
   AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
@@ -104,18 +110,20 @@ void GSLevelComplete::Draw()
   const float FAR = 3000.0f;
   float aspect = (float)Screen::X() / (float)Screen::Y();
   AmjuGL::SetPerspectiveProjection(FOVY, aspect, NEAR, FAR);
+*/
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
   // Draw player and any pets carried
   // Spiral motion?
+  //GetTextSceneGraph()->Draw();
   GetGameSceneGraph()->Draw();
 }
 
 void GSLevelComplete::OnDeactive()
 {
-  GameState::OnDeactive();
+  GSText::OnDeactive();
   m_player = 0; // no need to retain player any more
   // Still need for bonus display state!
 //  TheLevelManager::Instance()->Clear();
@@ -134,7 +142,8 @@ static void AddSceneNode(WWGameObject* ww)
 
 void GSLevelComplete::OnActive()
 {
-  GameState::OnActive();
+  GSText::OnActive();
+  CreateText("");
   // Don't kill game objects yet, we are displaying them!
   m_timer = 0;
 
