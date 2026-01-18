@@ -25,7 +25,7 @@ gui-button-4.png
 // Text
 Start
 // Font name, size
-arial, 2.0, sx=1.5
+arial, 2.0
 
 
 elastic

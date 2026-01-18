@@ -50,7 +50,7 @@ elastic
 gui-text
 p1-name-text
 // pos (coords are -1..1)
--0.8, 1 
+-0.7, 1 
 // size
 0.8, 0.1
 // Text 
@@ -62,7 +62,7 @@ elastic
 gui-text
 p1-score-text
 // pos (coords are -1..1)
--0.8, 0.9
+-0.7, 0.9
 // size
 0.8, 0.1
 // Text 
@@ -74,7 +74,7 @@ elastic
 gui-image
 heart-img1
 -1.0, 1.0
-0.17, 0.2
+0.3, 0.2
 heart.png
 
 elastic
@@ -84,10 +84,10 @@ p1-lives-text
 // pos (coords are -1..1)
 -1, 1 
 // size
-0.17, 0.2
+0.3, 0.2
 // Text
 3
-arial, 1.0, fgcol=ffffff
+arial, 1.0, fgcol=ffffff, centre
 
 // Element type
 gui-comp
