@@ -55,6 +55,11 @@ void Animated::SetMd2(Md2Model* model)
   m_pModel = model;
 }
 
+Md2Model* Animated::GetMd2()
+{
+  return m_pModel;
+}
+
 bool Animated::LoadMd2(const std::string& md2name)
 {
   m_pModel = (Md2Model*)TheResourceManager::Instance()->GetRes(md2name);
