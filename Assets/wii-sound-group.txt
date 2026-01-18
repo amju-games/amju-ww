@@ -1,0 +1,10 @@
+// Resource group
+// version
+1
+// Sound FX for Wii
+sound/bonus_points.snd
+sound/cashreg.snd
+sound/churchbell.snd
+sound/click.snd
+sound/gasp.snd
+
