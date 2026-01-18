@@ -2,6 +2,7 @@ ifeq ($(strip $(AMJULIB_MAC_SCRIPT_PATH)),)
 $(error "Please set AMJULIB_MAC_SCRIPT_PATH in your environment.")
 endif
 
+AMJULIB		:=	../../../amjulib
 RUNDIR		:=	../../Build/CompiledAssets
 BUILD		:=	../../Build/Mac
 TARGET		:=	$(BUILD)/macgame
@@ -11,7 +12,7 @@ BASSPATH        :=      $(AMJULIB)/3rdPartyLibs/Bass/Bass2.4.16.7/Macosx
 
 LIBS	:= \
 	-lamju \
-	$(BASSPATH)/mp3-free/libbass.dylib \
+	$(BASSPATH)/libbass.dylib \
 	$(BASSPATH)/libbassmidi.dylib \
 	-framework OpenGL \
 	-framework GLUT \
@@ -25,7 +26,7 @@ CFLAGS += -D_DEBUG -DAMJU_USE_BASS
 run:
 	cp $(TARGET) $(RUNDIR); \
 	cp $(BASSPATH)/libbassmidi.dylib $(RUNDIR); \
-	cp $(BASSPATH)/mp3-free/libbass.dylib $(RUNDIR); \
+	cp $(BASSPATH)/libbass.dylib $(RUNDIR); \
 	cd $(RUNDIR); \
 	./macgame
 
@@ -33,7 +34,7 @@ run:
 runnoglue:
 	cp $(TARGET) $(RUNDIR)/Mac/; \
 	cp $(BASSPATH)/libbassmidi.dylib $(RUNDIR)/Mac/; \
-	cp $(BASSPATH)/mp3-free/libbass.dylib $(RUNDIR)/Mac/; \
+	cp $(BASSPATH)/libbass.dylib $(RUNDIR)/Mac/; \
 	cd $(RUNDIR)/Mac/; \
 	./macgame
 
@@ -41,6 +42,6 @@ runnoglue:
 runsetup:
 	cp $(TARGET) $(RUNDIR); \
 	cp $(BASSPATH)/libbassmidi.dylib $(RUNDIR); \
-	cp $(BASSPATH)/mp3-free/libbass.dylib $(RUNDIR); 
+	cp $(BASSPATH)/libbass.dylib $(RUNDIR); 
 
 
