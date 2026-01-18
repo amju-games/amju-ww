@@ -46,6 +46,12 @@ void GSMain::OnKeyEvent(const KeyEvent& ke)
     TheGame::Instance()->SetCurrentState(GSPaused::NAME);
   }
 
+  if (ke.keyDown && ke.keyType == AMJU_KEY_CHAR && 
+    (ke.key == 'd' || ke.key == 'D'))
+  {
+    TheResourceManager::Instance()->Dump();
+  }
+
   if (ke.keyType == AMJU_KEY_CHAR && 
       (ke.key == 'r' || ke.key == 'R'))
   {
