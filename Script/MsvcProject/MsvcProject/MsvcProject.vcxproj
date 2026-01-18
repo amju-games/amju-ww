@@ -354,6 +354,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\PlayerInfo.cpp" />
     <ClCompile Include="..\..\..\Source\PlayWav.cpp" />
     <ClCompile Include="..\..\..\Source\Portal.cpp" />
+    <ClCompile Include="..\..\..\Source\PowerUp.cpp" />
     <ClCompile Include="..\..\..\Source\PreventIntersection.cpp" />
     <ClCompile Include="..\..\..\Source\ProcGen.cpp" />
     <ClCompile Include="..\..\..\Source\PropertiesDialog.cpp" />
@@ -443,6 +444,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\PlayerNum.h" />
     <ClInclude Include="..\..\..\Source\PlayWav.h" />
     <ClInclude Include="..\..\..\Source\Portal.h" />
+    <ClInclude Include="..\..\..\Source\PowerUp.h" />
     <ClInclude Include="..\..\..\Source\PreventIntersection.h" />
     <ClInclude Include="..\..\..\Source\ProcGen.h" />
     <ClInclude Include="..\..\..\Source\PropertiesDialog.h" />
