@@ -31,5 +31,8 @@ const int SOUND_INITIAL_VAL = 1;
 // Score must be within the top N to be considered a hi score.
 const int HI_SCORE_TOP_N = 100;
   
+// DB field is 40 varchar(40), and comprised of pairs of characters, where each pair is the
+//  hex value for one char.
+const int MAX_HI_SCORE_NAME_BYTE_LEN = 20;
 }
 
