@@ -35,7 +35,7 @@ cp ../tex/common/*.png .
 for f in *.obj
 do
     echo "Found this file: " $f
-    $OBJ2BIN $f $DEST_DIR/obj/$f
+    $OBJ2BIN $f $DEST_DIR/$f
 done
 
 rm *.png
