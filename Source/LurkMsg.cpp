@@ -426,7 +426,8 @@ void Lurker::Clear()
 
 bool Lurker::IsDisplayingMsg() const
 {
-  for (QMap::const_iterator it = m_qmap.begin(); it != m_qmap.end(); ++it)
+  QMap::const_iterator it = m_qmap.find(AMJU_CENTRE);
+  if (it != m_qmap.end())
   {
     const LurkMsgQ& q = it->second;
     if (!q.empty())
