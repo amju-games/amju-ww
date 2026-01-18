@@ -12,12 +12,12 @@
 
 namespace Amju
 {
-static void OnOK()
+static void OnOK(GuiElement*)
 {
   TheGSChooseLevel::Instance()->OnOK(); 
 }
 
-static void OnCancel()
+static void OnCancel(GuiElement*)
 {
   TheGSChooseLevel::Instance()->GoBack();
 }

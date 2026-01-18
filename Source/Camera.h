@@ -6,13 +6,13 @@
 namespace Amju
 {
 class SceneNodeCamera;
-class Camera;
+class WWCamera;
 
 class CamBehaviour : public RefCounted
 {
 public:
   virtual ~CamBehaviour() {}
-  virtual void Update(Camera*) = 0;
+  virtual void Update(WWCamera*) = 0;
 };
 typedef RCPtr<CamBehaviour> PCamBehaviour;
 
@@ -20,7 +20,7 @@ class CamFollowPlayer : public CamBehaviour
 {
 public:
   CamFollowPlayer() : m_petDist(0) {}
-  virtual void Update(Camera*);
+  virtual void Update(WWCamera*);
 
 private:
   float m_petDist; // distance proportional to number of pets carried,
@@ -30,15 +30,15 @@ private:
 class CamZoomInOnPlayer : public CamBehaviour
 {
 public:
-  virtual void Update(Camera*);
+  virtual void Update(WWCamera*);
 };
 
-class Camera : public WWGameObject
+class WWCamera : public WWGameObject
 {
 public:
   static const char* NAME;
 
-  Camera();
+  WWCamera();
   virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
   virtual void Reset() override;
@@ -71,7 +71,7 @@ protected:
   float m_earthquakeSeverity;
 };
 
-Camera* GetActiveCamera();
+WWCamera* GetActiveCamera();
 }
 
 #endif

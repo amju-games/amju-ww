@@ -6,17 +6,17 @@
 
 namespace Amju
 {
-static void OnSelect()
+static void OnSelect(GuiElement*)
 {
   TheObjectDialog::Instance()->OnSelect();
 }
 
-static void OnDelete()
+static void OnDelete(GuiElement*)
 {
   TheObjectDialog::Instance()->OnDelete();
 }
 
-static void OnProperties()
+static void OnProperties(GuiElement*)
 {
   TheObjectDialog::Instance()->OnProperties();
 }

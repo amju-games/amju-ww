@@ -11,7 +11,7 @@ namespace Amju
 {
 const char* GSPaused::NAME = "paused";
 
-static void OnOptions()
+static void OnOptions(GuiElement*)
 {
   GSOptions* options = TheGSOptions::Instance();
   GSPaused* paused = TheGSPaused::Instance();
@@ -20,13 +20,13 @@ static void OnOptions()
   paused->GoToNewState(options);
 }
 
-static void OnQuit()
+static void OnQuit(GuiElement*)
 {
   // TODO Confirm state, hi score should be saved anyway
   TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());
 }
 
-static void OnResume()
+static void OnResume(GuiElement*)
 {
   TheGame::Instance()->SetCurrentState(TheGSMain::Instance());
 }

@@ -5,13 +5,14 @@ endif
 RUNDIR		:=	../../Build/CompiledAssets
 BUILD		:=	../../Build/Mac
 TARGET		:=	$(BUILD)/macgame
-LIBDIRS   	:= 	../../Libs/amjulib-v.0.2-macosx
+LIBDIRS   	:= 	../../../amjulib/Releases/amjulib-v.0.5-macosx
 SOURCES		:=	../../Source 
+BASSPATH	:=	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx
 
 LIBS	:= \
 	-lamju \
-	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib \
-	$(AMJULIB_MAC_SCRIPT_PATH)/../../Source/SoundBass/Bass2.4/Macosx/libbassmidi.dylib \
+	$(BASSPATH)/mp3-free/libbass.dylib \
+	$(BASSPATH)/libbassmidi.dylib \
 	-framework OpenGL \
 	-framework GLUT \
 	-framework Carbon \
@@ -21,15 +22,15 @@ include $(AMJULIB_MAC_SCRIPT_PATH)/GenMakefile
 
 run:
 	cp $(TARGET) $(RUNDIR); \
-	cp $(AMJU)/SoundBass/Bass2.4/Macosx/libbassmidi.dylib $(RUNDIR); \
-	cp $(AMJU)/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib $(RUNDIR); \
+	cp $(BASSPATH)/libbassmidi.dylib $(RUNDIR); \
+	cp $(BASSPATH)/mp3-free/libbass.dylib $(RUNDIR); \
 	cd $(RUNDIR); \
 	./macgame
 
 
 runsetup:
 	cp $(TARGET) $(RUNDIR); \
-	cp $(AMJU)/SoundBass/Bass2.4/Macosx/libbassmidi.dylib $(RUNDIR); \
-	cp $(AMJU)/SoundBass/Bass2.4/Macosx/mp3-free/libbass.dylib $(RUNDIR); 
+	cp $(BASSPATH)/libbassmidi.dylib $(RUNDIR); \
+	cp $(BASSPATH)/mp3-free/libbass.dylib $(RUNDIR); 
 
 

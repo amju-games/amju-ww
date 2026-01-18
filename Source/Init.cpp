@@ -44,7 +44,7 @@ void Init()
   gof->Add(Bird::NAME, &Create<Bird>);
   gof->Add(Block::NAME, &Create<Block>);
   gof->Add(Bonus::NAME, &Create<Bonus>);
-  gof->Add(Camera::NAME, Create<Camera>);
+  gof->Add(WWCamera::NAME, &Create<WWCamera>);
   gof->Add(Deadly::NAME, &Create<Deadly>);
   gof->Add(Dino::NAME, &Create<Dino>);
   gof->Add(Exit::NAME, &Create<Exit>);

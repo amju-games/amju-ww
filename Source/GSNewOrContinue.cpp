@@ -11,14 +11,14 @@
 
 namespace Amju
 {
-static void OnChooseLevel()
+static void OnChooseLevel(GuiElement*)
 {
   GSChooseLevel* gcl = TheGSChooseLevel::Instance();
   gcl->SetPrevState(TheGSNewOrContinue::Instance());
   TheGame::Instance()->SetCurrentState(gcl);
 }
 
-static void OnNew()
+static void OnNew(GuiElement*)
 {
   TheLevelManager::Instance()->SetLevelId(1);
   GameConfigFile* gcf = TheGameConfigFile::Instance();
@@ -26,7 +26,7 @@ static void OnNew()
   StartGame(1, AMJU_MAIN_GAME_MODE);
 }
 
-static void OnContinue()
+static void OnContinue(GuiElement*)
 {
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   Assert(gcf->Exists(CONTINUE_LEVEL_KEY));
@@ -36,7 +36,7 @@ static void OnContinue()
   StartGame(1, AMJU_MAIN_GAME_MODE);
 }
 
-static void OnEditor()
+static void OnEditor(GuiElement*)
 {
   TheLevelManager::Instance()->SetLevelId(1);
   StartGame(1, AMJU_EDIT_MODE); // one "player" only for edit mode
@@ -88,7 +88,7 @@ void GSNewOrContinue::OnActive()
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   if (!gcf->Exists(CONTINUE_LEVEL_KEY))
   {
-    OnNew();
+    OnNew(nullptr);
     return;
   }
 }

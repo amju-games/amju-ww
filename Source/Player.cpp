@@ -105,7 +105,7 @@ void Player::OnHitFloor()
   // TEST
   // TODO 'ow!' wavs
   Amju::PlayWav("bouncefloor"); //hammer_anvil3"); // NB No file ext
-  Camera* cam = GetActiveCamera();
+  WWCamera* cam = GetActiveCamera();
   Assert(cam);
   cam->SetEarthquake(1.0f); // TODO CONFIG
 

@@ -6,7 +6,6 @@
 #include "Pet.h"
 #include "AIFlee.h"
 #include "Camera.h"
-#include "Camera.h"
 
 namespace Amju
 {
@@ -42,7 +41,7 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   dino->SetAI(AIStunned::NAME);
 
   PlayWav("hammer_anvil3"); // NB No file ext
-  Camera* cam = GetActiveCamera();
+  WWCamera* cam = GetActiveCamera();
   Assert(cam);
   cam->SetEarthquake(1.0f); // TODO CONFIG
 }
