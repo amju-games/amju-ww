@@ -1,12 +1,24 @@
 #include <SceneMesh.h>
 #include <Timer.h>
 #include <Screen.h>
+#include <GuiButton.h>
+#include "WWLoadGui.h"
 #include "GSChooseLevel.h"
 #include "MySceneGraph.h"
 
 namespace Amju
 {
-const char* GSChooseLevel::NAME;
+static void OnOK()
+{
+  // Play the chosen level
+}
+
+static void OnCancel()
+{
+  TheGSChooseLevel::Instance()->GoBack();
+}
+
+//const char* GSChooseLevel::NAME;
 
 class Rotater : public SceneNode
 {
@@ -55,6 +67,18 @@ void GSChooseLevel::OnActive()
   parent->AddChild(rot);
   parent->UpdateBoundingVol(); //SetAABB(aabb);
   GetTextSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
+
+  m_gui = WWLoadGui("chooselevel-gui.txt");
+  Assert(m_gui);
+
+  // Set focus element, cancel element, command handlers
+  GuiButton* ok = (GuiButton*)m_gui->GetElementByName("ok-button");
+  ok->SetCommand(OnOK);
+  ok->SetIsFocusButton(true);
+  ok->SetShowIfFocus(true);
+
+  ((GuiButton*)m_gui->GetElementByName("cancel-button"))->SetCommand(OnCancel);
+ 
 }
 
 bool GSChooseLevel::OnCursorEvent(const CursorEvent& e) 
@@ -96,7 +120,7 @@ void GSChooseLevel::Draw()
     AmjuGL::LightColour(1, 1, 1),
     AmjuGL::Vec3(1, 1, 1)); // Light direction
 
-  GetTextSceneGraph()->Draw();
+//  GetTextSceneGraph()->Draw();
 }
 
 }
