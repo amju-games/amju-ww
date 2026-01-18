@@ -91,7 +91,13 @@ void GSLoadLevel::StartLoad()
   // Create a root for the game scene graph
   GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, new SceneNode);
 
-  TheLevelManager::Instance()->Open();
+  LevelManager* lm = TheLevelManager::Instance();
+  // If already open, we have opened the file in Edit mode
+  if (!lm->IsOpen())
+  {
+    lm->Open();
+  }
+
   m_numObjects = TheLevelManager::Instance()->GetNumObjects();
   m_currentObj = 0;
 }
@@ -114,6 +120,8 @@ void GSLoadLevel::Update()
     // TODO Don't do this for attract mode - go directly to level
     if (m_currentObj == m_numObjects)
     {
+      TheLevelManager::Instance()->Close();
+
       // TODO for attract mode, or BYPASS_TITLE
 #ifdef BYPASS_TITLE
       TheGame::Instance()->SetCurrentState(GSMain::NAME);

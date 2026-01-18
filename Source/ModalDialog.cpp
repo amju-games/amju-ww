@@ -1,6 +1,7 @@
 #include <Game.h>
 #include <CursorManager.h>
 #include <GuiButton.h>
+#include <GuiFileDialog.h>
 #include "ModalDialog.h"
 
 namespace Amju
@@ -19,7 +20,8 @@ static void DialogOnOk()
   GameState* s = game->GetState();
   Dialog* dlg = dynamic_cast<Dialog*>(s);
   Assert(dlg);
-  dlg->GetDlgContents(); // load GUI strings into member variables
+  dlg->SetResult((int)AMJU_OK);
+  dlg->GetDataFromGui(); // load GUI strings into member variables
   dlg->Close();
 }
 
@@ -29,17 +31,35 @@ static void DialogOnCancel()
   GameState* s = game->GetState();
   Dialog* dlg = dynamic_cast<Dialog*>(s);
   Assert(dlg);
+  dlg->SetResult((int)AMJU_CANCEL);
   dlg->Close();
 }
 
 Dialog::Dialog()
 {
-  m_prevState = 0;
+  m_prevState = nullptr;
+  m_finishCallback = nullptr;
+  m_result = (int)AMJU_RESULT_NOT_SET;
+}
+ 
+int Dialog::GetResult() const
+{
+  return m_result;
+}
+
+void Dialog::SetResult(int result) 
+{
+  m_result = result;
 }
 
 void Dialog::SetPrevState(GameState* s)
 {
   m_prevState = s;
+}
+
+void Dialog::SetFinishCallback(DialogFinishCallback cb)
+{
+  m_finishCallback = cb;
 }
 
 void Dialog::Draw()
@@ -66,6 +86,9 @@ void Dialog::OnActive()
   // GUI should get events through this game state's handler functions
   //  - don't automatically add to EventPoller
 
+  // Set GUI text boxes etc. from member variables
+  SetDataToGui();
+
   // Set OK and cancel buttons
   GuiButton* ok = (GuiButton*)m_gui->GetElementByName("ok-button");
   Assert(ok);
@@ -83,11 +106,16 @@ void Dialog::OnDeactive()
 
 void Dialog::Close()
 {
+  Assert(m_result != (int)AMJU_RESULT_NOT_SET);
+
+  // Copy any values from GUI elements to member variables ???
   TheGame::Instance()->SetCurrentState(m_prevState);
-  // Copy any values from GUI elements to member variables
 
   // Call the callback function to say this dialog has finished
-
+  if (m_finishCallback)
+  {
+    m_finishCallback(this);
+  }
 }
 
 bool Dialog::OnKeyEvent(const KeyEvent& e) 
@@ -158,12 +186,31 @@ FileDialog::FileDialog()
   m_guiFilename = "gui-file-dialog.txt";
 }
 
-void FileDialog::GetDlgContents() 
+void FileDialog::GetDataFromGui() 
 {
+  GuiText* t = (GuiText*)m_gui->GetElementByName("fd-path-text");
+  Assert(t);
+  m_filepath = t->GetText(); 
 }
 
-void FileDialog::SetDlgContents() 
+void FileDialog::SetDataToGui() 
 {
+  GuiFileDialog* fd = (GuiFileDialog*)m_gui->GetElementByName("my_file_dialog");
+  Assert(fd);
+  fd->SetPathAndFile(m_filepath);
+  // Need this?
+  fd->OnPathChange(); // ?
 }
+
+const std::string& FileDialog::GetFilePath() const
+{
+  return m_filepath;
+}
+
+void FileDialog::SetPath(const std::string& path)
+{
+  m_filepath = path;
+}
+
 }
 

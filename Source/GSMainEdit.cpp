@@ -3,13 +3,17 @@
 #include <ClipLineSegBox.h>
 #include <GuiMenu.h>
 #include <GameObjectFactory.h>
+#include <ConfigFile.h>
+#include <Directory.h>
 #include "GSMainEdit.h"
 #include "GSTitle.h"
+#include "GSLoadLevel.h"
 #include "Game.h"
 #include "CursorManager.h"
 #include "MySceneGraph.h"
 #include "EditModeCamera.h"
 #include "ModalDialog.h"
+#include "LevelManager.h"
 
 namespace Amju
 {
@@ -47,7 +51,8 @@ static void OnMove()
 
 static void OnQuitEditMode()
 {
-  // TODO prompt for save
+  // TODO prompt for save if any unsaved changes
+
   TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
 }
 
@@ -55,14 +60,83 @@ static void OnNewLevel()
 {
 }
 
+static const char* LAST_PATH = "last_path";
+static std::string s_lastPath = TheGameConfigFile::Instance()->
+  GetValue(LAST_PATH, "/Users/jay/projects/amju-ww/Assets/levels/"); // TODO
+
+static void OnLoadDialogClosed(Dialog* dlg)
+{
+  FileDialog* fd = dynamic_cast<FileDialog*>(dlg);
+  Assert(fd);
+  if (fd->GetResult() == (int)AMJU_OK)
+  {
+    std::string filename = fd->GetFilePath();
+    s_lastPath = GetFilePath(filename);
+    TheGameConfigFile::Instance()->Set(LAST_PATH, s_lastPath);
+
+    // Try to load
+std::cout << "File Load: filename/path: " << filename << "\n";    
+ 
+    // Go to file load state
+
+    LevelManager* lm = TheLevelManager::Instance();
+    if (lm->Open(filename))
+    {
+      TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+    }
+    else
+    {
+std::cout << "Failed to open level file " << filename << "\n";
+    }  
+  }
+  else
+  {
+std::cout << "File Load cancelled.\n";
+  }
+}
+
 static void OnLoadLevel()
 {
 std::cout << "Starting file modal dialog...\n";
+  // Confirm if unsaved changes
+  // TODO
 
+  fileDialog.SetFinishCallback(OnLoadDialogClosed);
+  fileDialog.SetPath(s_lastPath);
   DoModalDialog(&fileDialog);
 }
 
+static void OnSaveDialogClosed(Dialog* dlg)
+{
+  FileDialog* fd = dynamic_cast<FileDialog*>(dlg);
+  Assert(fd);
+  if (fd->GetResult() == (int)AMJU_OK)
+  {
+    std::string filename = fd->GetFilePath();
+    s_lastPath = GetFilePath(filename); // strip filename from end
+    TheGameConfigFile::Instance()->Set(LAST_PATH, s_lastPath);
+
+    // Try to save
+std::cout << "File Save: filename/path: " << filename << "\n";    
+  }
+  else
+  {
+std::cout << "File Save cancelled.\n";
+  }
+}
+
 static void OnSaveLevel()
+{
+  fileDialog.SetFinishCallback(OnSaveDialogClosed);
+  fileDialog.SetPath(s_lastPath);
+  DoModalDialog(&fileDialog);
+}
+
+void OnUndo()
+{
+}
+
+void OnRedo()
 {
 }
 
@@ -102,6 +176,10 @@ GSMainEdit::GSMainEdit()
   fileSubmenu->AddChild(new GuiMenuItem("Load level", OnLoadLevel));
   fileSubmenu->AddChild(new GuiMenuItem("Save level", OnSaveLevel));
 
+  GuiMenu* editSubmenu = new GuiMenu;
+  editSubmenu->AddChild(new GuiMenuItem("Undo", OnUndo));
+  editSubmenu->AddChild(new GuiMenuItem("Redo", OnRedo));
+
   GuiMenu* newObjSubmenu = new GuiMenu;
   // Get types from Game Obj factory
   std::vector<std::string> names = TheGameObjectFactory::Instance()->GetTypeNames();
@@ -111,7 +189,8 @@ GSMainEdit::GSMainEdit()
   }
 
   m_topMenu->AddChild(new GuiNestMenuItem("File    ", fileSubmenu));
-  m_topMenu->AddChild(new GuiNestMenuItem("New Object", newObjSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("Edit    ", editSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("New Object    ", newObjSubmenu));
 
   m_infoText.SetLocalPos(Vec2f(-1, -0.9f));
   m_infoText.SetSize(Vec2f(2, 0.1f));
@@ -135,6 +214,9 @@ static EditModeCamera* GetCamera()
 
 void GSMainEdit::OnActive()
 {
+  m_selectedObj = 0;
+  m_isSelecting = false;
+
   GSMain::OnActive();
   // Show bounding boxes
   SceneNode::SetGlobalShowAABB(true);
