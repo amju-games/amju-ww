@@ -157,19 +157,19 @@ void PowerUpManager::SetPowerUp(int playerId, PowerUp pu)
     commands[playerId] = new PowerUpScrollSpeedMult(1); 
     break;
   case POWERUP_FASTER_PLAYER:
-    commands[playerId] = new PowerUpPlayerVelMult(playerId, 2.0f); // TODO CONFIG
+    commands[playerId] = new PowerUpPlayerVelMult(playerId, 10.0f); // TODO CONFIG
     break;
   case POWERUP_POISON:
     commands[playerId] = new PowerUpPlayerVelMult(playerId, -1.0f); 
     break;
   case POWERUP_SLOWER_SCROLLING:
-    commands[playerId] = new PowerUpScrollSpeedMult(0.5f); // TODO CONFIG
+    commands[playerId] = new PowerUpScrollSpeedMult(0.25f); // TODO CONFIG
     break;
   case POWERUP_FASTER_SCROLLING:
-    commands[playerId] = new PowerUpScrollSpeedMult(1.5f); // TODO CONFIG
+    commands[playerId] = new PowerUpScrollSpeedMult(2.0f); // TODO CONFIG
     break;
   case POWERUP_SCROLL_DOWN:
-    commands[playerId] = new PowerUpScrollSpeedMult(-0.5f); // TODO CONFIG
+    commands[playerId] = new PowerUpScrollSpeedMult(-1.0f); // TODO CONFIG
     break;
   case POWERUP_PLAYER_INVINCIBLE:
     commands[playerId] = new PowerUpInvincible(playerId);
@@ -191,12 +191,12 @@ void PowerUpManager::SetPowerUp(int playerId, PowerUp pu)
   const std::string strs[] = 
   {
     "nothing!",
-    "Run Faster!",
-    "Slower!",
-    "Faster!",
+    "Run faster!",
+    "Go up slower!",
+    "Go up faster!",
     "Invincible!",
     "Poison!",
-    "Reverse!",
+    "Go down!",
   };
   static const Colour FGCOL(1, 1, 1, 1);
   const bool IMMEDIATE = true;
