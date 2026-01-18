@@ -77,7 +77,7 @@ void GSMainEdit::Draw()
 
     Game::GameObjects* objs = TheGame::Instance()->GetGameObjects();
     float bestDist = 999999.9f;
-    for (auto it = objs->begin(); it != objs->end(); ++it)
+    for (Game::GameObjects::iterator it = objs->begin(); it != objs->end(); ++it)
     {
       GameObject* pgo = it->second;
       Assert(pgo);
