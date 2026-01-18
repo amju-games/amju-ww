@@ -80,6 +80,9 @@ protected:
   float m_shadowSize;
 
   Vec3f m_startPos;
+
+  // Rotation - more for static floors, ramps etc
+  float m_yRot;
 };
 }
 

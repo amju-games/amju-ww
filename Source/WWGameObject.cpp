@@ -16,6 +16,7 @@ WWGameObject::WWGameObject()
   m_pSceneNode = 0;
   m_extentsSet = false;
   m_shadowSize = 0;
+  m_yRot = 0;
 }
   
 void WWGameObject::AddToGame()
@@ -108,6 +109,7 @@ void WWGameObject::Move(const Vec3f& move)
 
 void WWGameObject::RotateY(float angleDegs)
 {
+  m_yRot = angleDegs;
   float rads = DegToRad(angleDegs);
   Matrix mat;
   mat.RotateY(rads);

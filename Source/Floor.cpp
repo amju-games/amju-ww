@@ -32,8 +32,6 @@ Floor::Floor()
   m_maxYSize = 0;
 
   m_inertia = 1.0f;
-
-  m_yRot = 0;
 }
 
 void Floor::AddPropertiesGui(PropertiesDialog* dlg)
