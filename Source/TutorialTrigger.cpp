@@ -3,6 +3,7 @@
 #include <Localise.h>
 #include <ROConfig.h>
 #include "TutorialTrigger.h"
+#include "LevelManager.h"
 #include "LurkMsg.h"
 #include "GameMode.h"
 #include "PlayWav.h"
@@ -61,7 +62,9 @@ void TutorialTrigger::OnPlayerCollision(Player*)
   // Only show once in process
   typedef std::set<int> IdSet;
   static IdSet idSet;
-  if (idSet.insert(GetId()).second == false)
+  // Make unique ID for this object in the current level
+  int unique = GetId() | TheLevelManager::Instance()->GetLevelId() << 24;
+  if (idSet.insert(unique).second == false)
   {
     // Not inserted - already in set
 std::cout << "Already triggered tutorial trigger " << GetId() << "\n";
