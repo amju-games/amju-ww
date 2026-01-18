@@ -85,7 +85,8 @@ void Bird::Update()
   OnFloorCharacter::Update();
  
   Matrix scale;
-  scale.Scale(0.5f, 0.5f, 0.5f);
+  const float BIRD_SCALE = 0.25f;
+  scale.Scale(BIRD_SCALE, BIRD_SCALE, BIRD_SCALE); 
   Matrix mat;
   mat.RotateY(DegToRad(m_dirCurrent));
   mat = scale * mat;
