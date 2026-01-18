@@ -2,6 +2,7 @@
 #include <Game.h>
 #include <DegRad.h>
 #include <StringUtils.h>
+#include <LoadScene.h>
 #include "WWGameObject.h"
 #include "MySceneGraph.h"
 #include "ShadowManager.h"
@@ -141,7 +142,7 @@ void WWGameObject::SetSceneNode(RCPtr<SceneNode> node)
 
 bool WWGameObject::CreateSceneNode()
 {
-  SceneNode* sn = LoadScene(m_meshFilename);
+  PSceneNode sn = LoadScene(m_meshFilename);
 /*
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
   if (!mesh) 
