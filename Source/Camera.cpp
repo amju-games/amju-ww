@@ -65,32 +65,6 @@ void CamFollowPlayer::Update(Camera* cam)
   Vec3f vel = cam->GetVel();
   Vec3f acc = cam->GetAcc();
 
-  static const float CAM_SPEED = ROConfig()->GetFloat("cam-speed"); 
-  static const float CAM_ACC = CAM_SPEED * 2.5f;
-  // TODO Move in x if too far left/right
-  static const float TOO_FAR = ROConfig()->GetFloat("cam-too-far"); 
-
-/*
-  // Don't change dir if camera already moving
-  if (v.x > (pos.x + TOO_FAR))
-  {
-    vel.x = CAM_SPEED;
-    acc.x = -CAM_ACC;
-  }
-  else if (v.x < (pos.x - TOO_FAR))
-  {
-    vel.x = -CAM_SPEED;
-    acc.x = CAM_ACC;
-  }
-
-  // Prevent changing direction
-  static const float STOP = ROConfig()->GetFloat("cam-stop"); 
-  if (fabs(vel.x) < STOP)
-  {
-    vel.x = 0;
-    acc.x = 0;
-  }
-*/
   // x-axis
   pos.x = v.x; 
 
@@ -105,7 +79,7 @@ void CamFollowPlayer::Update(Camera* cam)
   }
 
   // Z is fixed distance from player
-  pos.z = v.z + Z_OFFSET + numPets * Y_PET_OFFSET;
+  pos.z = v.z + Z_OFFSET + numPets * Z_PET_OFFSET;
 
   cam->SetPos(pos);
   cam->SetVel(vel);
