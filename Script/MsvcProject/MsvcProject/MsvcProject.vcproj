@@ -567,6 +567,10 @@
 			RelativePath="..\..\..\..\..\..\SDL\lib\SDL.lib"
 			>
 		</File>
+		<File
+			RelativePath="..\..\..\..\..\..\SDL\lib\SDL_mixer.lib"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
