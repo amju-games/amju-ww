@@ -10,17 +10,17 @@ export GLUE_EXE=$THIS_DIR/glue
 export GLUE_FILE=$DEST_DIR/../music-$PLATFORM.glue
 
 mkdir $COMPILED_ASSETS
-mkdir $DEST_DIR
+mkdir -p $DEST_DIR/sound
 
-cp $SRC_DIR/sound/* $DEST_DIR
-cp $SRC_DIR/sound/windows/* $DEST_DIR
+cp $SRC_DIR/sound/* $DEST_DIR/sound
+cp $SRC_DIR/sound/windows/* $DEST_DIR/sound
 
 cd $DEST_DIR
 
 # Create empty glue file
 $GLUE_EXE -c $GLUE_FILE
 
-for f in *.wav *.mod
+for f in sound/*.wav sound/*.mod
 do
   echo "Adding file: " $f
   $GLUE_EXE -a $GLUE_FILE $f
