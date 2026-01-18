@@ -9,6 +9,7 @@ cam-y-offset 100
 cam-z-offset 150
 cam-y-pet-offset 40
 cam-z-pet-offset 40
+cam-zoom-vel-scale 0.25
 
 sound-new-lurkmsg  waterdrop
 sound-tut-trigger  whistlehere
