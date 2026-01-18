@@ -29,9 +29,6 @@ void Viewport::Draw()
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  Assert(m_pCamera);
-  m_pCamera->SetAsSceneGraphCamera();
-
   GetGameSceneGraph()->Draw();
 }
 
@@ -70,6 +67,8 @@ void Viewport::Draw2d()
 void Viewport::SetCamera(Camera* pCam)
 {
   m_pCamera = pCam;
+  Assert(m_pCamera);
+  m_pCamera->SetAsSceneGraphCamera();
 }
 
 Viewport* ViewportManager::GetViewport(int vpNum)
