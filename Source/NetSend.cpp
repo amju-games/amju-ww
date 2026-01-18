@@ -161,16 +161,24 @@ bool NetSendUpdateDeviceInfo()
   std::string deviceModel;
   std::string deviceOsVersion;
 
+  int devId = 0;
+
 #ifdef AMJU_IOS
   // Device ID and model should never change, but we get them anyway as that's
   //  what this function gives us. But we SEND the device ID we got when we first
   //  ran the program and saved in the config file. This is just in case the
   //  device ID is not constant over time.
-  int devId;
   GetDeviceInfo(&devId, &deviceUserName, &deviceModel, &deviceOsVersion);
 #endif // AMJU_IOS
 
+  // Handle empty device ID, which you get upgrading from v.1.0
   std::string deviceId = gcf->GetValue(DEVICE_ID);
+  if (deviceId.empty())
+  {
+    deviceId = ToString(devId);
+    gcf->Set(DEVICE_ID, deviceId);
+  }
+  
   std::string prevDeviceOsVersion = gcf->GetValue(DEVICE_OS_VERSION);
   std::string prevDeviceUserName = gcf->GetValue(DEVICE_USER_NAME);
   std::string prevVersion = gcf->GetValue(CLIENT_VERSION);
