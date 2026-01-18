@@ -107,7 +107,6 @@
 		69D7CD9B18F939FA002432C0 /* LurkMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD1018F939FA002432C0 /* LurkMsg.cpp */; };
 		69D7CD9C18F939FA002432C0 /* MySceneGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD1218F939FA002432C0 /* MySceneGraph.cpp */; };
 		69D7CD9D18F939FA002432C0 /* MyTextMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD1418F939FA002432C0 /* MyTextMaker.cpp */; };
-		69D7CD9E18F939FA002432C0 /* newgui.pl in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CD1618F939FA002432C0 /* newgui.pl */; };
 		69D7CD9F18F939FA002432C0 /* Npc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD1718F939FA002432C0 /* Npc.cpp */; };
 		69D7CDA018F939FA002432C0 /* ObjectDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD1918F939FA002432C0 /* ObjectDialog.cpp */; };
 		69D7CDA118F939FA002432C0 /* Objective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D7CD1B18F939FA002432C0 /* Objective.cpp */; };
@@ -143,10 +142,13 @@
 		69D7CDC618F9504A002432C0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDC518F9504A002432C0 /* AudioToolbox.framework */; };
 		69D7CDC818F95058002432C0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDC718F95058002432C0 /* SystemConfiguration.framework */; };
 		69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDC918F95068002432C0 /* CFNetwork.framework */; };
-		69D7CDCC18F9510B002432C0 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D7CDCB18F9510B002432C0 /* libbass.a */; };
 		69D7CDD318F976FA002432C0 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDCF18F976FA002432C0 /* ViewController_iPad.xib */; };
 		69D7CDD418F976FA002432C0 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D7CDD118F976FA002432C0 /* ViewController_iPhone.xib */; };
-		71D22B611D4E507300012DB8 /* libamju.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B601D4E507300012DB8 /* libamju.a */; };
+		71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B641D4F2E0600012DB8 /* libbass.a */; };
+		71D22B921D4F3A2D00012DB8 /* Init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B8D1D4F3A2D00012DB8 /* Init.cpp */; };
+		71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71D22B901D4F3A2D00012DB8 /* WWCamera.cpp */; };
+		71D22BA01D4F8EAD00012DB8 /* Amjulib.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */; };
+		71D22BA21D4F906400012DB8 /* libAmjulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D22BA11D4F906400012DB8 /* libAmjulib.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 69D7CC2A18F895BF002432C0;
 			remoteInfo = "Rainbow Drop";
+		};
+		71D22B9E1D4F8DDE00012DB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = Amjulib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -391,10 +400,29 @@
 		69D7CDC518F9504A002432C0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		69D7CDC718F95058002432C0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		69D7CDC918F95068002432C0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		69D7CDCB18F9510B002432C0 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../Libs/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = "<group>"; };
 		69D7CDD018F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		69D7CDD218F976FA002432C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		71D22B601D4E507300012DB8 /* libamju.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libamju.a; path = "../../../../amjulib/Releases/amjulib-v.0.5-ios/lib/libamju.a"; sourceTree = "<group>"; };
+		71D22B641D4F2E0600012DB8 /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = "../../../Libs/Bass2.4/iPhone/mp3-free/libbass.a"; sourceTree = "<group>"; };
+		71D22B801D4F3A0600012DB8 /* CollideDinoDino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideDinoDino.h; path = ../../../../Source/CollideDinoDino.h; sourceTree = "<group>"; };
+		71D22B811D4F3A0600012DB8 /* CollideDinoPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideDinoPet.h; path = ../../../../Source/CollideDinoPet.h; sourceTree = "<group>"; };
+		71D22B821D4F3A0600012DB8 /* CollideObjectFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideObjectFence.h; path = ../../../../Source/CollideObjectFence.h; sourceTree = "<group>"; };
+		71D22B831D4F3A0600012DB8 /* CollideObjectFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollideObjectFloor.h; path = ../../../../Source/CollideObjectFloor.h; sourceTree = "<group>"; };
+		71D22B841D4F3A0600012DB8 /* CollidePetPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePetPet.h; path = ../../../../Source/CollidePetPet.h; sourceTree = "<group>"; };
+		71D22B851D4F3A0600012DB8 /* CollidePlayerBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerBlock.h; path = ../../../../Source/CollidePlayerBlock.h; sourceTree = "<group>"; };
+		71D22B861D4F3A0600012DB8 /* CollidePlayerBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerBonus.h; path = ../../../../Source/CollidePlayerBonus.h; sourceTree = "<group>"; };
+		71D22B871D4F3A0600012DB8 /* CollidePlayerDeadly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerDeadly.h; path = ../../../../Source/CollidePlayerDeadly.h; sourceTree = "<group>"; };
+		71D22B881D4F3A0600012DB8 /* CollidePlayerDino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerDino.h; path = ../../../../Source/CollidePlayerDino.h; sourceTree = "<group>"; };
+		71D22B891D4F3A2D00012DB8 /* CollidePlayerExit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerExit.h; path = ../../../../Source/CollidePlayerExit.h; sourceTree = "<group>"; };
+		71D22B8A1D4F3A2D00012DB8 /* CollidePlayerPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerPet.h; path = ../../../../Source/CollidePlayerPet.h; sourceTree = "<group>"; };
+		71D22B8B1D4F3A2D00012DB8 /* CollidePlayerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerPlayer.h; path = ../../../../Source/CollidePlayerPlayer.h; sourceTree = "<group>"; };
+		71D22B8C1D4F3A2D00012DB8 /* CollidePlayerTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollidePlayerTrigger.h; path = ../../../../Source/CollidePlayerTrigger.h; sourceTree = "<group>"; };
+		71D22B8D1D4F3A2D00012DB8 /* Init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Init.cpp; path = ../../../../Source/Init.cpp; sourceTree = "<group>"; };
+		71D22B8E1D4F3A2D00012DB8 /* Init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Init.h; path = ../../../../Source/Init.h; sourceTree = "<group>"; };
+		71D22B8F1D4F3A2D00012DB8 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Version.h; path = ../../../../Source/Version.h; sourceTree = "<group>"; };
+		71D22B901D4F3A2D00012DB8 /* WWCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWCamera.cpp; path = ../../../../Source/WWCamera.cpp; sourceTree = "<group>"; };
+		71D22B911D4F3A2D00012DB8 /* WWCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWCamera.h; path = ../../../../Source/WWCamera.h; sourceTree = "<group>"; };
+		71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Amjulib.xcodeproj; path = ../../../../amjulib/Script/iOSAmjulibXCode/Amjulib/Amjulib.xcodeproj; sourceTree = "<group>"; };
+		71D22BA11D4F906400012DB8 /* libAmjulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAmjulib.a; path = "../../../../amjulib/Build/ioS/build/Debug/Debug-iphoneos/libAmjulib.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,8 +430,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71D22B611D4E507300012DB8 /* libamju.a in Frameworks */,
-				69D7CDCC18F9510B002432C0 /* libbass.a in Frameworks */,
+				71D22BA21D4F906400012DB8 /* libAmjulib.a in Frameworks */,
+				71D22BA01D4F8EAD00012DB8 /* Amjulib.xcodeproj in Frameworks */,
+				71D22B651D4F2E0600012DB8 /* libbass.a in Frameworks */,
 				69D7CC3718F895BF002432C0 /* OpenGLES.framework in Frameworks */,
 				69D7CDCA18F95068002432C0 /* CFNetwork.framework in Frameworks */,
 				69D7CDC818F95058002432C0 /* SystemConfiguration.framework in Frameworks */,
@@ -432,6 +461,7 @@
 		69D7CC2218F895BF002432C0 = {
 			isa = PBXGroup;
 			children = (
+				71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */,
 				69D7CC8918F8BFF5002432C0 /* Default-Landscape@2x~ipad.png */,
 				69D7CC8818F8BFD5002432C0 /* Default-Landscape~ipad.png */,
 				69D7CC8718F8BFBA002432C0 /* Default-Portrait@2x~ipad.png */,
@@ -465,8 +495,8 @@
 		69D7CC2D18F895BF002432C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				71D22B601D4E507300012DB8 /* libamju.a */,
-				69D7CDCB18F9510B002432C0 /* libbass.a */,
+				71D22BA11D4F906400012DB8 /* libAmjulib.a */,
+				71D22B641D4F2E0600012DB8 /* libbass.a */,
 				69D7CDC918F95068002432C0 /* CFNetwork.framework */,
 				69D7CDC718F95058002432C0 /* SystemConfiguration.framework */,
 				69D7CDC518F9504A002432C0 /* AudioToolbox.framework */,
@@ -565,18 +595,31 @@
 				69D7CCB318F939F9002432C0 /* BonusParticleEffect.cpp */,
 				69D7CCB418F939F9002432C0 /* BonusParticleEffect.h */,
 				69D7CCB718F939F9002432C0 /* CollideDinoDino.cpp */,
+				71D22B801D4F3A0600012DB8 /* CollideDinoDino.h */,
 				69D7CCB818F939F9002432C0 /* CollideDinoPet.cpp */,
+				71D22B811D4F3A0600012DB8 /* CollideDinoPet.h */,
 				69D7CCB918F939F9002432C0 /* CollideObjectFence.cpp */,
+				71D22B821D4F3A0600012DB8 /* CollideObjectFence.h */,
 				69D7CCBA18F939F9002432C0 /* CollideObjectFloor.cpp */,
+				71D22B831D4F3A0600012DB8 /* CollideObjectFloor.h */,
 				69D7CCBB18F939F9002432C0 /* CollidePetPet.cpp */,
+				71D22B841D4F3A0600012DB8 /* CollidePetPet.h */,
 				69D7CCBC18F939F9002432C0 /* CollidePlayerBlock.cpp */,
+				71D22B851D4F3A0600012DB8 /* CollidePlayerBlock.h */,
 				69D7CCBD18F939F9002432C0 /* CollidePlayerBonus.cpp */,
+				71D22B861D4F3A0600012DB8 /* CollidePlayerBonus.h */,
 				69D7CCBE18F939FA002432C0 /* CollidePlayerDeadly.cpp */,
+				71D22B871D4F3A0600012DB8 /* CollidePlayerDeadly.h */,
 				69D7CCBF18F939FA002432C0 /* CollidePlayerDino.cpp */,
+				71D22B881D4F3A0600012DB8 /* CollidePlayerDino.h */,
 				69D7CCC018F939FA002432C0 /* CollidePlayerExit.cpp */,
+				71D22B891D4F3A2D00012DB8 /* CollidePlayerExit.h */,
 				69D7CCC118F939FA002432C0 /* CollidePlayerPet.cpp */,
+				71D22B8A1D4F3A2D00012DB8 /* CollidePlayerPet.h */,
 				69D7CCC218F939FA002432C0 /* CollidePlayerPlayer.cpp */,
+				71D22B8B1D4F3A2D00012DB8 /* CollidePlayerPlayer.h */,
 				69D7CCC318F939FA002432C0 /* CollidePlayerTrigger.cpp */,
+				71D22B8C1D4F3A2D00012DB8 /* CollidePlayerTrigger.h */,
 				69D7CCC418F939FA002432C0 /* ContextMenu.cpp */,
 				69D7CCC518F939FA002432C0 /* ContextMenu.h */,
 				69D7CCC618F939FA002432C0 /* Deadly.cpp */,
@@ -641,6 +684,8 @@
 				69D7CD0118F939FA002432C0 /* GSTitle.h */,
 				69D7CD0218F939FA002432C0 /* Hud.cpp */,
 				69D7CD0318F939FA002432C0 /* Hud.h */,
+				71D22B8D1D4F3A2D00012DB8 /* Init.cpp */,
+				71D22B8E1D4F3A2D00012DB8 /* Init.h */,
 				69D7CD0418F939FA002432C0 /* iOS-RainbowDrop */,
 				69D7CD0A18F939FA002432C0 /* LevelManager.cpp */,
 				69D7CD0B18F939FA002432C0 /* LevelManager.h */,
@@ -712,8 +757,11 @@
 				69D7CD4D18F939FA002432C0 /* TriggerNode.h */,
 				69D7CD4E18F939FA002432C0 /* TutorialTrigger.cpp */,
 				69D7CD4F18F939FA002432C0 /* TutorialTrigger.h */,
+				71D22B8F1D4F3A2D00012DB8 /* Version.h */,
 				69D7CD5018F939FA002432C0 /* Viewport.cpp */,
 				69D7CD5118F939FA002432C0 /* Viewport.h */,
+				71D22B901D4F3A2D00012DB8 /* WWCamera.cpp */,
+				71D22B911D4F3A2D00012DB8 /* WWCamera.h */,
 				69D7CD5218F939FA002432C0 /* WWGameObject.cpp */,
 				69D7CD5318F939FA002432C0 /* WWGameObject.h */,
 				69D7CD5418F939FA002432C0 /* WWLoadGui.cpp */,
@@ -733,6 +781,14 @@
 			);
 			name = "iOS-RainbowDrop";
 			path = "../../../../Source/iOS-RainbowDrop";
+			sourceTree = "<group>";
+		};
+		71D22B9B1D4F8DDE00012DB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71D22B9F1D4F8DDE00012DB8 /* libAmjulib.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -801,6 +857,12 @@
 			mainGroup = 69D7CC2218F895BF002432C0;
 			productRefGroup = 69D7CC2C18F895BF002432C0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 71D22B9B1D4F8DDE00012DB8 /* Products */;
+					ProjectRef = 71D22B9A1D4F8DDE00012DB8 /* Amjulib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				69D7CC2A18F895BF002432C0 /* Rainbow Drop */,
@@ -809,12 +871,21 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		71D22B9F1D4F8DDE00012DB8 /* libAmjulib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAmjulib.a;
+			remoteRef = 71D22B9E1D4F8DDE00012DB8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		69D7CC2918F895BF002432C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D7CD9E18F939FA002432C0 /* newgui.pl in Resources */,
 				69D7CC8118F8BB59002432C0 /* Icon@2x.png in Resources */,
 				69D7CC7F18F8BB53002432C0 /* Icon-72.png in Resources */,
 				69D7CDD418F976FA002432C0 /* ViewController_iPhone.xib in Resources */,
@@ -948,12 +1019,14 @@
 				69D7CD8818F939FA002432C0 /* GSLoadLevel.cpp in Sources */,
 				69D7CDA618F939FA002432C0 /* PlayerInfo.cpp in Sources */,
 				69D7CD7518F939FA002432C0 /* ContextMenu.cpp in Sources */,
+				71D22B921D4F3A2D00012DB8 /* Init.cpp in Sources */,
 				69D7CD5E18F939FA002432C0 /* AIStunned.cpp in Sources */,
 				69D7CD6018F939FA002432C0 /* Animated.cpp in Sources */,
 				69D7CDAB18F939FA002432C0 /* ProcGen.cpp in Sources */,
 				69D7CDB318F939FA002432C0 /* StartGame.cpp in Sources */,
 				69D7CD5A18F939FA002432C0 /* AIFlee.cpp in Sources */,
 				69D7CD5618F939FA002432C0 /* AI.cpp in Sources */,
+				71D22B931D4F3A2D00012DB8 /* WWCamera.cpp in Sources */,
 				69D7CD9918F939FA002432C0 /* LoadMeshResource.cpp in Sources */,
 				69D7CD6218F939FA002432C0 /* BlinkCharacter.cpp in Sources */,
 			);
@@ -1048,6 +1121,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1093,6 +1167,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1119,7 +1194,7 @@
 			buildSettings = {
 				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jason Colman (HG6FU5DGQD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rainbow Drop/Rainbow Drop-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1140,11 +1215,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jay/projects/amju-ww/Libs/Bass2.4/iPhone/mp3-free",
-					"/Users/jay/projects/amju-ww/Libs/amjulib-v.0.2-ios/lib",
+					"../../../Libs/Bass2.4/iPhone/mp3-free/",
+					"../../../../amjulib/Build/ioS/build/Debug/Debug-iphoneos/",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "524ceaf0-504d-4183-8356-149430ace6ad";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1154,7 +1230,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jason Colman (HG6FU5DGQD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rainbow Drop/Rainbow Drop-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1172,11 +1248,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jay/projects/amju-ww/Libs/Bass2.4/iPhone/mp3-free",
-					"/Users/jay/projects/amju-ww/Libs/amjulib-v.0.2-ios/lib",
+					"../../../Libs/Bass2.4/iPhone/mp3-free/",
+					"../../../Libs/amjulib-v.0.5-ios/lib/",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "524ceaf0-504d-4183-8356-149430ace6ad";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
