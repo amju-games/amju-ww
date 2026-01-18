@@ -81,17 +81,9 @@ const char* Dino::GetTypeName() const
   return NAME;
 }
 
-/*
-void Dino::Draw()
-{
-  OnFloor::Draw();
-  DrawShadow(); // TODO temp hack
-}
-*/
-
 void Dino::Update()
 {
-  OnFloorCharacter::Update();
+  Npc::Update();
 
   UpdateAabb(); // updates shape of AABB, DOES change its position
 
@@ -129,7 +121,7 @@ void Dino::Update()
 
 bool Dino::Load(File* f)
 {
-  if (!OnFloorCharacter::Load(f))
+  if (!Npc::Load(f))
   {
     return false;
   }
@@ -157,22 +149,5 @@ bool Dino::Load(File* f)
   }
 
   return true;
-
-  /*
-  m_pModel = (Md2Model*)TheResourceManager::Instance()->GetRes("dino.md2");
-  if (!m_pModel)
-  {
-    ReportError("Failed to load amju MD2");
-    return false;
-  }
-
-  m_pTex[0] = (Texture*)TheResourceManager::Instance()->GetRes("dino1a.bmp");
-  Assert(m_pTex[0]);
-
-  m_pTex[1] = (Texture*)TheResourceManager::Instance()->GetRes("dino1.bmp");
-  Assert(m_pTex[1]);
-  */
-
-//  m_shadow.Load();
 }
 }

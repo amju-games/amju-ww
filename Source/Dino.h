@@ -1,11 +1,11 @@
 #ifndef DINO_H
 #define DINO_H
 
-#include "OnFloorCharacter.h"
+#include "Npc.h"
 
 namespace Amju
 {
-class Dino : public OnFloorCharacter
+class Dino : public Npc
 {
 public:
   static const char* NAME;
