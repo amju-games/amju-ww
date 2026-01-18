@@ -53,7 +53,7 @@ void GSGameOver::OnActive()
   GSText::OnActive();
 
   // TODO No loop
-  TheSoundManager::Instance()->PlaySong("sound/gameover.mod");
+  TheSoundManager::Instance()->PlaySong("sound/gameover.it");
 
   CreateText("game over");
 }
