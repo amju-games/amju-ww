@@ -185,7 +185,7 @@ bool LevelManager::LoadOneObject()
   {
     lb->m_file = 0; // Close file
     m_currentBlock++;
-    if (m_currentBlock == m_blocks.size())
+    if (m_currentBlock == (int)m_blocks.size())
     {
       // No more - trash all blocks
       m_blocks.clear();
