@@ -50,6 +50,11 @@ namespace Amju
 {
 void StartUp()
 {
+#ifdef GEKKO
+  // TODO Better to put this in library main() if we can get the app's directory
+  File::SetRoot("/apps/amju_ww/data/", "/");
+#endif
+
   TheGame::Instance()->SetClearColour(Colour(0, 0, 0, 1.0f));
 
   if (!FileImplGlue::OpenGlueFile(GLUE_FILE))
