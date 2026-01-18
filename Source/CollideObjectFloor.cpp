@@ -10,7 +10,10 @@ namespace Amju
 {
 void CollideObjectFloor(GameObject* go1, GameObject* go2)
 {
-  Assert(dynamic_cast<OnFloorCharacter*>(go1));
+  OnFloorCharacter* ofc = (dynamic_cast<OnFloorCharacter*>(go1));
+  Assert(ofc);
+  ofc->FindFloor();
+
   Assert(dynamic_cast<Floor*>(go2));
 
   // Only need to do anything if the player centre pos is *outside* of the floor AABB.
