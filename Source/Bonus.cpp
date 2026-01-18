@@ -9,6 +9,9 @@
 #include "SceneMesh.h"
 #include "MySceneGraph.h"
 #include "ObjMesh.h"
+#include "PlayerInfo.h"
+#include "PlayerInfoKey.h"
+#include "Player.h"
 
 namespace Amju
 {
@@ -88,31 +91,6 @@ bool Bonus::Load(File* f)
   return true;
 }
 
-/*
-void Bonus::Draw()
-{
-  m_effect.Draw();
-
-  if (m_isCollected)
-  {
-    return;
-  }
-
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-  AmjuGL::PushMatrix();
-  AmjuGL::Translate(m_pos.x, m_pos.y, m_pos.z);
-  AmjuGL::RotateY(m_yRot);
-  PushColour();
-  MultColour(Colour(1, 0, 0.5f, 1));
-  m_mesh->Draw();
-  PopColour();
-  AmjuGL::PopMatrix();
-  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
-
-  m_aabb.Draw();
-}
-*/
-
 void Bonus::Update()
 {
   // We don't want Bonuses to move
@@ -143,7 +121,7 @@ void Bonus::Update()
   m_pSceneNode->SetLocalTransform(mat);
 }
 
-void Bonus::OnPlayerCollision()
+void Bonus::OnPlayerCollision(Player* pPlayer)
 {
   if (m_isCollected)
   {
@@ -160,5 +138,12 @@ void Bonus::OnPlayerCollision()
 
   TheSoundManager::Instance()->PlayWav("cashreg"); // NB No file ext
   TheSoundManager::Instance()->PlayWav("bonus_points"); // NB No file ext
+
+  // Inc num lives
+  int id = pPlayer->GetPlayerId();
+  PlayerInfo* pInfo = ThePlayerInfoManager::Instance()->GetPlayerInfo(id);
+  int lives = pInfo->GetInt(PlayerInfoKey::LIVES);
+  ++lives;
+  pInfo->Set(PlayerInfoKey::LIVES, lives);
 }
 }
