@@ -7,6 +7,19 @@
 
 namespace Amju
 {
+class GSText;
+
+// Listen for events - especially balance events to calibrate
+class TextStateListener : public EventListener
+{
+public:
+  TextStateListener(GSText* textState) : m_textState(textState) {}
+  virtual bool OnBalanceBoardEvent(const BalanceBoardEvent&);
+
+protected:
+  GSText* m_textState;
+};
+
 class GSText : public GameState
 {
 public:
@@ -19,6 +32,8 @@ public:
   virtual void OnActive();
   virtual void OnDeactive();
 
+  bool OnBalanceBoardEvent(const BalanceBoardEvent&);
+
 protected:
   // Create m_scene from text
   void CreateText(const std::string& text);
@@ -29,6 +44,8 @@ protected:
 
   // Time in current state
   float m_timer;
+
+  RCPtr<TextStateListener> m_listener;
 };
 }
 
