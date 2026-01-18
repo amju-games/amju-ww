@@ -7,6 +7,7 @@
 #include "GSMainEdit.h"
 #include "GSNewOrContinue.h"
 #include "GSAttract.h"
+#include "GSYesNoNewGame.h"
 #include "PowerUp.h"
 #include "MySceneGraph.h"
 #include "Timer.h"
@@ -27,7 +28,18 @@ namespace Amju
 {
 static void OnBack(GuiElement*)
 {
-  TheGSLoadLevel::Instance()->GoBack();
+  // Go back to previous state, except if that prev state is the 'confirm new game' screen, 
+  //  in which case go back to main menu.
+  auto current = TheGSLoadLevel::Instance();
+  auto prev = current->GetPrevState();
+  if (prev == TheGSYesNoNewGame::Instance())
+  {
+    TheGame::Instance()->SetCurrentState(TheGSNewOrContinue::Instance());
+  }
+  else
+  {
+    TheGSLoadLevel::Instance()->GoBack();
+  }
 }
 
 class CommandGo : public GuiCommand
