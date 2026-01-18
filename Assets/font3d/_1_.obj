@@ -22,6 +22,8 @@ vn 0.000000 -1.000000 -0.000000
 # 6 normals
 
 g default
+mtllib default.mtl
+usemtl default
 s 1
 f 1/1/1 2/1/1 3/1/1
 f 1/1/1 3/1/1 4/1/1
