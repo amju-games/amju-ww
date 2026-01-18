@@ -1,0 +1,25 @@
+newmtl arch1:arch1
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl arch2:arch2
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl dark:dark
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd arch.png
+Ni 1.00
