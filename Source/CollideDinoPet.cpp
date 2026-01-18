@@ -9,7 +9,7 @@ void CollideDinoPet(GameObject* go1, GameObject* go2)
 {
   Dino* dino = dynamic_cast<Dino*>(go1);
   Assert(dino);
-  Pet* pet = dynamic_cast<Pet*>(go2);
+  OnFloorCharacter* pet = dynamic_cast<OnFloorCharacter*>(go2);
   Assert(pet);
 
 #ifdef COLLIDE_DEBUG
@@ -23,12 +23,14 @@ void CollideDinoPet(GameObject* go1, GameObject* go2)
   {
     dino->Eat(pet);
   }
+/*
   else
   {
     AI* ai = pet->GetAI(AIFlee::NAME);
     ai->SetTarget(dino);
     pet->SetAI(ai);
   }
+*/
 }
 
 static bool b = TheCollisionManager::Instance()->Add(

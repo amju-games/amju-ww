@@ -14,7 +14,7 @@ ProcGen::ProcGen()
 {
   m_numLayers = 0;
   m_nextDepth = 0;
-  m_nextLayer = 0;
+  m_nextLayer = -1;
 }
 
 int ProcGen::GetNumLayers() const
@@ -150,6 +150,7 @@ void ProcGen::Layer::AddToGame(float depth)
 
 void ProcGen::Reset()
 {
+  m_nextLayer = -1;
   m_nextDepth = 0;
   PickNextLayer();
 }
@@ -162,6 +163,12 @@ void ProcGen::PickNextLayer()
   {
     i = 0;
   }
+
+  // If m_nextLayer is -1, this is the first choice.
+
+  // Otherwise, pick a layer depending on which ones are allowed to follow
+  //  the current layer..?
+
   m_nextLayer = i; // TODO Random, but based on which layers are allowed to come after the most recent layer.
   float layerHeight = 500; // TODO TEMP TEST should be data, depending on layer above
 
@@ -170,12 +177,14 @@ void ProcGen::PickNextLayer()
 
 void ProcGen::AddLayerWhenReady()
 {
+  Assert(m_nextLayer > -1);
+
   static const float nextLayerHeightOffset = ROConfig()->GetFloat("next-layer-height-offset");
 
   float cd = GetCurrentDepth();
   if (cd + nextLayerHeightOffset > m_nextDepth)
   {
-std::cout << "Adding new layer NOW! cd = " << cd << "\n";
+std::cout << "Adding new layer now! cd = " << cd << "\n";
     AddLayerToLevel(m_nextLayer, m_nextDepth); // + nextLayerHeightOffset);
     PickNextLayer();
   }

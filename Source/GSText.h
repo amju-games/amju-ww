@@ -21,6 +21,7 @@ public:
   virtual void OnActive();
   virtual void OnDeactive();
 
+  // Calibrate tilt control 
   bool OnBalanceBoardEvent(const BalanceBoardEvent&);
 
 protected:
