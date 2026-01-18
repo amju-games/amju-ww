@@ -3,7 +3,7 @@
 #include "EventPoller.h"
 #include "Describe.h"
 
-#define EMC_DEBUG
+//#define EMC_DEBUG
 
 namespace Amju
 {
