@@ -9,6 +9,7 @@
 #include "LoadVec3.h"
 #include "Sign.h"
 #include "ShadowManager.h"
+#include "GameMode.h"
 
 namespace Amju
 {
@@ -250,7 +251,7 @@ void OnFloor::Update()
 
   WWGameObject::Update();
 
-  if (m_isDead)
+  if (m_isDead && !IsEditMode())
   {
     m_pSceneNode->SetVisible(false);
     //m_shadow->SetVisible(false);

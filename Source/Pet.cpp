@@ -42,7 +42,7 @@ Player* Pet::GetCarryingPlayer()
 
 void Pet::SetCarryingPlayer(Player* player)
 {
-  Assert(!IsDead());
+//  Assert(!IsDead()); // this can assert in edit mode
   if (player)
   {
     Assert(!m_carryingPlayer); // already carried!

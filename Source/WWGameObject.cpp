@@ -52,7 +52,9 @@ void WWGameObject::RemoveFromGame()
 
 void WWGameObject::Reset() 
 {
+  SetDead(false);
   SetPos(m_startPos);
+  SetVel(Vec3f());
   RecalcAABB();
   SceneNode* sn = GetSceneNode();
   if (sn)
