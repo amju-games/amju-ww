@@ -128,8 +128,7 @@ end
 fence
 2001
 0, 200, -100
-ew
-2
+90
 pz-fence.obj
 end
 
