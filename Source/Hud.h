@@ -20,6 +20,7 @@ public:
   void ExpandScore(ScoreType);
 
   void SetLevel(int level);
+  void SetDepth(int depth);
 
 private:
   PGuiElement m_gui;
