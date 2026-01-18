@@ -10,6 +10,40 @@ namespace Amju
 {
 void CollideObjectFloor(GameObject* go1, GameObject* go2)
 {
+  Floor* floor = dynamic_cast<Floor*>(go2);
+  Assert(floor);
+  const CollisionMesh* collmesh = floor->GetCollisionMesh();
+  CollisionMesh::Tris tris;
+  const AABB& ab = go1->GetAABB();
+  collmesh->GetAllTrisInBox(ab, &tris);
+  if (tris.empty())
+  {
+    return;
+  } 
+
+  Vec3f norm;
+  for (auto it = tris.begin(); it != tris.end(); ++it)
+  {
+    const Tri& tri = *it;
+    Vec3f n = tri.CalcNormal();
+    if (n.y > 0.2f) // TODO
+    {
+      // Treat this tri as a vertical wall
+      norm += n;
+    }
+    else
+    {
+      // Treat this tri as a floor
+    }
+  }
+  norm.Normalise();
+  Vec3f pos = go1->GetPos();
+  pos += norm; // TODO pen depth
+  go1->SetPos(pos); 
+}
+
+void CollideObjectFloorOld(GameObject* go1, GameObject* go2)
+{
   OnFloorCharacter* ofc = (dynamic_cast<OnFloorCharacter*>(go1));
   Assert(ofc);
   ofc->FindFloor();
@@ -85,26 +119,27 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   }
 }
 
+static bool contactType = AMJU_EVERY_CONTACT;
 static bool b[] = 
 {
   TheCollisionManager::Instance()->Add(
-    Player::NAME, Floor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
+    Player::NAME, Floor::NAME, &CollideObjectFloor, contactType),
 
   TheCollisionManager::Instance()->Add(
-    Dino::NAME, Floor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
+    Dino::NAME, Floor::NAME, &CollideObjectFloor, contactType),
 
   TheCollisionManager::Instance()->Add(
-    Pet::NAME, Floor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
+    Pet::NAME, Floor::NAME, &CollideObjectFloor, contactType),
 
   // O Noes, have to duplicate because there are 2 floor types?! 
   // How to avoid this ?
   TheCollisionManager::Instance()->Add(
-    Player::NAME, StaticFloor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
+    Player::NAME, StaticFloor::NAME, &CollideObjectFloor, contactType),
 
   TheCollisionManager::Instance()->Add(
-    Dino::NAME, StaticFloor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
+    Dino::NAME, StaticFloor::NAME, &CollideObjectFloor, contactType),
 
   TheCollisionManager::Instance()->Add(
-    Pet::NAME, StaticFloor::NAME, &CollideObjectFloor, AMJU_FIRST_CONTACT_ONLY),
+    Pet::NAME, StaticFloor::NAME, &CollideObjectFloor, contactType),
 };
 }
