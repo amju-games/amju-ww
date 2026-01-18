@@ -31,7 +31,14 @@ static void OnShare(GuiElement*)
 {
   // Text should be set when we decide to go to this state, either by successfully completing
   //  level, or by getting killed.
+  // See:
+  //  void Exit::Update()
+  //  void Player::StartBeingDead()
+  //  void Player::StartBeingEaten(OnFloorCharacter* eater)
+  
   TheShareManager::Instance()->ShareTextAndScreenshot();
+  
+  // Text and image should be cleared when we deactivate this state.
 }
   
 static void OnBack(GuiElement*)
@@ -120,6 +127,9 @@ void GSLoadLevel::OnDeactive()
 {
   GSText::OnDeactive();
   m_gui = 0; // should remove itself as a listener
+  
+  // Reset share text to default
+  TheShareManager::Instance()->SetShareTextToDefault();
 }
 
 void GSLoadLevel::StartLoad()

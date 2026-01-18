@@ -131,6 +131,9 @@ void GSYouGotHiScore::OnDeactive()
   ((GuiTextEditIos*)textEdit)->ShowKeyboard(false);
 #endif
   
+  // Reset share text to default
+  TheShareManager::Instance()->SetShareTextToDefault();
+
   GSText::OnDeactive();
 }
 
