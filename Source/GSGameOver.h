@@ -16,9 +16,9 @@ public:
   static const char* NAME;
 
   // GameState overrides
-  virtual void OnActive();
-  virtual void Update();
-  virtual void Draw2d();
+  virtual void OnActive() override;
+  virtual void Update() override;
+  virtual void Draw2d() override;
 
   virtual bool OnKeyEvent(const KeyEvent&) override;
   virtual bool OnButtonEvent(const ButtonEvent&) override;

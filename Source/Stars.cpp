@@ -20,12 +20,12 @@ public:
     return tr;
   }
 
-  virtual float NewRot() const
+  virtual float NewRot() const  override
   {
     return Rnd(-6.0f, 6.0f);
   }
 
-  virtual float NewRotVel() const
+  virtual float NewRotVel() const  override
   {
     return Rnd(-2.0f, 2.0f);
   }

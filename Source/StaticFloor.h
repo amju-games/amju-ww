@@ -9,11 +9,11 @@ class StaticFloor : public Floor
 {
 public:
   static const char* NAME;
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
   virtual WWGameObject* Clone() override;
-  virtual void Update();
-  virtual bool Load(File*);
-  virtual bool Save(File*);
+  virtual void Update() override;
+  virtual bool Load(File*) override;
+  virtual bool Save(File*) override;
 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
 };

@@ -11,13 +11,13 @@ class OnFloorCharacter : public OnFloor
 {
 public:
   OnFloorCharacter();
-  virtual void Update();
-  virtual bool CreateSceneNode(); // Load MD2 and textures
+  virtual void Update() override;
+  virtual bool CreateSceneNode() override; // Load MD2 and textures
   virtual void AddToGame() override; 
 
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
-  virtual PropertyValue GetProp(PropertyKey);
-  virtual void SetProp(PropertyKey, PropertyValue);
+  virtual PropertyValue GetProp(PropertyKey) override;
+  virtual void SetProp(PropertyKey, PropertyValue) override;
 
   void SetAnim(const std::string& animName);
 
