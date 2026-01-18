@@ -401,6 +401,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\CollidePlayerTrigger.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\ContextMenu.cpp"
 				>
 			</File>
@@ -566,6 +570,18 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\TextMaker.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Trigger.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Tutorial.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\TutorialTrigger.cpp"
 				>
 			</File>
 			<File
@@ -800,6 +816,18 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\TextMaker.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Trigger.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\Tutorial.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\TutorialTrigger.h"
 				>
 			</File>
 			<File
