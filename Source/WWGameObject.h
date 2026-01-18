@@ -74,7 +74,7 @@ protected:
   bool LoadShadow(File*);
   bool SaveShadow(File*);
 
-  void CheckIfDead(); // off top or bottom of world?
+  virtual void CheckIfDead(); // off top or bottom of world?
 
 private:
   RCPtr<SceneNode> m_pSceneNode;
