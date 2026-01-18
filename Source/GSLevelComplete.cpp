@@ -3,6 +3,7 @@
 #include <ROConfig.h>
 #include <SoundManager.h>
 #include "GSLevelComplete.h"
+#include "GSLoadLevel.h"
 #include "MySceneGraph.h"
 #include "Game.h"
 #include "GSPetBonus.h"
@@ -76,8 +77,15 @@ void GSLevelComplete::Update()
   static const float MAX_TIME = ROConfig()->GetFloat("level-complete-max-time");
   if (m_timer > MAX_TIME) 
   {
-    // New level number is set by "Exit" object
-    TheGame::Instance()->SetCurrentState(TheGSPetBonus::Instance());
+    if (pets.empty())
+    {
+      TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+    }
+    else
+    {
+      // New level number is set by "Exit" object
+      TheGame::Instance()->SetCurrentState(TheGSPetBonus::Instance());
+    }
   }
 }
 
