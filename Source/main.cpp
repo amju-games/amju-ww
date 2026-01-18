@@ -1,3 +1,5 @@
+#ifndef MACOSX
+
 #include <AmjuFirst.h>
 #include <iostream>
 
@@ -18,6 +20,10 @@
 #include <BassSoundPlayer.h>
 #endif // WIN32
 
+#ifdef MACOSX
+#include <AmjuGL-OpenGL.h>
+#endif // MACOSX
+
 #include <Game.h>
 #include "StartUp.h"
 #include <SoundManager.h>
@@ -31,6 +37,8 @@ using namespace Amju;
 
 int main(int argc, char **argv)
 {
+  std::cout << "Hello, in main!\n";
+
 #ifdef GEKKO
 	AmjuGL::SetImpl(new AmjuGLGCube(false /* console */));
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWii);
@@ -43,7 +51,7 @@ int main(int argc, char **argv)
 //	AmjuGL::SetImpl(new AmjuGLOpenGLES);
 #ifdef USE_OPENGL_NOT_D3D
   std::cout << "Using OpenGL\n";
-	AmjuGL::SetImpl(new AmjuGLOpenGL);
+  AmjuGL::SetImpl(new AmjuGLOpenGL);
   TheEventPoller::Instance()->SetImpl(new EventPollerImplSDL);
 #else // USE_OPENGL_NOT_D3D
   std::cout << "Using DX9\n";
@@ -54,7 +62,6 @@ int main(int argc, char **argv)
 
   TheSoundManager::Instance()->SetImpl(new BassSoundPlayer);
 #endif // WIN32
-
 
   // Initialise window etc
   //Amju::AmjuGLWindowInfo w(480, 320, false);
@@ -67,7 +74,7 @@ int main(int argc, char **argv)
 
   TheGame::Instance()->Run();
 
-	return 0;
+  return 0;
 }
  
- 
+#endif // not MACOSX 
