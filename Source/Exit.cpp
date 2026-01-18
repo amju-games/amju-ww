@@ -4,6 +4,7 @@
 #include <Game.h>
 #include <Timer.h>
 #include <Colour.h>
+#include <ROConfig.h>
 #include "Exit.h"
 #include "GSLevelComplete.h"
 #include "LoadMeshResource.h"
@@ -94,6 +95,11 @@ void Exit::Update()
   if (m_isExiting)
   {
     m_activeTime += dt;
+    Matrix mat;
+    static const float BB_EXPAND = ROConfig()->GetFloat("exit-bb-expand");
+    float sc = 1.0f + m_activeTime * BB_EXPAND;
+    mat.Scale(sc, sc, sc);
+    m_billboard->MultLocalTransform(mat);
   }
   
   if (m_isExiting && 
@@ -105,7 +111,7 @@ void Exit::Update()
 
     // Set next level
     TheLevelManager::Instance()->SetLevelId(m_toLevel);
-    TheGSMain::Instance()->OnExitReached();
+    TheGSMain::Instance()->SetExitState(GSMain::FINISHED_EXITING);
   }
 }
 
@@ -231,6 +237,8 @@ void Exit::OnPlayerCollision()
 
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   gcf->SetInt(CONTINUE_LEVEL_KEY, m_toLevel);
+
+  m_cylinder->SetVisible(false);
 
   PlayWav("button112");
 }

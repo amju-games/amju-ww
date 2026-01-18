@@ -1,5 +1,6 @@
 #include <StringUtils.h>
 #include <GuiButton.h>
+#include <SoundManager.h>
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "GSMainEdit.h"
@@ -56,6 +57,7 @@ void GSLoadLevel::OnActive()
 {
   GSText::OnActive();
 
+  TheSoundManager::Instance()->PlaySong("sound/piano.it");
   PlayWav("battle003");
 
   CreateText("level  " + ToString(TheLevelManager::Instance()->GetLevelId()));

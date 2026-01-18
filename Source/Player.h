@@ -8,6 +8,7 @@
 
 namespace Amju
 {
+class Exit;
 class PlayerController;
 class Pet;
 typedef std::list<Pet*> PetList;
@@ -51,7 +52,7 @@ public:
   void DropPets();
 
   // Call when we collide with exit
-  void ReachedExit();
+  void ReachedExit(Exit* exit);
 
 private:
   void UpdatePets();
@@ -67,6 +68,7 @@ private:
   PetList m_pets;
 
   bool m_reachedExit;
+  Vec3f m_exitPos;
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network

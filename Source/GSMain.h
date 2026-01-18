@@ -29,10 +29,11 @@ public:
 
   void ClearLevel();
 
-  void OnExitReached();
+  enum ExitState { NOT_EXITED, IS_EXITING, FINISHED_EXITING };
+  void SetExitState(ExitState es);
 
 protected:
-  bool m_exitReached;
+  ExitState m_exitState;
   float m_exitTimer;
   PGuiElement m_gui; // GUI elements (extra on HUD)
   RCPtr<GuiButton> m_pauseButton;

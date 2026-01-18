@@ -29,7 +29,6 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
     pet->SetIsFalling(true);
   }
 
-  // ???
   Vec3f vel = player->GetVel();
   player->SetVel(-vel);
 
@@ -40,36 +39,7 @@ void CollidePlayerDino(GameObject* go1, GameObject* go2)
   PlayWav("hammer_anvil3"); // NB No file ext
   Camera* cam = GetActiveCamera();
   Assert(cam);
-  cam->SetEarthquake(1.0f);
- 
-/*
-  // Sound effect
-  // TODO Make sure not played more than once in successive frames
-  // -- have a timer
-  PlayWav("gasp"); // NB No file ext
-
-  // Push both objects away from each other
-
-  static const float RESPONSE = 100.0f; // TODO CONFIG
-
-  // Line between centres
-  Vec3f line = go1->GetPos() - go2->GetPos();
-  line.y = 0;
-  line.Normalise();
-  line *= RESPONSE;
-
-  Vec3f v1 = go1->GetVel() + line;
-  v1.y = 0;
-  go1->SetVel(v1);
-  //go1->SetAcc(-v1);
-  //go1->StopRotating();
-
-  Vec3f v2 = go2->GetVel() - line;
-  v2.y = 0;
-  go2->SetVel(v2);
-  //go2->SetAcc(-v2);
-  //go2->StopRotating();
-*/
+  cam->SetEarthquake(1.0f); // TODO CONFIG
 }
 
 static bool b = TheCollisionManager::Instance()->Add(
