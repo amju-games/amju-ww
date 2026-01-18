@@ -631,30 +631,36 @@ void GSMainEdit::Draw()
     Assert(evp);
     evp->Draw();
 
-    // TODO If this is the active vp
     if (evp->IsActive() && m_isSelecting)
     {
       m_isSelecting = false;
-      m_selectedObj = 0;
+      m_selectedObj = 0; // TODO multi select
 
-      GetGameSceneGraph()->GetCamera()->Draw();
+      GetGameSceneGraph()->GetCamera()->Draw(); // ?
 
       Vec3f mouseWorldNear;
       Vec3f mouseWorldFar;
 
-      Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 0, &mouseWorldNear);
-      Unproject(Vec2f(m_mouseScreen.x, m_mouseScreen.y), 1, &mouseWorldFar);
+      Vec2f mouseScreen = evp->ConvertScreenCoord(m_mouseScreen);
+      Assert(mouseScreen.x >= -1.0f);
+      Assert(mouseScreen.x <=  1.0f);
+      Assert(mouseScreen.y >= -1.0f);
+      Assert(mouseScreen.y <=  1.0f);
+
+      Unproject(Vec2f(mouseScreen.x, mouseScreen.y), 0, &mouseWorldNear);
+      Unproject(Vec2f(mouseScreen.x, mouseScreen.y), 1, &mouseWorldFar);
       LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
 
-  /*
+
       // Draw for debugging
-      std::cout << "Selecting, mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
+      std::cout << "Selecting, screen mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
+      std::cout << "  Viewport: x: " << mouseScreen.x << " y: " << mouseScreen.y << "\n";
       AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
       AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
       AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
         AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
       AmjuGL::PopAttrib();
-  */
+
 
       GameObjects* objs = TheGame::Instance()->GetGameObjects();
       float bestDist = 999999.9f;
