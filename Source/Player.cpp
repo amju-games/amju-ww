@@ -204,9 +204,18 @@ std::cout << "Dropping pet " << pet->GetId() << "\n";
   }
 }
 
+RCPtr<Player> s_player[2];
+
+Player* Player::GetPlayer(PlayerNum pn)
+{
+  return s_player[(int)pn];
+}
+
 void Player::SetPlayerId(int playerId)
 {
   m_playerId = playerId;
+
+  s_player[playerId] = this;
 }
 
 int Player::GetPlayerId() const
@@ -244,11 +253,13 @@ bool Player::Load(File* f)
   }
   m_startPos = m_pos;
 
-  if (!f->GetInteger(&m_playerId))
+  int playerId = 0;
+  if (!f->GetInteger(&playerId))
   {
     f->ReportError("No player ID!?");
     return false;
   }
+  SetPlayerId(playerId);
 
   if (!f->GetDataLine(&m_md2Name))
   {

@@ -1,17 +1,12 @@
 #pragma once
 
 #include <Singleton.h>
+#include "PlayerNum.h"
 
 namespace Amju
 {
 class Scores;
 typedef Singleton<Scores> TheScores;
-
-enum PlayerNum
-{
-  AMJU_P1,
-  AMJU_P2
-};
 
 class Scores : public NonCopyable
 {

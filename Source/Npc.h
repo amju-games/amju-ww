@@ -26,7 +26,7 @@ public:
 protected:
   typedef std::map<std::string, PAI> AIs;
   AIs m_ais;
-  AI* m_ai;
+  AI* m_ai; // the current AI
 };
 }
 
