@@ -7,6 +7,7 @@
 #include "GSNewOrContinue.h"
 #include "GSTitle.h"
 #include "GSTweet.h"
+#include "GSYouGotHiScore.h"
 #include "iOSKeyboard.h"
 #include "iOSTweet.h"
 #include "LevelManager.h"
@@ -24,6 +25,11 @@
 namespace Amju
 {
 const char* GSTitle::NAME = "title";
+
+static void Test(GuiElement*)
+{
+  TheGame::Instance()->SetCurrentState(TheGSYouGotHiScore::Instance());
+}
 
 GSTitle::GSTitle()
 {
@@ -68,24 +74,34 @@ void GSTitle::Update()
   }
 }
 
+void GSTitle::Draw()
+{
+  GSText::Draw();
+  
+#ifdef YES_TEST_SCREENSHOT
+  // This is just to test screenshot saving
+  static int c = 0;
+  c++;
+  if (c == 100)
+  {
+    // TODO Add timestamp to filename to make it unique
+    SaveScreenshot(GetSaveDir() + "/screenshot1.png");
+  }
+#endif
+}
+
 void GSTitle::OnActive()
 {
   GSText::OnActive();
 
-  // TODO Add timestamp to filename to make it unique
-  SaveScreenshot(GetSaveDir() + "/screenshot.png");
- 
-#if defined(AMJU_IOS) && defined(YES_TEST_TWITTER) 
+#if defined(AMJU_IOS) && defined(YES_TEST_TWITTER)
   // Twitter test
   TwitterInit();
   while (!TwitterIsOk())
   {
     // Just for testing
-    usleep(100000);
+    Amju::SleepMs(20);
     std::cout << ".";
-    
-    // TODO Not implemented on all platforms
-    // Amju::SleepMs(100);
   }
   std::cout << "\nTwitter is OK\n";
   std::vector<std::string> accountNames;
@@ -105,10 +121,6 @@ void GSTitle::OnActive()
 
   //ShareTwitterImage(); // TODO TEMP TEST
 #endif  
-
-
-////  ShowKeyboard(true); // TODO TEMP TEST
-  
  
   // Start theme music
 #ifdef GEKKO
@@ -125,7 +137,8 @@ void GSTitle::OnActive()
   start->SetIsFocusButton(true);
   start->SetShowIfFocus(true);
 
-  GetElementByName(m_gui, "tweet-button")->SetCommand(OnTweet);
+  GetElementByName(m_gui, "tweet-button")->SetCommand(Test); // TODO 
+  //OnTweet);
 
 #ifdef FOR_SCREENSHOT
   start->SetVisible(false);

@@ -18,6 +18,7 @@ public:
   // GSText overrides
   virtual void OnActive() override;
   virtual void Update() override;
+  virtual void Draw() override; // TODO TEMP TEST
 };
 typedef Singleton<GSTitle> TheGSTitle;
 }
