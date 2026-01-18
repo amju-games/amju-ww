@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-15
+14
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -103,7 +103,7 @@ end
 player
 101
 // Start pos
-0, 220, 0
+-200, 220, 0
 // Player ID
 0
 // Mesh
@@ -137,6 +137,8 @@ dino
 103
 // Start pos
 400, 220, 0
+// Dino Type
+1
 // Shadow
 shadow.png
 20
@@ -226,10 +228,5 @@ objective
 10000
 // Text
 Get rid of the dinosaur!
-end
-
-skybox
-9999
-skybox2.obj
 end
 
