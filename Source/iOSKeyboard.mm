@@ -202,9 +202,12 @@ bool GuiTextIos::Load(File* f)
     if (!StringContains(s, "multi"))
     {
       // Single line
-      myView.textContainer.maximumNumberOfLines = 1;
-      // Truncate, add ellipsis - make this another option?
-      myView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+      if ([myView respondsToSelector:@selector(textContainer)])
+      {
+        myView.textContainer.maximumNumberOfLines = 1;
+        // Truncate, add ellipsis - make this another option?
+        myView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+      }
     }
     if (StringContains(s, "bgcol="))
     {
