@@ -140,10 +140,8 @@ staticfloor
 200.000000, 100.000000, 50.000000
 // Y rotation
 360.000000
-// Mesh filename
-//rd_a41a.obj
-// Test mix and match
-rd_a11c_notop_ice.txt
+// Mesh filename: mix and match
+rd_a41_notop_underground.txt
 end
 
 staticfloor
@@ -154,7 +152,7 @@ staticfloor
 // Mesh filename
 //rd_a41_snow.obj
 // Test mix and match
-rd_a11_top_snow.txt
+rd_a41_top_snow.txt
 end
 
 
@@ -243,7 +241,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41.obj
+rd_a41_notop_underground.txt
 end
 
 staticfloor
@@ -252,7 +250,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top.obj
+rd_a41_top_snow.txt
 end
 
 // Game object type
@@ -262,7 +260,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41.obj
+rd_a41_notop_underground.txt
 end
 
 staticfloor
@@ -271,7 +269,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-rd_a41_top.obj
+rd_a41_top_snow.txt
 end
 
 // Game object type

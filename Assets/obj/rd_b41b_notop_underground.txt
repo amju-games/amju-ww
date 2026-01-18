@@ -1,0 +1,10 @@
+// Mix and match obj meshes (with one group and no material) and a separate material 
+// Version
+1
+// Scene node type name
+scene-mesh-material
+// Obj
+rd_b41b_notop.obj
+// Material 
+rd_underground.mtl.txt
+
