@@ -23,7 +23,7 @@ continue-button
 // Image 
 gui-button-4.png
 // Text
-Con ti n ue
+p L Ay !
 // Font name, size
 cheri, 2.0, sx=1.6
 
@@ -57,7 +57,7 @@ more-button
 // Image 
 gui-button-4.png
 // Text
-More>
+More...
 // Font name, size
 cheri, 1.0, sx=1.6
 
@@ -74,7 +74,7 @@ back-button
 // Image 
 gui-button-4.png
 // Text
-Back
+back
 // Font name, size
 cheri, 1.0, sx=1.6
 
