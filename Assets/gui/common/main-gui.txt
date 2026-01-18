@@ -1,0 +1,53 @@
+// hud gui - extra element in main game state
+// version
+1
+
+// Element type
+gui-comp
+// Name
+main-game-comp
+// Num children
+3
+
+// Element type
+gui-text
+// Element name
+objective-text
+// pos (coords are -1..1)
+-1, -0.8 
+// size
+2.0, 0.1
+// Text (temp - overwritten by each level objective)
+$$$empty
+arial, 1.0, fgcol=ffffff
+
+// element type
+gui-button
+// Element name
+pause-button
+// pos (coords are -1..1)
+// TODO HIDDEN FOR NOW
+-0.2, -1.85
+// size
+0.4, 0.1
+// Image
+gui-button-4.png
+// Text
+pause
+// Font name, size
+arial, 1.0
+
+gui-rect
+split-screen-line
+//-1, 0.01
+//2, 0.02
+-0.01,1
+0.02, 2
+// col
+000000
+// radius
+0
+// corners
+15
+
+
