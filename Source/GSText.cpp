@@ -159,10 +159,6 @@ void GSText::OnActive()
 
 void GSText::OnDeactive()
 {
-#ifdef AMJU_IOS
-  ShowKeyboard(false);
-#endif
-  
   GameState::OnDeactive();
 
   // DON'T unload scene - why??

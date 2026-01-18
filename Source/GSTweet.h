@@ -18,6 +18,7 @@ public:
   virtual void Draw();
   virtual void Draw2d();
   virtual void OnActive();
+  virtual void OnDeactive();
 };
 typedef Singleton<GSTweet> TheGSTweet;
 } // namespace

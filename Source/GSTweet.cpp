@@ -52,10 +52,19 @@ void GSTweet::OnActive()
   // If one, hide accounts button and centre back button.
   // Accounts button goes to account select page, which comes back here.
   
-  
 #ifdef AMJU_IOS
-  ShowKeyboard(true);
+  GuiTextEditIos* textEdit = (GuiTextEditIos*)GetElementByName(m_gui, "edit-tweet");
+  textEdit->ShowKeyboard(true);
 #endif
 }
   
+void GSTweet::OnDeactive()
+{
+#ifdef AMJU_IOS
+  GuiTextEditIos* textEdit = (GuiTextEditIos*)GetElementByName(m_gui, "edit-tweet");
+  textEdit->ShowKeyboard(false);
+#endif
+  
+  GSText::OnDeactive();  
+}
 } // namespace

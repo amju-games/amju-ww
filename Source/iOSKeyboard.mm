@@ -2,47 +2,30 @@
 
 #include <EventPoller.h>
 #include <EventTypes.h>
+#include <GuiFactory.h>
+#include <GuiTextEdit.h>
+#include <Screen.h>
 #include "iOSKeyboard.h"
+#include "ViewController.h"
+
+static const float BORDER_WIDTH = 6.f;
+static const float CORNER_RADIUS = 10.f;
 
 // http://stackoverflow.com/questions/7253477/how-to-display-the-iphone-ipad-keyboard-over-a-full-screen-opengl-es-app
-
-static void QueueEvent(Amju::Event* e)
-{
-  Amju::TheEventPoller::Instance()->GetImpl()->QueueEvent(e);
-}
 
 @interface MyKeyboardView : UITextView <UIKeyInput>
 @end
 
 @implementation MyKeyboardView
 
+// TODO Override behaviour ?
 //- (void) insertText:(NSString *)text
 //{
 //  // Do something with the typed character
-//  
-//  Amju::KeyEvent ke;
-//  // Printable char
-//  ke.keyType = Amju::AMJU_KEY_CHAR;
-//  ke.key = [text characterAtIndex:0]; //CHARS[i];
-//  
-//  // TODO Space is special case
-//  
-//  ke.modifier = Amju::AMJU_KEY_MOD_NONE;
-//  ke.keyDown = true;
-//  QueueEvent(new Amju::KeyEvent(ke)); // must be on heap
-//  ke.keyDown = false;
-//  QueueEvent(new Amju::KeyEvent(ke));
 //}
 //
 //- (void) deleteBackward
 //{
-//  // Handle the delete key
-//  Amju::KeyEvent ke;
-//  ke.keyType = Amju::AMJU_KEY_BACKSPACE;
-//  ke.keyDown = true;
-//  QueueEvent(new Amju::KeyEvent(ke));
-//  ke.keyDown = false;
-//  QueueEvent(new Amju::KeyEvent(ke));
 //}
 
 - (BOOL) hasText
@@ -55,27 +38,122 @@ static void QueueEvent(Amju::Event* e)
 {
   return YES;
 }
+
 @end
 
 namespace Amju
 {
-static MyKeyboardView* myView = nullptr;
+static GuiElement* CreateTextEdit()
+{
+  return new GuiTextEditIos;
+}
 
-void* InitKeyboard()
+static  ViewController* vc = nullptr;
+  
+void GuiTextEditIos::SetViewController(void* vvc)
+{
+  vc = (ViewController*)vvc;
+  
+  // Replace regular type (GuiTextEdit) associated with name
+  TheGuiFactory::Instance()->Add(GuiTextEdit::NAME, CreateTextEdit);
+}
+  
+// TODO
+// This is only OK so long as we only have one text edit box per screen...
+static MyKeyboardView* myView = nullptr;
+  
+GuiTextEditIos::GuiTextEditIos()
 {
   myView = [MyKeyboardView new];
-  // Calling code adds this view as a subview.
-  return myView;
-} 
+  myView.hidden = YES;
+  
+  float fontSize = 14.0f; // TODO TEMP TEST - depends on screen size??
+  
+  // Set font
+  myView.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:fontSize];
+  
+  // Rounded corners
+  myView.layer.cornerRadius = CORNER_RADIUS;
+  
+  // Border colour
+  myView.layer.borderColor = [UIColor blueColor].CGColor;
+  myView.layer.borderWidth = BORDER_WIDTH;
+  
+  [vc.view addSubview:myView];
+}
 
-void ShowKeyboard(bool showNotHide)
+GuiTextEditIos::~GuiTextEditIos()
+{
+  myView = nullptr;
+}
+  
+bool GuiTextEditIos::Load(File* f)
+{
+  if (!GuiElement::Load(f))
+  {
+    return false;
+  }
+  
+  float scale = 1.f;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+  {
+    scale = [[UIScreen mainScreen] scale];
+  }
+
+  float scrX = Screen::X() / scale;
+  float scrY = Screen::Y() / scale;
+
+  float w = m_size.x * 0.5f * scrX;
+  float h = m_size.y * 0.5f * scrY;
+  
+  Vec2f pos = GetCombinedPos();
+  float x = (pos.x + 1.0f) * 0.5f * scrX;
+  float y = (1.0f - (pos.y + 1.0f) * 0.5f) * scrY;
+
+  // Account for border size -- border is drawn inside frame.
+  w += 2 * BORDER_WIDTH;
+  h += 2 * BORDER_WIDTH;
+  x -= BORDER_WIDTH;
+  y -= BORDER_WIDTH;
+  
+  [myView setFrame:CGRectMake(x, y, w, h)];
+
+  // Padding between edge and text
+  myView.textContainer.lineFragmentPadding = BORDER_WIDTH * 2;
+  
+  std::string text;
+  if (!f->GetLocalisedString(&text))
+  {
+    f->ReportError("GUI Text: Expected localised string");
+    return false;
+  }
+  SetText(text);
+  
+  std::string options;
+  if (!f->GetDataLine(&options))
+  {
+    f->ReportError("GUI Text: Expected options string");
+    return false;
+  }
+  // TODO use options string
+  
+  return true;
+}
+
+void GuiTextEditIos::SetText(const std::string& text)
+{
+  myView.text = [[NSString alloc] initWithUTF8String:text.c_str()];
+}
+    
+std::string GuiTextEditIos::GetText() const
+{
+  return std::string([myView.text UTF8String]);
+}
+    
+void GuiTextEditIos::ShowKeyboard(bool showNotHide)
 {
   if (showNotHide)
   {
-    // Set initial string, pos, size, font, with pulsing border
-    // TODO
-    myView.text = @"Hi string here";
-    myView.frame = CGRectMake(100, 100, 150, 50);
     myView.hidden = NO;
     [myView becomeFirstResponder];
   }
