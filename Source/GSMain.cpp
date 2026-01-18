@@ -295,7 +295,7 @@ void GSMain::Draw2d()
 
     static std::string old;
     std::string s = "Depth: " + ToString(GetCurrentDepth()) + "\nNum Game Objects: " + 
-      ToString(TheGame::Instance()->GetGameObjects()->size());
+      ToString((int)TheGame::Instance()->GetGameObjects()->size());
 
     if (old != s)
     {

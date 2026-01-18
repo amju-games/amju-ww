@@ -24,7 +24,7 @@ public:
   virtual PropertyValue GetProp(PropertyKey);
   virtual void SetProp(PropertyKey, PropertyValue);
 
-  void Eat(Pet*);
+  void Eat(OnFloorCharacter*);
   bool IsEating() const;
 
 protected:

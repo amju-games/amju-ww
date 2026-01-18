@@ -159,7 +159,7 @@ const char* Dino::GetTypeName() const
   return NAME;
 }
 
-void Dino::Eat(Pet* pet)
+void Dino::Eat(OnFloorCharacter* pet)
 {
   Assert(!IsEating());
   Assert(!IsDead());
@@ -188,12 +188,6 @@ bool Dino::IsEating() const
 void Dino::Update()
 {
   Npc::Update();
-
-  if (IsDead())
-  {
-    GetSceneNode()->SetVisible(false);
-    return;
-  }
 }
 
 bool Dino::Save(File* f)
