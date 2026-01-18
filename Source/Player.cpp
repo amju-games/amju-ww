@@ -133,8 +133,7 @@ bool Player::Load(File* f)
   }
 
   bc->SetGameObj(this);
-  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-  root->AddChild(bc);
+  // Add to scene graph later if we actually want this player in the level
 
   // Create Shadow Scene Node
   if (!LoadShadow(f))
@@ -161,6 +160,12 @@ bool Player::Load(File* f)
     TODO Maybe use this one: "C:/JAY/BANANA/AMJU-EXTRA/AMJU-guitar2.MD2"
     C:/JAY/BANANA/AMJU-EXTRA/AMJU2-GUITAR.BMP"
   */
+}
+
+void Player::AddSceneNode()
+{
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(m_pSceneNode);
 }
 
 void Player::Jump()
