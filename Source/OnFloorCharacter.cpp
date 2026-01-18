@@ -8,6 +8,8 @@
 #include "Describe.h"
 #include "MySceneGraph.h"
 
+//#define ANIM_DEBUG
+
 namespace Amju
 {
 OnFloorCharacter::OnFloorCharacter()
@@ -75,10 +77,12 @@ void OnFloorCharacter::SetAnim(const std::string& animName)
   Animated* a = dynamic_cast<Animated*>(GetSceneNode());
   Assert(a);
   int anim = a->GetMd2()->GetAnimationFromName(animName);
+#ifdef ANIM_DEBUG
   if (anim != m_anim)
   {
     std::cout << Describe(this) << " anim: " << animName << "\n";
   }
+#endif
   m_anim = anim;
   a->SetAnim(animName);
 }
