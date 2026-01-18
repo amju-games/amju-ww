@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: rock_1x1.ma
-//Last modified: Mon, Jan 06, 2014 05:43:16 PM
+//Last modified: Fri, Jan 10, 2014 10:34:14 PM
 //Codeset: UTF-8
 requires maya "2012";
 requires "stereoCamera" "10.0";
@@ -13,8 +13,8 @@ fileInfo "osv" "Mac OS X 10.8.5";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -200.02665715847888 149.39127379828184 -17.337655604212031 ;
-	setAttr ".r" -type "double3" -37.538352730739362 -93.800000000025207 5.0888874903416268e-14 ;
+	setAttr ".t" -type "double3" -241.6208795952011 68.263337172969528 6.6626843378695817 ;
+	setAttr ".r" -type "double3" -16.538352730732058 -87.40000000002118 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
