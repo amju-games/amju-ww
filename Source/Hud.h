@@ -19,6 +19,8 @@ public:
   enum ScoreType { AMJU_P1_SCORE, AMJU_P2_SCORE, AMJU_HI_SCORE };
   void ExpandScore(ScoreType);
 
+  void SetLevel(int level);
+
 private:
   PGuiElement m_gui;
 };

@@ -127,6 +127,7 @@ void GSLoadLevel::Update()
       ResetDepth();
       TheProcGen::Instance()->Reset();
       ThePowerUpManager::Instance()->ResetPowerUps();
+      TheHud::Instance()->SetLevel(TheLevelManager::Instance()->GetLevelId());
 
       if (IsAttractMode())
       {
@@ -134,7 +135,7 @@ void GSLoadLevel::Update()
       }
       else
       {
-          m_gui->GetElementByName("go-button")->SetVisible(true);
+         m_gui->GetElementByName("go-button")->SetVisible(true);
          m_gui->GetElementByName("progressbar")->SetVisible(false);
       }
     }

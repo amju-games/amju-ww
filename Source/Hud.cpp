@@ -22,6 +22,13 @@ void Hud::ExpandScore(ScoreType st)
   s_scoreExpandTimer[(int) st] = 1.0f; // TODO CONFIG
 }
 
+void Hud::SetLevel(int level)
+{
+  GuiText* t = (GuiText*)m_gui->GetElementByName("level-num");
+  Assert(t);
+  t->SetText(ToString(level));
+}
+
 void Hud::Draw()
 {
   float dt = TheTimer::Instance()->GetDt();
