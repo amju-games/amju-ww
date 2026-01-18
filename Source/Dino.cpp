@@ -8,6 +8,10 @@
 #include "DegRad.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
+#include "Pet.h"
+#include "AIEatPet.h"
+#include "AIGoHighGround.h"
+#include "AIIdle.h"
 
 namespace Amju
 {
@@ -18,7 +22,11 @@ const char* Dino::NAME = "dino";
 
 Dino::Dino()
 {
-  m_decideTime = 0;
+  AddAI(new AIIdle);
+  AddAI(new AIGoHighGround);
+  AddAI(new AIEatPet);
+
+  SetAI(AIIdle::NAME);
 }
 
 void Dino::UpdateAabb()
@@ -81,42 +89,45 @@ const char* Dino::GetTypeName() const
   return NAME;
 }
 
+void Dino::Eat(Pet* pet)
+{
+  Assert(!pet->IsDead());
+
+  // Change to eating behaviour
+  SetAI(AIEatPet::NAME);
+  m_ai->SetTarget(pet);
+
+  // This pet disappears - TODO Gory effect
+  //((Pet*)go2)->SetDead(true);
+  // TODO Delay
+  // TODO Sound
+
+  // Turn to face pet
+  /*
+  Vec3f v = go1->GetPos() - go2->GetPos();
+  float degs = RadToDeg(atan2(v.z, v.x));
+  ((Dino*)go1)->SetDir(degs);
+
+  ((Dino*)go1)->SetAnim("eat");
+  */
+}
+
 void Dino::Update()
 {
   Npc::Update();
 
   UpdateAabb(); // updates shape of AABB, DOES change its position
 
-  // TODO TEMP TEST 
-  // Walk towards highest place on Floor ?
-
+  /*
   // TODO Behaviours - chase animals, etc
   m_decideTime += TheTimer::Instance()->GetDt();
   if (m_floor && m_decideTime > 2.0f) // TODO TEMP TEST 
   {
     m_decideTime = 0;
-    Vec3f aim = m_floor->GetHighPoint();
-    Vec3f vel = aim - m_pos;
-    vel.y = 0;
-    if (vel.SqLen() > 10.0f)
-    {
-      vel.Normalise();
-      static const float SPEED = 50.0f; // TODO CONFIG
-      vel *= SPEED;
-      m_vel.x = vel.x;
-      m_vel.z = vel.z;
-      SetDir(RadToDeg(atan2(vel.x, vel.z)));
-      SetIsControlled(true); 
-    }
-    else
-    {
-      SetIsControlled(false); 
-
-      // ?
-      //m_vel.x = 0;
-      //m_vel.z = 0;
-    }
+    // Choose behaviour
+    SetAI(AIGoHighGround::NAME);
   }
+  */
 }
 
 bool Dino::Load(File* f)
