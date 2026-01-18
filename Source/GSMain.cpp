@@ -33,6 +33,8 @@
 #include "Viewport.h"
 #include "WWLoadGui.h"
 #include "Bird.h"
+#include "Depth.h"
+#include "ProcGen.h"
 
 #ifdef _DEBUG
 #define EDIT_CAM
@@ -219,6 +221,9 @@ void GSMain::Update()
     else
     {
       m_pauseButton->SetVisible(true);
+
+      DepthUpdate();
+      TheProcGen::Instance()->AddLayerWhenReady();
 
       game->UpdateGameObjects();
       TheCollisionManager::Instance()->Update();

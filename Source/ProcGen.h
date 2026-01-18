@@ -5,6 +5,12 @@
 #include <Singleton.h>
 #include <GameObject.h>
 
+/*
+TODO
+Each layer needs to say which layers it can follow (go underneath), and at what depth -- i.e. how far underneath.
+AND say what layers can go underneath it? -> we want to be able to add more layer files, which integrate with existing.
+*/
+
 namespace Amju
 {
 class ProcGen;
@@ -29,6 +35,12 @@ public:
   bool LoadLayerObject();
   bool IsLayerLoaded() const;
 
+  void PickNextLayer();
+
+  // Checks Depth to see if we should add the next layer 
+  void AddLayerWhenReady();
+
+private:
   void AddLayerToLevel(int layer, float depth); // ?
 
 private:
@@ -52,6 +64,8 @@ private:
   Layers m_layers;
 
   int m_numLayers;
-  // Filenames?
+
+  int m_nextLayer; 
+  float m_nextDepth; // when we reach this depth, we add the above layer
 };
 }

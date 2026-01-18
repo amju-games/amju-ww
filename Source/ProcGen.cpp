@@ -4,12 +4,16 @@
 #include "ProcGen.h"
 #include "WWGameObject.h"
 #include "SaveDir.h"
+#include "Depth.h"
+#include "LevelManager.h"
 
 namespace Amju
 {
 ProcGen::ProcGen()
 {
   m_numLayers = 0;
+  m_nextDepth = 0;
+  m_nextLayer = 0;
 }
 
 int ProcGen::GetNumLayers() const
@@ -131,11 +135,30 @@ void ProcGen::Layer::AddToGame(float depth)
     WWGameObject* ww = dynamic_cast<WWGameObject*>(go);
     Assert(ww);
 
-    Vec3f pos = ww->GetPos();
-    pos.y -= depth;
-    ww->SetPos(pos);
+    WWGameObject* clone = ww->Clone();
+    clone->SetId(TheLevelManager::Instance()->GetUniqueId());
 
-    ww->AddToGame();
+    Vec3f pos = clone->GetPos();
+    pos.y -= depth;
+    clone->SetPos(pos);
+
+    clone->AddToGame();
+  }
+}
+
+void ProcGen::PickNextLayer()
+{
+  m_nextLayer = 0; // TODO Random, but based on which layers are allowed to come after the most recent layer.
+  m_nextDepth = GetCurrentDepth() + 500; // TODO TEMP TEST should be data, depending on layer above
+}
+
+void ProcGen::AddLayerWhenReady()
+{
+  float cd = GetCurrentDepth();
+  if (cd > m_nextDepth)
+  {
+    AddLayerToLevel(m_nextLayer, cd);
+    PickNextLayer();
   }
 }
 
