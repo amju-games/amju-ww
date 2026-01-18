@@ -84,16 +84,25 @@ void Npc::Update()
 
 void Npc::OnAnimFinished()
 {
-  m_ai->OnAnimFinished();
+  if (m_ai)
+  {
+    m_ai->OnAnimFinished();
+  }
 }
 
 void Npc::OnAnimFreeze()
 {
-  m_ai->OnAnimFreeze();
+  if (m_ai)
+  {
+    m_ai->OnAnimFreeze();
+  }
 }
 
 void Npc::OnAnimRepeat()
 {
-  m_ai->OnAnimRepeat();
+  if (m_ai)
+  {
+    m_ai->OnAnimRepeat();
+  }
 }
 }
