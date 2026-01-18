@@ -1,0 +1,53 @@
+// Paused gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+title-comp
+// Num children
+2
+
+// Button 1 - start
+// element type
+gui-button
+
+// Element name
+resume-button
+
+// pos (coords are -1..1)
+-0.4, -0.5
+// size
+0.8, 0.2
+
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.bmpa
+
+// Text
+resume
+// Font name, size
+cheri, 1.0
+
+
+
+// Button 2 - quit
+// element type
+gui-button
+
+// Element name
+options-button
+
+// pos (coords are -1..1)
+-0.4, -0.72
+// size
+0.8, 0.2
+
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.bmpa
+
+// Text
+options
+// Font name, size
+cheri, 1.0
+
