@@ -40,7 +40,7 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   shadow->SetTexture(tex);
 
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-  root->AddChild(root);
+  root->AddChild(shadow);
   m_casters.insert(std::make_pair(obj, shadow));
 }
 
