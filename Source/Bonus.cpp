@@ -90,16 +90,6 @@ bool Bonus::Load(File* f)
     return false;
   }
 
-//  SceneMesh* sm  = new SceneMesh;
-//  sm->SetMesh(mesh);
-//  m_pSceneNode = sm;
-
-//  // Set bounding box 
-//  RecalcAABB();
-
-//  GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
-//    AddChild(m_pSceneNode);
-
   if (!LoadShadow(f))
   {
     return false;
@@ -141,8 +131,6 @@ bool Bonus::CreateSceneNode()
     effectFile.ReportError("Failed to load bonus effect");
     return false;
   }
-
-  m_pSceneNode->AddChild(m_effect);
 
   return false;
 }
@@ -190,6 +178,12 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
   m_effect->Start(); 
 
   m_pSceneNode->SetVisible(false);
+
+  m_effect->SetLocalTransform(m_pSceneNode->GetLocalTransform());
+  m_effect->SetAABB(*(m_pSceneNode->GetAABB()));
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  Assert(root);
+  root->AddChild(m_effect);
   m_effect->SetVisible(true);
 
   TheShadowManager::Instance()->RemoveCaster(this);
