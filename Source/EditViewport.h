@@ -7,6 +7,15 @@
 
 namespace Amju
 {
+// ID for each viewport
+enum ViewportPos
+{
+  AMJU_BOTTOM_LEFT,
+  AMJU_BOTTOM_RIGHT,
+  AMJU_TOP_LEFT,
+  AMJU_TOP_RIGHT
+};
+
 class EditViewport : public Viewport
 {
 public:
