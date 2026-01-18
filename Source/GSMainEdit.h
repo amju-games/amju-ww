@@ -31,19 +31,6 @@ namespace Amju
 // - Level name/number
 // - Help ?
 
-// Scene Node type for selected object
-// Decorates the scene node for the selected object
-class SelectedNode : public SceneNode
-{
-public:
-  SelectedNode() : m_selNode(0) {}
-  virtual void Draw();
-  void SetSelNode(SceneNode* s) { m_selNode = s; }
-
-private:
-  SceneNode* m_selNode;
-};
-
 class GSMainEdit : public GSMain
 {
 private:
@@ -85,9 +72,6 @@ protected:
 
   Vec3f m_mouseWorld;
   bool m_isSelecting;
-
-  // Scene Graph node for selected game object
-  RCPtr<SelectedNode> m_selNode;
 
   PGuiMenu m_topMenu; // horiz menu across top
 
