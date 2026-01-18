@@ -1,0 +1,45 @@
+// Temp title gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+gameover-comp
+// Num children
+2
+
+elastic
+0, -1.0
+// element type
+gui-button
+// Element name
+continue-button
+// pos (coords are -1..1)
+-0.8, -0.4
+// size
+1.6, 0.3
+gui-button-4.png
+// Text
+ok
+// Font name, size
+cheri, 2.0,sx=1.6 
+
+
+
+// Button 2 - quit
+// element type
+gui-button
+// Element name
+mainmenu-button
+// pos (coords are -1..1)
+-0.8, -1.72
+// size
+1.6, 0.3
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.png
+// Text
+main menu
+// Font name, size
+cheri, 2.0, sx=1.6 
+

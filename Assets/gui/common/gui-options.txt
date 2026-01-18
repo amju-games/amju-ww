@@ -1,0 +1,74 @@
+// version
+1
+
+// Element type
+gui-comp
+// Name
+hud-comp
+// Num children
+5
+
+elastic
+0, -2.0
+gui-button
+back-button
+-0.4, -0.7
+0.8, 0.15
+gui-button-4.png
+Back
+cheri, 1.0, sx=1.6
+
+// Music check box
+elastic
+0, -2.0
+gui-check
+music-check
+0.4, 0.3
+0.2, 0.15 
+checked.png
+checkbox
+arial, 1.0, sx=1.6
+
+// Sound check box
+elastic
+0, -2.0
+gui-check
+sound-check
+0.4, 0.0
+0.2, 0.15
+checked.png
+checkbox
+arial, 1.0, sx=1.6
+
+
+elastic
+0, -2.0
+// Element type
+gui-text
+// Element name
+static-text1
+// pos (coords are -1..1)
+-0.7, 0.3
+// size
+2.0, 1.2
+// Text
+musi c
+// Font name, size
+cheri, 2.0, left, sx=1.6, multi, fgcol=ffffff
+
+elastic
+0, -2.0
+// Element type
+gui-text
+// Element name
+static-text2
+// pos (coords are -1..1)
+-0.7, 0.0
+// size
+2.0, 1.2
+// Text
+sound
+// Font name, size
+cheri, 2.0, left, sx=1.6, multi, fgcol=ffffff
+
+
