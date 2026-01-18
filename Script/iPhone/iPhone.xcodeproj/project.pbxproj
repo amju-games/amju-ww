@@ -37,7 +37,7 @@
 		69577A34135C9CB000DBC6C5 /* DrawOBB2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A30135C9CB000DBC6C5 /* DrawOBB2.cpp */; };
 		69577A35135C9CB000DBC6C5 /* DrawOBB3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69577A32135C9CB000DBC6C5 /* DrawOBB3.cpp */; };
 		6D5B7B3D121049DD00CD925B /* EventTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5B7B3B121049DD00CD925B /* EventTypes.cpp */; };
-		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */; };
+		6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092811EB79E000931FDB /* iPhoneAppDelegate.mm */; };
 		6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092D11EB7A0800931FDB /* Shader.fsh */; };
 		6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E092E11EB7A0800931FDB /* Shader.vsh */; };
 		6D5E093211EB7A1E00931FDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E093111EB7A1E00931FDB /* main.m */; };
@@ -452,7 +452,7 @@
 		6D5B7B3C121049DD00CD925B /* EventTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTypes.h; sourceTree = "<group>"; };
 		6D5E092011EB79E000931FDB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../Source/iPhone/Classes/EAGLView.h; sourceTree = SOURCE_ROOT; };
 		6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iPhoneAppDelegate.h; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.h; sourceTree = SOURCE_ROOT; };
-		6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iPhoneAppDelegate.m; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		6D5E092811EB79E000931FDB /* iPhoneAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iPhoneAppDelegate.mm; path = ../../Source/iPhone/Classes/iPhoneAppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		6D5E092D11EB7A0800931FDB /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = ../../Source/iPhone/Shaders/Shader.fsh; sourceTree = SOURCE_ROOT; };
 		6D5E092E11EB7A0800931FDB /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = ../../Source/iPhone/Shaders/Shader.vsh; sourceTree = SOURCE_ROOT; };
 		6D5E093111EB7A1E00931FDB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../Source/iPhone/main.m; sourceTree = SOURCE_ROOT; };
@@ -1044,7 +1044,7 @@
 				6D5E099511EB7B8400931FDB /* Viewport.h */,
 				6D5E092011EB79E000931FDB /* EAGLView.h */,
 				6D5E092711EB79E000931FDB /* iPhoneAppDelegate.h */,
-				6D5E092811EB79E000931FDB /* iPhoneAppDelegate.m */,
+				6D5E092811EB79E000931FDB /* iPhoneAppDelegate.mm */,
 				6DCE67A611ECC4BD00074997 /* StartUp.h */,
 				6DCE67A711ECC4BD00074997 /* StartUp.cpp */,
 			);
@@ -1925,7 +1925,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.m in Sources */,
+				6D5E092C11EB79E000931FDB /* iPhoneAppDelegate.mm in Sources */,
 				6D5E092F11EB7A0800931FDB /* Shader.fsh in Sources */,
 				6D5E093011EB7A0800931FDB /* Shader.vsh in Sources */,
 				6D5E093211EB7A1E00931FDB /* main.m in Sources */,
@@ -2241,6 +2241,7 @@
 					_DEBUG,
 					LANDSCAPE,
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "../../../amjulib/Source/**";
