@@ -145,6 +145,7 @@ void StartUpBeforeCreateWindow()
 #endif
       
       // Set sound/music from config
+      // Hmm, sound player impl is not set yet but that's ok...
       auto sm = TheSoundManager::Instance();
       sm->SetSongMaxVolume(gcf->GetInt(MUSIC_KEY)? 1.0f : 0.0f);
       sm->SetWavMaxVolume(gcf->GetInt(SOUND_KEY)? 1.0f : 0.0f);
@@ -190,11 +191,12 @@ void StartUpBeforeCreateWindow()
 #endif // YES_GLUE_FILE
 
   // Set up music glue file
-  SoundManager* sm = TheSoundManager::Instance();  
-#if defined (MACOSX) || defined(WIN32) || defined(AMJU_IOS)
-// TODO Why not AMJU_USE_BASS ?
+  SoundManager* sm = TheSoundManager::Instance();
+  
+#if defined (AMJU_USE_BASS)
   sm->SetImpl(new BassSoundPlayer);
 #endif
+
 #ifdef GEKKO
   sm->SetImpl(new SoundWii);
 #endif

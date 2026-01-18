@@ -1,6 +1,7 @@
 #include <ConfigFile.h>
 #include <Game.h>
 #include <GuiTextEdit.h>
+#include <SoundManager.h>
 #include <StringUtils.h>
 #include "Depth.h"
 #include "GameConsts.h"
@@ -21,7 +22,7 @@ static const std::string LAST_NAME_KEY = "last_name_entered";
 
 static void OnShare(GuiElement*)
 {
-  // (Text set in OnActive)
+  // (Text set in OnActive, cleared in OnDeactive)
   TheShareManager::Instance()->ShareTextAndScreenshot();
 }
   
@@ -85,6 +86,8 @@ void GSYouGotHiScore::Draw2d()
 void GSYouGotHiScore::OnActive()
 {
   GSText::OnActive();
+
+  TheSoundManager::Instance()->PlaySong("sound/piano.it");
 
   m_gui = WWLoadGui("gui-you-got-hi.txt");
   Assert(m_gui);
