@@ -80,7 +80,9 @@ void GSTitle::OnActive()
 
   // Load background skybox
   // TODO We could have movement decorator etc 
+  /*
   GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("title-scene.txt"));
+  */
 }
 }

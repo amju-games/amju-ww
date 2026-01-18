@@ -43,9 +43,11 @@ void GSLevelComplete::OnActive()
   CreateText("you did it!"); // localisation is handled in CreateText
   m_timer = 0;
 
+  /*
   // Load background skybox
   // TODO We could have movement decorator etc 
   GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("levelcomplete-scene.txt"));
+  */
 }
 }

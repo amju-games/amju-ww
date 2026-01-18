@@ -64,9 +64,11 @@ void GSLoadLevel::OnActive()
   m_gui->GetElementByName("go-button")->SetVisible(false);
   m_gui->GetElementByName("go-button")->SetCommand(new CommandGo);
 
+  /*
   // Load background skybox
   GetTextSceneGraph()->SetRootNode(
     SceneGraph::AMJU_SKYBOX, LoadScene("loadlevel-scene.txt"));
+  */
 
   StartLoad();
 }
@@ -79,9 +81,6 @@ void GSLoadLevel::OnDeactive()
 
 void GSLoadLevel::StartLoad()
 {
-  GetTextSceneGraph()->SetRootNode(
-    SceneGraph::AMJU_SKYBOX, LoadScene("levelcomplete-scene.txt"));
-
   // Create a root for the game scene graph
   GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, new SceneNode);
 
