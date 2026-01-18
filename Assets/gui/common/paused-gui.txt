@@ -17,13 +17,13 @@ gui-button
 // Element name
 resume-button
 // pos (coords are -1..1)
--0.6, -0.3
+-0.8, -0.3
 // size
-1.2, 0.2
+1.6, 0.3
 // Image 
 gui-button-4.png
 // Text
-Resume
+resume
 // Font name, size
 cheri, 2.0, sx=1.6
 
@@ -35,7 +35,8 @@ gui-button
 // Element name
 options-button
 // pos (coords are -1..1)
--0.6, -0.55
+// Hidden for now
+-0.6, -1.55
 // size
 1.2, 0.2
 // Image 
@@ -53,9 +54,9 @@ gui-button
 // Element name
 quit-button
 // pos (coords are -1..1)
--0.3, -0.8
+-0.4, -0.8
 // size
-0.6, 0.1
+0.8, 0.15
 // Image 
 gui-button-4.png
 // Text
