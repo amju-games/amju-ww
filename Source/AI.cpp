@@ -14,11 +14,13 @@ AI::AI()
 void AI::SetNpc(Npc* npc)
 {
   m_npc = npc;
+  Assert((GameObject*)m_npc != m_target); // why the same?
 }
 
 void AI::SetTarget(GameObject* target)
 {
   m_target = target;
+  Assert((GameObject*)m_npc != m_target); // why the same?
 }
 
 void AI::Update()
