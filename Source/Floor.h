@@ -81,6 +81,9 @@ private:
   
   // Highest point on mesh
   Vec3f m_highPoint;
+
+  // Max height of AABB - so determines the maximum rotation
+  float m_maxYSize;
 };
 }
 
