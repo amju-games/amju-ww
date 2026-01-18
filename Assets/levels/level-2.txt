@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-16
+15
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -239,8 +239,4 @@ objective
 Get rid of the dinosaur!
 end
 
-skybox
-9999
-skybox2.obj
-end
 
