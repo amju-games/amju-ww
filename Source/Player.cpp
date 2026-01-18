@@ -27,6 +27,7 @@
 #include "ShadowManager.h"
 #include "Describe.h"
 #include "LurkMsg.h"
+#include "Hud.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -647,7 +648,8 @@ void Player::Update()
 
     PlayerNum pn = (PlayerNum)GetPlayerId();
     TheScores::Instance()->DecLives(pn);
-   
+    TheHud::Instance()->FlashLives();
+ 
     int lives = TheScores::Instance()->GetLives(pn);
 
 std::cout << "Player is dead! Lives left: " << lives << "\n";
