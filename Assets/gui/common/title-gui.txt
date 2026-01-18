@@ -23,9 +23,9 @@ start-button
 // Image 
 gui-button-4.png
 // Text
-Start
+START
 // Font name, size
-arial, 2.0
+cheri, 2.0, sx=1.6
 
 
 elastic
@@ -42,7 +42,7 @@ quit-button
 // Image - ext is resource type, not necessarily a real file extension
 gui-button-4.png
 // Text
-Quit
+QUIT
 // Font name, size
-arial, 1.0
+cheri, 1.0, sx=1.6
 
