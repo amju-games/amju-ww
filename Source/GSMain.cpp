@@ -60,6 +60,8 @@ GSMain::GSMain()
   m_gui = WWLoadGui("main-gui.txt", false);
   Assert(m_gui);
   m_exitState = NOT_EXITED;
+
+  m_clearColour = Colour(0.5f, 0.5f, 1, 1);
 }
 
 void GSMain::OnDeactive()
