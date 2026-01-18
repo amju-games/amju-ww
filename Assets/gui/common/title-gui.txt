@@ -21,7 +21,7 @@ start-button
 // Image 
 gui-button-4.png
 // Text
-Start!
+Start
 // Font name, size
 arial, 2.0
 
