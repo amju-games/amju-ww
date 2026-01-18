@@ -11,9 +11,6 @@ namespace Amju
 {
 void CollidePlayerExit(GameObject* go1, GameObject* go2)
 {
-return;
-
-
   Player* player = dynamic_cast<Player*>(go1);
   Assert(player);
   Exit* exit = dynamic_cast<Exit*>(go2);
@@ -27,13 +24,11 @@ return;
   exit->OnPlayerCollision();
 
   // Set new camera
-/*
   int id = player->GetPlayerId();
   Viewport* vp = TheViewportManager::Instance()->GetViewport(id);
   Camera* cam = vp->GetCamera();
-  cam->SetTarget(exit);
+  cam->SetTarget(player);
   cam->SetBehaviour(new CamZoomInOnPlayer);
-*/
 
   player->ReachedExit();
 
@@ -45,7 +40,7 @@ return;
   TheGSPetBonus::Instance()->SetPlayer(player);
 
   // Skip zoom towards exit object
-  TheGame::Instance()->SetCurrentState(glc);
+//  TheGame::Instance()->SetCurrentState(glc);
 }
 
 static bool b1 = TheCollisionManager::Instance()->Add(
