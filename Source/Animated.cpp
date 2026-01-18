@@ -6,34 +6,35 @@
 #include "ResourceManager.h"
 #include "ReportError.h"
 #include "DrawAABB.h"
+#include "OnFloorCharacter.h"
 #include "AmjuFinal.h"
 
 namespace Amju
 {
 Animated::Animated()
 {
-  m_dir = 0;
-  m_dirCurrent = 0;
-  m_oldAngleDiff = 0;
-
   m_frame = 0;
   m_nextFrame = 1;
   m_t = 0;
   m_anim = 0;
+  m_gameObj = 0;
 }
 
-void Animated::SetDir(float degs)
+void Animated::SetGameObj(OnFloorCharacter* gameObj)
 {
-  m_dir = degs;
+  m_gameObj = gameObj;
 }
 
-float Animated::GetDir() const
+void Animated::SetAnim(const std::string& animName)
 {
-  return m_dir;
+  int anim = m_pModel->GetAnimationFromName(animName);
+  SetAnim(anim);
 }
 
 void Animated::SetAnim(int anim)
 {
+  Assert(anim != -1);
+
   if (anim == m_anim)
   {
     return;
@@ -42,6 +43,11 @@ void Animated::SetAnim(int anim)
   m_anim = anim;
   // Blend into first frame of new anim
   m_nextFrame = m_pModel->GetStartFrame(m_anim);
+}
+
+void Animated::SetMd2(Md2Model* model)
+{
+  m_pModel = model;
 }
 
 bool Animated::LoadMd2(const std::string& md2name)
@@ -57,6 +63,8 @@ bool Animated::LoadMd2(const std::string& md2name)
 
 void Animated::Draw()
 {
+  Assert(IsVisible());
+
   Assert(m_pModel);
 
   float t = m_t * 10.0f;
@@ -68,8 +76,6 @@ void Animated::Draw()
   AmjuGL::MultMatrix(m_local);
   // TODO Offset Y so feet are at zero
   AmjuGL::Translate(0, 30.0f, 0);
-//  AmjuGL::Translate(m_pos.x, m_pos.y + 30.0f, m_pos.z);
-  AmjuGL::RotateY(m_dirCurrent); // incorporate rotation into matrix ?
   m_pModel->DrawFrames(m_frame, m_nextFrame, t);
   AmjuGL::PopMatrix();
 
@@ -80,69 +86,8 @@ void Animated::Update()
 {
   SceneNode::Update();
 
-  static const float ROT_SPEED = 10.0f; // TODO CONFIG
-  float dt = TheTimer::Instance()->GetDt();
-  float angleDiff = m_dir - m_dirCurrent;
-  
-  // TODO Rotate to face m_dir, taking the shortest route (CW or CCW)
-  //  This is a mess ATM
-  if (fabs(angleDiff) < 10.0f)
-  {
-    m_dirCurrent = m_dir;
-  }
-  /*
-  else if (angleDiff < -180.0f)
-  {
-    angleDiff += 360.0f;
-  }
-  else if (angleDiff > 180.0f)
-  {
-    angleDiff -= 360.0f;
-  }
-  
-
-  if (angleDiff > 0 && m_oldAngleDiff < 0 ||
-      angleDiff < 0 && m_oldAngleDiff > 0 )
-  {
-    m_dirCurrent = m_dir;
-  }
-  */
-
-  else
-  {
-    if (angleDiff < -180.0f)
-    {
-      m_dir += 360.0f;
-    }
-    else if (angleDiff > 180.0f)
-    {
-      m_dir -= 360.0f;
-    }
-    angleDiff = m_dir - m_dirCurrent;
-//    Assert(angleDiff >= -180.0f);
-//    Assert(angleDiff <= 180.0f);
-
-    if (m_dirCurrent > m_dir)
-    {
-      m_dirCurrent -= ROT_SPEED * dt * fabs(angleDiff);
-    }
-    else if (m_dirCurrent < m_dir)
-    {
-      m_dirCurrent += ROT_SPEED * dt * fabs(angleDiff);
-    }
-  }
-  //m_oldAngleDiff = angleDiff;
-
-  /*
-  if (fabs(d) > 5.0f) // TODO CONFIG
-  {
-    // Reduce difference between m_dirCurrent and m_dir
-    d *= 0.9f; // TODO CONFIG
-    m_dirCurrent = m_dir - d;
-  }
-  */
-
   Assert(m_pModel);
+  float dt = TheTimer::Instance()->GetDt();
   m_t += dt;
 
   if (m_t > 0.1f) // MD2 frames are 0.1 secs each 
@@ -160,7 +105,24 @@ void Animated::Update()
       m_nextFrame++;
       if (m_nextFrame >= startFrame + size)
       {
-        m_nextFrame = startFrame;
+        if (m_pModel->GetDoesActionRepeat(m_anim))
+        {
+          m_nextFrame = startFrame;
+          m_gameObj->OnAnimRepeat();
+        }
+        else if (m_pModel->GetDoesActionFreeze(m_anim))
+        {
+          m_nextFrame--;
+          m_gameObj->OnAnimFreeze();
+        }
+        else
+        {
+          // TODO This doesn't work, overwritten by other code
+          // Doesn't repeat or freeze - go back to stand
+          m_anim = 0;
+          m_nextFrame = 0;
+          m_gameObj->OnAnimFinished();
+        }
       }
     }
   }

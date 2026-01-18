@@ -30,6 +30,11 @@ public:
   // Most AI behaviours involve some other target, e.g. to chase or avoid
   void SetTarget(GameObject*);
 
+  // Called from scene node which controls animation
+  virtual void OnAnimFinished() {}
+  virtual void OnAnimFreeze() {}
+  virtual void OnAnimRepeat() {}
+
 protected:
   Npc* m_npc;
   GameObject* m_target;

@@ -8,35 +8,29 @@
 
 namespace Amju
 {
+class OnFloorCharacter;
+
 class Animated : public SceneNode
 {
 public:
   Animated();
+  void SetGameObj(OnFloorCharacter* gameObj);
+
   virtual void Draw();
   virtual void Update();
-  void SetAnim(int anim);
-
-  // Set direction which character should face - we rotate to face this
-  //  direction over time
-  void SetDir(float degs);
-  // Get direction which character is facing, or may be rotating to face
-  float GetDir() const;
+  void SetAnim(int animId);
+  void SetAnim(const std::string& animName);
 
   bool LoadMd2(const std::string& md2name);
+  void SetMd2(Md2Model* model);
 
 protected:
   // No texture data here - we don't know how many textures 
 
   PMd2Model m_pModel;
 
-  // All animated chars cast a shadow
-  // TODO Separate SceneNode
-  Shadow m_shadow;
-
-  float m_dir; // Direction of movement
-  float m_dirCurrent; // Direction we currently face -- we will reduce the difference
-   // between m_dirCurrent and m_dir until we face the direction of movement.
-  float m_oldAngleDiff;
+  // Game object controlling this scene node
+  OnFloorCharacter* m_gameObj;
 
 private:
   int m_anim;
