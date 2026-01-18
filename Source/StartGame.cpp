@@ -13,33 +13,28 @@ namespace Amju
 {
 void CreateEditViewports()
 {
-  int x = Screen::X();
-  int y = Screen::Y();
-  int x2 = x / 2;
-  int y2 = y / 2;
-
   // 4 viewports
   // Bottom left
-  EditViewport* vp = new EditViewport(AMJU_BOTTOM_LEFT, 0, 0, x2, y2, "Top"); 
+  EditViewport* vp = new EditViewport(AMJU_BOTTOM_LEFT, 0, 0, 0.5f, 0.5f, "Top"); 
   //   id, x, y, w, h
   TheViewportManager::Instance()->AddViewport(vp);
   EditModeCamera* cam = new EditModeCamera(AMJU_EDITCAM_TOP);
   vp->SetSceneNodeCamera(cam);
 
   // Bottom right
-  vp = new EditViewport(AMJU_BOTTOM_RIGHT, x2, 0, x2, y2, "Front"); 
+  vp = new EditViewport(AMJU_BOTTOM_RIGHT, 0.5f, 0, 0.5f, 0.5f, "Front"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_FRONT);
   vp->SetSceneNodeCamera(cam);
 
   // Top left
-  vp = new EditViewport(AMJU_TOP_LEFT, 0,  y2, x2, y2, "Side"); 
+  vp = new EditViewport(AMJU_TOP_LEFT, 0, 0.5f, 0.5f, 0.5f, "Side"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_SIDE);
   vp->SetSceneNodeCamera(cam);
 
   // Top right
-  vp = new EditViewport(AMJU_TOP_RIGHT, x2,  y2, x2, y2, "Persp"); 
+  vp = new EditViewport(AMJU_TOP_RIGHT, 0.5f, 0.5f, 0.5f, 0.5f, "Persp"); 
   TheViewportManager::Instance()->AddViewport(vp);
   cam = new EditModeCamera(AMJU_EDITCAM_PERSP);
   vp->SetSceneNodeCamera(cam);
@@ -54,7 +49,7 @@ void CreateViewports(int numPlayers)
   switch (numPlayers)
   {
   case 1:
-    TheViewportManager::Instance()->AddViewport(new Viewport(0, 0, yMin, Screen::X(), yMax));
+    TheViewportManager::Instance()->AddViewport(new Viewport(0, 0, 0, 1, 1));
     break;
   case 2:
     {
@@ -66,13 +61,11 @@ void CreateViewports(int numPlayers)
 
 #else
       // Horizontal split
-      int xMax = Screen::X();
-      int yMid = Screen::Y() / 2;
       TheViewportManager::Instance()->AddViewport(new Viewport(
-        0,  0, yMid, xMax, yMid));
+        0,  0, 0.5f, 1, 0.5f));
 
       TheViewportManager::Instance()->AddViewport(new Viewport(
-        1,  0, 0,    xMax, yMid));
+        1,  0, 0,    1, 0.5f));
 #endif
     }
     break;

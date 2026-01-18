@@ -1,5 +1,6 @@
 #include <Game.h>
 #include <DrawAABB.h>
+#include <Screen.h>
 #include "Viewport.h"
 #include "MySceneGraph.h"
 #include "AmjuGL.h"
@@ -10,7 +11,7 @@
 
 namespace Amju
 {
-Viewport::Viewport(int id, int x, int y, int w, int h) : 
+Viewport::Viewport(int id, float x, float y, float w, float h) : 
   m_id(id), m_x(x), m_y(y), m_w(w), m_h(h)
 {
   m_pCamera = 0;
@@ -19,7 +20,9 @@ Viewport::Viewport(int id, int x, int y, int w, int h) :
 
 void Viewport::Draw()
 {
-  AmjuGL::Viewport(m_x, m_y, m_w, m_h);
+  float x = (float)Screen::X();
+  float y = (float)Screen::Y();
+  AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();

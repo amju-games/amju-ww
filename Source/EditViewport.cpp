@@ -1,6 +1,8 @@
 #include <GuiRect.h>
+#include <Screen.h>
 #include "EditViewport.h"
 #include "MySceneGraph.h"
+#include "EditModeCamera.h"
 
 namespace Amju
 {
@@ -16,7 +18,7 @@ void EditViewport::SetActiveId(int activeViewportId)
   s_activeId = activeViewportId;
 }
 
-EditViewport::EditViewport(int id, int x, int y, int w, int h, const std::string& name) : 
+EditViewport::EditViewport(int id, float x, float y, float w, float h, const std::string& name) : 
   Viewport(id, x, y, w, h), m_name(name)
 {
 }
@@ -25,17 +27,25 @@ void EditViewport::Draw()
 {
   Assert(m_cam);
 
+  EditModeCamera* emc = dynamic_cast<EditModeCamera*>(m_cam.GetPtr());
+  Assert(emc);
+  emc->SetIsActive(IsActive());
+
   SceneGraph* graph = GetGameSceneGraph();
   graph->SetCamera(m_cam);
 
-  AmjuGL::Viewport(m_x, m_y, m_w, m_h);
+  float x = (float)Screen::X();
+  float y = (float)Screen::Y();
+  AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
   graph->Draw();
 }
 
 void EditViewport::Draw2d()
 {
-  AmjuGL::Viewport(m_x, m_y, m_w, m_h);
+  float x = (float)Screen::X();
+  float y = (float)Screen::Y();
+  AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
   // Draw border
   if (IsActive())

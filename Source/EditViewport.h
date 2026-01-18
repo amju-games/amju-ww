@@ -19,7 +19,7 @@ enum ViewportPos
 class EditViewport : public Viewport
 {
 public:
-  EditViewport(int id, int x, int y, int w, int h, const std::string& name);
+  EditViewport(int id, float x, float y, float w, float h, const std::string& name);
   virtual void Draw() override;
   virtual void Draw2d() override;
 
