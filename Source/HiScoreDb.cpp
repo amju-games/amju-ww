@@ -11,6 +11,7 @@
 #else
 #include <XML/XmlNodeInterface.h>
 #endif
+#include "GameConsts.h"
 #include "HiScoreDb.h"
 #include "NetSend.h"
 #include "SaveDir.h"
@@ -156,6 +157,11 @@ void HiScoreDb::SetVec(const HiScoreVec& vec)
   m_hsVec = vec;
 }
 
+const HiScoreVec& HiScoreDb::GetVec() const
+{
+  return m_hsVec;
+}
+
 void HiScoreDb::AddHiScore(const Hi& chi)
 {
   Hi hi(chi);
@@ -205,9 +211,27 @@ void GlobalHiScoreDb::AddHiScore(const Hi& hi)
  
 bool GlobalHiScoreDb::IsHiScore(int score) const
 {
-  const int HI_SCORE_TOP_N = 100; // TODO CONFIG
+  // TODO Get union of global and local
   bool b = m_global.IsScoreTopN(score, HI_SCORE_TOP_N);
   return b;
+}
+  
+int GlobalHiScoreDb::GetScorePos(int score) const
+{
+  HiScoreVec vec = m_global.GetVec();
+  vec.insert(vec.end(), m_local.GetVec().begin(), m_local.GetVec().end());
+  std::sort(vec.begin(), vec.end());
+  
+  int n = 0;
+  for (auto& hi : vec)
+  {
+    if (score > hi.m_score)
+    {
+      return n;
+    }
+    n++;
+  }
+  return n;
 }
 
 void GlobalHiScoreDb::GetTopN(int n, HiScoreVec* result) const

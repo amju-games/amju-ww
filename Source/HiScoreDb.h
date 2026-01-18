@@ -43,6 +43,8 @@ public:
   bool IsScoreTopN(int score, int n) const;
   
   void SetVec(const HiScoreVec& vec);
+  const HiScoreVec& GetVec() const;
+  
   void AddHiScore(const Hi& hi);
   void RemoveHiScore(const Hi& hi);
   
@@ -82,6 +84,9 @@ public:
   
   // Ret true if score is high enough to be added
   bool IsHiScore(int score) const;
+  
+  // Get position in hi score table - assuming we already know it is a hi score.
+  int GetScorePos(int score) const;
 
 private:
   HiScoreDb m_global; // cache of server, may not contain all local hi scores

@@ -19,6 +19,7 @@ static const std::string LAST_NAME_KEY = "last_name_entered";
 
 static void OnShare(GuiElement*)
 {
+  // (Text set in OnActive)
   TheShareManager::Instance()->ShareTextAndScreenshot();
 }
   
@@ -46,12 +47,17 @@ void GSYouGotHiScore::OnOk()
   int score = scores->GetScore(AMJU_P1);
   const Vec3f& pos = scores->GetPos(AMJU_P1);
 
-  TheGlobalHiScoreDb::Instance()->AddHiScore(Hi(score, level, depth, name, pos));
+  auto hs = TheGlobalHiScoreDb::Instance();
+  hs->AddHiScore(Hi(score, level, depth, name, pos));
   
   // Go to Hi score state
   auto h = TheGSHiScores::Instance();
   h->SetPrevState(TheGSTitle::Instance());
   TheGame::Instance()->SetCurrentState(h);
+
+  // Set target score to scroll to
+  int scorePos = hs->GetScorePos(score);
+  h->SetTarget(scorePos);
 }
   
 void GSYouGotHiScore::Update()
@@ -84,7 +90,7 @@ void GSYouGotHiScore::OnActive()
   // TODO LOCALISE
   // TODO Put score in there? But that complicates localisation? Not much, just use printf
   auto sm = TheShareManager::Instance();
-  sm->ClearScreenshotData(); // no screenshot for this, right?
+  sm->ClearScreenshotData(); // no screenshot for this, right? Just use a stock image?
   sm->SetShareText("I just got a high score on Amju Rainbow Drop! amju.com #amju");
 
   // Show score

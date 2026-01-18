@@ -21,6 +21,19 @@ GSHiScores::GSHiScores() :
 {
 }
 
+void GSHiScores::SetTarget(int target)
+{
+  if (target < 0)
+  {
+    m_mode = HISCORE_MODE_SMOOTH_SCROLL;
+  }
+  else
+  {
+    m_mode = HISCORE_MODE_SCROLL_TO_TARGET;
+    m_target = target;
+  }
+}
+
 void GSHiScores::Update()
 {
   GSText::Update();
@@ -43,6 +56,10 @@ void GSHiScores::Update()
     if (d > 0)
     {
       scrollVel = SMOOTH_SCROLL_VEL + SMOOTH_SCROLL_VEL * (float)d * 0.1f; // TODO
+    }
+    else
+    {
+      scrollVel = SMOOTH_SCROLL_VEL * 0.25f; // slowly continue..?
     }
   }
   

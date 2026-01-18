@@ -16,6 +16,9 @@ public:
   virtual void Draw();
   virtual void Draw2d();
   virtual void OnActive();
+  
+  // Set score to scroll to
+  void SetTarget(int target);
 
 private:
   enum Mode
