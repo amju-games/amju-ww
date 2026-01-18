@@ -17,15 +17,19 @@
 
 namespace Amju
 {
+static int s_starId = 0;
+
 class StarEffect : public ParticleEffect2d
 {
 public:
   virtual Vec3f NewPos() const override
   {
-    int i = (int)Rnd(20, 220);
-    float r = (float)i * 0.005f; // radius
+    int i = s_starId + 10;
+    s_starId++;
+
+    float r = (float)i * 0.02f; // radius
     float angle = (float)i * 0.6f;
-    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-0.5, 0.5));
+    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-2.0f, -1.0f));
     return tr;
   }
 
@@ -51,44 +55,47 @@ void GSText::Update()
 
   m_timer += TheTimer::Instance()->GetDt(); 
 
-  float b = sin(m_timer * 0.25f) * 0.25f + 0.75f;
+  float b = sin(m_timer * 0.25f) * 0.25f + 0.5f;
   AmjuGL::SetClearColour(Colour(0, 0, b, 1.0f));
 }
 
 void GSText::Draw()
 {
+  const float aspect = (float)Screen::X() / (float)Screen::Y();
+
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
+  AmjuGL::SetPerspectiveProjection(45.0f, aspect, 1.0f, 2.0f);
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
 
-  AmjuGL::PushMatrix();
   Matrix mat;
   static float a = 0; 
   a += TheTimer::Instance()->GetDt();   // TODO CONFIG!!
-  AmjuGL::RotateZ(a * 10.0f); // TODO TEMP TEST
+  AmjuGL::RotateZ(a * 5.0f); // TODO TEMP TEST
 
-  m_stars->Update();
-  m_stars->Draw();
-  AmjuGL::PopMatrix();
+  for (int i = 0; i < 2; i++)
+  {
+    m_stars[i]->Update();
+    m_stars[i]->Draw();
+  }
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+  AmjuGL::SetIdentity();
   const float FOVY = 60.0f;
   const float NEAR = 1.0f;
   const float FAR = 1000.0f;
-  static const float aspect = (float)Screen::X() / (float)Screen::Y();
   AmjuGL::SetPerspectiveProjection(FOVY, aspect, NEAR, FAR);
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
-  //static float a = 0; 
-  //// TODO CONFIG!!
-  //a += TheTimer::Instance()->GetDt(); 
-  //AmjuGL::LookAt(cos(a), 10.0f + sin(a), 6.0f,   0, 0, 0.0f,  0, 1.0f, 0);
-  m_camera->SetEyePos(Vec3f(0, 10, 6)); //Vec3f(cos(a), 10.0f + sin(a), 6.0f)); 
 
-  // TODO Lighting node
+  m_camera->SetEyePos(Vec3f(0, 10, 6)); 
+  // or e.g. 
+  //  Vec3f(cos(a), 10.0f + sin(a), 6.0f)); 
+  // for more movement
+
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::DrawLighting(
     AmjuGL::LightColour(0, 0, 0),
@@ -140,8 +147,9 @@ void GSText::CreateText(const std::string& text)
   Matrix m;
   m.RotateX(DegToRad(10.0f));
   node->MultLocalTransform(m);
+
   // TODO Should combine ?
-//  node->CombineTransform(); - hmm, this must be being called elsewhere
+  //  node->CombineTransform(); - hmm, this must be being called elsewhere
   node->RecursivelyTransformAABB(m);
 
   SceneNode* parent = new SceneNode;
@@ -154,54 +162,18 @@ void GSText::CreateText(const std::string& text)
   g->SetCamera(m_camera);
   g->SetRootNode(SceneGraph::AMJU_OPAQUE, parent);
 
+  srand(0); // 2 particle effects which we want to overlap - so set seed the same twice
+  s_starId = 0;
   StarEffect* stars = new StarEffect;
-  m_stars = stars;
-  stars->Set("star1.png", 0.05f, 30, 99999.9f, -99999.9f);
+  stars->Set("star1.png", 0.05f, 50, 99999.9f, -99999.9f);
   stars->Start();
-
-//SceneNode;
-  // TODO shouldn't this apply to all children??
-//  m_stars->SetIsZWriteEnabled(false);
-//  parent->AddChild(m_stars);
- 
-  // Add stars
-/*
-  ResourceManager* rm = TheResourceManager::Instance();
-  ObjMesh* mesh = (ObjMesh*)rm->GetRes("star.obj");
-  Texture* tex = (Texture*)rm->GetRes("flare.png");
-  const float S = 1000.0f;
-
-  int numStars = 100;
-  for (int i = 10; i < numStars + 10; i++)
-  {
-    SceneMesh* sm = new StarMesh;
-    sm->SetMesh(mesh);
-    Matrix mat;
-    float r = (float)i * 20.0f;
-    float angle = (float)i * 0.6f;
-    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-800, 200) - 400);
-    mat.Translate(tr);
-
-    float sc = Rnd(0.005f, 0.015f);
-    Matrix mat2;
-    mat2.Scale(sc, sc, sc);
-
-    mat *= mat2;
-    sm->SetLocalTransform(mat);
-    AABB aabb(-S, S, -S, S, -S, S); 
-    aabb.Translate(tr);
-    sm->SetAABB(aabb);
-
-    Billboard* bb = new Billboard;
-    Assert(tex);
-    bb->SetTexture(tex);
-    bb->SetSize(Rnd(60.0f, 100.0f));
-    bb->SetAABB(aabb);
-
-    sm->AddChild(bb);
-    m_stars->AddChild(sm);
-  }
-*/
+  srand(0);
+  s_starId = 0;
+  StarEffect* stars2 = new StarEffect;
+  stars2->Set("flare.png", 0.07f, 50, 99999.9f, -99999.9f);
+  stars2->Start();
+  m_stars[0] = stars;
+  m_stars[1] = stars2;
 }
 
 bool GSText::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
