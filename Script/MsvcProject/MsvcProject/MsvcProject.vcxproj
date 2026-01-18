@@ -320,6 +320,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\EditViewport.cpp" />
     <ClCompile Include="..\..\..\Source\Exit.cpp" />
     <ClCompile Include="..\..\..\Source\Fence.cpp" />
+    <ClCompile Include="..\..\..\Source\Floaters.cpp" />
     <ClCompile Include="..\..\..\Source\Floor.cpp" />
     <ClCompile Include="..\..\..\Source\GameConsts.cpp" />
     <ClCompile Include="..\..\..\Source\GameMode.cpp" />
@@ -385,6 +386,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\SelectedNode.cpp" />
     <ClCompile Include="..\..\..\Source\SerialReqManager.cpp" />
     <ClCompile Include="..\..\..\Source\ShadowManager.cpp" />
+    <ClCompile Include="..\..\..\Source\ShareManager.cpp" />
     <ClCompile Include="..\..\..\Source\Skybox.cpp" />
     <ClCompile Include="..\..\..\Source\Stars.cpp" />
     <ClCompile Include="..\..\..\Source\StartGame.cpp" />
@@ -428,6 +430,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\EditViewport.h" />
     <ClInclude Include="..\..\..\Source\Exit.h" />
     <ClInclude Include="..\..\..\Source\Fence.h" />
+    <ClInclude Include="..\..\..\Source\Floaters.h" />
     <ClInclude Include="..\..\..\Source\Floor.h" />
     <ClInclude Include="..\..\..\Source\GameConsts.h" />
     <ClInclude Include="..\..\..\Source\GameMode.h" />
@@ -495,6 +498,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\SelectedNode.h" />
     <ClInclude Include="..\..\..\Source\SerialReqManager.h" />
     <ClInclude Include="..\..\..\Source\ShadowManager.h" />
+    <ClInclude Include="..\..\..\Source\ShareManager.h" />
     <ClInclude Include="..\..\..\Source\Skybox.h" />
     <ClInclude Include="..\..\..\Source\Stars.h" />
     <ClInclude Include="..\..\..\Source\StartGame.h" />
