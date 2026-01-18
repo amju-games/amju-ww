@@ -163,6 +163,150 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="DebugAssetTest|Win32"
+			OutputDirectory="..\..\..\Build\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\Build\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;NO_COMPILED_ASSETS"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="ReleaseAssetTest|Win32"
+			OutputDirectory="..\..\..\Build\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\Build\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/I &quot;../../../../amjulib/Source/Events&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsWin32&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/EventsSDL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/FileUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Localise&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLOpenGL&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/AmjuGLDX9&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Mem&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Md2&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Image&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Geom&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Strings&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/TimeUtils&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Game&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Resource&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Scene&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Obj&quot;  &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Collision&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Gui&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Font&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Sound&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/SoundSDLMixer&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomLoad&quot; &#x0D;&#x0A;/I &quot;../../../../amjulib/Source/GeomDraw&quot;&#x0D;&#x0A;/I &quot;../../../../amjulib/Source/Utils&quot; &#x0D;&#x0A;"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;NO_COMPILED_ASSETS"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -201,6 +345,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\CollideObjectFloor.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\CollidePlayerBlock.cpp"
 				>
 			</File>
@@ -214,10 +362,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\CollidePlayerExit.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\Source\CollidePlayerFloor.cpp"
 				>
 			</File>
 			<File
@@ -305,7 +449,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\Source\LeafLoader.cpp"
+				RelativePath="..\..\..\Source\LevelManager.cpp"
 				>
 			</File>
 			<File
@@ -329,6 +473,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\Npc.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Objective.cpp"
 				>
 			</File>
@@ -345,11 +493,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\Pet.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Player.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Source\PlayerInfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\PlayWav.cpp"
 				>
 			</File>
 			<File
@@ -382,6 +538,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\Viewport.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\WWGameObject.cpp"
 				>
 			</File>
 		</Filter>
@@ -495,7 +655,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\Source\LeafLoader.h"
+				RelativePath="..\..\..\Source\LevelManager.h"
 				>
 			</File>
 			<File
@@ -515,6 +675,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\Npc.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Objective.h"
 				>
 			</File>
@@ -531,6 +695,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Source\Pet.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Source\Player.h"
 				>
 			</File>
@@ -540,6 +708,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\PlayerInfoKey.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\PlayWav.h"
 				>
 			</File>
 			<File
@@ -576,6 +748,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Source\Viewport.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Source\WWGameObject.h"
 				>
 			</File>
 		</Filter>
