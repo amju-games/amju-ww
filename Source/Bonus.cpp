@@ -44,7 +44,8 @@ bool Bonus::YesAddToLevel(int levelId, float depth)
 {
   // More bonuses the deeper you go??
   float f = Amju::Rnd(0, 10);
-  bool b = (f > 5.0f);
+  float likeliness = 10 - depth / 200.0f; // TODO TEMP TEST
+  bool b = (f > likeliness); // TODO PROCGEN
   return b;
 }
 
@@ -80,7 +81,7 @@ void Bonus::Customise(int levelId, float depth)
   static const int POINTS[] = { 1000, 2000, 4000, 8000 };
 
   // What kind of bonus?
-  if (Rnd(0, 10) > 9) // PROCGEN CONFIG
+  if (Rnd(0, 10) > 3) // PROCGEN CONFIG
   {
     // Bonus points
     int r = (int)Rnd(0, 4);
