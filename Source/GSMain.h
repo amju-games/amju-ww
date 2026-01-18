@@ -32,11 +32,14 @@ public:
   enum ExitState { NOT_EXITED, IS_EXITING, FINISHED_EXITING };
   void SetExitState(ExitState es);
 
+  void SetClearColour(const Colour& col);
+
 protected:
   ExitState m_exitState;
   float m_exitTimer;
   PGuiElement m_gui; // GUI elements (extra on HUD)
   RCPtr<GuiButton> m_pauseButton;
+  Colour m_clearColour;
 };
 typedef Singleton<GSMain> TheGSMain;
 }

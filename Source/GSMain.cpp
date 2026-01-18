@@ -79,7 +79,7 @@ void GSMain::OnActive()
   GetTextSceneGraph()->Clear();
 
   // Set clear colour for game, TODO depends on skybox
-  AmjuGL::SetClearColour(Colour(0.0f, 0.0f, 1.0f, 1.0f));
+  //AmjuGL::SetClearColour(Colour(0.0f, 0.0f, 1.0f, 1.0f));
 
   m_exitState = NOT_EXITED;
   m_exitTimer = 0;
@@ -93,6 +93,8 @@ void GSMain::OnActive()
   m_pauseButton->SetCommand(OnPause);
   m_pauseButton->SetIsCancelButton(true);
   m_pauseButton->SetShowIfFocus(true);
+
+  AmjuGL::SetClearColour(m_clearColour);
 }
 
 bool GSMain::OnKeyEvent(const KeyEvent& ke)
@@ -137,6 +139,11 @@ void GSMain::SetExitState(ExitState es)
 {
   m_exitState = es;
   m_exitTimer = 0;
+}
+
+void GSMain::SetClearColour(const Colour& col)
+{
+  m_clearColour = col;
 }
 
 void GSMain::ClearLevel()
