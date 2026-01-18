@@ -19,9 +19,6 @@ const char* APPLICATION_NAME = "balance";
 
 const char* TestState::NAME = "test-state";
 
-static bool b = TheGame::Instance()->AddState(TestState::NAME, new TestState);
-
-
 void TestState::OnActive()
 {
  //  LeafLoad("star.leaf"); 

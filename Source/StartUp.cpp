@@ -111,7 +111,7 @@ void StartUp()
   StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
   TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME); 
 #else
-	TheGame::Instance()->SetCurrentState(GSLogo::NAME);	
+  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());	
 #endif
 }
 }
