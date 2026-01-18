@@ -1,7 +1,8 @@
+#include <AmjuGL.h>
+#include <Colour.h>
+#include <Timer.h>
+#include <StringsFile.h>
 #include "MyTextMaker.h"
-#include "AmjuGL.h"
-#include "Colour.h"
-#include "Timer.h"
 
 namespace Amju
 {
@@ -47,21 +48,30 @@ MyTextMaker::MyTextMaker()
 
 PSceneNode MyTextMaker::Decorate(PSceneNode p)
 {
-  static const int MAX_COLOUR = 4;
-  Colour COLOURS[MAX_COLOUR] = 
+  static Strings strings;
+  static bool first = true;
+  if (first)
   {
-    Colour(1.0f, 0.0f, 0.5f, 1.0f),
-    Colour(0.8f, 0.0f, 0.6f, 1.0f),
-    Colour(1.0f, 0.3f, 0.4f, 1.0f),
-    Colour(0.8f, 0.2f, 0.6f, 1.0f)
-    //Colour(1.0f, 0.0f, 0.7f, 1.0f),
-    //Colour(1.0f, 0.0f, 0.9f, 1.0f)
-  };
+    first = false;
+    if (!LoadStrings("colours.txt", &strings))
+    {
+      std::cout << "Failed to load colours :(\n";
+    }
+  }
+//  static const int MAX_COLOUR = 4;
+//  Colour COLOURS[MAX_COLOUR] = 
+//  {
+//    Colour(1.0f, 0.0f, 0.5f, 1.0f),
+//    Colour(0.8f, 0.0f, 0.6f, 1.0f),
+//    Colour(1.0f, 0.3f, 0.4f, 1.0f),
+//    Colour(0.8f, 0.2f, 0.6f, 1.0f)
+//  };
+
   // Choose colour
   static int c = 0;
-  m_colour = COLOURS[c];
+  m_colour = FromHexString(strings[c]);
   c++;
-  if (c == MAX_COLOUR)
+  if (c == strings.size())
   {
     c = 0;
   }

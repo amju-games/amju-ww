@@ -103,7 +103,7 @@ void GSText::OnActive()
   GameState::OnActive();
   m_timer = 0;
   m_starRotVel = 1.0f; // TODO CONFIG
-  AmjuGL::SetClearColour(Colour(0, 0, 0, 1)); 
+  AmjuGL::SetClearColour(Colour(0.5f, 0.5f, 1, 1)); 
 }
 
 void GSText::OnDeactive()

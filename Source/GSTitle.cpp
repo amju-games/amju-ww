@@ -83,6 +83,7 @@ void GSTitle::OnActive()
     quit->SetCommand(new CommandQuit);
   }
 
-  CreateText("amju\nwibble\nwobble"); // TODO Localise
+  // Need special shiny material for "amju" ?
+  CreateText("amju\nrain\n bow\n drop"); // TODO Localise
 }
 }
