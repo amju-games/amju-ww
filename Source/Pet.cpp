@@ -1,6 +1,7 @@
-#include "Pet.h"
 #include <GameObjectFactory.h>
 #include <File.h>
+#include <Timer.h>
+#include "Pet.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
 #include "AIGoHighGround.h"
@@ -19,15 +20,54 @@ const char* Pet::NAME = "pet";
 static const float XSIZE = 15.0f;
 static const float YSIZE = 20.0f;
 
+static const float MAX_BEING_EATEN_TIME = 6.0f;
+
 Pet::Pet()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsSet = true;
   m_carryingPlayer = 0;
+  m_eatenState = NOT_EATEN_YET;
+  m_eatenTime = 0;
 
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
   AddAI(new AIFalling);
+}
+  
+bool Pet::CanBeEaten() const
+{
+  bool b = (m_eatenState == NOT_EATEN_YET) && !IsDead();
+  return b;
+}
+
+void Pet::AddToGame() 
+{
+  Npc::AddToGame();
+  
+  SetAI(AIIdle::NAME); // can set now that we have created scene node
+  // (when AI state is activated, it will set animation)
+
+  // Blood particle effect for when pet eaten
+  m_bloodFx = new BloodFx;
+  // Tex, size, num, time
+  //m_bloodFx->Set("wh8.png", 10, 20, 2.0f); // TODO TEMP TEST
+  m_bloodFx->Set("gore.png", 2, 100, 2.0f, 0); // TODO TEMP TEST
+
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(m_bloodFx.GetPtr());
+
+/*
+  // Create blood pool scene node
+  m_bloodPool = new Shadow;
+  if (!m_bloodPool->Load(f))
+  {
+    f->ReportError("Failed to load blood pool");
+    return false;
+  }
+  root->AddChild(m_bloodPool);
+  m_bloodPool->SetVisible(false); // TODO
+*/
 }
 
 WWGameObject* Pet::Clone()
@@ -67,6 +107,17 @@ void Pet::Update()
   }
 
   RecalcAABB();
+
+  if (m_eatenState == BEING_EATEN)
+  {
+    float dt = TheTimer::Instance()->GetDt();
+    m_eatenTime += dt;
+
+    if (m_eatenTime > MAX_BEING_EATEN_TIME)
+    {
+      m_eatenState = HAS_BEEN_EATEN;
+    }
+  }
 }
 
 bool Pet::Save(File* f)
@@ -87,9 +138,6 @@ bool Pet::Load(File* f)
   }
   m_startPos = m_pos;
 
-  BlinkCharacter* bc = new BlinkCharacter;
-  m_pSceneNode = bc;
-
   const int NUM_MESHES = 3;
   static const char* MESHES[NUM_MESHES] = 
   {
@@ -108,48 +156,39 @@ bool Pet::Load(File* f)
     { "pz-pet5a.png", "pz-pet5.png" }
   };
   
-  int r = rand() % NUM_MESHES;
-  if (!bc->LoadMd2(MESHES[r]))
-  {
-    return false;
-  }
+  int r = rand() % NUM_MESHES; // TODO Load type
+  m_md2Name = MESHES[r];
 
-  // Can set AI now we have a model
-  SetAI(AIIdle::NAME);
+  r = rand() % NUM_TEXTURES; // TODO Load colour
+  m_texNames[0] = TEXTURES[r][0];
+  m_texNames[1] = TEXTURES[r][1];
 
-  // TODO different colours
-  r = rand() % NUM_TEXTURES;
-  if (!bc->LoadTextures(TEXTURES[r][0], TEXTURES[r][1]))
-  {
-    return false;
-  }
-
-  bc->SetGameObj(this);
-
-//  PSceneNode root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-//  root->AddChild(bc);
-
-  // Create Shadow Scene Node
   if (!LoadShadow(f))
   {
     return false;
   }
-/*
-  // Create blood pool scene node
-  m_bloodPool = new Shadow;
-  if (!m_bloodPool->Load(f))
-  {
-    f->ReportError("Failed to load blood pool");
-    return false;
-  }
-  root->AddChild(m_bloodPool);
-  m_bloodPool->SetVisible(false); // TODO
-*/
   return true;
 }
 
-void Pet::OnEaten()
+void Pet::StartBeingEaten(Dino* eater)
 {
+  // TODO Should only be called once per pet
+  Assert(m_eatenState == NOT_EATEN_YET);
+  m_eatenState = BEING_EATEN;
+
+  SetDead(true); // So physics won't be updated any more
+
+  m_pSceneNode->SetVisible(false);
+  // Remove from ShadowManager
+  TheShadowManager::Instance()->RemoveCaster(this);
+
+  m_bloodFx->SetMinY(GetPos().y);
+  m_bloodFx->SetDino(eater);
+  m_bloodFx->Start();
+
+  // Make sure it's not culled
+  m_bloodFx->SetAABB(*m_pSceneNode->GetAABB());
+
   /*
   m_bloodPool->AddCollisionMesh(m_floor->GetCollisionMesh());
 
@@ -159,8 +198,12 @@ void Pet::OnEaten()
   // TODO Timer ?
   */
 
-  SetDead(true);
-  TheShadowManager::Instance()->RemoveCaster(this);
+//  if (!IsDead())
+//  {
+//    TheShadowManager::Instance()->RemoveCaster(this); 
+//  }
+
+//  SetDead(true);
 
   // TODO if anims done
   //((Pet*)m_target)->SetAnim("eaten");

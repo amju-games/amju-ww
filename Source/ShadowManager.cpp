@@ -1,7 +1,8 @@
 #include "ShadowManager.h"
 #include "MySceneGraph.h"
+#include "Describe.h"
 
-//#define SHADOW_MGR_DEBUG
+#define SHADOW_MGR_DEBUG
 
 namespace Amju
 {
@@ -30,6 +31,12 @@ std::cout << "Shadow mgr: added floor " << floor->GetTypeName()
 
 void ShadowManager::RemoveCaster(WWGameObject* obj)
 {
+std::cout << "Shadows: removing " << Describe(obj) << "\n";
+  if (m_casters.find(obj) == m_casters.end())
+  {
+    return;
+  }
+
   Shadow* shadow = m_casters[obj];
 
   // Remove scene node

@@ -10,6 +10,7 @@ class OnFloorCharacter : public OnFloor
 public:
   OnFloorCharacter();
   virtual void Update();
+  virtual bool CreateSceneNode(); // Load MD2 and textures
 
   void SetAnim(const std::string& animName);
 
@@ -31,8 +32,13 @@ public:
 
 protected:
   float m_dir; // Direction of movement - DEGREES
-  float m_dirCurrent; // Direction we currently face -- we will reduce the difference
-   // between m_dirCurrent and m_dir until we face the direction of movement.
+  // Direction we currently face -- we will reduce the difference
+  //  between m_dirCurrent and m_dir until we face the direction of movement.
+  float m_dirCurrent; 
+
+  // File names for animated character + 2 textures
+  std::string m_md2Name;
+  std::string m_texNames[2];  
 };
 }
 
