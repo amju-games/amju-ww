@@ -167,6 +167,9 @@ void Player::Reset()
 {
   OnFloorCharacter::Reset();
   DropPets();
+  static const float JUMP_VEL_INITIAL = ROConfig()->GetFloat("jump-vel-initial");
+  m_jumpVel = JUMP_VEL_INITIAL;
+  m_maxJumpCount = 1; // initially you can jump once
 }
 
 void Player::DropPets()
@@ -362,13 +365,13 @@ void Player::Jump()
   // Jump if we are on ground or can double jump etc
 //  if (!IsFalling())
 
-  if (m_jumpCount < 10) // TODO
+  if (m_jumpCount < m_maxJumpCount) 
   {
-std::cout << "JUMP! Count is: " << m_jumpCount << "\n";
+std::cout << "JUMP! Count is: " << m_jumpCount << " Vel: " << m_jumpVel << "\n";
 
     m_jumpCount++;
 
-    m_vel.y = 500.0f; // TODO CONFIG -- power up ?
+    m_vel.y = m_jumpVel; 
     SetIsFalling(true);
     SetAnim("jump");
   }

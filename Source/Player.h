@@ -71,6 +71,8 @@ private:
   Vec3f m_exitPos;
 
   int m_jumpCount; // for double, (triple?) jump
+  int m_maxJumpCount; // how many multi-jumps you can do
+  float m_jumpVel; 
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network
