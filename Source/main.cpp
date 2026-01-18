@@ -42,9 +42,11 @@ int main(int argc, char **argv)
 #ifdef WIN32
 //	AmjuGL::SetImpl(new AmjuGLOpenGLES);
 #ifdef USE_OPENGL_NOT_D3D
+  std::cout << "Using OpenGL\n";
 	AmjuGL::SetImpl(new AmjuGLOpenGL);
   TheEventPoller::Instance()->SetImpl(new EventPollerImplSDL);
 #else // USE_OPENGL_NOT_D3D
+  std::cout << "Using DX9\n";
   // Must use Win32 event poller with D3D
   AmjuGL::SetImpl(new AmjuGLDX9((WNDPROC)&EventPollerImplWin32::WndProc));
   TheEventPoller::Instance()->SetImpl(new EventPollerImplWin32);
