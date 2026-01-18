@@ -25,9 +25,10 @@ public:
   virtual void Update() override;
   virtual void Reset() override;
   virtual bool CreateSceneNode() override;
+  virtual void RotateY(float angleDegs);
 
-public:
-  float m_yRot;
+private:
+  float m_yRot; // TODO Move to base class?
 };
 }
 
