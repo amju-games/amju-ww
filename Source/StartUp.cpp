@@ -58,7 +58,6 @@ void StartUp()
     ReportError("Failed to open data glue file");
   }
 
-#ifndef IPHONE // TODO
   // Set up music glue file
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
@@ -69,7 +68,6 @@ void StartUp()
   {
     ReportError("Failed to open music glue file");
   }
-#endif // ! IPHONE	
 
   // TODO Other languages - preferences
   if (!Localise::LoadStringTable("english.txt"))
@@ -94,18 +92,6 @@ void StartUp()
 	TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
 	TheHud::Instance()->Load();
 
-  // iPhone: check if a game was interrupted. If so, go to 
-  //  Continue/new game menu, else start with logo.
-/* TODO
-  if (TheGameSaver::Instance()->IsSavedGame())
-  {
-    TheGame::Instance()->SetCurrentState(GSMenu::NAME); 
-  }
-  else
-  {
-    TheGame::Instance()->SetCurrentState(GSLogo::NAME); 
-  }
-*/
 #ifdef BYPASS_TITLE
   // TODO Only needed if we bypass title
   TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
