@@ -9,10 +9,16 @@ namespace Amju
 class WWGameObject : public GameObject
 {
 public:
+  WWGameObject();
+
   void SetTransform(const Matrix& mat);
+
+  void SetDead(bool dead);
+  bool IsDead() const;
 
 protected:
   Matrix m_mat;
+  bool m_isDead;
 };
 }
 
