@@ -17,6 +17,7 @@ public:
   // For Edit mode
   virtual bool Save(File* f) = 0;
   virtual void Move(const Vec3f& deltaPos);
+  virtual void Reset() override;
 
   // For this game, GameObjects for a level are created in "blocks".
   // The blocks are transformed, so the positions of the objects are
@@ -52,6 +53,8 @@ protected:
   std::string m_meshFilename;
   std::string m_shadowTexName;
   float m_shadowSize;
+
+  Vec3f m_startPos;
 };
 }
 

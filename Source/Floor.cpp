@@ -61,6 +61,8 @@ const char* Floor::GetTypeName() const
 
 void Floor::Reset()
 {
+  WWGameObject::Reset();
+
   m_angularAccel = Quaternion();
   m_angularVel = Quaternion();
   m_rotAxis = Vec3f(1.0, 0, 0); 
@@ -98,6 +100,7 @@ bool Floor::LoadMesh(File* f)
     f->ReportError("Expected floor position");
     return false;
   }
+  m_startPos = m_pos;
   m_pos = m_pos * m_mat;
 
   // Load rotation around y axis

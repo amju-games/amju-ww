@@ -123,6 +123,22 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
   pet->RecalcAABB();
 */
 }
+  
+void Player::Reset() 
+{
+  OnFloorCharacter::Reset();
+  DropPets();
+}
+
+void Player::DropPets()
+{
+  for (Pets::iterator it = m_pets.begin(); it != m_pets.end(); ++it)
+  {
+    Pet* pet = *it;
+    pet->SetCarryingPlayer(0); 
+  }
+  m_pets.clear();
+}
 
 void Player::UpdatePets()
 {

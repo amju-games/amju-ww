@@ -44,6 +44,8 @@ const char* Exit::GetTypeName() const
 
 void Exit::Reset()
 {
+  OnFloor::Reset();
+ 
   m_isActive = false;
   m_isExiting = false;
 }
@@ -117,6 +119,8 @@ bool Exit::Load(File* f)
   {
     return false;
   }
+  m_startPos = m_pos;
+
 /* replacing
   if (!GameObject::Load(f)) // Get ID
   {

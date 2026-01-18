@@ -309,6 +309,10 @@ Lurker::Lurker()
 
 void Lurker::OnLurkOk()
 {
+  Assert(m_qmap.find(AMJU_CENTRE) != m_qmap.end());
+  LurkMsgQ& q = m_qmap[AMJU_CENTRE];
+  Assert(!q.empty());
+
   LurkMsg& lm = m_qmap[AMJU_CENTRE].front();
   lm.m_state = LurkMsg::LURK_HIDING;
   lm.DoOk();
