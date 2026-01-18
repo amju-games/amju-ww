@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: blood_pool.ma
-//Last modified: Mon, Nov 25, 2013 07:02:57 PM
+//Last modified: Mon, Nov 25, 2013 07:14:51 PM
 //Codeset: UTF-8
 requires maya "2012";
 currentUnit -l centimeter -a degree -t film;
@@ -12,8 +12,8 @@ fileInfo "osv" "Mac OS X 10.8.5";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -190.41317345757071 155.87833449709072 163.18328754875887 ;
-	setAttr ".r" -type "double3" -32.138352729735587 -50.200000000026662 0 ;
+	setAttr ".t" -type "double3" -222.51607571266689 14.309789216060011 195.3520120929042 ;
+	setAttr ".r" -type "double3" -3.3383527297356519 -49.400000000026651 0 ;
 	setAttr ".rp" -type "double3" -1.2434497875801753e-14 -3.7747582837255322e-15 -2.8421709430404007e-14 ;
 	setAttr ".rpt" -type "double3" 3.2114521955926639e-14 -9.8195767237133275e-15 8.3082857441835115e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
@@ -54,7 +54,7 @@ createNode camera -s -n "frontShape" -p "front";
 	setAttr ".o" yes;
 createNode transform -s -n "side";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 100.1 0 0 ;
+	setAttr ".t" -type "double3" 100.1 8.1703995797205078 0 ;
 	setAttr ".r" -type "double3" 0 89.999999999999986 0 ;
 createNode camera -s -n "sideShape" -p "side";
 	setAttr -k off ".v" no;
@@ -67,8 +67,8 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 createNode transform -n "pCylinder1";
-	setAttr ".t" -type "double3" -0.022471887223364018 16.095511937706487 0.15077646295361991 ;
-	setAttr ".s" -type "double3" 60.958415853853261 60.958415853853261 60.958415853853261 ;
+	setAttr ".t" -type "double3" -0.022471887223364018 3.7598106114617877 0.15077646295361991 ;
+	setAttr ".s" -type "double3" 23.768959645874887 14.269587723291668 23.768959645874887 ;
 createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	addAttr -ci true -sn "mso" -ln "miShadingSamplesOverride" -min 0 -max 1 -at "bool";
 	addAttr -ci true -sn "msh" -ln "miShadingSamples" -min 0 -smx 8 -at "float";
@@ -285,6 +285,8 @@ createNode script -n "uiConfigurationScriptNode";
 createNode script -n "sceneConfigurationScriptNode";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 24 -ast 1 -aet 48 ";
 	setAttr ".st" 6;
+createNode polyTriangulate -n "polyTriangulate1";
+	setAttr ".ics" -type "componentList" 1 "f[*]";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -312,7 +314,7 @@ select -ne :defaultHardwareRenderGlobals;
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
 select -ne :ikSystem;
 	setAttr -s 4 ".sol";
-connectAttr "polyNormalPerVertex1.out" "pCylinderShape1.i";
+connectAttr "polyTriangulate1.out" "pCylinderShape1.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "milk_geo0:initialShadingGroup.message" ":defaultLightSet.message";
@@ -429,6 +431,7 @@ connectAttr "place2dTexture5.vc1" "file5.vc1";
 connectAttr "place2dTexture5.o" "file5.uv";
 connectAttr "place2dTexture5.ofs" "file5.fs";
 connectAttr "deleteComponent1.og" "polyNormalPerVertex1.ip";
+connectAttr "polyNormalPerVertex1.out" "polyTriangulate1.ip";
 connectAttr "milk_geo0:initialShadingGroup.pa" ":renderPartition.st" -na;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "milk_geo0:initialShadingGroup1.msg" ":defaultShaderList1.s" -na;
