@@ -23,6 +23,7 @@ public:
   virtual void Draw2d();
 
   void SetCamera(Camera*);
+  Camera* GetCamera();
 
 private:
   // Target for camera to look at
