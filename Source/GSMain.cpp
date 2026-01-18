@@ -243,7 +243,9 @@ void GSMain::Update()
     {
       m_pauseButton->SetVisible(true);
 
-      DepthUpdate();
+      Player* player = Player::GetPlayer(AMJU_P1);
+      float y = -(player->GetPos().y);
+      DepthUpdate(y);
       TheProcGen::Instance()->AddLayerWhenReady();
 
       game->UpdateGameObjects();
