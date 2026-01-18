@@ -3,10 +3,11 @@
 #include "Dino.h"
 #include "Floor.h"
 #include "Rect.h"
+#include "Pet.h"
 
 namespace Amju
 {
-void CollidePlayerFloor(GameObject* go1, GameObject* go2)
+void CollideObjectFloor(GameObject* go1, GameObject* go2)
 {
   Assert(dynamic_cast<OnFloorCharacter*>(go1));
   Assert(dynamic_cast<Floor*>(go2));
@@ -81,8 +82,11 @@ void CollidePlayerFloor(GameObject* go1, GameObject* go2)
 }
 
 static bool b1 = TheCollisionManager::Instance()->Add(
-  Player::NAME, Floor::NAME, &CollidePlayerFloor);
+  Player::NAME, Floor::NAME, &CollideObjectFloor);
 
 static bool b2 = TheCollisionManager::Instance()->Add(
-  Dino::NAME, Floor::NAME, &CollidePlayerFloor);
+  Dino::NAME, Floor::NAME, &CollideObjectFloor);
+
+static bool b3 = TheCollisionManager::Instance()->Add(
+  Pet::NAME, Floor::NAME, &CollideObjectFloor);
 }
