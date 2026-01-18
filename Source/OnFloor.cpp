@@ -39,12 +39,6 @@ OnFloor::OnFloor()
   m_isControlled = false; // TODO in Reset() ?
 }
 
-AABB* OnFloor::GetAABB()
-{
-  Assert(m_pSceneNode);
-  return m_pSceneNode->GetAABB();
-}
-
 bool OnFloor::IsControlled() const
 {
   return m_isControlled;
@@ -126,7 +120,7 @@ void OnFloor::FindFloor()
   {
     // In general area ? - i.e. do our bounding boxes intersect ?
     Floor* f = s_floors[i];
-    const AABB& floorAABB = *(f->GetAABB());
+    const AABB& floorAABB = f->GetAABB();
 
 /*
     AABB aabb = *GetAABB();
@@ -219,9 +213,9 @@ void OnFloor::UpdateY()
     if (m_pos.y < y)
     {
       // Stop box sinking
-      GetAABB()->Translate(Vec3f(0, y - m_pos.y, 0));
-
       m_pos.y = y;
+      RecalcAABB();
+
       if (m_vel.y < 0)
       {
         // We were falling - reverse y vel
@@ -270,7 +264,7 @@ void OnFloor::Update()
   }
 
   // Set shadow AABB to same as Scene Node so we don't cull it by mistake
-  *(m_shadow->GetAABB()) = *(m_pSceneNode->GetAABB());
+  m_shadow->SetAABB(*m_pSceneNode->GetAABB());
 
   UpdatePhysics();
 }

@@ -73,7 +73,10 @@ bool StaticFloor::Load(File* f)
 
   m_matrix.TranslateKeepRotation(m_pos);
 
-  m_collMesh.CalcAABB(m_pSceneNode->GetAABB());
+  AABB aabb;
+  m_collMesh.CalcAABB(&aabb);
+  m_pSceneNode->SetAABB(aabb);
+
   m_pSceneNode->SetLocalTransform(m_matrix);
 
   return true;

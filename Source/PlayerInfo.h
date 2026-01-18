@@ -39,6 +39,7 @@ private:
 
 public:
   void Init(int numPlayers);
+  int GetNumPlayers() const;
   PlayerInfo* GetPlayerInfo(int player);
 
 private:

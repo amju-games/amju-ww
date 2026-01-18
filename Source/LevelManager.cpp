@@ -7,6 +7,8 @@
 #include <LoadVec3.h>
 #include <StringUtils.h>
 #include "WWGameObject.h"
+#include "Player.h"
+#include "PlayerInfo.h"
 
 namespace Amju
 {
@@ -14,15 +16,17 @@ LevelManager::LevelManager()
 {
   m_levelId = 0;
   m_numObjects = 0;
+  m_numPlayers = 0;
 }
 
 bool LevelManager::Open()
 {
+  m_numPlayers = 0;
   Clear();
   m_file = new File;
 
   // TODO use current level number
-  std::string levelFilename = "levels/block-1.txt";
+  std::string levelFilename = "levels/level-1.txt";
 
   if (!m_file->OpenRead(levelFilename))
   {
@@ -57,6 +61,7 @@ bool LevelManager::LoadOneObject()
     m_file->ReportError("Expected game object type");
     return false;
   }
+
   RCPtr<GameObject> go = TheGameObjectFactory::Instance()->Create(s);
   if (!go)
   {
@@ -80,6 +85,18 @@ bool LevelManager::LoadOneObject()
   {
     m_file->ReportError("Expected \"end\" here");
     return false;
+  }
+
+  if (dynamic_cast<Player*>(go.GetPtr()))
+  {
+    static PlayerInfoManager* pim = ThePlayerInfoManager::Instance();
+    m_numPlayers++;
+    // If this is a one-player game, don't create player 2
+    if (m_numPlayers > pim->GetNumPlayers())
+    {
+      std::cout << "Not creating player " << m_numPlayers << "\n";
+      return true;
+    }
   }
 
   TheGame::Instance()->AddGameObject(go);

@@ -42,7 +42,6 @@ public:
   virtual bool Load(File*);
   virtual void Update();
   virtual void Reset();
-  virtual AABB* GetAABB(); 
 
   // Get matrix - this is the rotation of the Floor
   Matrix* GetMatrix();

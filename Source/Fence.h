@@ -22,7 +22,6 @@ public:
   virtual bool Load(File*);
   virtual void Update();
   virtual void Reset();
-  virtual AABB* GetAABB(); 
 
 public:
   float m_yRot;

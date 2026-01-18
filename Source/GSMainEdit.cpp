@@ -180,8 +180,8 @@ void GSMainEdit::Draw()
     {
       GameObject* pgo = it->second;
       Assert(pgo);
-      AABB* aabb = pgo->GetAABB();
-      if (aabb && Clip(lineSeg, *aabb, 0))
+      const AABB& aabb = pgo->GetAABB();
+      if (Clip(lineSeg, aabb, 0))
       {
         // Line seg intersects this box
         Assert(dynamic_cast<WWGameObject*>(pgo));

@@ -20,8 +20,13 @@ const char* Bonus::NAME = "bonus";
 GameObject* CreateBonus() { return new Bonus; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Bonus::NAME, &CreateBonus);
 
+static const float XSIZE = 15.0f;
+static const float YSIZE = 50.0f;
+
 Bonus::Bonus()
 {
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+
   m_isCollected = false;
 
   m_yRot = (float)(rand() % 180);
@@ -58,13 +63,7 @@ bool Bonus::Load(File* f)
   m_pSceneNode = sm;
 
   // Set bounding box 
-  static const float XSIZE = 15.0f;
-  static const float YSIZE = 50.0f;
-  m_pSceneNode->GetAABB()->Set(
-    -XSIZE, XSIZE, 
-    -YSIZE, YSIZE, 
-    -XSIZE, XSIZE);
-  m_pSceneNode->GetAABB()->Translate(m_pos);  
+  RecalcAABB();
 
   GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE)->
     AddChild(m_pSceneNode);

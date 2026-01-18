@@ -18,7 +18,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   // player is moving towards the floor. Bounce off if player is too low. This
   // prevents player from falling into and through a floor.
   // TODO
-  const AABB& floorAABB = *(go2->GetAABB());
+  const AABB& floorAABB = go2->GetAABB();
   Rect r(floorAABB.GetMin(0), floorAABB.GetMax(0), floorAABB.GetMin(2), floorAABB.GetMax(2));
 
   const Vec3f& playerPos = go1->GetPos();
@@ -58,7 +58,7 @@ void CollideObjectFloor(GameObject* go1, GameObject* go2)
   // Find intersection rectangle (x, z) of player and floor AABBs.
   // TODO Get floor height at corners, and test all 4 ? or centre of intersect rect ?
 
-  AABB intr = go1->GetAABB()->Intersection(floorAABB);
+  AABB intr = go1->GetAABB().Intersection(floorAABB);
   // Get centre point of intersection (x, z) rect
   Vec2f centre(
     (intr.GetMin(0) + intr.GetMax(0)) * 0.5f,

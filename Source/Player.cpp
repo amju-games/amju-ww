@@ -27,6 +27,8 @@ namespace Amju
 static const float MAX_SPEED = 100.0f; // TODO CONFIG
 static const float RUN_SPEED = MAX_SPEED * 0.5f;
 static const float WALK_SPEED = RUN_SPEED * 0.5f; 
+static const float XSIZE = 15.0f; // AABB size
+static const float YSIZE = 60.0f;
 
 GameObject* CreatePlayer() { return new Player; }
 static bool reg = TheGameObjectFactory::Instance()->Add(Player::NAME, &CreatePlayer);
@@ -61,6 +63,7 @@ private:
 
 Player::Player()
 {
+  m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_controller = new PlayerController(this);
   TheEventPoller::Instance()->AddListener(m_controller);
 
@@ -425,13 +428,8 @@ void Player::Update()
   }
 
   // Set AABB 
-  static const float XSIZE = 15.0f;
-  static const float YSIZE = 60.0f;
-  GetAABB()->Set(
-    m_pos.x - XSIZE, m_pos.x + XSIZE, 
-    m_pos.y, m_pos.y + YSIZE, 
-    m_pos.z - XSIZE, m_pos.z + XSIZE);
-
+  RecalcAABB();
+   
   // If we have fallen, go to life lost state
   if (IsDead())
   {
