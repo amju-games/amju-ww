@@ -79,6 +79,8 @@ protected:
   //Vec2f m_cursorPos;
   WWGameObject* m_selectedObj;
   Vec2f m_mouseScreen;
+  Vec2f m_mouseScreenAnchor;
+
   Vec3f m_mouseWorld;
   bool m_isSelecting;
 

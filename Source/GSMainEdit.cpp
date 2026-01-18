@@ -7,6 +7,7 @@
 #include <Directory.h>
 #include <GuiCommandHandler.h>
 #include <Screen.h>
+#include <DrawRect.h>
 #include "GSMainEdit.h"
 #include "GSTitle.h"
 #include "GSLoadLevel.h"
@@ -35,6 +36,9 @@ static std::string s_lastPath = TheGameConfigFile::Instance()->
   GetValue(LAST_PATH, GetSaveDir()); 
 
 static int s_unsaved = 0; // number of commands away from save
+
+static bool s_drag = false;
+
 
 void SelectedNode::Draw()
 {
@@ -722,7 +726,7 @@ void GSMainEdit::SetSelectedObject(GameObject* obj)
   {
     m_contextMenu->Clear();
     m_infoText.SetText("Nothing selected");
-    GetCamera()->SetControllable(true);
+    //GetCamera()->SetControllable(true);
   }
 }
 
@@ -738,7 +742,18 @@ void GSMainEdit::Draw2d()
   for (int i = 0; i < numVps; i++)
   {
     Viewport* vp = TheViewportManager::Instance()->GetViewport(i);
-    vp->Draw2d();
+    EditViewport* evp = dynamic_cast<EditViewport*>(vp);
+    Assert(evp);
+
+    evp->Draw2d();
+
+    if (s_drag && evp->IsActive())
+    {
+      Rect rect(evp->ConvertScreenCoord(m_mouseScreen), 
+        evp->ConvertScreenCoord(m_mouseScreenAnchor));
+      AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+      DrawRect(rect);
+    }
   }
   AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
 
@@ -750,10 +765,12 @@ void GSMainEdit::Draw2d()
   m_topMenu->Draw();
   m_contextMenu->Draw();
   m_infoText.Draw();
-  TheCursorManager::Instance()->Draw();
-}
 
-static bool s_drag = false;
+#if !defined(WIN32) && !defined(MACOSX)
+  // Not needed for Windows or Mac - we have a mouse cursor already
+  TheCursorManager::Instance()->Draw();
+#endif
+}
 
 bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 {
@@ -801,6 +818,9 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 
       m_mouseScreen.x = mbe.x;
       m_mouseScreen.y = mbe.y;
+
+      m_mouseScreenAnchor = m_mouseScreen;
+
       m_isSelecting = true;
     }
     else
@@ -864,6 +884,8 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
 {
   static Vec2f oldPos(ce.x, ce.y);
   Vec2f pos(ce.x, ce.y);
+  m_mouseScreen = pos;
+
   Vec2f diff = pos - oldPos;
 
   // TODO
