@@ -22,6 +22,8 @@ public:
   Player();
   virtual ~Player();
 
+  void CreateController();
+
   // ID of player - 0 for single player, 0 or 1 for two-player, etc.
   void SetPlayerId(int);
   int GetPlayerId() const;
@@ -53,6 +55,7 @@ public:
 
 private:
   void UpdatePets();
+  void KillController();
  
 private:
   // PlayerInfo ID
@@ -78,7 +81,7 @@ public:
   virtual bool OnMouseButtonEvent(const MouseButtonEvent& mbe) override { return m_player->OnMouseButtonEvent(mbe); }
 
 private:
-  RCPtr<Player> m_player;
+  Player* m_player;
 };
 
 }
