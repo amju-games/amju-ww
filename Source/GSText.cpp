@@ -22,56 +22,12 @@ class StarEffect : public ParticleEffect2d
 public:
   virtual Vec3f NewPos() const override
   {
-    int i = Rnd(10, 110);
-    float r = (float)i * 20.0f;
+    int i = (int)Rnd(10, 110);
+    float r = (float)i * 0.01f; // radius
     float angle = (float)i * 0.6f;
-    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-800, 200) - 400);
+    Vec3f tr(r * cos(angle), r * sin(angle), Rnd(-0.5, 0.5));
     return tr;
   }
-/*
-  virtual Vec3f NewVel() const override
-  {
-  }
-
-  virtual Vec3f NewAcc() const override
-  {
-  }
-
-  virtual float NewTime() const override
-  {
-    return 99999.9f;
-  }
-*/
-};
-
-class StarMesh : public SceneMesh
-{
-public:
-  StarMesh()
-  {
-    m_rot = 0;
-    m_rotVel = Rnd(-2.0f, 2.0f); // rad/sec
-  }
-
-  virtual void BeforeDraw() 
-  {
-    static Timer* t = TheTimer::Instance();
-    float dt = t->GetDt();
- 
-    Matrix mat;
-    mat.RotateZ(m_rotVel * dt);
-    m_local = mat * m_local;
-
-    m_rot += m_rotVel * dt;
-  }
-
-  virtual void AfterDraw() 
-  {    
-  }
-
-private:
-  float m_rot;
-  float m_rotVel;
 };
 
 GSText::GSText()
@@ -93,6 +49,21 @@ void GSText::Draw()
 {
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
+
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+  AmjuGL::SetIdentity();
+
+  AmjuGL::PushMatrix();
+  Matrix mat;
+  static float a = 0; 
+  a += TheTimer::Instance()->GetDt();   // TODO CONFIG!!
+  AmjuGL::RotateZ(a * 10.0f); // TODO TEMP TEST
+
+  m_stars->Update();
+  m_stars->Draw();
+  AmjuGL::PopMatrix();
+
+  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   const float FOVY = 60.0f;
   const float NEAR = 1.0f;
   const float FAR = 1000.0f;
@@ -101,20 +72,11 @@ void GSText::Draw()
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
-  static float a = 0; 
-  // TODO CONFIG!!
-  a += TheTimer::Instance()->GetDt(); 
+  //static float a = 0; 
+  //// TODO CONFIG!!
+  //a += TheTimer::Instance()->GetDt(); 
   //AmjuGL::LookAt(cos(a), 10.0f + sin(a), 6.0f,   0, 0, 0.0f,  0, 1.0f, 0);
   m_camera->SetEyePos(Vec3f(0, 10, 6)); //Vec3f(cos(a), 10.0f + sin(a), 6.0f)); 
-
-  Matrix mat;
-  mat.RotateZ(a * 0.1f); // TODO TEMP TEST
-  Matrix m2;
-  m2.RotateX(DegToRad(-60.0f));
-  m_stars->SetLocalTransform(mat * m2);
-  m_stars->CombineTransform();
-
-  m_stars->Draw();
 
   // TODO Lighting node
   AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
@@ -159,28 +121,6 @@ void GSText::OnDeactive()
   m_gui = 0; 
 }
 
-class Reflect : public SceneNode
-{
-public:
-  virtual void BeforeDraw()
-  {
-    PushColour();
-    static const float s = 0.5f;
-    MultColour(Colour(s, s, s, 1));
-    AmjuGL::PushMatrix();
-    // TODO Doesn't look right
-    AmjuGL::Scale(1, -1, 1);
-    AmjuGL::Translate(0, -2.0f, 0);
-  }
-
-  virtual void AfterDraw()
-  {
-    AmjuGL::PopMatrix();
-    PopColour();
-  }
-
-};
-
 void GSText::CreateText(const std::string& text)
 {
   MyTextMaker tm;
@@ -206,10 +146,8 @@ void GSText::CreateText(const std::string& text)
 
   StarEffect* stars = new StarEffect;
   m_stars = stars;
-  stars->Set("wh8.png", 10.0f, 100, 99999.9f, -99999.9f);
+  stars->Set("star1.png", 0.1f, 100, 99999.9f, -99999.9f);
   stars->Start();
-  AABB aabb(-1000, 1000, -1000, 1000, -1000, 1000);
-  stars->SetAABB(aabb);
 
 //SceneNode;
   // TODO shouldn't this apply to all children??
