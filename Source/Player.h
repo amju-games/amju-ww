@@ -69,6 +69,8 @@ private:
 
   bool m_reachedExit;
   Vec3f m_exitPos;
+
+  int m_jumpCount; // for double, (triple?) jump
 };
 
 // Pass events on to the Player - TODO Send messages so will work over network

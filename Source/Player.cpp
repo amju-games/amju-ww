@@ -76,6 +76,7 @@ Player::Player()
   m_extentsSet = true;
   m_playerId = 0;
   m_reachedExit = false;
+  m_jumpCount = 0;
 }
 
 Player::~Player()
@@ -358,10 +359,16 @@ void Player::OnAnimFinished()
 
 void Player::Jump()
 {
-  // Jump if we are on ground
-  if (!IsFalling())
+  // Jump if we are on ground or can double jump etc
+//  if (!IsFalling())
+
+  if (m_jumpCount < 10) // TODO
   {
-    m_vel.y = 100.0f; // TODO CONFIG -- power up ?
+std::cout << "JUMP! Count is: " << m_jumpCount << "\n";
+
+    m_jumpCount++;
+
+    m_vel.y = 500.0f; // TODO CONFIG -- power up ?
     SetIsFalling(true);
     SetAnim("jump");
   }
@@ -384,7 +391,7 @@ bool Player::OnButtonEvent(const ButtonEvent& be)
     return false;;
   }
 
-  if (be.button == AMJU_BUTTON_A)
+  if (be.button == AMJU_BUTTON_A && be.isDown)
   {
     Jump();
     return true;
@@ -402,41 +409,51 @@ bool Player::OnKeyEvent(const KeyEvent& ke)
     return false;
   }
 
-  if (IsFalling())
-  {
-    return false;
-  }
-
   if (m_playerId == 0)
   {
     switch (ke.keyType)
     {
     case AMJU_KEY_UP:
-      m_vel.z = ke.keyDown ? -MAX_SPEED : 0;
-      SetDir(180.0f);
-      SetIsControlled(true); 
+      if (!IsFalling())
+      {
+        m_vel.z = ke.keyDown ? -MAX_SPEED : 0;
+        SetDir(180.0f);
+        SetIsControlled(true); 
+      }
       return true;
 
     case AMJU_KEY_DOWN:
-      m_vel.z = ke.keyDown ? MAX_SPEED : 0;
-      SetDir(0.0f);
-      SetIsControlled(true); 
+      if (!IsFalling())
+      {
+        m_vel.z = ke.keyDown ? MAX_SPEED : 0;
+        SetDir(0.0f);
+        SetIsControlled(true); 
+      }
       return true;
 
     case AMJU_KEY_LEFT:
-      m_vel.x = ke.keyDown ? -MAX_SPEED : 0;
-      SetDir(-90.0f);
-      SetIsControlled(true); 
+      if (!IsFalling())
+      {
+        m_vel.x = ke.keyDown ? -MAX_SPEED : 0;
+        SetDir(-90.0f);
+        SetIsControlled(true); 
+      }
       return true;
 
     case AMJU_KEY_RIGHT:
-      m_vel.x = ke.keyDown ? MAX_SPEED : 0;
-      SetDir(90.0f);
-      SetIsControlled(true); 
+      if (!IsFalling())
+      {
+        m_vel.x = ke.keyDown ? MAX_SPEED : 0;
+        SetDir(90.0f);
+        SetIsControlled(true); 
+      }
       return true;
 
     case AMJU_KEY_SPACE:
-      Jump();
+      if (ke.keyDown)
+      {
+        Jump();
+      }
       return true;
 
     default:
@@ -634,6 +651,11 @@ void Player::Update()
   }
 
   OnFloorCharacter::Update();
+
+  if (!IsFalling())
+  {
+    m_jumpCount = 0;
+  }
 
   Vec3f v = m_vel;
   v.y = 0;
