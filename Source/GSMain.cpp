@@ -32,16 +32,6 @@ namespace Amju
 {
 const char* GSMain::NAME = "main";
 
-// Return true if two game objects collide - just simple static test
-bool MyCollide(GameObject* go1, GameObject* go2)
-{
-  const AABB* aabb1 = go1->GetAABB();
-  if (!aabb1) return false;
-  const AABB* aabb2 = go2->GetAABB();
-  if (!aabb2) return false;
-  return aabb1->Intersects(*aabb2);
-}
-
 GSMain::GSMain()
 {
 }
@@ -50,8 +40,7 @@ void GSMain::OnActive()
 {
   GameState::OnActive();
 
-  TheSAP::Instance()->Clear();
-  TheSAP::Instance()->SetCollideFunc(MyCollide);
+  TheCollisionManager::Instance()->GetCollisionDetector()->Clear();
 
   // Clear Text scene graph
   GetTextSceneGraph()->Clear();
@@ -139,7 +128,8 @@ void GSMain::Update()
       // Perform game-specific collision det & response here
       //Collisions();
       // Using Sweep and Prune
-      TheSAP::Instance()->Update(*TheGame::Instance()->GetGameObjects());
+      ////TheSAP::Instance()->Update(*TheGame::Instance()->GetGameObjects());
+      TheCollisionManager::Instance()->Update();
     }
 
     GetGameSceneGraph()->Update();
