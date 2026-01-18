@@ -3,6 +3,7 @@
 #include "Exit.h"
 #include "Viewport.h"
 #include "Camera.h"
+#include "GSLevelComplete.h"
 
 namespace Amju
 {
@@ -29,6 +30,9 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   // Set player to face camera and do special animation
   player->SetDir(180.0f);
   //player->SetAnim("jump"); // TODO
+
+  // Set player to show in Level complete stage
+  TheGSLevelComplete::Instance()->SetPlayer(player);
 }
 
 static bool b1 = TheCollisionManager::Instance()->Add(
