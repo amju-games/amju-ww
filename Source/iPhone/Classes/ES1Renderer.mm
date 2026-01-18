@@ -11,9 +11,9 @@
 #include <File.h>
 #include <SoundManager.h>
 #include <EventPoller.h>
+#include <EventPollerImplGeneric.h>
 #include <Screen.h>
-#include <SoundIPhone.h>
-#include <EventPollerImplIPhone.h>
+#include <BassSoundPlayer.h>
 #include <StringUtils.h>
 #include <Font.h>
 #include <ResourceManager.h>
@@ -53,8 +53,8 @@
 		const char* cFilePath = [filePath UTF8String];
 		Amju::File::SetRoot(Amju::GetFilePath(cFilePath), "/");    
 		
-		Amju::TheSoundManager::Instance()->SetImpl(new Amju::SoundIPhone);
-		Amju::TheEventPoller::Instance()->SetImpl(new Amju::EventPollerImplIPhone);
+		Amju::TheSoundManager::Instance()->SetImpl(new Amju::BassSoundPlayer);
+		Amju::TheEventPoller::Instance()->SetImpl(new Amju::EventPollerImplGeneric);
 				
         Amju::StartUp();
         
@@ -95,7 +95,6 @@
 	timeval tafter;
 	gettimeofday(&tafter, 0);
 	double t = tafter.tv_sec - tbefore.tv_sec + (tafter.tv_usec - tbefore.tv_usec) * 1e-6;
-	std::cout << "T: " << t << " FPS: " << 1.0/t << "\n";
 
 	// Display time/frame
 	static Amju::Font* font = 
