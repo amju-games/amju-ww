@@ -91,6 +91,11 @@ void Animated::Draw()
 
 void Animated::Update()
 {
+  if (!IsVisible())
+  {
+    return;
+  }
+
   SceneNode::Update();
 
   Assert(m_pModel);
