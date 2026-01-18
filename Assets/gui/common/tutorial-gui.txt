@@ -1,0 +1,13 @@
+// tutorial gui
+// version
+1
+
+// Element name
+tutorial
+// pos (coords are -1..1)
+-0.9, 0.0
+// size
+1.8, 0.9
+// Image - ext is resource name
+tutorial.bmpa
+
