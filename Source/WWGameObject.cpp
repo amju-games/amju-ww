@@ -190,12 +190,11 @@ bool WWGameObject::LoadMeshResource(File* f)
 
 bool WWGameObject::SaveMeshResource(File* f)
 {
+  f->WriteComment("// Mesh filename");
   if (m_meshFilename.empty()) 
   {
-    f->ReportError("No mesh filename for " + Describe(this));
-    return false;
+    return f->Write("$$$empty");
   }
-  f->WriteComment("// Mesh filename");
   return f->Write(m_meshFilename);
 }
 
