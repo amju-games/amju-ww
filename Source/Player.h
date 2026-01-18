@@ -24,6 +24,7 @@ public:
   int GetPlayerId() const;
 
   virtual const char* GetTypeName() const;
+  virtual WWGameObject* Clone() override;
   virtual void Update();
   virtual bool Load(File* f);
   virtual bool Save(File* f);

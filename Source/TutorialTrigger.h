@@ -11,6 +11,7 @@ class TutorialTrigger : public Trigger
 public:
   static const char* NAME;
   TutorialTrigger();
+  virtual WWGameObject* Clone() override;
   virtual const char* GetTypeName() const;
   virtual bool Load(File*); 
   virtual bool Save(File*); 

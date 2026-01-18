@@ -16,7 +16,7 @@ EditModeCamera::EditModeCamera()
 {
   m_controllable = true;
   m_controller = new EditModeCameraController(this);
-  TheEventPoller::Instance()->AddListener(m_controller); 
+  TheEventPoller::Instance()->AddListener(m_controller, 100); // low pri 
 
   // TODO TEMP TEST
   SetEyePos(Vec3f(0, 0, 500));
@@ -70,6 +70,7 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
       break;
 
     case AMJU_ROTATE:
+      if (m_controllable)
       {
         float angleX = dx; // TODO TEMP TEST
         float angleY = dy * 1000.0f;

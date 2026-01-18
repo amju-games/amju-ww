@@ -17,6 +17,11 @@ static bool reg = TheGameObjectFactory::Instance()->Add(
 
 const char* StaticFloor::NAME = "staticfloor";
 
+WWGameObject* StaticFloor::Clone()
+{
+  return new StaticFloor(*this);
+}
+
 const char* StaticFloor::GetTypeName() const
 {
   return NAME;

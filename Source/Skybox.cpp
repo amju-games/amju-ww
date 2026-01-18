@@ -25,6 +25,11 @@ Skybox::Skybox()
 #endif
 }
 
+WWGameObject* Skybox::Clone()
+{
+  return new Skybox(*this);
+}
+
 const char* Skybox::GetTypeName() const
 {
   return NAME;

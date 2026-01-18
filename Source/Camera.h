@@ -34,14 +34,15 @@ public:
   static const char* NAME;
 
   Camera();
-  virtual const char* GetTypeName() const;
+  virtual const char* GetTypeName() const override;
+  virtual WWGameObject* Clone() override;
   virtual void Reset() override;
-  virtual void Update();
-  virtual bool Load(File*);
-  virtual bool Save(File*);
+  virtual void Update() override;
+  virtual bool Load(File*) override;
+  virtual bool Save(File*) override;
 
-  virtual void AddToGame();
-  virtual void RemoveFromGame();
+  virtual void AddToGame() override;
+  virtual void RemoveFromGame() override;
 
   void SetAsSceneGraphCamera();
   void SetLookAtPos(const Vec3f& v) { m_lookAt = v; }

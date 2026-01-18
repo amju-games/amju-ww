@@ -30,6 +30,11 @@ Pet::Pet()
   AddAI(new AIFalling);
 }
 
+WWGameObject* Pet::Clone()
+{
+  return new Pet(*this);
+}
+
 const char* Pet::GetTypeName() const
 {
   return NAME;

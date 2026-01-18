@@ -54,6 +54,11 @@ Floor::Floor()
   m_yRot = 0;
 }
 
+WWGameObject* Floor::Clone()
+{
+  return new Floor(*this);
+}
+
 const char* Floor::GetTypeName() const
 {
   return NAME;

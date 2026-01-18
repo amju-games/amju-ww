@@ -37,6 +37,11 @@ Exit::Exit()
   m_isExiting = false;
 }
 
+WWGameObject* Exit::Clone() 
+{
+  return new Exit(*this);
+}
+
 const char* Exit::GetTypeName() const
 {
   return NAME;

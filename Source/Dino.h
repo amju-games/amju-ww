@@ -30,10 +30,11 @@ public:
   static const char* NAME;
 
   Dino();
-  virtual const char* GetTypeName() const;
-  virtual void Update();
-  virtual bool Load(File*);
-  virtual bool Save(File*);
+  virtual const char* GetTypeName() const override;
+  virtual WWGameObject* Clone() override;
+  virtual void Update() override;
+  virtual bool Load(File*) override;
+  virtual bool Save(File*) override;
 
   void Eat(Pet*);
   bool IsEating() const;

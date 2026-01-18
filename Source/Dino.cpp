@@ -77,6 +77,11 @@ Dino::Dino()
   AddAI(new AIFalling);
 }
 
+WWGameObject* Dino::Clone() 
+{
+  return new Dino(*this);
+}
+
 // Unusual as Dino shape needs asymmetric AABB
 void Dino::UpdateAabb()
 {

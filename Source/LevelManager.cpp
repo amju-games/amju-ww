@@ -14,12 +14,19 @@
 
 namespace Amju
 {
+static int s_uniqueId = 0;
+
 LevelManager::LevelManager()
 {
   m_levelId = 0;
   m_numObjects = 0;
   m_numPlayers = 0;
   m_isOpen = false;
+}
+
+int LevelManager::GetUniqueId()
+{
+  return s_uniqueId++;
 }
 
 bool LevelManager::SaveLevel(const std::string& filename)
@@ -173,6 +180,13 @@ bool LevelManager::LoadOneObject()
   {
     m_file->ReportError("Failed to load game object: " + s);
     return false;
+  }
+
+  // Keep track of highest ID we have found 
+  int id = go->GetId();
+  if (id > s_uniqueId)
+  {
+    s_uniqueId = id;
   }
  
   // Check

@@ -20,6 +20,11 @@ Block::Block()
 {
 }
 
+WWGameObject* Block::Clone() 
+{
+  return new Block(*this);
+}
+
 const char* Block::GetTypeName() const
 {
   return NAME;
