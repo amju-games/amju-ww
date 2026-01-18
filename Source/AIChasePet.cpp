@@ -73,6 +73,10 @@ float AIChasePet::GetRank()
     {
       continue;
     }
+    if (!pet->CanBeEaten())
+    {
+      continue;
+    }
 
     float distSq = (m_npc->GetPos() - pet->GetPos()).SqLen();
 

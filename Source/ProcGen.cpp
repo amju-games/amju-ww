@@ -37,7 +37,7 @@ void ProcGen::Init()
     Assert(0);
   }
 
-  for (int i = 0; i < dirents.size(); i++)
+  for (int i = 0; i < (int)dirents.size(); i++)
   {
     DirEnt de = dirents[i];
 std::cout << "Got this dirent: " << de.m_name << "\n";
