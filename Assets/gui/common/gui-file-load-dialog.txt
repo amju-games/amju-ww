@@ -2,8 +2,11 @@
 // Ver
 1
 
-// This file name is given in parent file (gui-file-dialog.txt), then this data
-//  is loaded. TODO Why did I do it this way?
+gui-file-dialog
+my_file_dialog
+
+// Now the entire dialog is in this one file
+//gui-file-dialog-layout.txt
 
 //  pos, size
 -0.8, 0.5
@@ -66,5 +69,6 @@ gui-button-4.png
 Cancel
 // Font name, size
 arial, 0.75 
+
 
 
