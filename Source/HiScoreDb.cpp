@@ -5,10 +5,14 @@
 #include <SafeUtils.h>
 #include <StringUtils.h>
 #include <UrlUtils.h>
-#include <XmlNodeInterface.h>
+#include <XML/XmlNodeInterface.h>
 #include "HiScoreDb.h"
 #include "NetSend.h"
 #include "SaveDir.h"
+
+#ifdef min
+#undef min
+#endif
 
 namespace Amju
 {

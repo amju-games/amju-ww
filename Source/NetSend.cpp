@@ -70,7 +70,7 @@ class NetSendHiScoresReq : public OnlineReq
 public:
 #ifdef WIN32
   // Can't inherit ctor in MSVC 2013 ?
-  NetSendReq(
+  NetSendHiScoresReq(
     const std::string& url,
     HttpClient::HttpMethod method,
     const std::string& name) : OnlineReq(url, method, name) {}
