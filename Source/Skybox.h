@@ -27,6 +27,7 @@ public:
   virtual void AddPropertiesGui(PropertiesDialog* dlg) override;
   virtual PropertyValue GetProp(PropertyKey) override;
   virtual void SetProp(PropertyKey, PropertyValue) override;
+  virtual bool YesAddToLevel(int, float) { Assert(0); }
 
 private:
   Colour m_colour;
