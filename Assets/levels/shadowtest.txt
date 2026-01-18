@@ -160,19 +160,6 @@ exit
 star.obj
 // Next level
 2
-// Billboard
-flare.png
-// size
-100
-// Effect
-// image - TODO TEMP TEST
-sparkle1.png
-// size
-20.0
-// number
-50
-// max time
-2.0
 // Shadow
 // TODO White "shadow" as exits emit light ?
 shadow.png
