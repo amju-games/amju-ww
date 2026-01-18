@@ -85,14 +85,20 @@ void OnFloorCharacter::Update()
   }
   else
   {
+    // Fixed 27 Nov 2013
     if (angleDiff < -180.0f)
     {
-      m_dir += 360.0f;
+//std::cout << "Angle diff: " << angleDiff << " m_dir: " << m_dir  << " m_dirCurrent: " << m_dirCurrent;
+      m_dirCurrent -= 360.0f;
+//std::cout << " -> " << m_dirCurrent << "\n";
     }
     else if (angleDiff > 180.0f)
     {
-      m_dir -= 360.0f;
+//std::cout << "Angle diff: " << angleDiff << " m_dir: " << m_dir  << " m_dirCurrent: " << m_dirCurrent;
+      m_dirCurrent += 360.0f;
+//std::cout << " -> " << m_dirCurrent << "\n";
     }
+
     angleDiff = m_dir - m_dirCurrent;
 
     if (m_dirCurrent > m_dir)
