@@ -60,8 +60,9 @@ void StartUpBeforeCreateWindow()
   std::cout << "Data Dir: " << dataDir << "\n";
   File::SetRoot(dataDir, "/");
 #endif
-  
-  if (FileImplGlue::OpenGlueFile(GLUE_FILE))
+
+  GlueFileMem* gfm = new GlueFileMem;  
+  if (FileImplGlue::OpenGlueFile(GLUE_FILE, gfm))
   {
     std::cout << "Opened glue file " << GLUE_FILE << "\n";
   }
