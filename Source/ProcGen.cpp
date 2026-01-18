@@ -2,6 +2,7 @@
 #include <File.h>
 #include <StringUtils.h>
 #include <ROConfig.h>
+#include <Directory.h>
 #include "ProcGen.h"
 #include "WWGameObject.h"
 #include "SaveDir.h"
@@ -24,7 +25,29 @@ int ProcGen::GetNumLayers() const
 
 void ProcGen::Init()
 {
-  m_numLayers = 3; // TODO
+  // Get number of files which start "levels/layer"
+  // Don't use glue file, as these files are copied to OS files
+
+  DirEnts dirents;
+  const bool NO_GLUE = false;
+  std::string dir = GetSaveDir() + "levels/";
+  if (!Dir(dir, & dirents, NO_GLUE))
+  {
+    std::cout << "Couldn't dir " << dir << "\n";
+    Assert(0);
+  }
+
+  for (int i = 0; i < dirents.size(); i++)
+  {
+    DirEnt de = dirents[i];
+std::cout << "Got this dirent: " << de.m_name << "\n";
+    if (de.m_name.size() > 5 && de.m_name.substr(0, 5) == "layer")
+    {
+std::cout << " -- it's a layer file!\n";
+      m_numLayers++;
+    }
+  }
+  std::cout << "total num layers = " << m_numLayers << "\n";
 }
 
 bool ProcGen::OpenLayer(int layerNum) //const std::string& layerFilename)
@@ -66,7 +89,7 @@ bool ProcGen::Layer::Open(const std::string& layerFilename)
 {
   bool HAS_VERSION_INFO = true;
   bool NOT_BINARY = false;
-  bool useRoot = true;
+  bool useRoot = false;
   File::Impl impl = File::STD;
 
   m_file = new File(HAS_VERSION_INFO, impl);
@@ -129,6 +152,9 @@ bool ProcGen::Layer::LoadOneObject()
 
 void ProcGen::Layer::AddToGame(float depth, float x)
 {
+  static LevelManager* lm = TheLevelManager::Instance();
+  int levelId = lm->GetLevelId();
+
   float xPos = 0;
 /*
   if (x > 300) // TODO TEMP TEST
@@ -147,17 +173,23 @@ void ProcGen::Layer::AddToGame(float depth, float x)
     WWGameObject* ww = dynamic_cast<WWGameObject*>(go);
     Assert(ww);
 
-    RCPtr<WWGameObject> clone = ww->Clone();
-    int id = TheLevelManager::Instance()->GetUniqueId();
-    clone->SetId(id);
+    if (ww->YesAddToLevel(levelId, depth))
+    {
+      RCPtr<WWGameObject> clone = ww->Clone();
+      int id = TheLevelManager::Instance()->GetUniqueId();
+      clone->SetId(id);
 
-    Vec3f pos = clone->GetPos();
-    pos.x += xPos;
+      // Procedurally change appearance etc depending on type
+      clone->Customise(levelId, depth); // any other info?
+
+      Vec3f pos = clone->GetPos();
+      pos.x += xPos;
 //    pos.y  = - (pos.y + depth);
-    pos.y -= depth; // ?
-    clone->SetPos(pos);
+      pos.y -= depth; // ?
+      clone->SetPos(pos);
 
-    clone->AddToGame();
+      clone->AddToGame();
+    }
   }
 }
 
@@ -175,10 +207,22 @@ void ProcGen::PickNextLayer()
   // Otherwise, pick a layer depending on which ones are allowed to follow
   //  the current layer..?
 
-  m_nextLayer = rand() % m_numLayers; 
-  // TODO Random, but based on which layers are allowed to come after the most recent layer.
+//  m_nextLayer = rand() % m_numLayers; 
 
-  float layerHeight = 300; // TODO TEMP TEST should be data, depending on layer above
+  // Just in sequence, starting randomly
+  if (m_nextLayer == -1)
+  {
+    m_nextLayer = rand() % m_numLayers; 
+  }
+  m_nextLayer++;
+  if (m_nextLayer >= m_numLayers)
+  {
+    m_nextLayer = 0;
+  }
+
+  float layerHeight = 260;
+  // Should be layer height + a gap to get through
+   // TODO TEMP TEST should be data, depending on layer above
 
   m_nextDepth = m_nextDepth + layerHeight; 
 }

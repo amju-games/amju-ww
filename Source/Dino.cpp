@@ -1,3 +1,4 @@
+#include <AmjuRand.h>
 #include "Dino.h"
 #include "File.h"
 #include "ResourceManager.h"
@@ -33,6 +34,24 @@ Dino::Dino()
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
   m_extentsYOffset = YSIZE + YOFFSET;
   m_extentsSet = true;
+}
+
+bool Dino::YesAddToLevel(int levelId, float depth)
+{
+  return true; // TODO TEMP TEST
+
+  // More dinos in higher levels
+  float r = Rnd(0, 10); // TODO TEMP TEST
+  bool b = levelId > (int)r; 
+  // extremely unlikely at low level, to a certainty at a high level.
+
+  return b;
+}
+
+void Dino::Customise(int levelId, float depth)
+{
+  // TODO change attack speed etc ?
+  // Can change texture here - but need bloody versions
 }
 
 void Dino::AddPropertiesGui(PropertiesDialog* dlg) 

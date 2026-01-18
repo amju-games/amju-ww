@@ -12,6 +12,8 @@
 #include "GameMode.h"
 #include "Depth.h"
 
+//#define DEBUG_CHECK_DEAD
+
 namespace Amju
 {
 WWGameObject::WWGameObject()
@@ -309,14 +311,18 @@ void WWGameObject::CheckIfDead()
   float h = cd + m_pos.y;
   if (h > MAX_OFFSCREEN_HEIGHT)
   {
+#ifdef DEBUG_CHECK_DEAD
 std::cout << "Object " << Describe(this) << " has scrolled off, is dead: ";
 std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
+#endif
     SetDead(true);
   }
   if (h < -1000) // TODO TEMP TEST
   {
+#ifdef DEBUG_CHECK_DEAD
 std::cout << "Object " << Describe(this) << " has fallen off world, is dead: ";
 std::cout << "cd: " << cd << "y: " << m_pos.y << " h: " << h << "\n";
+#endif
     SetDead(true);
   }
 }

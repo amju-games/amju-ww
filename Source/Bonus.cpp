@@ -1,3 +1,4 @@
+#include <AmjuRand.h>
 #include "Bonus.h"
 #include "Score.h"
 #include "LoadVec3.h"
@@ -35,6 +36,58 @@ Bonus::Bonus()
   m_yRot = (float)(rand() % 180);
   m_lives = 0;
   m_points = 0;
+}
+
+bool Bonus::YesAddToLevel(int levelId, float depth) 
+{
+  // More bonuses the deeper you go??
+  float f = Amju::Rnd(0, 10);
+  bool b = (f > 5.0f);
+  return b;
+}
+
+struct BonusKind
+{
+  std::string m_filename;
+  int m_reward;
+
+  BonusKind(const std::string& filename, int r) : m_filename(filename), m_reward(r) {}
+};
+
+void Bonus::Customise(int levelId, float depth) 
+{
+  static BonusKind BK[] = 
+  {
+    BonusKind("fruit1.obj", 0),
+    BonusKind("fruit2.obj", 1),
+    BonusKind("fruit3.obj", 2),
+    BonusKind("fruit4.obj", 3),
+  };
+ 
+  static const int POINTS[] = { 1000, 2000, 4000, 8000 };
+
+  // What kind of bonus?
+  if (Rnd(0, 10) > 3) // TODO
+  {
+    // Bonus points
+    int r = (int)Rnd(0, 4);
+    m_meshFilename = BK[r].m_filename;
+    m_points = POINTS[BK[r].m_reward];  
+    m_lives = 0;
+    return;
+  }
+  else if (Rnd(0, 10) > 5)
+  {
+    // TODO
+    m_meshFilename = "bean1.obj";
+  }
+  else
+  {
+    m_meshFilename = "heart.obj";
+    m_lives = 1;
+    m_points = 0;
+    return;
+  }
 }
 
 void Bonus::AddPropertiesGui(PropertiesDialog* dlg) 

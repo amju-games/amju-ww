@@ -9,7 +9,7 @@ void CollideDinoDino(GameObject* go1, GameObject* go2)
   // Sound effect
   // TODO Make sure not played more than once in successive frames
   // -- have a timer
-  PlayWav("gasp"); // NB No file ext
+//  PlayWav("gasp"); // NB No file ext
 
   // Push both objects away from each other
 

@@ -2,6 +2,8 @@
 #include "PlayWav.h"
 #include <SoundManager.h>
 
+//#define DEBUG_SOUND
+
 namespace Amju
 {
 void PlayWav(const std::string& wavNoFileExt)
@@ -13,9 +15,9 @@ void PlayWav(const std::string& wavNoFileExt)
   std::string s = "sound/" + wavNoFileExt + ".wav";
 #endif
 
-//#ifdef _DEBUG
+#ifdef DEBUG_SOUND
   std::cout << "Playing sound: " << s << "\n";
-//#endif
+#endif
 
   TheSoundManager::Instance()->PlayWav(s);
 }

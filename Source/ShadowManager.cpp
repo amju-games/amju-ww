@@ -32,6 +32,15 @@ void ShadowManager::AddFloor(Floor* floor)
 {
   m_floors.insert(floor);
 
+  for (auto it = m_casters.begin(); it != m_casters.end(); ++it)
+  {
+    // TODO Check if caster overlaps floor
+    //WWGameObject* go = it->first;
+    Shadow* shadow = it->second;
+ 
+    shadow->AddCollisionMesh(floor->GetCollisionMesh());
+  }
+
 #ifdef SHADOW_MGR_DEBUG
 std::cout << "Shadow mgr: added floor " << floor->GetTypeName()
   << " ID: " << floor->GetId() << "\n";
@@ -40,7 +49,10 @@ std::cout << "Shadow mgr: added floor " << floor->GetTypeName()
 
 void ShadowManager::RemoveCaster(WWGameObject* obj)
 {
+#ifdef SHADOW_MGR_DEBUG
 std::cout << "Shadows: removing " << Describe(obj) << "\n";
+#endif
+
   if (m_casters.find(obj) == m_casters.end())
   {
     return;
@@ -84,6 +96,12 @@ std::cout << "Failed to load shadow texture: " << textureName << "\n";
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   root->AddChild(shadow);
   m_casters.insert(std::make_pair(obj, shadow));
+      
+  for (auto ft = m_floors.begin(); ft != m_floors.end(); ++ft)
+  {
+    Floor* floor = *ft;
+    shadow->AddCollisionMesh(floor->GetCollisionMesh());
+  }
 
 #ifdef SHADOW_MGR_DEBUG
 std::cout << "Shadow mgr: added caster (" << obj->GetTypeName()
