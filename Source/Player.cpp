@@ -314,22 +314,22 @@ void Player::OnJoyAxisEvent(const JoyAxisEvent& je)
   }
 
   float stickX = je.x;
-	float stickY = je.y;
+  float stickY = je.y;
 
   static const float DEADZONE = 0.1f; // TODO CONFIG
   float speed = 0;
-	// Work out dir
-	if (fabs(stickX) > DEADZONE || fabs(stickY) > DEADZONE)
-	{
+  // Work out dir
+  if (fabs(stickX) > DEADZONE || fabs(stickY) > DEADZONE)
+  {
     // Player faces direction we are trying to move, not direction we may
     //  be sliding in ..?
-		SetDir(RadToDeg(atan2((double)stickX, (double)stickY)));
+    SetDir(RadToDeg(atan2((double)stickX, (double)stickY)));
 
-  	// Work out speed ???
-	  speed = sqrt(stickX * stickX + stickY * stickY) * MAX_SPEED;
-	}
+    // Work out speed ???
+    speed = sqrt(stickX * stickX + stickY * stickY) * MAX_SPEED;
+  }
 
-	// Set object vel 
+  // Set object vel 
   m_vel.x = (float) stickX * speed;
   m_vel.z = (float) stickY * speed;  
 
@@ -341,7 +341,12 @@ void Player::Update()
   OnFloorCharacter::Update();
 
   float speed = m_vel.SqLen();
-  if (speed > RUN_SPEED)
+  if (IsFalling())
+  {
+    // TODO fall/jump should be different
+    SetAnim("jump");
+  }
+  else if (speed > RUN_SPEED)
   {
     SetAnim("run");
   }
