@@ -64,7 +64,7 @@ Vec2f Tutorial::GetSize() const
 
 Vec2f Tutorial::GetCentre() const
 {
-  return m_bg.GetPos() + Vec2f(m_bg.GetSize().x, -m_bg.GetSize().y) * 0.5f;
+  return m_bg.GetLocalPos() + Vec2f(m_bg.GetSize().x, -m_bg.GetSize().y) * 0.5f;
 }
 
 void Tutorial::Lock()
@@ -317,10 +317,10 @@ void Tutorial::DrawBg(float f)
   float left = X - W2 * f;
   float right = X + W2 * f;
 
-  Vec2f pos = m_bg.GetPos();
+  Vec2f pos = m_bg.GetLocalPos();
   Vec2f size = m_bg.GetSize();
 
-  m_bg.SetPos(Vec2f(left, top));
+  m_bg.SetLocalPos(Vec2f(left, top));
   m_bg.SetSize(Vec2f(right - left, top - bottom));
 
   PushColour();
@@ -329,7 +329,7 @@ void Tutorial::DrawBg(float f)
   PopColour();
 
   m_bg.SetSize(size);
-  m_bg.SetPos(pos);
+  m_bg.SetLocalPos(pos);
 }
 
 void Tutorial::Draw()
@@ -387,7 +387,7 @@ std::cout << "Tut: m_currentPage: " << m_currentPage
         float LINE_SPACING = 0.15f * FONT_SIZE;
         float Y_ADJUST = 0;
 
-        const float x = m_bg.GetPos().x + BORDER;
+        const float x = m_bg.GetLocalPos().x + BORDER;
         const float y = MID_Y + Y_ADJUST + 0.5f * LINE_SPACING * (float)numLines - LINE_SPACING * (float)(i + 1);
 
         pFont->Print(x, y, line.c_str()); 

@@ -78,23 +78,23 @@ GSMainEdit::GSMainEdit()
   // Set up top menu 
   m_topMenu = new GuiMenu;
   m_topMenu->SetIsVertical(false);
-  m_topMenu->SetPos(Vec2f(-0.9f, 0.8f));
+  m_topMenu->SetLocalPos(Vec2f(-0.9f, 0.8f));
 
   GuiMenu* fileSubmenu = new GuiMenu;
-  fileSubmenu->AddItem(new GuiMenuItem("New level block", OnNewLevelBlock));
-  fileSubmenu->AddItem(new GuiMenuItem("Load level block", OnLoadLevelBlock));
-  fileSubmenu->AddItem(new GuiMenuItem("Save level block", OnSaveLevelBlock));
+  fileSubmenu->AddChild(new GuiMenuItem("New level block", OnNewLevelBlock));
+  fileSubmenu->AddChild(new GuiMenuItem("Load level block", OnLoadLevelBlock));
+  fileSubmenu->AddChild(new GuiMenuItem("Save level block", OnSaveLevelBlock));
 
   GuiMenu* newObjSubmenu = new GuiMenu;
   // Get types from Game Obj factory
   std::vector<std::string> names = TheGameObjectFactory::Instance()->GetTypeNames();
   for (unsigned int i = 0; i < names.size(); i++)
   {
-    newObjSubmenu->AddItem(new GuiMenuItem(names[i]));
+    newObjSubmenu->AddChild(new GuiMenuItem(names[i]));
   }
 
-  m_topMenu->AddItem(new GuiNestMenuItem("File", fileSubmenu));
-  m_topMenu->AddItem(new GuiNestMenuItem("New Object", newObjSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("File", fileSubmenu));
+  m_topMenu->AddChild(new GuiNestMenuItem("New Object", newObjSubmenu));
 }
 
 void GSMainEdit::OnMove()
@@ -116,21 +116,21 @@ void GSMainEdit::OnActive()
   /*
   GuiMenu* childMenu = new GuiMenu;
   childMenu->SetName("Child menu");
-  childMenu->AddItem(new GuiMenuItem("good"));
-  childMenu->AddItem(new GuiMenuItem("Lord"));
-  childMenu->AddItem(new GuiMenuItem("this"));
-  childMenu->AddItem(new GuiMenuItem("seems"));
-  childMenu->AddItem(new GuiMenuItem("to"));
-  childMenu->AddItem(new GuiMenuItem("work"));
+  childMenu->AddChild(new GuiMenuItem("good"));
+  childMenu->AddChild(new GuiMenuItem("Lord"));
+  childMenu->AddChild(new GuiMenuItem("this"));
+  childMenu->AddChild(new GuiMenuItem("seems"));
+  childMenu->AddChild(new GuiMenuItem("to"));
+  childMenu->AddChild(new GuiMenuItem("work"));
   */
 
   m_contextMenu = new ContextMenu;
-  m_contextMenu->AddItem(new GuiMenuItem("New block"));
-  m_contextMenu->AddItem(new GuiMenuItem("Load block..."));
+  m_contextMenu->AddChild(new GuiMenuItem("New block"));
+  m_contextMenu->AddChild(new GuiMenuItem("Load block..."));
   /*
-  m_contextMenu->AddItem(new GuiMenuItem("I am"));
-  m_contextMenu->AddItem(new GuiMenuItem("some text"));
-  m_contextMenu->AddItem(new GuiNestMenuItem("I R Nested!", childMenu));
+  m_contextMenu->AddChild(new GuiMenuItem("I am"));
+  m_contextMenu->AddChild(new GuiMenuItem("some text"));
+  m_contextMenu->AddChild(new GuiNestMenuItem("I R Nested!", childMenu));
   */
 
   m_contextMenu->SetName("Parent menu");
@@ -205,16 +205,16 @@ void GSMainEdit::Draw()
 
       // TODO
       m_contextMenu->Clear();
-      m_contextMenu->AddItem(new GuiMenuItem("Move " + name, Amju::OnMove));
-      m_contextMenu->AddItem(new GuiMenuItem("Rotate", OnRotate));
-      m_contextMenu->AddItem(new GuiMenuItem("Duplicate", OnDuplicate));
-      m_contextMenu->AddItem(new GuiMenuItem("Delete", OnDelete));
-      m_contextMenu->AddItem(new GuiMenuItem("Properties...", OnProperties));
+      m_contextMenu->AddChild(new GuiMenuItem("Move " + name, Amju::OnMove));
+      m_contextMenu->AddChild(new GuiMenuItem("Rotate", OnRotate));
+      m_contextMenu->AddChild(new GuiMenuItem("Duplicate", OnDuplicate));
+      m_contextMenu->AddChild(new GuiMenuItem("Delete", OnDelete));
+      m_contextMenu->AddChild(new GuiMenuItem("Properties...", OnProperties));
     }
     else
     {
       m_contextMenu->Clear();
-      m_contextMenu->AddItem(new GuiMenuItem("Nothing selected"));
+      m_contextMenu->AddChild(new GuiMenuItem("Nothing selected"));
     }
   }
 }

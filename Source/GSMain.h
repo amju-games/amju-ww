@@ -3,12 +3,20 @@
 
 #include <vector>
 #include "GameState.h"
+#include <EventListener.h>
 #include "Viewport.h"
 #include <Singleton.h>
 
 namespace Amju
 {
 class Floor;
+
+class GSMainEventListener : public EventListener
+{
+public:
+  // EventListener overrides
+  virtual bool OnKeyEvent(const KeyEvent&);
+};
 
 class GSMain : public GameState, public NonCopyable
 {
@@ -24,9 +32,6 @@ public:
   virtual void Draw();
   virtual void Draw2d();
   virtual void OnActive();
-
-  // EventListener overrides
-  virtual bool OnKeyEvent(const KeyEvent&);
 
   void ClearLevel();
 

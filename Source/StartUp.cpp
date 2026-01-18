@@ -49,7 +49,11 @@
 
 namespace Amju
 {
-void StartUp()
+void StartUpBeforeCreateWindow()
+{
+}
+
+void StartUpAfterCreateWindow()
 {
 #ifdef GEKKO
   // TODO Better to put this in library main() if we can get the app's directory
@@ -96,7 +100,7 @@ void StartUp()
   TheSceneNodeFactory::Instance()->Add(SceneNode::NAME, &SceneNode::Create);
   TheSceneNodeFactory::Instance()->Add(SceneMesh::NAME, &SceneMesh::Create);
 	
-  TheCursorManager::Instance()->Load();
+  TheCursorManager::Instance()->Load(Vec2f(0, 0));
 	
   TheResourceManager::Instance()->LoadResourceGroup("2dtext-group");
   TheHud::Instance()->Load();
