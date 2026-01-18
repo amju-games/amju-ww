@@ -6,5 +6,5 @@ scene-mesh-material
 // Obj
 rd_a11c_notop.obj
 // Material 
-rd_ice.mtl.txt
+rd_ice1.mtl.txt
 
