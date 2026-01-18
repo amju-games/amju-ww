@@ -23,6 +23,7 @@
 #include "ParticleEffect2d.h"
 #include "Pet.h"
 #include "Score.h"
+#include "NetSend.h"
 #include "PlayWav.h"
 #include "Describe.h"
 #include "GameMode.h"
@@ -931,6 +932,8 @@ std::cout << "Game over.\n";
 std::cout << "Loading level...\n";
 #endif
     }
+    
+    NetSendPlaySession(NET_SEND_PLAYER_DIED);
   }
 
   Colour c = ThePowerUpManager::Instance()->GetPlayerColour(GetPlayerId());
