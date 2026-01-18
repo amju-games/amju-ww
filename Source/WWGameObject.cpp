@@ -1,4 +1,5 @@
 #include "WWGameObject.h"
+#include "MySceneGraph.h"
 
 namespace Amju
 {
@@ -11,6 +12,12 @@ WWGameObject::WWGameObject()
 SceneNode* WWGameObject::GetSceneNode()
 {
   return m_pSceneNode;
+}
+
+void WWGameObject::AddSceneNode()
+{
+  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
+  root->AddChild(m_pSceneNode);
 }
 
 void WWGameObject::SetTransform(const Matrix& mat)
