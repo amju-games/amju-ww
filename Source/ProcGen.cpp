@@ -8,6 +8,7 @@
 #include "SaveDir.h"
 #include "Depth.h"
 #include "LevelManager.h"
+#include "ShadowManager.h"
 
 namespace Amju
 {
@@ -202,6 +203,8 @@ void ProcGen::Layer::AddToGame(float depth, float x)
       clone->AddToGame();
     }
   }
+
+  std::cout << TheShadowManager::Instance()->Report() << "\n";
 }
 
 void ProcGen::Reset()

@@ -21,9 +21,14 @@ static const float GRAVITY = -200.0f;
 
 OnFloor::Floors OnFloor::s_floors;
 
+void OnFloor::RemoveFloor(Floor* f)
+{
+  s_floors.erase(f);
+}
+
 void OnFloor::AddFloor(Floor* f)
 {
-  s_floors.push_back(f);
+  s_floors.insert(f);
 }
 
 void OnFloor::ClearFloors()
