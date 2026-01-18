@@ -28,12 +28,11 @@ gui-button
 // Element name
 pause-button
 // pos (coords are -1..1)
--0.95, -0.75
+-0.95, -0.85
 // size
-0.3, 0.2
+0.15, 0.1
 // Image
-// TODO pause button
-gui-button-1.png
+gui-button-pause.png
 // Text
 $$$empty
 // Font name, size
