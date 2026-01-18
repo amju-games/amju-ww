@@ -65,11 +65,9 @@ void iOSTextSetViewController(void* vvc)
   
   // Register these iOS-specific types with GuiFactory
   
-  // TODO
   // For text field, usually we use the standard GuiText, but in ios-only gui*.txt fies, we
   //  can choose to use the custom iOS text, to show emoticons etc.
-  // TODO
-  TheGuiFactory::Instance()->Add(GuiText::NAME, CreateTextiOS);
+  TheGuiFactory::Instance()->Add("gui-text-ios", CreateTextiOS);
   
   // Always use iOS-specific text edit, never Amju GuiTextEdit
   TheGuiFactory::Instance()->Add(GuiTextEdit::NAME, CreateTextEditiOS);
@@ -159,7 +157,16 @@ bool GuiTextIos::Load(File* f)
     f->ReportError("GUI Text: Expected options string");
     return false;
   }
-  // TODO use options string
+
+  // Parse options string
+  if (!StringContains(options, "multi"))
+  {
+    // Single line
+    myView.textContainer.maximumNumberOfLines = 1;
+    // Truncate, add ellipsis - make this another option?
+    myView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+  }
+  // TODO other options
   
   return true;
 }
