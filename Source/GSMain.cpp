@@ -36,6 +36,7 @@
 #include "ProcGen.h"
 #include "Score.h"
 #include "ShadowManager.h"
+#include "ShareManager.h"
 #include "Viewport.h"
 #include "WWCamera.h"
 #include "WWLoadGui.h"
@@ -388,5 +389,7 @@ void GSMain::Draw()
   {
     TheViewportManager::Instance()->GetViewport(i)->Draw();
   }
+  
+  TheShareManager::Instance()->TakeScreenshot(); // if one is set up
 }
 }

@@ -37,6 +37,13 @@ static float s_aspectRatioScaleFactor = 1.0f;
 
 @implementation ViewController
 
+static ViewController* s_theVc = NULL;
+
++ (ViewController*) GetVC
+{
+  return s_theVc;
+}
+
 - (void)dealloc
 {
     [self tearDownGL];
@@ -52,6 +59,8 @@ static float s_aspectRatioScaleFactor = 1.0f;
 
 - (void)viewDidLoad
 {
+  s_theVc = self;
+  
   [super viewDidLoad];
   
   self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
@@ -176,39 +185,32 @@ static void QueueEvent(Amju::Event* e)
   Amju::Screen::SetSize(w * s, h * s);
   Amju::AmjuGL::Viewport(0, 0, w * s, h * s);
   
-  //Amju::TheGame::Instance()->Draw();
+  Amju::TheGame::Instance()->Draw();
   
+#ifdef UNPACK_GAME_DRAW_FUNC
+  // This is what Game::Draw does, in case we need to customise it - TODO template method
   auto game = Amju::TheGame::Instance();
   AmjuGL::InitFrame();
-  
   AmjuGL::BeginScene();
-  
-  // TODO Fix DX9 so we can have multple viewports
   AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
-  
   // Draw 3D Scene
   AmjuGL::Enable(AmjuGL::AMJU_DEPTH_READ);
   game->GetState()->Draw();
-  
   // Draw 2D Elements
-  
   // Set matrices to identity
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
-  
   // NB Make sure we use MV matrix to transform cursor..?
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
   // Scale GUI so aspect ratio of elements is correct
   AmjuGL::Scale(1.f, s_aspectRatioScaleFactor, 1.f);
-  
   AmjuGL::Disable(AmjuGL::AMJU_DEPTH_READ);
   AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
   AmjuGL::Enable(AmjuGL::AMJU_BLEND);
-  
   game->GetState()->Draw2d();
-  
   AmjuGL::EndScene();
+#endif
   
   Amju::AmjuGL::Flip();
 }
@@ -219,7 +221,8 @@ void PopulateMBEvent(Amju::MouseButtonEvent* mbe, int x, int y)
   float scrY2 = float(Amju::Screen::Y() / 2);
 
   mbe->x = (float)x / scrX2 - 1.0f;
-  mbe->y = (1.0f - (float)y / scrY2) / s_aspectRatioScaleFactor;
+  mbe->y = (1.0f - (float)y / scrY2);
+//  mbe->y = (1.0f - (float)y / scrY2) / s_aspectRatioScaleFactor;
 }
 
 void PopulateCursorEvent(Amju::CursorEvent* ce, int x, int y)

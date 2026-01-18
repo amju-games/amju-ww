@@ -13,30 +13,31 @@
 #include <DegRad.h>
 #include <EventPoller.h>
 #include <ConfigFile.h>
+#include <Unproject.h>
 #include "PowerUp.h"
 #include "Floor.h"
+#include "BlinkCharacter.h"
+#include "Depth.h"
+#include "Describe.h"
+#include "Exit.h"
+#include "GameConsts.h"
+#include "GameMode.h"
 #include "GSGameOver.h"
 #include "GSLoadLevel.h"
 #include "GameObjectFactory.h"
-#include "BlinkCharacter.h"
+#include "Hud.h"
+#include "LurkMsg.h"
 #include "MySceneGraph.h"
+#include "NetSend.h"
 #include "ParticleEffect2d.h"
 #include "Pet.h"
-#include "Score.h"
-#include "NetSend.h"
 #include "PlayWav.h"
-#include "Describe.h"
-#include "GameMode.h"
-#include "ShadowManager.h"
-#include "Describe.h"
-#include "LurkMsg.h"
-#include "Hud.h"
-#include "Exit.h"
 #include "PropertiesDialog.h"
 #include "PropertyKeys.h"
-#include "Depth.h"
+#include "Score.h"
+#include "ShadowManager.h"
+#include "ShareManager.h"
 #include "WWCamera.h"
-#include "GameConsts.h"
 #include <AmjuFinal.h>
 
 namespace Amju
@@ -141,6 +142,11 @@ void Player::StartBeingDead()
     KillController();
   }
   OnFloorCharacter::StartBeingDead();
+  
+  // TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE
+  auto sm = TheShareManager::Instance();
+  sm->SetTakeScreenshot(m_pos);
+  sm->SetShareText("I just died horribly in Amju Rainbow Drop! amju.com #amju");
 }
 
 void Player::StartBeingEaten(OnFloorCharacter* eater) 
@@ -152,6 +158,11 @@ void Player::StartBeingEaten(OnFloorCharacter* eater)
   // Go to zoom camera
   KillController();
   OnFloorCharacter::StartBeingEaten(eater);
+  
+  // TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE TODO COPY PASTE
+  auto sm = TheShareManager::Instance();
+  sm->SetTakeScreenshot(m_pos);
+  sm->SetShareText("I just died horribly in Amju Rainbow Drop! amju.com #amju");
 }
 
 void Player::AddPropertiesGui(PropertiesDialog* dlg)
@@ -908,13 +919,15 @@ void Player::Update()
     KillController();
     Amju::PlayWav("churchbell"); 
 
+    auto scores = TheScores::Instance();
     PlayerNum pn = (PlayerNum)GetPlayerId();
-    TheScores::Instance()->DecLives(pn);
+    scores->DecLives(pn);
+    scores->SetPos(pn, m_pos); // Maybe store and show as gravestones (MRU queue?)
     TheHud::Instance()->FlashLives();
     TheLurker::Instance()->Clear();
  
     int lives = TheScores::Instance()->GetLives(pn);
-
+    
 #ifdef PLAYER_DEBUG
 std::cout << "Player is dead! Lives left: " << lives << "\n";
 #endif

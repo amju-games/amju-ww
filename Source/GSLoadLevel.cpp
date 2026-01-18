@@ -1,31 +1,39 @@
 #include <Game.h>
-#include <StringUtils.h>
+#include <GameObjectFactory.h>
 #include <GuiButton.h>
 #include <SoundManager.h>
+#include <StringUtils.h>
+#include <Timer.h>
+#include "Depth.h"
+#include "GameMode.h"
 #include "GSLoadLevel.h"
 #include "GSMain.h"
 #include "GSMainEdit.h"
 #include "GSNewOrContinue.h"
 #include "GSAttract.h"
 #include "GSYesNoNewGame.h"
-#include "PowerUp.h"
-#include "MySceneGraph.h"
-#include "Timer.h"
-#include "OnFloor.h"
-#include "GameObjectFactory.h"
-#include "WWCamera.h"
-#include "ResourceManager.h"
-#include "LevelManager.h"
 #include "Hud.h"
-#include "ShadowManager.h"
-#include "GameMode.h"
-#include "WWLoadGui.h"
+#include "LevelManager.h"
+#include "MySceneGraph.h"
+#include "OnFloor.h"
 #include "PlayWav.h"
-#include "Depth.h"
+#include "PowerUp.h"
 #include "ProcGen.h"
+#include "ResourceManager.h"
+#include "ShadowManager.h"
+#include "ShareManager.h"
+#include "WWCamera.h"
+#include "WWLoadGui.h"
 
 namespace Amju
 {
+static void OnShare(GuiElement*)
+{
+  // Text should be set when we decide to go to this state, either by successfully completing
+  //  level, or by getting killed.
+  TheShareManager::Instance()->ShareTextAndScreenshot();
+}
+  
 static void OnBack(GuiElement*)
 {
   // Go back to previous state, except if that prev state is the 'confirm new game' screen, 
@@ -99,6 +107,9 @@ void GSLoadLevel::OnActive()
   GuiButton* back = (GuiButton*)GetElementByName(m_gui, "back-button");
   back->SetVisible(false);
   back->SetCommand(OnBack);
+
+  GuiButton* share = (GuiButton*)GetElementByName(m_gui, "share-button");
+  share->SetCommand(OnShare);
 
   TheShadowManager::Instance()->Clear();
 
