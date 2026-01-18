@@ -141,6 +141,8 @@ void WWGameObject::SetSceneNode(RCPtr<SceneNode> node)
 
 bool WWGameObject::CreateSceneNode()
 {
+  SceneNode* sn = LoadScene(m_meshFilename);
+/*
   ObjMesh* mesh = (ObjMesh*)TheResourceManager::Instance()->GetRes(m_meshFilename);
   if (!mesh) 
   {
@@ -149,7 +151,9 @@ bool WWGameObject::CreateSceneNode()
 
   SceneMesh* sm  = new SceneMesh;
   sm->SetMesh(mesh);
-  SetSceneNode(sm);
+*/
+
+  SetSceneNode(sn);
 
   // Set bounding box
   RecalcAABB();
