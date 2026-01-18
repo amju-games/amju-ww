@@ -21,7 +21,8 @@ void SetScrollSpeed(float ss)
 
 void ResetDepth()
 {
-  s_depth = 0;
+  static const float START_DEPTH = ROConfig()->GetFloat("start-depth");
+  s_depth = START_DEPTH;
   s_scrollSpeed = ROConfig()->GetFloat("scroll-speed");
 }
 

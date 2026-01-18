@@ -39,25 +39,19 @@ public:
   void PickNextLayer();
 
   // Checks Depth to see if we should add the next layer 
-  void AddLayerWhenReady();
+  // When we add a layer, it is centred on xPos in the x axis.
+  void AddLayerWhenReady(float xPos);
 
 private:
-  void AddLayerToLevel(int layer, float depth); // ?
+  void AddLayerToLevel(int layer, float depth, float xPos); 
 
 private:
-  struct NextLayer
-  {
-    NextLayer(int layer, float depth) : m_layer(layer), m_depth(depth) {}
-    int m_layer;
-    float m_depth;
-  };
-
   struct Layer
   {
     Layer() : m_numObjects(0) {}
     bool Open(const std::string& filename);
     bool LoadOneObject();
-    void AddToGame(float depth);
+    void AddToGame(float depth, float x);
     bool IsLoaded() const;
 
     typedef std::vector<PGameObject> Objects;
@@ -66,10 +60,6 @@ private:
     int m_numObjects;
 
     RCPtr<File> m_file;
-
-    // Possible layers which can go after this one
-    typedef std::vector<NextLayer> NextLayers; 
-    NextLayers m_nextLayers;
   };
 
   typedef std::vector<Layer*> Layers;
