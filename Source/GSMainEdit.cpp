@@ -42,6 +42,20 @@ int s_unsaved = 0; // number of commands away from save
 
 static bool s_drag = false;
 
+// Mode: we can be selecting objects, unselecting, or moving them.
+enum ObjectMode
+{
+  AMJU_MODE_DONOTHING,
+  AMJU_MODE_SELECT,
+  AMJU_MODE_UNSELECT,
+  AMJU_MODE_MOVE
+};
+const char* ModeNames[] = 
+{
+  "Do nothing", "Select", "Unselect", "Move"
+};
+
+ObjectMode s_mode = AMJU_MODE_DONOTHING;
 
 static EditModeCamera* GetCamera()
 {
@@ -330,7 +344,6 @@ GSMainEdit::GSMainEdit()
   m_playTestMode = false;
   m_gridSize = 50.0f;
 
-  m_isSelecting = false;
   m_numSelThisRect = 0;
 
   // Set up top menu 
@@ -597,7 +610,7 @@ void GSMainEdit::OnDeactive()
 void GSMainEdit::OnActive()
 {
   m_selset.clear();
-  m_isSelecting = false;
+  s_mode = AMJU_MODE_DONOTHING;
 
   GSMain::OnActive();
   // Show bounding boxes - TODO don't use this, draw object AABBs
@@ -649,6 +662,8 @@ void GSMainEdit::Update()
   }
   else
   {
+    GetGameSceneGraph()->Update(); // calc root AABB
+
     // Don't update game objects; don't check collisions
     // Do Update all bounding boxes
     GameObjects* gos = TheGame::Instance()->GetGameObjects();
@@ -677,10 +692,10 @@ void GSMainEdit::Draw()
     Assert(evp);
     evp->Draw();
 
-    if (evp->IsActive() && m_isSelecting)
+    if (evp->IsActive() && s_drag &&
+       (s_mode == AMJU_MODE_SELECT || s_mode == AMJU_MODE_UNSELECT))
     {
-      ////m_isSelecting = false;
-      //m_selectedObj = 0; // TODO multi select
+std::cout << ModeNames[(int)s_mode] << "\n";
 
       GetGameSceneGraph()->GetCamera()->Draw(); // ?
 
@@ -688,6 +703,9 @@ void GSMainEdit::Draw()
       Vec3f mouseWorldFar;
 
       Vec2f mouseScreen = evp->ConvertScreenCoord(m_mouseScreen);
+      mouseScreen.x = std::max(std::min(mouseScreen.x, 1.0f), -1.0f);
+      mouseScreen.y = std::max(std::min(mouseScreen.y, 1.0f), -1.0f);
+
       Assert(mouseScreen.x >= -1.0f);
       Assert(mouseScreen.x <=  1.0f);
       Assert(mouseScreen.y >= -1.0f);
@@ -697,16 +715,14 @@ void GSMainEdit::Draw()
       Unproject(Vec2f(mouseScreen.x, mouseScreen.y), 1, &mouseWorldFar);
       LineSeg lineSeg(mouseWorldNear, mouseWorldFar);
 
-
-      // Draw for debugging
-      std::cout << "Selecting, screen mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
-      std::cout << "  Viewport: x: " << mouseScreen.x << " y: " << mouseScreen.y << "\n";
-      AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
-      AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
-      AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
-        AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
-      AmjuGL::PopAttrib();
-
+      //// Draw for debugging
+      //std::cout << "Selecting, screen mouse: x: " << m_mouseScreen.x << " y: " << m_mouseScreen.y << "\n";
+      //std::cout << "  Viewport: x: " << mouseScreen.x << " y: " << mouseScreen.y << "\n";
+      //AmjuGL::PushAttrib(AmjuGL::AMJU_TEXTURE_2D);
+      //AmjuGL::Disable(AmjuGL::AMJU_TEXTURE_2D);
+      //AmjuGL::DrawLine(AmjuGL::Vec3(mouseWorldNear.x + 0.1f, mouseWorldNear.y + 0.1f, mouseWorldNear.z),
+      //  AmjuGL::Vec3(mouseWorldFar.x, mouseWorldFar.y, mouseWorldFar.z));
+      //AmjuGL::PopAttrib();
 
       GameObjects* objs = TheGame::Instance()->GetGameObjects();
       float bestDist = 999999.9f;
@@ -717,8 +733,23 @@ void GSMainEdit::Draw()
         const AABB& aabb = pgo->GetAABB();
         if (Clip(lineSeg, aabb, 0))
         {
-          // Line seg intersects this box
-          Assert(dynamic_cast<WWGameObject*>(pgo));
+          // Line seg intersects this box          
+          WWGameObject* ww = dynamic_cast<WWGameObject*>(pgo);
+          Assert(ww);
+          if (s_mode == AMJU_MODE_SELECT)
+          {
+            m_selset.insert(ww);
+            ww->SetSelected(true);
+            m_numSelThisRect++;
+          }
+          else
+          {
+            m_selset.erase(ww);
+            ww->SetSelected(false);
+            m_numSelThisRect--;
+          }
+
+          /*
           // Choose object whose centre (position) is closest to line seg..?
           float dist = LineSeg(mouseWorldNear, mouseWorldFar).SqDist(pgo->GetPos());
           //float dist = (mouseWorldNear - pgo->GetPos()).SqLen(); // pick closest
@@ -731,6 +762,7 @@ void GSMainEdit::Draw()
             SetSelectedObject(ww);
             m_numSelThisRect++;
           }
+          */
         }
       }
     }
@@ -870,22 +902,10 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 
       m_mouseScreenAnchor = m_mouseScreen;
 
-      m_isSelecting = true;
       m_numSelThisRect = 0;
     }
     else
     {
-      // Mouse button up - stop selecting
-      if (m_isSelecting && m_numSelThisRect == 0)
-      {
-        // Clear sel
-        for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
-        {
-          (*it)->SetSelected(false);
-        }
-        m_selset.clear();
-      }
-      m_isSelecting = 0;
       s_drag = false;
     }
 
@@ -954,7 +974,7 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
   Vec2f diff = pos - oldPos; // TODO can now use dx/dy in CursorEvent
 
   // TODO
-  if (!m_selset.empty() && s_drag)
+  if (!m_selset.empty() && s_drag && s_mode == AMJU_MODE_MOVE)
   {
 //std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
     // Decide which direction to move - i.e. is diff more closely aligned 
@@ -964,18 +984,21 @@ bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
     Vec2f dir(diff.x, diff.y);
     Vec3f move = m_activeViewport->GetMoveAxis(dir);
 
-    EditModeCamera* cam = GetCamera();
-    float zoomDist = sqrt((cam->GetEyePos() - cam->GetLookAtPos()).SqLen());
+//    EditModeCamera* cam = GetCamera();
+//    float zoomDist = sqrt((cam->GetEyePos() - cam->GetLookAtPos()).SqLen());
 
-    m_accumulatedDragMove += move; 
-    float limit = 20.0f; // TODO TEMP TEST m_gridSize * 100.0f / zoomDist; 
-    if (m_accumulatedDragMove.SqLen() > limit * limit)
-    {
-      m_accumulatedDragMove = Vec3f();
+//    m_accumulatedDragMove += move; 
+//    float limit = 1.0f; // TODO TEMP TEST m_gridSize * 100.0f / zoomDist; 
+
+//    std::cout << "Drag value: " << m_accumulatedDragMove.SqLen() << "\n";
+
+//    if (m_accumulatedDragMove.SqLen() > limit)
+//    {
+//      m_accumulatedDragMove = Vec3f();
       move *= m_gridSize;
       MoveCommand* mc = new MoveCommand(m_selset, move);
       TheGuiCommandHandler::Instance()->DoNewCommand(mc);
-    }
+//    }
   }
 
   oldPos = pos;
@@ -991,6 +1014,49 @@ bool GSMainEdit::OnKeyEvent(const KeyEvent& ke)
     return true;
   }
 
+  // Move mode
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'm')
+  {
+    if (s_mode == AMJU_MODE_MOVE)
+    {
+      s_mode = AMJU_MODE_DONOTHING;
+    }
+    else
+    {
+      s_mode = AMJU_MODE_MOVE;
+    }
+std::cout << ModeNames[(int)s_mode] << "\n";
+  }
+
+  // Select mode
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 's')
+  {
+    if (s_mode == AMJU_MODE_SELECT)
+    {
+      s_mode = AMJU_MODE_DONOTHING;
+    }
+    else
+    {
+      s_mode = AMJU_MODE_SELECT;
+    }
+std::cout << ModeNames[(int)s_mode] << "\n";
+  }
+
+  // Unselect mode
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'u')
+  {
+    if (s_mode == AMJU_MODE_UNSELECT)
+    {
+      s_mode = AMJU_MODE_DONOTHING;
+    }
+    else
+    {
+      s_mode = AMJU_MODE_UNSELECT;
+    }
+std::cout << ModeNames[(int)s_mode] << "\n";
+  }
+
+  // Grid bigger/smaller
   if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'g')
   {
     m_gridSize *= 2.0f;
@@ -1003,6 +1069,19 @@ bool GSMainEdit::OnKeyEvent(const KeyEvent& ke)
     m_gridSize *= 0.5f;
     std::string s = "Grid size: " + ToString(m_gridSize, 2);
     m_infoText.SetText(s);
+  }
+
+  if (ke.keyType == AMJU_KEY_CHAR && !ke.keyDown && ke.key == 'c')
+  {
+    // Clear selection
+std::cout << ModeNames[(int)s_mode] << "\n";
+    for (auto it = m_selset.begin(); it != m_selset.end(); ++it)
+    {
+      (*it)->SetSelected(false);
+    }
+    m_selset.clear();
+    m_infoText.SetText("Nothing selected");
+    s_mode = AMJU_MODE_DONOTHING;
   }
 
   return false;
