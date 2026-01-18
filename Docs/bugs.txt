@@ -1,3 +1,8 @@
+Loading config file - fails on new install, should be silent as not a problem.
+Do we need to load at all? We have ROConfig...
+YES - it's for writable config like screen size
+
+
 Levels
 ======
 

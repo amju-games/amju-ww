@@ -60,11 +60,6 @@ Pet::Pet()
   m_justDroppedTime = 0;
   m_justDropped= false;
   m_bloodPoolScale = 0;
-
-//  AddAI(new AIGoHighGround);
-  AddAI(new AIIdle);
-  AddAI(new AIFalling);
-  AddAI(new AIFlee);
 }
   
 void Pet::AddPropertiesGui(PropertiesDialog* dlg) 
@@ -111,6 +106,11 @@ void Pet::AddToGame()
 {
   Npc::AddToGame();
   
+//  AddAI(new AIGoHighGround);
+  AddAI(new AIIdle);
+  AddAI(new AIFalling);
+  AddAI(new AIFlee);
+
   SetAI(AIIdle::NAME); // can set now that we have created scene node
   // (when AI state is activated, it will set animation)
 

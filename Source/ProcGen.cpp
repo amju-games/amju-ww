@@ -135,8 +135,9 @@ void ProcGen::Layer::AddToGame(float depth)
     WWGameObject* ww = dynamic_cast<WWGameObject*>(go);
     Assert(ww);
 
-    WWGameObject* clone = ww->Clone();
-    clone->SetId(TheLevelManager::Instance()->GetUniqueId());
+    RCPtr<WWGameObject> clone = ww->Clone();
+    int id = TheLevelManager::Instance()->GetUniqueId();
+    clone->SetId(id);
 
     Vec3f pos = clone->GetPos();
     pos.y -= depth;
@@ -148,7 +149,13 @@ void ProcGen::Layer::AddToGame(float depth)
 
 void ProcGen::PickNextLayer()
 {
-  m_nextLayer = 0; // TODO Random, but based on which layers are allowed to come after the most recent layer.
+  static int i = 0;
+  i++;
+  if (i > 1)
+  {
+    i = 0;
+  }
+  m_nextLayer = i; // TODO Random, but based on which layers are allowed to come after the most recent layer.
   m_nextDepth = GetCurrentDepth() + 500; // TODO TEMP TEST should be data, depending on layer above
 }
 
