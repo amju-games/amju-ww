@@ -130,7 +130,7 @@ void Dino::Eat(Pet* pet)
   BlinkCharacter* bc = dynamic_cast<BlinkCharacter*>(m_pSceneNode.GetPtr());
   Assert(bc);
   bc->LoadTextures("dino1a-withblood.png", "dino1-withblood.png"); 
-  // TODO Load the textures up front
+  // TODO Load the textures up front as this will hit frame rate on first load.
 
   // Pause action and zoom camera on Dino??
 }
