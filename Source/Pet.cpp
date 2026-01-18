@@ -2,6 +2,7 @@
 #include <File.h>
 #include <Timer.h>
 #include <DegRad.h>
+#include <AmjuRand.h>
 #include "Pet.h"
 #include "BlinkCharacter.h"
 #include "MySceneGraph.h"
@@ -32,6 +33,7 @@ Pet::Pet()
   m_carryingPlayer = 0;
   m_eatenState = NOT_EATEN_YET;
   m_eatenTime = 0;
+  m_bloodPoolScale = 0;
 
   AddAI(new AIGoHighGround);
   AddAI(new AIIdle);
@@ -117,6 +119,22 @@ void Pet::Update()
     {
       m_eatenState = HAS_BEEN_EATEN;
     }
+    else
+    {
+      // Increase blood pool size
+      if (m_bloodPoolScale < 1.0f)
+      {
+        m_bloodPoolScale += dt; 
+      }
+      Vec3f s(m_bloodPoolXZSize.x * m_bloodPoolScale, 
+              1.0f,
+              m_bloodPoolXZSize.y * m_bloodPoolScale);
+
+      Matrix mat;
+      mat.Scale(s.x, 1.0f, s.z);
+      mat.TranslateKeepRotation(m_bloodPoolPos); 
+      m_bloodPool->SetLocalTransform(mat);
+    }
   }
 }
 
@@ -197,9 +215,12 @@ void Pet::StartBeingEaten(Dino* eater)
   mat.TranslateKeepRotation(pos);
   m_pSceneNode->SetLocalTransform(mat);
 
-  mat.Translate(m_pos); 
+  m_bloodPoolPos = m_pos;
+  mat.Scale(0, 1, 0);
+//  mat.Translate(m_pos); 
   m_bloodPool->SetLocalTransform(mat);
   m_bloodPool->SetVisible(true);
+  m_bloodPoolXZSize = Vec2f(1.5f + Rnd(0, 1.0f), 1.5f + Rnd(0, 1.0f));
 
   SetAnim("eaten");
 
