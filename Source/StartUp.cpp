@@ -26,7 +26,7 @@
 #include <EventPoller.h>
 #include "StartUp.h"
 #include "GSLogo.h"
-#include "GSLoadLevel.h" // TEMP; so we start immediately in game
+#include "GSLoadLayers.h" 
 #include "GSCopyAssets.h"
 #include "CursorManager.h"
 #include "Hud.h"
@@ -177,7 +177,7 @@ void StartUpAfterCreateWindow()
   // Default intersection test is OK
   TheCollisionManager::Instance()->SetCollisionDetector(cd);
 
-#ifndef AMJU_IOS
+#if defined(WIN32) || defined(MACOSX)
   TheEventPoller::Instance()->AddListener(new ResizeHandler);
 #endif
 
@@ -188,13 +188,15 @@ void StartUpAfterCreateWindow()
   game->SetFrameTimeFont(font);
 #endif
 
-#ifdef BYPASS_TITLE
-  // TODO Only needed if we bypass title
-  TheLevelManager::Instance()->SetLevelId(1);
-  StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
-  TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME); 
-#else
+#if defined(WIN32) || defined(MACOSX)
   TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
+#else
+  // iOS/Android: go to logo state, all assets are in glue file
+  //  (no downloadable content [for now?!])
+  //TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());
+
+  // No need for logo state as we show it as app load image
+  TheGame::Instance()->SetCurrentState(TheGSLoadLayers::Instance());
 #endif
 }
 }
