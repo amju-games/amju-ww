@@ -65,6 +65,7 @@ private:
 Player::Player()
 {
   m_aabbExtents = Vec3f(XSIZE, YSIZE, XSIZE);
+  m_extentsSet = true;
   m_controller = new PlayerController(this);
   TheEventPoller::Instance()->AddListener(m_controller);
 
