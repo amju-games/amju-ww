@@ -1,6 +1,7 @@
 #include <Screen.h>
 #include <DegRad.h>
 #include <ROConfig.h>
+#include <SoundManager.h>
 #include "GSLevelComplete.h"
 #include "MySceneGraph.h"
 #include "Game.h"
@@ -58,6 +59,7 @@ void GSLevelComplete::Update()
   float a = angle;
   SetObjPos(m_player, a, m_z);
   m_player->SetAnim("fall");
+  m_player->SetIsTeleporting(false);
 
   const PetList& pets = m_player->GetPets();
   for (auto it = pets.begin(); it != pets.end(); ++it)
@@ -66,6 +68,7 @@ void GSLevelComplete::Update()
     Pet* pet = const_cast<Pet*>(*it);
     SetObjPos(pet, a, m_z + Z_INCREMENT);
     pet->SetAnim("fall");
+    pet->SetIsTeleporting(false);
   }   
 
   // Inc timer, go to next state
@@ -146,6 +149,9 @@ static void AddSceneNode(WWGameObject* ww)
 void GSLevelComplete::OnActive()
 {
   GSText::OnActive();
+
+  TheSoundManager::Instance()->PlaySong("sound/spiral.it");
+
   CreateText("");
   // Don't kill game objects yet, we are displaying them!
   m_timer = 0;

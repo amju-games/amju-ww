@@ -13,15 +13,19 @@ OnFloorCharacter::OnFloorCharacter()
   m_dir = 0;
   m_dirCurrent = 0;
   m_anim = -1;
+  m_isTeleporting = false;
+  m_teleportScale = 0;
 }
 
 bool OnFloorCharacter::CreateSceneNode()
 {
+  ResourceManager* rm = TheResourceManager::Instance();
+
   BlinkCharacter* bc = new BlinkCharacter;
   m_pSceneNode = bc;
 
   Assert(!m_md2Name.empty());
-  Md2Model* model = (Md2Model*)TheResourceManager::Instance()->GetRes(m_md2Name);
+  Md2Model* model = (Md2Model*)rm->GetRes(m_md2Name);
   if (!model)
   {
     ReportError("Failed to load MD2: " + m_md2Name);
@@ -38,7 +42,19 @@ bool OnFloorCharacter::CreateSceneNode()
 
   bc->SetGameObj(this);
 
+  m_cocoon = new SceneMesh;
+  bc->AddChild(m_cocoon.GetPtr());
+  ObjMesh* cocoonMesh = (ObjMesh*)rm->GetRes("ball.obj");
+  m_cocoon->SetMesh(cocoonMesh);
+  m_cocoon->SetVisible(false);
+
   return true;
+}
+
+void OnFloorCharacter::SetIsTeleporting(bool isTeleporting)
+{
+  m_cocoon->SetVisible(isTeleporting);
+  m_isTeleporting = isTeleporting;
 }
 
 void OnFloorCharacter::SetDir(float degs)
@@ -69,6 +85,21 @@ void OnFloorCharacter::StopRotating()
   m_dir = m_dirCurrent;
 }
 
+void OnFloorCharacter::UpdateCocoon()
+{
+  if (m_isTeleporting)
+  {
+    float dt = TheTimer::Instance()->GetDt();
+    m_teleportScale += 0.01f * dt;
+
+    Matrix tr;
+    tr.Translate(Vec3f(0, 25, 0)); // move to half way up character - TODO per character type
+    Matrix scale;
+    scale.Scale(m_teleportScale, m_teleportScale, m_teleportScale);
+    m_cocoon->SetLocalTransform(scale);
+  }
+}
+
 void OnFloorCharacter::Update()
 {
   OnFloor::Update();
@@ -78,13 +109,16 @@ void OnFloorCharacter::Update()
     return;
   }
 
+  UpdateCocoon();
+
+  float dt = TheTimer::Instance()->GetDt();
+
   Matrix mat;
   mat.RotateY(DegToRad(m_dirCurrent));
   mat.TranslateKeepRotation(m_pos);
   m_pSceneNode->SetLocalTransform(mat);
 
   static const float ROT_SPEED = 10.0f; // TODO CONFIG
-  float dt = TheTimer::Instance()->GetDt();
   float angleDiff = m_dir - m_dirCurrent;
   
   // Rotate to face m_dir, taking the shortest route (CW or CCW)
