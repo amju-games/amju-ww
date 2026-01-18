@@ -30,6 +30,8 @@ const int NET_SEND_LEVEL_COMPLETE = 2;
 // Send button (or other?) event
 bool NetSendButtonEvent(const std::string& buttonName);
   
-//bool NetSendHiScore(const std::string& nickname, int score, int level, int depth, int layer, const Vec3& deadPos);
+bool NetSendHiScore(const std::string& nickname, int score, int level, int depth, const Vec3f& deadPos);
+  
+bool NetSendRequestHiScores();
 }
 
