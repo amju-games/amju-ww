@@ -125,7 +125,7 @@ void GSMainEdit::OnActive()
   
   SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
   Assert(root);
-  root->AddChild(m_selNode.GetPtr()); // TODO how to ensure we only add it once ?
+//  root->AddChild(m_selNode.GetPtr()); // TODO how to ensure we only add it once ?
 
   TheEventPoller::Instance()->AddListener(m_topMenu);
   TheEventPoller::Instance()->AddListener(m_controller);
@@ -306,7 +306,20 @@ bool GSMainEdit::OnMouseButtonEvent(const MouseButtonEvent& mbe)
 
 bool GSMainEdit::OnCursorEvent(const CursorEvent& ce)
 {
+  static Vec2f oldPos(ce.x, ce.y);
+  Vec2f pos(ce.x, ce.y);
+  Vec2f diff = pos - oldPos;
+
   // TODO
+  if (m_selectedObj)
+  {
+std::cout << "Moving object " << m_selectedObj->GetId() << "\n";
+    // Decide which direction to move - i.e. is diff more closely aligned 
+    //  with +x, -1, +y, -1, +z or -z 
+
+  }
+
+  oldPos = pos;
   return false;
 }
 
