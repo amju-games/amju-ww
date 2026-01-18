@@ -10,7 +10,7 @@ object_dialog
 1.55, 1.4
 
 // Num children
-3
+6
 // NB Coords for children are relative to top left of dialog, which is (0, 0)
 
 // element type
@@ -52,3 +52,47 @@ object-list-box
 0.05, -0.05
 1.0, 1.0
  
+// element type
+gui-button
+// Element name
+properties-button
+// pos 
+1.1, -0.05
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Properties
+// Font name, size
+arial, 1.0, sx=0.7
+
+// element type
+gui-button
+// Element name
+select-button
+// pos 
+1.1, -0.2
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Select
+// Font name, size
+arial, 1.0, sx=0.7
+
+// element type
+gui-button
+// Element name
+delete-button
+// pos 
+1.1, -0.35
+// size
+0.4, 0.1
+// Image 
+gui-button-4.png
+// Text
+Delete
+// Font name, size
+arial, 1.0, sx=0.7
