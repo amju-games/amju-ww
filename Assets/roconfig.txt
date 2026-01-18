@@ -17,6 +17,7 @@ sound-tut-trigger  whistlehere
 
 level-complete-max-time 4.0
 
+pet-max-just-dropped-time 2.0
 pet-collide-radius 25
 pet-min-drop-speed 30
 pet-max-drop-speed 70
