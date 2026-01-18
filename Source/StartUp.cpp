@@ -33,6 +33,7 @@
 #include <GuiButton.h>
 #include <EventPoller.h>
 #include "CursorManager.h"
+#include "GameConsts.h"
 #include "GSLogo.h"
 #include "GSLoadLayers.h" 
 #include "GSCopyAssets.h"
@@ -49,6 +50,10 @@
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
+
+#ifdef AMJU_IOS
+#define YES_GLUE_FILE
+#endif
 
 #ifdef MACOSX
 #define GLUE_FILE "data-Mac.glue"
@@ -122,6 +127,10 @@ void StartUpBeforeCreateWindow()
       std::cout << "Loaded game config file OK: " << filename << "\n";
       // Send updated device info if anything has changed since we last sent.
       NetSendUpdateDeviceInfo();
+      // Set sound/music from config
+      auto sm = TheSoundManager::Instance();
+      sm->SetSongMaxVolume(gcf->GetInt(MUSIC_KEY)? 1.0f : 0.0f);
+      sm->SetWavMaxVolume(gcf->GetInt(SOUND_KEY)? 1.0f : 0.0f);
     }
     else
     {
@@ -133,6 +142,8 @@ void StartUpBeforeCreateWindow()
   {
     std::cout << "No game config file exists: " << filename << "\n";
     NetSendDeviceInfoFirstRunEver();
+    gcf->SetInt(SOUND_KEY, SOUND_INITIAL_VAL);
+    gcf->SetInt(MUSIC_KEY, MUSIC_INITIAL_VAL);
   }
 
 #if defined(WIN32) || defined(MACOSX)
@@ -149,6 +160,7 @@ void StartUpBeforeCreateWindow()
   */
 #endif
 
+#ifdef YES_GLUE_FILE
   GlueFileMem* gfm = new GlueFileMem;  
   if (FileImplGlue::OpenGlueFile(GLUE_FILE, gfm))
   {
@@ -158,7 +170,8 @@ void StartUpBeforeCreateWindow()
   {
     ReportError("Failed to open data glue file");
   }
-  
+#endif // YES_GLUE_FILE
+
   // Set up music glue file
   SoundManager* sm = TheSoundManager::Instance();  
 #if defined (MACOSX) || defined(WIN32) || defined(AMJU_IOS)
@@ -169,6 +182,7 @@ void StartUpBeforeCreateWindow()
   sm->SetImpl(new SoundWii);
 #endif
 
+#ifdef YES_GLUE_FILE
   GlueFile* pMusicGlueFile = new GlueFileMem;
   if (pMusicGlueFile->OpenGlueFile(MUSIC_GLUE_FILE, true /* read only */))
   {
@@ -178,6 +192,7 @@ void StartUpBeforeCreateWindow()
   {
     ReportError("Failed to open music glue file");
   }
+#endif
 }
 
 void StartUpAfterCreateWindow()
@@ -227,7 +242,12 @@ void StartUpAfterCreateWindow()
 #endif
 
 #if defined(WIN32) || defined(MACOSX)
+#ifdef YES_GLUE_FILE
   TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
+#else
+  // No glue file, don't try to copy from it!
+  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());	
+#endif
 #else
   // iOS/Android: go to logo state, all assets are in glue file
   //  (no downloadable content [for now?!])
