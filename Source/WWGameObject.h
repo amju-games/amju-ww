@@ -11,6 +11,10 @@ class WWGameObject : public GameObject
 public:
   WWGameObject();
 
+  // For this game, GameObjects for a level are created in "blocks".
+  // The blocks are transformed, so the positions of the objects are
+  // given relative to the local block origin. This matrix determines
+  // the world coords of the object.
   void SetTransform(const Matrix& mat);
 
   void SetDead(bool dead);
