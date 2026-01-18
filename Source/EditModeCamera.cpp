@@ -1,8 +1,9 @@
 #include <AmjuGL.h>
 #include "EditModeCamera.h"
 #include "EventPoller.h"
+#include "Describe.h"
 
-//#define EMC_DEBUG
+#define EMC_DEBUG
 
 namespace Amju
 {
@@ -17,6 +18,10 @@ EditModeCameraController::~EditModeCameraController()
 
 EditModeCamera::EditModeCamera(EditCamType camType)
 {
+  float SCALE = 0.001f; // TODO CONFIG
+  m_scale = SCALE;
+  m_oldx = 0;
+  m_oldy = 0;
   m_camType = camType;
   m_controllable = true;
   m_isActive = false;
@@ -100,14 +105,20 @@ void EditModeCamera::Draw()
 {
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
   AmjuGL::SetIdentity();
-  const float FOVY = 60.0f;
-  const float NEAR = 1.0f;
-  const float FAR = 3000.0f;
-
-  const float ASPECT = 1.5f; // Always show the same amount of the world,
-    // but distorted if viewport does not have this aspect ratio
-
-  AmjuGL::SetPerspectiveProjection(FOVY, ASPECT, NEAR, FAR);
+  if (m_camType == AMJU_EDITCAM_PERSP)
+  {
+    const float FOVY = 60.0f;
+    const float NEAR = 1.0f;
+    const float FAR = 3000.0f;
+    const float ASPECT = 1.5f; // Always show the same amount of the world,
+      // but distorted if viewport does not have this aspect ratio
+    AmjuGL::SetPerspectiveProjection(FOVY, ASPECT, NEAR, FAR);
+  }
+  else
+  {
+    AmjuGL::Translate(0, 0, 1);
+    AmjuGL::Scale(m_scale, m_scale, m_scale * 0.01f);
+  }
 
   AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
   AmjuGL::SetIdentity();
@@ -118,12 +129,13 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
 {
   static const float SENSITIVITY = 1000.0f;
 
-  static float oldx = ce.x;
-  static float oldy = ce.y;
-  float dx = ce.x - oldx;
-  float dy = ce.y - oldy;
-  oldx = ce.x;
-  oldy = ce.y;
+  static float oldxInit = (m_oldx = ce.x);
+  static float oldyInit = (m_oldy = ce.y);
+
+  float dx = ce.x - m_oldx;
+  float dy = ce.y - m_oldy;
+  m_oldx = ce.x;
+  m_oldy = ce.y;
 
   if (!IsActive())
   {
@@ -133,7 +145,9 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
   if (m_drag)
   {
 #ifdef EMC_DEBUG
-std::cout << "Drag camera\n";
+std::cout << "Drag mouse... camera: " <<
+  (m_mode == AMJU_PAN ? "PAN" : (m_mode == AMJU_ROTATE ? "ROTATE" : "ZOOM"))
+   << "\n";
 #endif
 
     switch (m_mode)
@@ -143,16 +157,22 @@ std::cout << "Drag camera\n";
       {
         Vec3f forward(m_lookat - m_eye);
         Vec3f up(0, 1, 0);
+        if (m_camType == AMJU_EDITCAM_TOP)
+        {
+          up = Vec3f(0, 0, 1); // TODO TEMP TEST
+        }
         Vec3f right = CrossProduct(forward, up);
         right.Normalise();
         Vec3f eyeDiff = right * dx * SENSITIVITY - up * dy * SENSITIVITY;
         m_eye += eyeDiff;
         m_lookat += eyeDiff;
+
+std::cout << "Eye Diff: " << Describe(eyeDiff) << "\n";
       }
       break;
 
     case AMJU_ROTATE:
-      // always allow //if (m_controllable)
+      if (m_camType == AMJU_EDITCAM_PERSP) // always allow //if (m_controllable)
       {
         float angleX = dx; // TODO TEMP TEST
         float angleY = dy * 1000.0f;
@@ -175,10 +195,15 @@ std::cout << "Edit cam: not controllable\n";
       break;
 
     case AMJU_ZOOM:
+      if (m_camType == AMJU_EDITCAM_PERSP)
       {
         Vec3f viewVec = m_eye - m_lookat;
         viewVec.Normalise();
         m_eye += viewVec * dy * SENSITIVITY;
+      }
+      else
+      {
+        m_scale *= (1.0f + dy); // TODO TEMP TEST
       }
       break;
     }

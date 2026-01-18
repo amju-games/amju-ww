@@ -21,6 +21,20 @@ void EditViewport::SetActiveId(int activeViewportId)
 EditViewport::EditViewport(int id, float x, float y, float w, float h, const std::string& name) : 
   Viewport(id, x, y, w, h), m_name(name)
 {
+  static const float W = 0.02f;
+  static const float H = 0.03f;
+  // Left
+  m_rect[0].SetLocalPos(Vec2f(-1, 1)); 
+  m_rect[0].SetSize(Vec2f(W, 2.0f));
+  // Right
+  m_rect[1].SetLocalPos(Vec2f(1 - W, 1));
+  m_rect[1].SetSize(Vec2f(W, 2.0f));
+  // Up
+  m_rect[2].SetLocalPos(Vec2f(-1, 1));
+  m_rect[2].SetSize(Vec2f(2.0f, H));
+  // Down
+  m_rect[3].SetLocalPos(Vec2f(-1, -1 + H));
+  m_rect[3].SetSize(Vec2f(2.0f, H));
 }
 
 void EditViewport::Draw()
@@ -48,37 +62,19 @@ void EditViewport::Draw2d()
   AmjuGL::Viewport((int)(m_x * x), (int)(m_y * y), (int)(m_w * x), (int)(m_h * y));
 
   // Draw border
-  if (IsActive())
+  Colour c = IsActive() ? Colour(1, 0, 0, 1) : Colour(0, 0, 0, 1);
+  for (int i = 0; i < 4; i++)
   {
-    static GuiRect r[4];
-    // Left
-    r[0].SetLocalPos(Vec2f(-1, 1)); 
-    r[0].SetSize(Vec2f(0.05f, 2.0f));
-    // Right
-    r[1].SetLocalPos(Vec2f(0.95f, 1));
-    r[1].SetSize(Vec2f(0.05f, 2.0f));
-    // Up
-    r[2].SetLocalPos(Vec2f(-1, 1));
-    r[2].SetSize(Vec2f(2.0f, 0.05f));
-    // Down
-    r[3].SetLocalPos(Vec2f(-1, -0.95f));
-    r[3].SetSize(Vec2f(2.0f, 0.05f));
-
-    for (int i = 0; i < 4; i++)
-    {
-      r[i].SetColour(Colour(1, 1, 0, 1));
-      r[i].Draw();
-    }
+    m_rect[i].SetColour(c);
+    m_rect[i].Draw();
   }
 
   std::string str = m_name;
-  if (IsActive())
-  {
-    str += " (active)";
-  }
-  m_text.SetText(str);
-  m_text.SetLocalPos(Vec2f(0, 0));
+
+  m_text.SetLocalPos(Vec2f(-1, 0.9f));
   m_text.SetSize(Vec2f(0.5f, 0.1f));
+  m_text.SetText(str);
+  m_text.SetFgCol(Colour(1, 1, 1, 1));
 //  m_text.SetDrawBg(true);
   m_text.Draw();
 }

@@ -627,10 +627,12 @@ void GSMainEdit::Draw()
   for (int i = 0; i < numVps; i++)
   {
     Viewport* vp = TheViewportManager::Instance()->GetViewport(i);
-    vp->Draw();
+    EditViewport* evp = dynamic_cast<EditViewport*>(vp);
+    Assert(evp);
+    evp->Draw();
 
     // TODO If this is the active vp
-    if (m_isSelecting)
+    if (evp->IsActive() && m_isSelecting)
     {
       m_isSelecting = false;
       m_selectedObj = 0;

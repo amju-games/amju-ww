@@ -3,6 +3,7 @@
 
 #include <SceneNodeCamera.h>
 #include <GuiText.h>
+#include <GuiRect.h>
 #include "Viewport.h"
 
 namespace Amju
@@ -32,6 +33,7 @@ private:
   RCPtr<SceneNodeCamera> m_cam;
   std::string m_name;
   GuiText m_text;
+  GuiRect m_rect[4];
 };
 }
 
