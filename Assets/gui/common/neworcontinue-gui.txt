@@ -1,0 +1,58 @@
+// Menu gui
+// version
+1
+
+// element type
+gui-comp
+// Name
+menu-comp
+// Num children
+3
+
+// element type
+gui-button
+// Element name
+new-button
+// pos (coords are -1..1)
+-0.4, 0.3
+// size
+0.8, 0.2
+// Image 
+gui-button-4.png
+// Text
+New game
+// Font name, size
+arial, 2.0, sx=0.7
+
+
+// element type
+gui-button
+// Element name
+continue-button
+// pos (coords are -1..1)
+-0.4, 0.0
+// size
+0.8, 0.2
+// Image 
+gui-button-4.png
+// Text
+Continue
+// Font name, size
+arial, 2.0, sx=0.7
+
+
+// element type
+gui-button
+// Element name
+editor-button
+// pos (coords are -1..1)
+-0.4, -0.3
+// size
+0.8, 0.2
+// Image - ext is resource type, not necessarily a real file extension
+gui-button-4.png
+// Text
+Editor
+// Font name, size
+arial, 2.0, sx=0.7
+
