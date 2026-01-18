@@ -48,13 +48,20 @@ void StartUp()
 
   // Set up music glue file
   GlueFile* pMusicGlueFile = new GlueFileMem;
-  if (pMusicGlueFile->OpenGlueFile("music.glue", true /* read only */))
+  if (pMusicGlueFile->OpenGlueFile(
+#ifdef WIN32
+    "music-win.glue"
+#endif
+#ifdef GEKKO
+    "music-wii.glue"
+#endif
+    , true /* read only */))
   {
     TheSoundManager::Instance()->SetGlueFile(pMusicGlueFile);
   }
   else
   {
-    std::cout << "Failed to open music glue file.\n";
+    ReportError("Failed to open music glue file");
   }
 #endif // NO_COMPILED_ASSETS
 
