@@ -9,8 +9,8 @@ namespace Amju
 class GSGameOver : public GSText, public NonCopyable
 {
 private:
-    GSGameOver();
-    friend class Singleton<GSGameOver>;
+  GSGameOver();
+  friend class Singleton<GSGameOver>;
 
 public:
   static const char* NAME;
@@ -18,6 +18,7 @@ public:
   // GameState overrides
   virtual void OnActive();
   virtual void Update();
+  virtual void Draw2d();
 };
 typedef Singleton<GSGameOver> TheGSGameOver;
 }
