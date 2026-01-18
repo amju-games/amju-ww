@@ -45,6 +45,7 @@ bool OnFloorCharacter::CreateSceneNode()
   }
 
   bc->SetGameObj(this);
+  bc->SetIsLit(false); // no lighting for MD2s
 
   m_cocoon = new SceneMesh;
   ObjMesh* cocoonMesh = (ObjMesh*)rm->GetRes("ball.obj");
