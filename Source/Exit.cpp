@@ -47,7 +47,8 @@ void Exit::Update()
     FindFloor();
   }
 
-  UpdateShadow();
+  // TODO ?? Do we need to clear shadow Coll meshes ?? 
+  //UpdateShadow();
 
   float dt = TheTimer::Instance()->GetDt();
   static const float ROT_SPEED = 3.0f;
@@ -185,7 +186,7 @@ static float rnd(float f)
 
 static const float PARTICLE_SPEED = 300.0f;
 
-Vec3f ExitParticleEffect::NewVel()
+Vec3f ExitParticleEffect::NewVel() const
 {
   return Vec3f(
     rnd(PARTICLE_SPEED), 
@@ -197,15 +198,14 @@ Vec3f ExitParticleEffect::NewVel()
   //(float)rand() / (float)RAND_MAX * PARTICLE_SPEED);
 }
 
-float ExitParticleEffect::NewTime()
+float ExitParticleEffect::NewTime() const
 {
   return (float)rand() / (float)RAND_MAX * 2.0f;
 }
 
 void ExitParticleEffect::HandleDeadParticle(Particle2d* p)
 {
-  p->m_pos = Vec3f(m_local[12], m_local[13], m_local[14]);
-  p->m_time = NewTime();
+  Recycle(p);
 }
 
 void Exit::SetActive()
