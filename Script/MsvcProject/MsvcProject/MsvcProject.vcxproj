@@ -320,6 +320,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\LevelManager.cpp" />
     <ClCompile Include="..\..\..\Source\LoadMeshResource.cpp" />
     <ClCompile Include="..\..\..\Source\LoadTextureResource.cpp" />
+    <ClCompile Include="..\..\..\Source\LurkMsg.cpp" />
     <ClCompile Include="..\..\..\Source\main.cpp" />
     <ClCompile Include="..\..\..\Source\MySceneGraph.cpp" />
     <ClCompile Include="..\..\..\Source\MyTextMaker.cpp" />
@@ -337,7 +338,6 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\StaticFloor.cpp" />
     <ClCompile Include="..\..\..\Source\TextMaker.cpp" />
     <ClCompile Include="..\..\..\Source\Trigger.cpp" />
-    <ClCompile Include="..\..\..\Source\Tutorial.cpp" />
     <ClCompile Include="..\..\..\Source\TutorialTrigger.cpp" />
     <ClCompile Include="..\..\..\Source\Viewport.cpp" />
     <ClCompile Include="..\..\..\Source\WWGameObject.cpp" />
@@ -377,6 +377,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\LevelManager.h" />
     <ClInclude Include="..\..\..\Source\LoadMeshResource.h" />
     <ClInclude Include="..\..\..\Source\LoadTextureResource.h" />
+    <ClInclude Include="..\..\..\Source\LurkMsg.h" />
     <ClInclude Include="..\..\..\Source\MySceneGraph.h" />
     <ClInclude Include="..\..\..\Source\MyTextMaker.h" />
     <ClInclude Include="..\..\..\Source\Npc.h" />
@@ -395,7 +396,6 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\StaticFloor.h" />
     <ClInclude Include="..\..\..\Source\TextMaker.h" />
     <ClInclude Include="..\..\..\Source\Trigger.h" />
-    <ClInclude Include="..\..\..\Source\Tutorial.h" />
     <ClInclude Include="..\..\..\Source\TutorialTrigger.h" />
     <ClInclude Include="..\..\..\Source\Viewport.h" />
     <ClInclude Include="..\..\..\Source\WWGameObject.h" />
