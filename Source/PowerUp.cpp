@@ -17,7 +17,7 @@ static PowerUp powerUps[MAX_PLAYERS];
 // Classes for doing/undoing power up effect, can be GuiCommands.
 static PGuiCommand commands[MAX_PLAYERS];
 
-// Colours match the texture colour - TODO less clunky way of doing it
+// Colours match the bean texture colour
 static const Colour COLOURS[] = 
 {
   Colour(1, 1, 1, 1), // NONE
@@ -224,13 +224,37 @@ void PowerUpManager::ResetPowerUps()
   }
 }
 
+// Return flash square wave with period as given
+static bool Flash(float t, float period)
+{
+  // Get remainder after dividing by period
+  float rem = t - period * float((int)(t / period));
+  return rem > (period / 2);
+}
+    
 Colour PowerUpManager::GetPlayerColour(int playerId)
 {
-  // TODO first 0.5 of time, solid colour, then flash for 0.25, then flash
+  // First 0.5 of time, solid colour, then flash for 0.25, then flash
   //  quickly for 0.25.
-  return COLOURS[(int)powerUps[playerId]];
+  // TODO Matching sound
+  static const float POWER_UP_TIME = ROConfig()->GetFloat("power-up-time");
+  static const float FLASH_PERIOD = ROConfig()->GetFloat("power-up-flash-period", 0.2f);
+  const float HALF = POWER_UP_TIME / 2;
+  const float QUARTER = HALF / 2;
+  int c = (int)powerUps[playerId]; // colour index - 0 means white/no extra colour
+  float t = powerUpTime[playerId];
+  if (t < QUARTER)
+  {
+    bool fastFlash = Flash(t, FLASH_PERIOD);
+    c = fastFlash ? c : 0;
+  }
+  else if (t < HALF)
+  {
+    bool slowFlash = Flash(t, FLASH_PERIOD * 2);
+    c = slowFlash ? c : 0;
+  }
+  return COLOURS[c];
 }
-
 
 }
 
