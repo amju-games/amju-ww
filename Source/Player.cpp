@@ -618,7 +618,7 @@ bool Player::OnBalanceBoardEvent(const BalanceBoardEvent& bbe)
   const float Y_DEAD_ZONE = 0.02f;
 
   const float X_MULT = 4.0f;
-  const float Y_MULT = 20.0f;
+  const float Y_MULT = 200.0f;
   
   if (x > -X_DEAD_ZONE && x < X_DEAD_ZONE)
   {

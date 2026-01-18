@@ -312,6 +312,8 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
   if (m_lives)
   {
     // Wav
+    Amju::PlayWav("gong"); // NB No file ext
+    Amju::PlayWav("bonus_points"); // NB No file ext
 
     TheScores::Instance()->IncLives(pn);
   }
@@ -321,6 +323,10 @@ void Bonus::OnPlayerCollision(Player* pPlayer)
 #ifdef BONUS_DEBUG
 std::cout << Describe(this) << " activating power up!\n";
 #endif
+
+    Amju::PlayWav("battle003"); // NB No file ext
+    Amju::PlayWav("bonus_points"); // NB No file ext
+
     ThePowerUpManager::Instance()->SetPowerUp((int)pn, m_powerUp);
   }
 }
