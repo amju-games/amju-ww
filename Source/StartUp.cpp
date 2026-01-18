@@ -19,15 +19,18 @@
 #include <Screen.h>
 #include <Directory.h>
 #include <ConfigFile.h>
+#include <ROConfig.h>
 #include <BassSoundPlayer.h>
 #include "StartUp.h"
 #include "GSLogo.h"
 #include "GSLoadLevel.h" // TEMP; so we start immediately in game
+#include "GSCopyAssets.h"
 #include "CursorManager.h"
 #include "Hud.h"
 #include "LevelManager.h"
 #include "StartGame.h"
 #include "GSPaused.h"
+#include "SaveDir.h"
 #include <AmjuFinal.h>
 
 //#define SHOW_FRAME_RATE
@@ -54,11 +57,10 @@
 
 namespace Amju
 {
-static const char* APPNAME = "amju-ww";
-
+// Filename for the writable game config file, not the read-only config.
 static std::string ConfigFilename()
 {
-  std::string filename = GetSaveDir(APPNAME) + "config.txt";
+  std::string filename = GetSaveDir() + "config.txt";
 
 #ifdef _DEBUG
 std::cout << "Config file: " << filename << "\n";
@@ -74,6 +76,8 @@ void StartUpBeforeCreateWindow()
   std::cout << "Data Dir: " << dataDir << "\n";
   File::SetRoot(dataDir, "/");
 #endif
+
+  SetROConfigFilename(GetSaveDir() + "roconfig.txt");
 
   GameConfigFile* gcf = TheGameConfigFile::Instance();
   std::string filename = ConfigFilename();
@@ -165,7 +169,7 @@ void StartUpAfterCreateWindow()
   StartGame(1, AMJU_MAIN_GAME_MODE); // TODO two player etc
   TheGame::Instance()->SetCurrentState(GSLoadLevel::NAME); 
 #else
-  TheGame::Instance()->SetCurrentState(TheGSLogo::Instance());	
+  TheGame::Instance()->SetCurrentState(TheGSCopyAssets::Instance());	
 #endif
 }
 }

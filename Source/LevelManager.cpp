@@ -12,6 +12,7 @@
 #include "ShadowManager.h"
 #include "GameMode.h"
 #include "Describe.h"
+#include "SaveDir.h"
 
 namespace Amju
 {
@@ -122,12 +123,12 @@ bool LevelManager::Open(const std::string& filename)
   std::string levelFilename = filename;
   bool HAS_VERSION_INFO = true;
   bool NOT_BINARY = false;
-  bool useRoot = true;
+  bool useRoot = false;
   File::Impl impl = File::STD;
   if (levelFilename.empty())
   {
-    levelFilename = "levels/level-1.txt"; // TODO TEMP TEST
-    impl = File::GLUE;
+    levelFilename = GetSaveDir() + "levels/level-1.txt"; // TODO TEMP TEST
+//    impl = File::GLUE;
     useRoot = false;
   }
 
