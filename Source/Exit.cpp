@@ -190,13 +190,11 @@ bool Exit::CreateSceneNode()
   m_billboard = new Billboard;
   m_billboard->SetVisible(false);
   m_billboard->SetIsZReadEnabled(false);
-//  if (!m_billboard->Load(f))
-//  {
-//    f->ReportError("Failed to load exit billboard");
-//    return false;
-//  }
-
-//  m_pSceneNode->AddChild(m_billboard);
+  Texture* bbtex = (Texture*)TheResourceManager::Instance()->GetRes("flare.png");
+  Assert(bbtex);
+  m_billboard->SetTexture(bbtex);
+  m_billboard->SetSize(50.0f); 
+  m_pSceneNode->AddChild(m_billboard);
 
   m_effect = new ExitParticleEffect;
   m_effect->SetVisible(true);
