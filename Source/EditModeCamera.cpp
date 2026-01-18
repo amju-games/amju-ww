@@ -52,11 +52,12 @@ bool EditModeCamera::OnCursorEvent(const CursorEvent& ce)
   oldx = ce.x;
   oldy = ce.y;
 
-  if (m_drag && m_controllable)
+  if (m_drag)
   {
     switch (m_mode)
     {
     case AMJU_PAN:
+      if (m_controllable)
       {
         Vec3f forward(m_lookat - m_eye);
         Vec3f up(0, 1, 0);
