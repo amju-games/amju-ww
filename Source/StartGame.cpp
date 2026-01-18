@@ -97,6 +97,8 @@ void StartGame(int numPlayers, GameMode mode)
 
   SetGameMode(mode);
 
-  TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
+  auto g = TheGSLoadLevel::Instance();
+  g->SetPrevState(TheGame::Instance()->GetState());
+  TheGame::Instance()->SetCurrentState(g);
 }
 }
