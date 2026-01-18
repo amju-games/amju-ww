@@ -27,7 +27,7 @@ gui-button
 pause-button
 // pos (coords are -1..1)
 // TODO HIDDEN FOR NOW
--0.2, -1.85
+-0.2, -0.85
 // size
 0.4, 0.1
 // Image
