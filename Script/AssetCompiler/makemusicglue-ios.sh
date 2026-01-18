@@ -12,7 +12,7 @@ export GLUE_FILE=$DEST_DIR/../music-$PLATFORM.glue
 mkdir $COMPILED_ASSETS
 mkdir -p $DEST_DIR/sound
 
-cp $SRC_DIR/sound/* $DEST_DIR/sound
+cp $SRC_DIR/sound/*.it $DEST_DIR/sound
 cp $SRC_DIR/sound/windows/* $DEST_DIR/sound
 
 cd $DEST_DIR
