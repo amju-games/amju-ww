@@ -101,7 +101,9 @@ std::cout << "Power up for player " << i << " is active! " << powerUpTime[i] << 
         powerUps[i] = POWERUP_NONE;
         // NOT: SetPowerUp(i, POWERUP_NONE);
 
-        // Undo the power up effect here - TODO
+        // Undo the power up effect here 
+        commands[i]->Undo();
+        commands[i] = nullptr;
 #ifdef POWERUP_DEBUG
 std::cout << "Power up for player " << i << " has just deactivated!\n";
 #endif
