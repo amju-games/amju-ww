@@ -9,6 +9,7 @@ namespace Amju
 {
 class PlayerController;
 class Pet;
+typedef std::list<Pet*> Pets;
 
 class Player : public OnFloorCharacter
 {
@@ -34,9 +35,8 @@ public:
 
   void Jump();
 
-  void AddSceneNode(); // called by level loader
-
   void PickUpPet(Pet* pet);
+  const Pets& GetPets() const { return m_pets; }
 
 private:
   void UpdatePets();
@@ -50,7 +50,6 @@ private:
   RCPtr<PlayerController> m_controller;
 
   // Pets picked up
-  typedef std::list<Pet*> Pets;
   Pets m_pets;
 };
 

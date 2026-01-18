@@ -100,7 +100,7 @@ std::cout << "Pick up pet! " << pet->GetId() << "\n";
   {
     Pet* p = *it;
     // Jump up
-    p->SetVel(Vec3f(0, 50.0f, 0)); // TEST
+    p->SetVel(Vec3f(0, 100.0f, 0)); // TEST
   }
   // Set vel - above player
   pet->SetVel(Vec3f(0, 0, 0));
@@ -119,14 +119,9 @@ void Player::UpdatePets()
     Pet* pet = *it;
     Vec3f pos = pet->GetPos();
     Vec3f vel = pet->GetVel();
-    if (pos.y < y)
+    if (pos.y < y && vel.y < 0)
     {
       pos.y = y;
-      // reverse y vel
-//      if (vel.y < 0)
-//      {
-//        vel.y = -vel.y * 0.5f; // damping
-//      }
 
       vel.y = 10.0f; // TEST
 
@@ -249,12 +244,6 @@ bool Player::Load(File* f)
     TODO Maybe use this one: "C:/JAY/BANANA/AMJU-EXTRA/AMJU-guitar2.MD2"
     C:/JAY/BANANA/AMJU-EXTRA/AMJU2-GUITAR.BMP"
   */
-}
-
-void Player::AddSceneNode()
-{
-  SceneNode* root = GetGameSceneGraph()->GetRootNode(SceneGraph::AMJU_OPAQUE);
-  root->AddChild(m_pSceneNode);
 }
 
 void Player::Jump()
