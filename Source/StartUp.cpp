@@ -26,6 +26,12 @@
 #include "StartGame.h"
 #include <AmjuFinal.h>
 
+#ifdef MACOSX
+// TODO
+#define GLUE_FILE "data-win.glue"
+#define MUSIC_GLUE_FILE "music-win.glue"
+#endif
+
 #ifdef WIN32
 #define GLUE_FILE "data-win.glue"
 #define MUSIC_GLUE_FILE "music-win.glue"
