@@ -19,5 +19,10 @@ bool IsEditMode()
   return (s_gameMode == AMJU_EDIT_MODE);
 }
 
+bool IsAttractMode()
+{
+  return (s_gameMode == AMJU_ATTRACT_MODE);
+}
+
 }
 
