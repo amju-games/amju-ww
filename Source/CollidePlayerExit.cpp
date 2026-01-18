@@ -11,6 +11,9 @@ namespace Amju
 {
 void CollidePlayerExit(GameObject* go1, GameObject* go2)
 {
+return;
+
+
   Player* player = dynamic_cast<Player*>(go1);
   Assert(player);
   Exit* exit = dynamic_cast<Exit*>(go2);
