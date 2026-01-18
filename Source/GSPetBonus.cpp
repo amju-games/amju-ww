@@ -16,17 +16,18 @@ const char* GSPetBonus::NAME = "pet-bonus";
 GSPetBonus::GSPetBonus()
 {
   m_petNum = 0;
+  m_scoreInc = 0;
 }
 
 void GSPetBonus::ShowPet()
 {
   if (!m_pets.empty())
   {
-    Pet* pet = m_pets.front();
+    Pet* pet = m_pets[m_petNum];
 std::cout << "Showing pet " << pet->GetId() << "\n";
 
-    float x = (m_petNum % 4) * 100.0f - 150.0f;
-    float y = -(m_petNum / 4) * 100.0f; 
+    float x = ((float)m_petNum - (float)(m_pets.size() - 1) / 2.0f) * 50.0f;
+    float y = 0; //-(m_petNum / 4) * 100.0f; 
     m_petNum++;
 
     Vec3f pos = Vec3f(x, y, 0);
@@ -45,7 +46,8 @@ std::cout << "Showing pet " << pet->GetId() << "\n";
     // TODO Sound
 //    PlayWav("");
     Score::PlayerNum pn = (Score::PlayerNum)m_player->GetPlayerId();
-    Score::AddToScore(pn, 100); // TODO accumulator
+    Score::AddToScore(pn, m_scoreInc); 
+    m_scoreInc *= 2;
   }
 }
 
@@ -54,11 +56,14 @@ void GSPetBonus::OnActive()
   GSText::OnActive();
 
   m_petNum = 0;
+  m_scoreInc = 100;
   GetGameSceneGraph()->Clear(); 
   GetGameSceneGraph()->SetRootNode(SceneGraph::AMJU_OPAQUE, new SceneNode);
 
   Assert(m_player);
-  m_pets = m_player->GetPets();
+  // Copy list into vector
+  const Pets& pets = m_player->GetPets();
+  m_pets.assign(pets.begin(), pets.end());
   ShowPet();
 }
 
@@ -85,14 +90,13 @@ void GSPetBonus::Update()
   {
     m_timer = 0;
 
-    if (m_pets.empty())
+    if (m_petNum >= m_pets.size())
     {
       // Go to load level state (or level map state???)
       TheGame::Instance()->SetCurrentState(TheGSLoadLevel::Instance());
     }
     else
     {
-      m_pets.pop_front();
       ShowPet();
     }
   }
@@ -119,13 +123,7 @@ void GSPetBonus::Draw()
   AmjuGL::LookAt(0, 100.0f, 200.0f,   0, 50.0f, 0.0f,  0, 1.0f, 0);
 
   // TODO Lighting node
-  AmjuGL::Enable(AmjuGL::AMJU_LIGHTING);
-  AmjuGL::DrawLighting(
-    AmjuGL::LightColour(0, 0, 0),
-    AmjuGL::LightColour(0.2f, 0.2f, 0.2f), // Ambient light colour
-    AmjuGL::LightColour(1, 1, 1), // Diffuse light colour
-    AmjuGL::LightColour(1, 1, 1),
-    AmjuGL::Vec3(1, 1, 1)); // Light direction
+  AmjuGL::Disable(AmjuGL::AMJU_LIGHTING);
 
   GetGameSceneGraph()->Draw();
 }
