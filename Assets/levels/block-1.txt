@@ -90,7 +90,7 @@ fence
 // ID
 666
 // Pos
-0, 100, 50
+-1000, 100, 50
 // Rot 
 ns
 // Num units
@@ -184,6 +184,8 @@ dino
 105
 // Start pos
 150, 220, 0
+// Type
+2
 // Shadow
 shadow.png
 20
