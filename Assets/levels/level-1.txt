@@ -2,7 +2,7 @@
 11
 
 // Num game objects
-37
+36
 
 // Game object type
 camera
@@ -28,7 +28,7 @@ end
 bird
 99
 // Position
-677.546814, 145.498856, 10.067179
+677.704224, 145.514542, 20.067711
 pz-bird.md2
 bird1a.png
 bird1.png
@@ -41,7 +41,7 @@ end
 player
 101
 // Position
-750.000000, 102.936058, 50.000000
+750.000000, 102.241089, 50.000000
 // Player ID
 0
 // MD2 mesh name
@@ -58,7 +58,7 @@ end
 player
 102
 // Position
-650.000000, 159.186081, 10.000000
+650.000000, 158.491119, 20.000000
 // Player ID
 1
 // MD2 mesh name
@@ -75,7 +75,7 @@ end
 pet
 104
 // Position
-3350.000000, 2259.835938, 50.000000
+3350.000000, 2259.141357, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -88,7 +88,7 @@ end
 pet
 105
 // Position
-3400.000000, 2559.835938, 50.000000
+3400.000000, 2559.141357, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -101,7 +101,7 @@ end
 pet
 106
 // Position
-3450.000000, 2409.835938, 50.000000
+3450.000000, 2409.141357, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
@@ -114,7 +114,7 @@ end
 dino
 107
 // Position
-3700.000000, 2559.835938, 50.000000
+3700.000000, 2559.141357, 50.000000
 dino.md2
 dino1a.png
 dino1.png
@@ -195,7 +195,7 @@ end
 // Game object type
 fence
 2007
-6.250000, 87.500000, 50.000000
+18.750000, 87.500000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
@@ -224,9 +224,9 @@ staticfloor
 2023
 200.000000, 100.000000, 50.000000
 // Y rotation
-180.000000
+360.000000
 // Mesh filename
-a41.obj
+rd_a41a.obj
 end
 
 // Game object type
@@ -349,22 +349,13 @@ end
 pet
 4022
 // Position
-3550.000000, 2359.835938, 50.000000
+3550.000000, 2359.141357, 50.000000
 pz-cat.md2
 pz-pet1a.png
 pz-pet1.png
 // Shadow texture & size
 shadow.png
 20.000000
-end
-
-// Game object type
-skybox
-5000
-// Mesh filename
-$$$empty
-//skybox1.txt
-8080ff
 end
 
 // Game object type
@@ -425,7 +416,7 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-a41.obj
+rd_a41.obj
 end
 
 // Game object type
@@ -435,13 +426,13 @@ staticfloor
 // Y rotation
 540.000000
 // Mesh filename
-a41.obj
+rd_a41.obj
 end
 
 // Game object type
 fence
 5211
-1343.750000, 87.500000, 50.000000
+1337.500000, 87.500000, 50.000000
 0.000000
 // Mesh filename
 pz-fence.obj
