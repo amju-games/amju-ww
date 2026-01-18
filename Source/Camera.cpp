@@ -30,25 +30,12 @@ void CamZoomInOnPlayer::Update(Camera* cam)
   Assert(cam->GetTarget());
   const Vec3f& v = cam->GetTarget()->GetPos();
   Vec3f pos = cam->GetPos();
-  Vec3f vel = cam->GetVel();
-  Vec3f acc = cam->GetAcc();
+  
+  // Get closer to player
+  Vec3f vel = v - pos;
 
-  // Move directly in front of player
-  vel.x = (v.x - pos.x) * 5.0f;
-
-  // Adjust height so same as player
-  //vel.y = (v.y - pos.y) * 5.0f;
-
-  // Zoom in and out in sine wave
-  static float f = 0;
-  f += TheTimer::Instance()->GetDt() * 5.0f;
-
-  pos.z = v.z + Z_OFFSET + sin(f) * 0.5f * Z_OFFSET;
-
-  cam->SetPos(pos);
   cam->SetVel(vel);
-  cam->SetAcc(acc);
-  cam->SetLookAtPos(v); //Vec3f(pos.x, v.y, v.z));
+  cam->SetLookAtPos(v); 
 }
 
 void CamFollowPlayer::Update(Camera* cam)
@@ -117,6 +104,8 @@ void Camera::Reset()
 {
   if (!m_target)
   {
+std::cout << "Camera obj ID: " << GetId() << " target ID: " << m_targetId << "\n";
+
     m_target = TheGame::Instance()->GetGameObject(m_targetId);
     Assert(m_target);
   }

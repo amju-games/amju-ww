@@ -25,11 +25,10 @@ void CollidePlayerExit(GameObject* go1, GameObject* go2)
   int id = player->GetPlayerId();
   Viewport* vp = TheViewportManager::Instance()->GetViewport(id);
   Camera* cam = vp->GetCamera();
+  cam->SetTarget(exit);
   cam->SetBehaviour(new CamZoomInOnPlayer);
 
-  // Set player to face camera and do special animation
-  player->SetDir(180.0f);
-  //player->SetAnim("jump"); // TODO
+  player->ReachedExit();
 
   // Set player to show in Level complete stage
   TheGSLevelComplete::Instance()->SetPlayer(player);

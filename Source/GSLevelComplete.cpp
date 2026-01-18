@@ -33,6 +33,7 @@ void SetObjPos(WWGameObject* obj, float angle, float z)
   mat.RotateY(DegToRad(angle)); // TODO
   mat.TranslateKeepRotation(pos);
   obj->GetSceneNode()->SetLocalTransform(mat);
+  obj->GetSceneNode()->SetVisible(true);
 }
 
 
@@ -84,7 +85,7 @@ void GSLevelComplete::Draw()
   // Rotate background
   static float a = 0;
   float dt = TheTimer::Instance()->GetDt();
-  a += 90.0f * dt;
+  a -= 90.0f * dt;
 
   AmjuGL::PushMatrix();
   AmjuGL::RotateZ(a);

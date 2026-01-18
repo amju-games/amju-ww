@@ -2,8 +2,6 @@
 #include "MySceneGraph.h"
 #include "AmjuGL.h"
 #include "GuiImage.h"
-#include "PlayerInfo.h"
-#include "PlayerInfoKey.h"
 #include "Camera.h"
 #include "GSLoadLevel.h"
 
@@ -39,34 +37,6 @@ void Viewport::Draw()
 
 void Viewport::Draw2d()
 {
-  AmjuGL::PushMatrix();
-
-  // Translate - depends on ID and total number of Viewports
-  if (m_id == 1)
-  {
-    // Right-hand viewport of two, so translate half screen width
-    AmjuGL::Translate(1.0f, 0, 0);
-  }
-
-  // Life image
-  static GuiImage image;
-  static bool first = true;
-  if (first)
-  {
-    first = false;
-    image.OpenAndLoad("heart-gui.txt");
-  }
-  // TODO Lives, score, level ? Other stats, objective text, tutorial etc
-  int lives = ThePlayerInfoManager::Instance()->GetPlayerInfo(m_id)->
-    GetInt(PlayerInfoKey::LIVES);
-
-  for (int i = 0; i < lives; i++)
-  {
-    image.Draw();
-    AmjuGL::Translate(0.15f, 0, 0); // TODO CONFIG
-  }
-
-  AmjuGL::PopMatrix();
 }
 
 void Viewport::SetCamera(Camera* pCam)

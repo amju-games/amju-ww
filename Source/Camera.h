@@ -45,6 +45,7 @@ public:
   void SetBehaviour(CamBehaviour* b) { m_behaviour = b; }
 
   GameObject* GetTarget() { return m_target; }
+  void SetTarget(GameObject* target) { m_target = target; }
  
 protected:
   int m_targetId;
