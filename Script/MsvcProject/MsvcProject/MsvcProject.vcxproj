@@ -312,6 +312,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\Exit.cpp" />
     <ClCompile Include="..\..\..\Source\Fence.cpp" />
     <ClCompile Include="..\..\..\Source\Floor.cpp" />
+    <ClCompile Include="..\..\..\Source\GameConsts.cpp" />
     <ClCompile Include="..\..\..\Source\GameMode.cpp" />
     <ClCompile Include="..\..\..\Source\GSAttract.cpp" />
     <ClCompile Include="..\..\..\Source\GSCopyAssets.cpp" />
@@ -323,6 +324,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClCompile Include="..\..\..\Source\GSMain.cpp" />
     <ClCompile Include="..\..\..\Source\GSMainEdit.cpp" />
     <ClCompile Include="..\..\..\Source\GSMenu.cpp" />
+    <ClCompile Include="..\..\..\Source\GSNewOrContinue.cpp" />
     <ClCompile Include="..\..\..\Source\GSOptions.cpp" />
     <ClCompile Include="..\..\..\Source\GSPaused.cpp" />
     <ClCompile Include="..\..\..\Source\GSPetBonus.cpp" />
@@ -387,6 +389,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\Exit.h" />
     <ClInclude Include="..\..\..\Source\Fence.h" />
     <ClInclude Include="..\..\..\Source\Floor.h" />
+    <ClInclude Include="..\..\..\Source\GameConsts.h" />
     <ClInclude Include="..\..\..\Source\GameMode.h" />
     <ClInclude Include="..\..\..\Source\GSAttract.h" />
     <ClInclude Include="..\..\..\Source\GSCopyAssets.h" />
@@ -398,6 +401,7 @@ xcopy /Y /S  ..\..\..\..\amjulib\Source\SoundBass\Bass2.3\Win\*.dll  ..\..\..\Bu
     <ClInclude Include="..\..\..\Source\GSMain.h" />
     <ClInclude Include="..\..\..\Source\GSMainEdit.h" />
     <ClInclude Include="..\..\..\Source\GSMenu.h" />
+    <ClInclude Include="..\..\..\Source\GSNewOrContinue.h" />
     <ClInclude Include="..\..\..\Source\GSOptions.h" />
     <ClInclude Include="..\..\..\Source\GSPaused.h" />
     <ClInclude Include="..\..\..\Source\GSPetBonus.h" />
