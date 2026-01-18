@@ -625,8 +625,10 @@ void GSMainEdit::Draw()
   int numVps = TheViewportManager::Instance()->GetNumViewports();
   for (int i = 0; i < numVps; i++)
   {
-    TheViewportManager::Instance()->GetViewport(i)->Draw();
+    Viewport* vp = TheViewportManager::Instance()->GetViewport(i);
+    vp->Draw();
 
+    // TODO If this is the active vp
     if (m_isSelecting)
     {
       m_isSelecting = false;
@@ -717,7 +719,22 @@ void GSMainEdit::SetSelectedObject(GameObject* obj)
 
 void GSMainEdit::Draw2d()
 {
+// DOne in Game::Draw
+//  AmjuGL::SetMatrixMode(AmjuGL::AMJU_PROJECTION_MATRIX);
+//  AmjuGL::SetIdentity();
+//  AmjuGL::SetMatrixMode(AmjuGL::AMJU_MODELVIEW_MATRIX);
+//  AmjuGL::SetIdentity();
+ 
+  int numVps = TheViewportManager::Instance()->GetNumViewports();
+  for (int i = 0; i < numVps; i++)
+  {
+    Viewport* vp = TheViewportManager::Instance()->GetViewport(i);
+    vp->Draw2d();
+  }
+  AmjuGL::Viewport(0, 0, Screen::X(), Screen::Y());
+
 //  GSMain::Draw2d();
+  // ?? Why in Edit mode??
   TheLurker::Instance()->Draw();
 
   m_topMenu->SetVisible(true); // always visible
