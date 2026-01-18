@@ -47,9 +47,11 @@ public:
 
   void Close();
 
-  // Get button used to close the dialog, usually AMJU_OK or AMJU_CANCEL
+  // Get button used to close the dialog, e.g. AMJU_OK or AMJU_CANCEL
   int GetResult() const;
   void SetResult(int);
+
+  void SetButtonText(const std::string& buttonName, const std::string& text);
 
   virtual void GetDataFromGui() = 0;
   virtual void SetDataToGui() = 0;

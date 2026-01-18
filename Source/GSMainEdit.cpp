@@ -18,6 +18,7 @@
 #include "LurkMsg.h"
 #include "ShadowManager.h"
 #include "Describe.h"
+#include "SaveDir.h"
 
 namespace Amju
 {
@@ -28,7 +29,7 @@ static MessageBox s_messageBox;
 static const char* LAST_PATH = "last_path";
 
 static std::string s_lastPath = TheGameConfigFile::Instance()->
-  GetValue(LAST_PATH, "/Users/jay/projects/amju-ww/Assets/levels/"); // TODO
+  GetValue(LAST_PATH, GetSaveDir()); 
 
 static int s_unsaved = 0; // number of commands away from save
 
@@ -116,14 +117,21 @@ static void OnSaveLevel()
 
 static void OnQuitSaveChanges(Dialog* dlg)
 {
-  if (dlg->GetResult() == AMJU_OK)
+  int r = dlg->GetResult();
+  if (r == AMJU_OK)
   {
+    std::cout << "Quit->Save OK clicked.\n";
     OnSaveLevel();
   }
-  else
+  else if (r == AMJU_NO)
   {
+    std::cout << "Quit->Save NO clicked.\n";
     // Don't save
     TheGame::Instance()->SetCurrentState(TheGSTitle::Instance());  
+  }
+  else if (r == AMJU_CANCEL)
+  {
+    std::cout << "Quit->Save CANCEL clicked.\n";
   }
 }
 
@@ -145,14 +153,22 @@ static void OnQuitEditMode()
 
 static void OnNewSaveChanges(Dialog* dlg)
 {
-  if (dlg->GetResult() == AMJU_OK)
+  int r = dlg->GetResult();
+  if (r == AMJU_OK)
   {
+    std::cout << "New->Save OK clicked.\n";
     OnSaveLevel();
   }
-  else
+  else if (r == AMJU_NO)
   {
+    std::cout << "New->Save NO clicked.\n";
     // Don't save - load boilerplate new level
     // TODO
+  }
+  else if (r == AMJU_CANCEL)
+  {
+    std::cout << "New->Save CANCEL clicked.\n";
+
   }
 }
 
@@ -519,6 +535,7 @@ void GSMainEdit::OnObjectRotate(float degs)
 
 void GSMainEdit::OnDeactive()
 {
+  GSMain::OnDeactive();
   TheEventPoller::Instance()->RemoveListener(m_topMenu);
 }
 

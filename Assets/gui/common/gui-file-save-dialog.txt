@@ -24,7 +24,7 @@ gui-file-list-box
 fd-file-list-box
 // Pos, size
 0.05, -0.25
-1.4, 0.7
+1.45, 0.7
 
 // Text box showing path + Filename
 gui-text-edit

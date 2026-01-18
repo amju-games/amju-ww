@@ -110,6 +110,8 @@ void Dialog::OnActive()
 {
 std::cout << "This dialog: " << m_guiFilename << " is activating...\n";
 
+  GameState::OnActive();
+
   m_gui = LoadGui(m_guiFilename, false); // don't add as listener 
   Assert(m_gui);
   // GUI should get events through this game state's handler functions
@@ -123,7 +125,7 @@ std::cout << "This dialog: " << m_guiFilename << " is activating...\n";
   Assert(ok);
   ok->SetCommand(DialogOnOk);
 
-  GuiButton* no = (GuiButton*)m_gui->GetElementByName("ok-button");
+  GuiButton* no = (GuiButton*)m_gui->GetElementByName("no-button");
   if (no)
   {
     no->SetCommand(DialogOnNo);
@@ -136,8 +138,11 @@ std::cout << "This dialog: " << m_guiFilename << " is activating...\n";
 
 void Dialog::OnDeactive()
 {
-std::cout << "This dialog: " << m_guiFilename << " is deactivating...\n";
+  GameState::OnDeactive();
 
+std::cout << "This dialog: " << m_guiFilename << " is deactivating...\n";
+ 
+// TODO WHY NOT
 //  m_gui = 0;
 }
 
@@ -156,6 +161,19 @@ void Dialog::Close()
   {
     Assert(m_onOK);
     m_onOK(this);
+  }
+}
+
+void Dialog::SetButtonText(const std::string& buttonName, const std::string& text)
+{
+  GuiButton* b = dynamic_cast<GuiButton*>(m_gui->GetElementByName(buttonName));
+  if (b)
+  {
+    b->SetText(text);
+  }
+  else
+  {
+    std::cout << "Dialog: set button text failed for button \"" << buttonName << "\"\n";
   }
 }
 
