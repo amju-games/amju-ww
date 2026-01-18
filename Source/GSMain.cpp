@@ -126,7 +126,7 @@ bool GSMain::OnKeyEvent(const KeyEvent& ke)
   // Switch to debug camera
   if (ke.keyType == AMJU_KEY_CHAR && (ke.key == 'c' || ke.key == 'C'))
   {
-    GetGameSceneGraph()->SetCamera(new EditModeCamera);
+    GetGameSceneGraph()->SetCamera(new EditModeCamera(AMJU_EDITCAM_PERSP));
   }
 #endif
   
