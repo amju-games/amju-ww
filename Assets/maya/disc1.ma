@@ -112,7 +112,7 @@ createNode polyTweakUV -n "polyTweakUV1";
 		0.13050878 -0.057845831 0.49465346 -0.014454246 -0.027304247 -0.057845831 -0.40556714 
 		-0.17639405 -0.54402089 -0.33833385 0.49411345 0.33460444 0.49465346 -0.35128903;
 createNode file -n "file1";
-	setAttr ".ftn" -type "string" "Y:/projects/amju-ww/Assets/disc1.bmp";
+	setAttr ".ftn" -type "string" "Y:/projects/amju-ww/Assets/disc1.png";
 createNode place2dTexture -n "place2dTexture1";
 createNode script -n "uiConfigurationScriptNode";
 	setAttr ".b" -type "string" (

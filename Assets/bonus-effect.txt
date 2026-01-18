@@ -2,7 +2,7 @@
 // v
 1
 // image - TODO TEMP TEST
-sparkle1.bmpa
+sparkle1.png
 // size
 10.0
 // number

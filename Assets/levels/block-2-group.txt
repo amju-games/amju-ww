@@ -3,25 +3,22 @@
 1
 // resources
 
-heart.bmpa
-skybox2.bmp
-skybox2.obj
-shadow.bmpa
-floor.bmp
-red.bmp
+heart.png
+shadow.png
+floor.png
+red.png
 heart.obj
 star.obj
-flare.bmpa
-sparkle1.bmpa
+sparkle1.png
 amju.md2
-amju2.bmp
-amju2a.bmp
+amju2.png
+amju2a.png
 dino.md2
-dino1.bmp
-dino1a.bmp
+dino1.png
+dino1a.png
 block_rect_1x1.obj
-plat_wood1.bmp
-plat_wood2.bmp
+plat_wood1.png
+plat_wood2.png
 plat_rect_2x1_std.obj
 ramp_3x1.obj
-ramp1.bmp
+ramp1.png
