@@ -45,12 +45,6 @@ MyTextMaker::MyTextMaker()
   m_theta = 0;
 }
 
-float rnd()
-{
-  float f = ((float)rand() / (float)RAND_MAX); // * 0.75f + 0.25f;
-  return f;
-}
-
 PSceneNode MyTextMaker::Decorate(PSceneNode p)
 {
   static const int MAX_COLOUR = 4;
