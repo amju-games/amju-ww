@@ -9,9 +9,9 @@ dino
 107
 // Position
 675.000000, 49.998413, 50.000000
-snowman.md2
-snowman.png
-snowman.png
+peng.md2
+peng.png
+peng.png
 snowman-blood.png
 snowman-blood.png
 // Shadow texture & size

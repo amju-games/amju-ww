@@ -320,9 +320,9 @@ dino
 5792
 // Position
 200.000000, 299.999115, 50.000000
-snowman.md2
-snowman.png
-snowman.png
+peng.md2
+peng.png
+peng.png
 snowman-blood.png
 snowman-blood.png
 // Shadow texture & size
