@@ -51,22 +51,8 @@ void GSTitle::OnActive()
 {
   GSText::OnActive();
 
-  TheResourceManager::Instance()->LoadResourceGroup("music-group");
   // Start theme music
   TheSoundManager::Instance()->PlaySong("sound/ww1.mod");
-
-#ifdef GEKKO
-  TheResourceManager::Instance()->LoadResourceGroup("wii-sound-group");
-#else
-  // Etc
-  TheResourceManager::Instance()->LoadResourceGroup("windows-sound-group");
-#endif
-
-  // Gui and 3D Text resources - keep in mem, so don't trash in OnDeactive
-  // TODO Load while logos are displayed ?
-  TheResourceManager::Instance()->LoadResourceGroup("3dtext-group");
-  TheResourceManager::Instance()->LoadResourceGroup("gui-group");
-  //TheResourceManager::Instance()->LoadResourceGroup("skybox-group");
 
   m_gui = LoadGui("title-gui.txt");
   Assert(m_gui);

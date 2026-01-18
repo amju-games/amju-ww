@@ -9,8 +9,6 @@
 
 namespace Amju
 {
-static const char* GROUP = "logo-group";
-
 const char* GSLogo::NAME = "start";
 
 void Done()
@@ -26,14 +24,12 @@ GSLogo::GSLogo()
 void GSLogo::OnActive()
 {
   GameState::OnActive();
-  TheResourceManager::Instance()->LoadResourceGroup(GROUP);
   m_image.OpenAndLoad("logo-gui.txt");
 }
 
 void GSLogo::OnDeactive()
 {
   GameState::OnDeactive();
-  TheResourceManager::Instance()->FreeResourceGroup(GROUP);
 }
 
 void GSLogo::Update()
