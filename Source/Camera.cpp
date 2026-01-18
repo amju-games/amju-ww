@@ -11,6 +11,11 @@
 #include "OnFloor.h"
 #include "Viewport.h"
 #include "Player.h"
+#include "EditModeCamera.h"
+
+#ifdef _DEBUG
+#define EDIT_CAM
+#endif
 
 namespace Amju
 {
@@ -241,8 +246,18 @@ bool Camera::Load(File* f)
 
 void Camera::SetAsSceneGraphCamera()
 {
+  SceneGraph* graph = GetGameSceneGraph();
+
+#ifdef EDIT_CAM
+  // Check for edit mode camera
+  if (dynamic_cast<EditModeCamera*>(graph->GetCamera().GetPtr()))
+  {
+    return;
+  }
+#endif
+
   Assert(dynamic_cast<SceneNodeCamera*>(GetSceneNode()));
-  GetGameSceneGraph()->SetCamera((SceneNodeCamera*)GetSceneNode());
+  graph->SetCamera((SceneNodeCamera*)GetSceneNode());
   s_activeCamera = this;
 }
 }

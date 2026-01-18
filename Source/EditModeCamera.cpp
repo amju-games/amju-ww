@@ -21,7 +21,7 @@ EditModeCamera::EditModeCamera()
   {
     m_controller = new EditModeCameraController(this);
   }
-  TheEventPoller::Instance()->AddListener(m_controller, 100); // low pri 
+  TheEventPoller::Instance()->AddListener(m_controller, 90); // low pri 
 
   // TODO TEMP TEST
   SetEyePos(Vec3f(0, 0, 500));

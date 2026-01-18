@@ -31,7 +31,9 @@
 #include "WWLoadGui.h"
 #include "Bird.h"
 
+#ifdef _DEBUG
 #define EDIT_CAM
+#endif
 
 namespace Amju
 {
