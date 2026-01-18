@@ -41,7 +41,6 @@
 #include "HiScoreDb.h"
 #include "Hud.h"
 #include "Init.h"
-#include "iOSTweet.h"
 #include "LevelManager.h"
 #include "NetSend.h"
 #include "ResizeHandler.h"

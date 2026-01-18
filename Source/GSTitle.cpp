@@ -11,7 +11,6 @@
 #include "GSYouGotHiScore.h"
 #include "iOSKeyboard.h"
 #include "iOSShare.h"
-#include "iOSTweet.h"
 #include "LevelManager.h"
 #include "MySceneGraph.h"
 #include "ResourceManager.h"
