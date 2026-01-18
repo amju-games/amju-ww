@@ -33,23 +33,15 @@ void GSYouGotHiScore::OnOk()
   Assert(textEdit);
   std::string name = textEdit->GetText();
   
-  // Send hi score to server
-  // TODO Move this to NetSendHiScore
+  // Store hi score
   int level = TheLevelManager::Instance()->GetLevelId();
   // Assuming 1-player game for now, not multiplayer (Wii) - - TODO
   int depth = static_cast<int>(GetCurrentDepth());
   auto scores = TheScores::Instance();
   int score = scores->GetScore(AMJU_P1);
-  Vec3f pos(3, 4, 5); // TODO £W&*(£&Q*(&QWE(*W&EW*E(&WE*Q(WE&*QWE(&QW*E&QW*E(Q*W&E*QW(EQW&EQ(W
-  NetSendHiScore(name, score, level, depth, pos);
-  // -- response to this should be the latest global high scores, duh!
-  
-  // Store local hi score
-  //   Hi(int score, int level, int depth, const std::string& nick, const Vec3f& pos)
-  TheLocalHiScoreDb::Instance()->AddHiScore(Hi(score, level, depth, name, pos));
-  
-  // Add to global high scores if it is high enough?
-  // Or just rely on reloading the global hi scores from server.
+  Vec3f pos(3, 4, 5); // ** TODO **
+
+  TheGlobalHiScoreDb::Instance()->AddHiScore(Hi(score, level, depth, name, pos));
   
   // Go to Hi score state
   auto h = TheGSHiScores::Instance();

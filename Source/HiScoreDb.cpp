@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <sstream>
+#include <AmjuHash.h>
 #include <File.h>
 #include <LoadVec3.h>
 #include <SafeUtils.h>
@@ -18,22 +19,23 @@ namespace Amju
 {
 void HiScoreStartUp()
 {
-  // Load up local hi score table
-  TheLocalHiScoreDb::Instance()->Load();
-  
-  // Load up global hi score table. We replace this if we get an updated table from the
+  // Load up global hi score table. We update this if we get an updated table from the
   //  server, but if not, we can show the player the last table we got.
-  TheGlobalHiScoreDb::Instance()->LoadLocked();
-  
-  // union global and local?? 
+  TheGlobalHiScoreDb::Instance()->Load();
   
   // Send request for updated global hi scores
   TheGlobalHiScoreDb::Instance()->SendRequestToServer();
 }
   
-static const std::string SEP = " ";
 static const std::string FILENAME_LOCAL = "local_hs.txt";
 static const std::string FILENAME_GLOBAL = "global_hs.txt";
+  
+static int MakeHash(const Hi& hi)
+{
+  std::string str = hi.m_nick + ToString(hi.m_depth) + ToString(hi.m_level) + ToString(hi.m_score);
+  int hash = HashString(str);
+  return hash;
+}
   
 bool Hi::operator<(const Hi& hi) const
 {
@@ -84,7 +86,6 @@ bool Hi::Load(File* f)
 
 HiScoreDb::HiScoreDb()
 {
-  
 }
 
 bool HiScoreDb::Load(std::string filename)
@@ -112,6 +113,8 @@ bool HiScoreDb::Load(std::string filename)
       f.ReportError("Failed to load hi score line");
       return false;
     }
+    int hash = MakeHash(hi);
+    hi.m_hash = hash;
     m_hsVec.push_back(hi);
   }
   return true;
@@ -134,17 +137,7 @@ bool HiScoreDb::Save(std::string filename)
   return true;
 }
 
-bool LocalHiScoreDb::Load()
-{
-  return HiScoreDb::Load(FILENAME_LOCAL);
-}
-
-bool LocalHiScoreDb::Save()
-{
-  return HiScoreDb::Save(FILENAME_LOCAL);
-}
-
-bool LocalHiScoreDb::IsScoreTopN(int score, int n) const
+bool HiScoreDb::IsScoreTopN(int score, int n) const
 {
   if (n >= static_cast<int>(m_hsVec.size()))
   {
@@ -154,11 +147,29 @@ bool LocalHiScoreDb::IsScoreTopN(int score, int n) const
   return score > sc;
 }
 
-void LocalHiScoreDb::AddHiScore(const Hi& hi)
+void HiScoreDb::SetVec(const HiScoreVec& vec)
 {
+  m_hsVec = vec;
+}
+
+void HiScoreDb::AddHiScore(const Hi& chi)
+{
+  Hi hi(chi);
+  int hash = MakeHash(hi);
+  hi.m_hash = hash;
   m_hsVec.push_back(hi);
   std::sort(m_hsVec.begin(), m_hsVec.end());
-  Save();
+}
+  
+void HiScoreDb::RemoveHiScore(const Hi& hi)
+{
+  if (!m_hsVec.empty())
+  {
+    int hash = MakeHash(hi);
+    m_hsVec.erase(
+      std::remove_if(m_hsVec.begin(), m_hsVec.end(), [=](const Hi& hi) { return hi.m_hash == hash; } ),
+      m_hsVec.end());
+  }
 }
 
 void HiScoreDb::GetTopN(int n, HiScoreVec* result) const
@@ -167,14 +178,56 @@ void HiScoreDb::GetTopN(int n, HiScoreVec* result) const
   // Insert, not assign, so we can union the local and global tables if required
   result->insert(result->end(), m_hsVec.begin(), m_hsVec.begin() + n);
 }
+  
+void HiScoreDb::SendFirst()
+{
+  if (!m_hsVec.empty())
+  {
+    const Hi& hi = m_hsVec[0];
+    NetSendHiScore(hi.m_nick, hi.m_score, hi.m_level, hi.m_depth, hi.m_pos);
+  }
+}
 
-//int HiScoreDb::GetNum() const
-//{
-//  return static_cast<int>(m_hsVec.size());
-//}
+void GlobalHiScoreDb::AddHiScore(const Hi& hi)
+{
+  m_local.AddHiScore(hi);
+  m_local.Save(FILENAME_LOCAL);
+  
+  // NetSendHiScore: here or at call site?
+  // Send hi score to server
+  NetSendHiScore(hi.m_nick, hi.m_score, hi.m_level, hi.m_depth, hi.m_pos);
+  // -- response to this should be the latest global high scores, duh!
+}
+ 
+bool GlobalHiScoreDb::IsHiScore(int score) const
+{
+  const int HI_SCORE_TOP_N = 100; // TODO CONFIG
+  bool b = m_global.IsScoreTopN(score, HI_SCORE_TOP_N);
+  return b;
+}
 
-bool LocalHiScoreDb::SendToServer(const Hi& hi) const
-{  
+void GlobalHiScoreDb::GetTopN(int n, HiScoreVec* result) const
+{
+  m_global.GetTopN(n, result);
+  m_local.GetTopN(n, result);
+  std::sort(result->begin(), result->end());
+  if (result->size() > n)
+  {
+    // Too many rows, chop the extra from the bottom
+    result->erase(result->begin() + n, result->end());
+  }
+}
+
+bool GlobalHiScoreDb::Load()
+{
+  if (!m_global.Load(FILENAME_GLOBAL))
+  {
+    return false;
+  }
+  if (!m_local.Load(FILENAME_LOCAL))
+  {
+    return false;
+  }
   return true;
 }
 
@@ -258,30 +311,23 @@ void GlobalHiScoreDb::HandleResponseFromServer(const std::string& response)
     return;
   }
   
-  MutexLocker lock(m_mutex);
-  m_hsVec = vec;
+  m_global.SetVec(vec);
   
   // Save locally so we can show something if we lose connectivity later
-  HiScoreDb::Save(FILENAME_GLOBAL);
+  m_global.Save(FILENAME_GLOBAL);
+  
+  // Remove local hi scores which are in the response
+  for (const Hi& hi : vec)
+  {
+    m_local.RemoveHiScore(hi);
+  }
+  
+  m_local.Save(FILENAME_LOCAL);
+  
+  // Send any remaining local hi scores to the server. We send the scores one at a time.
+  //  Each successful addition will come back to this function.
+  m_local.SendFirst();
 }
-
-void GlobalHiScoreDb::GetTopNLocked(int n, HiScoreVec* result) const
-{
-  MutexLocker lock(m_mutex);
-  HiScoreDb::GetTopN(n, result);
-}
-
-bool GlobalHiScoreDb::LoadLocked()
-{
-  MutexLocker lock(m_mutex);
-  return HiScoreDb::Load(FILENAME_GLOBAL);
-}
-
-//bool GlobalHiScoreDb::SaveLocked()
-//{
-//  MutexLocker lock(m_mutex);
-//  return HiScoreDb::Save(FILENAME_GLOBAL);
-//}
 
 }
 

@@ -18,10 +18,10 @@ namespace Amju
 static void OnContinue(GuiElement*)
 {
   // Always go back to title, but check for hi score
-  const int TOP_N = 10; // TODO
   // TODO Just checking single player score
   int score = TheScores::Instance()->GetScore(AMJU_P1);
-  if (TheLocalHiScoreDb::Instance()->IsScoreTopN(score, TOP_N))
+  
+  if (TheGlobalHiScoreDb::Instance()->IsHiScore(score))
   {
     TheGame::Instance()->SetCurrentState(TheGSYouGotHiScore::Instance());
   }
