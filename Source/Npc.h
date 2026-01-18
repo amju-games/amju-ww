@@ -18,6 +18,11 @@ public:
   void DecideAI();
   virtual void Update();
 
+  // OnFloorCharacter overrides
+  virtual void OnAnimFinished();
+  virtual void OnAnimFreeze();
+  virtual void OnAnimRepeat();
+
 protected:
   typedef std::map<std::string, PAI> AIs;
   AIs m_ais;
