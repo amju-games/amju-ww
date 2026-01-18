@@ -18,6 +18,7 @@
 #include <StringUtils.h>
 #include <Pause.h>
 #include <Screen.h>
+#include <SAP.h>
 #include "Hud.h"
 #include "GSPaused.h"
 #include "Tutorial.h"
@@ -31,6 +32,16 @@ namespace Amju
 {
 const char* GSMain::NAME = "main";
 
+// Return true if two game objects collide - just simple static test
+bool MyCollide(GameObject* go1, GameObject* go2)
+{
+  const AABB* aabb1 = go1->GetAABB();
+  if (!aabb1) return false;
+  const AABB* aabb2 = go2->GetAABB();
+  if (!aabb2) return false;
+  return aabb1->Intersects(*aabb2);
+}
+
 GSMain::GSMain()
 {
 }
@@ -38,6 +49,9 @@ GSMain::GSMain()
 void GSMain::OnActive()
 {
   GameState::OnActive();
+
+  TheSAP::Instance()->Clear();
+  TheSAP::Instance()->SetCollideFunc(MyCollide);
 
   // Clear Text scene graph
   GetTextSceneGraph()->Clear();
@@ -104,42 +118,6 @@ void GSMain::ClearLevel()
   m_exitTimer = 0;
 }
 
-void Collisions()
-{
-  // TODO Not cool
-
-  Game::GameObjects* gos = TheGame::Instance()->GetGameObjects();  
-  for (Game::GameObjects::iterator it = gos->begin(); it != gos->end(); ++it)
-  {
-    PGameObject go1 = it->second;
-
-    if (((WWGameObject*)go1.GetPtr())->IsDead())
-    {
-      continue;
-    }
-
-    Game::GameObjects::iterator jt = it;
-    ++jt;
-    for ( ; jt != gos->end(); ++jt)
-    {
-      PGameObject go2 = jt->second;
-
-      if (((WWGameObject*)go2.GetPtr())->IsDead())
-      {
-        continue;
-      }
-      
-      AABB* aabb1 = go1->GetAABB();
-      AABB* aabb2 = go2->GetAABB();
-
-      if (aabb1 && aabb2 && aabb1->Intersects(*aabb2))
-      {
-        TheCollisionManager::Instance()->HandleCollision(go1, go2);
-      }      
-    }
-  }
-}
-
 void GSMain::Update()
 {
   // Freeze if displaying tutorial text
@@ -157,7 +135,9 @@ void GSMain::Update()
     {
       TheGame::Instance()->UpdateGameObjects();
       // Perform game-specific collision det & response here
-      Collisions();
+      //Collisions();
+      // Using Sweep and Prune
+      TheSAP::Instance()->Update(*TheGame::Instance()->GetGameObjects());
     }
 
     GetGameSceneGraph()->Update();
