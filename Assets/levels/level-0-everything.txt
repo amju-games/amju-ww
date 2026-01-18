@@ -2,7 +2,7 @@
 1
 
 // Num Objects
-21
+32
 
 // Camera: for a specific viewport, pointing at a specific player
 camera
@@ -72,7 +72,7 @@ staticfloor
 // Rot 
 0
 // Floor mesh
-plat_rect_4x4_std.obj
+block_rect_1x1.obj
 end
 
 
@@ -83,18 +83,88 @@ staticfloor
 // Rot 
 0
 // Floor mesh
-plat_rect_4x4_std.obj
+block_rect_curved_1x1.obj
 end
 
 
 staticfloor
 1003
 // Centre/pivot point
--600, 200, 0
+-800, 200, 0
 // Rot
 0
 // Floor mesh 
 block_rect_curved_4x4.obj
+end
+
+staticfloor
+1004
+// Centre/pivot point
+800, 200, 0
+// Rot
+0
+// Floor mesh 
+block_rect_curved_2x2.obj
+end
+
+staticfloor
+1005
+// Centre/pivot point
+1200, 200, 0
+// Rot
+0
+// Floor mesh 
+block_rect_curved_hill_1x1.obj
+end
+
+staticfloor
+1006
+// Centre/pivot point
+1600, 200, 0
+// Rot
+0
+// Floor mesh 
+block_rect_curved_hill_2x2.obj
+end
+
+staticfloor
+1007
+// Centre/pivot point
+2000, 200, 0
+// Rot
+0
+// Floor mesh 
+block_rect_curved_hill_4x2.obj
+end
+
+staticfloor
+1008
+// Centre/pivot point
+2400, 200, 0
+// Rot
+0
+// Floor mesh 
+block_rect_curved_hill_4x4.obj
+end
+
+staticfloor
+1010
+// Centre/pivot point
+0, 200, 800
+// Rot
+0
+// Floor mesh 
+field_4x4.obj
+end
+
+staticfloor
+1011
+// Centre/pivot point
+800, 200, 1600
+// Rot
+0
+// Floor mesh 
+field_8x8.obj
 end
 
 
@@ -252,12 +322,6 @@ plat_rect_2x1_std.obj
 50.0
 end
 
-
-
-
-
-
-
 staticfloor
 4004
 // Centre/pivot point
@@ -265,7 +329,7 @@ staticfloor
 // Rot
 0
 // Floor mesh
-plat_wood1.png
+ramp_2x1.obj
 end
 
 staticfloor
@@ -298,12 +362,11 @@ heart.obj
 // Shadow
 shadow.png
 20
+// points
+0
+// lives
+1
 end
 
 
-objective
-10000
-// Text
-Get rid of the dinosaur!
-end
 
